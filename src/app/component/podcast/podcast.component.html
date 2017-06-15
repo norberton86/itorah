@@ -1,0 +1,21 @@
+
+											<li *ngFor="let p of podcast">
+												<a href="#" class="link-play-secondary"></a>
+												
+												<h6>Episode {{p.episode}}: {{p.name}}  {{p.date| date: 'MM/dd/yyyy'}}</h6>
+												
+												<p>{{p.description}} </p>
+												
+												<p>
+													<a href="#">
+														Download
+													</a>
+													
+													<a href="#">
+														Share
+													</a>
+												</p>
+											</li>
+											
+										
+								

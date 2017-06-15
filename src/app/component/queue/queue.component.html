@@ -1,0 +1,29 @@
+<li *ngFor="let q of queues">
+												<a href="#" class="link-play-secondary"></a>
+												
+												<h6>{{q.title}}</h6>
+												
+												<p>{{q.author}} <span>{{q.date| date: 'MM/dd/yyyy'}}</span></p>
+												
+												<p>
+													<em>{{q.description}}</em>
+												</p>
+												
+												<p>
+													<strong>{{q.time}}min</strong> <strong>{{q.language}}</strong>
+												</p>
+												
+												<div class="list-updates-actions">
+													<a href="#">
+														<i class="ico-mic"></i>
+													</a>
+													
+													<a href="#">
+														<i class="ico-download"></i>
+													</a>
+													
+													<a href="#">
+														<i class="ico-burger"></i>
+													</a>
+												</div><!-- /.list-actions -->
+</li>

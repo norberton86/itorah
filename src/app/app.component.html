@@ -1,20 +1,982 @@
-<!--The whole content below can be removed with the new code.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=" />
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/docs/ts/latest/tutorial/">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="http://angularjs.blogspot.ca/">Angular blog</a></h2>
-  </li>
-</ul>
+ <div class="wrapper">
+	<div class="container-wrap">
+		<header class="header">
+			<div class="shell">
+				<div class="header-inner">
+					<a href="#" class="logo">iTorah.com</a>
+
+					<div class="header-content">
+						<ul class="nav-utilities">
+							<li>
+								<a class="link-play" href="#">
+									<i class="ico-podcast"></i> <span>Podcast</span>
+								</a>
+								
+								<div class="dropdown">
+									<div class="dropdown-head">
+										<h4><i class="ico-podcast-2"></i> Podcast</h4>
+										
+										<ul class="nav-list">
+											<li>
+												<a href="#">Subscribe</a>
+											</li>
+											
+											<li>
+												<a href="#">Archive</a>
+											</li>
+										</ul><!-- /.nav-list -->
+									</div><!-- /.dropdown-head -->
+									
+									<div class="dropdown-body">
+										<ul class="list-updates">
+											
+											<app-podcast></app-podcast>
+											
+											
+										</ul><!-- /.list-updates -->
+									</div><!-- /.dropdown-body -->
+									
+									<div class="dropdown-foot">
+										<a href="#">More Episodes</a>
+									</div><!-- /.dropdown-foot -->
+								</div><!-- /.dropdown -->
+							</li>
+							
+							<li>
+								<a href="#">
+									<i class="ico-sponsors"></i> <span>Sponsors</span>
+								</a>
+								
+								<div class="dropdown" >
+									<div class="dropdown-head">
+										<h4><i class="ico-leaf"></i> Sponsors</h4>
+										
+										<ul class="nav-list">
+											<li>
+												<a class="link-blue" href="#">Become a sponsor</a>
+											</li>
+										</ul><!-- /.nav-list -->
+									</div><!-- /.dropdown-head -->
+									
+									<div class="dropdown-body">
+										<ul class="list-updates">
+											
+                                            <app-sponsor></app-sponsor>
+
+										</ul><!-- /.list-updates -->
+									</div><!-- /.dropdown-body -->
+								</div>
+							</li>
+							
+							<li>
+								<a href="#">
+									<i class="ico-subscribe"></i> <span>Subscribe</span>
+								</a>
+								
+								<div class="dropdown dropdown-subscription">
+									<div class="dropdown-head">
+										<h4><i class="ico-mail-dark"></i> <span>My Subscriptions</span></h4>
+									</div><!-- /.dropdown-head -->
+									
+									<div class="dropdown-body">
+										<div class="dropdown-group">
+											<ul class="list-checkboxes">
+												<li>
+													<div class="checkbox">
+														<input type="checkbox" id="checkbox11">
+														
+														<label for="checkbox11">
+															<strong>Daily Halacha</strong>
+															
+															A concise Halacha in english emailed every day authored by Rabbi Eli Mansour
+														</label>
+													</div><!-- /.checkbox -->
+												</li>
+												
+												<li>
+													<div class="checkbox">
+														<input type="checkbox" id="checkbox2">
+														
+														<label for="checkbox2">
+															<strong>Weekly Perasha</strong>
+															
+															Insight on the parsha emailed every Thursday 
+														</label>
+													</div><!-- /.checkbox -->
+												</li>
+												
+												<li>
+													<div class="checkbox">
+														<input type="checkbox" id="checkbox3">
+														
+														<label for="checkbox3">
+															<strong>Daily Emunah</strong>
+															
+															Daily audio email authored by Rabbi David Ashear   
+														</label>
+													</div><!-- /.checkbox -->
+												</li>
+												
+												<li>
+													<div class="checkbox">
+														<input type="checkbox" id="checkbox4">
+														
+														<label for="checkbox4">
+															<strong>Daily Tehillim Daily List</strong>
+															
+															Daily email updates from your own community
+														</label>
+													</div><!-- /.checkbox -->
+												</li>
+												
+											
+											</ul><!-- /.list-checkboxes -->
+										</div><!-- /.dropdown-group -->
+										
+										<div class="dropdown-group">
+											<div class="dropdown-group-inner">
+												<h4>Emergency Tehillim</h4>
+												
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae arcu id leo malesuada pulvinar.</p>
+											</div><!-- /.dropdown-group-inner -->
+											
+											<ul class="list-checkboxes list-checkboxes-secondary">
+												<li>
+													<div class="checkbox">
+														<input type="checkbox" id="checkbox12">
+														
+														<label for="checkbox12">
+															Notify by email
+														</label>
+													</div><!-- /.checkbox -->
+													
+													<div class="checkbox-actions">
+														<span>Name@email.com</span>
+														
+														<a href="#" class="link-edit">
+															<i class="ico-pen-3"></i>
+														</a>
+													</div><!-- /.checkbox-actions -->
+												</li>
+												
+												<li>
+													<div class="checkbox">
+														<input type="checkbox" id="checkbox13">
+														
+														<label for="checkbox13">
+															Notify by text message
+														</label>
+													</div><!-- /.checkbox -->
+													
+													<div class="checkbox-actions">
+														<span>(212)123-4567</span>
+														
+														<a href="#" class="link-edit">
+															<i class="ico-pen-3"></i>
+														</a>
+													</div><!-- /.checkbox-actions -->
+												</li>
+											</ul>
+											
+											<div class="dropdown-group-inner">
+												<h4>Funeral Announcements</h4>
+												
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae arcu id leo malesuada pulvinar.</p>
+											</div><!-- /.dropdown-group-inner -->
+											
+											<ul class="list-checkboxes list-checkboxes-secondary">
+												<li>
+													<div class="checkbox">
+														<input type="checkbox" id="checkbox14">
+														
+														<label for="checkbox14">
+															Notify by email
+														</label>
+													</div><!-- /.checkbox -->
+													
+													<div class="checkbox-actions">
+														<span>Name@email.com</span>
+														
+														<a href="#" class="link-edit">
+															<i class="ico-pen-3"></i>
+														</a>
+													</div><!-- /.checkbox-actions -->
+												</li>
+												
+												<li>
+													<div class="checkbox">
+														<input type="checkbox" id="checkbox15">
+														
+														<label for="checkbox15">
+															Notify by text message
+														</label>
+													</div><!-- /.checkbox -->
+													
+													<div class="checkbox-actions">
+														<span>(212)123-4567</span>
+														
+														<a href="#" class="link-edit">
+															<i class="ico-pen-3"></i>
+														</a>
+													</div><!-- /.checkbox-actions -->
+												</li>
+											</ul>
+										</div><!-- /.dropdown-group -->
+									</div><!-- /.dropdown-body -->
+									
+									<div class="dropdown-actions">
+										<ul class="nav-list">
+											<li>
+												<a class="link-cancel" href="#">Cancel</a>
+											</li>
+											
+											<li>
+												<a class="link-save" href="#">Save</a>
+											</li>
+										</ul><!-- /.nav-list -->
+									</div><!-- /.dropdown-actions -->
+								</div>
+							</li>
+							
+							<li>
+								<a href="#">
+									<i class="ico-queue"></i> <span>Queue</span>
+								</a>
+								
+								<div class="dropdown" >
+									<div class="dropdown-head">
+										<h4><i class="ico-play-3"></i> Queue list</h4>
+										
+										<ul class="nav-list">
+											<li>
+												<a href="#">Edit</a>
+											</li>
+										</ul><!-- /.nav-list -->
+									</div><!-- /.dropdown-head -->
+									
+									<div class="dropdown-body">
+										<ul class="list-updates">
+
+										   <app-queue></app-queue>	
+										
+										</ul><!-- /.list-updates -->
+									</div><!-- /.dropdown-body -->
+								</div><!-- /.dropdown -->
+							</li>
+						</ul><!-- /.nav-utilities -->
+						
+						<div class="header-entry">
+							<a href="#" class="btn-popover" data-tooltip="Lorem ipsum">
+								<span>?</span>
+							</a>
+						</div><!-- /.header-entry -->
+
+						<div class="select-box">
+							<select class="select">
+								<option value="" hidden selected>Browse</option>
+
+								<option value="">Option 1</option>
+
+								<option value="">Option 2</option>
+							</select>
+
+							<a href="#" class="btn-popover" data-tooltip="Lorem ipsum">
+								<span>?</span>
+							</a>
+						</div><!-- /.select-box -->
+
+						<div class="search">
+							<div class="search-inner">
+								<form action="?" method="get">
+									<div class="search-content">
+										<label for="q" class="hidden">Search</label>
+
+										<input type="search" name="q" id="q" value="" placeholder="Search" class="search-field">
+
+										<button type="submit" class="search-btn">
+											<i class="ico-magnifier"></i>
+										</button>
+									</div><!-- /.search-content -->
+								</form>
+							</div><!-- /.search-inner -->
+
+							<a href="#" class="btn-popover" data-tooltip="Lorem ipsum">
+								<span>?</span>
+							</a>
+						</div><!-- /.search -->
+					</div><!-- /.header-content -->
+
+					<aside class="header-aside">
+						<ul class="nav-access">
+							<li>
+								<a href="#" class="link">Sign In</a>
+								
+								<div class="dropdown dropdown-signin">
+									<div class="dropdown-head">
+										<h4><i class="ico-profile"></i>Sign In</h4>
+									</div><!-- /.dropdown-head -->
+									
+									<div class="dropdown-body">
+										<div class="form-signin">
+											<form action="?" method="post">
+												<div class="form-head">
+													<i class="ico-logo-small"></i>
+												</div><!-- /.form-head -->
+												
+												<div class="form-body">
+													<div class="form-row">
+														<label for="field-email" class="form-label hidden">Email</label>
+														
+														<div class="form-controls">
+															<input type="text" class="field" name="field-email" id="field-email" value="" placeholder="Email">
+														</div><!-- /.form-controls -->
+													</div><!-- /.form-row -->
+													
+													<div class="form-row">
+														<label for="field-password" class="form-label hidden">password</label>
+														
+														<div class="form-controls">
+															<input type="password" class="field" name="field-password" id="field-password" value="" placeholder="Password">
+														</div><!-- /.form-controls -->
+													</div><!-- /.form-row -->
+													
+													<div class="form-row">
+														<div class="form-cols">
+															<div class="form-col">
+																<div class="checkbox">
+																	<input type="checkbox" id="checkbox1">
+																	
+																	<label for="checkbox1">Stay signed in</label>
+																</div><!-- /.checkbox -->
+															</div><!-- /.form-col -->
+															
+															<div class="form-col">
+																<a class="link-forgot" href="#">Forgot password</a>
+															</div><!-- /.form-col -->
+														</div><!-- /.form-cols -->
+													</div><!-- /.field-row -->
+												</div><!-- /.form-body -->
+												
+												<div class="form-actions">
+													<input type="submit" value="SIGN IN" class="form-btn">
+													
+													<p>or</p>
+													
+													<ul class="list-signin">
+														<li>
+															<a href="#" class="link-facebook">
+																<i class="ico-btn-facebook"></i>
+																
+																Sign in with Facebook
+															</a>
+														</li>
+														
+														<li>
+															<a href="#" class="link-google">
+																<i class="ico-btn-google"></i>
+																
+																Sign in with Google+
+															</a>
+														</li>
+													</ul><!-- /.list-signin -->
+													
+													<p>Not a member? <a href="#">Create an account</a></p>
+												</div><!-- /.form-actions -->
+											</form>
+										</div><!-- /.form-signin -->
+									</div><!-- /.dropdown-body -->
+								</div>
+							</li>
+						</ul><!-- /.nav-utilities -->
+
+						<a href="#" class="btn-menu">
+							<span>Menu</span>
+
+							<span>Menu</span>
+
+							<span>Menu</span>
+						</a>
+					</aside><!-- /.header-aside -->
+				</div><!-- /.header-inner -->
+
+				<nav class="nav">
+					<div class="shell">
+						<ul>
+							<li>
+								<a href="#">About</a>
+							</li>
+
+							<li>
+								<a href="#">Contact</a>
+							</li>
+
+							<li>
+								<a href="#">Sponsors</a>
+							</li>
+
+							<li>
+								<a href="#">Information</a>
+							</li>
+
+							<li>
+								<a href="#">Links</a>
+							</li>
+
+							<li>
+								<a href="#">Privacy</a>
+							</li>
+						</ul>
+					</div><!-- /.shell -->
+				</nav><!-- /.nav -->
+			</div><!-- /.shell -->
+		</header><!-- /.header -->
+
+
+<i class="ico-ballon-arrow"></i>
+
+<div class="main">
+	<section class="section section-tiles">
+		<div class="shell">
+			<div class="section-content">
+				<div class="tiles">
+					<div class="tile tile-large" id="tile-1">
+						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-1.jpg);">
+							<div class="tile-body">
+								<div class="tile-content">
+									<h3>LearnTorah<small>.com</small></h3>
+
+									<p>
+										<strong>8219</strong>Shiurim Online
+									</p>
+								</div><!-- /.tile-content -->
+
+								<div class="tile-actions">
+									<a href="#item-content-1" class="btn btn-yellow btn-medium" data-size="full">Speakers</a>
+
+									<a href="#" class="link-search">
+										<i class="ico-magnifier-large"></i>
+									</a>
+								</div><!-- /.tile-actions -->
+							</div><!-- /.tile-body -->
+						</div><!-- /.tile-inner -->
+						
+						<p class="sorting">1</p>
+					</div><!-- /.tile tile-large -->
+
+					<div class="tile" id="tile-2">
+						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-2.jpg);">
+							<div class="tile-body">
+								<div class="tile-content">
+									<h3>DailyHalacha<small>.com</small></h3>
+
+									<p>
+										<strong>5013</strong><em>Halachot Online</em>
+									</p>
+
+									<p>An Encyclopedia of Jewish Laws</p>
+
+									<span>Authored by Rabbie Eli J Mansour</span>
+								</div><!-- /.tile-content -->
+
+								<div class="tile-actions">
+									<a href="#" class="link-play">
+										<span>Play Now</span>
+
+										<i class="ico-play"></i>
+									</a>
+
+									<a href="#item-content-2" class="btn btn-yellow btn-small" data-size="full" id="">WEEKLY PERASHA</a>
+
+									<a href="#item-content-8" data-size="half" class="link-search">
+										<i class="ico-magnifier-large"></i>
+									</a>
+								</div><!-- /.tile-actions -->
+							</div><!-- /.tile-body -->
+						</div><!-- /.tile-inner -->
+						
+						<p class="sorting">2</p>
+					</div><!-- /.tile -->
+
+					<div class="tile" id="tile-3">
+						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-3.jpg);">
+							<div class="tile-body">
+								<div class="tile-content">
+									<h3>DailyTehillim<small>.com</small></h3>
+
+									<p>Tehillim List and Levayot by Community</p>
+
+									<span>Listen - Read - Learn</span>
+								</div><!-- /.tile-content -->
+
+								<div class="tile-actions">
+									<ul class="list-actions">
+										<li data-id="item-3">
+											<a href="#item-content-3" data-size="full">
+												<i class="ico-paper"></i>
+											</a>
+										</li>
+
+										<li >
+											<a href="#item-content-7" data-size="half">
+												<i class="ico-edit"></i>
+											</a>
+										</li>
+									</ul><!-- /.list-actions -->
+
+									<a href="#" class="link-search">
+										<i class="ico-magnifier-large"></i>
+									</a>
+								</div><!-- /.tile-actions -->
+							</div><!-- /.tile-body -->
+						</div><!-- /.tile-inner -->
+						
+						<p class="sorting">3</p>
+					</div><!-- /.tile -->
+
+					<div class="tile" id="tile-4">
+						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-4.jpg);">
+							<div class="tile-body">
+								<div class="tile-content">
+									<h3>DailyGemara<small>.com</small></h3>
+
+									<p>Daf Yomi taught by Rabbi Eli Mansour</p>
+
+									<span>Taught by Rabbi Eli J Mansour</span>
+								</div><!-- /.tile-content -->
+
+								<div class="tile-actions">
+									<a href="#" class="link-play">
+										<span>Play Now</span>
+
+										<i class="ico-play"></i>
+									</a>
+
+									<a href="#" class="link-search">
+										<i class="ico-magnifier-large"></i>
+									</a>
+								</div><!-- /.tile-actions -->
+							</div><!-- /.tile-body -->
+						</div><!-- /.tile-inner -->
+						
+						<p class="sorting">4</p>
+					</div><!-- /.tile -->
+
+					<div class="tile" id="tile-5">
+						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-5.jpg);">
+							<div class="tile-body">
+								<div class="tile-content">
+									<h3>DailyEmunah<small>.com</small></h3>
+
+									<p>
+										<strong>415</strong><span>Short Lessons</span>
+									</p>
+
+									<span>Authored by Rabbie Eli J Mansour</span>
+								</div><!-- /.tile-content -->
+
+								<div class="tile-actions">
+									<a href="#" class="link-play">
+										<span>Play Now</span>
+
+										<i class="ico-play"></i>
+									</a>
+
+									<ul class="list-actions">
+										<li data-id="tile-5">
+											<!--<a href="#">
+												<i class="ico-envelope"></i>
+											</a>-->
+										</li>
+									</ul><!-- /.list-actions -->
+
+									<a class="link-search" href="#item-content-4" data-size="full">
+										<i class="ico-magnifier-large"></i>
+									</a>
+								</div><!-- /.tile-actions -->
+							</div><!-- /.tile-body -->
+						</div><!-- /.tile-inner -->
+						
+						<p class="sorting">5</p>
+					</div><!-- /.tile -->
+
+					<div class="tile tile-high" id="tile-6">
+						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-6.jpg);">
+							<div class="tile-body">
+								<div class="tile-entry">
+									<div class="tile-content">
+										<h3>MishnaBerura<small>.com</small></h3>
+
+										<p>The Shulchan Aruch Explained</p>
+
+										<span>Taught by Rabbi Eli J Mansour</span>
+									</div><!-- /.tile-content -->
+
+									<div class="tile-actions">
+										<a href="#" class="link-search">
+											<i class="ico-magnifier-large"></i>
+										</a>
+									</div><!-- /.tile-actions -->
+								</div><!-- /.tile-entry -->
+
+								<div class="tile-entry">
+									<div class="tile-content">
+										<h3>MishnaBeruraYomi<small>.com</small></h3>
+
+										<span>Taught by Rabbi Eli J Mansour</span>
+									</div><!-- /.tile-content -->
+
+									<div class="tile-actions">
+										<a href="#" class="link-play">
+											<span>Play Now</span>
+
+											<i class="ico-play"></i>
+										</a>
+
+										<ul class="list-actions">
+											<li>
+											<!--	<a href="#">
+													<i class="ico-envelope"></i>
+												</a>-->
+											</li>
+										</ul><!-- /.list-actions -->
+
+										<a class="link-search" href="#item-content-9" data-size="half">
+											<i class="ico-magnifier-large"></i>
+										</a>
+									</div><!-- /.tile-actions -->
+								</div><!-- /.tile-entry -->
+							</div><!-- /.tile-body -->
+						</div><!-- /.tile-inner -->
+						
+						<p class="sorting">6</p>
+					</div><!-- /.tile -->
+
+					<div class="tile" id="tile-7">
+						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-7.jpg);">
+							<div class="tile-body">
+								<div class="tile-content">
+									<h3>PeleYoetz<small>.com</small></h3>
+
+									<p>Musar | Ethics for Living</p>
+
+									<span>Taught by Rabbi Eli J Mansour</span>
+								</div><!-- /.tile-content -->
+
+								<div class="tile-actions">
+									<a class="link-search" href="#item-content-5" data-size="full">
+										<i class="ico-magnifier-large"></i>
+									</a>
+								</div><!-- /.tile-actions -->
+							</div><!-- /.tile-body -->
+						</div><!-- /.tile-inner -->
+						
+						<p class="sorting">7</p>
+					</div><!-- /.tile -->
+
+					<div class="tile" id="tile-8">
+						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-8.jpg);">
+							<div class="tile-body">
+								<div class="tile-content">
+									<h3>DailyHok<small>.com</small></h3>
+
+									<p>Hok L’Yisrael for Every Day Learning</p>
+
+									<span>Taught by Rabbi Eli J Mansour</span>
+								</div><!-- /.tile-content -->
+
+								<div class="tile-actions">
+									<a href="#" class="link-play">
+										<span>Play Now</span>
+
+										<i class="ico-play"></i>
+									</a>
+
+									<a href="#item-content-6" class="link-search" data-size="full">
+										<i class="ico-magnifier-large"></i>
+									</a>
+								</div><!-- /.tile-actions -->
+							</div><!-- /.tile-body -->
+						</div><!-- /.tile-inner -->
+						
+						<p class="sorting">8</p>
+					</div><!-- /.tile -->
+
+					<div class="tile" id="tile-9">
+						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-9.jpg);">
+							<div class="tile-body">
+								<div class="tile-content">
+									<h3>PrayersAndTefilot<small>.com</small></h3>
+
+									<p>Berachot for all situations</p>
+								</div><!-- /.tile-content -->
+
+								<div class="tile-actions">
+									<a href="#" class="link-search">
+										<i class="ico-magnifier-large"></i>
+									</a>
+								</div><!-- /.tile-actions -->
+							</div><!-- /.tile-body -->
+						</div><!-- /.tile-inner -->
+						
+						<p class="sorting">9</p>
+					</div><!-- /.tile -->
+
+					<div class="tile" id="tile-10">
+						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-10.jpg);">
+							<div class="tile-body">
+								<div class="tile-content">
+									<h3>WeeklyInspire<small>.com</small></h3>
+
+									<span>Authored by Rabbie Eli J Mansour</span>
+								</div><!-- /.tile-content -->
+
+								<div class="tile-actions">
+									<a href="#" class="link-play">
+										<span>Play Now</span>
+
+										<i class="ico-play"></i>
+									</a>
+
+									<ul class="list-actions">
+										<li>
+										<!--	<a href="#">
+												<i class="ico-envelope"></i>
+											</a>-->
+										</li>
+									</ul><!-- /.list-actions -->
+
+									<a href="#" class="link-search">
+										<i class="ico-magnifier-large"></i>
+									</a>
+								</div><!-- /.tile-actions -->
+							</div><!-- /.tile-body -->
+						</div><!-- /.tile-inner -->
+						<p class="sorting">10</p>
+					</div><!-- /.tile -->
+				</div><!-- /.tiles -->
+			</div><!-- /.section-content -->
+		</div><!-- /.shell -->
+	</section><!-- /.section section-tiles -->
+
+	<section class="section section-lectures">
+		<header class="section-head">
+			<div class="shell">
+				<h6>Featured Lectures</h6>
+			</div><!-- /.shell -->
+		</header><!-- /.section-head -->
+
+		<div class="section-body">
+			<div class="shell">
+				<div class="section-inner">
+					<aside class="section-aside">
+						<div class="video">
+							<div class="video-head">
+								<h4>Sponsored posts example</h4>
+							</div><!-- /.video-head -->
+
+							<div class="video-body">
+								<a href="#">
+									<img src="/assets/build/css/images/temp/video-image.png" alt="" class="video-image">
+								</a>
+							</div><!-- /.video-body -->
+
+							<div class="video-bar">
+								<img src="/assets/build/css/images/temp/video-player.jpg" alt="">
+							</div><!-- /.video-bar -->
+						</div><!-- /.video -->
+					</aside><!-- /.section-aside -->
+
+					<div class="section-content">
+						<ul class="video-thumbnails">
+							<li class="video-thumbnail">
+								<div class="video-thumbnail-image">
+									<a href="#">
+										<img src="/assets/build/css/images/temp/video-thumbnail-image-1.jpg" alt="">
+									</a>
+								</div><!-- /.video-thumbnail-image -->
+
+								<div class="video-thumbnail-content">
+									<span>
+										<i class="ico-clock"></i>
+
+										<strong>3:47</strong>
+									</span>
+
+									<p>
+										<a href="#">Public reading of a set of passages from a Torah...</a>
+									</p>
+
+									<p>Rabbi Eli J Mansour</p>
+								</div><!-- /.video-thumbnail-content -->
+
+								<div class="video-thumbnail-actions">
+									<a href="#" class="link">
+										<i class="ico-camera"></i>
+									</a>
+								</div><!-- /.video-thumbnail-actions -->
+							</li><!-- /.video-thumbnail -->
+
+							<li class="video-thumbnail">
+								<div class="video-thumbnail-image">
+									<a href="#">
+										<img src="/assets/build/css/images/temp/video-thumbnail-image-1.jpg" alt="">
+									</a>
+								</div><!-- /.video-thumbnail-image -->
+
+								<div class="video-thumbnail-content">
+									<span>
+										<i class="ico-clock"></i>
+
+										<strong>2:49</strong>
+									</span>
+
+									<p>
+										<a href="#">Public reading of a set of passages from a Torah...</a>
+									</p>
+
+									<p>Rabbi Eli J Mansour</p>
+								</div><!-- /.video-thumbnail-content -->
+
+								<div class="video-thumbnail-actions">
+									<a href="#" class="link">
+										<i class="ico-microphone"></i>
+									</a>
+								</div><!-- /.video-thumbnail-actions -->
+							</li><!-- /.video-thumbnail -->
+
+							<li class="video-thumbnail">
+								<div class="video-thumbnail-image">
+									<a href="#">
+										<img src="/assets/build/css/images/temp/video-thumbnail-image-1.jpg" alt="">
+									</a>
+								</div><!-- /.video-thumbnail-image -->
+
+								<div class="video-thumbnail-content">
+									<span>
+										<i class="ico-clock"></i>
+
+										<strong>1:59</strong>
+									</span>
+
+									<p>
+										<a href="#">Public reading of a set of passages from a Torah...</a>
+									</p>
+
+									<p>Rabbi Eli J Mansour</p>
+								</div><!-- /.video-thumbnail-content -->
+
+								<div class="video-thumbnail-actions">
+									<a href="#" class="link">
+										<i class="ico-microphone"></i>
+									</a>
+								</div><!-- /.video-thumbnail-actions -->
+							</li><!-- /.video-thumbnail -->
+
+							<li class="video-thumbnail">
+								<div class="video-thumbnail-image">
+									<a href="#">
+										<img src="/assets/build/css/images/temp/video-thumbnail-image-1.jpg" alt="">
+									</a>
+								</div><!-- /.video-thumbnail-image -->
+
+								<div class="video-thumbnail-content">
+									<span>
+										<i class="ico-clock"></i>
+
+										<strong>3:11</strong>
+									</span>
+
+									<p>
+										<a href="#">Public reading of a set of passages from a Torah...</a>
+									</p>
+
+									<p>Rabbi Eli J Mansour</p>
+								</div><!-- /.video-thumbnail-content -->
+
+								<div class="video-thumbnail-actions">
+									<a href="#" class="link">
+										<i class="ico-camera"></i>
+									</a>
+								</div><!-- /.video-thumbnail-actions -->
+							</li><!-- /.video-thumbnail -->
+
+							<li class="video-thumbnail">
+								<div class="video-thumbnail-image">
+									<a href="#">
+										<img src="/assets/build/css/images/temp/video-thumbnail-image-1.jpg" alt="">
+									</a>
+								</div><!-- /.video-thumbnail-image -->
+
+								<div class="video-thumbnail-content">
+									<span>
+										<i class="ico-clock"></i>
+
+										<strong>3:11</strong>
+									</span>
+
+									<p>
+										<a href="#">Public reading of a set of passages from a Torah...</a>
+									</p>
+
+									<p>Rabbi Eli J Mansour</p>
+								</div><!-- /.video-thumbnail-content -->
+
+								<div class="video-thumbnail-actions">
+									<a href="#" class="link">
+										<i class="ico-microphone"></i>
+									</a>
+								</div><!-- /.video-thumbnail-actions -->
+							</li><!-- /.video-thumbnail -->
+						</ul><!-- /.video-thumbnails -->
+					</div><!-- /.section-content -->
+				</div><!-- /.section-inner -->
+			</div><!-- /.shell -->
+		</div><!-- /.section-body -->
+	</section><!-- /.section section-lectures -->
+</div><!-- /.main -->
+
+		<footer class="footer">
+			<div class="shell">
+				<div class="footer-inner">
+					<aside class="footer-aside">
+						<p class="copyright">&copy; 2008-09 Torah Learning Resources Ltd. All rights reserved.</p><!-- /.copyright -->
+					</aside><!-- /.footer-aside -->
+
+					<nav class="nav-secondary">
+						<ul>
+							<li>
+								<a href="#">About</a>
+							</li>
+
+							<li>
+								<a href="#">Contact</a>
+							</li>
+
+							<li>
+								<a href="#">Sponsors</a>
+							</li>
+
+							<li>
+								<a href="#">Information</a>
+							</li>
+
+							<li>
+								<a href="#">Links</a>
+							</li>
+
+							<li>
+								<a href="#">Privacy</a>
+							</li>
+						</ul>
+					</nav><!-- /.nav-secondary -->
+				</div><!-- /.footer-inner -->
+			</div><!-- /.shell -->
+		</footer><!-- /.footer -->
+	</div><!-- /.container -->
+</div><!-- /.wrapper -->
+
+
+
+
+
 

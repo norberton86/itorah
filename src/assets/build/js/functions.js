@@ -265,6 +265,7 @@
 				sorting = sorting - 2;
 			}
 
+            //var newItem = $('<div id="ballon" data-item-id="'+ id + '" class="tile ballon"><app-podcast></app-podcast><p class="sorting">'+sorting+'</p></div>');
 			var newItem = $('<div id="ballon" data-item-id="'+ id + '" class="tile ballon">'+htmlcontents+'<p class="sorting">'+sorting+'</p></div>');
 			var body_pos =	$('#top').offset();
 			var ballonHeight = $(elemHref).outerHeight();

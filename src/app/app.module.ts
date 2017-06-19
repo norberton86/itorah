@@ -15,6 +15,8 @@ import { EmunahSearchComponent } from './component/emunah-search/emunah-search.c
 import { HokSearchComponent } from './component/hok-search/hok-search.component';
 import { PeleYoetzComponent } from './component/pele-yoetz/pele-yoetz.component';
 import { MishnaBeruraYomiComponent } from './component/mishna-berura-yomi/mishna-berura-yomi.component';
+import { LearnTorahComponent } from './component/learn-torah/learn-torah.component';
+import { DailyHalachaComponent } from './component/daily-halacha/daily-halacha.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { MishnaBeruraYomiComponent } from './component/mishna-berura-yomi/mishna
     EmunahSearchComponent,
     HokSearchComponent,
     PeleYoetzComponent,
-    MishnaBeruraYomiComponent
+    MishnaBeruraYomiComponent,
+    LearnTorahComponent,
+    DailyHalachaComponent
   ],
   imports: [
     BrowserModule,

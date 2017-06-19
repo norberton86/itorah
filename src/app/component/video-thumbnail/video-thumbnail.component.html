@@ -12,18 +12,20 @@
 					<aside class="section-aside">
 						<div class="video">
 							<div class="video-head">
-								<h4>Sponsored posts example</h4>
+								<h4>{{CurrentPlaying.Title}}</h4>
 							</div><!-- /.video-head -->
 
-							<div class="video-body">
+							<div class="video-body" id="video-body">
 								<a href="#">
 									<img src="/assets/build/css/images/temp/video-image.png" alt="" class="video-image">
 								</a>
+
 							</div><!-- /.video-body -->
 
-							<div class="video-bar">
+							<!--<div class="video-bar">
 								<img src="/assets/build/css/images/temp/video-player.jpg" alt="">
-							</div><!-- /.video-bar -->
+							</div> --> <!-- /.video-bar -->
+
 						</div><!-- /.video -->
 					</aside><!-- /.section-aside -->
 
@@ -32,9 +34,9 @@
 							
               <li *ngFor="let v of videos;" class="video-thumbnail">
 								<div class="video-thumbnail-image" (click)="Play(v)">
-									<a href="#">
+									
 										<img src="/assets/build/css/images/temp/video-thumbnail-image-1.jpg" alt="">
-									</a>
+									
 								</div><!-- /.video-thumbnail-image -->
 
 								<div class="video-thumbnail-content">
@@ -54,7 +56,7 @@
 								<div class="video-thumbnail-actions">
 									<a href="#" class="link">
 										<i class="ico-camera"  *ngIf="v.MediaType=='Video'"></i>
-                    <i class="ico-microphone"  *ngIf="v.MediaType=='Audio'"></i>
+                    					<i class="ico-microphone"  *ngIf="v.MediaType=='Audio'"></i>
 									</a>
 								</div><!-- /.video-thumbnail-actions -->
             </li><!-- /.video-thumbnail -->

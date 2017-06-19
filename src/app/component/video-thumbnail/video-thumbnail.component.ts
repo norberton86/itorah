@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Home,Lectures } from '../../model/Home';
 import { HomeService } from '../../service/home.service';
 
+declare var $:any;
+declare var jwplayer:any;
+
 @Component({
   selector: 'app-video-thumbnail',
   templateUrl: './video-thumbnail.component.html',
@@ -11,6 +14,9 @@ import { HomeService } from '../../service/home.service';
 export class VideoThumbnailComponent implements OnInit {
 
   videos:Array<Lectures>;
+  videosFull:Array<Lectures>;
+  CurrentPlaying:Lectures;
+
 
   constructor(private homeService:HomeService) {
      this.videos=[];
@@ -29,12 +35,8 @@ export class VideoThumbnailComponent implements OnInit {
 
    setCount(home:Home)
    {
-     
-     home.Table2=home.Table2.sort(this.Compare);
-
-     for(var i=0;i<home.Table2.length;i++)
-        if(i!=0)
-        this.videos.push(home.Table2[i]);
+     this.videosFull=home.Table2.sort(this.Compare);
+     this.Play(this.videosFull[0]);    
    }
 
    Compare(a,b) {
@@ -47,7 +49,16 @@ export class VideoThumbnailComponent implements OnInit {
 
    Play(video: Lectures)
    {
+      jwplayer("video-body").setup({
+      "file": video.url,
+      "image": "/assets/build/css/images/temp/video-thumbnail-image-1.jpg"
+    });
+    
+    this.CurrentPlaying=video;
 
-
+    this.videos=[];
+    for(var i=0;i<this.videosFull.length;i++)
+        if(this.videosFull[i].ShiurID!==this.CurrentPlaying.ShiurID)
+        this.videos.push(this.videosFull[i]);
    }
 }

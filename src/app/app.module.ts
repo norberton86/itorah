@@ -17,6 +17,7 @@ import { PeleYoetzComponent } from './component/pele-yoetz/pele-yoetz.component'
 import { MishnaBeruraYomiComponent } from './component/mishna-berura-yomi/mishna-berura-yomi.component';
 import { LearnTorahComponent } from './component/learn-torah/learn-torah.component';
 import { DailyHalachaComponent } from './component/daily-halacha/daily-halacha.component';
+import { VideoThumbnailComponent } from './component/video-thumbnail/video-thumbnail.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DailyHalachaComponent } from './component/daily-halacha/daily-halacha.c
     PeleYoetzComponent,
     MishnaBeruraYomiComponent,
     LearnTorahComponent,
-    DailyHalachaComponent
+    DailyHalachaComponent,
+    VideoThumbnailComponent
   ],
   imports: [
     BrowserModule,

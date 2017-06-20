@@ -12,7 +12,7 @@
 					<aside class="section-aside">
 						<div class="video">
 							<div class="video-head">
-								<h4>{{CurrentPlaying.Title}}</h4>
+								<h4>{{CurrentPlaying?.Title}}</h4>
 							</div><!-- /.video-head -->
 
 							<div class="video-body" id="video-body">
@@ -32,7 +32,7 @@
 					<div class="section-content">
 						<ul class="video-thumbnails">
 							
-              <li *ngFor="let v of videos;" class="video-thumbnail">
+              			  <li *ngFor="let v of videos;" class="video-thumbnail">
 								<div class="video-thumbnail-image" (click)="Play(v)">
 									
 										<img src="/assets/build/css/images/temp/video-thumbnail-image-1.jpg" alt="">
@@ -59,7 +59,7 @@
                     					<i class="ico-microphone"  *ngIf="v.MediaType=='Audio'"></i>
 									</a>
 								</div><!-- /.video-thumbnail-actions -->
-            </li><!-- /.video-thumbnail -->
+           				 </li><!-- /.video-thumbnail -->
 
 
 						</ul><!-- /.video-thumbnails -->

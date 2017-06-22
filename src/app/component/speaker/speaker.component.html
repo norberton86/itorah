@@ -1,3 +1,4 @@
+
 <div class="tile-box" id="item-content-1">
 	<div class="tile-box-primary tile-box-speakers">
 		<div class="tile-box-head tile-box-head-block">
@@ -12,173 +13,23 @@
 			<div class="slider-profiles">
 					<div class="slider-clip">
 						<ul class="slides">
-							<li class="slider-slide">
-								<div class="slider-inner">
+						
+
+						   <li *ngFor="let s of currentSpeakers;" class="slider-slide"   data-type="lecture" id="{{s.id}}"  >
+								<div class="slider-inner" >
 									<div class="slider-avatar">
-										
+										<img  *ngIf="s.picUrl!=''" src="{{s.picUrl}}" alt="">
 									</div><!-- /.slider-avatar -->
 									
-									<div class="slider-content">
-										<h5>Rabbi Duvi Bensoussan</h5>
+									<div class="slider-content">  
+										<h5>{{s.title}} {{s.firstName}} {{s.lastName}}</h5>
 										
-										<p>303 Shiurim</p>
+										<p>{{s.totalShiurim}}  Shiurim</p>
 									</div><!-- /.slider-content -->
 								</div><!-- /.slider-inner -->
 							</li><!-- /.slider-slide -->
 							
-							<li class="slider-slide">
-								<div class="slider-inner">
-									<div class="slider-avatar">
-										<img src="/assets/build/css/images/temp/slider-1.jpg" alt="">
-									</div><!-- /.slider-avatar -->
-									
-									<div class="slider-content">
-										<h5>Rabbi Shlomo Diamond</h5>
-										
-										<p>586 Shiurim</p>
-									</div><!-- /.slider-content -->
-								</div><!-- /.slider-inner -->
-							</li><!-- /.slider-slide -->
-							
-							<li class="slider-slide">
-								<div class="slider-inner">
-									<div class="slider-avatar">
-										
-									</div><!-- /.slider-avatar -->
-									
-									<div class="slider-content">
-										<h5>Rabbi Joey Haber</h5>
-										
-										<p>497 Shiurim</p>
-									</div><!-- /.slider-content -->
-								</div><!-- /.slider-inner -->
-							</li><!-- /.slider-slide -->
-							
-							<li class="slider-slide">
-								<div class="slider-inner">
-									<div class="slider-avatar">
-										<img src="/assets/build/css/images/temp/slider-2.jpg" alt="">
-									</div><!-- /.slider-avatar -->
-									
-									<div class="slider-content">
-										<h5>Rabbi Eli J Marsour</h5>
-										
-										<p>2469 Shiurim</p>
-									</div><!-- /.slider-content -->
-								</div><!-- /.slider-inner -->
-							</li><!-- /.slider-slide -->
-							
-							<li class="slider-slide">
-								<div class="slider-inner">
-									<div class="slider-avatar">
-										<img src="/assets/build/css/images/temp/slider-3.jpg" alt="">
-									</div><!-- /.slider-avatar -->
-									
-									<div class="slider-content">
-										<h5>Rabbi David Sutton</h5>
-										
-										<p>650 Shiurim</p>
-									</div><!-- /.slider-content -->
-								</div><!-- /.slider-inner -->
-							</li><!-- /.slider-slide -->
-							
-							<li class="slider-slide">
-								<div class="slider-inner">
-									<div class="slider-avatar">
-										
-									</div><!-- /.slider-avatar -->
-									
-									<div class="slider-content">
-										<h5>Rabbi Meyer Yedid</h5>
-										
-										<p>400 Shiurim</p>
-									</div><!-- /.slider-content -->
-								</div><!-- /.slider-inner -->
-							</li><!-- /.slider-slide -->
-							
-							<li class="slider-slide">
-								<div class="slider-inner">
-									<div class="slider-avatar">
-										
-									</div><!-- /.slider-avatar -->
-									
-									<div class="slider-content">
-										<h5>Rabbi Duvi Bensoussan</h5>
-										
-										<p>303 Shiurim</p>
-									</div><!-- /.slider-content -->
-								</div><!-- /.slider-inner -->
-							</li><!-- /.slider-slide -->
-							
-							<li class="slider-slide">
-								<div class="slider-inner">
-									<div class="slider-avatar">
-										<img src="/assets/build/css/images/temp/slider-1.jpg" alt="">
-									</div><!-- /.slider-avatar -->
-									
-									<div class="slider-content">
-										<h5>Rabbi Shlomo Diamond</h5>
-										
-										<p>586 Shiurim</p>
-									</div><!-- /.slider-content -->
-								</div><!-- /.slider-inner -->
-							</li><!-- /.slider-slide -->
-							
-							<li class="slider-slide">
-								<div class="slider-inner">
-									<div class="slider-avatar">
-										
-									</div><!-- /.slider-avatar -->
-									
-									<div class="slider-content">
-										<h5>Rabbi Joey Haber</h5>
-										
-										<p>497 Shiurim</p>
-									</div><!-- /.slider-content -->
-								</div><!-- /.slider-inner -->
-							</li><!-- /.slider-slide -->
-							
-							<li class="slider-slide">
-								<div class="slider-inner">
-									<div class="slider-avatar">
-										<img src="/assets/build/css/images/temp/slider-2.jpg" alt="">
-									</div><!-- /.slider-avatar -->
-									
-									<div class="slider-content">
-										<h5>Rabbi Eli J Marsour</h5>
-										
-										<p>2469 Shiurim</p>
-									</div><!-- /.slider-content -->
-								</div><!-- /.slider-inner -->
-							</li><!-- /.slider-slide -->
-							
-							<li class="slider-slide">
-								<div class="slider-inner">
-									<div class="slider-avatar">
-										<img src="/assets/build/css/images/temp/slider-3.jpg" alt="">
-									</div><!-- /.slider-avatar -->
-									
-									<div class="slider-content">
-										<h5>Rabbi David Sutton</h5>
-										
-										<p>650 Shiurim</p>
-									</div><!-- /.slider-content -->
-								</div><!-- /.slider-inner -->
-							</li><!-- /.slider-slide -->
-							
-							<li class="slider-slide">
-								<div class="slider-inner">
-									<div class="slider-avatar">
-										
-									</div><!-- /.slider-avatar -->
-									
-									<div class="slider-content">
-										<h5>Rabbi Meyer Yedid</h5>
-										
-										<p>400 Shiurim</p>
-									</div><!-- /.slider-content -->
-								</div><!-- /.slider-inner -->
-							</li><!-- /.slider-slide -->
+						
 						</ul><!-- /.slides -->
 					</div><!-- /.slider-clip -->
 				</div><!-- /.slider-profiles -->	
@@ -192,38 +43,42 @@
 			<div class="tile-box-body">
 				<div class="lists">
 					<div class="lists-head">
-						<div class="lists-head-inner">
-							<h5>Rabbi Eli J Marsour</h5> <p>2469 Shiurim</p>
+						<div class="lists-head-inner" >
+							<h5>{{speaker?.title}} {{speaker?.firstName}} {{speaker?.lastName}}</h5> <p>{{speaker?.totalShiurim}} Shiurim</p>
 						</div><!-- /.lists-head-inner -->
 						
-						<div class="search-secondary">
+						<div class="search-secondary" >
 							<form action="?" method="get">
 								<label for="q" class="hidden">Search</label>
 								
-								<input type="search" name="q" id="q" value="" placeholder="Search through 9110 Shiurim " class="search-field">
+								<input type="search" name="q" id="q" value="" placeholder="Search through {{speaker?.totalShiurim}} Shiurim " class="search-field">
 								
-								<button type="submit" class="search-btn"><i class="ico-magnify"></i></button>
+								<button type="button"  class="search-btn" (click)="console.log('zzzzz')"><i class="ico-magnify" id="prueba"></i></button>
 							</form>
 						</div><!-- /.search -->
 					</div><!-- /.lists-head -->
 					
 					<div class="lists-body">
 						<ul class="tracks">
-							<li class="track">
+							<li class="track" *ngFor="let s of shiriums">
 								<a href="#" class="link-play-secondary"></a>
 								
 								<div class="track-content">
-									<h6>Pesah Hagada / Macat Arbeh</h6>
+									<h6>{{s.title}}</h6>
 									
 									<p>
-										<span class="date">4/7/2017</span>
+										<span class="date">{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span>
 										
-										<span class="min">70min</span>
+										<span class="min">{{s.length}}min</span>
 										
-										<span class="lang">EN</span>
+										<span class="lang">{{s.language}}</span>
 										
-										<a href="#" class="link-mic">
+										<a href="#" class="link-mic" *ngIf="s.audio!=''">
 											<i class="ico-mic"></i>
+										</a>
+
+										<a href="#" class="link-mic" *ngIf="s.video!=''">
+											<i class="ico-camera"></i>
 										</a>
 									</p>
 								</div><!-- /.track-content -->
@@ -239,335 +94,6 @@
 								</div><!-- /.track-actions -->
 							</li><!-- /.track -->
 							
-							<li class="track">
-								<a href="#" class="link-play-secondary"></a>
-								
-								<div class="track-content">
-									<h6>Pesah Hagada / Macat Arbeh</h6>
-									
-									<p>
-										<span class="date">4/7/2017</span>
-										
-										<span class="min">70min</span>
-										
-										<span class="lang">EN</span>
-										
-										<a href="#" class="link-mic">
-											<i class="ico-mic"></i>
-										</a>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-download">
-										<i class="ico-download"></i>
-									</a>
-									
-									<a href="#" class="link-add">
-										<i class="ico-plus-thick"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<a href="#" class="link-play-secondary"></a>
-								
-								<div class="track-content">
-									<h6>Pesah Hagada / Macat Arbeh</h6>
-									
-									<p>
-										<span class="date">4/7/2017</span>
-										
-										<span class="min">70min</span>
-										
-										<span class="lang">EN</span>
-										
-										<a href="#" class="link-mic">
-											<i class="ico-mic"></i>
-										</a>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-download">
-										<i class="ico-download"></i>
-									</a>
-									
-									<a href="#" class="link-add">
-										<i class="ico-plus-thick"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<a href="#" class="link-play-secondary"></a>
-								
-								<div class="track-content">
-									<h6>Pesah Hagada / Macat Arbeh</h6>
-									
-									<p>
-										<span class="date">4/7/2017</span>
-										
-										<span class="min">70min</span>
-										
-										<span class="lang">EN</span>
-										
-										<a href="#" class="link-mic">
-											<i class="ico-mic"></i>
-										</a>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-download">
-										<i class="ico-download"></i>
-									</a>
-									
-									<a href="#" class="link-add">
-										<i class="ico-plus-thick"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<a href="#" class="link-play-secondary"></a>
-								
-								<div class="track-content">
-									<h6>Pesah Hagada / Macat Arbeh</h6>
-									
-									<p>
-										<span class="date">4/7/2017</span>
-										
-										<span class="min">70min</span>
-										
-										<span class="lang">EN</span>
-										
-										<a href="#" class="link-mic">
-											<i class="ico-mic"></i>
-										</a>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-download">
-										<i class="ico-download"></i>
-									</a>
-									
-									<a href="#" class="link-add">
-										<i class="ico-plus-thick"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<a href="#" class="link-play-secondary"></a>
-								
-								<div class="track-content">
-									<h6>Pesah Hagada / Macat Arbeh</h6>
-									
-									<p>
-										<span class="date">4/7/2017</span>
-										
-										<span class="min">70min</span>
-										
-										<span class="lang">EN</span>
-										
-										<a href="#" class="link-mic">
-											<i class="ico-mic"></i>
-										</a>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-download">
-										<i class="ico-download"></i>
-									</a>
-									
-									<a href="#" class="link-add">
-										<i class="ico-plus-thick"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<a href="#" class="link-play-secondary"></a>
-								
-								<div class="track-content">
-									<h6>Pesah Hagada / Macat Arbeh</h6>
-									
-									<p>
-										<span class="date">4/7/2017</span>
-										
-										<span class="min">70min</span>
-										
-										<span class="lang">EN</span>
-										
-										<a href="#" class="link-mic">
-											<i class="ico-mic"></i>
-										</a>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-download">
-										<i class="ico-download"></i>
-									</a>
-									
-									<a href="#" class="link-add">
-										<i class="ico-plus-thick"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<a href="#" class="link-play-secondary"></a>
-								
-								<div class="track-content">
-									<h6>Pesah Hagada / Macat Arbeh</h6>
-									
-									<p>
-										<span class="date">4/7/2017</span>
-										
-										<span class="min">70min</span>
-										
-										<span class="lang">EN</span>
-										
-										<a href="#" class="link-mic">
-											<i class="ico-mic"></i>
-										</a>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-download">
-										<i class="ico-download"></i>
-									</a>
-									
-									<a href="#" class="link-add">
-										<i class="ico-plus-thick"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<a href="#" class="link-play-secondary"></a>
-								
-								<div class="track-content">
-									<h6>Pesah Hagada / Macat Arbeh</h6>
-									
-									<p>
-										<span class="date">4/7/2017</span>
-										
-										<span class="min">70min</span>
-										
-										<span class="lang">EN</span>
-										
-										<a href="#" class="link-mic">
-											<i class="ico-mic"></i>
-										</a>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-download">
-										<i class="ico-download"></i>
-									</a>
-									
-									<a href="#" class="link-add">
-										<i class="ico-plus-thick"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<a href="#" class="link-play-secondary"></a>
-								
-								<div class="track-content">
-									<h6>Pesah Hagada / Macat Arbeh</h6>
-									
-									<p>
-										<span class="date">4/7/2017</span>
-										
-										<span class="min">70min</span>
-										
-										<span class="lang">EN</span>
-										
-										<a href="#" class="link-mic">
-											<i class="ico-mic"></i>
-										</a>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-download">
-										<i class="ico-download"></i>
-									</a>
-									
-									<a href="#" class="link-add">
-										<i class="ico-plus-thick"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<a href="#" class="link-play-secondary"></a>
-								
-								<div class="track-content">
-									<h6>Pesah Hagada / Macat Arbeh</h6>
-									
-									<p>
-										<span class="date">4/7/2017</span>
-										
-										<span class="min">70min</span>
-										
-										<span class="lang">EN</span>
-										
-										<a href="#" class="link-mic">
-											<i class="ico-mic"></i>
-										</a>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-download">
-										<i class="ico-download"></i>
-									</a>
-									
-									<a href="#" class="link-add">
-										<i class="ico-plus-thick"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<a href="#" class="link-play-secondary"></a>
-								
-								<div class="track-content">
-									<h6>Pesah Hagada / Macat Arbeh</h6>
-									
-									<p>
-										<span class="date">4/7/2017</span>
-										
-										<span class="min">70min</span>
-										
-										<span class="lang">EN</span>
-										
-										<a href="#" class="link-mic">
-											<i class="ico-mic"></i>
-										</a>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-download">
-										<i class="ico-download"></i>
-									</a>
-									
-									<a href="#" class="link-add">
-										<i class="ico-plus-thick"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
 						</ul><!-- /.tracks -->
 					</div><!-- /.lists-body -->
 				</div><!-- /.lists -->
@@ -577,12 +103,7 @@
 				<div class="paging">
 				    <ul>
 				        <li><a href="#" class="paging-prev"><i class="ico-paging-prev"></i></a></li>
-				        <li><a class="current" href="#">1</a></li>
-				        <li><a href="#">2</a></li>
-				        <li><a href="#">3</a></li>
-				        <li><a href="#">4</a></li>
-				        <li><a href="#">5</a></li>
-				        <li><a href="#">6</a></li>
+				        <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#">{{p.id}}</a></li>
 				        <li><a href="#" class="paging-next"><i class="ico-paging-next"></i></a></li>
 				    </ul>
 				</div><!-- /.paging -->

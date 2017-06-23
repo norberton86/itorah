@@ -26,6 +26,9 @@ export class SpeakerComponent implements OnInit {
   shiriums:Array<Shiurim>;
   
   pages:Array<Page>;
+  allPages:Array<Page>;
+  iteration:number;
+  allIteration:number;
 
   constructor( private renderer:Renderer2,private speakerService:SpeakerService,private shiurimService:ShiurimService) {
       this.allSpeakers=[];
@@ -34,6 +37,7 @@ export class SpeakerComponent implements OnInit {
       this.allShiriums=[];
       this.shiriums=[];
 
+      this.allPages=[];
       this.pages=[];
    }
 
@@ -61,7 +65,7 @@ export class SpeakerComponent implements OnInit {
 
       this.renderer.listen('document', 'click', (event) => {
          
-         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="lecture")
+         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="lecture") //click on speaker
          {
              var id=event.currentTarget.activeElement.attributes["id"].value;
              
@@ -73,6 +77,43 @@ export class SpeakerComponent implements OnInit {
               this.ReadLectures(id); 
 
            
+         }
+
+         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-prev") //click on paging-prev 
+         {
+              this.iteration--;
+              if(this.iteration<=0)
+              {
+                   this.iteration=1;
+              }
+              else
+              this.CreatePages();
+         }
+
+         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-next") //click on paging-next
+         {
+              this.iteration++;
+              if(this.iteration>this.allIteration )
+              {
+                this.iteration=this.allIteration;
+              }
+              else
+              this.CreatePages();
+         }
+
+         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="page") //click on paging-next
+         {
+              var id=event.currentTarget.activeElement.attributes["id"].value;
+              this.pages.forEach(function(p){
+
+                 if(p.id!=id)
+                 p.current=false;
+                 else
+                 p.current=true;
+              })
+
+              this.PopulatedShirium(id);
+              this.RefreshView();
          }
             
       });
@@ -95,29 +136,37 @@ export class SpeakerComponent implements OnInit {
 
         this.allShiriums=data;
 
-        this.pages=[];
+        this.allIteration=this.allShiriums.length/12;
+        this.iteration=1;
 
-        for(var i=0;i<=data.length/12;i++) //populate the pages array
+       this.CreatePages();
+
+  }
+
+   CreatePages()
+  {
+       this.pages=[];
+
+        for(var i=this.iteration*6-6;i<this.iteration*6 && i<this.allIteration;i++) //populate the pages array
         {
-          if(i==0)
+          if(i==(this.iteration-1)*6)
           {
               this.pages.push({id:i+1,current:true});
-              this.PopulatedShirium(1);            
+              this.PopulatedShirium(i+1);  //the page            
           } 
           else
           this.pages.push({id:i+1,current:false});
         }    
 
         this.RefreshView();  
-
   }
 
   PopulatedShirium(id:number)
   {
        this.shiriums=[];
-       for(var i=1;i<=12;i++)
+       for(var i=id*12-12;i<id*12 && i<this.allShiriums.length;i++)
        {
-           this.shiriums.push(this.allShiriums[i*id]);
+           this.shiriums.push(this.allShiriums[i]);  //populate the grid
        }
        
   }
@@ -129,5 +178,6 @@ export class SpeakerComponent implements OnInit {
         },100) 
 
   }
+
 
 }

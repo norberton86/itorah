@@ -73,11 +73,11 @@
 										
 										<span class="lang">{{s.language}}</span>
 										
-										<a href="#" class="link-mic" *ngIf="s.audio!=''">
+										<a href="#" class="link-mic" *ngIf="s?.audio!=''">
 											<i class="ico-mic"></i>
 										</a>
 
-										<a href="#" class="link-mic" *ngIf="s.video!=''">
+										<a href="#" class="link-mic" *ngIf="s?.video!=''">
 											<i class="ico-camera"></i>
 										</a>
 									</p>
@@ -102,9 +102,9 @@
 			<div class="tile-box-actions">
 				<div class="paging">
 				    <ul>
-				        <li><a href="#" class="paging-prev"><i class="ico-paging-prev"></i></a></li>
-				        <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#">{{p.id}}</a></li>
-				        <li><a href="#" class="paging-next"><i class="ico-paging-next"></i></a></li>
+				        <li data-type="back"><a href="#" class="paging-prev"><i class="ico-paging-prev"></i></a></li>
+				        <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#" data-type="page" id="{{p.id}}">{{p.id}}</a></li>
+				        <li data-type="go"><a href="#" class="paging-next"><i class="ico-paging-next"></i></a></li>
 				    </ul>
 				</div><!-- /.paging -->
 			</div><!-- /.table-actions -->

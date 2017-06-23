@@ -26,7 +26,7 @@ export class SpeakerComponent implements OnInit {
   shiriums:Array<Shiurim>;
   
   pages:Array<Page>;
-  allPages:Array<Page>;
+  allPages:number;
   iteration:number;
   allIteration:number;
 
@@ -37,7 +37,6 @@ export class SpeakerComponent implements OnInit {
       this.allShiriums=[];
       this.shiriums=[];
 
-      this.allPages=[];
       this.pages=[];
    }
 
@@ -65,6 +64,11 @@ export class SpeakerComponent implements OnInit {
 
       this.renderer.listen('document', 'click', (event) => {
          
+         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="search-shirium") //click on search
+         {
+               $($('.main-search-nor')[0]).val()
+         }
+
          if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="lecture") //click on speaker
          {
              var id=event.currentTarget.activeElement.attributes["id"].value;
@@ -93,15 +97,15 @@ export class SpeakerComponent implements OnInit {
          if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-next") //click on paging-next
          {
               this.iteration++;
-              if(this.iteration>this.allIteration )
+              if(this.iteration>this.allPages/6 )
               {
-                this.iteration=this.allIteration;
+                this.iteration=Math.floor(this.allPages);
               }
               else
               this.CreatePages();
          }
 
-         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="page") //click on paging-next
+         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="page") //click on page
          {
               var id=event.currentTarget.activeElement.attributes["id"].value;
               this.pages.forEach(function(p){
@@ -136,7 +140,7 @@ export class SpeakerComponent implements OnInit {
 
         this.allShiriums=data;
 
-        this.allIteration=this.allShiriums.length/12;
+        this.allPages=this.allShiriums.length/12;
         this.iteration=1;
 
        this.CreatePages();
@@ -147,7 +151,7 @@ export class SpeakerComponent implements OnInit {
   {
        this.pages=[];
 
-        for(var i=this.iteration*6-6;i<this.iteration*6 && i<this.allIteration;i++) //populate the pages array
+        for(var i=this.iteration*6-6;i<this.iteration*6 && i<this.allPages;i++) //populate the pages array
         {
           if(i==(this.iteration-1)*6)
           {
@@ -175,7 +179,7 @@ export class SpeakerComponent implements OnInit {
   {
       setTimeout(function(){ 
                $('#ballon .tile-box-tab').html($('app-speaker .current').html());
-        },100) 
+      },100) 
 
   }
 

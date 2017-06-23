@@ -24,6 +24,8 @@ export class SpeakerComponent implements OnInit {
 
   allShiriums:Array<Shiurim>;
   shiriums:Array<Shiurim>;
+
+  query_main:string='';
   
   pages:Array<Page>;
   allPages:number;
@@ -66,13 +68,23 @@ export class SpeakerComponent implements OnInit {
          
          if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="search-shirium") //click on search
          {
-               $($('.main-search-nor')[0]).val()
+             this.query_main=$($('.main-search-nor')[0]).val();  //update the query field in my component
+             if(this.query_main!="")
+             {
+               var query=  //get  the query    
+               this.Update([])                           
+             }
+             else{
+                this.ReadLectures(this.speaker.id);  
+             }
+               
          }
 
          if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="lecture") //click on speaker
          {
              var id=event.currentTarget.activeElement.attributes["id"].value;
              
+             this.query_main="";
            
               this.speaker=this.currentSpeakers.filter(function (s) {
                  return s.id==id;
@@ -97,9 +109,9 @@ export class SpeakerComponent implements OnInit {
          if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-next") //click on paging-next
          {
               this.iteration++;
-              if(this.iteration>this.allPages/6 )
+              if(this.iteration>Math.ceil(this.allPages/6) )
               {
-                this.iteration=Math.floor(this.allPages);
+                this.iteration=Math.ceil(this.allPages/6);
               }
               else
               this.CreatePages();
@@ -133,13 +145,25 @@ export class SpeakerComponent implements OnInit {
 
   Update(data:Array<Shiurim>)
   {
+
+      if(this.query_main=="")
+      {
         data.forEach(function(a){  //remove the seconds en length property
           a['length']=a['length'].split(':')[0]
           a['language']=a['language'][0]+a['language'][1]
         })
 
         this.allShiriums=data;
-
+      }
+      else
+      {
+        var query= this.query_main;
+         this.allShiriums= this.allShiriums.filter(function (s) {
+            return s.title.includes(query);
+         });
+      }
+      
+        this.speaker.totalShiurim=this.allShiriums.length; 
         this.allPages=this.allShiriums.length/12;
         this.iteration=1;
 
@@ -177,9 +201,11 @@ export class SpeakerComponent implements OnInit {
   
   RefreshView()
   {
+      var query=this.query_main;
       setTimeout(function(){ 
                $('#ballon .tile-box-tab').html($('app-speaker .current').html());
-      },100) 
+               $($('.main-search-nor')[0]).val(query);
+      },500) 
 
   }
 

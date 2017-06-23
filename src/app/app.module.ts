@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { PodcastComponent } from './component/podcast/podcast.component';
@@ -40,7 +41,8 @@ import { VideoThumbnailComponent } from './component/video-thumbnail/video-thumb
   ],
   imports: [
     BrowserModule,
-     HttpModule
+     HttpModule,
+     FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

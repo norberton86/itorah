@@ -3,10 +3,10 @@
 	<div class="tile-box-primary tile-box-speakers">
 		<div class="tile-box-head tile-box-head-block">
 			<div class="select select-tertiary select-speakers">
-				<select name="field-8" id="field-8" >
-					<option value="#tile-tab-1">Main Speakers</option>
-					<option value="#tile-tab-2">My Speakers</option>
-					<option value="#tile-tab-3">All Speakers</option>
+				<select name="field-8" id="field-8">
+					<option id="main" value="#tile-tab-1">Main Speakers</option>
+					<option id="my" value="#tile-tab-2">My Speakers</option>
+					<option id="all" value="#tile-tab-3">All Speakers</option>
 				</select>
 			</div><!-- /.select -->		
 			
@@ -537,392 +537,42 @@
 						
 						<div class="search-secondary">
 							<ul class="list-alphabet">
-								<li>
-									<a href="#">A</a>
-								</li>
-
-								<li>
-									<a href="#">B</a>
-								</li>
-
-								<li>
-									<a href="#">C</a>
-								</li>
-
-								<li>
-									<a href="#">D</a>
-								</li>
-
-								<li>
-									<a href="#">E</a>
-								</li>
-
-								<li>
-									<a href="#">F</a>
-								</li>
-
-								<li>
-									<a href="#">G</a>
-								</li>
-
-								<li>
-									<a href="#">H</a>
-								</li>
-
-								<li>
-									<a href="#">I</a>
-								</li>
-
-								<li>
-									<a href="#">J</a>
-								</li>
-
-								<li>
-									<a href="#">K</a>
-								</li>
-
-								<li>
-									<a href="#">L</a>
-								</li>
-
-								<li>
-									<a href="#">M</a>
-								</li>
-
-								<li>
-									<a href="#">N</a>
-								</li>
-
-								<li>
-									<a href="#">O</a>
-								</li>
-
-								<li>
-									<a href="#">P</a>
-								</li>
-
-								<li>
-									<a href="#">Q</a>
-								</li>
-
-								<li>
-									<a href="#">R</a>
-								</li>
-
-								<li>
-									<a href="#">S</a>
-								</li>
-
-								<li>
-									<a href="#">T</a>
-								</li>
-
-								<li>
-									<a href="#">U</a>
-								</li>
-
-								<li>
-									<a href="#">V</a>
-								</li>
-
-								<li>
-									<a href="#">W</a>
-								</li>
-
-								<li>
-									<a href="#">X</a>
-								</li>
-
-								<li>
-									<a href="#">Y</a>
-								</li>
-
-								<li>
-									<a href="#">Z</a>
+								<li  *ngFor="let l of letters">
+									<a href="#" [ngClass]="{'current_letter': l.current}" data-type="letter" id="{{l.letter}}">{{l.letter}}</a>
 								</li>
 							</ul><!-- /.list-alphabet -->
 							
 							<form action="?" method="get">
 								<label for="q" class="hidden">Search</label>
 								
-								<input type="search" name="q" id="q" value="" placeholder="Search through 9110 Shiurim " class="search-field">
+								<input type="search" name="q" id="q" value="" placeholder="Search by LastName" class="search-field all-search-nor">
 								
-								<button type="submit" class="search-btn"><i class="ico-magnify"></i></button>
+								<button data-type="all-search-shirium" type="button" class="search-btn"><i class="ico-magnify"></i></button>
 							</form>
 						</div><!-- /.search -->
 					</div><!-- /.lists-head -->
 					
 					<div class="lists-body">
 						<ul class="tracks tracks-secondary">
-							<li class="track">
+
+							<li class="track" *ngFor="let s of speakers">
 								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
+									<h6>{{s.lastName}}, {{s.firstName}}</h6>
 									
 									<p>
-										<span class="date">25 Shiurim</span>
+										<span class="date">{{s.totalShiurim}} Shiurim</span>
 									</p>
 								</div><!-- /.track-content -->
 								
 								<div class="track-actions">
-									<a href="#" class="link-star">
+									<a href="#"  class="link-star"  [class.link-star-active]="s.isMySpeaker" id="{{s.id}}">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
 								</div><!-- /.track-actions -->
 							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-							<li class="track">
-								<div class="track-content">
-									<h6>Abell, R’ Jeff</h6>
-									
-									<p>
-										<span class="date">25 Shiurim</span>
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									<a href="#" class="link-star">
-										<i class="ico-star-empty"></i>
-										
-										<i class="ico-star-full"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
+
 						</ul><!-- /.tracks -->
 					</div><!-- /.lists-body -->
 				</div><!-- /.lists -->
@@ -931,14 +581,9 @@
 			<div class="tile-box-actions">
 				<div class="paging">
 				    <ul>
-				        <li><a href="#" class="paging-prev"><i class="ico-paging-prev"></i></a></li>
-				        <li><a class="current" href="#">1</a></li>
-				        <li><a href="#">2</a></li>
-				        <li><a href="#">3</a></li>
-				        <li><a href="#">4</a></li>
-				        <li><a href="#">5</a></li>
-				        <li><a href="#">6</a></li>
-				        <li><a href="#" class="paging-next"><i class="ico-paging-next"></i></a></li>
+				        <li data-type="back"><a href="#" class="paging-prev-all"><i class="ico-paging-prev"></i></a></li>
+				        <li *ngFor="let p of pagesAll"><a [ngClass]="{'current': p.current}" href="#" data-type="page-All" id="{{p.id}}">{{p.id}}</a></li>
+				        <li data-type="go"><a href="#" class="paging-next-all"><i class="ico-paging-next"></i></a></li>
 				    </ul>
 				</div><!-- /.paging -->
 			</div><!-- /.table-actions -->

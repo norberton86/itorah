@@ -14,7 +14,7 @@ export class ShiurimService extends Service{
    
     constructor(http: Http) {
         super(http);
-        this.ruta="http://ep_dev.3nom.com/itorahapi/api/";
+        this.ruta="http://itorahapi.3nom.com/api/";
 
     }
 

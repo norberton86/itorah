@@ -248,8 +248,6 @@ export class SpeakerComponent implements OnInit {
                    result=>console.log("activate")
                 )
          }
-        
-
 
       });
 
@@ -259,13 +257,13 @@ export class SpeakerComponent implements OnInit {
          if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="search-shirium") //click on main search
          {
              this.query_main=$($('.main-search-nor')[0]).val();  //update the query field in my component (remenber double data binding)
-             if(this.query_main!="")
-             {  
-               this.Update([])    //filter                         
+             
+             if(localStorage.getItem("shirium")!=null ||localStorage.getItem("shirium")!='')
+             {
+               this.allShiriums=JSON.parse(localStorage.getItem("shirium"));  //recover the originals
              }
-             else{
-                this.ReadLectures(this.speaker.id);   //reset
-             }
+
+             this.Update();   
                
          }
 
@@ -535,25 +533,31 @@ export class SpeakerComponent implements OnInit {
 
   ReadLectures(idSpeaker:number)
   {
+    let self=this;
       this.shiurimService.read(idSpeaker).subscribe(
-           result=>this.Update(result)
+           function(respond){
+
+              respond.forEach(function(a){  //remove the seconds en length property
+                a['length']=a['length'].split(':')[0]
+                a['language']=a['language'][0]+a['language'][1]
+              });
+
+              self.allShiriums=respond;
+
+              localStorage.setItem("shirium",JSON.stringify(respond));
+
+              self.Update();  
+           },
+           function(error){},
+           function(){}
        )
    
   }
 
-  Update(data:Array<Shiurim>)
+  Update()
   {
 
-      if(this.query_main=="")
-      {
-        data.forEach(function(a){  //remove the seconds en length property
-          a['length']=a['length'].split(':')[0]
-          a['language']=a['language'][0]+a['language'][1]
-        })
-
-        this.allShiriums=data;
-      }
-      else
+      if(this.query_main!="")
       {
         var query= this.query_main;
          this.allShiriums= this.allShiriums.filter(function (s) {

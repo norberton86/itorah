@@ -47,32 +47,32 @@ export class SpeakerComponent implements OnInit {
   iterationAll:number;
   allIterationAll:number;
 
-  letters:Array<Letter>=[{letter:"A",current:true},
-                         {letter:"B",current:false},
-                         {letter:"C",current:false},
-                         {letter:"D",current:false},
-                         {letter:"E",current:false},
-                         {letter:"F",current:false},
-                         {letter:"G",current:false},
-                         {letter:"H",current:false},
-                         {letter:"I",current:false},
-                         {letter:"J",current:false},
-                         {letter:"K",current:false},
-                         {letter:"L",current:false},
-                         {letter:"M",current:false},
-                         {letter:"N",current:false},
-                         {letter:"O",current:false},
-                         {letter:"P",current:false},
-                         {letter:"Q",current:false},
-                         {letter:"R",current:false},
-                         {letter:"S",current:false},
-                         {letter:"T",current:false},
-                         {letter:"U",current:false},
-                         {letter:"V",current:false},
-                         {letter:"W",current:false},
-                         {letter:"X",current:false},
-                         {letter:"Y",current:false},
-                         {letter:"Z",current:false}]; 
+  letters:Array<Letter>=[{letter:"A",current:true,disable:false},
+                         {letter:"B",current:false,disable:false},
+                         {letter:"C",current:false,disable:false},
+                         {letter:"D",current:false,disable:false},
+                         {letter:"E",current:false,disable:false},
+                         {letter:"F",current:false,disable:false},
+                         {letter:"G",current:false,disable:false},
+                         {letter:"H",current:false,disable:false},
+                         {letter:"I",current:false,disable:false},
+                         {letter:"J",current:false,disable:false},
+                         {letter:"K",current:false,disable:false},
+                         {letter:"L",current:false,disable:false},
+                         {letter:"M",current:false,disable:false},
+                         {letter:"N",current:false,disable:false},
+                         {letter:"O",current:false,disable:false},
+                         {letter:"P",current:false,disable:false},
+                         {letter:"Q",current:false,disable:false},
+                         {letter:"R",current:false,disable:false},
+                         {letter:"S",current:false,disable:false},
+                         {letter:"T",current:false,disable:false},
+                         {letter:"U",current:false,disable:false},
+                         {letter:"V",current:false,disable:false},
+                         {letter:"W",current:false,disable:false},
+                         {letter:"X",current:false,disable:false},
+                         {letter:"Y",current:false,disable:false},
+                         {letter:"Z",current:false,disable:false}]; 
 
 
 
@@ -219,9 +219,9 @@ export class SpeakerComponent implements OnInit {
                 
                                 var page;
                                 if(i==0)
-                                page =  Math.ceil (1/15);
+                                page =  Math.ceil (1/9);
                                 else
-                                page =  Math.ceil (i/15);
+                                page =  Math.ceil (i/9);
 
                                 this.iterationAll=  Math.ceil(page/6);
 
@@ -423,6 +423,17 @@ export class SpeakerComponent implements OnInit {
   
   InitializeAllSpeakers(data:Array<Speaker>)
   {
+      this.letters.forEach(function(l){
+           
+           l.disable=false;  //first reset
+
+          if( data.filter(function (s) {
+            return s.lastName[0]==l.letter;
+         }).length==0)
+         {
+            l.disable=true;
+         }
+      });
 
       this.allSpeakers=data;
       localStorage.setItem("allSpeakers",JSON.stringify(this.allSpeakers));     //save the originals
@@ -431,7 +442,6 @@ export class SpeakerComponent implements OnInit {
 
   UpdateAll()
   {
-
       if(this.query_all!="")  //if exist some filter
       {
            var query= this.query_all;
@@ -440,7 +450,7 @@ export class SpeakerComponent implements OnInit {
          });
       }
 
-     this.allPagesAll=this.allSpeakers.length/15;
+     this.allPagesAll=this.allSpeakers.length/9;
      this.iterationAll=1;
 
      this.CreatePagesAll();
@@ -490,7 +500,7 @@ export class SpeakerComponent implements OnInit {
   PopulatedShiriumAll(id:number)
   {
        this.speakers=[];
-       for(var i=id*15-15;i<id*15 && i<this.allSpeakers.length;i++)
+       for(var i=id*9-9;i<id*9 && i<this.allSpeakers.length;i++)
        {
            this.speakers.push(this.allSpeakers[i]);  //populate the grid
        }
@@ -527,9 +537,7 @@ export class SpeakerComponent implements OnInit {
 
       this.speaker=data[0];
       this.ReadLectures(data[0].id); 
-   }
-
-
+  }
 
   ReadLectures(idSpeaker:number)
   {
@@ -567,7 +575,7 @@ export class SpeakerComponent implements OnInit {
       
         this.speaker.totalShiurim=this.allShiriums.length; 
 
-        this.allPages=this.allShiriums.length/12; //pagination
+        this.allPages=this.allShiriums.length/9; //pagination
         this.iteration=1; //pagination
 
        this.CreatePages();
@@ -595,7 +603,7 @@ export class SpeakerComponent implements OnInit {
   PopulatedShirium(id:number)
   {
        this.shiriums=[];
-       for(var i=id*12-12;i<id*12 && i<this.allShiriums.length;i++)
+       for(var i=id*9-9;i<id*9 && i<this.allShiriums.length;i++)
        {
            this.shiriums.push(this.allShiriums[i]);  //populate the grid
        }

@@ -1365,7 +1365,3 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 
 /*------------------------------------------------------------------*/
 
-.current_letter {
-
-	background: #fedb4f; color: #000;
-}

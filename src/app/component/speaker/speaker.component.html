@@ -5,7 +5,7 @@
 			<div class="select select-tertiary select-speakers">
 				<select name="field-8" id="field-8">
 					<option id="main" value="#tile-tab-1">Main Speakers</option>
-					<option id="my" value="#tile-tab-2">My Speakers</option>
+					<option id="my" value="#tile-tab-2">My Favorites</option>
 					<option id="all" value="#tile-tab-3">All Speakers</option>
 				</select>
 			</div><!-- /.select -->		
@@ -530,15 +530,18 @@
 		<div id="tile-tab-3" class="tile-box-tab">
 			<div class="tile-box-body">
 				<div class="lists">
-					<div class="lists-head">
-						<div class="lists-head-inner">
-							
+					<div class="lists-head" style="padding-left:0px">
+						<div class="lists-head-inner" style="font-size:14px">
+						      <a   class=" link-star-active">
+										<i class="ico-star-full"></i>
+							  </a>
+							&nbsp; Add To Favorites
 						</div><!-- /.lists-head-inner -->
 						
 						<div class="search-secondary">
 							<ul class="list-alphabet">
 								<li  *ngFor="let l of letters">
-									<a href="#" [ngClass]="{'current_letter': l.current}" data-type="letter" id="{{l.letter}}">{{l.letter}}</a>
+									<a href="#" [ngClass]="{'current_letter': l.current,'disabled_letter':l.disable}" data-type="letter" id="{{l.letter}}">{{l.letter}}</a>
 								</li>
 							</ul><!-- /.list-alphabet -->
 							

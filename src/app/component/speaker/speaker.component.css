@@ -1,0 +1,9 @@
+.current_letter {
+
+	background: #fedb4f; color: #000;
+}
+
+.disabled_letter {
+
+	opacity: 0.2;
+}

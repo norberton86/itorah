@@ -137,7 +137,7 @@ export class SpeakerComponent implements OnInit {
              {
                self.ngZone.run(()=>{
 
-                     self.ReadAllSpeaker(); //recover all speaker for server side
+                     self.RefreshViewAll(); 
 
                })
                
@@ -236,16 +236,30 @@ export class SpeakerComponent implements OnInit {
 
         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="link-star") //click on start to deactivate
          {
-                this.speakerService.deactivateSpeaker(event.currentTarget.activeElement.attributes["id"].value).subscribe(
-                   result=>console.log("deactivate")
+                let self=this;
+                var id=event.currentTarget.activeElement.attributes["id"].value;
+                this.speakerService.deactivateSpeaker(id).subscribe(
+                   function(response){
+                      self.speakers.forEach(function(s){
+                          if(s.id==id)
+                                s.isMySpeaker=false;
+                      })   
+                   },function(error){},function(){}
                 )
 
          }
 
          if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="link-star link-star-active") //click on start to activate
          {
-                this.speakerService.activateSpeaker(event.currentTarget.activeElement.attributes["id"].value).subscribe(
-                   result=>console.log("activate")
+                let self=this;
+                var id=event.currentTarget.activeElement.attributes["id"].value;
+                this.speakerService.activateSpeaker(id).subscribe(
+                   function(response){
+                      self.speakers.forEach(function(s){
+                          if(s.id==id)
+                                s.isMySpeaker=true;
+                      })   
+                   },function(error){},function(){}
                 )
          }
 

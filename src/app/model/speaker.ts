@@ -8,5 +8,6 @@ export class Speaker {
     language: string
     listenFree: boolean
     isMainSpeaker: boolean
+    isMySpeaker:boolean
     totalShiurim: number
 }

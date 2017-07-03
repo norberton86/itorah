@@ -40,90 +40,94 @@
 	         Button Yellow ----------------------------
 	         Button Popover ---------------------------
 	     02. Copyright --------------------------------
-	     03. Dropdown ---------------------------------
-	     04. Form Elements ----------------------------
-	     05. Form -------------------------------------
-	     06. Form search ------------------------------
-	     07. Form secondary ---------------------------
-	     08. Link -------------------------------------
+	     03. Donate -----------------------------------
+	     04. Dropdown ---------------------------------
+	     05. Form Elements ----------------------------
+	     06. Form -------------------------------------
+	     07. Form search ------------------------------
+	     08. Form secondary ---------------------------
+	     09. Link -------------------------------------
 	         Link Play --------------------------------
-	     09. List -------------------------------------
+	     10. List -------------------------------------
 	         List Actions -----------------------------
-	     10. Lists ------------------------------------
-	     11. Logo -------------------------------------
-	     12. Nav --------------------------------------
+	     11. Lists ------------------------------------
+	     12. Logo -------------------------------------
+	     13. Nav --------------------------------------
 	         Mobile -----------------------------------
 	         Nav Secondary ----------------------------
 	         Mobile -----------------------------------
-	     13. Paging -----------------------------------
-	     14. Search -----------------------------------
+	     14. Paging -----------------------------------
+	     15. Search -----------------------------------
 	         Mobile -----------------------------------
-	     15. Section ----------------------------------
+	     16. Section ----------------------------------
 	         Section Tiles ----------------------------
 	         Tablet Portrait --------------------------
 	         Section Lectures -------------------------
 	         Small Desktop ----------------------------
 	         Tablet Portrait --------------------------
 	         Mobile -----------------------------------
-	     16. Select -----------------------------------
+	     17. Select -----------------------------------
 	         Select Box -------------------------------
 	         Mobile -----------------------------------
-	     17. Slider -----------------------------------
-	     18. Steps ------------------------------------
-	     19. Subjects ---------------------------------
-	     20. Table ------------------------------------
-	     21. Tabs -------------------------------------
-	     22. Tile -------------------------------------
+	     18. Slider -----------------------------------
+	     19. Steps ------------------------------------
+	     20. Subjects ---------------------------------
+	     21. Table ------------------------------------
+	     22. Tabs -------------------------------------
+	     23. Tile -------------------------------------
 	         Tile Large -------------------------------
 	         Tile High --------------------------------
 	         Small Desktop ----------------------------
 	         Tablet Portrait --------------------------
 	         Mobile -----------------------------------
-	     23. Tracks -----------------------------------
-	     24. Video ------------------------------------
+	     24. Tracks -----------------------------------
+	     25. Video ------------------------------------
 	         Video Thumbnails -------------------------
 	         Tablet Portrait --------------------------
 	         Mobile -----------------------------------
-	     25. Widget -----------------------------------
+	     26. Widget -----------------------------------
  */
 
-.ico-arrow-down { background-image: url(images/sprite.png); background-position: 98.85714285714286% 80.45977011494253%; background-size: 1558.3333333333335% 3000%; width: 12px; height: 6px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-btn-facebook { background-image: url(images/sprite.png); background-position: 89.41176470588236% 0%; background-size: 1100% 500%; width: 17px; height: 36px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-btn-google { background-image: url(images/sprite.png); background-position: 0% 52.666666666666664%; background-size: 492.1052631578948% 600%; width: 38px; height: 30px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-burger { background-image: url(images/sprite.png); background-position: 67.06586826347305% 68.90243902439023%; background-size: 935% 1125%; width: 20px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-camera { background-image: url(images/sprite.png); background-position: 0% 100%; background-size: 1100% 1384.6153846153848%; width: 17px; height: 13px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-clock { background-image: url(images/sprite.png); background-position: 88.88888888888889% 53.65853658536586%; background-size: 1168.75% 1125%; width: 16px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-close { background-image: url(images/sprite.png); background-position: 99.42528735632183% 35.32934131736527%; background-size: 1438.4615384615386% 1384.6153846153848%; width: 13px; height: 13px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-download { background-image: url(images/sprite.png); background-position: 98.29545454545455% 64.67065868263472%; background-size: 1700% 1384.6153846153848%; width: 11px; height: 13px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-edit { background-image: url(images/sprite.png); background-position: 25.657894736842106% 27.586206896551722%; background-size: 534.2857142857142% 514.2857142857143%; width: 35px; height: 35px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-envelope { background-image: url(images/sprite.png); background-position: 33.54037267080746% 70.1863354037267%; background-size: 719.2307692307693% 947.3684210526314%; width: 26px; height: 19px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-leaf { background-image: url(images/sprite.png); background-position: 15.568862275449103% 88.67924528301887%; background-size: 935% 857.1428571428571%; width: 20px; height: 21px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-logo-small { background-image: url(images/sprite.png); background-position: 0% 0%; background-size: 126.35135135135135% 500%; width: 148px; height: 36px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-magnifier-large { background-image: url(images/sprite.png); background-position: 0% 72.43589743589743%; background-size: 813.0434782608695% 750%; width: 23px; height: 24px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-magnifier { background-image: url(images/sprite.png); background-position: 71.00591715976331% 87.03703703703704%; background-size: 1038.888888888889% 1000%; width: 18px; height: 18px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-magnify { background-image: url(images/sprite.png); background-position: 84.02366863905326% 87.03703703703704%; background-size: 1038.888888888889% 1000%; width: 18px; height: 18px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-mail-dark { background-image: url(images/sprite.png); background-position: 51.533742331288344% 69.32515337423312%; background-size: 779.1666666666667% 1058.8235294117646%; width: 24px; height: 17px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-mic { background-image: url(images/sprite.png); background-position: 98.29545454545455% 23.78048780487805%; background-size: 1700% 1125%; width: 11px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-microphone { background-image: url(images/sprite.png); background-position: 87.86127167630057% 39.62264150943396%; background-size: 1335.7142857142858% 857.1428571428571%; width: 14px; height: 21px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-paging-next { background-image: url(images/sprite.png); background-position: 98.85714285714286% 45.23809523809524%; background-size: 1558.3333333333335% 1500%; width: 12px; height: 12px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-paging-prev { background-image: url(images/sprite.png); background-position: 98.85714285714286% 54.761904761904766%; background-size: 1558.3333333333335% 1500%; width: 12px; height: 12px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-paper { background-image: url(images/sprite.png); background-position: 75% 27.586206896551722%; background-size: 603.2258064516129% 514.2857142857143%; width: 31px; height: 35px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-pen-3 { background-image: url(images/sprite.png); background-position: 100% 12.650602409638553%; background-size: 1335.7142857142858% 1285.7142857142858%; width: 14px; height: 14px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-play-3 { background-image: url(images/sprite.png); background-position: 0% 89.24050632911393%; background-size: 850% 818.1818181818181%; width: 22px; height: 22px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-play-yellow { background-image: url(images/sprite.png); background-position: 51.31578947368421% 27.586206896551722%; background-size: 534.2857142857142% 514.2857142857143%; width: 35px; height: 35px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-play { background-image: url(images/sprite.png); background-position: 100% 0%; background-size: 1335.7142857142858% 1058.8235294117646%; width: 14px; height: 17px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-plus-thick { background-image: url(images/sprite.png); background-position: 98.29545454545455% 73.96449704142012%; background-size: 1700% 1636.3636363636363%; width: 11px; height: 11px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-plus { background-image: url(images/sprite.png); background-position: 76.78571428571429% 49.06832298136646%; background-size: 984.2105263157896% 947.3684210526314%; width: 19px; height: 19px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-podcast-2 { background-image: url(images/sprite.png); background-position: 44.785276073619634% 51.973684210526315%; background-size: 779.1666666666667% 642.8571428571429%; width: 24px; height: 28px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-podcast { background-image: url(images/sprite.png); background-position: 88.88888888888889% 24.84472049689441%; background-size: 1168.75% 947.3684210526314%; width: 16px; height: 19px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-print-yellow { background-image: url(images/sprite.png); background-position: 0% 27.586206896551722%; background-size: 534.2857142857142% 514.2857142857143%; width: 35px; height: 35px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-profile { background-image: url(images/sprite.png); background-position: 26.25% 51.973684210526315%; background-size: 692.5925925925926% 642.8571428571429%; width: 27px; height: 28px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-queue { background-image: url(images/sprite.png); background-position: 61.963190184049076% 50.641025641025635%; background-size: 779.1666666666667% 750%; width: 24px; height: 24px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-search-3 { background-image: url(images/sprite.png); background-position: 57.98816568047337% 87.5776397515528%; background-size: 1038.888888888889% 947.3684210526314%; width: 18px; height: 19px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-sponsors { background-image: url(images/sprite.png); background-position: 29.94011976047904% 88.67924528301887%; background-size: 935% 857.1428571428571%; width: 20px; height: 21px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-star-empty { background-image: url(images/sprite.png); background-position: 16.463414634146343% 71.97452229299363%; background-size: 813.0434782608695% 782.6086956521739%; width: 23px; height: 23px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-star-full { background-image: url(images/sprite.png); background-position: 44.31137724550898% 88.125%; background-size: 935% 900%; width: 20px; height: 20px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-subscribe { background-image: url(images/sprite.png); background-position: 80.95238095238095% 67.26190476190477%; background-size: 984.2105263157896% 1500%; width: 19px; height: 12px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-arrow-down { background-image: url(images/sprite.png); background-position: 67.5257731958763% 54.91329479768786%; background-size: 1716.6666666666667% 2983.333333333333%; width: 12px; height: 6px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-btn-facebook { background-image: url(images/sprite.png); background-position: 80.42328042328042% 0%; background-size: 1211.764705882353% 497.22222222222223%; width: 17px; height: 36px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-btn-google { background-image: url(images/sprite.png); background-position: 0% 53.02013422818792%; background-size: 542.1052631578948% 596.6666666666666%; width: 38px; height: 30px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-burger { background-image: url(images/sprite.png); background-position: 75.26881720430107% 69.32515337423312%; background-size: 1030% 1118.75%; width: 20px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-calendar { background-image: url(images/sprite.png); background-position: 92.02127659574468% 80.12048192771084%; background-size: 1144.4444444444446% 1376.923076923077%; width: 18px; height: 13px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-camera { background-image: url(images/sprite.png); background-position: 91.53439153439153% 90.36144578313254%; background-size: 1211.764705882353% 1376.923076923077%; width: 17px; height: 13px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-clock { background-image: url(images/sprite.png); background-position: 91.05263157894737% 56.44171779141104%; background-size: 1287.5% 1118.75%; width: 16px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-close { background-image: url(images/sprite.png); background-position: 78.75647668393782% 46.98795180722892%; background-size: 1584.6153846153848% 1376.923076923077%; width: 13px; height: 13px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-dedications { background-image: url(images/sprite.png); background-position: 52.972972972972975% 88.125%; background-size: 980.952380952381% 942.1052631578947%; width: 21px; height: 19px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-donate { background-image: url(images/sprite.png); background-position: 56.111111111111114% 50.641025641025635%; background-size: 792.3076923076924% 778.2608695652174%; width: 26px; height: 23px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-download { background-image: url(images/sprite.png); background-position: 100% 0%; background-size: 1872.7272727272727% 1376.923076923077%; width: 11px; height: 13px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-edit { background-image: url(images/sprite.png); background-position: 45.614035087719294% 27.77777777777778%; background-size: 588.5714285714287% 511.4285714285714%; width: 35px; height: 35px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-envelope { background-image: url(images/sprite.png); background-position: 45.55555555555556% 70.625%; background-size: 792.3076923076924% 942.1052631578947%; width: 26px; height: 19px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-leaf { background-image: url(images/sprite.png); background-position: 26.881720430107524% 89.24050632911393%; background-size: 1030% 852.3809523809524%; width: 20px; height: 21px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-logo-small { background-image: url(images/sprite.png); background-position: 0% 0%; background-size: 139.1891891891892% 497.22222222222223%; width: 148px; height: 36px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-magnifier-large { background-image: url(images/sprite.png); background-position: 15.300546448087433% 72.90322580645162%; background-size: 895.6521739130435% 745.8333333333333%; width: 23px; height: 24px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-magnifier { background-image: url(images/sprite.png); background-position: 92.02127659574468% 13.664596273291925%; background-size: 1144.4444444444446% 994.4444444444445%; width: 18px; height: 18px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-magnify { background-image: url(images/sprite.png); background-position: 92.02127659574468% 0%; background-size: 1144.4444444444446% 994.4444444444445%; width: 18px; height: 18px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-mail-dark { background-image: url(images/sprite.png); background-position: 61.53846153846154% 69.75308641975309%; background-size: 858.3333333333334% 1052.9411764705883%; width: 24px; height: 17px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-mic { background-image: url(images/sprite.png); background-position: 77.94871794871796% 35.58282208588957%; background-size: 1872.7272727272727% 1118.75%; width: 11px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-microphone { background-image: url(images/sprite.png); background-position: 90.10416666666666% 42.405063291139236%; background-size: 1471.4285714285713% 852.3809523809524%; width: 14px; height: 21px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-paging-next { background-image: url(images/sprite.png); background-position: 67.5257731958763% 47.30538922155689%; background-size: 1716.6666666666667% 1491.6666666666665%; width: 12px; height: 12px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-paging-prev { background-image: url(images/sprite.png); background-position: 78.35051546391753% 56.886227544910184%; background-size: 1716.6666666666667% 1491.6666666666665%; width: 12px; height: 12px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-paper { background-image: url(images/sprite.png); background-position: 66.85714285714286% 27.77777777777778%; background-size: 664.516129032258% 511.4285714285714%; width: 31px; height: 35px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-pen-3 { background-image: url(images/sprite.png); background-position: 79.16666666666666% 24.242424242424242%; background-size: 1471.4285714285713% 1278.5714285714287%; width: 14px; height: 14px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-play-3 { background-image: url(images/sprite.png); background-position: 0% 89.80891719745223%; background-size: 936.3636363636364% 813.6363636363636%; width: 22px; height: 22px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-play-yellow { background-image: url(images/sprite.png); background-position: 22.807017543859647% 27.77777777777778%; background-size: 588.5714285714287% 511.4285714285714%; width: 35px; height: 35px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-play { background-image: url(images/sprite.png); background-position: 90.10416666666666% 69.1358024691358%; background-size: 1471.4285714285713% 1052.9411764705883%; width: 14px; height: 17px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-plus-thick { background-image: url(images/sprite.png); background-position: 100% 10.119047619047619%; background-size: 1872.7272727272727% 1627.2727272727273%; width: 11px; height: 11px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-plus { background-image: url(images/sprite.png); background-position: 65.77540106951871% 88.125%; background-size: 1084.2105263157896% 942.1052631578947%; width: 19px; height: 19px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-podcast-2 { background-image: url(images/sprite.png); background-position: 40.10989010989011% 52.317880794701985%; background-size: 858.3333333333334% 639.2857142857143%; width: 24px; height: 28px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-podcast { background-image: url(images/sprite.png); background-position: 91.05263157894737% 27.500000000000004%; background-size: 1287.5% 942.1052631578947%; width: 16px; height: 19px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-print-yellow { background-image: url(images/sprite.png); background-position: 0% 27.77777777777778%; background-size: 588.5714285714287% 511.4285714285714%; width: 35px; height: 35px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-profile { background-image: url(images/sprite.png); background-position: 23.463687150837988% 52.317880794701985%; background-size: 762.9629629629629% 639.2857142857143%; width: 27px; height: 28px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-queue { background-image: url(images/sprite.png); background-position: 0% 72.90322580645162%; background-size: 858.3333333333334% 745.8333333333333%; width: 24px; height: 24px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-search-3 { background-image: url(images/sprite.png); background-position: 77.6595744680851% 88.125%; background-size: 1144.4444444444446% 942.1052631578947%; width: 18px; height: 19px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-sponsors { background-image: url(images/sprite.png); background-position: 13.978494623655912% 89.24050632911393%; background-size: 1030% 852.3809523809524%; width: 20px; height: 21px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-star-empty { background-image: url(images/sprite.png); background-position: 30.05464480874317% 72.43589743589743%; background-size: 895.6521739130435% 778.2608695652174%; width: 23px; height: 23px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-star-full { background-image: url(images/sprite.png); background-position: 39.784946236559136% 88.67924528301887%; background-size: 1030% 894.9999999999999%; width: 20px; height: 20px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-subscribe { background-image: url(images/sprite.png); background-position: 0% 100%; background-size: 1084.2105263157896% 1491.6666666666665%; width: 19px; height: 12px; display: inline-block; vertical-align: middle; font-size: 0; }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 	.ico-close { background-image: url(images/sprite.@2x.png); background-position: 0% 100%; background-size: 684.6153846153845% 576.9230769230769%; width: 13px; height: 13px; display: inline-block; vertical-align: middle; font-size: 0; }
 	.ico-mic { background-image: url(images/sprite.@2x.png); background-position: 100% 0%; background-size: 809.0909090909091% 468.75%; width: 11px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0; }
@@ -409,23 +413,27 @@ blockquote:last-child { margin-bottom: 0; }
 	Header
 \* ------------------------------------------------------------ */
 .header { background: #14213d; position: relative; padding: 8px 0 10px; }
-.header .header-inner { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between; -webkit-align-items: center; -ms-flex-align: center; align-items: center; padding: 0 27px 0 12px; }
-.header .header-content { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between; width: 100%; }
+.header .header-inner { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between; -webkit-align-items: center; -ms-flex-align: center; align-items: center; padding: 0 27px 0 12px;  }
+.header .header-content { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between; width: 100%; position: relative; padding-right: 60px;  }
 .header .header-aside { -webkit-flex-shrink: 0; -ms-flex-negative: 0; flex-shrink: 0; padding-left: 20px; display: -webkit-flex; display: -ms-flexbox; display: flex; min-width: 101px;  }
 .header .header-aside .link { margin-right: 31px; font-weight: 400; position: relative; top:-3px; }
 .header .logo { -webkit-flex-shrink: 0; -ms-flex-negative: 0; flex-shrink: 0; margin-top: 9px; }
 .header .btn-popover { margin-left: 8px; margin-right: 8px;  }
-.header .search { width: 295px; min-width: 190px;  }
-.header .search .search-field  { padding-left: 7px;  }
+.header .search .search-field  { padding-left: 25px;  }
 .header .select-box  { max-width: 215px; padding-right: 23px; }
 .header .link-play span { font-style: normal;  }
 .header .btn-popover { -webkit-transform:translateY(3px); -ms-transform:translateY(3px); transform:translateY(3px); }
+.header .nav-utilities,
+.header .select-box {z-index: 50;  }
+.header .nav-utilities li.link-donate { position: static;  }
 /* Small Desktop */
 @media (max-width: 1480px) {
 	.header .header-inner { padding: 0 20px; -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap; }
 	.header .header-aside { position: absolute; top: 32px; right: 38px; }
-	.header .nav-utilities { padding-left: 0;  }
-	.header .header-content { padding-top: 20px;  }
+	.header .nav-utilities { padding-left: 0; }
+	
+	.header .header-content { padding-top: 20px; }
+
 }
 /* Tablet Portrait */
 @media (max-width: 1240px) {
@@ -442,6 +450,12 @@ blockquote:last-child { margin-bottom: 0; }
 	.header .nav-utilities a { font-size: 11px;  }
 	
 	.header .header-inner { padding-left: 0;  }
+	.header .nav-utilities { padding-right: 20px;  }
+	.header .select-box { padding-right: 50px;  }
+
+	.header .search .search-field { z-index: 150;  }
+	.header .search  { top:0; }
+	
 }
 @media(max-width:960px){
 	.header .nav-utilities a span { display: none; }
@@ -462,29 +476,28 @@ blockquote:last-child { margin-bottom: 0; }
 }
 @media (max-width: 767px) {
 	.header .btn-popover { display: none;  }
-	.header .search input[type="search"] { position: absolute; top: 100%; right:-21px; min-width: calc(100vw - 17px); max-width: calc(100vw - 17px); margin-top:10px; box-shadow:0 0 3px rgba(0,0,0,.5); opacity: 0; visibility: hidden;  }
-	.header .search:hover input[type="search"] { opacity: 1; visibility: visible;  }
-	.header .search .search-btn { width: 39px; height: 33px; border-radius: 4px;  }
-	.header .search { margin-left: 0; padding-right: 0; margin-right: 10px;  }
+
 	
 	.header .header-content { padding-top: 0; -webkit-justify-content: flex-end; -ms-flex-pack: end; justify-content: flex-end; padding-top: 14px; margin-top: 0;  }
 	.header .header-aside  { margin-bottom: 18px; top:17px; right:15px; }
-	.header .search { width: 33px; min-width: 33px;  }
+
 	.header .logo { width: 133px; height: 32px; position: static; margin-top: 0;display: block; margin-bottom: 19px;   }
 	.header .nav-utilities { padding-top: 7px; }
 	
 	.header .header-content { padding-top: 0;  }
 	.header:after { top:50px; }
-	.header .search .search-btn  { position: absolute; top: 0; left: 0; }
+
 }
 @media (max-width: 600px) {
 	.header .select-box { max-width: 120px;  }
 	.header .nav-utilities li + li { margin-left: 0;  }
+	
+		.header .search { top:0;  }
 }
 /* ------------------------------------------------------------ *\
 	Main
 \* ------------------------------------------------------------ */
-.main { padding: 0; }
+.main { padding: 0; position: relative;  }
 /* ------------------------------------------------------------ *\
 	Shell
 \* ------------------------------------------------------------ */
@@ -554,6 +567,32 @@ blockquote:last-child { margin-bottom: 0; }
 \* ------------------------------------------------------------ */
 .copyright { font-weight: 400; font-style: italic; font-size: 14px; line-height: 1.2; letter-spacing: 0.01em; color: #fff; }
 /* ------------------------------------------------------------ *\
+	Donate
+\* ------------------------------------------------------------ */
+.donate { border:6px solid #a1a6b1; position: absolute; top: 10px; left: 10px; right:10px; z-index: 50; background: #fff; display: none;  }
+.donate.shown { display: block; }
+.donate .donate-head { background: #e9e9e9; padding:9px 0 9px 48px; position: relative; }
+.donate .donate-head .link-close { position: absolute; top: 15px; right: 16px; }
+.donate .donate-head form { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-align-items:center; -ms-flex-align:center; align-items:center; }
+.donate .donate-head form label { padding-right: 23px; letter-spacing: 0.05em;  }
+.donate .cols { display: -webkit-flex; display: -ms-flexbox; display: flex; }
+.donate .col-1of3 { width: 33.3%;  margin:14px 0 16px; }
+.donate .col-1of3 .form-sponsor { max-width: 254px; margin:auto; }
+.donate .col-1of3 + .col-1of3 { border-left: 2px solid #e9e9e9;  }
+.donate h4 { background: #14213d; color: #fff; text-align: center; font-size: 16px; font-style: normal; letter-spacing: 0.075em; padding:6px 0; margin-bottom: 21px; }
+@media (max-width: 767px) {
+	.donate .donate-head { padding-left: 15px;  }
+
+	.donate .donate-body { padding-top: 30px;  }
+	.donate .cols { -webkit-flex-direction:column; -ms-flex-direction:column; flex-direction:column; padding-bottom: 40px;  }
+	.donate .cols .col-1of3 { margin:auto; width: 300px;  }
+	.donate .cols .col-1of3 + .col-1of3 { margin-top: 30px; border-left: 0; }
+}
+@media (max-width: 600px) {
+	.donate .donate-head .select.select-tertiary select { min-width: 1px; font-size: 13px;  }
+	.donate .donate-head form label { padding-right: 12px;  }
+}
+/* ------------------------------------------------------------ *\
 	Dropdown
 \* ------------------------------------------------------------ */
 .dropdown { position: absolute; top: 100%; left: 50%; -webkit-transform:translateX(-50%); -ms-transform:translateX(-50%); transform:translateX(-50%); background: #fff; z-index: 650; border:4px solid #a1a6b1; min-width: 400px; margin-top: 29px; display: none;  }
@@ -612,6 +651,10 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 .checkbox input { display: none;  }
 .checkbox label:before { content: ''; width: 17px; height: 17px; border:2px solid #000; border-radius: 4px; display: block; position: absolute; top: 2px; left: 0;   }
 .checkbox input:checked + label:before {  background: url(../css/images/check.png) no-repeat center;  }
+.checkbox-secondary label {  width: 65px; height: 35px; display: inline-block; padding:0; text-align: center; line-height: 35px; background: linear-gradient(to bottom, #ffffff 0%,#eeeeee 100%); border:1px solid #e9e9e9; border-radius: 3px;  }
+.checkbox-secondary label:before { display: none;  }
+.checkbox-secondary input:checked + label { background: linear-gradient(to bottom, #ffcc00 0%,#eebf00 100%);  }
+.checkbox-secondary input:checked + label:before { background: none;  }
 .list-checkboxes-secondary li .checkbox-actions,
 .list-checkboxes-secondary li { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between;  }
 .list-checkboxes-secondary li .checkbox-actions { min-width:125px; font-size: 14px; color: #464646; font-style: italic; }
@@ -620,6 +663,8 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 .select.select-yellow select { width: 100%; height: 33px; min-width: 100%; border:0; font-size: 16px; color: #909090; font-weight: 400;  }
 .select.select-yellow:after { border-color: #907c2a transparent transparent transparent; right: 11px; }
 .select.select-yellow:before { content: ''; display: inline-block; width:30px; height: 33px; border-left: 1px solid #e0e0e0; position: absolute; top: 0; right: 0; pointer-events:none; background: #ffcc00;  }
+.select.select-tertiary select { font-size: 16px; font-weight: 400; min-width: 236px; border-color:#b9b9b9; padding-left: 9px; padding-top: 8px; padding-bottom: 8px; letter-spacing: 0.01em;   }
+.select.select-tertiary:after  { width: 0; height: 0; border-style: solid; border-width: 7px 7px 0 7px; border-color: #8a8989 transparent transparent transparent; }
 /* ------------------------------------------------------------ *\
 	Form
 \* ------------------------------------------------------------ */
@@ -693,6 +738,34 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 	.form-secondary .form-cols .form-col { width: 100%;  }
 	.form-secondary .form-cols .form-col + .form-col { margin-top: 2px;  }
 	.form-secondary .select + .select  { margin-top: 2px;  }
+}
+.form-sponsor { padding-top: 19px; }
+.form-sponsor .field { width: 100%; border:1px solid #e9e9e9; padding:8px 0 8px 15px; font-size: 16px; color: #8a8989;  }
+.form-sponsor .form-row + .form-row { padding-top: 12px; }
+.form-sponsor .select select { color: #8a8989; border:1px solid #e9e9e9; border-radius: 3px; }
+.form-sponsor .field:focus,
+.form-sponsor .select select:focus { border-color:#000; color:#000; }
+.form-sponsor .field { border-radius: 3px; }
+.form-sponsor .form-row { position: relative;  }
+.form-sponsor .field-date { padding-right: 30px;  }
+.form-sponsor .field-date + i { position: absolute; top: 24px; right: 12px; z-index: 50; pointer-events:none; }
+.form-sponsor p { text-align: right; padding-right: 16px; margin-bottom: -6px;  }
+.form-sponsor p a { font-size: 13px; color: #5477d9; text-decoration: none;  }
+.form-sponsor p a:hover { text-decoration: underline;  }
+.form-sponsor span {font-size: 14px; color: #8a8989; padding-left: 10px; display: block; margin-top: -12px; margin-bottom: 4px;  }
+.form-sponsor .form-body { min-height:407px; padding-left: 3px; padding-right: 3px;  }
+.form-sponsor .form-actions { text-align: center;  }
+.form-sponsor .form-btn { font-size: 14px; color: #fff; background: #37c47c; border:0; padding:10px 40px; text-transform: uppercase; border-radius: 5px;  }
+.form-sponsor .form-btn:hover { background: #1d8d54;  }
+.form-sponsor .list-checkboxes { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between; padding-left: 0; max-width: 255px; margin:auto; }
+.form-sponsor .list-checkboxes li { margin-bottom: 12px; }
+@media (max-width: 1240px) {
+	.form-sponsor {  padding-top: 0; padding-left: 10px; padding-right: 10px;  }
+	.form-sponsor .select.select-tertiary select { min-width: 1px;  }
+}
+@media (max-width: 767px) {
+	
+	.form-sponsor .form-body { min-height: 1px; padding-bottom: 30px;  }
 }
 /* ------------------------------------------------------------ *\
 	Link
@@ -804,13 +877,20 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 .nav li:last-child { margin-bottom: 0; }
 .nav a { text-decoration: none; color: #fff; padding: 10px  20px; transition: color .3s; }
 .nav a:hover { font-weight: 400;  }
-.nav-utilities { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-align-items:center; -ms-flex-align:center; align-items:center; list-style: none; padding-left: 56px;  }
+.nav-utilities { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-align-items:center; -ms-flex-align:center; align-items:center; list-style: none; padding-left: 56px; }
+.nav-utilities:hover { z-index: 8000;  }
 .nav-utilities li { position: relative; width: 100%;  }
 .nav-utilities li + li { margin-left: 30px; }
 .nav-utilities a { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-align-items:center; -ms-flex-align:center; align-items:center; color: #fff; text-transform: uppercase; text-decoration: none; font-size: 14px; font-weight: 400; transition: color .5s;   }
 .nav-utilities a:hover { color: #fc0;  }
 .nav-utilities a i { margin-right: 7px; }
-.nav-list { display: -webkit-flex; display: -ms-flexbox; display: flex; list-style: none;  }
+.nav-utilities a { position: relative; z-index: 500; }
+.nav-utilities > li > a:after { content: attr(data-tooltip); position: absolute; top: 50%; left: 100%; -webkit-transform:translateY(-50%); -ms-transform:translateY(-50%); transform:translateY(-50%); background: #fff; font-size: 13px; white-space:nowrap; padding:5px 10px;  border-radius:3px;  z-index: 50; color: #000; opacity: 0; visibility: hidden; text-transform: none; letter-spacing: 0; z-index: 850; max-width: 300px; margin-left: 5px; white-space:normal; width: 200px; font-style: normal; margin-left: 15px; box-shadow:0 0 13px #000; }
+.nav-utilities > li > a:before { content: ''; width: 0; height: 0; border-style: solid; border-width: 6px 10px 6px 0; border-color: transparent #fff transparent transparent; position: absolute; top: 50%; left: 100%; -webkit-transform:translateY(-50%); -ms-transform:translateY(-50%); transform:translateY(-50%); z-index: 50; transition: opacity .5s, visibility .5s.; z-index: 100; opacity: 0; visibility: hidden; margin-left: 0; margin-left: 6px; z-index: 855;  }
+.nav-utilities > li:hover a:before,
+.nav-utilities > li:hover a:after { opacity: 1; visibility: visible; }
+.nav-utilities > li:hover a { z-index: 600; }
+.nav-list { display: -webkit-flex; display: -ms-flexbox; display: flex; list-style: none; }
 .nav-list a { color: #000; font-size: 16px; text-transform: none; font-weight: 500; }
 .nav-access { list-style: none; padding-left: 20px;  }
 .nav-access li { position: relative;  }
@@ -823,8 +903,7 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 	.nav-utilities li .dropdown:before  { left:40px; }
 }
 @media (max-width: 1240px) {
-	.nav-utilities li .dropdown:before  { left:5px; }
-	
+	.nav-utilities li .dropdown:before { left:5px; }
 }
 /* Mobile */
 @media (max-width: 600px) {
@@ -864,12 +943,14 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 /* ------------------------------------------------------------ *\
 	Search
 \* ------------------------------------------------------------ */
-.search { width: 100%; max-width: 331px; min-width: 300px; position: relative; padding-right: 50px; }
+.search { width: auto;  position: absolute; top: -20px; right: 0; height: 76px; padding-left: 38px;  }
+.search { width: 100%; }
 .search .search-inner { width: 100%; }
-.search .search-field { width: 100%; -webkit-appearance: none; -moz-appearance: none; appearance: none; font: 400 14px/1.2 'FuturaPT', sans-serif; color: #666; border: 0; padding: 10px 16px 10px; transition: color .3s; border-radius: 0; }
-.search .search-field:focus { color: #000; }
-.search .search-content { display: -webkit-flex; display: -ms-flexbox; display: flex; border-radius: 5px; overflow: hidden; }
-.search .search-btn { border: 0; width: 38px; display: inline-block; -webkit-flex-shrink: 0; -ms-flex-negative: 0; flex-shrink: 0; position: relative; background: #ffcc00; }
+.search .search-field { width: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none; font: 400 38px/1.2 'FuturaPT', sans-serif; color: #666; border: 0; padding: 10px 16px 10px; transition: color .3s; border-radius: 0; background: #ffcc00; height: 76px; position: absolute; top: 0; right:0; transition: width .5s; z-index: 10;  transition: width .5s, z-index .5s 5s;   }
+.search .search-field:focus { width: calc(100% - 30px); z-index: 150; transition: width .5s, z-index .5s 0s;  }
+.search .search-field:focus { color: #000;  }
+.search .search-btn { border: 0; width: 38px; display: inline-block; -webkit-flex-shrink: 0; -ms-flex-negative: 0; flex-shrink: 0; position: relative; background: #ffcc00; height: 76px; position: absolute; top: 0; right: 0; pointer-events:none; z-index: 150;  }
+.search .search-field:focus + .search-btn { pointer-events:auto; z-index: 350;  }
 .search .search-btn i { position: absolute; top: 50%; left: 50%; margin-top: -9px; margin-left: -9px; }
 .search .btn-popover { position: absolute; top: 50%; right: 0; margin-top: -18px; }
 .search-secondary { display: -webkit-flex; display: -ms-flexbox; display: flex;  }
@@ -888,8 +969,22 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 .search-tertiary .form-col .select { min-width:147px; }
 .search-tertiary .select select { min-width: 147px !important; }
 .search-tertiary .form-col + .form-col { padding-left: 30px;  }
+@media (max-width: 1480px) {
+	.search .search-btn,
+	.search .search-field,
+	.search { height: 36px;  }
+	
+	.search { top:18px; }
+	.search .search-btn,
+	.search .search-field { border-radius: 4px;  }  
+	
+	.search .search-field:focus { width: 100%; }
+	
+	.search .search-field { font-size: 16px;  }
+}
 @media (max-width: 1240px) {
 	.search-secondary { -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-justify-content: flex-end; -ms-flex-pack: end; justify-content: flex-end;  }
+
 }
 @media (max-width: 767px) {
 	.search-tertiary { width: 100%;  }
@@ -946,7 +1041,7 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 \* ------------------------------------------------------------ */
 /*  Select Box  */
 .select-box { width: 100%; max-width: 245px; min-width: 200px; padding-right: 45px; position: relative; }
-.select-box .select { width: 100%; -webkit-appearance: none; -moz-appearance: none; appearance: none; background: #fff url(../css/images/select-bg.jpg) no-repeat right center; font: 400 14px/1.2 'FuturaPT', sans-serif; color: #666; border: 0; padding: 8px 45px 9px 7px; border-radius: 5px; height: 34px; }
+.select-box .select { width: 100%; -webkit-appearance: none; -moz-appearance: none; appearance: none; background: #fff url(../css/images/select-bg.jpg) no-repeat right center; font: 400 14px/1.2 'FuturaPT', sans-serif; color: #666; border: 0; padding: 8px 45px 9px 7px; border-radius: 2px; height: 34px; }
 .select-box .btn-popover { position: absolute; top: 50%; right: -27px; margin-top: -19px; }
 /* Mobile */
 @media (max-width: 600px) {
@@ -1361,7 +1456,3 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 	Widget
 \* ------------------------------------------------------------ */
 .widgets { list-style: none outside none; }
-
-
-/*------------------------------------------------------------------*/
-

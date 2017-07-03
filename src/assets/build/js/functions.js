@@ -52,6 +52,17 @@
 			});
 		}
 
+        $('.link-donate').on('click', function(e) {
+			e.preventDefault();
+			
+			var currentHref = $(this).attr('href');
+			
+			$(currentHref).toggleClass('shown');
+		})
+		
+		$('.donate .link-close').on('click', function() {
+			$(this).closest('.donate').toggleClass('shown');
+		})
 
 		$( ".wrapper" ).delegate( ".select-speakers select", "change", function() {
 		   // $('.tile-box-tab').removeClass('current'); //original
@@ -266,7 +277,7 @@
 			var num = 4;
 
 			var colore = "";
-			var $htmlcontents = $(elemHref).children().clone(true,true);
+			var $htmlcontents = $(elemHref).children().clone(true);
 			var sorting = 0;
 			var isoElems = $grid.isotope('getItemElements');
 
@@ -350,7 +361,7 @@
 				})
 			};
 
-			var $htmlcontents = $(elemHref).children().clone(true,true);
+			var $htmlcontents = $(elemHref).children().clone(true);
 			var sorting = 0;
 			var isoElems = $gridCol.isotope('getItemElements');
 
@@ -359,7 +370,6 @@
 			if (thisEl.closest('.tile').prev().hasClass('tile-high') && $win.width() >= 1024) {
 				sorting = sorting - 2;
 			}
-
 
 			var $ballonEl = $('<div id="ballon" data-item-id="'+ id + '" class="tile ballon ballon-half">');
 			var $sorting = $('<p class="sorting">'+sorting+'</p></div>');
@@ -406,8 +416,12 @@
 			$('#ballon').remove();
 
 			hideArrow();
-
-			$gridCol.isotope({ sortBy: 'sorting' });
+						
+			$gridCol = $('.tile-col')
+			
+			if ( $gridCol.length ) {
+				$gridCol.isotope({ sortBy: 'sorting' }); 
+			};		
 		}
 
 		window.mobileAndTabletcheck = function() {

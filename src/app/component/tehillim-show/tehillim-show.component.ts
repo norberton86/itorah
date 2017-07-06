@@ -13,9 +13,11 @@ export class TehillimShowComponent implements OnInit {
    
    selectedCountry:number;
    countries:Array<Country>;
+   //countryRaw:string;
 
    selectedComunity:number;
    comunities:Array<Comunity>;
+   //comunityRaw:string;
 
    selectedCategory:number;
    categories:Array<Category>;
@@ -41,27 +43,10 @@ export class TehillimShowComponent implements OnInit {
 
     $('#field-1').change(function(){   //all
 
-          $(this).val()
-          self.RefreshView();
-          
+        
     });
 
-    $('#field-2').change(function(){   //currently showing
-
-          $(this).val()
-          self.RefreshView();
-          
-    });
-
-    $('#field-3').change(function(){   //country
-
-          $(this).val()
-          self.RefreshView();
-          
-    });
-
-    
-
+   
   }
 
 
@@ -77,7 +62,6 @@ export class TehillimShowComponent implements OnInit {
                    },function(error){},function(){}
                    )
   }
-
   
   ReadComunity(idCountry:number)
   {
@@ -111,6 +95,7 @@ export class TehillimShowComponent implements OnInit {
         this.tehillimService.readTehillim(self.selectedComunity,self.selectedCountry).subscribe(
                    function(response){
                        self.tehellims=response;
+                       self.RefreshView();
 
                    },function(error){},function(){}
                    )
@@ -119,9 +104,40 @@ export class TehillimShowComponent implements OnInit {
 
   RefreshView()
   {
+    let self=this;
+
        setTimeout(function(){ 
 
           $('#ballon').html($('#item-content-3').html());
+          $('#field-3').val($('#item-content-3 #field-3').val())
+          $('#field-2').val($('#item-content-3 #field-2').val())
+
+
+          $('#field-3').change(function(){   //country
+
+            var id= parseInt($(this).val().split(":")[1]) //id
+           // self.countryRaw=$(this).val();
+
+            self.ngZone.run(()=>{
+                      
+                       self.selectedCountry=id;
+                       self.ReadComunity(id)        
+
+                    })
+            });
+
+            $('#field-2').change(function(){   //comunities
+
+            var id= parseInt($(this).val().split(":")[1]) //id
+            //self.comunityRaw=$(this).val();
+
+            self.ngZone.run(()=>{
+                      
+                       self.selectedComunity=id;
+                       self.ReadCategory(id)        
+
+                    })
+            });
 
       },500) 
   }

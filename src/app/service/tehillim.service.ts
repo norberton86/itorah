@@ -32,7 +32,10 @@ export class TehillimService extends Service{
 
     return Observable.create(observer => {
            
+           if(idCountry==1)
             observer.next([{id:1,name:"Ashkenaz"},{id:2,name:"Sephardic"}]);
+            else
+            observer.next([{id:3,name:"Other Ashkenaz"},{id:4,name:"Other Sephardic"}]);
             
             observer.complete();
     });
@@ -42,6 +45,7 @@ export class TehillimService extends Service{
     readCategory(idComunity:number) :Observable<Category[]>{
 
     return Observable.create(observer => {
+           
            
             observer.next([{id:1,name:"All"},{id:2,name:"To Heal the sick"}]);
             

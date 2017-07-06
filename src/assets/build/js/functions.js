@@ -67,11 +67,11 @@
 		$( ".wrapper" ).delegate( ".select-speakers select", "change", function() {
 		   // $('.tile-box-tab').removeClass('current'); //original
 
-		     var $tabTarget = $(this).val()
+		   //  var $tabTarget = $(this).val()
 
 		     //$($tabTarget).addClass('current');  //original  
            //-----------------------------------------------------------------------------------
-		     if($tabTarget=="#tile-tab-1")
+		    /* if($tabTarget=="#tile-tab-1")
 			 {
 				 $('#ballon .current').html($('app-speaker #tile-tab-1').html());
 			 }
@@ -83,7 +83,7 @@
 			 else
 			 {
 				$('#ballon .current').html($('app-speaker #tile-tab-3').html()); 
-			 }
+			 }*/
 		});
 
 		// This class will be added to active tab link

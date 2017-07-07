@@ -46,8 +46,13 @@ export class TehillimService extends Service{
 
     return Observable.create(observer => {
            
-           
-            observer.next([{id:1,name:"All"},{id:2,name:"To Heal the sick"}]);
+            switch(idComunity)
+            { 
+              case 1: observer.next([{id:1,name:"All 1"},{id:2,name:"To Heal the sick 1"}]); break;
+              case 2: observer.next([{id:3,name:"All 2"},{id:4,name:"To Heal the sick 2"}]); break;
+              case 3: observer.next([{id:5,name:"All 3"},{id:6,name:"To Heal the sick 3"}]); break;
+              case 4: observer.next([{id:7,name:"All 4"},{id:8,name:"To Heal the sick 4"}]); break; 
+            }
             
             observer.complete();
     });
@@ -57,9 +62,14 @@ export class TehillimService extends Service{
     readTehillim(idComunity:number,idCountry:number) :Observable<Tehillim[]>{
 
     return Observable.create(observer => {
-           
-            observer.next([{id:1,TName:"Moshe Yocheved ben Sarah",HName:"משה יוכבד",Reason:"To heal the sick",Posted:new Date(),Until:new Date(),Comments:"Example from small community in NY unable to find a shiduch"},
-                           {id:2,TName:"Moshe Yocheved ben Sarah",HName:"משה יוכבד",Reason:"To heal the sick",Posted:new Date(),Until:new Date(),Comments:"Example from small community in NY unable to find a shiduch"}]);
+           var value=Math.floor((Math.random() * 10) + 1)%2;
+           if(value==0)
+            observer.next([{id:1,TName:"Moshe Yocheved ben Sarah 1",HName:"משה יוכבד",Reason:"To heal the sick",Posted:new Date(),Until:new Date(),Comments:"Example from small community in NY unable to find a shiduch"},
+                           {id:2,TName:"Moshe Yocheved ben Sarah 2",HName:"משה יוכבד",Reason:"To heal the sick",Posted:new Date(),Until:new Date(),Comments:"Example from small community in NY unable to find a shiduch"}]);
+            else
+            observer.next([{id:3,TName:"Moshe Yocheved ben Sarah 3",HName:"משה יוכבד",Reason:"To heal the sick",Posted:new Date(),Until:new Date(),Comments:"Example from small community in NY unable to find a shiduch"},
+                           {id:4,TName:"Moshe Yocheved ben Sarah 4",HName:"משה יוכבד",Reason:"To heal the sick",Posted:new Date(),Until:new Date(),Comments:"Example from small community in NY unable to find a shiduch"}]);
+            
             
             observer.complete();
     });

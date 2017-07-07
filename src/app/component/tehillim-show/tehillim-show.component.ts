@@ -32,23 +32,9 @@ export class TehillimShowComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.Initialize();
     this.ReadCountry();
 
   }
-
-  Initialize()
-  {
-    let self=this;
-
-    $('#field-1').change(function(){   //all
-
-        
-    });
-
-   
-  }
-
 
   ReadCountry()
   {
@@ -111,6 +97,7 @@ export class TehillimShowComponent implements OnInit {
           $('#ballon').html($('#item-content-3').html());
           $('#field-3').val($('#item-content-3 #field-3').val())
           $('#field-2').val($('#item-content-3 #field-2').val())
+          $('#field-1').val($('#item-content-3 #field-1').val())
 
 
           $('#field-3').change(function(){   //country
@@ -135,6 +122,19 @@ export class TehillimShowComponent implements OnInit {
                       
                        self.selectedComunity=id;
                        self.ReadCategory(id)        
+
+                    })
+            });
+
+            $('#field-1').change(function(){   //comunities
+
+            var id= parseInt($(this).val().split(":")[1]) //id
+            //self.comunityRaw=$(this).val();
+
+            self.ngZone.run(()=>{
+                      
+                       self.selectedCategory=id;
+                       self.ReadTehillim()        
 
                     })
             });

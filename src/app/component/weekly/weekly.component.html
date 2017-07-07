@@ -3,9 +3,8 @@
 		<div class="tile-box-head">
 			<div class="tile-box-head-content">
 				<div class="select select-secondary">
-					<select name="field-6" id="field-6">
-						<option value="1">For the week of April 24th</option>
-						<option value="2">For the week of April 32th</option>
+					<select name="field-7" id="field-7" [(ngModel)]="selectedPerasha">
+						<option *ngFor="let c of perashas" [ngValue]="c.id">{{c.parashaName}}</option>
 					</select>
 				</div><!-- /.select -->
 				
@@ -13,11 +12,7 @@
 			</div><!-- /.table-head-content -->		
 			
 			<div class="tile-box-head-aside">
-				<div class="select select-secondary">
-					<select name="field-7" id="field-7" [(ngModel)]="selectedPerasha">
-						<option *ngFor="let c of perashas" [ngValue]="c.id">{{c.parashaName}}</option>
-					</select>
-				</div><!-- /.select -->
+			
 			</div><!-- /.table-head-aside -->	
 			
 			<a href="#" class="link-close">

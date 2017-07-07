@@ -35,7 +35,8 @@ export class PlayerService {
               autostart: true,
             });
             
-            $('#video-modal').css('width','');
+            $('#video-modal').css('width',''); //fix the width
+            $('.alert-info').css('background-color','white'); //change background-color to white 
 
            
   }

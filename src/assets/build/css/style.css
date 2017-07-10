@@ -1318,7 +1318,7 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 	
 	.tile-box-speakers .tracks .track,
 	.tile-box-results .tracks .track,
-	.tile-box-results.tile-box-results-3 .tracks .track  { padding-left: 50px; }
+	.tile-box-results.tile-box-results-3 .tracks .track  { padding-left: 0px; }
 	
 	.tile-box-speakers .tracks .track .link-play-secondary,
 	.tile-box-results .tracks .track .link-play-secondary,

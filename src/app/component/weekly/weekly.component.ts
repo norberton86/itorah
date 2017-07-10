@@ -2,6 +2,7 @@ import { Component, OnInit,NgZone,Renderer2} from '@angular/core';
 
 import { Perasha } from '../../model/perasha';
 import { PerashaService } from '../../service/perasha.service';
+import { PlayerService } from '../../service/player.service';
 
 declare var $:any; 
 
@@ -9,7 +10,7 @@ declare var $:any;
   selector: 'app-weekly',
   templateUrl: './weekly.component.html',
   styleUrls: ['./weekly.component.css'],
-  providers:[PerashaService]
+  providers:[PerashaService,PlayerService]
 })
 export class WeeklyComponent implements OnInit {
 
@@ -18,7 +19,7 @@ export class WeeklyComponent implements OnInit {
   clipTitle:string;
   parragraphs:Array<string>;
 
-  constructor(private renderer:Renderer2,private perashaService:PerashaService,private ngZone:NgZone) {
+  constructor(private renderer:Renderer2,private perashaService:PerashaService,private ngZone:NgZone,private playerService:PlayerService) {
     this.perashas=[];
     this.parragraphs=[];
     
@@ -27,6 +28,7 @@ export class WeeklyComponent implements OnInit {
   ngOnInit() {
     this.ReadParasha();
     this.Initialize();
+    //this.playerService.Play("Lana","");
   }
 
 
@@ -72,11 +74,8 @@ export class WeeklyComponent implements OnInit {
      
 
     this.Print();
-     
-     $('#weekly-play').click(function(){
-          
-     })
-
+    this.Play();
+  
   }
 
   RefreshView()
@@ -100,4 +99,11 @@ export class WeeklyComponent implements OnInit {
 
   }
 
+  Play()
+  {
+     let self=this;
+     $('#weekly-play').click(function(){
+          self.playerService.Play("Lana","");
+     })
+  }
 }

@@ -6,6 +6,7 @@ import { Page } from '../../model/page';
 import { Letter } from '../../model/letter';
 import { SpeakerService } from '../../service/speaker.service';
 import { ShiurimService } from '../../service/shiurim.service';
+import { PlayerService } from '../../service/player.service';
 
 import { Injectable, Renderer2,ElementRef } from '@angular/core'
 
@@ -16,7 +17,7 @@ declare var jwplayer:any;
   selector: 'app-speaker',
   templateUrl: './speaker.component.html',
   styleUrls: ['./speaker.component.css'],
-  providers:[SpeakerService,ShiurimService]
+  providers:[SpeakerService,ShiurimService,PlayerService]
 })
 export class SpeakerComponent implements OnInit {
 
@@ -76,7 +77,7 @@ export class SpeakerComponent implements OnInit {
 
 
 
-  constructor( private renderer:Renderer2,private speakerService:SpeakerService,private shiurimService:ShiurimService,private elementRef: ElementRef,private ngZone:NgZone) {
+  constructor( private renderer:Renderer2,private speakerService:SpeakerService,private shiurimService:ShiurimService,private elementRef: ElementRef,private ngZone:NgZone,private playerService:PlayerService) {
       this.allSpeakers=[];
       this.speaker=new Speaker();
       this.currentSpeakers=[];
@@ -337,11 +338,9 @@ export class SpeakerComponent implements OnInit {
         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="media") //click on mnedia icons
          {
               var id=event.currentTarget.activeElement.attributes["id"].value;
-              jwplayer("video-body").setup({
-              "file": id,
-              "image": "/assets/build/css/images/temp/video-thumbnail-image-1.jpg",
-              autostart: true,
-              });
+               
+               this.playerService.Play("Nombre",id);   
+             
          }
 
       });

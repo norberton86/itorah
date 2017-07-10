@@ -73,11 +73,11 @@
 										
 										<span class="lang">{{s.language}}</span>
 										
-										<a href="#" class="link-mic" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}">
+										<a href="#" class="link-mic" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}">
 											<i class="ico-mic"></i>
 										</a>
 
-										<a href="#" class="link-mic" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}">
+										<a href="#" class="link-mic" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}">
 											<i class="ico-camera"></i>
 										</a>
 									</p>

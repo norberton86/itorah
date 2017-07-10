@@ -338,9 +338,9 @@ export class SpeakerComponent implements OnInit {
         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="media") //click on mnedia icons
          {
               var id=event.currentTarget.activeElement.attributes["id"].value;
+              var title=event.currentTarget.activeElement.attributes["title"].value;
                
-               this.playerService.Play("Nombre",id);   
-             
+              this.playerService.Play(title,id);   
          }
 
       });

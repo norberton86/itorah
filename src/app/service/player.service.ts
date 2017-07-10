@@ -11,7 +11,7 @@ export class PlayerService {
   {
              if($('#video-modal').length==0)     //if not exist
              $.notify({                          //create the popup
-	             title: "<h6 id='video-title'></h6>",
+	               title:  "<h6 id='video-title'></h6>",
                  message:'<div  id="video-modal">'+
 		                        '<a href="#">'+
 			                          '<img src="/assets/build/css/images/temp/video-image.png" alt="" >'+
@@ -24,10 +24,10 @@ export class PlayerService {
 		                        from: "bottom",      
 		                        align:"right"
 	                        },
-                animate: {                                   //animation to in/out
+                animate:  {                                   //animation to in/out
 		                        enter:'animated bounceInRight',
 		                        exit: 'animated bounceOutRight'
-	                       }
+	                        }
               });
 
              $('#video-title').html(title);        //title of modal
@@ -40,8 +40,6 @@ export class PlayerService {
             
             $('#video-modal').css('width',''); //fix the width
             $('.alert-info').css('background-color','white'); //change background-color to white 
-
-           
   }
 
 }

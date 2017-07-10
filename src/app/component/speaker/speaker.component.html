@@ -61,10 +61,10 @@
 					<div class="lists-body">
 						<ul class="tracks">
 							<li class="track" *ngFor="let s of shiriums">
-								<a href="#" class="link-play-secondary"></a>
+								<!--<a href="#" class="link-play-secondary"></a>-->
 								
-								<div class="track-content">
-									<h6>{{s.title}}</h6>
+								<div class="track-content" style="padding-left: 0.6em">
+									<h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
 									
 									<p>
 										<span class="date">{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span>
@@ -73,17 +73,19 @@
 										
 										<span class="lang">{{s.language}}</span>
 										
-										<a href="#" class="link-mic" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}">
-											<i class="ico-mic"></i>
-										</a>
-
-										<a href="#" class="link-mic" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}">
-											<i class="ico-camera"></i>
-										</a>
 									</p>
 								</div><!-- /.track-content -->
 								
 								<div class="track-actions">
+									
+                                        <a href="#" class="link-mic" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}">
+											<i class="ico-camera"></i>
+										</a>
+
+										<a href="#" class="link-mic" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}">
+											<i class="ico-mic"></i>
+										</a>
+
 									<a href="{{s?.audio}}" class="link-download" download>
 										<i class="ico-download"></i>
 									</a>

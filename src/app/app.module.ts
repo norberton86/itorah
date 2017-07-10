@@ -19,6 +19,7 @@ import { MishnaBeruraYomiComponent } from './component/mishna-berura-yomi/mishna
 import { LearnTorahComponent } from './component/learn-torah/learn-torah.component';
 import { DailyHalachaComponent } from './component/daily-halacha/daily-halacha.component';
 import { VideoThumbnailComponent } from './component/video-thumbnail/video-thumbnail.component';
+import { ReduceStringPipe } from './pipe/reduce-string.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { VideoThumbnailComponent } from './component/video-thumbnail/video-thumb
     MishnaBeruraYomiComponent,
     LearnTorahComponent,
     DailyHalachaComponent,
-    VideoThumbnailComponent
+    VideoThumbnailComponent,
+    ReduceStringPipe
   ],
   imports: [
     BrowserModule,

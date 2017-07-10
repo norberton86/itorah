@@ -33,7 +33,8 @@ export class EmunahSearchComponent implements OnInit {
   ngOnInit() {
     this.ReadLectures();
     this.renderer.listen('document', 'click', (event) => {
-      
+         
+
 
          if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="search-shirium") //click on main search
          {
@@ -49,7 +50,7 @@ export class EmunahSearchComponent implements OnInit {
          }
 
 
-         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-prev") //click on paging-prev 
+         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-prev-emula") //click on paging-prev 
          {
               this.iteration--;
               if(this.iteration<=0)
@@ -60,7 +61,7 @@ export class EmunahSearchComponent implements OnInit {
               this.CreatePages();
          }
 
-         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-next") //click on paging-next
+         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-next-emula") //click on paging-next
          {
               this.iteration++;
               if(this.iteration>Math.ceil(this.allPages/6) )
@@ -71,7 +72,7 @@ export class EmunahSearchComponent implements OnInit {
               this.CreatePages();
          }
 
-         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="page") //click on page
+         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="page-emula") //click on page
          {
               var id=event.currentTarget.activeElement.attributes["id"].value;
               this.pages.forEach(function(p){

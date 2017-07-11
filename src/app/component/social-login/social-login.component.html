@@ -1,0 +1,102 @@
+<div class="dropdown-head">
+	<h4><i class="ico-profile"></i>{{title}}</h4>
+</div>
+<!-- /.dropdown-head -->
+
+<div class="dropdown-body">
+	<div class="form-signin">
+		<form action="?" method="post">
+			<div class="form-head">
+				<i class="ico-logo-small"></i>
+			</div>
+			<!-- /.form-head -->
+			<div *ngIf="signIn">
+				<div class="form-body">
+					<div class="form-row">
+						<label for="field-email" class="form-label hidden">Email</label>
+
+						<div class="form-controls">
+							<input type="text" class="field" name="field-email" id="field-email" value="" placeholder="Email">
+						</div>
+						<!-- /.form-controls -->
+					</div>
+					<!-- /.form-row -->
+
+					<div class="form-row">
+						<label for="field-password" class="form-label hidden">password</label>
+
+						<div class="form-controls">
+							<input type="password" class="field" name="field-password" id="field-password" value="" placeholder="Password">
+						</div>
+						<!-- /.form-controls -->
+					</div>
+					<!-- /.form-row -->
+
+					<div class="form-row">
+						<div class="form-cols">
+							<div class="form-col">
+								<div class="checkbox">
+									<input type="checkbox" id="checkbox1">
+
+									<label for="checkbox1">Stay signed in</label>
+								</div>
+								<!-- /.checkbox -->
+							</div>
+							<!-- /.form-col -->
+
+							<div class="form-col">
+								<a class="link-forgot" href="#">Forgot password</a>
+							</div>
+							<!-- /.form-col -->
+						</div>
+						<!-- /.form-cols -->
+					</div>
+					<!-- /.field-row -->
+				</div>
+				<!-- /.form-body -->
+
+				<div class="form-actions">
+					<input type="submit" value="SIGN IN" class="form-btn">
+
+					<p>or</p>
+
+					<ul class="list-signin">
+						<li>
+							<a href="#" class="link-facebook" (click)="SignIn('facebook')">
+																<i class="ico-btn-facebook"></i>
+																
+																Sign in with Facebook
+															</a>
+						</li>
+
+						<li>
+							<a href="#" class="link-google" (click)="SignIn('google')">
+																<i class="ico-btn-google"></i>
+																
+																Sign in with Google+
+															</a>
+						</li>
+					</ul>
+					<!-- /.list-signin -->
+
+					<p>Not a member? <a href="#">Create an account</a></p>
+				</div>
+				<!-- /.form-actions -->
+			</div>
+
+            <div *ngIf="signOut">
+				<div class="form-actions">
+					<p style="margin-bottom: 0.5em">{{name}}</p>
+					<input type="submit" value="Sign Out" class="form-btn" (click)="Logout()">
+				</div>
+				<!-- /.form-actions -->
+			</div>
+
+		</form>
+	</div>
+	<!-- /.form-signin -->
+
+
+
+</div>
+<!-- /.dropdown-body -->

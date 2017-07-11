@@ -21,6 +21,18 @@ import { DailyHalachaComponent } from './component/daily-halacha/daily-halacha.c
 import { VideoThumbnailComponent } from './component/video-thumbnail/video-thumbnail.component';
 import { ReduceStringPipe } from './pipe/reduce-string.pipe';
 import { PlaceHolderComponent } from './component/place-holder/place-holder.component';
+import { Angular2SocialLoginModule } from "angular2-social-login";
+import { SocialLoginComponent } from './component/social-login/social-login.component';
+
+let providers = {
+    "google": {
+      "clientId": "98838643656-4g8mg0gql8p7amof4k5ioglma6m10c16.apps.googleusercontent.com"
+    },
+    "facebook": {
+      "clientId": "131349594120887",
+      "apiVersion": "v2.9"
+    }
+  };
 
 @NgModule({
   declarations: [
@@ -41,14 +53,18 @@ import { PlaceHolderComponent } from './component/place-holder/place-holder.comp
     DailyHalachaComponent,
     VideoThumbnailComponent,
     ReduceStringPipe,
-    PlaceHolderComponent
+    PlaceHolderComponent,
+    SocialLoginComponent
   ],
   imports: [
     BrowserModule,
      HttpModule,
-     FormsModule
+     FormsModule,
+     Angular2SocialLoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+Angular2SocialLoginModule.loadProvidersScripts(providers);

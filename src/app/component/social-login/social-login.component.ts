@@ -1,0 +1,75 @@
+import { Component, OnInit,OnDestroy,NgZone } from '@angular/core';
+import { AuthService } from "angular2-social-login";
+
+@Component({
+  selector: 'app-social-login',
+  templateUrl: './social-login.component.html',
+  styleUrls: ['./social-login.component.css']
+})
+export class SocialLoginComponent implements OnInit,OnDestroy  {
+  
+  title:string="Sign In"
+  signOut:boolean=false;
+  signIn:boolean=true;
+
+  name:string="";
+  
+  sub: any;
+
+  constructor(public _auth: AuthService,private ngZone:NgZone){ }
+  
+  SignIn(provider){
+    this.sub = this._auth.login(provider).subscribe(
+      (data:any) => {
+
+        localStorage.setItem('userItorah',JSON.stringify({name:data.name,email:data.email,token:data.token}))
+        this.RefreshView();
+      }
+    )
+  }
+
+
+  Logout(){
+    this._auth.logout().subscribe(
+      (data)=>{
+           if(data)
+           {
+             localStorage.removeItem('userItorah');
+             this.RefreshView();
+           }
+      }
+    )
+  }
+
+  RefreshView()
+  {
+       this.ngZone.run(()=>{
+                              this.VerifyUser();
+                             })
+  }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe();
+  }
+
+  ngOnInit(){
+   this.VerifyUser();
+  }
+
+  VerifyUser()
+  {
+   if(localStorage.getItem('userItorah')!=null&&localStorage.getItem('userItorah')!="")
+   {
+     this.title="Sign Out"
+     this.signIn=false;
+     this.signOut=true;
+     this.name= JSON.parse(localStorage.getItem('userItorah')).name;
+   }
+   else
+   {
+     this.title="Sign In"
+     this.signIn=true;
+     this.signOut=false;
+   }
+  }
+}

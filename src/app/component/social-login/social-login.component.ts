@@ -66,7 +66,7 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
      this.signIn=false;
      this.signOut=true;
      this.name= JSON.parse(localStorage.getItem('userItorah')).name;
-     var name=this.name.split(" ")[0][0]+this.name.split(" ")[1]
+     var name=this.name.split(" ")[0][0]+this.name.split(" ")[1] //firstname first letter and lastname
      $('#login-title').html(name)
    }
    else

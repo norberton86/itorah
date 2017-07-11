@@ -1,6 +1,8 @@
 import { Component, OnInit,OnDestroy,NgZone } from '@angular/core';
 import { AuthService } from "angular2-social-login";
 
+declare var $:any; 
+
 @Component({
   selector: 'app-social-login',
   templateUrl: './social-login.component.html',
@@ -64,12 +66,14 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
      this.signIn=false;
      this.signOut=true;
      this.name= JSON.parse(localStorage.getItem('userItorah')).name;
+     $('#login-title').html(this.name)
    }
    else
    {
      this.title="Sign In"
      this.signIn=true;
      this.signOut=false;
+     $('#login-title').html("Sign In")
    }
   }
 }

@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaceHolderComponent implements OnInit {
 
-  left:string=""
-  right:string=""
+  left:string="/assets/build/css/images/temp/left.png"
+  right:string="/assets/build/css/images/temp/right.png"
   constructor() { }
 
   ngOnInit() {

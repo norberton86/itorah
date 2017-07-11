@@ -20,6 +20,7 @@ import { LearnTorahComponent } from './component/learn-torah/learn-torah.compone
 import { DailyHalachaComponent } from './component/daily-halacha/daily-halacha.component';
 import { VideoThumbnailComponent } from './component/video-thumbnail/video-thumbnail.component';
 import { ReduceStringPipe } from './pipe/reduce-string.pipe';
+import { PlaceHolderComponent } from './component/place-holder/place-holder.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ReduceStringPipe } from './pipe/reduce-string.pipe';
     LearnTorahComponent,
     DailyHalachaComponent,
     VideoThumbnailComponent,
-    ReduceStringPipe
+    ReduceStringPipe,
+    PlaceHolderComponent
   ],
   imports: [
     BrowserModule,

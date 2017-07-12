@@ -24,7 +24,7 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
     this.sub = this._auth.login(provider).subscribe(
       (data:any) => {
 
-        localStorage.setItem('userItorah',JSON.stringify({name:data.name,email:data.email,token:data.token}))
+        localStorage.setItem('userItorah',JSON.stringify({name:data.name,email:data.email,token:data.token,provider:data.provider}))
         this.RefreshView();
       }
     )
@@ -66,7 +66,7 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
      this.signIn=false;
      this.signOut=true;
      this.name= JSON.parse(localStorage.getItem('userItorah')).name;
-     var name=this.name.split(" ")[0][0]+this.name.split(" ")[1] //firstname first letter and lastname
+     var name=this.name.split(" ")[0][0]+"."+this.name.split(" ")[1] //firstname first letter and lastname
      $('#login-title').html(name)
    }
    else

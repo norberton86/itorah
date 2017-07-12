@@ -1,7 +1,7 @@
 
 <div class="tile-box" id="item-content-4">
 	<div class="tile-box-primary tile-box-results">
-		<div class="tile-box-head ">
+		<div class="tile-box-head " id="daily-emunah">
 			<h4>Daily  Emunah</h4>
 			
 			<div class="search-tertiary">
@@ -82,7 +82,7 @@
 			<div class="paging">
 			    <ul>
 			          <li data-type="back"><a href="#" class="paging-prev-emula"><i class="ico-paging-prev"></i></a></li>
-				      <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#" data-type="page-emula" id="{{p.id}}">{{p.id}}</a></li>
+				      <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#daily-emunah" data-type="page-emula" id="{{p.id}}">{{p.id}}</a></li>
 				      <li data-type="go"><a href="#" class="paging-next-emula"><i class="ico-paging-next"></i></a></li>
 			    </ul>
 			</div><!-- /.paging -->

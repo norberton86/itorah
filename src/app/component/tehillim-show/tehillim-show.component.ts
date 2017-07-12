@@ -41,9 +41,12 @@ export class TehillimShowComponent implements OnInit {
         let self=this;
         this.tehillimService.readCountry().subscribe(
                    function(response){
+                       
                        self.countries=response;
+                       
                        self.selectedCountry=response[0].id;
-                       self.ReadComunity(response[0].id);
+                       
+                       self.ReadComunity(self.selectedCountry);
 
                    },function(error){},function(){}
                    )
@@ -67,9 +70,20 @@ export class TehillimShowComponent implements OnInit {
         let self=this;
         this.tehillimService.readCategory(idComunity).subscribe(
                    function(response){
-                       self.categories=response;
-                       self.selectedCategory=response[0].id;
-                       self.ReadTehillim();
+
+                       if(response.length<=0) //if doesn't exist related communities
+                       {
+                         self.categories=[];
+                         self.tehellims=[];
+                         self.RefreshView();
+                       }
+                       else
+                       {
+                          self.categories=response;
+                          self.selectedCategory=response[0].id;
+                          self.ReadTehillim();
+                       }
+                       
 
                    },function(error){},function(){}
                    )
@@ -78,7 +92,7 @@ export class TehillimShowComponent implements OnInit {
   ReadTehillim()
   {
         let self=this;
-        this.tehillimService.readTehillim(self.selectedComunity,self.selectedCountry).subscribe(
+        this.tehillimService.readTehillim(self.selectedComunity,self.selectedCategory).subscribe(
                    function(response){
                        self.tehellims=response;
                        self.RefreshView();
@@ -126,7 +140,7 @@ export class TehillimShowComponent implements OnInit {
                     })
             });
 
-            $('#field-1').change(function(){   //comunities
+            $('#field-1').change(function(){   //categories
 
             var id= parseInt($(this).val().split(":")[1]) //id
             //self.comunityRaw=$(this).val();

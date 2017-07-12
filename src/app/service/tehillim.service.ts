@@ -13,11 +13,11 @@ export class TehillimService extends Service{
    
     constructor(http: Http) {
         super(http);
-        this.ruta="http://itorahapi.3nom.com/api/";
+        this.ruta="http://itorahapi.3nom.com/api/Tehillim/";
 
     }
 
-   readCountry() :Observable<Country[]>{
+   /*readCountry() :Observable<Country[]>{
 
     return Observable.create(observer => {
            
@@ -26,9 +26,9 @@ export class TehillimService extends Service{
             observer.complete();
     });
 
-   }
+   }*/
 
-    readComunity(idCountry:number) :Observable<Comunity[]>{
+    /*readComunity(idCountry:number) :Observable<Comunity[]>{
 
     return Observable.create(observer => {
            
@@ -40,9 +40,9 @@ export class TehillimService extends Service{
             observer.complete();
     });
     
-   }
+    }*/
 
-    readCategory(idComunity:number) :Observable<Category[]>{
+  /*  readCategory(idComunity:number) :Observable<Category[]>{
 
     return Observable.create(observer => {
            
@@ -57,7 +57,9 @@ export class TehillimService extends Service{
             observer.complete();
     });
     
-   }
+}*/
+
+/*
 
     readTehillim(idComunity:number,idCountry:number) :Observable<Tehillim[]>{
 
@@ -74,11 +76,11 @@ export class TehillimService extends Service{
             observer.complete();
     });
     
-   }
-/*
+   }*/
+
     public readCountry(): Observable<Country[]> {
         
-        return this.http.get(this.ruta).map(
+        return this.http.get(this.ruta+"countries").map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -88,7 +90,7 @@ export class TehillimService extends Service{
 
     public readComunity(idCountry:number): Observable<Comunity[]> {
         
-        return this.http.get(this.ruta+"Comunity?Country="+idCountry).map(
+        return this.http.get(this.ruta+"communities?CountryID="+idCountry).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -99,7 +101,7 @@ export class TehillimService extends Service{
 
     public readCategory(idComunity:number): Observable<Category[]> {
         
-        return this.http.get(this.ruta+"Category?Comunity="+idComunity).map(
+        return this.http.get(this.ruta+"categories?CommunityID="+idComunity).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -108,16 +110,15 @@ export class TehillimService extends Service{
     }
     
     
-    public readTehillim(idComunity:number,idCountry:number): Observable<Tehillim[]> {
+    public readTehillim(idComunity:number,idCategory:number): Observable<Tehillim[]> {
         
-        return this.http.get(this.ruta+"Tehillim?Comunity="+idComunity+"&Country="+idCountry).map(
+        return this.http.get(this.ruta+"names?CommunityID="+idComunity+"&CategoryID="+idCategory).map(
             (response) => {
                 let body = response.json();
                 return body;
             }
         )
     }
-    
-    */
+
 
 }

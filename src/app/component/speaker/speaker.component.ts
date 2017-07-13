@@ -459,7 +459,7 @@ export class SpeakerComponent implements OnInit {
       {
            var query= this.query_all;
            this.allSpeakers= this.allSpeakers.filter(function (s) {
-            return s.lastName.includes(query)||s.firstName.includes(query);
+            return s.lastName.toLowerCase().includes(query.toLowerCase())||s.firstName.toLowerCase().includes(query.toLowerCase());
          });
       }
 
@@ -582,7 +582,7 @@ export class SpeakerComponent implements OnInit {
       {
         var query= this.query_main;
          this.allShiriums= this.allShiriums.filter(function (s) {
-            return s.title.includes(query);
+            return s.title.toLowerCase().includes(query.toLowerCase());
          });
       }
       

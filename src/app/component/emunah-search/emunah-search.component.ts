@@ -36,7 +36,7 @@ export class EmunahSearchComponent implements OnInit {
          
 
 
-         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="search-shirium") //click on main search
+         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="search-shirium-emunah") //click on main search
          {
              this.query_main=$('#ballon .search-field').val();  //update the query field in my component (remenber double data binding)
              
@@ -129,7 +129,7 @@ export class EmunahSearchComponent implements OnInit {
       {
         var query= this.query_main;
          this.allShiriums= this.allShiriums.filter(function (s) {
-            return s.title.includes(query);
+            return s.title.toLowerCase().includes(query.toLowerCase());
          });
       }
       

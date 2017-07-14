@@ -87,7 +87,7 @@ export class EmunahSearchComponent implements OnInit {
               this.RefreshView();
          }
 
-        if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="media") //click on mnedia icons
+        if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="media-emuna") //click on mnedia icons
          {
               var id=event.currentTarget.activeElement.attributes["id"].value;
               var title=event.currentTarget.activeElement.attributes["title"].value;

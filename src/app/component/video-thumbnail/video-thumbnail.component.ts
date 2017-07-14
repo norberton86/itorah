@@ -61,4 +61,5 @@ export class VideoThumbnailComponent implements OnInit {
         if(this.videosFull[i].ShiurID!==this.CurrentPlaying.ShiurID)
         this.videos.push(this.videosFull[i]);
    }
+
 }

@@ -4,6 +4,7 @@ import { HomeService } from '../../service/home.service';
 
 declare var $:any;
 declare var jwplayer:any;
+declare var WowzaPlayer: any;
 
 @Component({
   selector: 'app-video-thumbnail',
@@ -49,10 +50,42 @@ export class VideoThumbnailComponent implements OnInit {
 
    Play(video: Lectures)
    {
-      jwplayer("video-body").setup({
+     if(WowzaPlayer.get('video-body')!=null)
+      WowzaPlayer.get('video-body').destroy()
+
+
+        WowzaPlayer.create('video-body',
+      {
+
+        "license": "PLAY1-dD8ur-NjfMh-andPW-beKnB-t4nYZ",
+
+        "title": "",
+
+        "description": "",
+
+        "sourceURL": video.url,   //"http://media.learntorah.com/LT-Video/mp4:LBM227.mp4/playlist.m3u8"
+
+        "autoPlay": true,
+
+        "volume": "75",
+
+        "mute": false,
+
+        "loop": false,
+
+        "audioOnly": false,
+
+        "uiShowQuickRewind": true,
+
+        "uiQuickRewindSeconds": "30"
+
+      });
+
+
+     /* jwplayer("video-body").setup({
       "file": video.url,
       "image": "/assets/build/css/images/temp/video-thumbnail-image-1.jpg"
-    });
+    });*/
     
     this.CurrentPlaying=video;
 

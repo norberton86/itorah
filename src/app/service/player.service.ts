@@ -11,8 +11,10 @@ export class PlayerService {
       if ($('#video-modal').length == 0)     //if not exist
       $.notify({                          //create the popup
         title: "",
-        message: '<div style="padding-top:0.5em"><div  id="video-modal" class="video-body">' +
-        '</div></div>'
+        message: '<div style="padding-top:0.5em">'+
+                   '<div  id="video-modal" class="" style="width: inherit;height: 20em;">' +
+                   '</div>'+
+                 '</div>'
       },
         {
           delay: 0,                       //never autoclose
@@ -37,7 +39,7 @@ export class PlayerService {
 
         "description": "",
 
-        "sourceURL": url,   //"http://media.learntorah.com/LT-Video/mp4:LBM227.mp4/playlist.m3u8"
+        "sourceURL":    "http://media.learntorah.com/LT-Video/mp4:LBM227.mp4/playlist.m3u8",
 
         "autoPlay": true,
 
@@ -55,6 +57,7 @@ export class PlayerService {
 
       });
 
+      $('div[data-notify="container"]').css('width','27em');
       $('.alert-info').css('background-color', 'white'); //change background-color to white 
       $('button[data-notify="dismiss"]').click(function(){  //stop when the close icon be closed
            

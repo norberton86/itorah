@@ -1,4 +1,4 @@
-import { Component, OnInit,NgZone, Renderer2,ElementRef } from '@angular/core';
+import { Component, OnInit,NgZone,Input,OnChanges} from '@angular/core';
 import { TehillimService } from '../../service/tehillim.service';
 import { Tehillim,Country,Category,Comunity } from '../../model/Tehillim/tehillim';
 
@@ -9,7 +9,7 @@ declare var $:any;
   styleUrls: ['./tehillim-show.component.css'],
   providers:[TehillimService]
 })
-export class TehillimShowComponent implements OnInit {
+export class TehillimShowComponent implements OnInit, OnChanges {
    
    selectedCountry:number;
    countries:Array<Country>;
@@ -24,11 +24,23 @@ export class TehillimShowComponent implements OnInit {
 
    tehellims:Array<Tehillim>
 
-  constructor(private renderer:Renderer2,private elementRef: ElementRef,private ngZone:NgZone,private tehillimService:TehillimService) { 
+
+  @Input()
+  accion: string = ""
+  
+  rendering:boolean=false;
+
+  constructor(private ngZone:NgZone,private tehillimService:TehillimService) { 
     this.countries=[];
     this.comunities=[];
     this.categories=[];
     this.tehellims=[];
+  }
+
+  ngOnChanges(map)
+  {
+     if(map.accion!=null && !map.accion.firstChange)
+       this.rendering=true;
   }
 
   ngOnInit() {
@@ -104,6 +116,10 @@ export class TehillimShowComponent implements OnInit {
 
   RefreshView()
   {
+
+    if(!this.rendering)
+    return;
+
     let self=this;
 
        setTimeout(function(){ 

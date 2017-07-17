@@ -904,3 +904,32 @@ table th[class*="col-"] {
 }
 
 /*-------------------------------------------------------*/
+
+
+@media (min-width: 320px) { 
+    
+    .alert.alert-info{
+        right: 0.9em !important;
+    }
+
+ }
+
+ @media (min-width: 768px) { 
+    
+    #video-modal{
+        height: 15em !important;
+    }
+
+ }
+
+@media (min-width: 1170px) { 
+    
+    .alert.alert-info{
+        width: 20%
+    }
+
+ }
+
+
+
+  

@@ -5,9 +5,15 @@ declare var WowzaPlayer: any;
 @Injectable()
 export class PlayerService {
 
-  constructor() { }
+  constructor() {
+
+ 
+   }
 
      Play(title: string, url: string) {
+
+      let self=this;
+
       if ($('#video-modal').length == 0)     //if not exist
       $.notify({                          //create the popup
         title: "",
@@ -28,7 +34,7 @@ export class PlayerService {
           }
       });
 
-     
+      self.Closetream();
 
       WowzaPlayer.create('video-modal',
       {
@@ -57,14 +63,28 @@ export class PlayerService {
 
       });
 
-      $('div[data-notify="container"]').css('width','27em');
+      
       $('.alert-info').css('background-color', 'white'); //change background-color to white 
       $('button[data-notify="dismiss"]').click(function(){  //stop when the close icon be closed
-           
-              WowzaPlayer.get('video-modal').destroy()
+            
+              try
+              {
+                 self.Closetream();
+              }
+              catch(e)
+              {
+
+              }
+             
            
       });
 
+  }
+
+  Closetream()
+  {
+  if(WowzaPlayer.get('video-modal')!=null)
+                WowzaPlayer.get('video-modal').destroy()
   }
 
 }

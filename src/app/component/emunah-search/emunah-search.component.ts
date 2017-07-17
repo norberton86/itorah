@@ -1,4 +1,4 @@
-import { Component, OnInit,Renderer2 } from '@angular/core';
+import { Component, OnInit,Renderer2,OnChanges,Input } from '@angular/core';
 import { EmunahService } from '../../service/emunah.service';
 import { PlayerService } from '../../service/player.service';
 import { Shiurim } from '../../model/shiurim';
@@ -10,7 +10,7 @@ declare var $:any;
   styleUrls: ['./emunah-search.component.css'],
   providers:[EmunahService,PlayerService]
 })
-export class EmunahSearchComponent implements OnInit {
+export class EmunahSearchComponent implements OnInit,OnChanges {
 
   allShiriums:Array<Shiurim>;
   shiriums:Array<Shiurim>;
@@ -22,12 +22,25 @@ export class EmunahSearchComponent implements OnInit {
   allPages:number;
   iteration:number;
 
+
+  @Input()
+  accion: string = ""
+  
+  rendering:boolean=false;
+
   constructor(private emunahService:EmunahService,private playerService:PlayerService,private renderer:Renderer2)
   {
       this.allShiriums=[];
       this.shiriums=[];
 
       this.pages=[];
+  }
+
+
+   ngOnChanges(map)
+  {
+     if(map.accion!=null && !map.accion.firstChange)
+       this.rendering=true;
   }
 
   ngOnInit() {
@@ -173,6 +186,9 @@ export class EmunahSearchComponent implements OnInit {
 
   RefreshView()
   {
+      if(!this.rendering)
+          return;
+
       var query=this.query_main;
 
        setTimeout(function(){ 

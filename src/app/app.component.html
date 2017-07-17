@@ -710,27 +710,35 @@
 					<div class="shell">
 						<ul>
 							<li>
-								<a href="#">About</a>
+								<a href="#">My Account</a>
 							</li>
 
 							<li>
-								<a href="#">Contact</a>
+								<a href="#">My Dynamic Playlist</a>
 							</li>
 
 							<li>
-								<a href="#">Sponsors</a>
+								<a href="#">My Alerts</a>
 							</li>
 
 							<li>
-								<a href="#">Information</a>
+								<a href="#">My Credits</a>
 							</li>
 
 							<li>
-								<a href="#">Links</a>
+								<a href="#">Completed Classes</a>
 							</li>
 
 							<li>
-								<a href="#">Privacy</a>
+								<a href="#">Take a Tour</a>
+							</li>
+							
+							<li>
+								<a href="#">Donate/Sponsor</a>
+							</li>
+
+							<li>
+								<a href="#">Shop</a>
 							</li>
 						</ul>
 					</div><!-- /.shell -->
@@ -1050,7 +1058,7 @@
 										<i class="ico-play"></i>
 									</a>
 
-									<a href="#item-content-2" class="btn btn-yellow btn-small" data-size="full" id="">WEEKLY PERASHA</a>
+									<a href="#item-content-2" class="btn btn-yellow btn-small" data-size="full" id="" >WEEKLY PERASHA</a>
 
 									<a href="#item-content-8" data-size="half" class="link-search">
 										<i class="ico-magnifier-large"></i>
@@ -1076,7 +1084,7 @@
 								<div class="tile-actions">
 									<ul class="list-actions">
 										<li data-id="item-3">
-											<a href="#item-content-3" data-size="full">
+											<a href="#item-content-3" data-size="full" (click)="Greeting()">
 												<i class="ico-paper"></i>
 											</a>
 										</li>
@@ -1378,9 +1386,9 @@
 <app-speaker></app-speaker>
 <app-weekly></app-weekly>
 <app-weekly-search></app-weekly-search>
-<app-tehillim-show></app-tehillim-show>
+<app-tehillim-show [accion]="val"></app-tehillim-show>
 <app-tehillim-edit></app-tehillim-edit>
-<app-emunah-search></app-emunah-search>
+<app-emunah-search [accion]="val"></app-emunah-search>
 <app-hok-search></app-hok-search>
 <app-pele-yoetz></app-pele-yoetz>
 <app-mishna-berura-yomi></app-mishna-berura-yomi>

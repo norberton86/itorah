@@ -10,6 +10,9 @@ export class AppComponent {
  val:string=""
  valEmunah:string=""
 
+
+ loader:boolean=false;
+
   Accion()
   {
     this.val=this.Generate();
@@ -26,5 +29,20 @@ export class AppComponent {
                   .toString(16)
                   .substring(1);
   }
+
+  ShowLoader(arg)
+  {
+    this.loader=arg;
+
+  }
+
+  VerifyUser()
+  {
+   if(localStorage.getItem('userItorah')!=null&&localStorage.getItem('userItorah')!="")
+   return false;
+   else
+   return true;
+  }
+
 
 }

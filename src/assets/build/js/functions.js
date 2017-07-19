@@ -248,6 +248,16 @@
 
 		})
 
+		$('.wrapper').on('click','.link-close-half', function(e) {
+			e.preventDefault();
+
+			$('[href="#item-content-7"]').removeClass('ballon-opened');
+
+			close_ballon_half()
+
+
+		})
+
 		function showArrow(elLeft, elTop, elWidth) {
 			var arrowTop = elTop;
 			var arrowLeft = elLeft;

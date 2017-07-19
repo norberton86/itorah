@@ -1,4 +1,4 @@
-import { Component, OnInit,NgZone } from '@angular/core';
+import { Component, OnInit,NgZone,EventEmitter,Output } from '@angular/core';
 
 import { Speaker } from '../../model/speaker';
 import { Shiurim } from '../../model/shiurim';
@@ -20,6 +20,9 @@ declare var jwplayer:any;
   providers:[SpeakerService,ShiurimService,PlayerService]
 })
 export class SpeakerComponent implements OnInit {
+
+ @Output()
+ public myEvent=new EventEmitter<boolean>();
 
   allSpeakers:Array<Speaker>;
   currentSpeakers:Array<Speaker>;
@@ -335,13 +338,13 @@ export class SpeakerComponent implements OnInit {
               this.RefreshView();
          }
 
-        if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="media") //click on mnedia icons
+       /* if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="media") //click on mnedia icons
          {
               var id=event.currentTarget.activeElement.attributes["id"].value;
               var title=event.currentTarget.activeElement.attributes["title"].value;
                
               this.playerService.Play(title,id);   
-         }
+         }*/
 
       });
 
@@ -555,9 +558,11 @@ export class SpeakerComponent implements OnInit {
   ReadLectures(idSpeaker:number)
   {
     let self=this;
+    self.myEvent.next(true)
+
       this.shiurimService.read(idSpeaker).subscribe(
            function(respond){
-
+              self.myEvent.next(false)
               respond.forEach(function(a){  //remove the seconds en length property
                 a['length']=a['length'].split(':')[0]
                 a['language']=a['language'][0]+a['language'][1]
@@ -625,11 +630,22 @@ export class SpeakerComponent implements OnInit {
   
   RefreshView()
   {
+      let self=this;
       var query=this.query_main;
       setTimeout(function(){ 
 
           $('#ballon .current').html($('app-speaker #tile-tab-1').html());
           $($('.main-search-nor')[0]).val(query);
+              
+             //---------------------------------
+              
+              $("[data-type='media']").click(function(){
+
+                         var id=$(this).attr('id')
+                         var title=$(this).attr('title')
+                         self.playerService.Play(title,id);   
+
+              })
 
       },500) 
 

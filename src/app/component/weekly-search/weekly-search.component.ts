@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input,OnChanges } from '@angular/core';
+
+declare var $:any; 
 
 @Component({
   selector: 'app-weekly-search',
@@ -7,9 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeeklySearchComponent implements OnInit {
 
+  @Input()
+  accion:string="";
+
   constructor() { }
 
   ngOnInit() {
+    
+  }
+
+
+ngOnChanges(changes:any) {
+     if(changes.accion!=null&&!changes.accion.firstChange)
+     {   
+         setTimeout(function(){ 
+         
+         $('#ballon .SlectBox').SumoSelect({ csvDispCount: 3, selectAll:true, captionFormatAllSelected: "All" });
+         
+         },300)
+         
+
+     }
+      
+  }
+
+
+
+  RefreshView()
+  {
+    
   }
 
 }

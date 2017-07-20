@@ -1069,11 +1069,13 @@
 										<span>Play Now</span>
 
 										<i class="ico-play"></i>
+										<i class="fa fa-book fa-lg"></i>
+										
 									</a>
 
-									<a href="#item-content-2" class="btn btn-yellow btn-small" data-size="full" id="" >WEEKLY PERASHA</a>
+									<a href="#item-content-2" class="btn btn-yellow btn-small" data-size="full" id="" >Weekly Perasha</a>
 
-									<a href="#item-content-8" data-size="half" class="link-search">
+									<a href="#item-content-8" data-size="half" class="link-search" (click)="AccionHalacha()">
 										<i class="ico-magnifier-large"></i>
 									</a>
 								</div><!-- /.tile-actions -->
@@ -1107,6 +1109,11 @@
 												<i class="ico-edit"></i>
 											</a>
 										</li>
+										<li >
+											<a href="#" data-size="half" title="Today Reading">
+												<i class="fa fa-book fa-lg"></i>
+											</a>
+										</li>  
 									</ul><!-- /.list-actions -->
 
 									<a href="#" class="link-search">
@@ -1125,7 +1132,7 @@
 								<div class="tile-content">
 									<h3>DailyGemara<small>.com</small></h3>
 
-									<p>Daf Yomi taught by Rabbi Eli Mansour</p>
+									<p>Daf Yomi Program</p>
 
 									<span>Taught by Rabbi Eli J Mansour</span>
 								</div><!-- /.tile-content -->
@@ -1404,7 +1411,7 @@
 
 <app-speaker (myEvent) = "ShowLoader($event)" (myEventSpeakers) = "ChangeSpeakers($event)"></app-speaker>
 <app-weekly></app-weekly>
-<app-weekly-search></app-weekly-search>
+<app-weekly-search [accion]="valHalacha"></app-weekly-search>
 <app-tehillim-show [accion]="val"></app-tehillim-show>
 <app-tehillim-edit></app-tehillim-edit>
 <app-emunah-search [accion]="valEmunah"></app-emunah-search>

@@ -9,6 +9,7 @@ export class AppComponent {
   
  val:string=""
  valEmunah:string=""
+ valHalacha:string=""
 
 
  loader:boolean=false;
@@ -23,6 +24,12 @@ export class AppComponent {
   {
     this.valEmunah=this.Generate();
   }
+ 
+  AccionHalacha()
+  {
+    this.valHalacha=this.Generate();
+  }
+  
 
   Generate()
   {
@@ -34,7 +41,6 @@ export class AppComponent {
   ShowLoader(arg)
   {
     this.loader=arg;
-
   }
 
   ChangeSpeakers(arg)

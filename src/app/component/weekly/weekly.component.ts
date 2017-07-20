@@ -85,7 +85,7 @@ export class WeeklyComponent implements OnInit {
          $('#ballon .tile-box-body').html($('app-weekly .tile-box-body').html()); //Refresh the view
          self.Print();
          
-     },300)
+     },200)
       
     
   }

@@ -11,7 +11,6 @@ import { PlayerService } from '../../service/player.service';
 import { Injectable, Renderer2,ElementRef } from '@angular/core'
 
 declare var $:any; 
-declare var jwplayer:any;
 
 @Component({
   selector: 'app-speaker',

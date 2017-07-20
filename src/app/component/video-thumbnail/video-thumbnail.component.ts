@@ -3,7 +3,6 @@ import { Home,Lectures } from '../../model/Home';
 import { HomeService } from '../../service/home.service';
 
 declare var $:any;
-declare var jwplayer:any;
 declare var WowzaPlayer: any;
 
 @Component({
@@ -59,13 +58,13 @@ export class VideoThumbnailComponent implements OnInit {
 
         "license": "PLAY1-dD8ur-NjfMh-andPW-beKnB-t4nYZ",
 
-        "title": "",
+        "title": video.Title,
 
         "description": "",
 
-        "sourceURL": video.url,   //"http://media.learntorah.com/LT-Video/mp4:LBM227.mp4/playlist.m3u8"
+        "sourceURL": video.url,  
 
-        "autoPlay": true,
+        "autoPlay": false,
 
         "volume": "75",
 
@@ -81,12 +80,6 @@ export class VideoThumbnailComponent implements OnInit {
 
       });
 
-
-     /* jwplayer("video-body").setup({
-      "file": video.url,
-      "image": "/assets/build/css/images/temp/video-thumbnail-image-1.jpg"
-    });*/
-    
     this.CurrentPlaying=video;
 
     this.videos=[];

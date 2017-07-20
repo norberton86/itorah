@@ -12,6 +12,7 @@ export class AppComponent {
 
 
  loader:boolean=false;
+ amountSpeaker:string=""
 
   Accion()
   {
@@ -34,6 +35,11 @@ export class AppComponent {
   {
     this.loader=arg;
 
+  }
+
+  ChangeSpeakers(arg)
+  {
+    this.amountSpeaker=arg;
   }
 
   VerifyUser()

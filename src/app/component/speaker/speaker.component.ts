@@ -24,6 +24,10 @@ export class SpeakerComponent implements OnInit {
  @Output()
  public myEvent=new EventEmitter<boolean>();
 
+ @Output()
+ public myEventSpeakers=new EventEmitter<string>();
+
+
   allSpeakers:Array<Speaker>;
   currentSpeakers:Array<Speaker>;
   speaker:Speaker;
@@ -450,6 +454,8 @@ export class SpeakerComponent implements OnInit {
             l.disable=true;
          }
       });
+
+      this.myEventSpeakers.next(data.length.toString())
 
       this.allSpeakers=data;
       localStorage.setItem("allSpeakers",JSON.stringify(this.allSpeakers));     //save the originals

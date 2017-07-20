@@ -5,4 +5,5 @@ export class Shiurim {
     language: string
     audio: string
     video: string
+    wowzaVideoUrl:string
 }

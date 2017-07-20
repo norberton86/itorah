@@ -45,7 +45,7 @@ export class PlayerService {
 
         "description": "",
 
-        "sourceURL":    "http://media.learntorah.com/LT-Video/mp4:LBM227.mp4/playlist.m3u8",
+        "sourceURL":   url,
 
         "autoPlay": true,
 

@@ -19,10 +19,19 @@ export class WeeklyComponent implements OnInit {
   clipTitle:string;
   parragraphs:Array<string>;
 
+  last:Perasha
+  more:boolean=false;
+  
   constructor(private renderer:Renderer2,private perashaService:PerashaService,private ngZone:NgZone,private playerService:PlayerService) {
     this.perashas=[];
     this.parragraphs=[];
+
+    this.last=new Perasha()
+    this.last.id=999
+    this.last.parashaName="More..."
     
+    this.selectedPerasha=this.last
+
    }
 
   ngOnInit() {
@@ -38,6 +47,10 @@ export class WeeklyComponent implements OnInit {
        this.perashaService.read().subscribe(
            function(response){
               self.perashas=response;    
+
+              //add the last element
+              self.perashas.push(self.last);              
+
               self.selectedPerasha= response[0];
               self.parragraphs=response[0].emailText.split("\n").filter(function (s) {
                return s!="";
@@ -51,25 +64,25 @@ export class WeeklyComponent implements OnInit {
   Initialize()
   {
      let self=this;
-     $('#field-6').change(function(){   //date combo
-
-          //$(this).val()
-        
-     })
-
+  
      
      $('#field-7').change(function(){   //title combo
 
           var comboValue= $(this).val()
-
+          if(comboValue.split(":")[1]==" 999")
+          {
+                 self.more=true;
+          }
+          else
            self.ngZone.run(()=>{
-
+                  self.more=false;
                   self.selectedPerasha=self.perashas[comboValue.split(":")[0]]  // select per position
                   self.parragraphs=self.selectedPerasha.emailText.split("\n").filter(function (s) {
                      return s!="";
                   });
-                  self.RefreshView();
+                  
           })
+          self.RefreshView();
      })
      
 

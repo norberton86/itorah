@@ -6,28 +6,311 @@
 					<select name="field-7" id="field-7" [(ngModel)]="selectedPerasha">
 						<option *ngFor="let c of perashas" [ngValue]="c.id">{{c.parashaName}}</option>
 					</select>
-				</div><!-- /.select -->
-				
+				</div>
+				<!-- /.select -->
+
 				<h4>Rabbi Jacob S. Kassin Daily Halacha Series authored by Rabbi Eli J. Mansour</h4>
-			</div><!-- /.table-head-content -->		
-			
+			</div>
+			<!-- /.table-head-content -->
+
 			<div class="tile-box-head-aside">
-			
-			</div><!-- /.table-head-aside -->	
-			
+
+			</div>
+			<!-- /.table-head-aside -->
+
 			<a href="#" class="link-close">
 				<i class="ico-close"></i>
-			</a>					
-		</div><!-- /.table-head -->
-		
-		<div class="tile-box-body" id="print">
-			<h5>{{selectedPerasha?.clipTitle}} <i id="weekly-play" class="ico-play-yellow"></i> <i id="weekly-print" class="ico-print-yellow"></i></h5>
+			</a>
+		</div>
+		<!-- /.table-head -->
 
-		    <p *ngFor="let p of parragraphs">
-				{{p}}
-            </p>	
-		
-			
-		</div><!-- /.table-body -->
-	</div><!-- /.tile-box-primary -->
+		<div class="tile-box-body" id="print">
+			<div *ngIf="!more">
+				<h5>{{selectedPerasha?.clipTitle}} <i id="weekly-play" class="ico-play-yellow"></i> <i id="weekly-print" class="ico-print-yellow"></i></h5>
+
+				<p *ngFor="let p of parragraphs">
+					{{p}}
+				</p>
+			</div>
+			<div *ngIf="more">
+
+				<table id="tableweekly">
+					<thead>
+
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>
+								  <b>Bereshit</b>, בְּרֵאשִׁית
+							</td>
+
+							<td>
+								<b>Shemot</b>, שְׁמוֹת
+							</td>
+
+							<td>
+								<b>Vayikra</b>, וַיִּקְרָא
+							</td>
+
+							<td>
+								<b>Bamidbar</b>, בְּמִדְבַּר
+							</td>
+
+							<td>
+								<b>Devarim</b>, דְּבָרִים
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+							  <b>Noach</b>, נֹחַ
+							</td>
+
+							<td>
+							<b>Va'eira</b>, וָאֵרָא
+							</td>
+
+							<td>
+								<b>Tzav</b>, צַו
+							</td>
+
+							<td>
+							<b>Naso</b>, נָשֹׂא
+							</td>
+
+							<td>
+								<b>Va'etchanan</b>, וָאֶתְחַנַּן
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+							<b>Lech-Lecha</b>, לֶךְ-לְךָ  
+							</td>
+
+							<td>
+							<b>Bo</b>, בֹּא
+							</td>
+
+							<td>
+							 <b>Shemini</b>, שְּׁמִינִי
+							</td>
+
+							<td>
+								<b>Behaalotecha</b>, בְּהַעֲלֹתְךָ
+							</td>
+
+							<td>
+							<b>Eikev</b>, עֵקֶב
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+						   <b>	Vayeira</b>, וַיֵּרָא
+							</td>
+
+							<td>
+								<b>Beshalach</b>, בְּשַׁלַּח
+							</td>
+
+							<td>
+							 <b>Tazria</b>, תַזְרִיעַ
+							</td>
+
+							<td>
+								<b>Shlach</b>, שְׁלַח-לְךָ
+							</td>
+
+							<td>
+							<b>Re'eh</b>, רְאֵה
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+						      <b>Chayei Sarah</b>, חַיֵּי שָׂרָה
+							</td>
+
+							<td>
+							  	<b>Yitro</b>, יִתְרוֹ
+							</td>
+
+							<td>
+							 <b>Metzora</b>, מְּצֹרָע
+							</td>
+
+							<td>
+								<b>Korach</b>, קֹרַח
+							</td>
+
+							<td>
+								<b>Shoftim</b>, שֹׁפְטִים
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+						      <b>Toledot</b>, תּוֹלְדֹת
+							</td>
+
+							<td>
+							  <b>Mishpatim</b>, מִּשְׁפָּטִים
+							</td>
+
+							<td>
+							 <b>Acharei Mot</b>, אַחֲרֵי מוֹת
+							</td>
+
+							<td>
+								<b>Chukat</b>, חֻקַּת
+							</td>
+
+							<td>
+									<b>Ki Teitzei</b>, כִּי-תֵצֵא
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+						     <b>Vayetze</b>, וַיֵּצֵא
+							</td>
+
+							<td>
+							 <b>Terumah</b>, תְּרוּמָה
+							</td>
+
+							<td>
+							 <b>Kedoshim</b>, קְדֹשִׁים
+							</td>
+
+							<td>
+								<b>Balak</b>, בָּלָק
+							</td>
+
+							<td>
+								<b>Ki Tavo</b>, כִּי-תָבוֹא
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+						     <b> Vayishlach</b>, וַיִּשְׁלַח
+							</td>
+
+							<td>
+							 <b>Tetzaveh</b>, תְּצַוֶּה
+							</td>
+
+							<td>
+							 <b>Emor</b>, אֱמֹר
+							</td>
+
+							<td>
+								<b>Pinchas</b>, פִּינְחָס
+							</td>
+
+							<td>
+								<b>Nitzavim</b>, נִצָּבִים
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+						     <b>Vayeshev</b>, וַיֵּשֶׁב
+							</td>
+
+							<td>
+							 	<b>Ki Tisa</b>, כִּי תִשָּׂא
+							</td>
+
+							<td>
+							 <b>Behar</b>, בְּהַר
+							</td>
+
+							<td>
+								<b>Matot</b>, מַּטּוֹת
+							</td>
+
+							<td>
+								<b>Vayelech</b>, וַיֵּלֶךְ
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+						    <b> Miketz</b>, מִקֵּץ
+							</td>
+
+							<td>
+							 	<b>Vayakhel</b>, וַיַּקְהֵל
+							</td>
+
+							<td>
+							 <b>Bechukotai</b>, בְּחֻקֹּתַי
+							</td>
+
+							<td>
+								<b>Masei</b>, מַסְעֵי
+							</td>
+
+							<td>
+								<b>Haazinu</b>, הַאֲזִינוּ
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+						      <b>Vayigash</b>, וַיִּגַּשׁ
+							</td>
+
+							<td>
+							 	<b>Pekudei</b>, פְקוּדֵי
+							</td>
+
+							<td>
+							 
+							</td>
+
+							<td>
+								
+							</td>
+
+							<td>
+								<b>V'Zot HaBerachah</b>, וְזֹאת הַבְּרָכָה
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+						     <b>Vayechi</b>, וַיְחִי
+							</td>
+
+							<td>
+							 	
+							</td>
+
+							<td>
+							 
+							</td>
+
+							<td>
+								
+							</td>
+
+							<td>
+								
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+		<!-- /.table-body -->
+	</div>
+	<!-- /.tile-box-primary -->
 </div>

@@ -16,6 +16,7 @@ export class VideoThumbnailComponent implements OnInit {
   videos:Array<Lectures>;
   videosFull:Array<Lectures>;
   CurrentPlaying:Lectures;
+  firstTime:boolean=false;
 
 
   constructor(private homeService:HomeService) {
@@ -49,6 +50,9 @@ export class VideoThumbnailComponent implements OnInit {
 
    Play(video: Lectures)
    {
+
+     
+
      if(WowzaPlayer.get('video-body')!=null)
       WowzaPlayer.get('video-body').destroy()
 
@@ -64,7 +68,7 @@ export class VideoThumbnailComponent implements OnInit {
 
         "sourceURL": video.url,  
 
-        "autoPlay": false,
+        "autoPlay": this.firstTime,
 
         "volume": "75",
 
@@ -86,6 +90,8 @@ export class VideoThumbnailComponent implements OnInit {
     for(var i=0;i<this.videosFull.length;i++)
         if(this.videosFull[i].ShiurID!==this.CurrentPlaying.ShiurID)
         this.videos.push(this.videosFull[i]);
+
+    this.firstTime=true;
    }
 
 }

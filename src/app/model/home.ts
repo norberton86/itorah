@@ -32,5 +32,4 @@ export class Lectures
       RunTime: string;
       url: string;
       MediaType: string;
-
 }

@@ -83,7 +83,7 @@ export class PeleYoetzComponent implements OnInit {
       })
 
       $('#ballon form').submit(function(e){
-        e.preventDefault();
+         e.preventDefault();
          self.query_main= $('#ballon [type="search"]').val()
          self.Search();
 

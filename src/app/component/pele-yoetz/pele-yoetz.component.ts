@@ -16,6 +16,7 @@ export class PeleYoetzComponent implements OnInit {
 
   peles: Array<Pele> = [];
   query_main: string = '';
+  amount:number=0;
 
  @Input()
    accion:string="";
@@ -59,6 +60,7 @@ export class PeleYoetzComponent implements OnInit {
       this.peles = this.peles.filter(function (s) {
         return s.title.toLowerCase().includes(query.toLowerCase());
       });
+      this.amount=this.peles.length;
     }
     this.RefreshView()
 

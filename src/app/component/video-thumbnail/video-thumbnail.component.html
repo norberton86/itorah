@@ -35,7 +35,7 @@
               			  <li *ngFor="let v of videos;" class="video-thumbnail" (click)="Play(v)">
 								<div class="video-thumbnail-image" >
 									
-										<img src="/assets/build/css/images/temp/video-thumbnail-image-1.jpg" alt="">
+										<img src="{{v.PicUrl}}" alt="">
 									
 								</div><!-- /.video-thumbnail-image -->
 
@@ -47,10 +47,10 @@
 									</span>
 
 									<p (click)="Play(v)">
-										<a href="#">{{v.Title}}</a>
+										<a href="#" title="{{v.Title}}">{{v.Title|reduceString}}</a>
 									</p>
 
-									<p>{{v.Speaker}}</p>
+									<p  title="{{v.Speaker}}">{{v.Speaker|reduceString}}</p>
 								</div><!-- /.video-thumbnail-content -->
 
 								<div class="video-thumbnail-actions">

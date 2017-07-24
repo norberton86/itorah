@@ -25,6 +25,7 @@ ngOnChanges(changes:any) {
          setTimeout(function(){ 
          
          $('#ballon .SlectBox').SumoSelect({ csvDispCount: 3, selectAll:true, captionFormatAllSelected: "All" });
+         $('p.select-all').css('padding','5px 0 28px 35px')
          
          },300)
          

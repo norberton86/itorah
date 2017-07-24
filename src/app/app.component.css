@@ -15,7 +15,7 @@
 when .item:hover, show overlay.
 overwrite .item-overlay."position"
 */
-.item:hover .item-overlay.top {
+ .item-overlay.top {
   top: 0;
 }
 
@@ -40,6 +40,8 @@ by default, overlay is visible…
 /*
 …but this hide it
 */
-.item-overlay.top {
+/*.item-overlay.top {
   top: 100%;
-}
+}*/
+/***************************************************************************************************************************/
+	

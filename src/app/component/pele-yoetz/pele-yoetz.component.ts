@@ -78,7 +78,29 @@ export class PeleYoetzComponent implements OnInit {
       $('#ballon').html($('#item-content-5').html());
       $('#ballon .search-btn').click(function () {
 
-        self.ngZone.run(() => {
+       self.Search();
+
+      })
+
+      $('#ballon form').submit(function(e){
+        e.preventDefault();
+         self.query_main= $('#ballon [type="search"]').val()
+         self.Search();
+
+      })
+
+      $('#ballon .search-field').val(self.query_main);
+
+    }, 500)
+  }
+
+
+  Search()
+  {
+
+  let self=this;
+
+ self.ngZone.run(() => {
 
           self.query_main = $('#ballon .search-field').val();  //update the query field in my component (remenber double data binding)
 
@@ -90,11 +112,6 @@ export class PeleYoetzComponent implements OnInit {
         })
 
 
-      })
-
-      $('#ballon .search-field').val(self.query_main);
-
-    }, 500)
   }
 
 }

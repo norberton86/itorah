@@ -10,6 +10,7 @@ export class AppComponent {
  val:string=""
  valEmunah:string=""
  valHalacha:string=""
+ valPele:string=""
 
 
  loader:boolean=false;
@@ -28,6 +29,11 @@ export class AppComponent {
   AccionHalacha()
   {
     this.valHalacha=this.Generate();
+  }
+
+  AccionPele()
+  {
+    this.valPele=this.Generate();
   }
   
 

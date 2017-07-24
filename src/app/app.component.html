@@ -1263,7 +1263,7 @@
 								</div><!-- /.tile-content -->
 
 								<div class="tile-actions">
-									<a class="link-search" href="#item-content-5" data-size="full">
+									<a class="link-search" href="#item-content-5" data-size="full" (click)="AccionPele()">
 										<i class="ico-magnifier-large"></i>
 									</a>
 								</div><!-- /.tile-actions -->
@@ -1416,7 +1416,7 @@
 <app-tehillim-edit></app-tehillim-edit>
 <app-emunah-search [accion]="valEmunah"></app-emunah-search>
 <app-hok-search></app-hok-search>
-<app-pele-yoetz></app-pele-yoetz>
+<app-pele-yoetz [accion]="valPele"></app-pele-yoetz>
 <app-mishna-berura-yomi></app-mishna-berura-yomi>
 
 <div class="loader"  *ngIf="loader">   </div>

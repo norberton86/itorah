@@ -3,6 +3,7 @@ import { Component, OnInit, NgZone,Input } from '@angular/core';
 
 import { Pele } from '../../model/Pele';
 import { PeleService } from '../../service/pele.service';
+import { PlayerService } from '../../service/player.service';
 
 declare var $: any;
 
@@ -10,7 +11,7 @@ declare var $: any;
   selector: 'app-pele-yoetz',
   templateUrl: './pele-yoetz.component.html',
   styleUrls: ['./pele-yoetz.component.css'],
-  providers: [PeleService]
+  providers: [PeleService,PlayerService]
 })
 export class PeleYoetzComponent implements OnInit {
 
@@ -23,7 +24,7 @@ export class PeleYoetzComponent implements OnInit {
    rendering:boolean=false;
 
 
-  constructor(private peleService: PeleService, private ngZone: NgZone) {
+  constructor(private peleService: PeleService, private ngZone: NgZone,private playerService:PlayerService) {
 
   }
 
@@ -60,7 +61,7 @@ export class PeleYoetzComponent implements OnInit {
       this.peles = this.peles.filter(function (s) {
         return s.title.toLowerCase().includes(query.toLowerCase());
       });
-      this.amount=this.peles.length;
+      
     }
     this.RefreshView()
 
@@ -69,7 +70,7 @@ export class PeleYoetzComponent implements OnInit {
 
   RefreshView() {
 
-
+    this.amount=this.peles.length;
     if(!this.rendering)  //the first time don't renderize
         return;
 
@@ -89,6 +90,14 @@ export class PeleYoetzComponent implements OnInit {
          self.query_main= $('#ballon [type="search"]').val()
          self.Search();
 
+      })
+
+      $('#ballon .play-secondary').click(function(){
+
+         var title=$(this).attr('title');
+        var url=$(this).attr('data-url');
+         self.playerService.Play2(title,url)     
+         
       })
 
       $('#ballon .search-field').val(self.query_main);

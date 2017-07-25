@@ -6,6 +6,7 @@
 			<div class="search-tertiary">
 				<form  action="">
 					<label for="q">Search: </label>
+					<a href="" download id="download" hidden></a>
 					
 					<!--<div class="select">
 						<select name="field-search-content" id="field-search-content">
@@ -30,7 +31,7 @@
 			<div class="lists">
 				<div class="lists-head">
 					<div class="lists-head-inner">
-						<p>{{amount}}</p>
+						<p>{{amount}} Subjects</p>
 					</div><!-- /.lists-head-inner -->
 				</div><!-- /.lists-head -->
 				
@@ -61,7 +62,7 @@
 								</div><!-- /.subject-body -->
 								
 								<div class="subject-actions">
-									<a href="#" class="link-more">More</a>
+									<a href="#" class="link-more" attr.data-value="{{p.id}}">More</a>
 								</div><!-- /.subject-actions -->
 							</div><!-- /.subject-inner -->
 						</li><!-- /.subject -->

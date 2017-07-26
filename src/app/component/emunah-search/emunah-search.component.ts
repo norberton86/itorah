@@ -106,8 +106,8 @@ export class EmunahSearchComponent implements OnInit,OnChanges {
          {
               var id=event.currentTarget.activeElement.attributes["id"].value;
               var title=event.currentTarget.activeElement.attributes["title"].value;
-               
-              this.playerService.Play(title,id);   
+               var onlyAudio=title.includes('LT-Audio');
+              this.playerService.Play(title,id,onlyAudio);   
          }
 
     });

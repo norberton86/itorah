@@ -648,7 +648,9 @@ export class SpeakerComponent implements OnInit {
 
                          var id=$(this).attr('id')
                          var title=$(this).attr('title')
-                         self.playerService.Play(title,id);   
+                        // self.playerService.Play(title,id);
+                        var onlyAudio=title.includes('LT-Audio');
+                        self.playerService.Play(title,id,onlyAudio);   
 
               })
 

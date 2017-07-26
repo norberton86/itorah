@@ -8,7 +8,9 @@ export class PlayerService {
   constructor() {
   }
 
-   Play(title: string, url: string) {
+
+
+  Play(title: string, url: string,onlyAudio:boolean) {
 
       let self=this;
 
@@ -37,28 +39,17 @@ export class PlayerService {
       WowzaPlayer.create('video-modal',
       {
 
-        "license": "PLAY1-dD8ur-NjfMh-andPW-beKnB-t4nYZ",
-
-        "title": title,
-
-        "description": "",
-
-        "sourceURL":   url,
-
-        "autoPlay": true,
-
-        "volume": "75",
-
-        "mute": false,
-
-        "loop": false,
-
-        "audioOnly": false,
-
-        "uiShowQuickRewind": true,
-
-        "uiQuickRewindSeconds": "30"
-
+         "license": "PLAY1-dD8ur-NjfMh-andPW-beKnB-t4nYZ",
+    "title":title,
+    "description":"",
+    "sourceURL":url, //"http://media.learntorah.com/LT-Video/mp4:RZE-350.mp4/playlist.m3u8"
+    "autoPlay":true,
+    "volume":"75",
+    "mute":false,
+    "loop":false,
+    "audioOnly":onlyAudio,
+    "uiShowQuickRewind":true,
+    "uiQuickRewindSeconds": "30"
       });
 
       
@@ -78,6 +69,7 @@ export class PlayerService {
       });
 
   }
+
 
   Closetream()
   {
@@ -86,17 +78,14 @@ export class PlayerService {
   }
 
 
-   Play2(title: string, url: string) {
+   PlayAudio(title: string, url: string) {
 
       let self=this;
 
       if ($('#video-modal').length == 0)     //if not exist
       $.notify({                          //create the popup
         title: "",
-        message: '<div style="padding-top:0.5em">'+
-                   '<div  id="video-modal" class="" style="width: inherit;height: 20em;">' +
-                   '</div>'+
-                 '</div>'
+        message: '<video controls="" autoplay="" name="media"><source src="'+url+'" type="audio/mpeg"></video>'
       },
         {
           delay: 0,                       //never autoclose
@@ -110,51 +99,10 @@ export class PlayerService {
           }
       });
 
-      self.Closetream();
-
-      WowzaPlayer.create('video-modal',
-      {
-
-        "license": "PLAY1-dD8ur-NjfMh-andPW-beKnB-t4nYZ",
-
-        "title": title,
-
-        "description": "",
-
-        "sourceURL":   url,
-
-        "autoPlay": true,
-
-        "volume": "75",
-
-        "mute": false,
-
-        "loop": false,
-
-        "audioOnly": true,
-
-        "uiShowQuickRewind": true,
-
-        "uiQuickRewindSeconds": "30"
-
-      });
-
-      
+     
       $('.alert-info').css('background-color', 'white'); //change background-color to white 
-      $('button[data-notify="dismiss"]').click(function(){  //stop when the close icon be closed
-            
-              try
-              {
-                 self.Closetream();
-              }
-              catch(e)
-              {
+   
 
-              }
-             
-           
-      });
-
-  }
+   }
 
 }

@@ -97,7 +97,7 @@ export class PeleYoetzComponent implements OnInit {
 
         var title = $(this).attr('title');
         var url = $(this).attr('data-url');
-        self.playerService.Play2(title, url)
+        self.playerService.PlayAudio(title, url)
 
       })
 
@@ -123,7 +123,7 @@ export class PeleYoetzComponent implements OnInit {
         items: {
           "hebrewPdf": { name: "Hebrew PDF", icon: "fa-file-pdf-o" },
           "englishPdf": { name: "English PDF", icon: "fa-file-pdf-o" },
-          "mp3": { name: "Mp3", icon: "fa-file-audio-o" }
+          "mp3": { name: "Download", icon: "fa-file-audio-o" }
         }
       });
 

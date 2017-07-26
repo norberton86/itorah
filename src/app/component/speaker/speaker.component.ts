@@ -7,6 +7,7 @@ import { Letter } from '../../model/letter';
 import { SpeakerService } from '../../service/speaker.service';
 import { ShiurimService } from '../../service/shiurim.service';
 import { PlayerService } from '../../service/player.service';
+import { DatabaseService } from '../../service/database.service';
 
 import { Injectable, Renderer2,ElementRef } from '@angular/core'
 
@@ -16,7 +17,7 @@ declare var $:any;
   selector: 'app-speaker',
   templateUrl: './speaker.component.html',
   styleUrls: ['./speaker.component.css'],
-  providers:[SpeakerService,ShiurimService,PlayerService]
+  providers:[SpeakerService,ShiurimService,PlayerService,DatabaseService]
 })
 export class SpeakerComponent implements OnInit {
 
@@ -83,7 +84,7 @@ export class SpeakerComponent implements OnInit {
 
 
 
-  constructor( private renderer:Renderer2,private speakerService:SpeakerService,private shiurimService:ShiurimService,private elementRef: ElementRef,private ngZone:NgZone,private playerService:PlayerService) {
+  constructor( private renderer:Renderer2,private speakerService:SpeakerService,private shiurimService:ShiurimService,private elementRef: ElementRef,private ngZone:NgZone,private playerService:PlayerService,private databaseService:DatabaseService) {
       this.allSpeakers=[];
       this.speaker=new Speaker();
       this.currentSpeakers=[];
@@ -136,7 +137,7 @@ export class SpeakerComponent implements OnInit {
              { 
                self.ngZone.run(()=>{
                      self.speaker=JSON.parse(localStorage.getItem("mainSpeakers"))[0]; //set the first                         
-                     self.ReadLectures(JSON.parse(localStorage.getItem("mainSpeakers"))[0].id); //get the lectures for the first
+                     self.checkLocalExistence(JSON.parse(localStorage.getItem("mainSpeakers"))[0].id); //get the lectures for the first
 
                })
              }
@@ -299,7 +300,7 @@ export class SpeakerComponent implements OnInit {
                  return s.id==id;
                })[0];
 
-              this.ReadLectures(id); 
+              this.checkLocalExistence(id); 
             
            
          }
@@ -557,7 +558,45 @@ export class SpeakerComponent implements OnInit {
       localStorage.setItem("mainSpeakers",JSON.stringify(data));  
 
       this.speaker=data[0];
-      this.ReadLectures(data[0].id); 
+      
+      this.checkLocalExistence(data[0].id);
+  }
+
+  checkLocalExistence(id:number)
+  {
+     let self=this;
+
+      if($('#field-8').val()=='#tile-tab-2') //if is 'my'
+      {
+          self.ReadLectures(id);
+          return;
+      }
+    
+       var mains= JSON.parse( localStorage.getItem("mainSpeakers")) //get the mainspeakers
+       var totalShiurim= mains.filter(function (s) {   
+            return s.id==id;
+         })[0].totalShiurim;    //get the totalshirium by speaker
+
+       this.databaseService.Speaker.findBy(self.databaseService.getMySelf(), null, 'speakerId',id.toString(), function (user) {
+                    if (user && user.data.length==totalShiurim)  //if user exist and the amount of shirium is equal  
+                    {
+                        self.FillShirium(user.data); //use the local backup
+                    }
+                    else //in other case
+                    {
+                        self.ReadLectures(id); //call the webservice 
+                    }
+        });
+       
+  }
+
+  FillShirium(data:any)
+  {
+    this.allShiriums=data;
+
+    localStorage.setItem("shirium",JSON.stringify(data));  
+
+    this.Update();         
   }
 
   ReadLectures(idSpeaker:number)
@@ -568,16 +607,13 @@ export class SpeakerComponent implements OnInit {
       this.shiurimService.read(idSpeaker).subscribe(
            function(respond){
               self.myEvent.next(false)
-              respond.forEach(function(a){  //remove the seconds en length property
-                a['length']=a['length'].split(':')[0]
-                a['language']=a['language'][0]+a['language'][1]
-              });
+             
 
-              self.allShiriums=respond;
-
-              localStorage.setItem("shirium",JSON.stringify(respond));
-
-              self.Update();  
+              self.FillShirium(respond);
+                
+              //-----------------------------------------------------------------------------------//  
+              
+              self.databaseService.Manage(idSpeaker.toString(),respond);//create the local backup              
            },
            function(error){},
            function(){}

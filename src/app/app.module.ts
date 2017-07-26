@@ -24,6 +24,8 @@ import { PlaceHolderComponent } from './component/place-holder/place-holder.comp
 import { Angular2SocialLoginModule } from "angular2-social-login";
 import { SocialLoginComponent } from './component/social-login/social-login.component';
 import { PeleTitlePipe } from './pipe/pele-title.pipe';
+import { LanguagePipe } from './pipe/language.pipe';
+import { TimePipe } from './pipe/time.pipe';
 
 let providers = {
     "google": {
@@ -56,7 +58,9 @@ let providers = {
     ReduceStringPipe,
     PlaceHolderComponent,
     SocialLoginComponent,
-    PeleTitlePipe
+    PeleTitlePipe,
+    LanguagePipe,
+    TimePipe
   ],
   imports: [
     BrowserModule,

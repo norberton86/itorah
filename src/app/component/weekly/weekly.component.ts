@@ -116,7 +116,7 @@ export class WeeklyComponent implements OnInit {
   {
      let self=this;
      $('#weekly-play').click(function(){
-          self.playerService.Play("Lana","");
+          self.playerService.Play("Lana","",true);
      })
   }
 }

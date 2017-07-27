@@ -574,7 +574,7 @@ export class SpeakerComponent implements OnInit ,OnChanges{
 
  ReadMainSpeaker() 
  {
-
+       this.myEvent.next(true)
        this.speakerService.readMain().subscribe(
            result=>this.InitializeMainSpeakers(result)
        )
@@ -583,6 +583,7 @@ export class SpeakerComponent implements OnInit ,OnChanges{
 
   InitializeMainSpeakers(data:Array<Speaker>)
   {
+      this.myEvent.next(false)
       this.currentSpeakers=data;
 
       localStorage.setItem("mainSpeakers",JSON.stringify(data));  

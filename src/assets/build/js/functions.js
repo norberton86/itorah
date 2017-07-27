@@ -251,7 +251,8 @@
 		$('.wrapper').on('click','.link-close-half', function(e) {
 			e.preventDefault();
 
-			$('[href="#item-content-7"]').removeClass('ballon-opened');
+			$('[href="#item-content-7"]').removeClass('ballon-opened'); // telehimEdit
+			$('[href="#item-content-8"]').removeClass('ballon-opened'); // DailyHalachaSEarch
 
 			close_ballon_half()
 

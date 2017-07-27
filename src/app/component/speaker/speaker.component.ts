@@ -1,4 +1,4 @@
-import { Component, OnInit,NgZone,EventEmitter,Output } from '@angular/core';
+import { Component, OnInit,NgZone,EventEmitter,Output,Input ,OnChanges} from '@angular/core';
 
 import { Speaker } from '../../model/speaker';
 import { Shiurim } from '../../model/shiurim';
@@ -19,7 +19,7 @@ declare var $:any;
   styleUrls: ['./speaker.component.css'],
   providers:[SpeakerService,ShiurimService,PlayerService,DatabaseService]
 })
-export class SpeakerComponent implements OnInit {
+export class SpeakerComponent implements OnInit ,OnChanges{
 
  @Output()
  public myEvent=new EventEmitter<boolean>();
@@ -82,7 +82,9 @@ export class SpeakerComponent implements OnInit {
                          {letter:"Y",current:false,disable:false},
                          {letter:"Z",current:false,disable:false}]; 
 
-
+   @Input()
+   accion:string="";
+   rendering:boolean=false;
 
   constructor( private renderer:Renderer2,private speakerService:SpeakerService,private shiurimService:ShiurimService,private elementRef: ElementRef,private ngZone:NgZone,private playerService:PlayerService,private databaseService:DatabaseService) {
       this.allSpeakers=[];
@@ -99,6 +101,16 @@ export class SpeakerComponent implements OnInit {
       this.pagesAll=[];
       
    }
+
+   ngOnChanges(changes:any) {
+     if(changes.accion!=null&&!changes.accion.firstChange)
+     {
+       this.rendering=true;   
+       this.RefreshView();
+     }
+      
+  }
+
 
   ngOnInit() {
     this.ReadMainSpeaker();
@@ -160,14 +172,7 @@ export class SpeakerComponent implements OnInit {
         
          if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="all-search-shirium") //click on all search
          {
-             this.query_all=$($('.all-search-nor')[0]).val();  //update the query field in my component (remenber double data binding)
-             
-             if(localStorage.getItem("allSpeakers")!=null ||localStorage.getItem("allSpeakers")!='')
-             {
-               this.allSpeakers=JSON.parse(localStorage.getItem("allSpeakers"));  //recover the originals
-             }
-
-             this.UpdateAll();               
+             this.SearchAll()             
          }
          
          if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-prev-all") //click on paging-prev-all 
@@ -278,15 +283,7 @@ export class SpeakerComponent implements OnInit {
 
          if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="search-shirium") //click on main search
          {
-             this.query_main=$($('.main-search-nor')[0]).val();  //update the query field in my component (remenber double data binding)
-             
-             if(localStorage.getItem("shirium")!=null ||localStorage.getItem("shirium")!='')
-             {
-               this.allShiriums=JSON.parse(localStorage.getItem("shirium"));  //recover the originals
-             }
-
-             this.Update();   
-               
+             this.Search()       
          }
 
          if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="lecture") //click on speaker
@@ -352,6 +349,30 @@ export class SpeakerComponent implements OnInit {
 
       });
 
+  }
+
+  SearchAll()
+  {
+    this.query_all=$($('.all-search-nor')[0]).val();  //update the query field in my component (remenber double data binding)
+             
+    if(localStorage.getItem("allSpeakers")!=null ||localStorage.getItem("allSpeakers")!='')
+    {
+      this.allSpeakers=JSON.parse(localStorage.getItem("allSpeakers"));  //recover the originals
+    }
+
+    this.UpdateAll();  
+  }
+
+  Search()
+  {
+    this.query_main=$($('.main-search-nor')[0]).val();  //update the query field in my component (remenber double data binding)
+             
+    if(localStorage.getItem("shirium")!=null ||localStorage.getItem("shirium")!='')
+    {
+      this.allShiriums=JSON.parse(localStorage.getItem("shirium"));  //recover the originals
+    }
+
+    this.Update();   
   }
 
 
@@ -531,11 +552,20 @@ export class SpeakerComponent implements OnInit {
 
   RefreshViewAll()
   {
+      let self=this;
       var query=this.query_all;
       setTimeout(function(){ 
 
               $('#ballon .current').html($('app-speaker #tile-tab-3').html());
               $($('.all-search-nor')[0]).val(query);
+
+               $('#ballon #form-all').submit(function (e) {
+                 e.preventDefault();
+                 self.ngZone.run(() => {
+                    self.SearchAll();
+                 })
+                 
+              })
       },500) 
 
   }
@@ -671,6 +701,10 @@ export class SpeakerComponent implements OnInit {
   
   RefreshView()
   {
+
+     if(!this.rendering)  //the first time don't renderize
+        return;
+
       let self=this;
       var query=this.query_main;
       setTimeout(function(){ 
@@ -688,6 +722,14 @@ export class SpeakerComponent implements OnInit {
                         var onlyAudio=title.includes('LT-Audio');
                         self.playerService.Play(title,id,onlyAudio);   
 
+              })
+
+              $('#ballon #form-main').submit(function (e) {
+                 e.preventDefault();
+                 self.ngZone.run(() => {
+                    self.Search();
+                 })
+                 
               })
 
       },500) 

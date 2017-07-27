@@ -11,6 +11,7 @@ export class AppComponent {
  valEmunah:string=""
  valHalacha:string=""
  valPele:string=""
+ valSpeaker:string=""
 
 
  loader:boolean=false;
@@ -36,6 +37,10 @@ export class AppComponent {
     this.valPele=this.Generate();
   }
   
+  AccionSpeaker()
+  {
+    this.valSpeaker=this.Generate();
+  }
 
   Generate()
   {
@@ -44,12 +49,12 @@ export class AppComponent {
                   .substring(1);
   }
 
-  ShowLoader(arg)
+  ShowLoader(arg) //bind to eventEmitter
   {
     this.loader=arg;
   }
 
-  ChangeSpeakers(arg)
+  ChangeSpeakers(arg) //bind to eventEmitter
   {
     this.amountSpeaker=arg;
   }

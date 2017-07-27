@@ -1,4 +1,4 @@
-import { Component, OnInit,Renderer2,OnChanges,Input } from '@angular/core';
+import { Component, OnInit,Renderer2,OnChanges,Input ,NgZone} from '@angular/core';
 import { EmunahService } from '../../service/emunah.service';
 import { PlayerService } from '../../service/player.service';
 import { Shiurim } from '../../model/shiurim';
@@ -28,7 +28,7 @@ export class EmunahSearchComponent implements OnInit,OnChanges {
    accion:string="";
    rendering:boolean=false;
 
-  constructor(private emunahService:EmunahService,private playerService:PlayerService,private renderer:Renderer2)
+  constructor(private emunahService:EmunahService,private playerService:PlayerService,private renderer:Renderer2,private ngZone:NgZone)
   {
       this.allShiriums=[];
       this.shiriums=[];
@@ -53,14 +53,7 @@ export class EmunahSearchComponent implements OnInit,OnChanges {
 
          if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="search-shirium-emunah") //click on main search
          {
-             this.query_main=$('#ballon .search-field').val();  //update the query field in my component (remenber double data binding)
-             
-             if(localStorage.getItem("shirium")!=null ||localStorage.getItem("shirium")!='')
-             {
-               this.allShiriums=JSON.parse(localStorage.getItem("shirium"));  //recover the originals
-             }
-
-             this.Update();   
+             this.Search()
                
          }
 
@@ -113,6 +106,17 @@ export class EmunahSearchComponent implements OnInit,OnChanges {
     });
   }
 
+Search()
+{
+  this.query_main=$('#ballon .search-field').val();  //update the query field in my component (remenber double data binding)
+             
+             if(localStorage.getItem("shirium")!=null ||localStorage.getItem("shirium")!='')
+             {
+               this.allShiriums=JSON.parse(localStorage.getItem("shirium"));  //recover the originals
+             }
+
+             this.Update();   
+}
 
   ReadLectures()
   {
@@ -120,11 +124,7 @@ export class EmunahSearchComponent implements OnInit,OnChanges {
       this.emunahService.read().subscribe(
            function(respond){
 
-              respond.forEach(function(a){  //remove the seconds en length property
-                a['length']=a['length'].split(':')[0]
-                a['language']=a['language'][0]+a['language'][1]
-              });
-
+             
               self.allShiriums=respond;
 
               localStorage.setItem("shirium",JSON.stringify(respond));
@@ -191,12 +191,24 @@ export class EmunahSearchComponent implements OnInit,OnChanges {
         if(!this.rendering)  //the first time don't renderize
         return;
          
+         let self=this
 
       var query=this.query_main;
 
        setTimeout(function(){ 
           $('#ballon').html($('#item-content-4').html());
           $('#ballon .search-field').val(query)
+
+
+            $('#ballon form').submit(function (e) {
+                 e.preventDefault();
+                 self.ngZone.run(() => {
+                    self.Search();
+                 })
+                 
+              })
+
+
        },500)
   }
 

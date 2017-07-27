@@ -46,9 +46,9 @@
 									<p>
 										<span class="date">{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span>
 										
-										<span class="min">{{s.length}}min</span>
+										<span class="min">{{s.length|time}}min</span>
 										
-										<span class="lang">{{s.language}}</span>
+										<span class="lang">{{s.language|language}}</span>
 										
 									</p>
 								</div><!-- /.track-content -->

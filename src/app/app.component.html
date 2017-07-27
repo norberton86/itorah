@@ -1037,7 +1037,7 @@
 								</div><!-- /.tile-content -->
 
 								<div class="tile-actions">
-									<a href="#item-content-1" class="btn btn-yellow btn-medium" data-size="full">Speakers</a>
+									<a href="#item-content-1" class="btn btn-yellow btn-medium" data-size="full" (click)="AccionSpeaker()">Speakers</a>
 
 									<a href="#" class="link-search">
 										<i class="ico-magnifier-large"></i>
@@ -1409,7 +1409,7 @@
 
 
 
-<app-speaker (myEvent) = "ShowLoader($event)" (myEventSpeakers) = "ChangeSpeakers($event)"></app-speaker>
+<app-speaker (myEvent) = "ShowLoader($event)" (myEventSpeakers) = "ChangeSpeakers($event)" [accion]="valSpeaker"></app-speaker>
 <app-weekly></app-weekly>
 <app-weekly-search [accion]="valHalacha"></app-weekly-search>
 <app-tehillim-show [accion]="val"></app-tehillim-show>

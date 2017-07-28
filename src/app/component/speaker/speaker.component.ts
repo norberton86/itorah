@@ -299,7 +299,7 @@ export class SpeakerComponent implements OnInit ,OnChanges{
 
               this.checkLocalExistence(id); 
             
-           
+              
          }
 
          if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-prev") //click on paging-prev 
@@ -350,6 +350,17 @@ export class SpeakerComponent implements OnInit ,OnChanges{
       });
 
   }
+
+  BackgroundSlide(id:string)
+  {
+         $('#ballon li[data-type="lecture"]').each(function(i,val){ //to add yellow background
+                    if($(val).attr('id')==id)
+                      $(val).addClass('current_letter')
+                    else
+                      $(val).removeClass('current_letter')
+              })
+  }
+
 
   SearchAll()
   {
@@ -732,6 +743,8 @@ export class SpeakerComponent implements OnInit ,OnChanges{
                  })
                  
               })
+
+        self.BackgroundSlide(self.speaker.id.toString())
 
       },500) 
 

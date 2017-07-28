@@ -12,7 +12,7 @@
 									<i class="ico-podcast"></i> <span>Podcast</span>
 								</a>
 								
-								<div class="dropdown item">
+								<div class="dropdown item" [class.blur]="VerifyUser()">
 									<div class="dropdown-head">
 										<h4><i class="ico-podcast-2"></i> Podcast</h4>
 										
@@ -142,7 +142,13 @@
 									<div class="dropdown-foot">
 										<a href="#">More Episodes</a>
 									</div><!-- /.dropdown-foot -->
- 									<div class="item-overlay top" style=" display: flex;align-items: center;justify-content: center;" *ngIf="VerifyUser()"><span>Sign In</span></div>
+ 									<div class="item-overlay top" *ngIf="VerifyUser()">
+										 <div class="form-signin" >
+											 <p>iTorah</p>
+											 <span >You must to be signed in to have access this feature</span>
+											 <input type="submit" value="SIGN IN" class="form-btn" >
+										 </div>
+									</div>
 
 								</div><!-- /.dropdown -->
 
@@ -154,7 +160,7 @@
 									<i class="ico-queue"></i> <span>Queue</span>
 								</a>
 								
-								<div class="dropdown item" >
+								<div class="dropdown item" [class.blur]="VerifyUser()">
 									<div class="dropdown-head">
 										<h4><i class="ico-play-3"></i> Queue list</h4>
 										
@@ -349,7 +355,13 @@
 										</ul><!-- /.list-updates -->
 									</div><!-- /.dropdown-body -->
 
-                                     <div class="item-overlay top" style=" display: flex;align-items: center;justify-content: center;" *ngIf="VerifyUser()"><span>Sign In</span></div>
+                                    <div class="item-overlay top"  *ngIf="VerifyUser()">
+										 <div class="form-signin" >
+											 <p>iTorah</p>
+											 <span >You must to be signed in to have access this feature</span>
+											 <input type="submit" value="SIGN IN" class="form-btn" >
+										 </div>
+									</div>
 
 								</div><!-- /.dropdown -->
 							</li>
@@ -359,7 +371,7 @@
 									<i class="ico-subscribe"></i> <span>Subscribe</span>
 								</a>
 								
-								<div class="dropdown dropdown-subscription item">
+								<div class="dropdown dropdown-subscription item" [class.blur]="VerifyUser()">
 									<div class="dropdown-head">
 										<h4><i class="ico-mail-dark"></i> <span>My Subscriptions</span></h4>
 									</div><!-- /.dropdown-head -->
@@ -531,7 +543,13 @@
 											</li>
 										</ul><!-- /.nav-list -->
 									</div><!-- /.dropdown-actions -->
-									 <div class="item-overlay top" style=" display: flex;align-items: center;justify-content: center;" *ngIf="VerifyUser()"><span>Sign In</span></div>
+									<div class="item-overlay top"  *ngIf="VerifyUser()">
+										 <div class="form-signin" >
+											 <p>iTorah</p>
+											 <span >You must to be signed in to have access this feature</span>
+											 <input type="submit" value="SIGN IN" class="form-btn" >
+										 </div>
+									</div>
 								</div>
                          
 								

@@ -26,8 +26,8 @@ by default, overlay is visible…
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
   
-  background: rgba(255, 255, 255, 0.5);
-  color: #000;
+  background: #14213d;
+  color: white;
   overflow: hidden;
   text-align: center;
   /* fix text transition issue for .left and .right but need to overwrite left and right properties in .right */
@@ -39,6 +39,11 @@ by default, overlay is visible…
 
   font-size: xx-large;
   font-weight: 600;
+  opacity: 0.9;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 9999
 }
 /*
 …but this hide it
@@ -47,11 +52,26 @@ by default, overlay is visible…
   top: 100%;
 }*/
 
- /*.dropdown-foot,.dropdown-head,.dropdown-body{
+div.blur .dropdown-foot,div.blur .dropdown-head,div.blur .dropdown-body{
   filter:blur(2px)
-}*/
+}
 
+.top .form-signin{
+padding: 0.5em;
+}
 
+.top p{
+  font-size: -webkit-xxx-large;
+}
+.top span{
+  font-size: initial;
+  font-weight: initial
+}
+
+.top input{
+  font-size: initial;
+  
+}
 
 /***************************************************************************************************************************/
 	

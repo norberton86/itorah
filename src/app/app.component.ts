@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AnalitycService} from './service/analityc.service';
 declare var $:any; 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers:[AnalitycService]
 })
 export class AppComponent implements OnInit{
   
@@ -17,6 +19,8 @@ export class AppComponent implements OnInit{
 
  loader:boolean=false;
  amountSpeaker:string=""
+
+  constructor(private analitycService:AnalitycService){ }
 
  ngOnInit() {
 
@@ -39,26 +43,31 @@ export class AppComponent implements OnInit{
   Accion()
   {
     this.val=this.Generate();
+    this.analitycService.emitEvent("Module","Open","Tehillim Read");
   }
 
   AccionEmunah()
   {
     this.valEmunah=this.Generate();
+    this.analitycService.emitEvent("Module","Open","Emunah");
   }
  
   AccionHalacha()
   {
     this.valHalacha=this.Generate();
+    this.analitycService.emitEvent("Module","Open","Halacha");
   }
 
   AccionPele()
   {
     this.valPele=this.Generate();
+    this.analitycService.emitEvent("Module","Open","PeleYoetz");
   }
   
   AccionSpeaker()
   {
     this.valSpeaker=this.Generate();
+    this.analitycService.emitEvent("Module","Open","Speakers");
   }
 
   Generate()

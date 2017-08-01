@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HokService extends Service{
 
-   
+   value:boolean;
     constructor(http: Http) {
         super(http);
         this.ruta="http://itorahapi.3nom.com/api/Hok/";
@@ -48,14 +48,14 @@ export class HokService extends Service{
 
     return Observable.create(observer => {
            
-         var value=Math.floor((Math.random() * 10) + 1)%2;
-           if(value==0)
+         this.value=!this.value;
+           if(this.value)
             observer.next([{
     "title": "Yedid / 2Hands",
     "dateRecorded": "2017-07-30T00:00:00",
     "length": "60:0         ",
     "language": "English",
-    "audio": "http://media.learntorah.com/LT-Audio/mp4:LBM233.m4a/playlist.m3u8",
+    "audio": "http://peleyoetz.com/PeleYoetz/2.mp3",
     "video": "",
     "dayWeek":"Sunday",
     "myClass":"Class"
@@ -65,7 +65,7 @@ export class HokService extends Service{
     "dateRecorded": "2017-07-30T00:00:00",
     "length": "77:0         ",
     "language": "English",
-    "audio": "http://media.learntorah.com/LT-Audio/mp4:LBM234.m4a/playlist.m3u8",
+    "audio": "http://peleyoetz.com/PeleYoetz/3.mp3",
     "video": "",
     "dayWeek":"Tuesday",
     "myClass":"Additional"
@@ -76,7 +76,7 @@ export class HokService extends Service{
     "dateRecorded": "2017-07-24T00:00:00",
     "length": "60:0         ",
     "language": "English",
-    "audio": "http://media.learntorah.com/LT-Audio/mp4:LBM231.m4a/playlist.m3u8",
+    "audio": "http://peleyoetz.com/PeleYoetz/4.mp3",
     "video": "",
     "dayWeek":"Wednesday",
     "myClass":"Rashi"
@@ -86,7 +86,7 @@ export class HokService extends Service{
     "dateRecorded": "2017-07-24T00:00:00",
     "length": "60:0         ",
     "language": "English",
-    "audio": "http://media.learntorah.com/LT-Audio/mp4:LBM232.m4a/playlist.m3u8",
+    "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
     "video": "",
     "dayWeek":"Thursday",
     "myClass":"Class"

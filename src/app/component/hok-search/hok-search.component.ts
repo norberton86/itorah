@@ -179,8 +179,8 @@ export class HokSearchComponent implements OnInit, OnChanges {
         var id = $(this).attr('id')
         var title = $(this).attr('title')
 
-        var onlyAudio = title.includes('LT-Audio');
-        self.playerService.Play(title, id, onlyAudio);
+       // var onlyAudio = title.includes('LT-Audio');
+        self.playerService.PlayAudio(title, id);
 
       })
 

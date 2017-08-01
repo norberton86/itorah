@@ -15,6 +15,7 @@ export class AppComponent implements OnInit{
  valHalacha:string=""
  valPele:string=""
  valSpeaker:string=""
+ valHok:string=""
 
 
  loader:boolean=false;
@@ -78,6 +79,12 @@ keyDownFunction(event)
   {
     this.valSpeaker=this.Generate();
     this.analitycService.emitEvent("Module","Open","Speakers");
+  }
+
+  AccionHok()
+  {
+    this.valHok=this.Generate();
+    this.analitycService.emitEvent("Module","Open","Hok");
   }
 
   Generate()

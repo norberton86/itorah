@@ -9,8 +9,8 @@
 						<label for="q">Chumash :</label>
 						
 						<div class="select">
-							<select name="field-search-content" id="field-search-content">
-								<option value="">Bamidbar</option>
+							<select name="field-search-content-chumash" id="field-search-chumash" [(ngModel)]="selectedChumash">
+								<option *ngFor="let c of chumashs" [ngValue]="c.id">{{c.name}}</option>
 							</select><!-- /.form-row -->
 						</div><!-- /.select -->
 					</div><!-- /.form-col -->
@@ -19,8 +19,8 @@
 						<label for="q">Perasha :</label>
 						
 						<div class="select">
-							<select name="field-search-content" id="field-search-content">
-								<option value="">Bamidbar</option>
+							<select name="field-search-content-parasha" id="field-search-parasha" [(ngModel)]="selectedParasha">
+								<option *ngFor="let c of parashas" [ngValue]="c.id">{{c.name}}</option>
 							</select><!-- /.form-row -->
 						</div><!-- /.select -->
 					</div><!-- /.form-col -->
@@ -49,8 +49,8 @@
 						<p>“Bamidbar “results</p>
 						
 						<div class="select">
-							<select name="field-search-content" id="field-search-content">
-								<option value="">Class</option>
+							<select name="field-search-class" id="field-search-class" [(ngModel)]="selectedClass">
+								<option *ngFor="let c of classes" [ngValue]="c">{{c}}</option>
 							</select><!-- /.form-row -->
 						</div><!-- /.select -->
 					</div><!-- /.lists-head-inner -->
@@ -58,237 +58,41 @@
 				
 				<div class="lists-body">
 					<ul class="tracks tracks-secondary">
-						<li class="track">
-							<strong>Sunday</strong>
+						
+						<li class="track" *ngFor="let h of hoks">
+							<strong>{{h.dayWeek}}</strong>
 							
-							<a href="#" class="link-play-secondary"></a>
+							<!--<a href="#" class="link-play-secondary"></a>-->
 							
-							<div class="track-content">
-								<h6>Pesah Hagada / Macat Arbeh</h6>
+							<div class="track-content" style="padding-left: 0.6em">
+								<h6 style="font-size: 15px;" data-title="{{h.title}}">{{h.title|reduceString}}</h6>
 								
 								<p>
-									<span class="date">4/7/2017</span>
+									<span class="date">{{h.dateRecorded| date: 'MM/dd/yyyy'}}</span>
 									
-									<span class="min">70min</span>
+									<span class="min">{{h.length|time}}min</span>
 									
-									<span class="lang">EN</span>
+									<span class="lang">{{h.language|language}}</span>
 									
-									<a href="#" class="link-mic">
-										<i class="ico-mic"></i>
-									</a>
+									
 								</p>
 							</div><!-- /.track-content -->
 							
 							<div class="track-actions">
-								<a href="#" class="link-download">
+								<a href="#" class="link-mic" data-type="media" id="{{h?.audio}}" data-title="{{h.title}}">
+										<i class="ico-mic"></i>
+								</a>
+
+								<a href="#" class="link-download" download title="Download">
 									<i class="ico-download"></i>
 								</a>
 								
-								<a href="#" class="link-add">
+								<a href="#" class="link-add" title="Add to My List">
 									<i class="ico-plus-thick"></i>
 								</a>
 							</div><!-- /.track-actions -->
 						</li><!-- /.track -->
 						
-						<li class="track">
-							<strong>Wednesday</strong>
-							
-							<a href="#" class="link-play-secondary"></a>
-							
-							<div class="track-content">
-								<h6>Pesah Hagada / Macat Arbeh</h6>
-								
-								<p>
-									<span class="date">4/7/2017</span>
-									
-									<span class="min">70min</span>
-									
-									<span class="lang">EN</span>
-									
-									<a href="#" class="link-mic">
-										<i class="ico-mic"></i>
-									</a>
-								</p>
-							</div><!-- /.track-content -->
-							
-							<div class="track-actions">
-								<a href="#" class="link-download">
-									<i class="ico-download"></i>
-								</a>
-								
-								<a href="#" class="link-add">
-									<i class="ico-plus-thick"></i>
-								</a>
-							</div><!-- /.track-actions -->
-						</li><!-- /.track -->
-						
-						<li class="track">
-							<strong>Saturday</strong>
-							
-							<a href="#" class="link-play-secondary"></a>
-							
-							<div class="track-content">
-								<h6>Pesah Hagada / Macat Arbeh</h6>
-								
-								<p>
-									<span class="date">4/7/2017</span>
-									
-									<span class="min">70min</span>
-									
-									<span class="lang">EN</span>
-									
-									<a href="#" class="link-mic">
-										<i class="ico-mic"></i>
-									</a>
-								</p>
-							</div><!-- /.track-content -->
-							
-							<div class="track-actions">
-								<a href="#" class="link-download">
-									<i class="ico-download"></i>
-								</a>
-								
-								<a href="#" class="link-add">
-									<i class="ico-plus-thick"></i>
-								</a>
-							</div><!-- /.track-actions -->
-						</li><!-- /.track -->
-						
-						<li class="track">
-							<strong>Monday</strong>
-							
-							<a href="#" class="link-play-secondary"></a>
-							
-							<div class="track-content">
-								<h6>Pesah Hagada / Macat Arbeh</h6>
-								
-								<p>
-									<span class="date">4/7/2017</span>
-									
-									<span class="min">70min</span>
-									
-									<span class="lang">EN</span>
-									
-									<a href="#" class="link-mic">
-										<i class="ico-mic"></i>
-									</a>
-								</p>
-							</div><!-- /.track-content -->
-							
-							<div class="track-actions">
-								<a href="#" class="link-download">
-									<i class="ico-download"></i>
-								</a>
-								
-								<a href="#" class="link-add">
-									<i class="ico-plus-thick"></i>
-								</a>
-							</div><!-- /.track-actions -->
-						</li><!-- /.track -->
-						
-						<li class="track">
-							<strong>Thursday</strong>
-							
-							<a href="#" class="link-play-secondary"></a>
-							
-							<div class="track-content">
-								<h6>Pesah Hagada / Macat Arbeh</h6>
-								
-								<p>
-									<span class="date">4/7/2017</span>
-									
-									<span class="min">70min</span>
-									
-									<span class="lang">EN</span>
-									
-									<a href="#" class="link-mic">
-										<i class="ico-mic"></i>
-									</a>
-								</p>
-							</div><!-- /.track-content -->
-							
-							<div class="track-actions">
-								<a href="#" class="link-download">
-									<i class="ico-download"></i>
-								</a>
-								
-								<a href="#" class="link-add">
-									<i class="ico-plus-thick"></i>
-								</a>
-							</div><!-- /.track-actions -->
-						</li><!-- /.track -->
-						
-						<li class="track">
-							
-						</li><!-- /.track -->
-						
-						<li class="track">
-							<strong>Thursday</strong>
-							
-							<a href="#" class="link-play-secondary"></a>
-							
-							<div class="track-content">
-								<h6>Pesah Hagada / Macat Arbeh</h6>
-								
-								<p>
-									<span class="date">4/7/2017</span>
-									
-									<span class="min">70min</span>
-									
-									<span class="lang">EN</span>
-									
-									<a href="#" class="link-mic">
-										<i class="ico-mic"></i>
-									</a>
-								</p>
-							</div><!-- /.track-content -->
-							
-							<div class="track-actions">
-								<a href="#" class="link-download">
-									<i class="ico-download"></i>
-								</a>
-								
-								<a href="#" class="link-add">
-									<i class="ico-plus-thick"></i>
-								</a>
-							</div><!-- /.track-actions -->
-						</li>
-						
-						<li class="track">
-							<strong>Thursday</strong>
-							
-							<a href="#" class="link-play-secondary"></a>
-							
-							<div class="track-content">
-								<h6>Pesah Hagada / Macat Arbeh</h6>
-								
-								<p>
-									<span class="date">4/7/2017</span>
-									
-									<span class="min">70min</span>
-									
-									<span class="lang">EN</span>
-									
-									<a href="#" class="link-mic">
-										<i class="ico-mic"></i>
-									</a>
-								</p>
-							</div><!-- /.track-content -->
-							
-							<div class="track-actions">
-								<a href="#" class="link-download">
-									<i class="ico-download"></i>
-								</a>
-								
-								<a href="#" class="link-add">
-									<i class="ico-plus-thick"></i>
-								</a>
-							</div><!-- /.track-actions -->
-						</li>
-						
-						<li class="track">
-							
-						</li>
 					</ul><!-- /.tracks -->
 				</div><!-- /.lists-body -->
 			</div><!-- /.lists -->
@@ -296,11 +100,11 @@
 		
 		<div class="tile-box-actions">
 			<div class="paging">
-			    <ul>
+			<!--    <ul>
 			        <li><a href="#" class="paging-prev paging-inactive"><i class="ico-paging-prev"></i></a></li>
 			        <li><a  href="#">1</a></li>
 			        <li><a href="#" class="paging-next paging-inactive"><i class="ico-paging-next"></i></a></li>
-			    </ul>
+			    </ul>-->
 			</div><!-- /.paging -->
 		</div><!-- /.table-actions -->
 	</div><!-- /.tile-box-primary -->

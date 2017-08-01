@@ -1309,7 +1309,7 @@
 										<i class="ico-play"></i>
 									</a>
 
-									<a href="#item-content-6" class="link-search" data-size="full">
+									<a href="#item-content-6" class="link-search" data-size="full" (click)="AccionHok()">
 										<i class="ico-magnifier-large"></i>
 									</a>
 								</div><!-- /.tile-actions -->
@@ -1433,7 +1433,7 @@
 <app-tehillim-show [accion]="val"></app-tehillim-show>
 <app-tehillim-edit></app-tehillim-edit>
 <app-emunah-search [accion]="valEmunah"></app-emunah-search>
-<app-hok-search></app-hok-search>
+<app-hok-search [accion]="valHok"></app-hok-search>
 <app-pele-yoetz [accion]="valPele"></app-pele-yoetz>
 <app-mishna-berura-yomi></app-mishna-berura-yomi>
 

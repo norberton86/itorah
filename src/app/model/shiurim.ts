@@ -7,3 +7,11 @@ export class Shiurim {
     video: string
     wowzaVideoUrl:string
 }
+
+
+export class Hok extends Shiurim
+{
+     dayWeek:string;
+     myClass:string;
+      
+} 

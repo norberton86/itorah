@@ -19,8 +19,18 @@ export class AppComponent implements OnInit{
 
  loader:boolean=false;
  amountSpeaker:string=""
+ gSearch:string;
 
   constructor(private analitycService:AnalitycService){ }
+
+
+keyDownFunction(event)
+{
+  if(event.keyCode == 13)
+  {
+      $('#gSearch').toggleClass('shown');     
+  }
+}
 
  ngOnInit() {
 

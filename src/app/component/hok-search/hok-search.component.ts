@@ -31,6 +31,8 @@ export class HokSearchComponent implements OnInit, OnChanges {
   accion: string = "";
   rendering: boolean = false;
 
+  currentId:string=""
+
   constructor(private hokService: HokService, private playerService: PlayerService, private ngZone: NgZone) {
     this.originalHoks=[];
     this.hoks = [];
@@ -181,6 +183,14 @@ export class HokSearchComponent implements OnInit, OnChanges {
 
        // var onlyAudio = title.includes('LT-Audio');
         self.playerService.PlayAudio(title, id);
+
+      })
+
+      $("#ballon .link-download").click(function (e) {
+ 
+         e.preventDefault();    
+         $('#ballon #downloadHok').attr('href',$(this).attr('media'));
+         document.getElementById('downloadHok').click();
 
       })
 

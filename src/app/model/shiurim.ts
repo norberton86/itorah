@@ -15,3 +15,8 @@ export class Hok extends Shiurim
      myClass:string;
       
 } 
+
+export class ItemQueue extends Shiurim
+{
+     speakerName:string;
+} 

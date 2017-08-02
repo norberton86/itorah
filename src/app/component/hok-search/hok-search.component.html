@@ -26,7 +26,7 @@
 					</div><!-- /.form-col -->
 					
 					<div class="form-col">
-						<label for="q">Perasha :</label>
+					<!--	<label for="q">Perasha :</label>-->
 						
 						<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field">
 						
@@ -46,7 +46,7 @@
 			<div class="lists">
 				<div class="lists-head">
 					<div class="lists-head-inner">
-						<p>“Bamidbar “results</p>
+						<p *ngIf="query_main!=''">"{{query_main}}" results</p>
 						
 						<div class="select">
 							<select name="field-search-class" id="field-search-class" [(ngModel)]="selectedClass">
@@ -59,7 +59,7 @@
 				<div class="lists-body">
 					<ul class="tracks tracks-secondary">
 						
-						<li class="track" *ngFor="let h of hoks">
+						<li class="track" *ngFor="let h of hoks | filterFor:query_main">
 							<strong>{{h.dayWeek}}</strong>
 							
 							<!--<a href="#" class="link-play-secondary"></a>-->

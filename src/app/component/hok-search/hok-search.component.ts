@@ -33,6 +33,8 @@ export class HokSearchComponent implements OnInit, OnChanges {
 
   currentId:string=""
 
+  query_main:string='';
+
   constructor(private hokService: HokService, private playerService: PlayerService, private ngZone: NgZone) {
     this.originalHoks=[];
     this.hoks = [];
@@ -126,12 +128,15 @@ export class HokSearchComponent implements OnInit, OnChanges {
 
     let self = this;
 
+    var query=this.query_main;
+
     setTimeout(function () {
 
       $('#ballon').html($('#item-content-6').html());
       $('#ballon #field-search-parasha').val($('#item-content-6 #field-search-parasha').val())
       $('#ballon #field-search-chumash').val($('#item-content-6 #field-search-chumash').val())
       $('#ballon #field-search-class').val($('#item-content-6 #field-search-class').val())
+      $('#ballon .search-field').val(query)
 
       
       $('#ballon #field-search-parasha').change(function () {   //parasha
@@ -194,8 +199,31 @@ export class HokSearchComponent implements OnInit, OnChanges {
 
       })
 
+      
+      $("#ballon .search-btn").click(function (e) {  //buscar
+          e.preventDefault();  
+          self.Search();
+      })
+
+      $('#ballon form').submit(function (e) {
+        e.preventDefault();
+        self.Search();         
+      })
+
     }, 500)
 
+  }
+
+  Search()
+  {
+    let self=this;
+    var value=$("#ballon .search-field").val();
+    self.ngZone.run(() => {
+             
+      self.query_main=value;
+      self.RefreshView();
+
+    })
   }
 
 }

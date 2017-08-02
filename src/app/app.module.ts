@@ -26,6 +26,7 @@ import { SocialLoginComponent } from './component/social-login/social-login.comp
 import { PeleTitlePipe } from './pipe/pele-title.pipe';
 import { LanguagePipe } from './pipe/language.pipe';
 import { TimePipe } from './pipe/time.pipe';
+import { FilterForPipe } from './pipe/filter-for.pipe';
 
 let providers = {
     "google": {
@@ -60,7 +61,8 @@ let providers = {
     SocialLoginComponent,
     PeleTitlePipe,
     LanguagePipe,
-    TimePipe
+    TimePipe,
+    FilterForPipe
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,6 @@
+
 export class Shiurim {
+    id:string
     title: string
     dateRecorded: Date
     length: string

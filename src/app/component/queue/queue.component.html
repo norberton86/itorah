@@ -1,28 +1,29 @@
-<li *ngFor="let q of queues">
-	<a href="#" class="link-play-secondary"></a>
+<li *ngFor="let s of queues;">
+	<!--<a href="#" class="link-play-secondary"></a>-->
 
-	<h6>How to enjoy your Shabbat</h6>
+	<h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
 
-	<p>Rabbi Eli Mansour <span>4/21/2017</span></p>
-
-	<p>
-		<em>In memory of First Name Last Name</em>
-	</p>
+	<p>{{s.speakerName}} <span>{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span></p>
 
 	<p>
-		<strong>70min</strong> <strong>EN</strong>
+		<strong>{{s.length|time}}min</strong> <strong>{{s.language|language}}</strong>
 	</p>
 
 	<div class="list-updates-actions">
-		<a href="#">
+
+		<a href="#/"  *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}" (click)="Play(s.title,s.video)">
+			<i class="ico-camera"></i>
+        </a>
+
+		<a href="#/" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}" (click)="Play(s.title,s.video)">
 			<i class="ico-mic"></i>
 		</a>
 
-		<a href="#">
+		<a href="#/" title="Download">
 			<i class="ico-download"></i>
 		</a>
 
-		<a href="#">
+		<a href="#/" title="Remove" (click)="Remove(s.id)">
 			<i class="fa fa-trash fa-lg" aria-hidden="true"></i>
 		</a>
 	</div>

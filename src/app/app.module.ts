@@ -27,6 +27,7 @@ import { PeleTitlePipe } from './pipe/pele-title.pipe';
 import { LanguagePipe } from './pipe/language.pipe';
 import { TimePipe } from './pipe/time.pipe';
 import { FilterForPipe } from './pipe/filter-for.pipe';
+import {QueueService} from './service/queue.service'
 
 let providers = {
     "google": {
@@ -70,7 +71,7 @@ let providers = {
      FormsModule,
      Angular2SocialLoginModule
   ],
-  providers: [],
+  providers: [QueueService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

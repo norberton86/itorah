@@ -1,0 +1,8 @@
+i{
+    color: black
+}
+
+li+li,li{
+    padding-left: 0.6em !important;
+}
+

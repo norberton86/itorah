@@ -1,52 +1,69 @@
-import { Component, OnInit } from '@angular/core';
-import { Queue } from '../../model/queue';
+import { Component, OnInit ,OnDestroy } from '@angular/core';
+import { ItemQueue } from '../../model/shiurim';
 import { QueueService } from '../../service/queue.service';
+import { PlayerService } from '../../service/player.service';
+
+import { Subscription } from 'rxjs/Subscription';
+ 
+
 
 @Component({
   selector: 'app-queue',
   templateUrl: './queue.component.html',
   styleUrls: ['./queue.component.css'],
-  providers: [QueueService]
+  providers:[PlayerService]
 })
-export class QueueComponent implements OnInit {
+export class QueueComponent implements OnInit,OnDestroy {
 
-  queues:Array<Queue>;
-  
-  constructor(private queueService:QueueService) {
+  queues:Array<ItemQueue>;
 
-
-       this.queues=[];
-      //mock
-      var p1=new Queue();
-      p1.date=new Date();
-      p1.description="Queue Description 1";
-      p1.time=70;
-      p1.title="Queue Title 1";
-      p1.language="EN";
-      p1.author="Rabbi Eli Mansour";
-
-     var p2=new Queue();
-      p2.date=new Date();
-      p2.description="Queue Description 2";
-      p2.time=90;
-      p2.title="Queue Title 2";
-      p2.language="HB";
-      p2.author="Rabbi Eli Mansour";
-
-      this.queues.push(p1);
-      this.queues.push(p2);
-
+  constructor(private queueService:QueueService,private playerService:PlayerService) {
+    this.queues=[];
+    this.queueService.getLogged().subscribe(item => {
+         this.Add(item)
+    });
    }
 
   ngOnInit() {
     //this.Read();
+ 
   }
 
   Read() {
-       this.queueService.read().subscribe(
+       
+       this.queueService.read(this.queueService.getToken()).subscribe(
            result=>this.queues = result
        )
 
-   }
+  }
 
+  ngOnDestroy() {
+        // unsubscribe to ensure no memory leaks
+       
+  }
+
+  Add(item:ItemQueue)
+  {    
+    if(this.queues.filter(function (s) {
+                 return s.id==item.id;
+               }).length==0)
+    this.queues.push(item)
+  }
+
+  Remove(id:string)
+  {
+     for (var index = 0; index < this.queues.length; index++) {
+          if(this.queues[index].id==id)
+          this.queues.splice(index,1)
+     }
+  }
+
+  Play(title:string,media:string)
+  {     
+        if(media.indexOf(".mp3")<0)
+       this.playerService.Play(title,media,false)
+       else
+       this.playerService.Play(title,media,true)
+  }
 }
+

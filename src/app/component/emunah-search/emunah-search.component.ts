@@ -1,7 +1,8 @@
 import { Component, OnInit,Renderer2,OnChanges,Input ,NgZone} from '@angular/core';
 import { EmunahService } from '../../service/emunah.service';
 import { PlayerService } from '../../service/player.service';
-import { Shiurim } from '../../model/shiurim';
+import { QueueService } from '../../service/queue.service';
+import { Shiurim,ItemQueue } from '../../model/shiurim';
 import { Page } from '../../model/page';
 declare var $:any; 
 @Component({
@@ -22,13 +23,14 @@ export class EmunahSearchComponent implements OnInit,OnChanges {
   allPages:number;
   iteration:number;
 
+  valor:string=""
 
   
    @Input()
    accion:string="";
    rendering:boolean=false;
 
-  constructor(private emunahService:EmunahService,private playerService:PlayerService,private renderer:Renderer2,private ngZone:NgZone)
+  constructor(private emunahService:EmunahService,private playerService:PlayerService,private renderer:Renderer2,private ngZone:NgZone,private queueService:QueueService)
   {
       this.allShiriums=[];
       this.shiriums=[];
@@ -199,15 +201,36 @@ Search()
           $('#ballon').html($('#item-content-4').html());
           $('#ballon .search-field').val(query)
 
-
-            $('#ballon form').submit(function (e) {
+          $('#ballon form').submit(function (e) {
                  e.preventDefault();
                  self.ngZone.run(() => {
                     self.Search();
                  })
                  
-              })
+          })
+ 
+          $('#ballon .link-add').click(function(){ //add to my list
 
+               var id=$(this).attr('id');
+               
+               var  myShirium=new Shiurim();
+               myShirium=self.shiriums.filter(function (s) {
+               return s.id==id;
+              })[0];
+     
+              var item=new ItemQueue();
+              item.id=myShirium.id;
+              item.title=myShirium.title;
+              item.dateRecorded=myShirium.dateRecorded;
+              item.length=myShirium.length;
+              item.language=myShirium.language;
+              item.audio=myShirium.audio;
+              item.video=myShirium.video;
+              item.speakerName="Rabbi Eli J Mansour";
+              
+              self.queueService.setLogged(item);       
+
+          })
 
        },500)
   }

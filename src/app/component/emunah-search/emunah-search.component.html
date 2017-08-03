@@ -37,7 +37,7 @@
 				
 				<div class="lists-body">
 					<ul class="tracks">
-						<li class="track" *ngFor="let s of shiriums">
+						<li class="track" *ngFor="let s of shiriums;">
 								<!--<a href="#" class="link-play-secondary"></a>-->
 								
 								<div class="track-content" style="padding-left: 0.6em">
@@ -55,11 +55,11 @@
 								
 								<div class="track-actions">
 									
-                                        <a href="#" class="link-mic" *ngIf="s?.video!=''" data-type="media-emuna" id="{{s?.video}}" data-title="{{s.title}}">
+                                        <a href="#/" class="link-mic" *ngIf="s?.video!=''" data-type="media-emuna" id="{{s?.video}}" data-title="{{s.title}}">
 											<i class="ico-camera"></i>
 										</a>
 
-										<a href="#" class="link-mic" *ngIf="s?.audio!=''" data-type="media-emuna" id="{{s?.audio}}" data-title="{{s.title}}">
+										<a href="#/" class="link-mic" *ngIf="s?.audio!=''" data-type="media-emuna" id="{{s?.audio}}" data-title="{{s.title}}">
 											<i class="ico-mic"></i>
 										</a>
 
@@ -67,7 +67,7 @@
 										<i class="ico-download"></i>
 									</a>
 									
-									<a href="#" class="link-add" title="Add to My List">
+									<a href="#/" class="link-add" title="Add to My List" id="{{s.id}}">
 										<i class="ico-plus-thick"></i>
 									</a>
 								</div><!-- /.track-actions -->

@@ -82,4 +82,6 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
   {
     $('.nav-access > li > .dropdown-signin').hide().removeClass('shown')
   }
+
+ 
 }

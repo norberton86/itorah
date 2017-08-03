@@ -23,6 +23,12 @@ export class EmunahService extends Service{
         return this.http.get(this.ruta+"Shiurim?SpeakerID=28").map(
             (response) => {
                 let body = response.json();
+
+                for(var i=0;i<body.length;i++)
+                {
+                   body[i].id=i;
+                }
+
                 return body;
             }
         )

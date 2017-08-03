@@ -46,13 +46,16 @@
 			<div class="lists">
 				<div class="lists-head">
 					<div class="lists-head-inner">
-						<p *ngIf="query_main!=''">"{{query_main}}" results</p>
+						
 						
 						<div class="select">
 							<select name="field-search-class" id="field-search-class" [(ngModel)]="selectedClass">
 								<option *ngFor="let c of classes" [ngValue]="c">{{c}}</option>
 							</select><!-- /.form-row -->
 						</div><!-- /.select -->
+
+						<p *ngIf="query_main!=''">"{{query_main}}" results</p>
+
 					</div><!-- /.lists-head-inner -->
 				</div><!-- /.lists-head -->
 				
@@ -79,15 +82,15 @@
 							</div><!-- /.track-content -->
 							
 							<div class="track-actions">
-								<a href="#" class="link-mic" data-type="media" id="{{h?.audio}}" data-title="{{h.title}}">
+								<a href="#/" class="link-mic" data-type="media" id="{{h?.audio}}" data-title="{{h.title}}">
 										<i class="ico-mic"></i>
 								</a>
 
-								<a href="#" class="link-download" download title="Download" attr.media="{{h.audio}}">
+								<a href="#/" class="link-download" download title="Download" attr.media="{{h.audio}}">
 									<i class="ico-download"></i>
 								</a>
 								
-								<a href="#" class="link-add" title="Add to My List">
+								<a href="#/" class="link-add" title="Add to My List">
 									<i class="ico-plus-thick"></i>
 								</a>
 							</div><!-- /.track-actions -->

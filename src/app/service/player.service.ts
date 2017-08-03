@@ -101,7 +101,7 @@ export class PlayerService {
 
      
       $('.alert-info').css('background-color', 'white'); //change background-color to white 
-   
+      $('.alert-info').css('text-align', 'center');
 
    }
 

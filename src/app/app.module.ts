@@ -28,6 +28,8 @@ import { LanguagePipe } from './pipe/language.pipe';
 import { TimePipe } from './pipe/time.pipe';
 import { FilterForPipe } from './pipe/filter-for.pipe';
 import {QueueService} from './service/queue.service'
+import {DndModule} from 'ng2-dnd';
+
 
 let providers = {
     "google": {
@@ -69,7 +71,8 @@ let providers = {
     BrowserModule,
      HttpModule,
      FormsModule,
-     Angular2SocialLoginModule
+     Angular2SocialLoginModule,
+    DndModule.forRoot()
   ],
   providers: [QueueService],
   bootstrap: [AppComponent]

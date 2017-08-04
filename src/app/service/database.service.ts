@@ -34,11 +34,11 @@ export class DatabaseService {
 
   }
 
-  ClearAll() {
+  /*ClearAll() {
     this.Speaker.all().destroyAll(function () {
       persistence.flush(function (a) { })
     })
-  }
+  }*/
 
 
 
@@ -60,10 +60,10 @@ export class DatabaseService {
     });
   }
 
-  getSpeakerEntity(id:string):any
+  /*getSpeakerEntity(id:string):any
   {
     return this.Speaker
-  }
+  }*/
 
   getMySelf()
   {

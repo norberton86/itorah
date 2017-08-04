@@ -1,5 +1,5 @@
 <ul class="list-updates" dnd-sortable-container [sortableData]="queues">
-<li *ngFor="let s of queues;let i = index" dnd-sortable [sortableIndex]="i">
+<li *ngFor="let s of queues;let i = index" dnd-sortable [sortableIndex]="i" dnd-droppable (onDropSuccess)="Moved()">
 	<!--<a href="#" class="link-play-secondary"></a>-->
 
 	<h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
@@ -16,7 +16,7 @@
 			<i class="ico-camera"></i>
         </a>
 
-		<a href="#/" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}" (click)="Play(s.title,s.video)">
+		<a href="#/" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}" (click)="Play(s.title,s.audio)">
 			<i class="ico-mic"></i>
 		</a>
 

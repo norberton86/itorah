@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone, OnChanges, Input } from '@angular/core';
 import { HokService } from '../../service/hok.service';
 import { PlayerService } from '../../service/player.service';
+import { QueueService } from '../../service/queue.service';
 import { Chumash } from '../../model/Hok/chumash';
 import { Parasha } from '../../model/Hok/parasha';
 
@@ -35,7 +36,7 @@ export class HokSearchComponent implements OnInit, OnChanges {
 
   query_main:string='';
 
-  constructor(private hokService: HokService, private playerService: PlayerService, private ngZone: NgZone) {
+  constructor(private hokService: HokService, private playerService: PlayerService, private ngZone: NgZone,private queueService:QueueService) {
     this.originalHoks=[];
     this.hoks = [];
     this.classes=[];
@@ -209,6 +210,17 @@ export class HokSearchComponent implements OnInit, OnChanges {
         e.preventDefault();
         self.Search();         
       })
+
+       $("#ballon .link-add").click(function(){
+                    var id=$(this).attr('id');
+               
+                   var  myShirium=new Hok();
+                   myShirium=self.hoks.filter(function (s) {
+                    return s.id==id;
+                   })[0];
+     
+                 self.queueService.setLogged(myShirium,"Rabbi Eli J Mansour");       
+        })
 
     }, 500)
 

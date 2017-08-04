@@ -8,6 +8,7 @@ import { SpeakerService } from '../../service/speaker.service';
 import { ShiurimService } from '../../service/shiurim.service';
 import { PlayerService } from '../../service/player.service';
 import { DatabaseService } from '../../service/database.service';
+import { QueueService } from '../../service/queue.service';
 
 import { Injectable, Renderer2,ElementRef } from '@angular/core'
 
@@ -86,7 +87,7 @@ export class SpeakerComponent implements OnInit ,OnChanges{
    accion:string="";
    rendering:boolean=false;
 
-  constructor( private renderer:Renderer2,private speakerService:SpeakerService,private shiurimService:ShiurimService,private elementRef: ElementRef,private ngZone:NgZone,private playerService:PlayerService,private databaseService:DatabaseService) {
+  constructor( private renderer:Renderer2,private speakerService:SpeakerService,private shiurimService:ShiurimService,private elementRef: ElementRef,private ngZone:NgZone,private playerService:PlayerService,private databaseService:DatabaseService,private queueService:QueueService) {
       this.allSpeakers=[];
       this.speaker=new Speaker();
       this.currentSpeakers=[];
@@ -742,6 +743,17 @@ export class SpeakerComponent implements OnInit ,OnChanges{
                     self.Search();
                  })
                  
+              })
+
+              $("#ballon .link-add").click(function(){
+                    var id=$(this).attr('id');
+               
+                   var  myShirium=new Shiurim();
+                   myShirium=self.shiriums.filter(function (s) {
+                    return s.id==id;
+                   })[0];
+     
+                 self.queueService.setLogged(myShirium,self.speaker.firstName+" "+self.speaker.lastName);       
               })
 
         self.BackgroundSlide(self.speaker.id.toString())

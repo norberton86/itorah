@@ -218,17 +218,7 @@ Search()
                return s.id==id;
               })[0];
      
-              var item=new ItemQueue();
-              item.id=myShirium.id;
-              item.title=myShirium.title;
-              item.dateRecorded=myShirium.dateRecorded;
-              item.length=myShirium.length;
-              item.language=myShirium.language;
-              item.audio=myShirium.audio;
-              item.video=myShirium.video;
-              item.speakerName="Rabbi Eli J Mansour";
-              
-              self.queueService.setLogged(item);       
+              self.queueService.setLogged(myShirium,"Rabbi Eli J Mansour");       
 
           })
 

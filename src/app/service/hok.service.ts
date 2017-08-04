@@ -58,7 +58,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/2.mp3",
     "video": "",
     "dayWeek":"Sunday",
-    "myClass":"Class"
+    "myClass":"Class",
+    "id":"1"
   },
   {
     "title": "The Root Cause of Hurban",
@@ -68,7 +69,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/3.mp3",
     "video": "",
     "dayWeek":"Monday",
-    "myClass":"Additional"
+    "myClass":"Additional",
+    "id":"2"
   },
   {
     "title": "Tomer Devorah Summer 2017 Part 1",
@@ -78,7 +80,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/3.mp3",
     "video": "",
     "dayWeek":"Tuesday",
-    "myClass":"Class"
+    "myClass":"Class",
+    "id":"3"
   },
   {
     "title": "Tomer Devorah Summer 2017 Part 2",
@@ -88,7 +91,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/3.mp3",
     "video": "",
     "dayWeek":"Wednesday",
-    "myClass":"Additional"
+    "myClass":"Additional",
+    "id":"4"
   },
   {
     "title": "The Missing Letter / 21 Days",
@@ -98,7 +102,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/3.mp3",
     "video": "",
     "dayWeek":"Thursday",
-    "myClass":"Class"
+    "myClass":"Class",
+    "id":"5"
   },
   {
     "title": "Vayaamod Pinhas / Challenges",
@@ -108,7 +113,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/3.mp3",
     "video": "",
     "dayWeek":"Friday",
-    "myClass":"Additional"
+    "myClass":"Additional",
+    "id":"6"
   },
   {
     "title": "Perush Rashi on Parashat Korah",
@@ -118,7 +124,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/3.mp3",
     "video": "",
     "dayWeek":"Saturday",
-    "myClass":"Class"
+    "myClass":"Class",
+    "id":"7"
   }]);
             else
             observer.next([{
@@ -129,7 +136,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/4.mp3",
     "video": "",
     "dayWeek":"Sunday",
-    "myClass":"Rashi"
+    "myClass":"Rashi",
+    "id":"1"
   },
   {
     "title": "Word Power",
@@ -139,7 +147,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
     "video": "",
     "dayWeek":"Monday",
-    "myClass":"Class"
+    "myClass":"Class",
+    "id":"2"
   },
   {
     "title": "Perush Rashi on Parashat Hukat",
@@ -149,7 +158,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
     "video": "",
     "dayWeek":"Tuesday",
-    "myClass":"Rashi"
+    "myClass":"Rashi",
+    "id":"3"
   },
   {
     "title": "The Aderet / Jewish Home",
@@ -159,7 +169,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
     "video": "http://media.learntorah.com/LT-Video/mp4:LBM227.mp4/playlist.m3u8",
     "dayWeek":"Wednesday",
-    "myClass":"Class"
+    "myClass":"Class",
+    "id":"4"
   },
   {
     "title": "Jewish Home Part 2",
@@ -169,7 +180,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
     "video": "",
     "dayWeek":"Thursday",
-    "myClass":"Rashi"
+    "myClass":"Rashi",
+    "id":"5"
   },
   {
     "title": "The 10 Coverings / Emunah",
@@ -179,7 +191,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
     "video": "",
     "dayWeek":"Friday",
-    "myClass":"Class"
+    "myClass":"Class",
+    "id":"6"
   },
   {
     "title": "The Well Of Miriam",
@@ -189,7 +202,8 @@ export class HokService extends Service{
     "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
     "video": "",
     "dayWeek":"Saturday",
-    "myClass":"Rashi"
+    "myClass":"Rashi",
+    "id":"7"
   }]);
            
         

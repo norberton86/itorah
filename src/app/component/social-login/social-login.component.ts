@@ -1,5 +1,6 @@
 import { Component, OnInit,OnDestroy,NgZone } from '@angular/core';
 import { AuthService } from "angular2-social-login";
+import { QueueService } from '../../service/queue.service';
 
 declare var $:any; 
 
@@ -18,14 +19,16 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
   
   sub: any;
 
-  constructor(public _auth: AuthService,private ngZone:NgZone){ }
+  constructor(public _auth: AuthService,private ngZone:NgZone,private queueService:QueueService){ }
   
   SignIn(provider){
     this.sub = this._auth.login(provider).subscribe(
       (data:any) => {
 
         localStorage.setItem('userItorah',JSON.stringify({name:data.name,email:data.email,token:data.token,provider:data.provider}))
+        this.queueService.setClean();
         this.RefreshView();
+        
       }
     )
   }

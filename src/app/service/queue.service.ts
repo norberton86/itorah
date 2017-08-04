@@ -14,6 +14,7 @@ import { Subject } from 'rxjs/Subject';
 export class QueueService extends Service {
 
   private subject: Subject<ItemQueue> = new Subject<ItemQueue>();
+  private subjectClean: Subject<string> = new Subject<string>();
 
   constructor(http: Http) {
     super(http);
@@ -56,6 +57,15 @@ export class QueueService extends Service {
 
   getLogged(): Observable<ItemQueue> {
     return this.subject.asObservable();
+  }
+
+  getClean():Observable<String>
+  {
+    return this.subjectClean.asObservable();
+  }
+
+   setClean(): void {
+    this.subjectClean.next("Clean");
   }
 
 

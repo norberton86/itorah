@@ -19,9 +19,57 @@ export class QueueComponent implements OnInit,OnDestroy {
   cursor:string="-webkit-grab"
 
   constructor(private queueService:QueueService,private playerService:PlayerService) {
-    this.queues=[];
+    this.queues=[{
+    "title": "The Transition / Bene Gad",
+    "dateRecorded": new Date(),
+    "length": "60:0         ",
+    "language": "English",
+    "audio": "http://peleyoetz.com/PeleYoetz/4.mp3",
+    "video": "",
+    "id":"1",
+     "wowzaVideoUrl":"",
+    "speakerName":"Rabbi Eli J Mansour"
+  },
+  {
+    "title": "Word Power",
+    "dateRecorded": new Date(),
+    "length": "60:0         ",
+    "language": "English",
+    "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
+    "video": "",
+    "id":"2",
+    "wowzaVideoUrl":"",
+    "speakerName":"Rabbi Eli J Mansour"
+  },
+  {
+    "title": "Perush Rashi on Parashat Hukat",
+    "dateRecorded":  new Date(),
+    "length": "60:0         ",
+    "language": "English",
+    "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
+    "video": "",
+    "id":"3",
+    "wowzaVideoUrl":"",
+    "speakerName":"Rabbi Eli J Mansour"
+  },
+  {
+    "title": "The Aderet / Jewish Home",
+    "dateRecorded":  new Date(),
+    "length": "60:0         ",
+    "language": "English",
+    "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
+    "video": "http://media.learntorah.com/LT-Video/mp4:LBM227.mp4/playlist.m3u8",
+    "id":"4",
+    "speakerName":"Rabbi Eli J Mansour",
+    "wowzaVideoUrl":"",
+  }];
+
     this.queueService.getLogged().subscribe(item => {
          this.Add(item)
+    });
+
+    this.queueService.getClean().subscribe(item => {
+         this.queues=[];
     });
    }
 
@@ -71,5 +119,6 @@ export class QueueComponent implements OnInit,OnDestroy {
   {
   
   }
+
 }
 

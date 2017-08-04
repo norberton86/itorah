@@ -1,6 +1,6 @@
 <ul class="list-updates" dnd-sortable-container [sortableData]="queues">
-<li *ngFor="let s of queues;let i = index" dnd-sortable [sortableIndex]="i" dnd-droppable (onDropSuccess)="Moved()">
-	<!--<a href="#" class="link-play-secondary"></a>-->
+<li *ngFor="let s of queues;let i = index" dnd-sortable [sortableIndex]="i" dnd-droppable (onDropSuccess)="Moved()" [style.cursor]="cursor">
+	<!--<a href="#" class="link-play-secondary"></a>--> 
 
 	<h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
 

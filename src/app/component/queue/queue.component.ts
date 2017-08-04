@@ -5,7 +5,7 @@ import { PlayerService } from '../../service/player.service';
 
 import { Subscription } from 'rxjs/Subscription';
  
-
+declare var $: any;
 
 @Component({
   selector: 'app-queue',
@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class QueueComponent implements OnInit,OnDestroy {
 
   queues:Array<ItemQueue>;
+  cursor:string="-webkit-grab"
 
   constructor(private queueService:QueueService,private playerService:PlayerService) {
     this.queues=[];
@@ -26,7 +27,7 @@ export class QueueComponent implements OnInit,OnDestroy {
 
   ngOnInit() {
     //this.Read();
- 
+    this.cursor="-webkit-grab"
   }
 
   Read() {
@@ -68,7 +69,7 @@ export class QueueComponent implements OnInit,OnDestroy {
 
   Moved()
   {
-    
+  
   }
 }
 

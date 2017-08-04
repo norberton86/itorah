@@ -1,73 +1,64 @@
 import { Injectable } from '@angular/core';
-declare var persistence: any;
+declare var localStorageDB:any; 
 
 
 @Injectable()
 export class DatabaseService {
 
-  Speaker: any;
+  lib:any
 
   constructor() {
 
-    persistence.store.websql.config(persistence, "itorah", 'database', 5 * 1024 * 1024);
+    this.lib = new localStorageDB("itorah", localStorage);
 
-    this.Speaker = persistence.define('Speaker', {
-      speakerId: "TEXT",
-      data: "JSON",
-    });
+// Check if the database was just created. Useful for initial database setup
+   if( this.lib.isNew() ) {
 
-    persistence.schemaSync();
+    // create the "books" table
+	 this.lib.createTable("lectures", ["speakerId", "data"]);
+
+	 this.lib.commit();
+  }
 
   }
 
 
-  Add(id: string, data: any) {
+  Add(id: string, _data: any) {
 
-    var speaker = new this.Speaker();
-    speaker.speakerId = id;
-    speaker.data = data
-
-    persistence.add(speaker);
-    persistence.flush(function (tx) {
-      console.log(tx)
-    });
-
+   this.lib.insert("lectures", {speakerId: id, data: _data});
+   this.lib.commit();
   }
 
-  /*ClearAll() {
-    this.Speaker.all().destroyAll(function () {
-      persistence.flush(function (a) { })
-    })
-  }*/
-
-
-
-  Manage(id: string, data: any) {
-    let self=this;
+  Manage(id: string, _data: any) {
+  
     
-    this.Speaker.findBy(persistence, null, 'speakerId', id, function (user) {
-      if (user) {
-         user.data = data;
-         persistence.flush(function (tx) {
+
+      var result=  this.lib.queryAll("lectures", {query: {speakerId: id}});
+
+    
+      if (result.length>0) {  //if user exists
+         
+        this.lib.update("lectures", {speakerId: id}, function(row) {  //update data
+	       row.data = _data;
          });
-         console.log('actualizar...')
+
+        this.lib.commit();
+        console.log('updating...')
       }
-      else
+      else  //add
       {
-       self.Add(id,data);
-       console.log('agregar...')
+       this.Add(id,_data);  
+       console.log('adding...')
       }
-    });
+    
   }
 
-  /*getSpeakerEntity(id:string):any
-  {
-    return this.Speaker
-  }*/
 
-  getMySelf()
+  getSpeakerbyId(id:string):any
   {
-    return persistence;
+     return this.lib.queryAll("lectures", {query: {speakerId: id}});
   }
+
+ 
 
 }

@@ -620,16 +620,16 @@ export class SpeakerComponent implements OnInit ,OnChanges{
             return s.id==id;
          })[0].totalShiurim;    //get the totalshirium by speaker
 
-       this.databaseService.Speaker.findBy(self.databaseService.getMySelf(), null, 'speakerId',id.toString(), function (user) {
-                    if (user && user.data.length==totalShiurim)  //if user exist and the amount of shirium is equal  
-                    {
-                        self.FillShirium(user.data); //use the local backup
-                    }
-                    else //in other case
-                    {
-                        self.ReadLectures(id); //call the webservice 
-                    }
-        });
+          var user= this.databaseService.getSpeakerbyId( id.toString())
+          if (user.length>0 && user[0].data.length==totalShiurim)  //if user exist and the amount of shirium is equal  
+          {
+              self.FillShirium(user[0].data); //use the local backup
+          }
+          else //in other case
+          {
+              self.ReadLectures(id); //call the webservice 
+          }
+        
        
   }
 

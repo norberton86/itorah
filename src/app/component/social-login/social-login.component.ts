@@ -26,7 +26,7 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
       (data:any) => {
 
         localStorage.setItem('userItorah',JSON.stringify({name:data.name,email:data.email,token:data.token,provider:data.provider}))
-        this.queueService.setClean();
+        this.queueService.setLogin("Signed");
         this.RefreshView();
         
       }
@@ -40,6 +40,7 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
            if(data)
            {
              localStorage.removeItem('userItorah');
+             this.queueService.setLogin("LogOut");
              this.RefreshView();
            }
       }

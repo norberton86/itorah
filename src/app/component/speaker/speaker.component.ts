@@ -753,7 +753,7 @@ export class SpeakerComponent implements OnInit ,OnChanges{
                     return s.id==id;
                    })[0];
      
-                 self.queueService.setLogged(myShirium,self.speaker.firstName+" "+self.speaker.lastName);       
+                 self.queueService.setItem(myShirium,self.speaker.firstName+" "+self.speaker.lastName);       
               })
 
         self.BackgroundSlide(self.speaker.id.toString())

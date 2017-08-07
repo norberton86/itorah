@@ -19,6 +19,22 @@ export class QueueComponent implements OnInit,OnDestroy {
   cursor:string="-webkit-grab"
 
   constructor(private queueService:QueueService,private playerService:PlayerService) {
+    this.FillData();
+
+    this.queueService.getItem().subscribe(item => {
+         this.Add(item)
+    });
+
+    this.queueService.getLogin().subscribe(item => {
+         if(item =="Signed")
+         this.queues=[];
+         else
+         this.FillData()
+    });
+   }
+
+  FillData()
+  {
     this.queues=[{
     "title": "The Transition / Bene Gad",
     "dateRecorded": new Date(),
@@ -63,15 +79,7 @@ export class QueueComponent implements OnInit,OnDestroy {
     "speakerName":"Rabbi Eli J Mansour",
     "wowzaVideoUrl":"",
   }];
-
-    this.queueService.getLogged().subscribe(item => {
-         this.Add(item)
-    });
-
-    this.queueService.getClean().subscribe(item => {
-         this.queues=[];
-    });
-   }
+  }
 
   ngOnInit() {
     //this.Read();

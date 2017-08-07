@@ -40,7 +40,7 @@ export class QueueService extends Service {
   }
 
 
-  setLogged(myShirium: Shiurim, speakerName: string): void {
+  setItem(myShirium: Shiurim, speakerName: string): void {
 
     var item = new ItemQueue();
     item.id = myShirium.id;
@@ -55,17 +55,17 @@ export class QueueService extends Service {
     this.subject.next(item);
   }
 
-  getLogged(): Observable<ItemQueue> {
+  getItem(): Observable<ItemQueue> {
     return this.subject.asObservable();
   }
 
-  getClean():Observable<String>
+  getLogin():Observable<String>
   {
     return this.subjectClean.asObservable();
   }
 
-   setClean(): void {
-    this.subjectClean.next("Clean");
+   setLogin(action:string): void {
+    this.subjectClean.next(action);
   }
 
 

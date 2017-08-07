@@ -29,6 +29,7 @@ import { TimePipe } from './pipe/time.pipe';
 import { FilterForPipe } from './pipe/filter-for.pipe';
 import {QueueService} from './service/queue.service'
 import {DndModule} from 'ng2-dnd';
+import {ShareButtonsModule} from 'ngx-sharebuttons';
 
 
 let providers = {
@@ -72,7 +73,8 @@ let providers = {
      HttpModule,
      FormsModule,
      Angular2SocialLoginModule,
-    DndModule.forRoot()
+     DndModule.forRoot(),
+     ShareButtonsModule.forRoot()
   ],
   providers: [QueueService],
   bootstrap: [AppComponent]

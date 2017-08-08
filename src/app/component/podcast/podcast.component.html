@@ -1,21 +1,19 @@
+<li *ngFor="let p of podcast">
+	<a href="#/" class="link-play-secondary" (click)="Play(p.name,p.url)"></a>
 
-											<li *ngFor="let p of podcast">
-												<a href="#" class="link-play-secondary"></a>
-												
-												<h6>Episode {{p.episode}}: {{p.name}}  {{p.date| date: 'MM/dd/yyyy'}}</h6>
-												
-												<p>{{p.description}} </p>
-												
-												<p>
-													<a href="#">
-														Download
-													</a>
-													
-													<a href="#">
-														Share
-													</a>
-												</p>
-											</li>
-											
-										
-								
+	<h6>Episode {{p.episode}}: {{p.name}} {{p.date| date: 'MM/dd/yyyy'}}</h6>
+
+	<p>{{p.description}} </p>
+
+	<p>
+		<a href="{{p.url}}" class="link-download" download title="Download">
+	    	<i class="ico-download"></i>
+		</a>
+
+		<!--<a href="#">
+			Share
+		</a>-->
+		<share-buttons [url]='p.url' [linkedIn]="false" [stumbleUpOn]="false" [reddit]="false" [tumblr]="false" [pinterest]="false" [whatsApp]="false">
+		</share-buttons>
+	</p>
+</li>

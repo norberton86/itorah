@@ -28,6 +28,7 @@ import { LanguagePipe } from './pipe/language.pipe';
 import { TimePipe } from './pipe/time.pipe';
 import { FilterForPipe } from './pipe/filter-for.pipe';
 import {QueueService} from './service/queue.service'
+import {PodcastService} from './service/podcast.service'
 import {DndModule} from 'ng2-dnd';
 import {ShareButtonsModule} from 'ngx-sharebuttons';
 
@@ -76,7 +77,7 @@ let providers = {
      DndModule.forRoot(),
      ShareButtonsModule.forRoot()
   ],
-  providers: [QueueService],
+  providers: [QueueService,PodcastService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

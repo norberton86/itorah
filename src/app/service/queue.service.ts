@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Shiurim, ItemQueue } from '../model/shiurim';
-import { Service } from '../model/service';
+import { ServiceLogin } from '../model/service';
 
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -11,17 +11,52 @@ import { Subject } from 'rxjs/Subject';
 
 
 @Injectable()
-export class QueueService extends Service {
+export class QueueService extends ServiceLogin {
 
   private subject: Subject<ItemQueue> = new Subject<ItemQueue>();
-  private subjectClean: Subject<string> = new Subject<string>();
+
 
   constructor(http: Http) {
     super(http);
 
   }
 
-  public read(token: string): Observable<ItemQueue[]> {
+
+  read(token: string): Observable<ItemQueue[]> {
+
+    return Observable.create(observer => {
+
+      var data = [{
+        "title": "The Transition / Bene Gad",
+        "dateRecorded": new Date(),
+        "length": "60:0         ",
+        "language": "English",
+        "audio": "http://peleyoetz.com/PeleYoetz/4.mp3",
+        "video": "",
+        "id": "1",
+        "wowzaVideoUrl": "",
+        "speakerName": "Rabbi Eli J Mansour"
+      },
+      {
+        "title": "Word Power",
+        "dateRecorded": new Date(),
+        "length": "60:0         ",
+        "language": "English",
+        "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
+        "video": "",
+        "id": "2",
+        "wowzaVideoUrl": "",
+        "speakerName": "Rabbi Eli J Mansour"
+      }]
+
+      observer.next(data);
+      observer.complete();
+    });
+
+  }
+
+
+  /*public read(token: string): Observable<ItemQueue[]> {
 
     return this.http.get(this.ruta + "/Read").map(
       (response) => {
@@ -29,16 +64,7 @@ export class QueueService extends Service {
         return body;
       }
     )
-  }
-
-  getToken(): string {
-    if (localStorage.getItem('userItorah') != null && localStorage.getItem('userItorah') != "") {
-      return JSON.parse(localStorage.getItem('userItorah')).token
-    }
-    else
-      return ""
-  }
-
+  }*/
 
   setItem(myShirium: Shiurim, speakerName: string): void {
 
@@ -58,15 +84,5 @@ export class QueueService extends Service {
   getItem(): Observable<ItemQueue> {
     return this.subject.asObservable();
   }
-
-  getLogin():Observable<String>
-  {
-    return this.subjectClean.asObservable();
-  }
-
-   setLogin(action:string): void {
-    this.subjectClean.next(action);
-  }
-
 
 }

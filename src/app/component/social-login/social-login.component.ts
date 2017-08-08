@@ -1,6 +1,7 @@
 import { Component, OnInit,OnDestroy,NgZone } from '@angular/core';
 import { AuthService } from "angular2-social-login";
 import { QueueService } from '../../service/queue.service';
+import { PodcastService } from '../../service/podcast.service';
 
 declare var $:any; 
 
@@ -19,7 +20,7 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
   
   sub: any;
 
-  constructor(public _auth: AuthService,private ngZone:NgZone,private queueService:QueueService){ }
+  constructor(public _auth: AuthService,private ngZone:NgZone,private queueService:QueueService,private podcastService:PodcastService){ }
   
   SignIn(provider){
     this.sub = this._auth.login(provider).subscribe(
@@ -27,6 +28,7 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
 
         localStorage.setItem('userItorah',JSON.stringify({name:data.name,email:data.email,token:data.token,provider:data.provider}))
         this.queueService.setLogin("Signed");
+        this.podcastService.setLogin("Signed");
         this.RefreshView();
         
       }
@@ -41,6 +43,7 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
            {
              localStorage.removeItem('userItorah');
              this.queueService.setLogin("LogOut");
+             this.podcastService.setLogin("LogOut");
              this.RefreshView();
            }
       }

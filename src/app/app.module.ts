@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { PodcastComponent } from './component/podcast/podcast.component';
@@ -31,6 +31,9 @@ import {QueueService} from './service/queue.service'
 import {PodcastService} from './service/podcast.service'
 import {DndModule} from 'ng2-dnd';
 import {ShareButtonsModule} from 'ngx-sharebuttons';
+import { SubscribeComponent } from './component/subscribe/subscribe.component';
+import {SubscribeService} from './service/subscribe.service'
+
 
 
 let providers = {
@@ -67,17 +70,18 @@ let providers = {
     PeleTitlePipe,
     LanguagePipe,
     TimePipe,
-    FilterForPipe
+    FilterForPipe,
+    SubscribeComponent
   ],
   imports: [
     BrowserModule,
      HttpModule,
-     FormsModule,
+     FormsModule,ReactiveFormsModule,
      Angular2SocialLoginModule,
      DndModule.forRoot(),
      ShareButtonsModule.forRoot()
   ],
-  providers: [QueueService,PodcastService],
+  providers: [QueueService,PodcastService,SubscribeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

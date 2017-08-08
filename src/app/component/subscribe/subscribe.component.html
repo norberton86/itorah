@@ -1,0 +1,190 @@
+<form [formGroup]="form">
+  <div class="dropdown-body">
+    <div class="dropdown-group">
+      <ul class="list-checkboxes">
+        <li>
+          <div class="checkbox">
+            <input type="checkbox" id="checkbox11" formControlName="checkBoxHalacha">
+
+            <label for="checkbox11">
+															<strong>Daily Halacha</strong>
+															
+															A concise Halacha in english emailed every day authored by Rabbi Eli Mansour
+														</label>
+          </div>
+          <!-- /.checkbox -->
+        </li>
+
+        <li>
+          <div class="checkbox">
+            <input type="checkbox" id="checkbox2" formControlName="checkBoxPerasha">
+
+            <label for="checkbox2">
+															<strong>Weekly Perasha</strong>
+															
+															Insight on the parsha emailed every Thursday 
+														</label>
+          </div>
+          <!-- /.checkbox -->
+        </li>
+
+        <li>
+          <div class="checkbox">
+            <input type="checkbox" id="checkbox3" formControlName="checkBoxEmunah">
+
+            <label for="checkbox3">
+															<strong>Daily Emunah</strong>
+															
+															Daily audio email authored by Rabbi David Ashear   
+														</label>
+          </div>
+          <!-- /.checkbox -->
+        </li>
+
+        <li>
+          <div class="checkbox">
+            <input type="checkbox" id="checkbox4" formControlName="checkBoxTehillim">
+
+            <label for="checkbox4">
+															<strong>Daily Tehillim Daily List</strong>
+															
+															Daily email updates from your own community
+														</label>
+          </div>
+          <!-- /.checkbox -->
+        </li>
+
+        <li>
+          <div class="checkbox">
+            <input type="checkbox" id="checkbox5" formControlName="checkBoxPrayers">
+
+            <label for="checkbox5">
+															<strong>Prayers and Tefilot</strong>
+															
+															Coming soon
+														</label>
+          </div>
+          <!-- /.checkbox -->
+        </li>
+      </ul>
+      <!-- /.list-checkboxes -->
+    </div>
+    <!-- /.dropdown-group -->
+
+    <div class="dropdown-group">
+      <div class="dropdown-group-inner">
+        <h4>Emergency Tehillim</h4>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae arcu id leo malesuada pulvinar.</p>
+      </div>
+      <!-- /.dropdown-group-inner -->
+
+      <ul class="list-checkboxes list-checkboxes-secondary">
+        <li>
+          <div class="checkbox">
+            <input type="checkbox" id="checkbox12" formControlName="checkBoxEmailTehillim">
+
+            <label for="checkbox12">
+															Notify by email
+														</label>
+          </div>
+          <!-- /.checkbox -->
+
+          <div class="checkbox-actions">
+            <span *ngIf="!EmailTehillimChecked()">Name@email.com</span>
+            <input type="email" formControlName="EmailTehillim" *ngIf="EmailTehillimChecked()">
+            <a href="#/" class="link-edit">
+															<i class="ico-pen-3"></i>
+														</a>
+          </div>
+          <!-- /.checkbox-actions -->
+        </li>
+
+        <li>
+          <div class="checkbox">
+            <input type="checkbox" id="checkbox13" formControlName="checkBoxSmsTehillim">
+
+            <label for="checkbox13">
+															Notify by text message
+														</label>
+          </div>
+          <!-- /.checkbox -->
+
+          <div class="checkbox-actions">
+            <span *ngIf="!SmsTehillimChecked()">(212)123-4567</span>
+            <input type="tel" formControlName="SmsTehillim" *ngIf="SmsTehillimChecked()">
+            <a href="#/" class="link-edit">
+															<i class="ico-pen-3"></i>
+														</a>
+          </div>
+          <!-- /.checkbox-actions -->
+        </li>
+      </ul>
+
+      <div class="dropdown-group-inner">
+        <h4>Funeral Announcements</h4>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae arcu id leo malesuada pulvinar.</p>
+      </div>
+      <!-- /.dropdown-group-inner -->
+
+      <ul class="list-checkboxes list-checkboxes-secondary">
+        <li>
+          <div class="checkbox">
+            <input type="checkbox" id="checkbox14" formControlName="checkBoxEmailFuneral">
+
+            <label for="checkbox14">
+															Notify by email
+														</label>
+          </div>
+          <!-- /.checkbox -->
+
+          <div class="checkbox-actions">
+            <span *ngIf="!EmailFuneralChecked()">Name@email.com</span>
+            <input type="email" formControlName="EmailFuneral" *ngIf="EmailFuneralChecked()">
+            <a href="#" class="link-edit">
+															<i class="ico-pen-3"></i>
+														</a>
+          </div>
+          <!-- /.checkbox-actions -->
+        </li>
+
+        <li>
+          <div class="checkbox">
+            <input type="checkbox" id="checkbox15" formControlName="checkBoxSmsFuneral">
+
+            <label for="checkbox15">
+															Notify by text message
+														</label>
+          </div>
+          <!-- /.checkbox -->
+
+          <div class="checkbox-actions">
+            <span *ngIf="!SmsFuneralChecked()">(212)123-4567</span>
+            <input type="tel" formControlName="SmsFuneral" *ngIf="SmsFuneralChecked()">
+            <a href="#" class="link-edit">
+															<i class="ico-pen-3"></i>
+														</a>
+          </div>
+          <!-- /.checkbox-actions -->
+        </li>
+      </ul>
+    </div>
+    <!-- /.dropdown-group -->
+  </div>
+  <!-- /.dropdown-body -->
+
+  <div class="dropdown-actions">
+    <ul class="nav-list">
+      <li>
+        <a class="link-cancel" href="#/" (click)="Cancel()">Cancel</a>
+      </li>
+
+      <li>
+        <a class="link-save" href="#/" (click)="Save()" [attr.disabled]="!form.valid">Save</a>
+      </li>
+    </ul>
+    <!-- /.nav-list -->
+  </div>
+  <!-- /.dropdown-actions -->
+</form>

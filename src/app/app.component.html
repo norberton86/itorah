@@ -1,241 +1,257 @@
- <div class="wrapper">
+<div class="wrapper">
 	<div class="container-wrap">
 		<header class="header">
 			<div class="shell">
 				<div class="header-inner">
 					<a href="#" class="logo">iTorah.com</a>
-					
+
 					<div class="header-content">
 						<ul class="nav-utilities">
 							<li>
 								<a class="link-play" href="#" data-tooltip="Automatically receive audio files every day of DailyHalacha, DailyGemara, DailyEmunah, and DailyTehillim via RSS Feed to your Podcast software (such as ITunes).">
 									<i class="ico-podcast"></i> <span>Podcast</span>
 								</a>
-								
+
 								<div class="dropdown item" [class.blur]="VerifyUser()">
 									<div class="dropdown-head">
 										<h4><i class="ico-podcast-2"></i> Podcast</h4>
-										
+
 										<ul class="nav-list">
 											<li>
 												<a href="#">Subscribe</a>
 											</li>
-											
+
 											<li>
 												<a href="#">Archive</a>
 											</li>
-										</ul><!-- /.nav-list -->
-									</div><!-- /.dropdown-head -->
-									
+										</ul>
+										<!-- /.nav-list -->
+									</div>
+									<!-- /.dropdown-head -->
+
 									<div class="dropdown-body">
 										<ul class="list-updates">
 											<app-podcast></app-podcast>
-										</ul><!-- /.list-updates -->
-									</div><!-- /.dropdown-body -->
-									
+										</ul>
+										<!-- /.list-updates -->
+									</div>
+									<!-- /.dropdown-body -->
+
 									<div class="dropdown-foot">
 										<a href="#">More Episodes</a>
-									</div><!-- /.dropdown-foot -->
- 									<div class="item-overlay top" *ngIf="VerifyUser()">
-										 <div class="form-signin" >
-											 <p>iTorah</p>
-											 <span >You must to be signed in to have access this feature</span>
-											 <input type="submit" value="SIGN IN" class="form-btn" >
-										 </div>
+									</div>
+									<!-- /.dropdown-foot -->
+									<div class="item-overlay top" *ngIf="VerifyUser()">
+										<div class="form-signin">
+											<p>iTorah</p>
+											<span>You must to be signed in to have access this feature</span>
+											<input type="submit" value="SIGN IN" class="form-btn">
+										</div>
 									</div>
 
-								</div><!-- /.dropdown -->
+								</div>
+								<!-- /.dropdown -->
 
-								
+
 							</li>
-							
+
 							<li>
 								<a href="#" data-tooltip="As you browse the available Shiurim on iTorah.com, simply add them to a list of classes to listen (or watch).  This list is called the QUEUE.  The shiur will remain on the lsit until after you have completed it.">
 									<i class="ico-queue"></i> <span>Queue</span>
 								</a>
-								
+
 								<div class="dropdown item" [class.blur]="VerifyUser()">
 									<div class="dropdown-head">
 										<h4><i class="ico-play-3"></i> Queue list</h4>
-										
+
 										<ul class="nav-list">
 											<li>
-												<!--<a href="#">Edit</a>--> <span>Drag and Drop</span>
+												<!--<a href="#">Edit</a>--><span>Drag and Drop</span>
 											</li>
-										</ul><!-- /.nav-list -->
-									</div><!-- /.dropdown-head -->
-									
-									<div class="dropdown-body">
-										
-											<app-queue></app-queue>
-										
-									</div><!-- /.dropdown-body -->
+										</ul>
+										<!-- /.nav-list -->
+									</div>
+									<!-- /.dropdown-head -->
 
-                                    <div class="item-overlay top"  *ngIf="VerifyUser()">
-										 <div class="form-signin" >
-											 <p>iTorah</p>
-											 <span >You must to be signed in to have access this feature</span>
-											 <input type="submit" value="SIGN IN" class="form-btn" >
-										 </div>
+									<div class="dropdown-body">
+
+										<app-queue></app-queue>
+
+									</div>
+									<!-- /.dropdown-body -->
+
+									<div class="item-overlay top" *ngIf="VerifyUser()">
+										<div class="form-signin">
+											<p>iTorah</p>
+											<span>You must to be signed in to have access this feature</span>
+											<input type="submit" value="SIGN IN" class="form-btn">
+										</div>
 									</div>
 
-								</div><!-- /.dropdown -->
+								</div>
+								<!-- /.dropdown -->
 							</li>
-							
+
 							<li>
 								<a href="#" data-tooltip="Automatically receive via email; Daily Halacha, DailyEmunah, DailyTehillim with its list of names to read for, and Levaya announcements.">
 									<i class="ico-subscribe"></i> <span>Subscribe</span>
 								</a>
-								
+
 								<div class="dropdown dropdown-subscription item" [class.blur]="VerifyUser()">
 									<div class="dropdown-head">
 										<h4><i class="ico-mail-dark"></i> <span>My Subscriptions</span></h4>
-									</div><!-- /.dropdown-head -->
-									
+									</div>
+									<!-- /.dropdown-head -->
+
 									<app-subscribe></app-subscribe>
-									<div class="item-overlay top"  *ngIf="VerifyUser()">
-										 <div class="form-signin" >
-											 <p>iTorah</p>
-											 <span >You must to be signed in to have access this feature</span>
-											 <input type="submit" value="SIGN IN" class="form-btn" >
-										 </div>
+									<div class="item-overlay top" *ngIf="VerifyUser()">
+										<div class="form-signin">
+											<p>iTorah</p>
+											<span>You must to be signed in to have access this feature</span>
+											<input type="submit" value="SIGN IN" class="form-btn">
+										</div>
 									</div>
 								</div>
-                         
-								
+
+
 							</li>
-							
+
 							<li>
 								<a href="#" data-tooltip="Sponsor a shiur for $180.00 and your dedication will always appear when someone listens or watches. Sponsoring a Shiur enables viewers to download the audio file for free.   You can also sponsor a day of Learning on iTorah for $180.00.">
 									<i class="ico-sponsors"></i> <span>Sponsors</span>
 								</a>
-								
-								<div class="dropdown" >
+
+								<div class="dropdown">
 									<div class="dropdown-head">
 										<h4><i class="ico-leaf"></i> Sponsors</h4>
-										
+
 										<ul class="nav-list">
 											<li>
 												<a class="link-blue" href="#">Become a sponsor</a>
 											</li>
-										</ul><!-- /.nav-list -->
-									</div><!-- /.dropdown-head -->
-									
+										</ul>
+										<!-- /.nav-list -->
+									</div>
+									<!-- /.dropdown-head -->
+
 									<div class="dropdown-body">
 										<ul class="list-updates">
 											<li>
 												<i class="ico-leaf"></i>
-												
+
 												<h6>Sponsor Name</h6>
-												
+
 												<p>Company description or tag line</p>
-												
+
 												<p>
 													<a href="#">www.Name.com</a>
 												</p>
 											</li>
-											
+
 											<li>
 												<i class="ico-leaf"></i>
-												
+
 												<h6>Sponsor Name</h6>
-												
+
 												<p>Company description or tag line</p>
-												
+
 												<p>
 													<a href="#">www.Name.com</a>
 												</p>
 											</li>
-											
+
 											<li>
 												<i class="ico-leaf"></i>
-												
+
 												<h6>Sponsor Name</h6>
-												
+
 												<p>Company description or tag line</p>
-												
+
 												<p>
 													<a href="#">www.Name.com</a>
 												</p>
 											</li>
-											
+
 											<li>
 												<i class="ico-leaf"></i>
-												
+
 												<h6>Sponsor Name</h6>
-												
+
 												<p>Company description or tag line</p>
-												
+
 												<p>
 													<a href="#">www.Name.com</a>
 												</p>
 											</li>
-											
+
 											<li>
 												<i class="ico-leaf"></i>
-												
+
 												<h6>Sponsor Name</h6>
-												
+
 												<p>Company description or tag line</p>
-												
+
 												<p>
 													<a href="#">www.Name.com</a>
 												</p>
 											</li>
-											
+
 											<li>
 												<i class="ico-leaf"></i>
-												
+
 												<h6>Sponsor Name</h6>
-												
+
 												<p>Company description or tag line</p>
-												
+
 												<p>
 													<a href="#">www.Name.com</a>
 												</p>
 											</li>
-											
+
 											<li>
 												<i class="ico-leaf"></i>
-												
+
 												<h6>Sponsor Name</h6>
-												
+
 												<p>Company description or tag line</p>
-												
+
 												<p>
 													<a href="#">www.Name.com</a>
 												</p>
 											</li>
-											
+
 											<li>
 												<i class="ico-leaf"></i>
-												
+
 												<h6>Sponsor Name</h6>
-												
+
 												<p>Company description or tag line</p>
-												
+
 												<p>
 													<a href="#">www.Name.com</a>
 												</p>
 											</li>
-										</ul><!-- /.list-updates -->
-									</div><!-- /.dropdown-body -->
+										</ul>
+										<!-- /.list-updates -->
+									</div>
+									<!-- /.dropdown-body -->
 								</div>
 							</li>
-							
+
 							<li>
 								<a class="link-donate" href="#donate" data-tooltip="General anonymous donation to iTorah and helping us cover our expenses associated with the recording all the classes and maintaining this web site.">
 									<i class="ico-donate"></i> <span>DONATE</span>
 								</a>
 							</li>
-							
+
 							<li>
 								<a href="#" data-tooltip="Dedications in honor, memory, or for Refuah of someone on iTorah.com. May the merit of all the learning stemming for iTorah.com be attributable to the beneficiary.">
 									<i class="ico-dedications"></i> <span>DEDICATIONS</span>
 								</a>
 							</li>
-						</ul><!-- /.nav-utilities -->
-						
+						</ul>
+						<!-- /.nav-utilities -->
+
 						<div class="select-box">
 							<select class="select">
 								<option value="" hidden selected>Browse</option>
@@ -244,11 +260,12 @@
 
 								<option value="">Option 2</option>
 							</select>
-						</div><!-- /.select-box -->
+						</div>
+						<!-- /.select-box -->
 
 						<div class="search">
 							<div class="search-inner">
-								<form action="?" method="get" >
+								<form action="?" method="get">
 									<div class="search-content">
 										<label for="q" class="hidden">Search</label>
 
@@ -257,22 +274,27 @@
 										<button type="submit" class="search-btn">
 											<i class="ico-magnifier"></i>
 										</button>
-									</div><!-- /.search-content -->
+									</div>
+									<!-- /.search-content -->
 								</form>
-							</div><!-- /.search-inner -->
-						</div><!-- /.search -->
-					</div><!-- /.header-content -->
+							</div>
+							<!-- /.search-inner -->
+						</div>
+						<!-- /.search -->
+					</div>
+					<!-- /.header-content -->
 
 					<aside class="header-aside">
 						<ul class="nav-access">
 							<li>
 								<a href="#" class="link" id="login-title">Sign In</a>
-								
+
 								<div class="dropdown dropdown-signin">
-								<app-social-login></app-social-login>
+									<app-social-login></app-social-login>
 								</div>
 							</li>
-						</ul><!-- /.nav-utilities -->
+						</ul>
+						<!-- /.nav-utilities -->
 
 						<a href="#" class="btn-menu">
 							<span>Menu</span>
@@ -281,8 +303,10 @@
 
 							<span>Menu</span>
 						</a>
-					</aside><!-- /.header-aside -->
-				</div><!-- /.header-inner -->
+					</aside>
+					<!-- /.header-aside -->
+				</div>
+				<!-- /.header-inner -->
 
 				<nav class="nav">
 					<div class="shell">
@@ -310,7 +334,7 @@
 							<li>
 								<a href="#">Take a Tour</a>
 							</li>
-							
+
 							<!--<li>
 								<a href="#">Donate/Sponsor</a>
 							</li>-->
@@ -319,321 +343,391 @@
 								<a href="#">Shop</a>
 							</li>
 						</ul>
-					</div><!-- /.shell -->
-				</nav><!-- /.nav -->
-			</div><!-- /.shell -->
-		</header><!-- /.header -->
+					</div>
+					<!-- /.shell -->
+				</nav>
+				<!-- /.nav -->
+			</div>
+			<!-- /.shell -->
+		</header>
+		<!-- /.header -->
 
 
-<i class="ico-ballon-arrow"></i>
+		<i class="ico-ballon-arrow"></i>
 
-<div class="main">
-	<div class="donate" id="donate">
-		<div class="donate-head">
-			<form action="?" method="get">
-				<label for="field-search-content">Donate: </label>
-				
-				<div class="select select-tertiary">
-					<select name="field-search-content" id="field-search-content">
-						<option value="">Select your credit card</option>
-					</select><!-- /.form-row -->
-				</div><!-- /.select -->
-				
-				<a href="#" class="link-close">
-					<i class="ico-close"></i>
-				</a>
-			</form>
-		</div><!-- /.donate-head -->
-		
-		<div class="donate-body">
-			<div class="cols">
-				<div class="col-1of3">
-					<div class="form-sponsor">
-						<form action="?" method="post">
-							<div class="form-head">
-								<h4>Sponsor a Day</h4>
-							</div><!-- /.form-head -->
-							
-							<div class="form-body">
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-sponsorship" id="field-sponsorship">
+		<div class="main">
+			<div class="donate" id="donate">
+				<div class="donate-head">
+					<form action="?" method="get">
+						<label for="field-search-content">Donate: </label>
+
+						<div class="select select-tertiary">
+							<select name="field-search-content" id="field-search-content">
+								<option value="">Select your credit card</option>
+							</select>
+							<!-- /.form-row -->
+						</div>
+						<!-- /.select -->
+
+						<a href="#" class="link-close">
+							<i class="ico-close"></i>
+						</a>
+					</form>
+				</div>
+				<!-- /.donate-head -->
+
+				<div class="donate-body">
+					<div class="cols">
+						<div class="col-1of3">
+							<div class="form-sponsor">
+								<form action="?" method="post">
+									<div class="form-head">
+										<h4>Sponsor a Day</h4>
+									</div>
+									<!-- /.form-head -->
+
+									<div class="form-body">
+										<div class="form-row">
+											<div class="select select-tertiary">
+												<select name="field-sponsorship" id="field-sponsorship">
 											<option value="">Select sponsorship</option>
 										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
-								
-								<div class="form-row">
-									<div class="form-controls">
-										<input type="text" class="field field-date" name="field-date" id="field-date" value="" placeholder="Date">
-										
-										<i class="ico-calendar"></i>
-									</div><!-- /.form-controls -->
-									
-									<p>
-										<a href="#">Add another day</a>
-									</p>
-								</div><!-- /.form-row -->
-								
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-sponsorship" id="field-sponsorship">
+											</div>
+											<!-- /.select -->
+										</div>
+										<!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field field-date" name="field-date" id="field-date" value="" placeholder="Date">
+
+												<i class="ico-calendar"></i>
+											</div>
+											<!-- /.form-controls -->
+
+											<p>
+												<a href="#">Add another day</a>
+											</p>
+										</div>
+										<!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="select select-tertiary">
+												<select name="field-sponsorship" id="field-sponsorship">
 											<option value="">Repeat</option>
 										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
-								
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-sponsorship" id="field-sponsorship">
+											</div>
+											<!-- /.select -->
+										</div>
+										<!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="select select-tertiary">
+												<select name="field-sponsorship" id="field-sponsorship">
 											<option value="">Sponsorship for</option>
 										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
-								
-								<div class="form-row">
-									<div class="form-controls">
-										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name">
-									</div><!-- /.form-controls -->
-								</div><!-- /.form-row -->
-							</div><!-- /.form-body -->
-							
-							<div class="form-actions">
-								<input type="submit" value="Process order" class="form-btn">
-							</div><!-- /.form-actions -->
-						</form>
-					</div><!-- /.form-sponsor -->
-				</div><!-- /.col-1of3 -->
-				
-				<div class="col-1of3">
-					<div class="form-sponsor">
-						<form action="?" method="post">
-							<div class="form-head">
-								<h4>Sponsor a Shiur</h4>
-							</div><!-- /.form-head -->
-							
-							<div class="form-body">
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-speaker" id="field-speaker">
+											</div>
+											<!-- /.select -->
+										</div>
+										<!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name">
+											</div>
+											<!-- /.form-controls -->
+										</div>
+										<!-- /.form-row -->
+									</div>
+									<!-- /.form-body -->
+
+									<div class="form-actions">
+										<input type="submit" value="Process order" class="form-btn">
+									</div>
+									<!-- /.form-actions -->
+								</form>
+							</div>
+							<!-- /.form-sponsor -->
+						</div>
+						<!-- /.col-1of3 -->
+
+						<div class="col-1of3">
+							<div class="form-sponsor">
+								<form action="?" method="post">
+									<div class="form-head">
+										<h4>Sponsor a Shiur</h4>
+									</div>
+									<!-- /.form-head -->
+
+									<div class="form-body">
+										<div class="form-row">
+											<div class="select select-tertiary">
+												<select name="field-speaker" id="field-speaker">
 											<option value="">Speaker</option>
 										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
-								
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-name-speaker" id="field-name-speaker">
+											</div>
+											<!-- /.select -->
+										</div>
+										<!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="select select-tertiary">
+												<select name="field-name-speaker" id="field-name-speaker">
 											<option value="">Rabbi Mansour</option>
 										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
-								
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-navi" id="field-navi">
+											</div>
+											<!-- /.select -->
+										</div>
+										<!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="select select-tertiary">
+												<select name="field-navi" id="field-navi">
 											<option value="">Navi</option>
 										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
-								
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-shemuel-2" id="field-shemuel-2">
+											</div>
+											<!-- /.select -->
+										</div>
+										<!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="select select-tertiary">
+												<select name="field-shemuel-2" id="field-shemuel-2">
 											<option value="">Shemuel 2</option>
 										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
+											</div>
+											<!-- /.select -->
+										</div>
+										<!-- /.form-row -->
 
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-transform" id="field-transform">
+										<div class="form-row">
+											<div class="select select-tertiary">
+												<select name="field-transform" id="field-transform">
 											<option value="">Transform your Shabbat</option>
 										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
-								
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-repeat" id="field-repeat">
+											</div>
+											<!-- /.select -->
+										</div>
+										<!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="select select-tertiary">
+												<select name="field-repeat" id="field-repeat">
 											<option value="">Repeat</option>
 										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
-								
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-sponsorship" id="field-sponsorship">
+											</div>
+											<!-- /.select -->
+										</div>
+										<!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="select select-tertiary">
+												<select name="field-sponsorship" id="field-sponsorship">
 											<option value="">Sponsorship for</option>
 										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
-								
-								<div class="form-row">
-									<div class="form-controls">
-										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name">
-									</div><!-- /.form-controls -->
-								</div><!-- /.form-row -->
-							</div><!-- /.form-body -->
-							
-							<div class="form-actions">
-								<input type="submit" value="Process order" class="form-btn">
-							</div><!-- /.form-actions -->
-						</form>
+											</div>
+											<!-- /.select -->
+										</div>
+										<!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name">
+											</div>
+											<!-- /.form-controls -->
+										</div>
+										<!-- /.form-row -->
+									</div>
+									<!-- /.form-body -->
+
+									<div class="form-actions">
+										<input type="submit" value="Process order" class="form-btn">
+									</div>
+									<!-- /.form-actions -->
+								</form>
+							</div>
+						</div>
+						<!-- /.col-1of3 -->
+
+						<div class="col-1of3">
+							<div class="form-sponsor">
+								<form action="?" method="post">
+									<div class="form-head">
+										<h4>General Donation</h4>
+									</div>
+									<!-- /.form-head -->
+
+									<div class="form-body">
+										<div class="form-row">
+											<ul class="list-checkboxes">
+												<li>
+													<div class="checkbox checkbox-secondary">
+														<input type="checkbox" name="field-5" id="field-5">
+
+														<label class="form__label" for="field-5">$5</label>
+													</div>
+													<!-- /.checkbox -->
+												</li>
+
+												<li>
+													<div class="checkbox checkbox-secondary">
+														<input type="checkbox" name="field-10" id="field-10">
+
+														<label class="form__label" for="field-10">$10</label>
+													</div>
+													<!-- /.checkbox -->
+												</li>
+
+												<li>
+													<div class="checkbox checkbox-secondary">
+														<input type="checkbox" name="field-15" id="field-15">
+
+														<label class="form__label" for="field-15">$15</label>
+													</div>
+													<!-- /.checkbox -->
+												</li>
+
+												<li>
+													<div class="checkbox checkbox-secondary">
+														<input type="checkbox" name="field-25" id="field-25">
+
+														<label class="form__label" for="field-25">$25</label>
+													</div>
+													<!-- /.checkbox -->
+												</li>
+
+												<li>
+													<div class="checkbox checkbox-secondary">
+														<input type="checkbox" name="field-50" id="field-50">
+
+														<label class="form__label" for="field-50">$50</label>
+													</div>
+													<!-- /.checkbox -->
+												</li>
+
+												<li>
+													<div class="checkbox checkbox-secondary">
+														<input type="checkbox" name="field-100" id="field-100">
+
+														<label class="form__label" for="field-100">$100</label>
+													</div>
+													<!-- /.checkbox -->
+												</li>
+
+												<li>
+													<div class="checkbox checkbox-secondary">
+														<input type="checkbox" name="field-250" id="field-250">
+
+														<label class="form__label" for="field-250">$250</label>
+													</div>
+													<!-- /.checkbox -->
+												</li>
+
+												<li>
+													<div class="checkbox checkbox-secondary">
+														<input type="checkbox" name="field-300" id="field-300">
+
+														<label class="form__label" for="field-300">$300</label>
+													</div>
+													<!-- /.checkbox -->
+												</li>
+
+												<li>
+													<div class="checkbox checkbox-secondary">
+														<input type="checkbox" name="field-1000" id="field-1000">
+
+														<label class="form__label" for="field-1000">$1,000</label>
+													</div>
+													<!-- /.checkbox -->
+												</li>
+											</ul>
+											<!-- /.list-checkboxes -->
+										</div>
+										<!-- /.form-row -->
+
+										<div class="form-row">
+											<span>or</span>
+
+											<div class="form-controls">
+												<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="$Other amount">
+											</div>
+											<!-- /.form-controls -->
+										</div>
+										<!-- /.form-row -->
+									</div>
+									<!-- /.form-body -->
+
+									<div class="form-actions">
+										<input type="submit" value="Process order" class="form-btn">
+									</div>
+									<!-- /.form-actions -->
+								</form>
+							</div>
+						</div>
+						<!-- /.col-1of3 -->
 					</div>
-				</div><!-- /.col-1of3 -->
-				
-				<div class="col-1of3">
-					<div class="form-sponsor">
-						<form action="?" method="post">
-							<div class="form-head">
-								<h4>General Donation</h4>
-							</div><!-- /.form-head -->
-							
-							<div class="form-body">
-								<div class="form-row">
-									<ul class="list-checkboxes">
-										<li>
-											<div class="checkbox checkbox-secondary">
-												<input type="checkbox" name="field-5" id="field-5">
-												
-												<label class="form__label" for="field-5">$5</label>
-											</div><!-- /.checkbox -->
-										</li>
-										
-										<li>
-											<div class="checkbox checkbox-secondary">
-												<input type="checkbox" name="field-10" id="field-10">
-												
-												<label class="form__label" for="field-10">$10</label>
-											</div><!-- /.checkbox -->
-										</li>
-										
-										<li>
-											<div class="checkbox checkbox-secondary">
-												<input type="checkbox" name="field-15" id="field-15">
-												
-												<label class="form__label" for="field-15">$15</label>
-											</div><!-- /.checkbox -->
-										</li>
-										
-										<li>
-											<div class="checkbox checkbox-secondary">
-												<input type="checkbox" name="field-25" id="field-25">
-												
-												<label class="form__label" for="field-25">$25</label>
-											</div><!-- /.checkbox -->
-										</li>
-										
-										<li>
-											<div class="checkbox checkbox-secondary">
-												<input type="checkbox" name="field-50" id="field-50">
-												
-												<label class="form__label" for="field-50">$50</label>
-											</div><!-- /.checkbox -->
-										</li>
-										
-										<li>
-											<div class="checkbox checkbox-secondary">
-												<input type="checkbox" name="field-100" id="field-100">
-												
-												<label class="form__label" for="field-100">$100</label>
-											</div><!-- /.checkbox -->
-										</li>
-										
-										<li>
-											<div class="checkbox checkbox-secondary">
-												<input type="checkbox" name="field-250" id="field-250">
-												
-												<label class="form__label" for="field-250">$250</label>
-											</div><!-- /.checkbox -->
-										</li>
-										
-										<li>
-											<div class="checkbox checkbox-secondary">
-												<input type="checkbox" name="field-300" id="field-300">
-												
-												<label class="form__label" for="field-300">$300</label>
-											</div><!-- /.checkbox -->
-										</li>
-										
-										<li>
-											<div class="checkbox checkbox-secondary">
-												<input type="checkbox" name="field-1000" id="field-1000">
-												
-												<label class="form__label" for="field-1000">$1,000</label>
-											</div><!-- /.checkbox -->
-										</li>
-									</ul><!-- /.list-checkboxes -->
-								</div><!-- /.form-row -->
-								
-								<div class="form-row">
-									<span>or</span>
-									
-									<div class="form-controls">
-										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="$Other amount">
-									</div><!-- /.form-controls -->
-								</div><!-- /.form-row -->
-							</div><!-- /.form-body -->
-							
-							<div class="form-actions">
-								<input type="submit" value="Process order" class="form-btn">
-							</div><!-- /.form-actions -->
-						</form>
-					</div>
-				</div><!-- /.col-1of3 -->
-			</div><!-- /.cols -->
-		</div><!-- /.donate-body -->
-	</div>
-	
-	<section class="section section-tiles">
-		<div class="shell">
-			<div class="section-content">
-				<div class="tiles">
-					<div class="tile tile-large" id="tile-1">
-						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-1.jpg);">
-							<div class="tile-body">
-								<div class="tile-content">
-									<h3>LearnTorah<small>.com</small></h3>
+					<!-- /.cols -->
+				</div>
+				<!-- /.donate-body -->
+			</div>
 
-									<p>
-										<app-learn-torah></app-learn-torah>Shiurim Online
-									</p>
-									<p>
-										<strong>{{amountSpeaker}}</strong> Speakers
-									</p>
-								</div><!-- /.tile-content -->
 
-								<div class="tile-actions">
-									<a href="#item-content-1" class="btn btn-yellow btn-medium" data-size="full" (click)="AccionSpeaker()">Speakers</a>
+		    <app-inspire></app-inspire>
 
-									<a href="#" class="link-search">
+			<section class="section section-tiles">
+				<div class="shell">
+					<div class="section-content">
+						<div class="tiles">
+							<div class="tile tile-large" id="tile-1">
+								<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-1.jpg);">
+									<div class="tile-body">
+										<div class="tile-content">
+											<h3>LearnTorah<small>.com</small></h3>
+
+											<p>
+												<app-learn-torah></app-learn-torah>Shiurim Online
+											</p>
+											<p>
+												<strong>{{amountSpeaker}}</strong> Speakers
+											</p>
+										</div>
+										<!-- /.tile-content -->
+
+										<div class="tile-actions">
+											<a href="#item-content-1" class="btn btn-yellow btn-medium" data-size="full" (click)="AccionSpeaker()">Speakers</a>
+
+											<a href="#" class="link-search">
 										<i class="ico-magnifier-large"></i>
 									</a>
-								</div><!-- /.tile-actions -->
-							</div><!-- /.tile-body -->
-						</div><!-- /.tile-inner -->
-						
-						<p class="sorting">1</p>
-					</div><!-- /.tile tile-large -->
+										</div>
+										<!-- /.tile-actions -->
+									</div>
+									<!-- /.tile-body -->
+								</div>
+								<!-- /.tile-inner -->
 
-					<div class="tile" id="tile-2">
-						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-2.jpg);">
-							<div class="tile-body">
-								<div class="tile-content">
-									<h3>DailyHalacha<small>.com</small></h3>
+								<p class="sorting">1</p>
+							</div>
+							<!-- /.tile tile-large -->
 
-									<p>
-										<app-daily-halacha></app-daily-halacha> <em>Halachot Online</em>
-									</p>
+							<div class="tile" id="tile-2">
+								<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-2.jpg);">
+									<div class="tile-body">
+										<div class="tile-content">
+											<h3>DailyHalacha<small>.com</small></h3>
 
-									<p>An Encyclopedia of Jewish Laws</p>
+											<p>
+												<app-daily-halacha></app-daily-halacha> <em>Halachot Online</em>
+											</p>
 
-									<span>Authored by Rabbi Eli J Mansour</span>
-								</div><!-- /.tile-content -->
+											<p>An Encyclopedia of Jewish Laws</p>
 
-								<div class="tile-actions">
-									<a href="#" class="link-play">
+											<span>Authored by Rabbi Eli J Mansour</span>
+										</div>
+										<!-- /.tile-content -->
+
+										<div class="tile-actions">
+											<a href="#" class="link-play">
 										<span>Play Now</span>
 
 										<i class="ico-play"></i>
@@ -641,306 +735,365 @@
 										
 									</a>
 
-									<a href="#item-content-2" class="btn btn-yellow btn-small" data-size="full" id="" >Weekly Perasha</a>
+											<a href="#item-content-2" class="btn btn-yellow btn-small" data-size="full" id="">Weekly Perasha</a>
 
-									<a href="#item-content-8" data-size="half" class="link-search" (click)="AccionHalacha()">
+											<a href="#item-content-8" data-size="half" class="link-search" (click)="AccionHalacha()">
 										<i class="ico-magnifier-large"></i>
 									</a>
-								</div><!-- /.tile-actions -->
-							</div><!-- /.tile-body -->
-						</div><!-- /.tile-inner -->
-						
-						<p class="sorting">2</p>
-					</div><!-- /.tile -->
+										</div>
+										<!-- /.tile-actions -->
+									</div>
+									<!-- /.tile-body -->
+								</div>
+								<!-- /.tile-inner -->
 
-					<div class="tile" id="tile-3">
-						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-3.jpg);">
-							<div class="tile-body">
-								<div class="tile-content">
-									<h3>DailyTehillim<small>.com</small></h3>
+								<p class="sorting">2</p>
+							</div>
+							<!-- /.tile -->
 
-									<p>Tehillim List and Levayot by Community</p>
+							<div class="tile" id="tile-3">
+								<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-3.jpg);">
+									<div class="tile-body">
+										<div class="tile-content">
+											<h3>DailyTehillim<small>.com</small></h3>
 
-									<span>Listen - Read - Learn</span>
-								</div><!-- /.tile-content -->
+											<p>Tehillim List and Levayot by Community</p>
 
-								<div class="tile-actions">
-									<ul class="list-actions">
-										<li data-id="item-3" style="padding-right: 0.5em;">
-											<a href="#item-content-3" data-size="full" (click)="Accion()" title="Read">
+											<span>Listen - Read - Learn</span>
+										</div>
+										<!-- /.tile-content -->
+
+										<div class="tile-actions">
+											<ul class="list-actions">
+												<li data-id="item-3" style="padding-right: 0.5em;">
+													<a href="#item-content-3" data-size="full" (click)="Accion()" title="Read">
 												<i class="fa fa-vcard-o fa-lg" style="color:white"></i>
 											</a>
-										</li>
+												</li>
 
-										<li style="padding-right: 0.5em;">
-											<a href="#item-content-7" data-size="half" title="Register">
+												<li style="padding-right: 0.5em;">
+													<a href="#item-content-7" data-size="half" title="Register">
 												<i class="fa fa-user-plus" style="color:white"></i>
 											</a>
-										</li>
-										<li >
-											<a href="#" data-size="half" title="Today's Reading">
+												</li>
+												<li>
+													<a href="#" data-size="half" title="Today's Reading">
 												<i class="fa fa-book fa-lg" style="color:#fc0" ></i>
 											</a>
-										</li>  
-									</ul><!-- /.list-actions -->
+												</li>
+											</ul>
+											<!-- /.list-actions -->
 
-									<a href="#" class="link-search">
+											<a href="#" class="link-search">
 										<i class="ico-magnifier-large"></i>
 									</a>
-								</div><!-- /.tile-actions -->
-							</div><!-- /.tile-body -->
-						</div><!-- /.tile-inner -->
-						
-						<p class="sorting">3</p>
-					</div><!-- /.tile -->
+										</div>
+										<!-- /.tile-actions -->
+									</div>
+									<!-- /.tile-body -->
+								</div>
+								<!-- /.tile-inner -->
 
-					<div class="tile" id="tile-4">
-						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-4.jpg);">
-							<div class="tile-body">
-								<div class="tile-content">
-									<h3>DailyGemara<small>.com</small></h3>
+								<p class="sorting">3</p>
+							</div>
+							<!-- /.tile -->
 
-									<p>Daf Yomi Program</p>
+							<div class="tile" id="tile-4">
+								<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-4.jpg);">
+									<div class="tile-body">
+										<div class="tile-content">
+											<h3>DailyGemara<small>.com</small></h3>
 
-									<span>Taught by Rabbi Eli J Mansour</span>
-								</div><!-- /.tile-content -->
+											<p>Daf Yomi Program</p>
 
-								<div class="tile-actions">
-									<a href="#" class="link-play">
+											<span>Taught by Rabbi Eli J Mansour</span>
+										</div>
+										<!-- /.tile-content -->
+
+										<div class="tile-actions">
+											<a href="#" class="link-play">
 										<span>Play Now</span>
 
 										<i class="ico-play"></i>
 										<i class="fa fa-book fa-lg" title="Today's Reading"></i>
 									</a>
 
-									<a href="#" class="link-search">
+											<a href="#" class="link-search">
 										<i class="ico-magnifier-large"></i>
 									</a>
-								</div><!-- /.tile-actions -->
-							</div><!-- /.tile-body -->
-						</div><!-- /.tile-inner -->
-						
-						<p class="sorting">4</p>
-					</div><!-- /.tile -->
+										</div>
+										<!-- /.tile-actions -->
+									</div>
+									<!-- /.tile-body -->
+								</div>
+								<!-- /.tile-inner -->
 
-					<div class="tile" id="tile-5">
-						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-5.jpg);">
-							<div class="tile-body">
-								<div class="tile-content">
-									<h3>DailyEmunah<small>.com</small></h3>
+								<p class="sorting">4</p>
+							</div>
+							<!-- /.tile -->
 
-									<p>
-										<strong>415</strong><span>Short Lessons</span>
-									</p>
+							<div class="tile" id="tile-5">
+								<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-5.jpg);">
+									<div class="tile-body">
+										<div class="tile-content">
+											<h3>DailyEmunah<small>.com</small></h3>
 
-									<span>Authored by Rabbi Eli J Mansour</span> 
-									<br>
-									<span style="color:darkgoldenrod;">COMING SOON</span>
-								</div><!-- /.tile-content -->
+											<p>
+												<strong>415</strong><span>Short Lessons</span>
+											</p>
 
-								<div class="tile-actions">
-									<a href="#" class="link-play">
+											<span>Authored by Rabbi Eli J Mansour</span>
+											<br>
+											<span style="color:darkgoldenrod;">COMING SOON</span>
+										</div>
+										<!-- /.tile-content -->
+
+										<div class="tile-actions">
+											<a href="#" class="link-play">
 										<span>Play Now</span>
 
 										<i class="ico-play"></i>
 										<i class="fa fa-book fa-lg" title="Today's Reading"></i>
 									</a>
 
-									<ul class="list-actions">
-										<li data-id="tile-5">
-											<!--<a href="#">
+											<ul class="list-actions">
+												<li data-id="tile-5">
+													<!--<a href="#">
 												<i class="ico-envelope"></i>
 											</a>-->
-										</li>
-									</ul><!-- /.list-actions -->
+												</li>
+											</ul>
+											<!-- /.list-actions -->
 
-									<a class="link-search" href="#item-content-4" data-size="full" (click)="AccionEmunah()">
+											<a class="link-search" href="#item-content-4" data-size="full" (click)="AccionEmunah()">
 										<i class="ico-magnifier-large"></i>
 									</a>
-								</div><!-- /.tile-actions -->
-							</div><!-- /.tile-body -->
-						</div><!-- /.tile-inner -->
-						
-						<p class="sorting">5</p>
-					</div><!-- /.tile -->
+										</div>
+										<!-- /.tile-actions -->
+									</div>
+									<!-- /.tile-body -->
+								</div>
+								<!-- /.tile-inner -->
 
-					<div class="tile tile-high" id="tile-6">
-						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-6.jpg);">
-							<div class="tile-body">
-								<div class="tile-entry">
-									<div class="tile-content">
-										<h3>MishnaBerura<small>.com</small></h3>
+								<p class="sorting">5</p>
+							</div>
+							<!-- /.tile -->
 
-										<p>The Shulchan Aruch Explained</p>
+							<div class="tile tile-high" id="tile-6">
+								<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-6.jpg);">
+									<div class="tile-body">
+										<div class="tile-entry">
+											<div class="tile-content">
+												<h3>MishnaBerura<small>.com</small></h3>
 
-										<span>Taught by Rabbi Eli J Mansour</span>
-									</div><!-- /.tile-content -->
+												<p>The Shulchan Aruch Explained</p>
 
-									<div class="tile-actions">
-										<a href="#" class="link-play">
+												<span>Taught by Rabbi Eli J Mansour</span>
+											</div>
+											<!-- /.tile-content -->
+
+											<div class="tile-actions">
+												<a href="#" class="link-play">
 										  <i class="fa fa-book fa-lg" title="Today's Reading"></i>
 									    </a>
-										<a href="#" class="link-search">
+												<a href="#" class="link-search">
 											<i class="ico-magnifier-large"></i>
 										</a>
-									</div><!-- /.tile-actions -->
-								</div><!-- /.tile-entry -->
+											</div>
+											<!-- /.tile-actions -->
+										</div>
+										<!-- /.tile-entry -->
 
-								<div class="tile-entry">
-									<div class="tile-content">
-										<h3>MishnaBeruraYomi<small>.com</small></h3>
+										<div class="tile-entry">
+											<div class="tile-content">
+												<h3>MishnaBeruraYomi<small>.com</small></h3>
 
-										<span>Taught by Rabbi Eli J Mansour</span>
-									</div><!-- /.tile-content -->
+												<span>Taught by Rabbi Eli J Mansour</span>
+											</div>
+											<!-- /.tile-content -->
 
-									<div class="tile-actions">
-										<a href="#" class="link-play">
+											<div class="tile-actions">
+												<a href="#" class="link-play">
 											<span>Play Now</span>
 
 											<i class="ico-play"></i>
 										</a>
 
-										<ul class="list-actions">
-											<li>
-											<!--	<a href="#">
+												<ul class="list-actions">
+													<li>
+														<!--	<a href="#">
 													<i class="ico-envelope"></i>
 												</a>-->
-											</li>
-										</ul><!-- /.list-actions -->
+													</li>
+												</ul>
+												<!-- /.list-actions -->
 
-										<a class="link-search" href="#item-content-9" data-size="half">
+												<a class="link-search" href="#item-content-9" data-size="half">
 											<i class="ico-magnifier-large"></i>
 										</a>
-									</div><!-- /.tile-actions -->
-								</div><!-- /.tile-entry -->
-							</div><!-- /.tile-body -->
-						</div><!-- /.tile-inner -->
-						
-						<p class="sorting">6</p>
-					</div><!-- /.tile -->
+											</div>
+											<!-- /.tile-actions -->
+										</div>
+										<!-- /.tile-entry -->
+									</div>
+									<!-- /.tile-body -->
+								</div>
+								<!-- /.tile-inner -->
 
-					<div class="tile" id="tile-7">
-						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-7.jpg);">
-							<div class="tile-body">
-								<div class="tile-content">
-									<h3>PeleYoetz<small>.com</small></h3>
+								<p class="sorting">6</p>
+							</div>
+							<!-- /.tile -->
 
-									<p>Musar | Ethics for Living</p>
+							<div class="tile" id="tile-7">
+								<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-7.jpg);">
+									<div class="tile-body">
+										<div class="tile-content">
+											<h3>PeleYoetz<small>.com</small></h3>
 
-									<span>Taught by Rabbi Eli J Mansour</span>
-								</div><!-- /.tile-content -->
+											<p>Musar | Ethics for Living</p>
 
-								<div class="tile-actions">
-									<a class="link-search" href="#item-content-5" data-size="full" (click)="AccionPele()">
+											<span>Taught by Rabbi Eli J Mansour</span>
+										</div>
+										<!-- /.tile-content -->
+
+										<div class="tile-actions">
+											<a class="link-search" href="#item-content-5" data-size="full" (click)="AccionPele()">
 										<i class="ico-magnifier-large"></i>
 									</a>
-								</div><!-- /.tile-actions -->
-							</div><!-- /.tile-body -->
-						</div><!-- /.tile-inner -->
-						
-						<p class="sorting">7</p>
-					</div><!-- /.tile -->
+										</div>
+										<!-- /.tile-actions -->
+									</div>
+									<!-- /.tile-body -->
+								</div>
+								<!-- /.tile-inner -->
 
-					<div class="tile" id="tile-8">
-						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-8.jpg);">
-							<div class="tile-body">
-								<div class="tile-content">
-									<h3>DailyHok<small>.com</small></h3>
+								<p class="sorting">7</p>
+							</div>
+							<!-- /.tile -->
 
-									<p>Hok L’Yisrael for Every Day Learning</p>
+							<div class="tile" id="tile-8">
+								<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-8.jpg);">
+									<div class="tile-body">
+										<div class="tile-content">
+											<h3>DailyHok<small>.com</small></h3>
 
-									<span>Taught by Rabbi Eli J Mansour</span>
-								</div><!-- /.tile-content -->
+											<p>Hok L’Yisrael for Every Day Learning</p>
 
-								<div class="tile-actions">
-									<a href="#" class="link-play">
+											<span>Taught by Rabbi Eli J Mansour</span>
+										</div>
+										<!-- /.tile-content -->
+
+										<div class="tile-actions">
+											<a href="#" class="link-play">
 										<span>Play Now</span>
 
 										<i class="ico-play"></i>
 									</a>
 
-									<a href="#item-content-6" class="link-search" data-size="full" (click)="AccionHok()">
+											<a href="#item-content-6" class="link-search" data-size="full" (click)="AccionHok()">
 										<i class="ico-magnifier-large"></i>
 									</a>
-								</div><!-- /.tile-actions -->
-							</div><!-- /.tile-body -->
-						</div><!-- /.tile-inner -->
-						
-						<p class="sorting">8</p>
-					</div><!-- /.tile -->
+										</div>
+										<!-- /.tile-actions -->
+									</div>
+									<!-- /.tile-body -->
+								</div>
+								<!-- /.tile-inner -->
 
-					<div class="tile" id="tile-9">
-						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-9.jpg);">
-							<div class="tile-body">
-								<div class="tile-content">
-									<h3>PrayersAndTefilot<small>.com</small></h3>
+								<p class="sorting">8</p>
+							</div>
+							<!-- /.tile -->
 
-									<p>Berachot for all situations</p>
-									
-									<span style="color:darkgoldenrod;">COMING SOON</span>
-								</div><!-- /.tile-content -->
+							<div class="tile" id="tile-9">
+								<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-9.jpg);">
+									<div class="tile-body">
+										<div class="tile-content">
+											<h3>PrayersAndTefilot<small>.com</small></h3>
 
-								<div class="tile-actions">
-									<a href="#" class="link-search">
+											<p>Berachot for all situations</p>
+
+											<span style="color:darkgoldenrod;">COMING SOON</span>
+										</div>
+										<!-- /.tile-content -->
+
+										<div class="tile-actions">
+											<a href="#" class="link-search">
 										<i class="ico-magnifier-large"></i>
 									</a>
-								</div><!-- /.tile-actions -->
-							</div><!-- /.tile-body -->
-						</div><!-- /.tile-inner -->
-						
-						<p class="sorting">9</p>
-					</div><!-- /.tile -->
+										</div>
+										<!-- /.tile-actions -->
+									</div>
+									<!-- /.tile-body -->
+								</div>
+								<!-- /.tile-inner -->
 
-					<div class="tile" id="tile-10">
-						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-10.jpg);">
-							<div class="tile-body">
-								<div class="tile-content">
-									<h3>WeeklyInspire<small>.com</small></h3>
+								<p class="sorting">9</p>
+							</div>
+							<!-- /.tile -->
 
-									<span>Authored by Rabbi Joey Haber</span>
-								</div><!-- /.tile-content -->
+							<div class="tile" id="tile-10">
+								<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-10.jpg);">
+									<div class="tile-body">
+										<div class="tile-content">
+											<h3>WeeklyInspire<small>.com</small></h3>
 
-								<div class="tile-actions">
-									<a href="#" class="link-play">
+											<span>Authored by Rabbi Joey Haber</span>
+										</div>
+										<!-- /.tile-content -->
+
+										<div class="tile-actions">
+											<a href="#" class="link-play">
 										<span>Play Now</span>
 
 										<i class="ico-play"></i>
 										<i class="fa fa-book fa-lg" title="Today's Reading"></i>
 									</a>
 
-									<ul class="list-actions">
-										<li>
-										<!--	<a href="#">
+											<ul class="list-actions">
+												<li>
+													<!--	<a href="#">
 												<i class="ico-envelope"></i>
 											</a>-->
-										</li>
-									</ul><!-- /.list-actions -->
+												</li>
+											</ul>
+											<!-- /.list-actions -->
 
-									<a href="#" class="link-search">
+											<a href="#" class="link-search" (click)="InspireOpen()">
 										<i class="ico-magnifier-large"></i>
 									</a>
-								</div><!-- /.tile-actions -->
-							</div><!-- /.tile-body -->
-						</div><!-- /.tile-inner -->
-						<p class="sorting">10</p>
-					</div><!-- /.tile -->
-				</div><!-- /.tiles -->
-			</div><!-- /.section-content -->
-		</div><!-- /.shell -->
-	</section><!-- /.section section-tiles -->
+										</div>
+										<!-- /.tile-actions -->
+									</div>
+									<!-- /.tile-body -->
+								</div>
+								<!-- /.tile-inner -->
+								<p class="sorting">10</p>
+							</div>
+							<!-- /.tile -->
+						</div>
+						<!-- /.tiles -->
+					</div>
+					<!-- /.section-content -->
+				</div>
+				<!-- /.shell -->
+			</section>
+			<!-- /.section section-tiles -->
 
-	<app-video-thumbnail></app-video-thumbnail>
+			<app-video-thumbnail></app-video-thumbnail>
 
-    <app-place-holder></app-place-holder>
+			<app-place-holder></app-place-holder>
 
-</div><!-- /.main -->
+		</div>
+		<!-- /.main -->
 
 		<footer class="footer">
 			<div class="shell">
 				<div class="footer-inner">
 					<aside class="footer-aside">
-						<p class="copyright">© 2016-17 iTorah.com Learning Resources Ltd. All rights reserved.</p><!-- /.copyright -->
-					</aside><!-- /.footer-aside -->
+						<p class="copyright">© 2016-17 iTorah.com Learning Resources Ltd. All rights reserved.</p>
+						<!-- /.copyright -->
+					</aside>
+					<!-- /.footer-aside -->
 
 					<nav class="nav-secondary">
 						<ul>
@@ -968,16 +1121,22 @@
 								<a href="#">Advertise on iTorah</a>
 							</li>-->
 						</ul>
-					</nav><!-- /.nav-secondary -->
-				</div><!-- /.footer-inner -->
-			</div><!-- /.shell -->
-		</footer><!-- /.footer -->
-	</div><!-- /.container -->
-</div><!-- /.wrapper -->
+					</nav>
+					<!-- /.nav-secondary -->
+				</div>
+				<!-- /.footer-inner -->
+			</div>
+			<!-- /.shell -->
+		</footer>
+		<!-- /.footer -->
+	</div>
+	<!-- /.container -->
+</div>
+<!-- /.wrapper -->
 
 
 
-<app-speaker (myEvent) = "ShowLoader($event)" (myEventSpeakers) = "ChangeSpeakers($event)" [accion]="valSpeaker"></app-speaker>
+<app-speaker (myEvent)="ShowLoader($event)" (myEventSpeakers)="ChangeSpeakers($event)" [accion]="valSpeaker"></app-speaker>
 <app-weekly></app-weekly>
 <app-weekly-search [accion]="valHalacha"></app-weekly-search>
 <app-tehillim-show [accion]="val"></app-tehillim-show>
@@ -987,4 +1146,4 @@
 <app-pele-yoetz [accion]="valPele"></app-pele-yoetz>
 <app-mishna-berura-yomi></app-mishna-berura-yomi>
 
-<div class="loader"  *ngIf="loader">   </div>
+<div class="loader" *ngIf="loader"> </div>

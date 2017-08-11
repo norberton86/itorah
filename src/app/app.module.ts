@@ -32,7 +32,8 @@ import {PodcastService} from './service/podcast.service'
 import {DndModule} from 'ng2-dnd';
 import {ShareButtonsModule} from 'ngx-sharebuttons';
 import { SubscribeComponent } from './component/subscribe/subscribe.component';
-import {SubscribeService} from './service/subscribe.service'
+import {SubscribeService} from './service/subscribe.service';
+import { InspireComponent } from './component/inspire/inspire.component'
 
 
 
@@ -71,7 +72,8 @@ let providers = {
     LanguagePipe,
     TimePipe,
     FilterForPipe,
-    SubscribeComponent
+    SubscribeComponent,
+    InspireComponent
   ],
   imports: [
     BrowserModule,

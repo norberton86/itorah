@@ -1,0 +1,106 @@
+#inspire .fa-play
+{
+      cursor: pointer;
+}
+
+#inspire .donate-head .link-close{
+   top:8px;
+}
+
+#inspire .donate-body{
+  padding: 1em;
+}
+
+#inspire .donate-body .row{
+   padding-bottom: 0.5em;
+   border-bottom: 1px solid #dadada;
+}
+
+
+#inspire .donate-body #spanWeek{
+   margin-right: 2em;
+}
+
+#inspire .donate-body .columna button{
+    width: 80px;
+    height: 33px;
+    border: 1px solid #d3d3d3;
+    background: #ffcc00;
+    border-radius: 2px;
+    border-radius: 4px;
+}
+
+#inspire .donate-body .columna #buttonPLay{
+    width: 70px;
+}
+
+#inspire .donate-body #mediaColum span{
+  margin-right: initial
+}
+
+#inspire .donate-body .columna .fa-rotate-180{
+  margin-left: 20%;
+}
+
+#inspire .donate-body #mediaColum{
+ border-right: 1px solid #dadada;
+ border-left: 1px solid #dadada;
+ text-align: center;
+ width: initial;
+}
+
+@media(max-width:768px) {
+ 
+
+  #inspire .donate-body #mediaColum{
+    border-right: none;
+    border-left: none;
+    width: 50%;
+    text-align: right;
+ }
+
+ #inspire .donate-body .columna:nth-of-type(2) {
+   margin-top: 0.5em
+ }
+
+ #inspire .donate-body .columna:nth-of-type(3) {
+   margin-top: 0.5em;
+   text-align: left;
+   padding-left: 0px;
+ }
+
+  #inspire .donate-body .columna{
+    text-align: center;
+  }
+
+
+#inspire .donate-body #spanWeek{
+   display: none;
+}
+
+#inspire .donate-body .columna .fa-rotate-180{
+  margin-left:0%;
+}
+
+}
+
+#inspire .donate-body .content p,#inspire .donate-body .content div{
+  padding-left: 2em;
+  padding-right: 2em;
+  margin-top: 0.5em;
+}
+
+#inspire .donate-body .content h4{
+    background:none;
+    text-align:left;
+    color:#000;
+    margin-bottom: 0px;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.mydisabled {
+   pointer-events: none;
+   cursor: not-allowed; 
+   color:#dadada
+}

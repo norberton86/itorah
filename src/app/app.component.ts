@@ -112,5 +112,10 @@ keyDownFunction(event)
    return true;
   }
 
+  InspireOpen()
+  {
+    	$("#inspire").toggleClass('shown');
+  }
+
 
 }

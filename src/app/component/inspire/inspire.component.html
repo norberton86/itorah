@@ -1,0 +1,59 @@
+<div class="donate" id="inspire">
+  <div class="donate-head">
+    <span>Weekly Inspire</span>
+    <a href="{{inspire.url}}" download id="download" hidden id="inspireDownload"></a>
+
+    <a href="#" class="link-close">
+						<i class="ico-close"></i>
+					</a>
+
+  </div>
+  <!-- /.donate-head -->
+
+  <div class="donate-body">
+
+    <div class="row">
+      <div class="col-xs-12 col-lg-4 columna">
+        <span id="spanWeek"> Authored by Rabbi Joey Haber</span>
+
+        <i class="fa fa-play fa-rotate-180" aria-hidden="true" (click)="Back()"></i>
+        <button type="button" class="search-btn">
+						   This Week
+				</button>
+        <a (click)="Forward()"  [class.mydisabled]="ForwardImPosible()" ><i class="fa fa-play" aria-hidden="true"></i></a>
+
+      </div>
+
+      <div class="col-xs-6 col-lg-2 columna" id="mediaColum">
+
+        <button type="button" class="search-btn" id="buttonPLay" (click)="Play()">
+						 <i class="fa fa-play" aria-hidden="true"></i>Play
+				</button>
+
+      </div>
+
+      <div class="col-xs-6 col-lg-3 columna">
+        <button type="button" class="search-btn" (click)="Download()">
+						 <i class="ico-download"></i> MP3
+				</button>
+      </div>
+    </div>
+
+    <div class="content" style="    max-height: 500px;    overflow: auto;">
+      <h4>{{inspire.title}}</h4>
+      <p>
+        {{inspire.description}}
+      </p>
+
+     <div *ngFor="let c of inspire.chapters">
+     
+        <h5>{{c.title}}</h5>
+        <p>{{c.content}}</p>
+
+     </div>
+
+    </div>
+
+  </div>
+  <!-- /.donate-body -->
+</div>

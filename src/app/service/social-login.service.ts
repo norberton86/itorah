@@ -29,4 +29,23 @@ export class SocialLoginServic extends Service{
         )
     }
 
+    public Forgot(email:string): Observable<any> {
+
+        return this.http.get(this.ruta + "forgot/email="+email).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    }
+
+    public Create(a:any):Observable<string>
+    {
+           return this.http.post(this.ruta+"/Create",a).map(
+            (response) => {
+                return response.toString();
+            }
+        )
+    }
+
 }

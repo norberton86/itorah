@@ -25,6 +25,8 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
   title:string="Sign In"
   signOut:boolean=false;
   signIn:boolean=true;
+  forgot:boolean=false;
+  createAccount:boolean=false;
 
   messageVisible:boolean=false;
 
@@ -38,6 +40,74 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
     this.InitializeForm();
    }
   
+
+  Forgot()
+  {
+    this.signIn=false;
+    this.forgot=true;
+    this.title="Forgot Password?"
+  }
+ 
+
+  GoBack()
+  {
+    this.forgot=false;
+    this.signIn=true;
+    this.title="Sign In"
+  }
+
+  ResetPassword()
+  {
+     this.socialLoginServic.Forgot(this.form.value.email).subscribe(
+        function(respond){
+      
+           },
+           function(error){
+      
+           },
+           function(){}
+      )
+      this.GoBack();
+  }
+
+
+  CreateAccount()
+  {
+    this.signIn=false;
+    this.createAccount=true;
+    this.title="Create an account"
+  }
+
+  GoBackfromAccount()
+  {
+    this.signIn=true;
+    this.createAccount=false;
+    this.title="Sign In"
+  }
+
+  Register()
+  {
+    this.socialLoginServic.Create(this.form.value).subscribe(
+      (data)=>{
+           if(data)
+           {
+                this.Reset()
+                this.GoBackfromAccount();        
+           }
+      })
+
+    
+    
+  }
+
+Agree()
+{
+  return this.form.value.agree
+}
+
+
+  //---------------------------------------------------------------------------------------
+
   SignIn(provider){
     this.sub = this._auth.login(provider).subscribe(
       (data:any) => {
@@ -80,6 +150,10 @@ Save(data:any)
    var data ={
       email:'',
       password:'',
+      first:'',
+      last:'',
+      confirm:'',
+      agree:''
     }
     this.form.patchValue(data);
   }
@@ -89,6 +163,10 @@ Save(data:any)
     var data ={
       email:['',[Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password:'',
+      first:'',
+      last:'',
+      confirm:'',
+      agree:''
     }
 
      this.form = this.fb.group(data);

@@ -27,7 +27,7 @@
 					<!-- /.form-row -->
 
 					<div class="form-row">
-						<label for="field-password" class="form-label hidden">password</label>
+						<label for="field-password" class="form-label hidden">Password</label>
 
 						<div class="form-controls">
 							<input type="password" class="field" name="field-password" id="field-password" value="" placeholder="Password" formControlName="password">
@@ -49,7 +49,7 @@
 							<!-- /.form-col -->
 
 							<div class="form-col">
-								<a class="link-forgot" href="#">Forgot password</a>
+								<a class="link-forgot" href="#/" (click)="Forgot()">Forgot password</a>
 							</div>
 							<!-- /.form-col -->
 						</div>
@@ -83,7 +83,7 @@
 					</ul>
 					<!-- /.list-signin -->
 
-					<p>Not a member? <a href="#">Create an account</a></p>
+					<p>Not a member? <a href="#/" (click)="CreateAccount()">Create an account</a></p>
 				</div>
 				<!-- /.form-actions -->
 			</div>
@@ -95,6 +95,90 @@
 				</div>
 				<!-- /.form-actions -->
 			</div>
+
+            <div *ngIf="forgot">
+
+				<div class="form-row">
+						<label for="field-email" class="form-label hidden">Email</label>
+
+						<div class="form-controls">
+							<input type="text" class="field" name="field-email" id="field-email" value="" placeholder="Email" formControlName="email">
+						</div>
+						<!-- /.form-controls -->
+				</div>
+
+				<div class="form-actions" style="border-top: none;">
+					<p style="margin-bottom: 0.5em">No problem! We'll send password reset instructions</p>
+					<input type="submit" value="Reset Password" class="form-btn" (click)="ResetPassword()">
+					<p>Back to <a href="#/" (click)="GoBack()">sig in</a></p>
+				</div>
+				<!-- /.form-actions -->
+			</div>
+
+			 <div *ngIf="createAccount">
+
+
+                <div class="form-row">
+						<label for="field-firstName" class="form-label hidden">First Name</label>
+
+						<div class="form-controls">
+							<input type="text" class="field" name="field-firstName" id="field-firstName" value="" placeholder="First Name" formControlName="first">
+						</div>
+						<!-- /.form-controls -->
+				</div> 
+
+				<div class="form-row">
+						<label for="field-lastName" class="form-label hidden">Last Name</label>
+
+						<div class="form-controls">
+							<input type="text" class="field" name="field-lastName" id="field-lastName" value="" placeholder="Last Name" formControlName="last">
+						</div>
+						<!-- /.form-controls -->
+				</div> 
+
+				<div class="form-row">
+						<label for="field-email" class="form-label hidden">Email</label>
+
+						<div class="form-controls">
+							<input type="text" class="field" name="field-email" id="field-email" value="" placeholder="Email" formControlName="email">
+						</div>
+						<!-- /.form-controls -->
+				</div>
+
+				<div class="form-row">
+						<label for="field-password" class="form-label hidden">Password</label>
+
+						<div class="form-controls">
+							<input type="password" class="field" name="field-password" id="field-password" value="" placeholder="Password" formControlName="password">
+						</div>
+						<!-- /.form-controls -->
+				</div>
+
+				<div class="form-row">
+						<label for="field-confirmPassword" class="form-label hidden">Confirm Password</label>
+
+						<div class="form-controls">
+							<input type="password" class="field" name="field-confirmPassword" id="field-confirmPassword" value="" placeholder="Confirm Password" formControlName="confirm">
+						</div>
+						<!-- /.form-controls -->
+				</div>
+
+				<div class="form-row">								
+					<div class="checkbox">
+						<input type="checkbox" id="checkboxIagree" formControlName="agree">
+						<label for="checkboxIagree">I'd like to receive iTorah news and updates</label>
+					</div><!-- /.checkbox -->
+				</div><!-- /.field-row -->
+
+				<div class="form-actions" style="border-top: none;">
+					<p style="margin-bottom: 0.5em">By signing up, I agree to iTorah <a href="#/">Terms of Service </a> and <a href="#/">Privacy Policy</a></p>
+					<input type="submit" value="Register" class="form-btn" (click)="Register()" [disabled]="!Agree()" [class.mydisabled]="!Agree()" >
+					<p>Back to <a href="#/" (click)="GoBackfromAccount()">sign in</a></p>
+				</div>
+				<!-- /.form-actions -->
+			</div>
+
+
 
 		</form>
 	</div>

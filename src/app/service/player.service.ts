@@ -85,7 +85,7 @@ export class PlayerService {
       if ($('#video-modal').length == 0)     //if not exist
       $.notify({                          //create the popup
         title: "",
-        message: '<video controls="" autoplay="" name="media"><source src="'+url+'" type="audio/mpeg"></video>'
+        message: '<video id="mediaAudio" controls="" autoplay="" name="media" style="background-image: url(./assets/build/css/images/images/audio.jpg);background-size: 100% 80%;"><source src="'+url+'" type="audio/mpeg"></video>'
       },
         {
           delay: 0,                       //never autoclose

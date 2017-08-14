@@ -26,6 +26,8 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
   signOut:boolean=false;
   signIn:boolean=true;
 
+  messageVisible:boolean=false;
+
   name:string="";
   
   sub: any;
@@ -64,9 +66,10 @@ Save(data:any)
    this.socialLoginServic.Sign(this.form.value.email,this.form.value.password).subscribe(
         function(respond){
                 self.Save({name:"itorah itorah",email:self.form.value.email,token:respond.access_token,provider:"itorah"})
+                self.messageVisible=false;
            },
            function(error){
-             console.log(error)
+             self.messageVisible=true;
            },
            function(){}
       )
@@ -143,6 +146,7 @@ Save(data:any)
      this.name= JSON.parse(localStorage.getItem('userItorah')).name;
      var name=this.name.split(" ")[0][0]+this.name.split(" ")[1][0] //firstname first letter and lastname
      $('#login-title').html(name)
+     $('#login-title').addClass('nor-circle')
    }
    else
    {
@@ -150,6 +154,7 @@ Save(data:any)
      this.signIn=true;
      this.signOut=false;
      $('#login-title').html("Sign In")
+     $('#login-title').removeClass('nor-circle')
    }
   }
 

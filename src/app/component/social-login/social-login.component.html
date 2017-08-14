@@ -39,10 +39,10 @@
 					<div class="form-row">
 						<div class="form-cols">
 							<div class="form-col">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox1">
+								<div class="animated bounceIn" *ngIf="messageVisible">
+									<!--<input type="checkbox" id="checkbox1">-->
 
-									<label for="checkbox1">Stay signed in</label>
+									<label for="checkbox1" style="color:red;cursor: text;" >Email or Password Incorrect</label>
 								</div>
 								<!-- /.checkbox -->
 							</div>

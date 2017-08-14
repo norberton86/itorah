@@ -145,16 +145,14 @@ Save(data:any)
      this.signOut=true;
      this.name= JSON.parse(localStorage.getItem('userItorah')).name;
      var name=this.name.split(" ")[0][0]+this.name.split(" ")[1][0] //firstname first letter and lastname
-     $('#login-title').html(name)
-     $('#login-title').addClass('nor-circle')
+     $('#login-title').html(name).addClass('nor-circle')
    }
    else
    {
      this.title="Sign In"
      this.signIn=true;
      this.signOut=false;
-     $('#login-title').html("Sign In")
-     $('#login-title').removeClass('nor-circle')
+     $('#login-title').html("Sign In").removeClass('nor-circle')
    }
   }
 

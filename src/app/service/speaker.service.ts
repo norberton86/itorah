@@ -39,7 +39,9 @@ export class SpeakerService extends Service{
 
     public readMy(): Observable<Speaker[]> {
         
-        return this.http.get(this.ruta+"/mySpeakers").map(
+        let h = new Headers();
+            h.append('Authorization','bearer '+JSON.parse(localStorage.getItem('userItorah')).token);
+        return this.http.get(this.ruta+"/mySpeakers",{headers: h}).map(
             (response) => {
                 let body = response.json();
                 return body;

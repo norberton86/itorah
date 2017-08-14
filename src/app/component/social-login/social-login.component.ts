@@ -3,13 +3,22 @@ import { AuthService } from "angular2-social-login";
 import { QueueService } from '../../service/queue.service';
 import { PodcastService } from '../../service/podcast.service';
 import { SubscribeService } from '../../service/subscribe.service';
+import { SocialLoginServic } from '../../service/social-login.service';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+
+
+
+import {Http, Headers} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 declare var $:any; 
 
 @Component({
   selector: 'app-social-login',
   templateUrl: './social-login.component.html',
-  styleUrls: ['./social-login.component.css']
+  styleUrls: ['./social-login.component.css'],
+  providers:[SocialLoginServic]
 })
 export class SocialLoginComponent implements OnInit,OnDestroy  {
   
@@ -21,37 +30,93 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
   
   sub: any;
 
-  constructor(public _auth: AuthService,private ngZone:NgZone,private queueService:QueueService,private podcastService:PodcastService,private subscribeService:SubscribeService){ }
+  form:FormGroup;
+
+  constructor(private fb: FormBuilder,public _auth: AuthService,private ngZone:NgZone,private queueService:QueueService,private podcastService:PodcastService,private subscribeService:SubscribeService,private socialLoginServic:SocialLoginServic){
+    this.InitializeForm();
+   }
   
   SignIn(provider){
     this.sub = this._auth.login(provider).subscribe(
       (data:any) => {
 
-        localStorage.setItem('userItorah',JSON.stringify({name:data.name,email:data.email,token:data.token,provider:data.provider}))
-        this.queueService.setLogin("Signed");
-        this.podcastService.setLogin("Signed");
-        this.subscribeService.setLogin("Signed");
-        this.RefreshView();
+       this.Save(data)
         
       }
     )
   }
 
 
+
+Save(data:any)
+{
+        localStorage.setItem('userItorah',JSON.stringify({name:data.name,email:data.email,token:data.token,provider:data.provider}))
+        this.queueService.setLogin("Signed");
+        this.podcastService.setLogin("Signed");
+        this.subscribeService.setLogin("Signed");
+        this.RefreshView();
+}
+
+ Submit()
+ {
+   let self=this;
+   
+   this.socialLoginServic.Sign(this.form.value.email,this.form.value.password).subscribe(
+        function(respond){
+                self.Save({name:"itorah itorah",email:self.form.value.email,token:respond.access_token,provider:"itorah"})
+           },
+           function(error){
+             console.log(error)
+           },
+           function(){}
+      )
+ } 
+
+  Reset()
+  {
+   var data ={
+      email:'',
+      password:'',
+    }
+    this.form.patchValue(data);
+  }
+
+ InitializeForm() 
+ {
+    var data ={
+      email:['',[Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      password:'',
+    }
+
+     this.form = this.fb.group(data);
+  }
+
   Logout(){
+
+   if(localStorage.getItem('userItorah')!=null&&localStorage.getItem('userItorah')!="")
+   {
+     this.Remove()
+   }
+   else
     this._auth.logout().subscribe(
       (data)=>{
            if(data)
            {
-             localStorage.removeItem('userItorah');
-             this.queueService.setLogin("LogOut");
-             this.podcastService.setLogin("LogOut");
-             this.subscribeService.setLogin("LogOut");
-             this.RefreshView();
+            this.Remove()
            }
       }
     )
   }
+
+
+ Remove()
+ {
+    localStorage.removeItem('userItorah');
+             this.queueService.setLogin("LogOut");
+             this.podcastService.setLogin("LogOut");
+             this.subscribeService.setLogin("LogOut");
+             this.RefreshView();
+ }
 
   RefreshView()
   {

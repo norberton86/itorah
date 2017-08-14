@@ -122,6 +122,24 @@ export class SpeakerComponent implements OnInit ,OnChanges{
 
           if($(this).val()=='#tile-tab-2') //if is 'my'
           {
+               if(localStorage.getItem('userItorah')==null||localStorage.getItem('userItorah')=="")//needs credentials to access
+               {     
+                     setTimeout(function(){
+                       var $grid = $('.tiles');
+                       $('.ballon-opened').removeClass('ballon-opened');
+                       $('.tile').removeClass('tiled')
+			                 $('#ballon').remove();
+                       $('.ico-ballon-arrow').removeClass('ico-ballon-arrow-shown')
+
+			                 $grid.isotope({ sortBy: 'sorting' });
+                       //------------------------------------------------------------------------------------------
+
+                        $('.nav-access > li > .dropdown-signin').addClass('shown').show() //open the Sign in session
+                       
+                     },500)
+                    
+               }
+               else
                 self.speakerService.readMy().subscribe(
                     function(response){
                           self.InitializeMySlide(response);

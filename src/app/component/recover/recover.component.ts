@@ -63,4 +63,9 @@ export class RecoverComponent implements OnInit,OnChanges {
     return this.form.value.password==this.form.value.confirm;
   }
 
+  NotEquals()
+  {
+    return this.form.value.password!=this.form.value.confirm&&this.form.value.confirm!='';
+  }
+
 }

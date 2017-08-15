@@ -41,10 +41,14 @@
             <!-- /.form-controls -->
           </div>
 
-
+          
           <div class="form-actions" style="border-top: none;padding-top: 0px;">
             
-            <input type="submit" value="Change" class="form-btn" (click)="Change()" [disabled]="!Equals()" [class.mydisabled]="!Equals()">
+            <div class="animated bounceIn" *ngIf="NotEquals()" style="margin-bottom: 0.5em;">			
+									<label for="" style="color:red;cursor: text;" >Password doesn't match</label>
+						</div>
+
+            <input type="submit" value="Save" class="form-btn" (click)="Change()" [disabled]="!Equals()" [class.mydisabled]="!Equals()" style="margin-bottom: 1em;">
           
           </div>
           <!-- /.form-actions -->

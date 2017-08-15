@@ -14,7 +14,7 @@
 				<i class="ico-logo-small"></i>
 			</div>
 			<!-- /.form-head -->
-			<div *ngIf="signIn">
+			<div *ngIf="signIn" class="animated" [class.fadeIn]="!forgot || !createAccount">
 				<div class="form-body">
 					<div class="form-row">
 						<label for="field-email" class="form-label hidden">Email</label>
@@ -96,7 +96,7 @@
 				<!-- /.form-actions -->
 			</div>
 
-            <div *ngIf="forgot">
+            <div *ngIf="forgot" class="animated" [class.fadeIn]="!signIn">
 
 				<div class="form-row">
 						<label for="field-email" class="form-label hidden">Email</label>
@@ -115,7 +115,7 @@
 				<!-- /.form-actions -->
 			</div>
 
-			 <div *ngIf="createAccount">
+			 <div *ngIf="createAccount" class="animated" [class.fadeIn]="!signIn">
 
 
                 <div class="form-row">

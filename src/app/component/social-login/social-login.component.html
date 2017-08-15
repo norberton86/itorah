@@ -88,7 +88,7 @@
 				<!-- /.form-actions -->
 			</div>
 
-            <div *ngIf="signOut">
+            <div *ngIf="signOut" class="animated" [class.fadeIn]="!signIn">
 				<div class="form-actions">
 					<p style="margin-bottom: 0.5em">{{name}}</p>
 					<input type="submit" value="Sign Out" class="form-btn" (click)="Logout()">

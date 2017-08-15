@@ -33,7 +33,8 @@ import {DndModule} from 'ng2-dnd';
 import {ShareButtonsModule} from 'ngx-sharebuttons';
 import { SubscribeComponent } from './component/subscribe/subscribe.component';
 import {SubscribeService} from './service/subscribe.service';
-import { InspireComponent } from './component/inspire/inspire.component'
+import { InspireComponent } from './component/inspire/inspire.component';
+import { PrivacyPolicyComponent } from './component/privacy-policy/privacy-policy.component'
 
 
 
@@ -73,7 +74,8 @@ let providers = {
     TimePipe,
     FilterForPipe,
     SubscribeComponent,
-    InspireComponent
+    InspireComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,

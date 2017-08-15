@@ -95,9 +95,11 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
                 this.GoBackfromAccount();        
            }
       })
+  }
 
-    
-    
+  Privacy()
+  {
+    	$("#privacy").toggleClass('shown');
   }
 
 Agree()

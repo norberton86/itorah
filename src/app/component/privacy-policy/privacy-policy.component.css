@@ -1,0 +1,27 @@
+
+#privacy .donate-head{
+   padding: 9px 0 9px 20px;
+}
+
+#privacy .donate-head .link-close{
+   top:8px;
+}
+
+#privacy .donate-body{
+  padding: 1em;
+}
+
+#privacy .donate-body .content p,#privacy .donate-body .content div{
+  padding-left: 2em;
+  padding-right: 2em;
+  margin-top: 0.5em;
+}
+
+#privacy .donate-body .content h4{
+    background:none;
+    text-align:left;
+    color:#000;
+    margin-bottom: 0px;
+    margin-left: 1em;
+    margin-right: 1em;
+}

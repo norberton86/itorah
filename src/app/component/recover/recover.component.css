@@ -1,0 +1,32 @@
+.mydisabled {
+   cursor: not-allowed !important; 
+}
+
+#recover .donate-head .link-close{
+   top:8px;
+}
+
+#recover_form{
+    padding-left: 38%;
+    padding-right: 38%;
+}
+
+#recover_title:hover{ 
+    color:black;
+    cursor: text
+}
+
+
+@media(max-width:768px) {
+ 
+#recover_form{
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+}
+
+#recover_title{
+    display: none;
+}
+
+
+}

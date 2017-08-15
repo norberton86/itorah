@@ -1,0 +1,61 @@
+<div class="donate" id="recover">
+  <div class="donate-head">
+    <span> <a id="recover_title" style="text-decoration:none;">Recover Password for:</a> {{email}}</span>
+
+
+    <a href="#" class="link-close">
+		  <i class="ico-close"></i>
+		</a>
+
+  </div>
+  <!-- /.donate-head -->
+
+  <div class="donate-body">
+
+    <div class="form-signin">
+      <form action="?" method="post" [formGroup]="form">
+        <div class="form-head" style="text-align: center;">
+          <i class="ico-logo-small"></i>
+        </div>
+        <!-- /.form-head -->
+       
+
+        <div id="recover_form" >
+
+          <div class="form-row">
+            <label for="field-password" class="form-label hidden">Password</label>
+
+            <div class="form-controls">
+              <input type="password" class="field" name="field-password" id="field-password" value="" placeholder="Password" formControlName="password">
+            </div>
+            <!-- /.form-controls -->
+          </div>
+
+          <div class="form-row">
+            <label for="field-confirmPassword" class="form-label hidden">Confirm Password</label>
+
+            <div class="form-controls">
+              <input type="password" class="field" name="field-confirmPassword" id="field-confirmPassword" value="" placeholder="Confirm Password"
+                formControlName="confirm">
+            </div>
+            <!-- /.form-controls -->
+          </div>
+
+
+          <div class="form-actions" style="border-top: none;padding-top: 0px;">
+            
+            <input type="submit" value="Change" class="form-btn" (click)="Change()" [disabled]="!Equals()" [class.mydisabled]="!Equals()">
+          
+          </div>
+          <!-- /.form-actions -->
+        </div>
+
+
+
+      </form>
+    </div>
+
+
+  </div>
+  <!-- /.donate-body -->
+</div>

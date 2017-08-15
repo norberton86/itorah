@@ -22,6 +22,9 @@ export class AppComponent implements OnInit{
  amountSpeaker:string=""
  gSearch:string;
 
+
+ emailRecover:string=""
+
   constructor(private analitycService:AnalitycService){ }
 
 
@@ -49,7 +52,18 @@ keyDownFunction(event)
     }) 
    },500)
     
+   this.CheckResetPassword(); 
   }
+
+  CheckResetPassword()
+  {
+    if(location.href.indexOf('#email:')>=0)
+     {
+      this.emailRecover = location.href.split('#email:')[1];
+      $("#recover").toggleClass('shown');
+     }
+  }
+
 
   Accion()
   {

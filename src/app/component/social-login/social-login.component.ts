@@ -13,7 +13,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 declare var $:any; 
-declare var Notification:any; 
+
 
 @Component({
   selector: 'app-social-login',
@@ -62,10 +62,10 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
     let self=this;
      this.socialLoginServic.Forgot(this.form.value.email).subscribe(
         function(respond){
-              self.Notify("Check your email",false)
+              self.socialLoginServic.Notify("Check your email",false)
            },
            function(error){
-                self.Notify("Service not available",true)
+                self.socialLoginServic.Notify("Service not available",true)
            },
            function(){}
       )
@@ -109,38 +109,7 @@ Agree()
   return this.form.value.agree
 }
 
- Notify(message:string,error:boolean)
- {
-         var iconUrl="";
-        if(error)
-            iconUrl='./assets/build/css/images/images/notification_error.png'
-        else
-          iconUrl='./assets/build/css/images/images/notification_done.png'
 
-
-         if (!("Notification" in window)) {
-             console.log("no notifications in this browser");
-         }
-         else if (Notification.permission === "granted") {
-             // If it's okay let's create a notification
-             var notification = new Notification(message, { icon: iconUrl });
-             notification.onshow = function () {
-                 setTimeout(notification.close.bind(notification), 3000);
-             }
-         }
-         else if (Notification.permission !== 'denied') {
-             Notification.requestPermission(function (permission) {
-
-                 if (permission === "granted") {
-                     var notification = new Notification(message, { icon: iconUrl});
-                     notification.onshow = function () {
-                         setTimeout(notification.close.bind(notification), 3000);
-                     }
-                 }
-             });
-         }
-     
- }
   //---------------------------------------------------------------------------------------
 
   SignIn(provider){

@@ -34,7 +34,8 @@ import {ShareButtonsModule} from 'ngx-sharebuttons';
 import { SubscribeComponent } from './component/subscribe/subscribe.component';
 import {SubscribeService} from './service/subscribe.service';
 import { InspireComponent } from './component/inspire/inspire.component';
-import { PrivacyPolicyComponent } from './component/privacy-policy/privacy-policy.component'
+import { PrivacyPolicyComponent } from './component/privacy-policy/privacy-policy.component';
+import { RecoverComponent } from './component/recover/recover.component'
 
 
 
@@ -75,7 +76,8 @@ let providers = {
     FilterForPipe,
     SubscribeComponent,
     InspireComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    RecoverComponent
   ],
   imports: [
     BrowserModule,

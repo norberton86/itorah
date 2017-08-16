@@ -124,7 +124,7 @@
       					</div>
 				</div>
 
-				<div class="form-actions" style="border-top: none;">
+				<div class="form-actions" style="border-top: none;padding-top: 0px;">
 					<p style="margin-bottom: 0.5em">No problem! We'll send password reset instructions</p>
 					<input type="submit" value="Reset Password" class="form-btn" (click)="ResetPassword()" [disabled]="form.get('email').hasError('required')||!form.get('email').valid" [class.mydisabled]="form.get('email').hasError('required')||!form.get('email').valid">
 					<p>Back to <a href="#/" (click)="GoBack()">sig in</a></p>

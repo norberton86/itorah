@@ -144,6 +144,10 @@ Save(data:any)
            },
            function(error){
              self.messageVisible=true;
+             
+             setTimeout(function(){
+               self.messageVisible=false;
+             },3000)
            },
            function(){}
       )

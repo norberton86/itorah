@@ -31,8 +31,8 @@ export class RecoverComponent implements OnInit,OnChanges {
  InitializeForm() 
  {
     var data ={
-      password:'',
-      confirm:''
+      password:['', Validators.required],
+      confirm:['', Validators.required]
     }
 
      this.form = this.fb.group(data);

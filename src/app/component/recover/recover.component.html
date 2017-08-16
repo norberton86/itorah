@@ -13,7 +13,7 @@
   <div class="donate-body">
 
     <div class="form-signin">
-      <form action="?" method="post" [formGroup]="form">
+      <form novalidate [formGroup]="form">
         <div class="form-head" style="text-align: center;">
           <i class="ico-logo-small"></i>
         </div>
@@ -29,6 +29,9 @@
               <input type="password" class="field" name="field-password" id="field-password" value="" placeholder="Password" formControlName="password">
             </div>
             <!-- /.form-controls -->
+            <div   class="animated bounceIn" style="color:red;" *ngIf="form.get('password').hasError('required') && form.get('password').touched">
+        						Password is required
+      					</div>
           </div>
 
           <div class="form-row">
@@ -39,6 +42,9 @@
                 formControlName="confirm">
             </div>
             <!-- /.form-controls -->
+            <div   class="animated bounceIn" style="color:red;" *ngIf="form.get('confirm').hasError('required') && form.get('confirm').touched">
+        						Confirm is required
+      					</div>
           </div>
 
           

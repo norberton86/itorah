@@ -9,7 +9,7 @@
 
 <div class="dropdown-body">
 	<div class="form-signin">
-		<form action="?" method="post" [formGroup]="form">
+		<form novalidate [formGroup]="form">
 			<div class="form-head">
 				<i class="ico-logo-small"></i>
 			</div>
@@ -23,6 +23,13 @@
 							<input type="text" class="field" name="field-email" id="field-email" value="" placeholder="Email" formControlName="email">
 						</div>
 						<!-- /.form-controls -->
+						<div   class="animated bounceIn" style="color:red;" *ngIf="form.get('email').hasError('required') && form.get('email').touched">
+        						Email is required
+      					</div>
+
+						<div   class="animated bounceIn" style="color:red;" *ngIf="!form.get('email').valid  && form.get('email').touched">
+        						Email is invalid
+      					</div>
 					</div>
 					<!-- /.form-row -->
 
@@ -33,6 +40,9 @@
 							<input type="password" class="field" name="field-password" id="field-password" value="" placeholder="Password" formControlName="password">
 						</div>
 						<!-- /.form-controls -->
+						<div   class="animated bounceIn" style="color:red;" *ngIf="form.get('password').hasError('required') && form.get('password').touched">
+        						Password is required
+      					</div>
 					</div>
 					<!-- /.form-row -->
 
@@ -60,7 +70,7 @@
 				<!-- /.form-body -->
 
 				<div class="form-actions">
-					<input type="submit" value="SIGN IN" class="form-btn" (click)="Submit()">
+					<input type="submit" value="SIGN IN" class="form-btn" (click)="Submit()" [disabled]="form.get('email').hasError('required')||!form.get('email').valid||form.get('password').hasError('required')" [class.mydisabled]="form.get('email').hasError('required')||!form.get('email').valid||form.get('password').hasError('required')">
 
 					<p>or</p>
 
@@ -105,11 +115,18 @@
 							<input type="text" class="field" name="field-email" id="field-email" value="" placeholder="Email" formControlName="email">
 						</div>
 						<!-- /.form-controls -->
+						<div   class="animated bounceIn" style="color:red;" *ngIf="form.get('email').hasError('required') && form.get('email').touched">
+        						Email is required
+      					</div>
+
+						<div   class="animated bounceIn" style="color:red;" *ngIf="!form.get('email').valid  && form.get('email').touched">
+        						Email is invalid
+      					</div>
 				</div>
 
 				<div class="form-actions" style="border-top: none;">
 					<p style="margin-bottom: 0.5em">No problem! We'll send password reset instructions</p>
-					<input type="submit" value="Reset Password" class="form-btn" (click)="ResetPassword()">
+					<input type="submit" value="Reset Password" class="form-btn" (click)="ResetPassword()" [disabled]="form.get('email').hasError('required')||!form.get('email').valid" [class.mydisabled]="form.get('email').hasError('required')||!form.get('email').valid">
 					<p>Back to <a href="#/" (click)="GoBack()">sig in</a></p>
 				</div>
 				<!-- /.form-actions -->
@@ -125,6 +142,9 @@
 							<input type="text" class="field" name="field-firstName" id="field-firstName" value="" placeholder="First Name" formControlName="first">
 						</div>
 						<!-- /.form-controls -->
+						 <div   class="animated bounceIn" style="color:red;" *ngIf="form.get('first').hasError('required') && form.get('first').touched">
+        						First Name is required
+      					</div>
 				</div> 
 
 				<div class="form-row">
@@ -134,15 +154,25 @@
 							<input type="text" class="field" name="field-lastName" id="field-lastName" value="" placeholder="Last Name" formControlName="last">
 						</div>
 						<!-- /.form-controls -->
+						<div   class="animated bounceIn" style="color:red;" *ngIf="form.get('last').hasError('required') && form.get('last').touched">
+        						Last Name is required
+      					</div>
 				</div> 
 
 				<div class="form-row">
 						<label for="field-email" class="form-label hidden">Email</label>
 
 						<div class="form-controls">
-							<input type="text" class="field" name="field-email" id="field-email" value="" placeholder="Email" formControlName="email">
+							<input type="email" class="field" name="field-email" id="field-email" value="" placeholder="Email" formControlName="email">
 						</div>
 						<!-- /.form-controls -->
+						<div   class="animated bounceIn" style="color:red;" *ngIf="form.get('email').hasError('required') && form.get('email').touched">
+        						Email is required
+      					</div>
+
+						<div   class="animated bounceIn" style="color:red;" *ngIf="!form.get('email').valid  && form.get('email').touched">
+        						Email is invalid
+      					</div>
 				</div>
 
 				<div class="form-row">
@@ -152,15 +182,25 @@
 							<input type="password" class="field" name="field-password" id="field-password" value="" placeholder="Password" formControlName="password">
 						</div>
 						<!-- /.form-controls -->
+						<div   class="animated bounceIn" style="color:red;" *ngIf="form.get('password').hasError('required') && form.get('password').touched">
+        						Password is required
+      					</div>
 				</div>
 
 				<div class="form-row">
 						<label for="field-confirmPassword" class="form-label hidden">Confirm Password</label>
 
 						<div class="form-controls">
-							<input type="password" class="field" name="field-confirmPassword" id="field-confirmPassword" value="" placeholder="Confirm Password" formControlName="confirm">
+							<input type="password" class="field" name="field-confirmPassword" id="field-confirmPassword" value="" placeholder="Confirm Password" formControlName="confirm" validateEqual="form.password">
 						</div>
 						<!-- /.form-controls -->
+						<div   class="animated bounceIn" style="color:red;" *ngIf="form.get('confirm').hasError('required') && form.get('confirm').touched">
+        						Confirm is required
+      					</div>
+
+						<div   class="animated bounceIn" style="color:red;" *ngIf="form.get('confirm').value!=form.get('password').value && form.get('confirm').touched">
+        						Password doesn't match
+      					</div>
 				</div>
 
 				<div class="form-row">								
@@ -172,7 +212,7 @@
 
 				<div class="form-actions" style="border-top: none;">
 					<p style="margin-bottom: 0.5em">By signing up, I agree to iTorah <a href="#/">Terms of Service </a> and <a href="#/" (click)="Privacy()">Privacy Policy</a></p>
-					<input type="submit" value="Register" class="form-btn" (click)="Register()" [disabled]="!Agree()" [class.mydisabled]="!Agree()" >
+					<input type="submit" value="Register" class="form-btn" (click)="Register()" [disabled]="form.invalid||!Agree()||form.get('confirm').value!=form.get('password').value" [class.mydisabled]="form.invalid||!Agree()||form.get('confirm').value!=form.get('password').value" >
 					<p>Back to <a href="#/" (click)="GoBackfromAccount()">sign in</a></p>
 				</div>
 				<!-- /.form-actions -->

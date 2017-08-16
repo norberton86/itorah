@@ -164,13 +164,15 @@ Save(data:any)
 
  InitializeForm() 
  {
+    let EMAIL_REGEXP = /^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/;
+
     var data ={
-      email:['',[Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      password:'',
-      first:'',
-      last:'',
-      confirm:'',
-      agree:''
+      email:['',[Validators.required,Validators.pattern(EMAIL_REGEXP)]],
+      password:['', Validators.required],
+      first:['', Validators.required],
+      last:['', Validators.required],
+      confirm:['', Validators.required],
+      agree:['', Validators.required]
     }
 
      this.form = this.fb.group(data);

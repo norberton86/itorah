@@ -113,17 +113,10 @@ export class SpeakerComponent implements OnInit ,OnChanges{
   }
 
 
-  ngOnInit() {
-    this.ReadMainSpeaker();
-    this.ReadAllSpeaker();
-
-    let self=this;
-     $('#field-8').change(function(){   //combo (main,my,all)
-
-          if($(this).val()=='#tile-tab-2') //if is 'my'
-          {
-               if(localStorage.getItem('userItorah')==null||localStorage.getItem('userItorah')=="")//needs credentials to access
-               {     
+ isAuthenticated():boolean
+ {
+     if(localStorage.getItem('userItorah')==null||localStorage.getItem('userItorah')=="")//needs credentials to access
+     {     
                      setTimeout(function(){
                        var $grid = $('.tiles');
                        $('.ballon-opened').removeClass('ballon-opened');
@@ -137,9 +130,23 @@ export class SpeakerComponent implements OnInit ,OnChanges{
                         $('.nav-access > li > .dropdown-signin').addClass('shown').show() //open the Sign in session
                        
                      },500)
-                    
-               }
-               else
+                    return false;
+     }
+     else
+     return true;
+ }
+
+
+  ngOnInit() {
+    this.ReadMainSpeaker();
+    this.ReadAllSpeaker();
+
+    let self=this;
+     $('#field-8').change(function(){   //combo (main,my,all)
+
+          if($(this).val()=='#tile-tab-2') //if is 'my'
+          {
+               if(self.isAuthenticated())//needs credentials to access
                 self.speakerService.readMy().subscribe(
                     function(response){
                           self.InitializeMySlide(response);
@@ -764,14 +771,18 @@ export class SpeakerComponent implements OnInit ,OnChanges{
               })
 
               $("#ballon .link-add").click(function(){
-                    var id=$(this).attr('id');
+                    
+                    if(self.isAuthenticated())
+                    {
+                        var id=$(this).attr('id');
                
-                   var  myShirium=new Shiurim();
-                   myShirium=self.shiriums.filter(function (s) {
-                    return s.id==id;
-                   })[0];
+                        var  myShirium=new Shiurim();
+                        myShirium=self.shiriums.filter(function (s) {
+                        return s.id==id;
+                        })[0];
      
-                 self.queueService.setItem(myShirium,self.speaker.firstName+" "+self.speaker.lastName,1);       
+                        self.queueService.setItem(myShirium,self.speaker.firstName+" "+self.speaker.lastName,1);       
+                    }
               })
 
         self.BackgroundSlide(self.speaker.id.toString())

@@ -23,11 +23,6 @@ export class ShiurimService extends Service{
         return this.http.get(this.ruta+"Shiurim?SpeakerID="+idSpeaker).map(
             (response) => {
                 let body = response.json();
-                 for(var i=0;i<body.length;i++)
-                {
-                   body[i].id=i;
-                }
-
                 return body;
             }
         )

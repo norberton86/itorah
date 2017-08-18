@@ -24,7 +24,7 @@ export class QueueService extends ServiceLogin {
   public read(token: string): Observable<ItemQueue[]> {
 
     let h = new Headers();
-            h.append('Authorization','bearer '+JSON.parse(localStorage.getItem('userItorah')).token);
+            h.append('Authorization','bearer '+token);
         return this.http.get(this.ruta,{headers: h}).map(
             (response) => {
                 let body = response.json();
@@ -36,7 +36,7 @@ export class QueueService extends ServiceLogin {
   public add(token: string,data:any): Observable<any> {
 
     let h = new Headers();
-            h.append('Authorization','bearer '+JSON.parse(localStorage.getItem('userItorah')).token);
+            h.append('Authorization','bearer '+token);
             h.append('Content-Type','application/json');
             
         return this.http.post(this.ruta+"/add",data,{headers: h}).map(

@@ -18,55 +18,36 @@ export class QueueService extends ServiceLogin {
 
   constructor(http: Http) {
     super(http);
-
+    this.ruta="http://itorahapi.3nom.com/api/Queue";
   }
 
+  public read(token: string): Observable<ItemQueue[]> {
 
-  read(token: string): Observable<ItemQueue[]> {
-
-    return Observable.create(observer => {
-
-      var data = [{
-        "title": "The Transition / Bene Gad",
-        "dateRecorded": new Date(),
-        "length": "60:0         ",
-        "language": "English",
-        "audio": "http://peleyoetz.com/PeleYoetz/4.mp3",
-        "video": "",
-        "id": "1",
-        "wowzaVideoUrl": "",
-        "speakerName": "Rabbi Eli J Mansour"
-      },
-      {
-        "title": "Word Power",
-        "dateRecorded": new Date(),
-        "length": "60:0         ",
-        "language": "English",
-        "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
-        "video": "",
-        "id": "2",
-        "wowzaVideoUrl": "",
-        "speakerName": "Rabbi Eli J Mansour"
-      }]
-
-      observer.next(data);
-      observer.complete();
-    });
-
+    let h = new Headers();
+            h.append('Authorization','bearer '+JSON.parse(localStorage.getItem('userItorah')).token);
+        return this.http.get(this.ruta,{headers: h}).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
   }
 
+  public add(token: string,data:any): Observable<any> {
 
-  /*public read(token: string): Observable<ItemQueue[]> {
+    let h = new Headers();
+            h.append('Authorization','bearer '+JSON.parse(localStorage.getItem('userItorah')).token);
+            h.append('Content-Type','application/json');
+            
+        return this.http.post(this.ruta+"/add",data,{headers: h}).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+  }
 
-    return this.http.get(this.ruta + "/Read").map(
-      (response) => {
-        let body = response.json();
-        return body;
-      }
-    )
-  }*/
-
-  setItem(myShirium: Shiurim, speakerName: string): void {
+  setItem(myShirium: Shiurim, speakerName: string,sourceID:number): void {
 
     var item = new ItemQueue();
     item.id = myShirium.id;
@@ -76,7 +57,8 @@ export class QueueService extends ServiceLogin {
     item.language = myShirium.language;
     item.audio = myShirium.audio;
     item.video = myShirium.video;
-    item.speakerName = speakerName;
+    item.speaker = speakerName;
+    item.sourceID=sourceID;
 
     this.subject.next(item);
   }

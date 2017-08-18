@@ -42,7 +42,8 @@ export class QueueComponent implements OnInit, OnDestroy {
       "video": "",
       "id": "1",
       "wowzaVideoUrl": "",
-      "speakerName": "Rabbi Eli J Mansour"
+      "speaker": "Rabbi Eli J Mansour",
+      "sourceID": 1
     },
     {
       "title": "Word Power",
@@ -53,7 +54,8 @@ export class QueueComponent implements OnInit, OnDestroy {
       "video": "",
       "id": "2",
       "wowzaVideoUrl": "",
-      "speakerName": "Rabbi Eli J Mansour"
+      "speaker": "Rabbi Eli J Mansour",
+      "sourceID": 1
     },
     {
       "title": "Perush Rashi on Parashat Hukat",
@@ -64,7 +66,8 @@ export class QueueComponent implements OnInit, OnDestroy {
       "video": "",
       "id": "3",
       "wowzaVideoUrl": "",
-      "speakerName": "Rabbi Eli J Mansour"
+      "speaker": "Rabbi Eli J Mansour",
+      "sourceID": 1
     },
     {
       "title": "The Aderet / Jewish Home",
@@ -74,8 +77,9 @@ export class QueueComponent implements OnInit, OnDestroy {
       "audio": "http://peleyoetz.com/PeleYoetz/5.mp3",
       "video": "http://media.learntorah.com/LT-Video/mp4:LBM227.mp4/playlist.m3u8",
       "id": "4",
-      "speakerName": "Rabbi Eli J Mansour",
+      "speaker": "Rabbi Eli J Mansour",
       "wowzaVideoUrl": "",
+      "sourceID": 1
     }];
   }
 
@@ -100,10 +104,22 @@ export class QueueComponent implements OnInit, OnDestroy {
   }
 
   Add(item: ItemQueue) {
-    if (this.queues.filter(function (s) {
-      return s.id == item.id;
-    }).length == 0)
-      this.queues.push(item)
+    if (this.queues.filter(function (s) {return s.id == item.id;}).length == 0)
+    {
+      let self=this;
+     this.queueService.add(self.queueService.getToken(),[{ItemID:item.id,sourceID:item.sourceID}]).subscribe(
+        function(respond){
+              self.queues.push(item)
+           },
+           function(error){
+                
+               self.queueService.Notify("Error trying to add",true) 
+           },
+           function(){}
+      )
+    
+    }
+      
   }
 
   Remove(id: string) {

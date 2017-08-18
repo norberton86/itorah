@@ -219,7 +219,7 @@ export class HokSearchComponent implements OnInit, OnChanges {
                     return s.id==id;
                    })[0];
      
-                 self.queueService.setItem(myShirium,"Rabbi Eli J Mansour");       
+                 self.queueService.setItem(myShirium,"Rabbi Eli J Mansour",2);       
         })
 
     }, 500)

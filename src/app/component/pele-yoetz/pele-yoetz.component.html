@@ -14,9 +14,9 @@
 						</select>--><!-- /.form-row -->
 					<!--</div> --><!-- /.select -->
 					
-					<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field">
+					<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field"  [(ngModel)]="query_main" (keydown)="keyDownPeleFunction($event)">
 					
-					<button data-type="search-shirium" type="button" class="search-btn">
+					<button data-type="search-shirium" type="button" class="search-btn" (click)="Search()">
 						<i class="ico-magnify"></i>
 					</button>
 				</form>
@@ -42,7 +42,7 @@
 						<li class="subject" *ngFor="let p of peles" id="{{p.id}}">
 							<div class="subject-inner">
 								<div class="subject-play">
-									<a href="#" class="play-secondary" data-title="{{p?.title|peleTitle}}" attr.data-url="{{p?.audioUrl}}">
+									<a href="#" class="play-secondary" data-title="{{p?.title|peleTitle}}" attr.data-url="{{p?.audioUrl}}" (click)="Play(p.title,p.audioUrl)">
 										<i class="ico-play-2"></i>
 									</a>
 								</div><!-- /.subject-play -->
@@ -62,7 +62,7 @@
 								</div><!-- /.subject-body -->
 								
 								<div class="subject-actions">
-									<a href="#" class="link-more" attr.data-value="{{p.id}}">More</a>
+									<a href="#/" class="link-more" attr.data-value="{{p.id}}" (click)="More(p.id)">More</a>
 								</div><!-- /.subject-actions -->
 							</div><!-- /.subject-inner -->
 						</li><!-- /.subject -->

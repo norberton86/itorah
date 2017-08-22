@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, Input } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 
 
 import { Pele } from '../../model/Pele';
@@ -21,22 +21,14 @@ export class PeleYoetzComponent implements OnInit {
   
   currentId:string=""
 
-  @Input()
-  accion: string = "";
-  rendering: boolean = false;
 
 
   constructor(private peleService: PeleService, private ngZone: NgZone, private playerService: PlayerService) {
 
   }
 
-  ngOnChanges(changes: any) {
-    if (changes.accion != null && !changes.accion.firstChange) {
-      this.rendering = true;
-      this.RefreshView();
-    }
-
-  }
+ 
+  
 
   ngOnInit() {
     this.ReadPele();
@@ -69,40 +61,29 @@ export class PeleYoetzComponent implements OnInit {
   }
 
 
+  Play(title:string,url:string)
+  {
+        this.playerService.PlayAudio(title, url)
+  }  
+
+
+  keyDownPeleFunction(event)
+  {
+     this.Search()
+  }
+
   RefreshView() {
 
     this.amount = this.peles.length;
-    if (!this.rendering)  //the first time don't renderize
-      return;
+
 
     let self = this;
 
     setTimeout(function () {
 
-      $('#ballon').html($('#item-content-5').html());
-      $('#ballon .search-btn').click(function () {
-
-        self.Search();
-
-      })
-
-      $('#ballon form').submit(function (e) {
-        e.preventDefault();
-        self.query_main = $('#ballon [type="search"]').val()
-        self.Search();
-
-      })
-
-      $('#ballon .play-secondary').click(function () {
-
-        var title = $(this).attr('title');
-        var url = $(this).attr('data-url');
-        self.playerService.PlayAudio(title, url)
-
-      })
 
       $.contextMenu({
-        selector: '#ballon .link-more',
+        selector: '.ballon .link-more',
         trigger: 'left',
         callback: function (key, options) {
 
@@ -110,7 +91,7 @@ export class PeleYoetzComponent implements OnInit {
                  return s.id== parseInt( self.currentId);
                })[0];
 
-        $('#ballon #download').attr('href',p.audioUrl);  //http://itorah.3nom.com/music.mp3
+        $('.ballon #download').attr('href',p.audioUrl);  //http://itorah.3nom.com/music.mp3
 
           
           switch(key)
@@ -127,12 +108,6 @@ export class PeleYoetzComponent implements OnInit {
         }
       });
 
-      $('#ballon .link-more').click(function(){  //click over more...
-
-          self.currentId=$(this).attr('data-value') 
-      })
-
-      $('#ballon .search-field').val(self.query_main);
 
     }, 500)
   }
@@ -142,18 +117,17 @@ export class PeleYoetzComponent implements OnInit {
 
     let self = this;
 
-    self.ngZone.run(() => {
-
-      self.query_main = $('#ballon .search-field').val();  //update the query field in my component (remenber double data binding)
-
       if (localStorage.getItem("peles") != null || localStorage.getItem("peles") != '') {
         self.peles = JSON.parse(localStorage.getItem("peles"));  //recover the originals
       }
 
       self.Update();
-    })
 
+  }
 
+  More(value)
+  {
+     this.currentId=value 
   }
 
 }

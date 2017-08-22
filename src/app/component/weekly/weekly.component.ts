@@ -36,8 +36,6 @@ export class WeeklyComponent implements OnInit {
 
   ngOnInit() {
     this.ReadParasha();
-    this.Initialize();
-    //this.playerService.Play("Lana","");
   }
 
 
@@ -61,62 +59,35 @@ export class WeeklyComponent implements OnInit {
 
  }
 
-  Initialize()
-  {
-     let self=this;
-  
-     
-     $('#field-7').change(function(){   //title combo
-
-          var comboValue= $(this).val()
-          if(comboValue.split(":")[1]==" 999")
+ filterChanged(value)
+ {
+          if(value=="More...")
           {
-                 self.more=true;
+                 this.more=true;
           }
           else
-           self.ngZone.run(()=>{
-                  self.more=false;
-                  self.selectedPerasha=self.perashas[comboValue.split(":")[0]]  // select per position
-                  self.parragraphs=self.selectedPerasha.emailText.split("\n").filter(function (s) {
+          {
+                  this.more=false;
+
+                  this.selectedPerasha=this.perashas.filter(function(s){ //select by name
+                      return s.parashaName==value
+                  })[0] 
+
+                  this.parragraphs=this.selectedPerasha.emailText.split("\n").filter(function (s) {
                      return s!="";
-                  });
-                  
-          })
-          self.RefreshView();
-     })
-     
-
-    this.Print();
-    this.Play();
-  
-  }
-
-  RefreshView()
-  {
-     let self=this;
-     setTimeout(function(){ 
-         $('#ballon .tile-box-body').html($('app-weekly .tile-box-body').html()); //Refresh the view
-         self.Print();
-         
-     },200)
-      
-    
-  }
+                  });       
+          }
+ }
 
   Print()
   {
-    $('#weekly-print').click(function(){
-            //$('#print').print({stylesheet: 'dist/css/print.css'});
-            $('#print').print(); 
-     })
-
+    $('#print').print(); 
   }
 
   Play()
   {
-     let self=this;
-     $('#weekly-play').click(function(){
-          self.playerService.Play("Lana","",true);
-     })
+     
+   this.playerService.Play("Lana","",true);
+    
   }
 }

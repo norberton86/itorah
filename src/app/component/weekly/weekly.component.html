@@ -3,7 +3,7 @@
 		<div class="tile-box-head">
 			<div class="tile-box-head-content">
 				<div class="select select-secondary">
-					<select name="field-7" id="field-7" [(ngModel)]="selectedPerasha">
+					<select name="field-7" id="field-7"  (change)="filterChanged($event.target.value)">
 						<option *ngFor="let c of perashas" [ngValue]="c.id">{{c.parashaName}}</option>
 					</select>
 				</div>
@@ -26,7 +26,7 @@
 
 		<div class="tile-box-body" id="print">
 			<div *ngIf="!more">
-				<h5>{{selectedPerasha?.clipTitle}} <i id="weekly-play" class="ico-play-yellow"></i> <i id="weekly-print" class="ico-print-yellow"></i></h5>
+				<h5>{{selectedPerasha?.clipTitle}} <i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i> <i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></h5>
 
 				<p *ngFor="let p of parragraphs">
 					{{p}}

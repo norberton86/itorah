@@ -1,4 +1,4 @@
-import { Component, OnInit,NgZone,EventEmitter,Output,Input ,OnChanges} from '@angular/core';
+import { Component, OnInit,NgZone,EventEmitter,Output } from '@angular/core';
 
 import { Speaker } from '../../model/speaker';
 import { Shiurim } from '../../model/shiurim';
@@ -10,7 +10,7 @@ import { PlayerService } from '../../service/player.service';
 import { DatabaseService } from '../../service/database.service';
 import { QueueService } from '../../service/queue.service';
 
-import { Injectable, Renderer2,ElementRef } from '@angular/core'
+import { Injectable } from '@angular/core'
 
 declare var $:any; 
 
@@ -20,7 +20,9 @@ declare var $:any;
   styleUrls: ['./speaker.component.css'],
   providers:[SpeakerService,ShiurimService,PlayerService,DatabaseService]
 })
-export class SpeakerComponent implements OnInit ,OnChanges{
+export class SpeakerComponent implements OnInit {
+
+current:string="tile-tab-1"
 
  @Output()
  public myEvent=new EventEmitter<boolean>();
@@ -83,11 +85,9 @@ export class SpeakerComponent implements OnInit ,OnChanges{
                          {letter:"Y",current:false,disable:false},
                          {letter:"Z",current:false,disable:false}]; 
 
-   @Input()
-   accion:string="";
-   rendering:boolean=false;
+  
 
-  constructor( private renderer:Renderer2,private speakerService:SpeakerService,private shiurimService:ShiurimService,private elementRef: ElementRef,private ngZone:NgZone,private playerService:PlayerService,private databaseService:DatabaseService,private queueService:QueueService) {
+  constructor( private speakerService:SpeakerService,private shiurimService:ShiurimService,private ngZone:NgZone,private playerService:PlayerService,private databaseService:DatabaseService,private queueService:QueueService) {
       this.allSpeakers=[];
       this.speaker=new Speaker();
       this.currentSpeakers=[];
@@ -103,14 +103,6 @@ export class SpeakerComponent implements OnInit ,OnChanges{
       
    }
 
-   ngOnChanges(changes:any) {
-     if(changes.accion!=null&&!changes.accion.firstChange)
-     {
-       this.rendering=true;   
-       this.RefreshView();
-     }
-      
-  }
 
 
  isAuthenticated():boolean
@@ -118,15 +110,8 @@ export class SpeakerComponent implements OnInit ,OnChanges{
      if(localStorage.getItem('userItorah')==null||localStorage.getItem('userItorah')=="")//needs credentials to access
      {     
                      setTimeout(function(){
-                       var $grid = $('.tiles');
-                       $('.ballon-opened').removeClass('ballon-opened');
-                       $('.tile').removeClass('tiled')
-			                 $('#ballon').remove();
-                       $('.ico-ballon-arrow').removeClass('ico-ballon-arrow-shown')
-
-			                 $grid.isotope({ sortBy: 'sorting' });
+                       
                        //------------------------------------------------------------------------------------------
-
                         $('.nav-access > li > .dropdown-signin').addClass('shown').show() //open the Sign in session
                        
                      },500)
@@ -137,96 +122,48 @@ export class SpeakerComponent implements OnInit ,OnChanges{
  }
 
 
-  ngOnInit() {
-    this.ReadMainSpeaker();
-    this.ReadAllSpeaker();
+mainSearch()
+{
+   this.Search()  
+}
 
-    let self=this;
-     $('#field-8').change(function(){   //combo (main,my,all)
+lecturesBySpeaker(id:number)
+{
+  this.query_main="";
+           
+  this.speaker=this.currentSpeakers.filter(function (s) {
+                 return s.id==id;
+  })[0];
 
-          if($(this).val()=='#tile-tab-2') //if is 'my'
-          {
-               if(self.isAuthenticated())//needs credentials to access
-                self.speakerService.readMy().subscribe(
-                    function(response){
-                          self.InitializeMySlide(response);
-                          self.ngZone.run(()=>{
+  this.checkLocalExistence(id); 
+}
 
-                            self.speaker=response[0];
-                            self.ReadLectures(response[0].id);
-
-                          })
-                    },
-                    function(error){
-
-                    },function()
-                    {
-
-                    });
-          }
-          else
-          {
-            if(localStorage.getItem("mainSpeakers")!=null ||localStorage.getItem("mainSpeakers")!='')
-             {
-               self.InitializeMySlide(JSON.parse(localStorage.getItem("mainSpeakers")));  //set the slide with "main"
-             }
-
-             if($(this).val()=='#tile-tab-1')  //if is "main"
-             { 
-               self.ngZone.run(()=>{
-                     self.speaker=JSON.parse(localStorage.getItem("mainSpeakers"))[0]; //set the first                         
-                     self.checkLocalExistence(JSON.parse(localStorage.getItem("mainSpeakers"))[0].id); //get the lectures for the first
-
-               })
-             }
-             else  //if is all
-             {
-               self.ngZone.run(()=>{
-
-                     self.RefreshViewAll(); 
-
-               })
-               
-             }
-            
-          }
-        
-     })
-
-      this.renderer.listen('document','click',(event)=>{
-
-        
-         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="all-search-shirium") //click on all search
-         {
-             this.SearchAll()             
-         }
-         
-         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-prev-all") //click on paging-prev-all 
-         {
-              this.iterationAll--;
-              if(this.iterationAll<=0)
+pagingPrev()
+{
+   this.iteration--;
+              if(this.iteration<=0)
               {
-                   this.iterationAll=1;
+                   this.iteration=1;
               }
               else
-              this.CreatePagesAll();
-         }
+              this.CreatePages();
+}
 
-         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-next-all") //click on paging-next-all
-         {
-              this.iterationAll++;
-              if(this.iterationAll>Math.ceil(this.allPagesAll/6) )
+pagindNext()
+{
+   this.iteration++;
+              if(this.iteration>Math.ceil(this.allPages/6) )
               {
-                this.iterationAll=Math.ceil(this.allPagesAll/6);
+                this.iteration=Math.ceil(this.allPages/6);
               }
               else
-              this.CreatePagesAll();
-         }
+              this.CreatePages();
+}
 
-         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="page-All") //click on page-all
-         {
-              var id=event.currentTarget.activeElement.attributes["id"].value;
-              this.pagesAll.forEach(function(p){
+Page(id:number)
+{
+  
+              this.pages.forEach(function(p){
 
                  if(p.id!=id)
                  p.current=false;
@@ -234,14 +171,16 @@ export class SpeakerComponent implements OnInit ,OnChanges{
                  p.current=true;
               })
 
-              this.PopulatedShiriumAll(id);
-              this.RefreshViewAll();
-         }
-        
-         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="letter") //click on main search
-         {
-                 this.letters.forEach(function(l){
-                       if(l.letter==event.currentTarget.activeElement.attributes["id"].value)
+              this.PopulatedShirium(id);
+              
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Letter(id:string)
+{
+   this.letters.forEach(function(l){
+                       if(l.letter==id)
                        l.current=true;
                        else
                        l.current=false;
@@ -252,7 +191,7 @@ export class SpeakerComponent implements OnInit ,OnChanges{
 
                  for(var i=0;i<this.allSpeakers.length;i++)
                  {
-                        if(this.allSpeakers[i].lastName[0]==event.currentTarget.activeElement.attributes["id"].value)
+                        if(this.allSpeakers[i].lastName[0]==id)
                         {
                                 
                 
@@ -269,15 +208,129 @@ export class SpeakerComponent implements OnInit ,OnChanges{
                         }
                  }
 
-                 
+}
 
-         }
+PageAll(id:number)
+{
+              this.pagesAll.forEach(function(p){
 
-        if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="link-star") //click on start to deactivate
-         {
-                let self=this;
-                var id=event.currentTarget.activeElement.attributes["id"].value;
-                this.speakerService.deactivateSpeaker(id).subscribe(
+                 if(p.id!=id)
+                 p.current=false;
+                 else
+                 p.current=true;
+              })
+
+              this.PopulatedShiriumAll(id);
+              
+}
+
+pageNextAll()
+{
+   this.iterationAll++;
+              if(this.iterationAll>Math.ceil(this.allPagesAll/6) )
+              {
+                this.iterationAll=Math.ceil(this.allPagesAll/6);
+              }
+              else
+              this.CreatePagesAll();
+}
+
+pagePrevAll()
+{
+      this.iterationAll--;
+              if(this.iterationAll<=0)
+              {
+                   this.iterationAll=1;
+              }
+              else
+              this.CreatePagesAll();
+}
+
+searchAll()
+{
+ this.SearchAll() 
+}
+
+addToQueue(id:string)
+{
+  let self=this;
+
+     if(self.isAuthenticated())
+                    {
+                        var  myShirium=new Shiurim();
+                        myShirium=self.shiriums.filter(function (s) {
+                        return s.id==id;
+                        })[0];
+     
+                        self.queueService.setItem(myShirium,self.speaker.firstName+" "+self.speaker.lastName,1);       
+                    }
+}
+
+Play(id:string,title:string)
+{
+  var onlyAudio=title.includes('LT-Audio');
+  this.playerService.Play(title,id,onlyAudio);   
+}
+
+  ngOnInit() {
+    this.ReadMainSpeaker();
+    this.ReadAllSpeaker();
+
+  }
+
+
+  filterChanged(value:string)
+  {  
+    let self=this
+     if(value=='#tile-tab-2') //if is 'my'
+          {
+               if(self.isAuthenticated())//needs credentials to access
+                self.speakerService.readMy().subscribe(
+                    function(response){
+
+                            self.current="tile-tab-1"   
+                            self.InitializeMySlide(response);
+
+                            self.speaker=response[0];
+                            self.ReadLectures(response[0].id);
+                    },
+                    function(error){
+
+                    },function()
+                    {
+
+                    });
+          }
+          else
+          {
+            if(localStorage.getItem("mainSpeakers")!=null ||localStorage.getItem("mainSpeakers")!='')
+             {
+               self.InitializeMySlide(JSON.parse(localStorage.getItem("mainSpeakers")));  //set the slide with "main"
+             }
+
+             if(value=='#tile-tab-1')  //if is "main"
+             { 
+                     self.current="tile-tab-1"
+                     self.speaker=JSON.parse(localStorage.getItem("mainSpeakers"))[0]; //set the first                         
+                     self.checkLocalExistence(JSON.parse(localStorage.getItem("mainSpeakers"))[0].id); //get the lectures for the first
+
+              
+             }
+             else  //if is all
+             {
+               self.current="tile-tab-3"
+             }
+            
+          }
+  } 
+
+
+ ManageFavorites(id:number,isMy:boolean)
+ {
+    let self=this;
+    if(isMy)
+    {
+       this.speakerService.deactivateSpeaker(id).subscribe(
                    function(response){
                       self.speakers.forEach(function(s){
                           if(s.id==id)
@@ -285,13 +338,9 @@ export class SpeakerComponent implements OnInit ,OnChanges{
                       })   
                    },function(error){},function(){}
                 )
-
-         }
-
-         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="link-star link-star-active") //click on start to activate
-         {
-                let self=this;
-                var id=event.currentTarget.activeElement.attributes["id"].value;
+    }
+    else
+    {
                 this.speakerService.activateSpeaker(id).subscribe(
                    function(response){
                       self.speakers.forEach(function(s){
@@ -300,97 +349,23 @@ export class SpeakerComponent implements OnInit ,OnChanges{
                       })   
                    },function(error){},function(){}
                 )
-         }
+    }
+ }
 
-      });
-
-      this.renderer.listen('document', 'click', (event) => {
-      
-
-         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="search-shirium") //click on main search
-         {
-             this.Search()       
-         }
-
-         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="lecture") //click on speaker
-         {
-             var id=event.currentTarget.activeElement.attributes["id"].value;
-
-             
-              this.query_main="";
-           
-              this.speaker=this.currentSpeakers.filter(function (s) {
-                 return s.id==id;
-               })[0];
-
-              this.checkLocalExistence(id); 
-            
-              
-         }
-
-         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-prev") //click on paging-prev 
-         {
-              this.iteration--;
-              if(this.iteration<=0)
-              {
-                   this.iteration=1;
-              }
-              else
-              this.CreatePages();
-         }
-
-         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-next") //click on paging-next
-         {
-              this.iteration++;
-              if(this.iteration>Math.ceil(this.allPages/6) )
-              {
-                this.iteration=Math.ceil(this.allPages/6);
-              }
-              else
-              this.CreatePages();
-         }
-
-         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="page") //click on page
-         {
-              var id=event.currentTarget.activeElement.attributes["id"].value;
-              this.pages.forEach(function(p){
-
-                 if(p.id!=id)
-                 p.current=false;
-                 else
-                 p.current=true;
-              })
-
-              this.PopulatedShirium(id);
-              this.RefreshView();
-         }
-
-       /* if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="media") //click on mnedia icons
-         {
-              var id=event.currentTarget.activeElement.attributes["id"].value;
-              var title=event.currentTarget.activeElement.attributes["title"].value;
-               
-              this.playerService.Play(title,id);   
-         }*/
-
-      });
-
+  Current(section:string)
+  {
+     return section==this.current;
   }
 
-  BackgroundSlide(id:string)
+  Selected(id:number)
   {
-         $('#ballon li[data-type="lecture"]').each(function(i,val){ //to add yellow background
-                    if($(val).attr('id')==id)
-                      $(val).addClass('current_letter')
-                    else
-                      $(val).removeClass('current_letter')
-              })
+         return id==this.speaker.id
   }
 
 
   SearchAll()
   {
-    this.query_all=$($('.all-search-nor')[0]).val();  //update the query field in my component (remenber double data binding)
+    
              
     if(localStorage.getItem("allSpeakers")!=null ||localStorage.getItem("allSpeakers")!='')
     {
@@ -402,7 +377,7 @@ export class SpeakerComponent implements OnInit ,OnChanges{
 
   Search()
   {
-    this.query_main=$($('.main-search-nor')[0]).val();  //update the query field in my component (remenber double data binding)
+    
              
     if(localStorage.getItem("shirium")!=null ||localStorage.getItem("shirium")!='')
     {
@@ -416,6 +391,17 @@ export class SpeakerComponent implements OnInit ,OnChanges{
  InitializeMySlide(data:Array<Speaker>)
  {    this.currentSpeakers=data;
       this.RefreshSlide(data);
+
+      let self=this;
+      $('li[data-type="lecture"]').click(function(){
+             
+            var id=$(this).attr('id')
+
+             self.ngZone.run(() => {
+                  self.lecturesBySpeaker(id)
+             })
+                  
+      })
  }
  
  RefreshSlide(data:Array<Speaker>)
@@ -445,9 +431,9 @@ export class SpeakerComponent implements OnInit ,OnChanges{
               '</div>';
 
 
-    $('#ballon .slider-profiles').html(content);
+    $('.ballon .slider-profiles').html(content);
 
-    $('#ballon .slider-profiles .slides').slick({
+    $('.ballon .slider-profiles .slides').slick({
 		       dots: false,
 		       arrows: true,
 		       slidesToShow: 6,
@@ -556,7 +542,7 @@ export class SpeakerComponent implements OnInit ,OnChanges{
           this.pagesAll.push({id:i+1,current:false});
         }    
 
-        this.RefreshViewAll();  
+        
   }
 
   CreatePagesAllLetter(page:number)
@@ -574,7 +560,7 @@ export class SpeakerComponent implements OnInit ,OnChanges{
           this.pagesAll.push({id:i+1,current:false});
         }    
 
-        this.RefreshViewAll();  
+        
   }
 
   PopulatedShiriumAll(id:number)
@@ -587,25 +573,11 @@ export class SpeakerComponent implements OnInit ,OnChanges{
        
   }
 
-  RefreshViewAll()
-  {
-      let self=this;
-      var query=this.query_all;
-      setTimeout(function(){ 
+  keyDownSpeakerAllFunction(event) {
 
-              $('#ballon .current').html($('app-speaker #tile-tab-3').html());
-              $($('.all-search-nor')[0]).val(query);
-
-               $('#ballon #form-all').submit(function (e) {
-                 e.preventDefault();
-                 self.ngZone.run(() => {
-                    self.SearchAll();
-                 })
-                 
-              })
-      },500) 
-
-  }
+		 this.SearchAll()
+	
+}
 
   //---------------------------------------------------------------------------------------------------------------------- 
 
@@ -724,7 +696,6 @@ export class SpeakerComponent implements OnInit ,OnChanges{
           this.pages.push({id:i+1,current:false});
         }    
 
-        this.RefreshView();  
   }
 
   PopulatedShirium(id:number)
@@ -737,59 +708,14 @@ export class SpeakerComponent implements OnInit ,OnChanges{
        
   }
   
-  RefreshView()
-  {
 
-     if(!this.rendering)  //the first time don't renderize
-        return;
+keyDownSpeakerFunction(event) {
+	
+		 this.Search()
+	
+}
 
-      let self=this;
-      var query=this.query_main;
-      setTimeout(function(){ 
-
-          $('#ballon .current').html($('app-speaker #tile-tab-1').html());
-          $($('.main-search-nor')[0]).val(query);
-              
-             //---------------------------------
-              
-              $("[data-type='media']").click(function(){
-
-                         var id=$(this).attr('id')
-                         var title=$(this).attr('title')
-                        // self.playerService.Play(title,id);
-                        var onlyAudio=title.includes('LT-Audio');
-                        self.playerService.Play(title,id,onlyAudio);   
-
-              })
-
-              $('#ballon #form-main').submit(function (e) {
-                 e.preventDefault();
-                 self.ngZone.run(() => {
-                    self.Search();
-                 })
-                 
-              })
-
-              $("#ballon .link-add").click(function(){
-                    
-                    if(self.isAuthenticated())
-                    {
-                        var id=$(this).attr('id');
-               
-                        var  myShirium=new Shiurim();
-                        myShirium=self.shiriums.filter(function (s) {
-                        return s.id==id;
-                        })[0];
-     
-                        self.queueService.setItem(myShirium,self.speaker.firstName+" "+self.speaker.lastName,1);       
-                    }
-              })
-
-        self.BackgroundSlide(self.speaker.id.toString())
-
-      },500) 
-
-  }
+ 
 
   //---------------------------------------------------------------------------------------------------------------------- 
 

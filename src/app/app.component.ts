@@ -28,12 +28,11 @@ export class AppComponent implements OnInit{
   constructor(private analitycService:AnalitycService){ }
 
 
-keyDownFunction(event)
-{
-  if(event.keyCode == 13)
-  {
-      $('#gSearch').toggleClass('shown');     
-  }
+keyDownFunction(event) {
+	if (event.keyCode == 13) {
+		$('#gSearch').toggleClass('vissible');
+		$('.header .search .search-field').blur();
+	}
 }
 
  ngOnInit() {

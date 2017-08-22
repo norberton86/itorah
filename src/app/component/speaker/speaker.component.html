@@ -3,7 +3,7 @@
 	<div class="tile-box-primary tile-box-speakers">
 		<div class="tile-box-head tile-box-head-block">
 			<div class="select select-tertiary select-speakers">
-				<select name="field-8" id="field-8">
+				<select name="field-8" id="field-8" (change)="filterChanged($event.target.value)">
 					<option id="main" value="#tile-tab-1">Main Speakers</option>
 					<option id="my" value="#tile-tab-2">My Favorites</option>
 					<option id="all" value="#tile-tab-3">All Speakers</option>
@@ -15,7 +15,7 @@
 						<ul class="slides">
 						
 
-						   <li *ngFor="let s of currentSpeakers;" class="slider-slide"   data-type="lecture" id="{{s.id}}"  >
+						   <li *ngFor="let s of currentSpeakers;" class="slider-slide" [class.current_letter]="Selected(s.id)"  data-type="lecture" id="{{s.id}}" (click)="lecturesBySpeaker(s.id)" >
 								<div class="slider-inner" >
 									<div class="slider-avatar">
 										<img  *ngIf="s.picUrl!=''" src="{{s.picUrl}}" alt="">
@@ -39,7 +39,7 @@
 			</a>					
 		</div><!-- /.table-head -->
 		
-		<div class="tile-box-tab current" id="tile-tab-1">
+		<div class="tile-box-tab" [class.current]="Current('tile-tab-1')" id="tile-tab-1">
 			<div class="tile-box-body">
 				<div class="lists">
 					<div class="lists-head">
@@ -51,9 +51,9 @@
 							<form action="?" method="get" id="form-main">
 								<label for="q" class="hidden">Search</label>
 								
-								<input  type="search" name="q" id="q"  placeholder="Search through {{speaker?.totalShiurim}} Shiurim " class="search-field main-search-nor">
+								<input  type="search" name="q" id="q"  placeholder="Search through {{speaker?.totalShiurim}} Shiurim " class="search-field main-search-nor" [(ngModel)]="query_main" (keydown)="keyDownSpeakerFunction($event)">
 								
-								<button data-type="search-shirium" type="button"  class="search-btn" ><i class="ico-magnify" id="prueba"></i></button>
+								<button data-type="search-shirium" type="button"  class="search-btn" ><i class="ico-magnify" id="prueba" (click)="mainSearch()"></i></button>
 							</form>
 						</div><!-- /.search -->
 					</div><!-- /.lists-head -->
@@ -78,11 +78,11 @@
 								
 								<div class="track-actions">
 									
-                                        <a href="#" class="link-mic" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}">
+                                        <a href="#/" class="link-mic" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}" (click)="Play(s.video,s.title)">
 											<i class="ico-camera"></i>
 										</a>
 
-										<a href="#" class="link-mic" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}">
+										<a href="#/" class="link-mic" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}" (click)="Play(s.audio,s.title)">
 											<i class="ico-mic"></i>
 										</a>
 
@@ -90,7 +90,7 @@
 										<i class="ico-download"></i>
 									</a>
 									
-									<a href="#" class="link-add" title="Add to My List" id="{{s.id}}">
+									<a href="#/" class="link-add" title="Add to My List" id="{{s.id}}" (click)="addToQueue(s.id)">
 										<i class="ico-plus-thick"></i>
 									</a>
 								</div><!-- /.track-actions -->
@@ -104,15 +104,15 @@
 			<div class="tile-box-actions">
 				<div class="paging">
 				    <ul>
-				        <li data-type="back"><a href="#" class="paging-prev"><i class="ico-paging-prev"></i></a></li>
-				        <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#" data-type="page" id="{{p.id}}">{{p.id}}</a></li>
-				        <li data-type="go"><a href="#" class="paging-next"><i class="ico-paging-next"></i></a></li>
+				        <li data-type="back"><a href="#/" class="paging-prev" (click)="pagingPrev()"><i class="ico-paging-prev"></i></a></li>
+				        <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/" data-type="page" id="{{p.id}}" (click)="Page(p.id)">{{p.id}}</a></li>
+				        <li data-type="go"><a href="#/" class="paging-next" (click)="pagindNext()"><i class="ico-paging-next"></i></a></li>
 				    </ul>
 				</div><!-- /.paging -->
 			</div><!-- /.table-actions -->
 		</div><!-- /#tile-tab-1.tile-box-tab -->
 		
-		<div id="tile-tab-2" class="tile-box-tab">
+		<div id="tile-tab-2" class="tile-box-tab" [class.current]="Current('tile-tab-2')">
 			<div class="tile-box-body">
 				<div class="lists">
 					<div class="lists-head">
@@ -529,7 +529,7 @@
 			</div><!-- /.table-actions -->
 		</div><!-- /#tile-tab-2.tile-box-tab -->
 		
-		<div id="tile-tab-3" class="tile-box-tab">
+		<div id="tile-tab-3" class="tile-box-tab" [class.current]="Current('tile-tab-3')">
 			<div class="tile-box-body">
 				<div class="lists">
 					<div class="lists-head" style="padding-left:0px">
@@ -543,16 +543,16 @@
 						<div class="search-secondary">
 							<ul class="list-alphabet">
 								<li  *ngFor="let l of letters">
-									<a href="#" [ngClass]="{'current_letter': l.current,'disabled_letter':l.disable}" data-type="letter" id="{{l.letter}}">{{l.letter}}</a>
+									<a href="#/" [ngClass]="{'current_letter': l.current,'disabled_letter':l.disable}" data-type="letter" id="{{l.letter}}" (click)="Letter(l.letter)">{{l.letter}}</a>
 								</li>
 							</ul><!-- /.list-alphabet -->
 							
 							<form action="?" method="get" id="form-all">
 								<label for="q" class="hidden">Search</label>
 								
-								<input type="search" name="q" id="q" value="" placeholder="Search by LastName" class="search-field all-search-nor">
+								<input type="search" name="q" id="q" value="" placeholder="Search by LastName" class="search-field all-search-nor" [(ngModel)]="query_all" (keydown)="keyDownSpeakerAllFunction($event)">
 								
-								<button data-type="all-search-shirium" type="button" class="search-btn"><i class="ico-magnify"></i></button>
+								<button data-type="all-search-shirium" type="button" class="search-btn"><i class="ico-magnify" (click)="searchAll()"></i></button>
 							</form>
 						</div><!-- /.search -->
 					</div><!-- /.lists-head -->
@@ -570,7 +570,7 @@
 								</div><!-- /.track-content -->
 								
 								<div class="track-actions">
-									<a href="#"  class="link-star"  [class.link-star-active]="s.isMySpeaker" id="{{s.id}}" attr.is="{{s.isMySpeaker}}" >
+									<a href="#/"  class="link-star"  [class.link-star-active]="s.isMySpeaker" id="{{s.id}}" attr.is="{{s.isMySpeaker}}" (click)="ManageFavorites(s.id,s.isMySpeaker)" >
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
@@ -586,9 +586,9 @@
 			<div class="tile-box-actions">
 				<div class="paging">
 				    <ul>
-				        <li data-type="back"><a href="#" class="paging-prev-all"><i class="ico-paging-prev"></i></a></li>
-				        <li *ngFor="let p of pagesAll"><a [ngClass]="{'current': p.current}" href="#" data-type="page-All" id="{{p.id}}">{{p.id}}</a></li>
-				        <li data-type="go"><a href="#" class="paging-next-all"><i class="ico-paging-next"></i></a></li>
+				        <li data-type="back"><a href="#/" class="paging-prev-all"><i class="ico-paging-prev" (click)="pagePrevAll()"></i></a></li>
+				        <li *ngFor="let p of pagesAll"><a [ngClass]="{'current': p.current}" href="#/" data-type="page-All" (click)="PageAll(p.id)" id="{{p.id}}">{{p.id}}</a></li>
+				        <li data-type="go"><a href="#/" class="paging-next-all"><i class="ico-paging-next" (click)="pageNextAll()"></i></a></li>
 				    </ul>
 				</div><!-- /.paging -->
 			</div><!-- /.table-actions -->

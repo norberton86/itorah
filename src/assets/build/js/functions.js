@@ -11,9 +11,20 @@
 		        container.hide().removeClass('shown');
 		    }
 		});
+        
+		$('.tile-actions a').each(function () {
+			ballonPosition($(this))
+		})
+
+		$('.tile-actions a').each(function () {
+			var $ballon = $($(this).attr('href'));
+			var size = $(this).data('size');
+
+			$ballon.addClass( 'tile-' + size );
+		})
 
 		var executeFunctions = function() {
-			$('#ballon .slider-profiles .slides').slick({
+			$('.ballon .slider-profiles .slides').slick({
 		       dots: false,
 		       arrows: true,
 		       slidesToShow: 6,
@@ -48,7 +59,8 @@
 			        settings: {
 			          slidesToShow: 1
 			        }
-			      }]
+			      }
+				]
 			});
 		}
 
@@ -65,25 +77,21 @@
 		})
 
 		$( ".wrapper" ).delegate( ".select-speakers select", "change", function() {
-		   // $('.tile-box-tab').removeClass('current'); //original
+		   /*var $tabTarget = $(this).val()
 
-		   //  var $tabTarget = $(this).val()
+			$('.ballon .slider-profiles').css('opacity', 0)
+			$('.tile-box-tab').removeClass('current');
 
-		     //$($tabTarget).addClass('current');  //original  
-           //-----------------------------------------------------------------------------------
-		    /* if($tabTarget=="#tile-tab-1")
-			 {
-				 $('#ballon .current').html($('app-speaker #tile-tab-1').html());
-			 }
-			 else
-			 if($tabTarget=="#tile-tab-2")
-			 {
-				 $('#ballon .current').html($('app-speaker #tile-tab-2').html());
-			 }
-			 else
-			 {
-				$('#ballon .current').html($('app-speaker #tile-tab-3').html()); 
-			 }*/
+			$($tabTarget).addClass('current');
+
+			setTimeout(function () {
+				$('.ballon .slider-profiles .slides').slick('unslick');
+
+				setTimeout(function () {
+					executeFunctions();
+					$('.ballon .slider-profiles').css('opacity', 1)
+				},500)
+			},500)*/
 		});
 
 		// This class will be added to active tab link
@@ -93,6 +101,10 @@
 	   $('.wrapper').on( 'click', '.tabs-nav a', function(event) {
 	       var $tabLink = $(this);
 	       var $targetTab = $($tabLink.attr('href'));
+           var $tileId = $(this).closest('.tile').attr('id');
+		   var $tile = $('a[href^="#' + $tileId + '"]').closest('.tile');
+
+		   console.log($tile)
 
 	       $tabLink
 	           .parent() // go up to the <li> element
@@ -101,15 +113,16 @@
 	               .siblings()
 	               .removeClass(activeTabClass);
 
-	      if ( $(this).parents('#ballon') ) {
-	      		var tabHeight = $(this).closest('.tabs').height();
+	      if ( $(this).parents('.ballon') ) {
+		  		var tabHeight = $(this).closest('.tabs').height();
 
-	      		$(this).parents('#ballon').css({ height: tabHeight + 8 })
+		  		$(this).parents('.ballon:not(.tile-search)').css({ height: tabHeight + 8 })
 
-	      		$('.tile-col').isotope({ sortBy: 'sorting' });
-	      };
+		  };
 
-	      event.preventDefault();
+          relayout($tile);  
+	      
+		  event.preventDefault();
 	   });
 
 		$('.btn-menu').on('click', function(event){
@@ -119,24 +132,6 @@
 
 			$('.nav').toggleClass('visible');
 		});
-
-		var $grid = $('.tiles');
-
-		$grid.isotope({
-			layoutMode: 'packery',
-			getSortData : {
-			  sorting : function ( elem ) {
-				var sortnum = $(elem).find('.sorting').text();
-				var parse = parseInt(sortnum, 10);
-				return parse;
-			  },
-			  resorting : function ( elem ) {
-				var sortnum = $(elem).find('.resorting').text();
-				var parse = parseInt(sortnum, 10);
-				return parse;
-			  }
-			},
-		})
 
 		$('.wrapper').on('click', '.link-star', function(e) {
 			e.preventDefault();
@@ -161,279 +156,30 @@
 			}
 		})
 
-		$('.tile-actions a[data-size="full"]').on('click', function(e) {
+		$('.tile-actions a').on('click', function (e) {
 			e.preventDefault();
+			// ballonPosition($(this))
 
-			var el = $(this);
-			var thisDataId = $(this).closest('.tile').attr('id');
-			var thisHref = $(this).attr('href');
+			var $tile = $(this).closest('.tile');
 
-			if ( $('.tile-col').length ) {
-				$('.tile-col').isotope('destroy');
-				$('.tile-col').contents().unwrap();
+			$('.ballon:not(' + $(this).attr('href') + ')').removeClass('vissible');
+			$($(this).attr('href')).toggleClass('vissible');
 
-				$('.tile').removeClass('tiled')
+			setTimeout(function () {
+				$('.ballon.visible .slider-profiles .slides').slick('unslick');
+				setTimeout(function () {
+					try{executeFunctions();}catch(error){console.log(error.message)}
+				},500)
+			},500)
 
-				$('.tiles').isotope({
-					layoutMode: 'packery',
-					getSortData : {
-					  sorting : function ( elem ) {
-						var sortnum = $(elem).find('.sorting').text();
-						var parse = parseInt(sortnum, 10);
-						return parse;
-					  },
-					  resorting : function ( elem ) {
-						var sortnum = $(elem).find('.resorting').text();
-						var parse = parseInt(sortnum, 10);
-						return parse;
-					  }
-					}
-				})
-
-			$('.tiles').isotope({ sortBy: 'sorting' });
-				setTimeout(function() {
-					if ( !$('#ballon').length ) {
-						$(this).addClass('ballon-opened');
-
-						open_ballon(this.id, thisDataId, el, thisHref);
-					};
-				}, 400)
-			};
-
-			if ( !$(this).hasClass('ballon-opened') ) {
-				$('.ballon').remove();
-
-				$('a').removeClass('ballon-opened');
-				$(this).addClass('ballon-opened');
-
-				open_ballon(this.id, thisDataId, el, thisHref);
-
-			} else {
-				$(this).removeClass('ballon-opened');
-
-				close_ballon()
-
-			}
-		});
-
-		$('.tile-actions a[data-size="half"]').on('click', function(e) {
-			e.preventDefault();
-
-			var el = $(this);
-			var thisDataId = $(this).closest('.tile').attr('id');
-			var thisHref = $(this).attr('href');
-
-			if ( !$(this).hasClass('ballon-opened') ) {
-				$('.ballon').remove();
-
-				$('a').removeClass('ballon-opened');
-				$(this).addClass('ballon-opened');
-
-				open_ballon_half(this.id, thisDataId, el, thisHref);
-
-			} else {
-				$(this).removeClass('ballon-opened');
-
-				close_ballon_half()
-			}
-		});
-
-		$('.wrapper').on('click','.link-close', function(e) {
-			e.preventDefault();
-
-			$('.ballon-opened').removeClass('ballon-opened');
-
-			close_ballon()
-
-
+			relayout($tile);
 		})
 
-		$('.wrapper').on('click','.link-close-half', function(e) {
+		$('.wrapper').on('click','.link-close, .link-close-half', function(e) {
 			e.preventDefault();
-
-			$('[href="#item-content-7"]').removeClass('ballon-opened'); // telehimEdit
-			$('[href="#item-content-8"]').removeClass('ballon-opened'); // DailyHalachaSEarch
-
-			close_ballon_half()
-
-
+			$('.ballon').removeClass('vissible');
+			$('.tile').css('margin-bottom', 7)
 		})
-
-		function showArrow(elLeft, elTop, elWidth) {
-			var arrowTop = elTop;
-			var arrowLeft = elLeft;
-			var moveTop = 12;
-			var moveLeft = elWidth/2
-
-			$('.ico-ballon-arrow')
-				.addClass('ico-ballon-arrow-shown')
-				.css({
-					left : arrowLeft + moveLeft,
-					top : arrowTop - moveTop,
-					marginLeft : -7
-				})
-		}
-
-		function hideArrow() {
-			$('.ico-ballon-arrow').removeClass('ico-ballon-arrow-shown')
-		}
-
-		function open_ballon(id, dataId, el, elHref) {
-			var thisEl = el
-			var elem = $('#'+id);
-			var currentDataId = dataId;
-			var elemHref = elHref;
-
-			var main_width = $('.main').width();
-			var num = 4;
-
-			var colore = "";
-			var $htmlcontents = $(elemHref).children().clone(true);
-			var sorting = 0;
-			var isoElems = $grid.isotope('getItemElements');
-
-			sorting = parseInt(thisEl.closest('.tile').find('.sorting').text()) + 0.5;
-
-			if (thisEl.closest('.tile').prev().hasClass('tile-high') && $win.width() >= 1024) {
-				sorting = sorting - 2;
-			}
-
-			var $ballonEl = $('<div id="ballon" data-item-id="'+ id + '" class="tile ballon">');
-			var $sorting = $('<p class="sorting">'+sorting+'</p></div>');
-			var body_pos =	$('#top').offset();
-			var ballonHeight = $(elemHref).outerHeight();
-
-			$ballonEl.append($htmlcontents).append($sorting);
-
-			$grid.append( $ballonEl ).isotope('appended', $ballonEl);
-
-			$('#ballon').css({
-				height : ballonHeight
-			});
-
-			$grid.isotope({ sortBy: 'sorting' });
-
-			setTimeout(function  () {
-				var ballonTop = 0;
-					ballonTop = $('#ballon').offset().top
-
-				showArrow(thisEl.offset().left, ballonTop, thisEl.outerWidth())
-
-				executeFunctions()
-			}, 500)
-		}
-
-		function open_ballon_half(id, dataId, el, elHref) {
-			var thisEl = el
-			var elem = $('#'+id);
-			var currentDataId = dataId;
-			var elemHref = elHref;
-
-			var main_width = $('.main').width();
-
-			var num = 4;
-
-			if ( !$('.tile-col').length ) {
-				$('.tile').each(function() {
-					var currentLeft =  $(this).position().left
-
-					$(this).attr('data-left', currentLeft)
-				});
-
-				$grid.isotope('destroy');
-
-				var tilesWidth = $('.tiles').width();
-
-				$('.tile').removeClass('tiled')
-				var $tileLeft = $(".tile").filter(function() {
-							   return $(this).attr('data-left') >= tilesWidth/2 - 10;
-						   });
-				$tileLeft.addClass('tiled').wrapAll('<div class="tile-col">');
-
-				$('.tile:not(.tiled)').wrapAll('<div class="tile-col">')
-
-				$gridCol = $('.tile-col')
-
-				$gridCol.isotope({
-					// percentPosition: true,
-					layoutMode: 'packery',
-					getSortData : {
-					  sorting : function ( elem ) {
-						var sortnum = $(elem).find('.sorting').text();
-						var parse = parseInt(sortnum, 10);
-						return parse;
-					  },
-					  resorting : function ( elem ) {
-						var sortnum = $(elem).find('.resorting').text();
-						var parse = parseInt(sortnum, 10);
-						return parse;
-					  }
-					},
-				})
-			};
-
-			var $htmlcontents = $(elemHref).children().clone(true);
-			var sorting = 0;
-			var isoElems = $gridCol.isotope('getItemElements');
-
-			sorting = parseInt(thisEl.closest('.tile').find('.sorting').text()) + 0.5;
-
-			if (thisEl.closest('.tile').prev().hasClass('tile-high') && $win.width() >= 1024) {
-				sorting = sorting - 2;
-			}
-
-			var $ballonEl = $('<div id="ballon" data-item-id="'+ id + '" class="tile ballon ballon-half">');
-			var $sorting = $('<p class="sorting">'+sorting+'</p></div>');
-
-			$ballonEl.append($htmlcontents).append($sorting);
-
-			var body_pos = $('#top').offset();
-
-			var ballonHeight = $(elemHref).outerHeight();
-
-			var currentGrid = thisEl.closest('.tile-col')
-
-			currentGrid.append( $ballonEl ).isotope('appended', $ballonEl);
-
-			$('#ballon').css({
-				height : ballonHeight
-			});
-
-			$gridCol.isotope({ sortBy: 'sorting' });
-
-			setTimeout(function  () {
-				var ballonTop = 0;
-					ballonTop = $('#ballon').offset().top
-
-				showArrow(thisEl.offset().left, ballonTop, thisEl.outerWidth())
-
-				executeFunctions()
-			}, 500)
-		}
-
-		function close_ballon() {
-			$('.tile').removeClass('tiled')
-
-			$('#ballon').remove();
-
-			hideArrow();
-
-			$grid.isotope({ sortBy: 'sorting' });
-		}
-
-		function close_ballon_half() {
-			$('.tile').removeClass('tiled')
-
-			$('#ballon').remove();
-
-			hideArrow();
-						
-			$gridCol = $('.tile-col')
-			
-			if ( $gridCol.length ) {
-				$gridCol.isotope({ sortBy: 'sorting' }); 
-			};		
-		}
 
 		window.mobileAndTabletcheck = function() {
 		  var check = false;
@@ -444,11 +190,71 @@
 
 		if (!window.mobileAndTabletcheck()) {
 			$win.on('resize', function() {
-				close_ballon()
-				close_ballon_half()
+				// close_ballon();
 			})
 		};
 
+			$win.on('resize', function () {
+			if ( $('.ballon.vissible') ) {
+				var id = $('.ballon.vissible').attr('id');
+				var $tile = $('a[href="#' + id + '"]').closest('.tile')
+				$('.ballon.vissible').addClass('animate')
+
+				$('.tile-actions a').each(function () {
+					ballonPosition($(this))
+				})
+
+				setTimeout(function () {
+					// $('.ballon.vissible')
+					// 	.css('top', $tile.position().top + $tile.outerHeight())
+						setTimeout(function () {
+							$('.ballon.vissible').removeClass('animate')
+						}, 500)
+				}, 500)
+			}
+		})
+
 	});
+
+	var relayout = function ($tile) {
+		var timesRun = 0;
+
+		var interval = setInterval(function(){
+		    timesRun += 1;
+		    if(timesRun === 5){
+		        clearInterval(interval);
+		    }
+
+		    if ( $('.tile.vissible').length ) {
+		    	var tileHeight = $('.tile.vissible').outerHeight() + 14;
+		    } else {
+		    	var tileHeight = 7;
+		    }
+
+		    $tile
+		    	.css('margin-bottom', tileHeight)
+		    	.siblings('.tile')
+		    		.css('margin-bottom', 7)
+		}, 100);
+	}
+
+	var ballonPosition = function ($this) {
+		var $el = $this;
+		var $elParent = $el.closest('.tile');
+		var $ballon = $($el.attr('href'));
+
+		$ballon.css({
+			top: $elParent.position().top + $elParent.height(),
+			left: calcLeft($el)
+		})
+
+		function calcLeft($el) {
+			if ( $el.data('size') === "half" && $el.closest('.tile').offset().left >= $win.width()/2 ) {
+				return '50%';
+			} else {
+				return '0';
+			}
+		}
+	}
 
 })($, window, document);

@@ -1,4 +1,4 @@
-import { Component, OnInit,Renderer2,OnChanges,Input ,NgZone} from '@angular/core';
+import { Component, OnInit,Renderer2 ,NgZone} from '@angular/core';
 import { EmunahService } from '../../service/emunah.service';
 import { PlayerService } from '../../service/player.service';
 import { QueueService } from '../../service/queue.service';
@@ -11,7 +11,7 @@ declare var $:any;
   styleUrls: ['./emunah-search.component.css'],
   providers:[EmunahService,PlayerService]
 })
-export class EmunahSearchComponent implements OnInit,OnChanges {
+export class EmunahSearchComponent implements OnInit {
 
   allShiriums:Array<Shiurim>;
   shiriums:Array<Shiurim>;
@@ -26,9 +26,7 @@ export class EmunahSearchComponent implements OnInit,OnChanges {
   valor:string=""
 
   
-   @Input()
-   accion:string="";
-   rendering:boolean=false;
+ 
 
   constructor(private emunahService:EmunahService,private playerService:PlayerService,private renderer:Renderer2,private ngZone:NgZone,private queueService:QueueService)
   {
@@ -38,53 +36,45 @@ export class EmunahSearchComponent implements OnInit,OnChanges {
       this.pages=[];
   }
 
- ngOnChanges(changes:any) {
-     if(changes.accion!=null&&!changes.accion.firstChange)
-     {
-       this.rendering=true;   
-       this.RefreshView();
-     }
-      
+
+
+
+  keyDownEmunahFunction(event)
+  {
+    this.Search()
   }
 
-  ngOnInit() {
-    this.ReadLectures();
-    this.renderer.listen('document', 'click', (event) => {
-         
+  
+searchShiriumEmunah()
+{
+  this.Search()
+}
 
-
-         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="search-shirium-emunah") //click on main search
-         {
-             this.Search()
-               
-         }
-
-
-         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-prev-emula") //click on paging-prev 
-         {
-              this.iteration--;
+PagingPrev()
+{
+  this.iteration--;
               if(this.iteration<=0)
               {
                    this.iteration=1;
               }
               else
               this.CreatePages();
-         }
+}
 
-         if(event.currentTarget.activeElement.attributes["class"]!=null && event.currentTarget.activeElement.attributes["class"].value=="paging-next-emula") //click on paging-next
-         {
-              this.iteration++;
+PagingNext()
+{
+   this.iteration++;
               if(this.iteration>Math.ceil(this.allPages/6) )
               {
                 this.iteration=Math.ceil(this.allPages/6);
               }
               else
               this.CreatePages();
-         }
+}
 
-         if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="page-emula") //click on page
-         {
-              var id=event.currentTarget.activeElement.attributes["id"].value;
+Page(id:number)
+{
+
               this.pages.forEach(function(p){
 
                  if(p.id!=id)
@@ -94,23 +84,23 @@ export class EmunahSearchComponent implements OnInit,OnChanges {
               })
 
               this.PopulatedShirium(id);
-              this.RefreshView();
-         }
+             
+}
 
-        if(event.currentTarget.activeElement.attributes["data-type"]!=null && event.currentTarget.activeElement.attributes["data-type"].value=="media-emuna") //click on mnedia icons
-         {
-              var id=event.currentTarget.activeElement.attributes["id"].value;
-              var title=event.currentTarget.activeElement.attributes["title"].value;
-               var onlyAudio=title.includes('LT-Audio');
-              this.playerService.Play(title,id,onlyAudio);   
-         }
+PLayEmunah(id:string,title:string)
+{
+  var onlyAudio=title.includes('LT-Audio');
+  this.playerService.Play(title,id,onlyAudio);   
+}
 
-    });
+  ngOnInit() {
+    this.ReadLectures();
+  
   }
 
 Search()
 {
-  this.query_main=$('#ballon .search-field').val();  //update the query field in my component (remenber double data binding)
+  
              
              if(localStorage.getItem("shirium")!=null ||localStorage.getItem("shirium")!='')
              {
@@ -174,7 +164,6 @@ Search()
           this.pages.push({id:i+1,current:false});
         }    
 
-        this.RefreshView();  
   }
 
   PopulatedShirium(id:number)
@@ -188,41 +177,16 @@ Search()
   }
 
 
-  RefreshView()
-  {
-        if(!this.rendering)  //the first time don't renderize
-        return;
-         
-         let self=this
-
-      var query=this.query_main;
-
-       setTimeout(function(){ 
-          $('#ballon').html($('#item-content-4').html());
-          $('#ballon .search-field').val(query)
-
-          $('#ballon form').submit(function (e) {
-                 e.preventDefault();
-                 self.ngZone.run(() => {
-                    self.Search();
-                 })
-                 
-          })
  
-          $('#ballon .link-add').click(function(){ //add to my list
 
-               var id=$(this).attr('id');
-               
+  Add(id:string)
+  {
                var  myShirium=new Shiurim();
-               myShirium=self.shiriums.filter(function (s) {
+               myShirium=this.shiriums.filter(function (s) {
                return s.id==id;
               })[0];
      
-              self.queueService.setItem(myShirium,"Rabbi Eli J Mansour",3);       
-
-          })
-
-       },500)
+              this.queueService.setItem(myShirium,"Rabbi Eli J Mansour",3);      
   }
 
 }

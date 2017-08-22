@@ -14,9 +14,9 @@
 						</select>--><!-- /.form-row -->
 				<!--	</div>--><!-- /.select -->
 					
-					<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field">
+					<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field" [(ngModel)]="query_main" (keydown)="keyDownEmunahFunction($event)">
 					
-					<button data-type="search-shirium-emunah" type="button" class="search-btn">
+					<button data-type="search-shirium-emunah" type="button" class="search-btn" (click)="searchShiriumEmunah()">
 						<i class="ico-magnify"></i>
 					</button>
 				</form>
@@ -55,11 +55,11 @@
 								
 								<div class="track-actions">
 									
-                                        <a href="#/" class="link-mic" *ngIf="s?.video!=''" data-type="media-emuna" id="{{s?.video}}" data-title="{{s.title}}">
+                                        <a href="#/" class="link-mic" *ngIf="s?.video!=''" data-type="media-emuna" id="{{s?.video}}" data-title="{{s.title}}" (click)="PLayEmunah(s.video,s.title)">
 											<i class="ico-camera"></i>
 										</a>
 
-										<a href="#/" class="link-mic" *ngIf="s?.audio!=''" data-type="media-emuna" id="{{s?.audio}}" data-title="{{s.title}}">
+										<a href="#/" class="link-mic" *ngIf="s?.audio!=''" data-type="media-emuna" id="{{s?.audio}}" data-title="{{s.title}}" (click)="PLayEmunah(s.audio,s.title)">
 											<i class="ico-mic"></i>
 										</a>
 
@@ -67,7 +67,7 @@
 										<i class="ico-download"></i>
 									</a>
 									
-									<a href="#/" class="link-add" title="Add to My List" id="{{s.id}}">
+									<a href="#/" class="link-add" title="Add to My List" id="{{s.id}}" (click)="Add(s.id)">
 										<i class="ico-plus-thick"></i>
 									</a>
 								</div><!-- /.track-actions -->
@@ -81,9 +81,9 @@
 		<div class="tile-box-actions">
 			<div class="paging">
 			    <ul>
-			          <li data-type="back"><a href="#/" class="paging-prev-emula"><i class="ico-paging-prev"></i></a></li>
-				      <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/" data-type="page-emula" id="{{p.id}}">{{p.id}}</a></li>
-				      <li data-type="go"><a href="#/" class="paging-next-emula"><i class="ico-paging-next"></i></a></li>
+			          <li data-type="back"><a href="#/" class="paging-prev-emula" (click)="PagingPrev()"><i class="ico-paging-prev"></i></a></li>
+				      <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/" data-type="page-emula" id="{{p.id}}" (click)="Page(p.id)">{{p.id}}</a></li>
+				      <li data-type="go"><a href="#/" class="paging-next-emula" (click)="PagingNext()"><i class="ico-paging-next"></i></a></li>
 			    </ul>
 			</div><!-- /.paging -->
 		</div><!-- /.table-actions -->

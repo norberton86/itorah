@@ -35,7 +35,8 @@ import { SubscribeComponent } from './component/subscribe/subscribe.component';
 import {SubscribeService} from './service/subscribe.service';
 import { InspireComponent } from './component/inspire/inspire.component';
 import { PrivacyPolicyComponent } from './component/privacy-policy/privacy-policy.component';
-import { RecoverComponent } from './component/recover/recover.component'
+import { RecoverComponent } from './component/recover/recover.component';
+import { GlobalSearchComponent } from './component/global-search/global-search.component'
 
 
 
@@ -77,7 +78,8 @@ let providers = {
     SubscribeComponent,
     InspireComponent,
     PrivacyPolicyComponent,
-    RecoverComponent
+    RecoverComponent,
+    GlobalSearchComponent
   ],
   imports: [
     BrowserModule,

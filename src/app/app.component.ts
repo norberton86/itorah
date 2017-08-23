@@ -20,8 +20,7 @@ export class AppComponent implements OnInit{
 
  loader:boolean=false;
  amountSpeaker:string=""
- gSearch:string;
-
+ gSearch:string="";
 
  emailRecover:string=""
 

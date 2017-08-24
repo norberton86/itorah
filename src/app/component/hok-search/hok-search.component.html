@@ -82,15 +82,15 @@
 							</div><!-- /.track-content -->
 							
 							<div class="track-actions">
-								<a href="#/" class="link-mic" data-type="media" id="{{h?.audio}}" data-title="{{h.title}}">
+								<a href="#/" class="link-mic" data-type="media" id="{{h?.audio}}" data-title="{{h.title}}" (click)="Play(h.audio,h.title)">
 										<i class="ico-mic"></i>
 								</a>
 
-								<a href="#/" class="link-download" download title="Download" attr.media="{{h.audio}}">
+								<a href="{{h.audio}}" class="link-download" download title="Download">
 									<i class="ico-download"></i>
 								</a>
 								
-								<a href="#/" class="link-add" title="Add to My List" id={{h.id}}>
+								<a href="#/" class="link-add" title="Add to My List" id={{h.id}} (click)="Add(h.id)">
 									<i class="ico-plus-thick"></i>
 								</a>
 							</div><!-- /.track-actions -->

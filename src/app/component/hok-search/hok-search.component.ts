@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, NgZone, Input } from '@angular/core';
 import { HokService } from '../../service/hok.service';
 import { PlayerService } from '../../service/player.service';
 import { QueueService } from '../../service/queue.service';
@@ -15,7 +15,7 @@ declare var $: any;
   styleUrls: ['./hok-search.component.css'],
   providers: [HokService, PlayerService]
 })
-export class HokSearchComponent implements OnInit, OnChanges {
+export class HokSearchComponent implements OnInit {
 
   selectedChumash: number;
   chumashs: Array<Chumash>;
@@ -23,34 +23,57 @@ export class HokSearchComponent implements OnInit, OnChanges {
   selectedParasha: number;
   parashas: Array<Parasha>;
 
-  originalHoks:Array<Hok>
+  originalHoks: Array<Hok>
   hoks: Array<Hok>
-  classes:Array<string>
-  selectedClass:string="Class"
+  classes: Array<string>
+  selectedClass: string = "Class"
 
   @Input()
   accion: string = "";
   rendering: boolean = false;
 
-  currentId:string=""
+  currentId: string = ""
 
-  query_main:string='';
+  query_main: string = '';
 
-  constructor(private hokService: HokService, private playerService: PlayerService, private ngZone: NgZone,private queueService:QueueService) {
-    this.originalHoks=[];
+  constructor(private hokService: HokService, private playerService: PlayerService, private ngZone: NgZone, private queueService: QueueService) {
+    this.originalHoks = [];
     this.hoks = [];
-    this.classes=[];
+    this.classes = [];
   }
 
-  ngOnChanges(changes: any) {
-    if (changes.accion != null && !changes.accion.firstChange) {
-      this.rendering = true;
-      this.RefreshView();
-    }
 
-  }
 
   ngOnInit() {
+
+    let self = this
+    $('.ballon #field-search-parasha').change(function () {   //parasha
+
+      var id = parseInt($(this).val().split(":")[1]) //id
+
+      self.selectedParasha = id;
+      self.ReadHok()
+
+    });
+
+    $('.ballon #field-search-chumash').change(function () {   //chumash
+
+      var id = parseInt($(this).val().split(":")[1]) //id
+
+      self.selectedChumash = id;
+      self.ReadParasha(id)
+
+    });
+
+    $('.ballon #field-search-class').change(function () {   //chumash
+
+      var id = $(this).val().split(":")[1].trim() //id
+
+      self.selectedClass = id;
+      self.hoks = self.HoksbyClass()
+
+    });
+
     this.ReadChumash()
   }
 
@@ -82,15 +105,13 @@ export class HokSearchComponent implements OnInit, OnChanges {
     )
   }
 
-  AddClass(c:string,response:Array<Hok>)
-  {
-     for (var index = 0; index < response.length; index++) {
-          if(response[index].myClass==c)
-          {
-            this.classes.push(c)
-            break;       
-          }
-     }
+  AddClass(c: string, response: Array<Hok>) {
+    for (var index = 0; index < response.length; index++) {
+      if (response[index].myClass == c) {
+        this.classes.push(c)
+        break;
+      }
+    }
   }
 
 
@@ -100,142 +121,42 @@ export class HokSearchComponent implements OnInit, OnChanges {
       function (response) {
 
 
-       self.classes=["Class"]
-       self.AddClass("Additional",response);
-       self.AddClass("Rashi",response);
-       self.selectedClass="Class"
-       self.originalHoks = response;
+        self.classes = ["Class"]
+        self.AddClass("Additional", response);
+        self.AddClass("Rashi", response);
+        self.selectedClass = "Class"
+        self.originalHoks = response;
 
-       self.hoks=self.HoksbyClass()
-       self.RefreshView();
+        self.hoks = self.HoksbyClass()
 
       }, function (error) { }, function () { }
     )
   }
 
-  HoksbyClass():Array<Hok>
-  {
-      let self=this; 
-      return this.originalHoks.filter(function (s) {
-                 return s.myClass==self.selectedClass;
-               })
-  }
-
-
-  RefreshView() {
-
-    if (!this.rendering)  //the first time don't renderize
-      return;
-
+  HoksbyClass(): Array<Hok> {
     let self = this;
-
-    var query=this.query_main;
-
-    setTimeout(function () {
-
-      $('#ballon').html($('#item-content-6').html());
-      $('#ballon #field-search-parasha').val($('#item-content-6 #field-search-parasha').val())
-      $('#ballon #field-search-chumash').val($('#item-content-6 #field-search-chumash').val())
-      $('#ballon #field-search-class').val($('#item-content-6 #field-search-class').val())
-      $('#ballon .search-field').val(query)
-
-      
-      $('#ballon #field-search-parasha').change(function () {   //parasha
-
-        var id = parseInt($(this).val().split(":")[1]) //id
-        //self.comunityRaw=$(this).val();
-
-        self.ngZone.run(() => {
-
-          self.selectedParasha = id;
-          self.ReadHok()
-
-        })
-      });
-
-      $('#ballon #field-search-chumash').change(function () {   //chumash
-
-        var id = parseInt($(this).val().split(":")[1]) //id
-        //self.comunityRaw=$(this).val();
-
-        self.ngZone.run(() => {
-
-          self.selectedChumash = id;
-          self.ReadParasha(id)
-
-        })
-      });
-
-       $('#ballon #field-search-class').change(function () {   //chumash
-
-        var id = $(this).val().split(":")[1].trim() //id
-        
-
-        self.ngZone.run(() => {
-             
-             self.selectedClass=id;
-             self.hoks=self.HoksbyClass()
-             self.RefreshView();
-
-        })
-      });
-
-      //---------------------------------
-
-      $("[data-type='media']").click(function () {
-
-        var id = $(this).attr('id')
-        var title = $(this).attr('title')
-
-       // var onlyAudio = title.includes('LT-Audio');
-        self.playerService.PlayAudio(title, id);
-
-      })
-
-      $("#ballon .link-download").click(function (e) {
- 
-         e.preventDefault();    
-         $('#ballon #downloadHok').attr('href',$(this).attr('media'));
-         document.getElementById('downloadHok').click();
-
-      })
-
-      
-      $("#ballon .search-btn").click(function (e) {  //buscar
-          e.preventDefault();  
-          self.Search();
-      })
-
-      $('#ballon form').submit(function (e) {
-        e.preventDefault();
-        self.Search();         
-      })
-
-       $("#ballon .link-add").click(function(){
-                    var id=$(this).attr('id');
-               
-                   var  myShirium=new Hok();
-                   myShirium=self.hoks.filter(function (s) {
-                    return s.id==id;
-                   })[0];
-     
-                 self.queueService.setItem(myShirium,"Rabbi Eli J Mansour",2);       
-        })
-
-    }, 500)
-
-  }
-
-  Search()
-  {
-    let self=this;
-    var value=$("#ballon .search-field").val();
-    self.ngZone.run(() => {
-             
-      self.query_main=value;
-      self.RefreshView();
-
+    return this.originalHoks.filter(function (s) {
+      return s.myClass == self.selectedClass;
     })
   }
+
+
+  Play(id: string, title: string) {
+    // var onlyAudio = title.includes('LT-Audio');
+    this.playerService.PlayAudio(title, id);
+  }
+
+  Add(id: string) {
+
+
+    var myShirium = new Hok();
+    myShirium = this.hoks.filter(function (s) {
+      return s.id == id;
+    })[0];
+
+    this.queueService.setItem(myShirium, "Rabbi Eli J Mansour", 2);
+  }
+
+
 
 }

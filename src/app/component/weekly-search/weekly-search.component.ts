@@ -15,7 +15,7 @@ export class WeeklySearchComponent implements OnInit,OnChanges{
            $('#item-content-8').css('height','70px') //reduce ballon heigth
 
             setTimeout(function(){
-              $('#item-content-8').css('height','300px') //increase ballon heigth
+              $('#item-content-8').css('height','230px') //increase ballon heigth
             },1000)
             
        }
@@ -29,7 +29,7 @@ export class WeeklySearchComponent implements OnInit,OnChanges{
   ngOnInit() {
     setTimeout(function(){ 
          
-         $('.ballon .SlectBox').SumoSelect({ csvDispCount: 3, selectAll:true, captionFormatAllSelected: "All" });
+         $('.ballon .SlectBox').SumoSelect({ csvDispCount: 3, selectAll:true, captionFormatAllSelected: "All"});
          $('p.select-all').css('padding','5px 0 28px 35px')
          
          },300)

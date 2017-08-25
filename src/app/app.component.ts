@@ -36,21 +36,14 @@ keyDownFunction(event) {
 
  ngOnInit() {
 
-   setTimeout(function(){
-
-     $('.top input').click(function(){                             //when click the "Sign in Button" in podcast,queue,subscribe
-      var $thisDropdown = $(this).closest('li').find('.dropdown'); //find the closest li
-      $thisDropdown
-					.hide()
-					.removeClass('shown')  //close it!!!!
-
-      
-      $('.nav-access > li > .dropdown-signin').addClass('shown').show() //open the Sign in session
-      
-    }) 
-   },500)
-    
    this.CheckResetPassword(); 
+  }
+
+  OpenLogin(id:string)
+  {
+      $("#"+id).hide().removeClass('shown')  //close it!!!!
+
+      $('.nav-access > li > .dropdown-signin').addClass('shown').show() //open the Sign in session
   }
 
   CheckResetPassword()

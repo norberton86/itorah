@@ -12,7 +12,7 @@
 									<i class="ico-podcast"></i> <span>Podcast</span>
 								</a>
 
-								<div class="dropdown item" [class.blur]="VerifyUser()">
+								<div class="dropdown item" [class.blur]="VerifyUser()" id="podcastBox">
 									<div class="dropdown-head">
 										<h4><i class="ico-podcast-2"></i> Podcast</h4>
 
@@ -40,7 +40,7 @@
 										<div class="form-signin">
 											<p>iTorah</p>
 											<span>You must to be signed in to have access this feature</span>
-											<input type="submit" value="SIGN IN" class="form-btn">
+											<input type="submit" value="SIGN IN" class="form-btn" (click)="OpenLogin('podcastBox')">
 										</div>
 									</div>
 
@@ -54,7 +54,7 @@
 									<i class="ico-queue"></i> <span>Queue</span>
 								</a>
 
-								<div class="dropdown item" [class.blur]="VerifyUser()">
+								<div class="dropdown item" [class.blur]="VerifyUser()" id="queueBox">
 									<div class="dropdown-head">
 										<h4><i class="ico-play-3"></i> Queue list</h4>
 
@@ -75,7 +75,7 @@
 										<div class="form-signin">
 											<p>iTorah</p>
 											<span>You must to be signed in to have access this feature</span>
-											<input type="submit" value="SIGN IN" class="form-btn">
+											<input type="submit" value="SIGN IN" class="form-btn" (click)="OpenLogin('queueBox')">
 										</div>
 									</div>
 
@@ -87,7 +87,7 @@
 									<i class="ico-subscribe"></i> <span>Subscribe</span>
 								</a>
 
-								<div class="dropdown dropdown-subscription item" [class.blur]="VerifyUser()">
+								<div class="dropdown dropdown-subscription item" [class.blur]="VerifyUser()" id="subscribeBox">
 									<div class="dropdown-head">
 										<h4><i class="ico-mail-dark"></i> <span>My Subscriptions</span></h4>
 									</div><!-- /.dropdown-head -->
@@ -97,7 +97,7 @@
 										<div class="form-signin">
 											<p>iTorah</p>
 											<span>You must to be signed in to have access this feature</span>
-											<input type="submit" value="SIGN IN" class="form-btn">
+											<input type="submit" value="SIGN IN" class="form-btn" (click)="OpenLogin('subscribeBox')"> 
 										</div>
 									</div>
 								</div>
@@ -801,9 +801,9 @@
 									<div class="tile-body">
 										<div class="tile-entry">
 											<div class="tile-content">
-												<h3>MishnaBerura<small>.com</small></h3>
+												<h3>AruchHashulchan<small>.com</small></h3>
 
-												<p>The Shulchan Aruch Explained</p>
+												<p>The Shulchan Aruch Explained, and organized with commentaries from the Gemara and Rambam</p>
 
 												<span>Taught by Rabbi Eli J Mansour</span>
 											</div><!-- /.tile-content -->
@@ -908,9 +908,17 @@
 							<div class="tile-body">
 								<div class="tile-entry">
 									<div class="tile-content">
-										<h3>MishnaBeruraYomi<small>.com</small></h3>
+										<h3>MishnaBerura<small>.com</small></h3>
 
 										<span>Taught by Rabbi Eli J Mansour</span>
+
+										<h3>MishnaBeruraYomi<small>.com</small></h3>
+
+										<span>Taught by Rabbi Meyer Yedid</span>
+
+										<h3>MishnaBeruraDaily<small>.com</small></h3>
+
+										<span>Taught by Rabbi Shmuel Choueka</span>
 									</div><!-- /.tile-content -->
 
 									<div class="tile-actions">

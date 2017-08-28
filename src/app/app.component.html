@@ -592,6 +592,8 @@
 			<app-privacy-policy></app-privacy-policy>
 
 			<app-about></app-about>
+			
+			<app-contact></app-contact>
 
 			<app-recover [accion]="emailRecover"></app-recover>
 
@@ -1012,11 +1014,11 @@
 					<nav class="nav-secondary">
 						<ul>
 							<li>
-								<a href="#/" (click)="AboutUs()">About</a>
+								<a href="#" (click)="AboutUs()">About</a>
 							</li>
 
 							<li>
-								<a href="#">Contact</a>
+								<a href="#" (click)="Contact()">Contact</a>
 							</li>
 
 							<!--<li>
@@ -1028,7 +1030,7 @@
 							</li> -->
 
 							<li>
-								<a href="#/" (click)="Privacy()">Privacy</a>
+								<a href="#" (click)="Privacy()">Privacy</a>
 							</li>
 
 							<!--<li>

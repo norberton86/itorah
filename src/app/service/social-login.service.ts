@@ -43,7 +43,7 @@ export class SocialLoginServic extends Service{
 
     public Create(a:any):Observable<string>
     {
-           return this.http.post(this.ruta+"/Create",a).map(
+           return this.http.post(this.ruta+"Create",a).map(
             (response) => {
                 return response.toString();
             }
@@ -52,7 +52,7 @@ export class SocialLoginServic extends Service{
 
      public Recover(a:any):Observable<string>
     {
-           return this.http.post(this.ruta+"/Recover",a).map(
+           return this.http.post(this.ruta+"Recover",a).map(
             (response) => {
                 return response.toString();
             }

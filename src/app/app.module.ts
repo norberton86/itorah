@@ -37,7 +37,8 @@ import { InspireComponent } from './component/inspire/inspire.component';
 import { PrivacyPolicyComponent } from './component/privacy-policy/privacy-policy.component';
 import { RecoverComponent } from './component/recover/recover.component';
 import { GlobalSearchComponent } from './component/global-search/global-search.component';
-import { AboutComponent } from './component/about/about.component'
+import { AboutComponent } from './component/about/about.component';
+import { ContactComponent } from './component/contact/contact.component'
 
 
 
@@ -81,7 +82,8 @@ let providers = {
     PrivacyPolicyComponent,
     RecoverComponent,
     GlobalSearchComponent,
-    AboutComponent
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

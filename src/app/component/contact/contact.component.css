@@ -1,0 +1,49 @@
+p{
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    color: cornflowerblue;
+}
+
+#contact .donate-head{
+   padding: 9px 0 9px 20px;
+}
+
+#contact .donate-head .link-close{
+   top:8px;
+}
+
+.mydisabled {
+   cursor: not-allowed !important; 
+}
+
+#contact_form{
+    padding-left: 38%;
+    padding-right: 38%;
+}
+
+#contact_title:hover{ 
+    color:black;
+    cursor: text
+}
+
+.form-signin .form-row + .form-row
+{
+    padding: 4px 0px;
+    padding-top: 16px;
+   
+}
+
+
+@media(max-width:768px) {
+ 
+#contact_form{
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+}
+
+#contact_title{
+    display: none;
+}
+
+
+}

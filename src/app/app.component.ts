@@ -126,4 +126,9 @@ keyDownFunction(event) {
     	$("#privacy").toggleClass('shown');
   }
 
+  Contact()
+  {
+    	$("#contact").toggleClass('shown');
+  }
+
 }

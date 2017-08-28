@@ -1,0 +1,26 @@
+#aboutUs .donate-head{
+   padding: 9px 0 9px 20px;
+}
+
+#aboutUs .donate-head .link-close{
+   top:8px;
+}
+
+#aboutUs .donate-body{
+  padding: 1em;
+}
+
+#aboutUs .donate-body .content p,#aboutUs .donate-body .content div,#aboutUs .donate-body .content ul{
+  padding-left: 2em;
+  padding-right: 2em;
+  margin-top: 0.5em;
+}
+
+#aboutUs .donate-body .content h4{
+    background:none;
+    text-align:left;
+    color:#000;
+    margin-bottom: 0px;
+    margin-left: 1em;
+    margin-right: 1em;
+}

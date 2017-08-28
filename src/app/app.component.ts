@@ -117,4 +117,13 @@ keyDownFunction(event) {
    return true;
   }
 
+  AboutUs()
+  {
+    	$("#aboutUs").toggleClass('shown');
+  }
+   Privacy()
+  {
+    	$("#privacy").toggleClass('shown');
+  }
+
 }

@@ -107,10 +107,12 @@ current:string="tile-tab-1"
 
  isAuthenticated():boolean
  {
+      let self=this;
      if(localStorage.getItem('userItorah')==null||localStorage.getItem('userItorah')=="")//needs credentials to access
      {     
                      setTimeout(function(){
                        
+                       $("#field-8").val("#"+self.current) //restore value in select
                        //------------------------------------------------------------------------------------------
                         $('.nav-access > li > .dropdown-signin').addClass('shown').show() //open the Sign in session
                        

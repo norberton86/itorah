@@ -118,10 +118,11 @@ export class QueueComponent implements OnInit, OnDestroy {
   Add(item: ItemQueue) {
     if (this.queues.filter(function (s) {return s.id == item.id;}).length == 0)
     {
-      let self=this;
-     this.queueService.add(self.queueService.getToken(),[{ItemID:item.id,sourceID:item.sourceID}]).subscribe(
+      let self=this
+      this.queues.push(item);
+      this.queueService.add(this.queueService.getToken(),this.queues).subscribe(
         function(respond){
-              self.queues.push(item)
+              
            },
            function(error){
                 
@@ -135,10 +136,26 @@ export class QueueComponent implements OnInit, OnDestroy {
   }
 
   Remove(id: string) {
+
+    var  item= this.queues.filter(function (s) {return s.id == id;})[0]
+
     for (var index = 0; index < this.queues.length; index++) {
       if (this.queues[index].id == id)
         this.queues.splice(index, 1)
     }
+     
+     let self=this
+     this.queueService.remove(this.queueService.getToken(),[{ItemID:item.id,SourceID:item.sourceID}]).subscribe(
+        function(respond){
+              
+           },
+           function(error){
+                
+               self.queueService.Notify("Error trying to remove",true) 
+           },
+           function(){}
+      )
+
   }
 
   Play(title: string, media: string) {

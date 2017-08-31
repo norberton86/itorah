@@ -21,15 +21,15 @@ export class HokService extends Service{
 
   readParasha(idChumash:number) :Observable<Parasha[]>{
 
-    return Observable.create(observer => {
+    
            
-           if(idChumash==1)
-            observer.next([{id:1,name:"Noach"},{id:2,name:"Lech Lecha"}]);
-            else
-            observer.next([{id:3,name:"Bo"},{id:4,name:"Yitro"}]);
-
-            observer.complete();
-    });
+             return this.http.get(this.ruta+"/parasha?ChumashID="+idChumash).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    
 
    }
 

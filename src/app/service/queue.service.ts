@@ -47,6 +47,21 @@ export class QueueService extends ServiceLogin {
         )
   }
 
+  public remove(token: string,data:any): Observable<any> {
+
+    let h = new Headers();
+             h.append('Authorization','bearer '+token);
+            h.append('Content-Type','application/json');
+            
+        return this.http.post(this.ruta,data,{headers: h}).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+  }
+  
+
   setItem(myShirium: Shiurim, speakerName: string): void {
 
     var item = new ItemQueue();

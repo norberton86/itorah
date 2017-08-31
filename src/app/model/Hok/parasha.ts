@@ -1,5 +1,5 @@
 export class Parasha {
-  id:number;
+  ID:number;
   name:string;
   idChumash:number;
 }

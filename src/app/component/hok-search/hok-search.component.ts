@@ -86,7 +86,7 @@ export class HokSearchComponent implements OnInit {
     this.hokService.readParasha(idChumash).subscribe(
       function (response) {
         self.parashas = response;
-        self.selectedParasha = response[0].id;
+        self.selectedParasha = response[0].ID;
         self.ReadHok()
 
       }, function (error) { }, function () { }

@@ -53,7 +53,7 @@ export class QueueService extends ServiceLogin {
              h.append('Authorization','bearer '+token);
             h.append('Content-Type','application/json');
             
-        return this.http.post(this.ruta,data,{headers: h}).map(
+        return this.http.post(this.ruta,data[0],{headers: h}).map(
             (response) => {
                 let body = response.json();
                 return body;

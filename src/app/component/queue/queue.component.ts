@@ -118,9 +118,23 @@ export class QueueComponent implements OnInit, OnDestroy {
   Add(item: ItemQueue) {
     if (this.queues.filter(function (s) {return s.id == item.id;}).length == 0)
     {
-      let self=this
+      
       this.queues.push(item);
-      this.queueService.add(this.queueService.getToken(),this.queues).subscribe(
+      this.CallAdd()
+    }
+      
+  }
+
+  CallAdd()
+  {
+    let self=this
+
+    var req=[]
+    this.queues.forEach(function(a){
+           req.push({ItemID:a.id,SourceId:a.sourceID})
+    })
+
+    this.queueService.add(this.queueService.getToken(),req).subscribe(
         function(respond){
               
            },
@@ -130,9 +144,6 @@ export class QueueComponent implements OnInit, OnDestroy {
            },
            function(){}
       )
-    
-    }
-      
   }
 
   Remove(id: string) {
@@ -166,7 +177,7 @@ export class QueueComponent implements OnInit, OnDestroy {
   }
 
   Moved() {
-
+        this.CallAdd() 
   }
 
 }

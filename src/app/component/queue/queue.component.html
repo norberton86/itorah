@@ -7,7 +7,7 @@
 	<p>{{s.speaker}} <span>{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span></p>
 
 	<p>
-		<strong *ngIf="s.sourceID==1">{{s.length|time}}min</strong>  <strong *ngIf="s.sourceID==2">{{s.length}}</strong> <strong *ngIf="s.sourceID==1">{{s.language|language}}</strong>
+		<strong *ngIf="s.sourceID==1">{{s.length|time}}min</strong>  <strong *ngIf="s.sourceID==2">{{s.length}}</strong> <strong *ngIf="s.sourceID==1">{{s.language|language}}</strong> <strong *ngIf="s.sourceID==2">En</strong>
 	</p>
 
 	<div class="list-updates-actions">

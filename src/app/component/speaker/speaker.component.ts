@@ -264,7 +264,7 @@ addToQueue(id:string)
                         return s.id==id;
                         })[0];
      
-                        self.queueService.setItem(myShirium,self.speaker.firstName+" "+self.speaker.lastName,1);       
+                        self.queueService.setItem(myShirium,self.speaker.firstName+" "+self.speaker.lastName);       
                     }
 }
 

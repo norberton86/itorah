@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HokService } from '../../service/hok.service';
 import { PlayerService } from '../../service/player.service';
 import { QueueService } from '../../service/queue.service';
@@ -23,23 +23,17 @@ export class HokSearchComponent implements OnInit {
   selectedParasha: number;
   parashas: Array<Parasha>;
 
-  originalHoks: Array<Hok>
   hoks: Array<Hok>
-  classes: Array<string>
+  classes: Array<string>=["Class","Additional","Rashi"]
   selectedClass: string = "Class"
 
-  @Input()
-  accion: string = "";
-  rendering: boolean = false;
 
-  currentId: string = ""
 
   query_main: string = '';
 
-  constructor(private hokService: HokService, private playerService: PlayerService, private ngZone: NgZone, private queueService: QueueService) {
-    this.originalHoks = [];
+  constructor(private hokService: HokService, private playerService: PlayerService,  private queueService: QueueService) {
+    
     this.hoks = [];
-    this.classes = [];
   }
 
 
@@ -70,28 +64,22 @@ export class HokSearchComponent implements OnInit {
       var id = $(this).val().split(":")[1].trim() //id
 
       self.selectedClass = id;
-      self.hoks = self.HoksbyClass()
-
+      
+      self.ReadHok()
     });
 
     this.ReadChumash()
   }
 
   ReadChumash() {
-    let self = this;
-    this.hokService.readChumash().subscribe(
-      function (response) {
+   
+    this.chumashs = [{id:1,name: "Bereshit"},{id:2,name: "Shemot"},{id:3,name: "Vayikra"},{id:4,name: "Bamidbar"},{id:5,name: "Devarim"}];
 
-        self.chumashs = response;
+    this.selectedChumash = this.chumashs[0].id;
 
-        self.selectedChumash = response[0].id;
+    this.ReadParasha(this.selectedChumash);
 
-        self.ReadParasha(self.selectedChumash);
-
-      }, function (error) { }, function () { }
-    )
   }
-
 
   ReadParasha(idChumash: number) {
     let self = this;
@@ -105,41 +93,16 @@ export class HokSearchComponent implements OnInit {
     )
   }
 
-  AddClass(c: string, response: Array<Hok>) {
-    for (var index = 0; index < response.length; index++) {
-      if (response[index].myClass == c) {
-        this.classes.push(c)
-        break;
-      }
-    }
-  }
-
-
   ReadHok() {
     let self = this;
-    this.hokService.readHok(self.selectedChumash, self.selectedParasha).subscribe(
+    this.hokService.readHok(self.selectedParasha, self.selectedClass).subscribe(
       function (response) {
 
-
-        self.classes = ["Class"]
-        self.AddClass("Additional", response);
-        self.AddClass("Rashi", response);
-        self.selectedClass = "Class"
-        self.originalHoks = response;
-
-        self.hoks = self.HoksbyClass()
+        self.hoks = response;
 
       }, function (error) { }, function () { }
     )
   }
-
-  HoksbyClass(): Array<Hok> {
-    let self = this;
-    return this.originalHoks.filter(function (s) {
-      return s.myClass == self.selectedClass;
-    })
-  }
-
 
   Play(id: string, title: string) {
     // var onlyAudio = title.includes('LT-Audio');
@@ -154,9 +117,7 @@ export class HokSearchComponent implements OnInit {
       return s.id == id;
     })[0];
 
-    this.queueService.setItem(myShirium, "Rabbi Eli J Mansour", 2);
+    this.queueService.setItem(myShirium, "Rabbi Eli J Mansour");
   }
-
-
 
 }

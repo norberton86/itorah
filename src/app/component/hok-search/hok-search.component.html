@@ -28,7 +28,7 @@
 					<div class="form-col">
 					<!--	<label for="q">Perasha :</label>-->
 						
-						<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field">
+						<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field" [(ngModel)]="query_main">
 						
 						<button type="submit" class="search-btn">
 							<i class="ico-magnify"></i>
@@ -71,11 +71,11 @@
 								<h6 style="font-size: 15px;" data-title="{{h.title}}">{{h.title|reduceString}}</h6>
 								
 								<p>
-									<span class="date">{{h.dateRecorded| date: 'MM/dd/yyyy'}}</span>
+									<!--<span class="date">{{h.dateRecorded| date: 'MM/dd/yyyy'}}</span>-->
 									
-									<span class="min">{{h.length|time}}min</span>
+									<span class="min">{{h.length}}</span>
 									
-									<span class="lang">{{h.language|language}}</span>
+									<!--<span class="lang">{{h.language|language}}</span>-->
 									
 									
 								</p>

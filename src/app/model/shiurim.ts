@@ -1,5 +1,6 @@
 
 export class Shiurim {
+    sourceID:number
     id:string
     title: string
     dateRecorded: Date
@@ -13,13 +14,13 @@ export class Shiurim {
 
 export class Hok extends Shiurim
 {
-     dayWeek:string;
-     myClass:string;
+     dayWeek?:string
+     type?:string
+     pdfUrl?:string
       
 } 
 
-export class ItemQueue extends Shiurim
+export class ItemQueue extends Hok
 {
      speaker:string;
-     sourceID:number;
 } 

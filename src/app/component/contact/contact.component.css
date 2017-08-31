@@ -17,8 +17,8 @@ p{
 }
 
 #contact_form{
-    padding-left: 36%;
-    padding-right: 36%;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 #contact_title:hover{ 
@@ -33,6 +33,22 @@ p{
    
 }
 
+@media(min-width:768px)
+{
+    #contact_form .col-lg-6{
+      padding-left: 7%;
+      padding-right: 7%;
+    }
+
+    #contact_form .form-actions{
+      padding-left: 40%;
+      padding-right: 40%;
+      padding-top: 23em;
+      border-top: none;
+    }
+
+     
+}
 
 @media(max-width:768px) {
  
@@ -45,5 +61,10 @@ p{
     display: none;
 }
 
+ #contact_form .form-actions{
+     
+      padding-top: 44em;
+      border-top: none;
+    }
 
 }

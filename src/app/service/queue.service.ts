@@ -47,7 +47,7 @@ export class QueueService extends ServiceLogin {
         )
   }
 
-  setItem(myShirium: Shiurim, speakerName: string,sourceID:number): void {
+  setItem(myShirium: Shiurim, speakerName: string): void {
 
     var item = new ItemQueue();
     item.id = myShirium.id;
@@ -58,7 +58,7 @@ export class QueueService extends ServiceLogin {
     item.audio = myShirium.audio;
     item.video = myShirium.video;
     item.speaker = speakerName;
-    item.sourceID=sourceID;
+    item.sourceID=myShirium.sourceID;
 
     this.subject.next(item);
   }

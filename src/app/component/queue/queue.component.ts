@@ -43,7 +43,10 @@ export class QueueComponent implements OnInit, OnDestroy {
       "id": "1",
       "wowzaVideoUrl": "",
       "speaker": "Rabbi Eli J Mansour",
-      "sourceID": 1
+      "sourceID": 1,
+      "dayWeek":"",
+      "type":"",
+      "pdfUrl":""
     },
     {
       "title": "Word Power",
@@ -55,7 +58,10 @@ export class QueueComponent implements OnInit, OnDestroy {
       "id": "2",
       "wowzaVideoUrl": "",
       "speaker": "Rabbi Eli J Mansour",
-      "sourceID": 1
+      "sourceID": 1,
+      "dayWeek":"",
+      "type":"",
+      "pdfUrl":""
     },
     {
       "title": "Perush Rashi on Parashat Hukat",
@@ -67,7 +73,10 @@ export class QueueComponent implements OnInit, OnDestroy {
       "id": "3",
       "wowzaVideoUrl": "",
       "speaker": "Rabbi Eli J Mansour",
-      "sourceID": 1
+      "sourceID": 1,
+      "dayWeek":"",
+      "type":"",
+      "pdfUrl":""
     },
     {
       "title": "The Aderet / Jewish Home",
@@ -79,7 +88,10 @@ export class QueueComponent implements OnInit, OnDestroy {
       "id": "4",
       "speaker": "Rabbi Eli J Mansour",
       "wowzaVideoUrl": "",
-      "sourceID": 1
+      "sourceID": 1,
+      "dayWeek":"",
+      "type":"",
+      "pdfUrl":""
     }];
   }
 

@@ -186,7 +186,7 @@ Search()
                return s.id==id;
               })[0];
      
-              this.queueService.setItem(myShirium,"Rabbi Eli J Mansour",3);      
+              this.queueService.setItem(myShirium,"Rabbi Eli J Mansour");      
   }
 
 }

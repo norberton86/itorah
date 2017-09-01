@@ -28,3 +28,12 @@ export class Perasha {
          });
     }
 }
+
+
+export class AllParasha
+{
+    ID: number
+    Name: string
+    HebrewName: string
+ 
+}

@@ -105,132 +105,20 @@
 
 							</li>
 
-							<li>
-								<a href="#" data-tooltip="Sponsor a shiur for $180.00 and your dedication will always appear when someone listens or watches. Sponsoring a Shiur enables viewers to download the audio file for free.   You can also sponsor a day of Learning on iTorah for $180.00.">
+							<li class="link-popup">
+								<a href="#sponsor" data-tooltip="Sponsor a shiur for $180.00 and your dedication will always appear when someone listens or watches. Sponsoring a Shiur enables viewers to download the audio file for free.   You can also sponsor a day of Learning on iTorah for $180.00.">
 									<i class="ico-sponsors"></i> <span>Sponsors</span>
 								</a>
-
-								<div class="dropdown">
-									<div class="dropdown-head">
-										<h4><i class="ico-leaf"></i> Sponsors</h4>
-
-										<ul class="nav-list">
-											<li>
-												<a class="link-blue" href="#">Become a sponsor</a>
-											</li>
-										</ul><!-- /.nav-list -->
-									</div><!-- /.dropdown-head -->
-
-									<div class="dropdown-body">
-										<ul class="list-updates">
-											<li>
-												<i class="ico-leaf"></i>
-
-												<h6>Sponsor Name</h6>
-
-												<p>Company description or tag line</p>
-
-												<p>
-													<a href="#">www.Name.com</a>
-												</p>
-											</li>
-
-											<li>
-												<i class="ico-leaf"></i>
-
-												<h6>Sponsor Name</h6>
-
-												<p>Company description or tag line</p>
-
-												<p>
-													<a href="#">www.Name.com</a>
-												</p>
-											</li>
-
-											<li>
-												<i class="ico-leaf"></i>
-
-												<h6>Sponsor Name</h6>
-
-												<p>Company description or tag line</p>
-
-												<p>
-													<a href="#">www.Name.com</a>
-												</p>
-											</li>
-
-											<li>
-												<i class="ico-leaf"></i>
-
-												<h6>Sponsor Name</h6>
-
-												<p>Company description or tag line</p>
-
-												<p>
-													<a href="#">www.Name.com</a>
-												</p>
-											</li>
-
-											<li>
-												<i class="ico-leaf"></i>
-
-												<h6>Sponsor Name</h6>
-
-												<p>Company description or tag line</p>
-
-												<p>
-													<a href="#">www.Name.com</a>
-												</p>
-											</li>
-
-											<li>
-												<i class="ico-leaf"></i>
-
-												<h6>Sponsor Name</h6>
-
-												<p>Company description or tag line</p>
-
-												<p>
-													<a href="#">www.Name.com</a>
-												</p>
-											</li>
-
-											<li>
-												<i class="ico-leaf"></i>
-
-												<h6>Sponsor Name</h6>
-
-												<p>Company description or tag line</p>
-
-												<p>
-													<a href="#">www.Name.com</a>
-												</p>
-											</li>
-
-											<li>
-												<i class="ico-leaf"></i>
-
-												<h6>Sponsor Name</h6>
-
-												<p>Company description or tag line</p>
-
-												<p>
-													<a href="#">www.Name.com</a>
-												</p>
-											</li>
-										</ul><!-- /.list-updates -->
-									</div><!-- /.dropdown-body -->
-								</div>
 							</li>
 
-							<li>
-								<a class="link-donate" href="#donate" data-tooltip="General anonymous donation to iTorah and helping us cover our expenses associated with the recording all the classes and maintaining this web site.">
+							<li class="link-popup">
+								<a href="#donate" data-tooltip="General anonymous donation to iTorah and helping us cover our expenses associated with the recording all the classes and maintaining this web site.">
 									<i class="ico-donate"></i> <span>DONATE</span>
 								</a>
 							</li>
 
-							<li>
-								<a href="#" data-tooltip="Dedications in honor, memory, or for Refuah of someone on iTorah.com. May the merit of all the learning stemming for iTorah.com be attributable to the beneficiary.">
+							<li class="link-popup">
+								<a href="#dedications" data-tooltip="Dedications in honor, memory, or for Refuah of someone on iTorah.com. May the merit of all the learning stemming for iTorah.com be attributable to the beneficiary.">
 									<i class="ico-dedications"></i> <span>DEDICATIONS</span>
 								</a>
 							</li>
@@ -248,7 +136,7 @@
 
 						<div class="search">
 							<div class="search-inner">
-								<form action="?" method="get">
+								<form action="?" method="get" >
 									<div class="search-content">
 										<label for="q" class="hidden">Search</label>
 
@@ -303,8 +191,8 @@
 								<a href="#">My Credits</a>
 							</li>
 
-							<li>
-								<a href="#">Completed Classes</a>
+							<li class="link-popup">
+								<a href="#classes">Completed Classes</a>
 							</li>
 
 							<li>
@@ -329,273 +217,1139 @@
 		<i class="ico-ballon-arrow"></i>
 
 		<div class="main">
-			<div class="donate" id="donate">
-				<div class="donate-head">
-					<form action="?" method="get">
-						<label for="field-search-content">Donate: </label>
+			<div class="popup donate" id="donate">
+		<div class="popup-head">
+			<form action="?" method="get">
+				<label for="field-search-content">Donate: </label>
 
-						<div class="select select-tertiary">
-							<select name="field-search-content" id="field-search-content">
-								<option value="">Select your credit card</option>
-							</select><!-- /.form-row -->
-						</div><!-- /.select -->
+				<a href="#" class="link-close">
+					<i class="ico-close"></i>
+				</a>
+			</form>
+		</div><!-- /.popup-head -->
 
-						<a href="#" class="link-close">
-							<i class="ico-close"></i>
-						</a>
-					</form>
-				</div><!-- /.donate-head -->
+		<div class="popup-body">
+			<div class="cols cols-2">
+				<div class="col-1of2">
+					<div class="form-sponsor">
+						<form action="?" method="post">
+							<div class="form-head">
+								<h4>General Donation</h4>
+							</div><!-- /.form-head -->
 
-				<div class="donate-body">
-					<div class="cols">
-						<div class="col-1of3">
-							<div class="form-sponsor">
-								<form action="?" method="post">
-									<div class="form-head">
-										<h4>Sponsor a Day</h4>
-									</div><!-- /.form-head -->
+							<div class="form-body">
+								<div class="form-row">
+									<ul class="list-checkboxes">
+										<li>
+											<div class="checkbox checkbox-secondary">
+												<input type="checkbox" name="field-5" id="field-5">
 
-									<div class="form-body">
-										<div class="form-row">
-											<div class="select select-tertiary">
-												<select name="field-sponsorship" id="field-sponsorship">
+												<label class="form__label" for="field-5">$5</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox checkbox-secondary">
+												<input type="checkbox" name="field-10" id="field-10">
+
+												<label class="form__label" for="field-10">$10</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox checkbox-secondary">
+												<input type="checkbox" name="field-15" id="field-15">
+
+												<label class="form__label" for="field-15">$15</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox checkbox-secondary">
+												<input type="checkbox" name="field-25" id="field-25">
+
+												<label class="form__label" for="field-25">$25</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox checkbox-secondary">
+												<input type="checkbox" name="field-50" id="field-50">
+
+												<label class="form__label" for="field-50">$50</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox checkbox-secondary">
+												<input type="checkbox" name="field-100" id="field-100">
+
+												<label class="form__label" for="field-100">$100</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox checkbox-secondary">
+												<input type="checkbox" name="field-250" id="field-250">
+
+												<label class="form__label" for="field-250">$250</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox checkbox-secondary">
+												<input type="checkbox" name="field-300" id="field-300">
+
+												<label class="form__label" for="field-300">$300</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox checkbox-secondary">
+												<input type="checkbox" name="field-1000" id="field-1000">
+
+												<label class="form__label" for="field-1000">$1,000</label>
+											</div><!-- /.checkbox -->
+										</li>
+									</ul><!-- /.list-checkboxes -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<span>or</span>
+
+									<div class="form-controls">
+										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="$Other amount">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+							</div><!-- /.form-body -->
+
+							<div class="form-actions hidden">
+								<input type="submit" value="Process order" class="form-btn">
+							</div><!-- /.form-actions -->
+						</form>
+					</div>
+				</div><!-- /.col-1of2 -->
+
+				<div class="col-1of2">
+					<div class="form-order form-sponsor">
+						<form action="?" method="post">
+							<div class="form-head">
+								<h4>Credit card detail</h4>
+							</div><!-- /.form-head -->
+
+							<div class="form-body">
+								<div class="form-row">
+									<label for="field-select-card-on-file" class="form__label">Select card on file</label>
+
+									<div class="form-controls">
+										<div class="select">
+											<select name="field-select-card-on-file" id="field-select-card-on-file">
+												<option value="1234 4567 7890">1234 4567 7890</option>
+												<option value="1234 1234 1234">1234 1234 1234</option>
+											</select>
+										</div><!-- /.select -->
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<span>or</span>
+
+									<label for="field-card-number" class="form__label">Card number</label>
+
+									<div class="form-controls">
+										<input type="text" class="field" name="field-card-number" id="field-card-number" value="" placeholder="5261 XXXX XXXX XXXX">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<label for="field-expiration" class="form__label">Expiration</label>
+
+									<div class="form-controls">
+										<input type="text" class="field field-date" name="field-expiration" id="field-expiration" value="" placeholder="20/2020">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<label for="field-cvv" class="form__label">CVV</label>
+
+									<div class="form-controls">
+										<input type="text" class="field" name="field-cvv" id="field-cvv" value="" placeholder="123">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row form-row-small">
+									<label for="field-total" class="form__label">Total (USD)</label>
+
+									<div class="form-controls">
+										<input type="text" class="field" name="field-total" id="field-total" value="" placeholder="$ 0.00">
+									</div><!-- /.form__controls -->
+								</div><!-- /.form-row form-row-small -->
+
+								<div class="form-row">
+									<p>You will get an email with process order information</p>
+
+									<div class="g-recaptcha" data-sitekey="6LfMsi4UAAAAACwKrKCRPHYpmqVFCuCZYNM7mFH9"></div>
+								</div><!-- /.form-row -->
+							</div><!-- /.form-body -->
+
+							<div class="form-actions">
+								<input type="submit" value="Process order" class="form-btn">
+							</div><!-- /.form-actions -->
+						</form>
+					</div><!-- /.form-order -->
+				</div><!-- /.col-1of2 -->
+			</div><!-- /.cols -->
+		</div><!-- /.popup-body -->
+	</div>
+
+	<div class="popup sponsor" id="sponsor">
+		<div class="popup-head">
+			<form action="?" method="get">
+				<label for="field-search-content">Donate: </label>
+
+				<a href="#" class="link-close">
+					<i class="ico-close"></i>
+				</a>
+			</form>
+		</div><!-- /.popup-head -->
+
+		<div class="popup-body">
+			<div class="cols cols-3">
+				<div class="col-1of3 col-center">
+					<div class="form-sponsor sponsor-toggle">
+						<form action="?" method="post">
+							<div class="form__body">
+								<div class="form-row">
+									<ul class="list-checkboxes list-checkboxes-blocks">
+										<li>
+											<div class="checkbox checkbox-secondary checkbox-block">
+												<input type="checkbox" name="form-sponsor-day" id="field-sponsor-a-day">
+
+												<label class="form__label" for="field-sponsor-a-day">Sponsor a day</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox checkbox-secondary checkbox-block">
+												<input type="checkbox" name="form-sponsor-shiur" id="field-sponsor-a-shiur">
+
+												<label class="form__label" for="field-sponsor-a-shiur">Sponsor a shiur</label>
+											</div><!-- /.checkbox -->
+										</li>
+									</ul><!-- /.list-checkboxes -->
+								</div><!-- /.form-row -->
+							</div><!-- /.form__body -->
+
+							<div class="form__actions hidden">
+								<input type="submit" value="Submit" class="form__btn">
+							</div><!-- /.form__actions -->
+						</form>
+					</div><!-- /.form-sponsor -->
+				</div><!-- /.col-1of3 -->
+
+				<div class="col-1of3">
+					<div class="form-sponsor form-placeholder">
+						<form action="?" method="post">
+							<div class="form-head">
+								<h4></h4>
+							</div><!-- /.form-head -->
+
+							<div class="form-body"></div><!-- /.form-body -->
+						</form>
+					</div><!-- /.form-sponsor hidden -->
+
+					<div class="form-sponsor hidden" id="form-sponsor-day">
+						<form action="?" method="post">
+							<div class="form-head">
+								<h4>Sponsor a Day</h4>
+							</div><!-- /.form-head -->
+
+							<div class="form-body">
+								<div class="form-row">
+									<ul class="list-checkboxes list-checkboxes-blocks">
+										<li>
+											<div class="checkbox">
+												<input type="checkbox" name="field-sponsor-day-itorah" id="field-sponsor-day-itorah">
+
+												<label class="form__label" data-per-day="$180.00 per day" for="field-sponsor-day-itorah">Sponsor a day for iTorah.com</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox">
+												<input type="checkbox" name="field-sponsor-day-daliy-halacha" id="field-sponsor-day-daliy-halacha">
+
+												<label class="form__label" data-per-day="$52.00 per day" for="field-sponsor-day-daliy-halacha">Sponsor a day for DaliyHalacha.com</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox">
+												<input type="checkbox" name="field-sponsor-day-daliy-tehillin" id="field-sponsor-day-daliy-tehillin">
+
+												<label class="form__label" data-per-day="$52.00 per day" for="field-sponsor-day-daliy-tehillin">Sponsor a day for DaliyTehillin.com</label>
+											</div><!-- /.checkbox -->
+										</li>
+									</ul><!-- /.list-checkboxes -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<div class="select select-tertiary">
+										<select name="field-sponsorship" id="field-sponsorship">
 											<option value="">Select sponsorship</option>
 										</select>
-											</div><!-- /.select -->
-										</div><!-- /.form-row -->
+									</div><!-- /.select -->
+								</div><!-- /.form-row -->
 
-										<div class="form-row">
-											<div class="form-controls">
-												<input type="text" class="field field-date" name="field-date" id="field-date" value="" placeholder="Date">
+								<div class="form-row">
+									<div class="form-controls">
+										<input type="text" class="field field-date" name="field-date" id="field-date" value="" placeholder="Date">
 
-												<i class="ico-calendar"></i>
-											</div><!-- /.form-controls -->
+										<i class="ico-calendar"></i>
+									</div><!-- /.form-controls -->
 
-											<p>
-												<a href="#">Add another day</a>
-											</p>
-										</div><!-- /.form-row -->
+									<p>
+										<a href="#">Add another day</a>
+									</p>
+								</div><!-- /.form-row -->
 
-										<div class="form-row">
-											<div class="select select-tertiary">
-												<select name="field-sponsorship" id="field-sponsorship">
+								<div class="form-row">
+									<div class="select select-tertiary">
+										<select name="field-sponsorship" id="field-sponsorship">
 											<option value="">Repeat</option>
 										</select>
-											</div><!-- /.select -->
-										</div><!-- /.form-row -->
+									</div><!-- /.select -->
+								</div><!-- /.form-row -->
 
-										<div class="form-row">
-											<div class="select select-tertiary">
-												<select name="field-sponsorship" id="field-sponsorship">
+								<div class="form-row">
+									<div class="select select-tertiary">
+										<select name="field-sponsorship" id="field-sponsorship">
 											<option value="">Sponsorship for</option>
 										</select>
-											</div><!-- /.select -->
-										</div><!-- /.form-row -->
+									</div><!-- /.select -->
+								</div><!-- /.form-row -->
 
-										<div class="form-row">
-											<div class="form-controls">
-												<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name">
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.form-body -->
+								<div class="form-row">
+									<div class="form-controls">
+										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+							</div><!-- /.form-body -->
 
-									<div class="form-actions">
-										<input type="submit" value="Process order" class="form-btn">
-									</div><!-- /.form-actions -->
-								</form>
-							</div><!-- /.form-sponsor -->
-						</div><!-- /.col-1of3 -->
+							<div class="form-actions">
+								<input type="submit" value="Process order" class="form-btn">
+							</div><!-- /.form-actions -->
+						</form>
+					</div><!-- /.form-sponsor hidden -->
 
-						<div class="col-1of3">
-							<div class="form-sponsor">
-								<form action="?" method="post">
-									<div class="form-head">
-										<h4>Sponsor a Shiur</h4>
-									</div><!-- /.form-head -->
+					<div class="form-sponsor hidden" id="form-sponsor-shiur">
+						<form action="?" method="post">
+							<div class="form-head">
+								<h4>Sponsor a Shiur</h4>
+							</div><!-- /.form-head -->
 
-									<div class="form-body">
-										<div class="form-row">
-											<div class="select select-tertiary">
-												<select name="field-speaker" id="field-speaker">
-											<option value="">Speaker</option>
-										</select>
-											</div><!-- /.select -->
-										</div><!-- /.form-row -->
+							<div class="form-body">
+								<div class="form-row">
+									<p style="text-align: center; color: #123fa0; padding: 10px; ">
+										<span>Sponsor a Shiur = $118.00</span>
+									</p>
 
-										<div class="form-row">
-											<div class="select select-tertiary">
-												<select name="field-name-speaker" id="field-name-speaker">
-											<option value="">Rabbi Mansour</option>
-										</select>
-											</div><!-- /.select -->
-										</div><!-- /.form-row -->
+									<a href="#" class="btn btn-yellow">BROWSE iTorah</a>
+								</div><!-- /.form-row -->
 
-										<div class="form-row">
-											<div class="select select-tertiary">
-												<select name="field-navi" id="field-navi">
-											<option value="">Navi</option>
-										</select>
-											</div><!-- /.select -->
-										</div><!-- /.form-row -->
-
-										<div class="form-row">
-											<div class="select select-tertiary">
-												<select name="field-shemuel-2" id="field-shemuel-2">
-											<option value="">Shemuel 2</option>
-										</select>
-											</div><!-- /.select -->
-										</div><!-- /.form-row -->
-
-										<div class="form-row">
-											<div class="select select-tertiary">
-												<select name="field-transform" id="field-transform">
-											<option value="">Transform your Shabbat</option>
-										</select>
-											</div><!-- /.select -->
-										</div><!-- /.form-row -->
-
-										<div class="form-row">
-											<div class="select select-tertiary">
-												<select name="field-repeat" id="field-repeat">
-											<option value="">Repeat</option>
-										</select>
-											</div><!-- /.select -->
-										</div><!-- /.form-row -->
-
-										<div class="form-row">
-											<div class="select select-tertiary">
-												<select name="field-sponsorship" id="field-sponsorship">
+								<div class="form-row">
+									<div class="select select-tertiary">
+										<select name="field-sponsorship" id="field-sponsorship">
 											<option value="">Sponsorship for</option>
 										</select>
-											</div><!-- /.select -->
-										</div><!-- /.form-row -->
+									</div><!-- /.select -->
+								</div><!-- /.form-row -->
 
-										<div class="form-row">
-											<div class="form-controls">
-												<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name">
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.form-body -->
+								<div class="form-row">
+									<div class="form-controls">
+										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
 
-									<div class="form-actions">
-										<input type="submit" value="Process order" class="form-btn">
-									</div><!-- /.form-actions -->
-								</form>
-							</div>
-						</div><!-- /.col-1of3 -->
+								<div class="form-row">
+									<div class="form__controls">
+										<input type="text" class="field" name="field-sponsored-by" id="field-sponsored-by" value="" placeholder="Sponsored by">
+										<br>
+										<p>
+											<small>(Leave blank if you want to remain anonymous)</small>
+										</p>
+									</div><!-- /.form__controls -->
+								</div><!-- /.form-row -->
+							</div><!-- /.form-body -->
 
-						<div class="col-1of3">
-							<div class="form-sponsor">
-								<form action="?" method="post">
-									<div class="form-head">
-										<h4>General Donation</h4>
-									</div><!-- /.form-head -->
+							<div class="form-actions hidden">
+								<input type="submit" value="Process order" class="form-btn">
+							</div><!-- /.form-actions -->
+						</form>
 
-									<div class="form-body">
-										<div class="form-row">
-											<ul class="list-checkboxes">
-												<li>
-													<div class="checkbox checkbox-secondary">
-														<input type="checkbox" name="field-5" id="field-5">
+						<p>Sponsoring a Shiur enables viewers to download the shiur for free.</p>
+					</div><!-- /.form-sponsor hidden -->
+				</div><!-- /.col-1of3 -->
 
-														<label class="form__label" for="field-5">$5</label>
-													</div><!-- /.checkbox -->
-												</li>
+				<div class="col-1of3">
+					<div class="form-order form-sponsor">
+						<form action="?" method="post">
+							<div class="form-head">
+								<h4>Credit card detail</h4>
+							</div><!-- /.form-head -->
 
-												<li>
-													<div class="checkbox checkbox-secondary">
-														<input type="checkbox" name="field-10" id="field-10">
+							<div class="form-body">
+								<div class="form-row">
+									<label for="field-select-card-on-file" class="form__label">Select card on file</label>
 
-														<label class="form__label" for="field-10">$10</label>
-													</div><!-- /.checkbox -->
-												</li>
+									<div class="form-controls">
+										<div class="select">
+											<select name="field-select-card-on-file" id="field-select-card-on-file">
+												<option value="1234 4567 7890">1234 4567 7890</option>
+												<option value="1234 1234 1234">1234 1234 1234</option>
+											</select>
+										</div><!-- /.select -->
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
 
-												<li>
-													<div class="checkbox checkbox-secondary">
-														<input type="checkbox" name="field-15" id="field-15">
+								<div class="form-row">
+									<span>or</span>
 
-														<label class="form__label" for="field-15">$15</label>
-													</div><!-- /.checkbox -->
-												</li>
+									<label for="field-card-number" class="form__label">Card number</label>
 
-												<li>
-													<div class="checkbox checkbox-secondary">
-														<input type="checkbox" name="field-25" id="field-25">
+									<div class="form-controls">
+										<input type="text" class="field" name="field-card-number" id="field-card-number" value="" placeholder="5261 XXXX XXXX XXXX">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
 
-														<label class="form__label" for="field-25">$25</label>
-													</div><!-- /.checkbox -->
-												</li>
+								<div class="form-row">
+									<label for="field-expiration" class="form__label">Expiration</label>
 
-												<li>
-													<div class="checkbox checkbox-secondary">
-														<input type="checkbox" name="field-50" id="field-50">
+									<div class="form-controls">
+										<input type="text" class="field field-date" name="field-expiration" id="field-expiration" value="" placeholder="20/2020">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
 
-														<label class="form__label" for="field-50">$50</label>
-													</div><!-- /.checkbox -->
-												</li>
+								<div class="form-row">
+									<label for="field-cvv" class="form__label">CVV</label>
 
-												<li>
-													<div class="checkbox checkbox-secondary">
-														<input type="checkbox" name="field-100" id="field-100">
+									<div class="form-controls">
+										<input type="text" class="field" name="field-cvv" id="field-cvv" value="" placeholder="123">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
 
-														<label class="form__label" for="field-100">$100</label>
-													</div><!-- /.checkbox -->
-												</li>
+								<div class="form-row form-row-small">
+									<label for="field-total" class="form__label">Total (USD)</label>
 
-												<li>
-													<div class="checkbox checkbox-secondary">
-														<input type="checkbox" name="field-250" id="field-250">
+									<div class="form-controls">
+										<input type="text" class="field" name="field-total" id="field-total" value="" placeholder="$ 0.00">
+									</div><!-- /.form__controls -->
+								</div><!-- /.form-row form-row-small -->
 
-														<label class="form__label" for="field-250">$250</label>
-													</div><!-- /.checkbox -->
-												</li>
+								<div class="form-row">
+									<p>You will get an email with process order information</p>
 
-												<li>
-													<div class="checkbox checkbox-secondary">
-														<input type="checkbox" name="field-300" id="field-300">
+									<div class="g-recaptcha" data-sitekey="6LfMsi4UAAAAACwKrKCRPHYpmqVFCuCZYNM7mFH9"></div>
+								</div><!-- /.form-row -->
+							</div><!-- /.form-body -->
 
-														<label class="form__label" for="field-300">$300</label>
-													</div><!-- /.checkbox -->
-												</li>
+							<div class="form-actions">
+								<input type="submit" value="Process order" class="form-btn">
+							</div><!-- /.form-actions -->
+						</form>
+					</div><!-- /.form-order -->
+				</div><!-- /.col-1of3 -->
+			</div><!-- /.cols -->
+		</div><!-- /.popup-body -->
+	</div>
+           
+		   <div class="popup classes" id="classes">
+		<div class="popup-head">
+			<form action="?" method="get">
+				<label for="field-search-content">Classes</label>
 
-												<li>
-													<div class="checkbox checkbox-secondary">
-														<input type="checkbox" name="field-1000" id="field-1000">
+				<a href="#" class="link-close">
+					<i class="ico-close"></i>
+				</a>
+			</form>
+		</div><!-- /.popup-head -->
 
-														<label class="form__label" for="field-1000">$1,000</label>
-													</div><!-- /.checkbox -->
-												</li>
-											</ul><!-- /.list-checkboxes -->
-										</div><!-- /.form-row -->
+		<div class="popup-body">
+			<ul class="search-resultsults">
+				<li class="search-resultsult search-resultsult-title">
+					<div class="col col-medium">
+						<div class="col col-1of2"></div><!-- /.col col-1of2 -->
 
-										<div class="form-row">
-											<span>or</span>
+						<div class="col col-1of2">
+							<a href="#" class="current">Data</a>
+						</div><!-- /.col col-1of2 -->
+					</div><!-- /.col col-medium -->
 
-											<div class="form-controls">
-												<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="$Other amount">
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.form-body -->
+					<div class="col col-medium col-title">
+						<a href="#">Title</a>
+					</div><!-- /.col col-medium -->
 
-									<div class="form-actions">
-										<input type="submit" value="Process order" class="form-btn">
-									</div><!-- /.form-actions -->
-								</form>
-							</div>
-						</div><!-- /.col-1of3 -->
-					</div><!-- /.cols -->
-				</div><!-- /.donate-body -->
-			</div>
+					<div class="col col-large col-speaker">
+						<a href="#">Speaker</a>
+					</div><!-- /.col col-large -->
 
+					<div class="col col-small">
+						<a href="#">Duration</a>
+					</div><!-- /.col col-small -->
+
+					<div class="col col-small">
+						<div class="col col-1of2"></div><!-- /.col col-1of2 -->
+					</div><!-- /.col col-small -->
+
+					<div class="col col-large" style="text-align: center; ">
+						<a href="#">Status</a>
+					</div><!-- /.col col-large -->
+				</li><!-- /.search-resultsult -->
+
+				<li class="search-resultsult">
+					<div class="col col-medium">
+						<div class="col col-1of2">
+							<a href="#">
+								<i class="ico-mic"></i>
+							</a>
+						</div><!-- /.col col-1of2 -->
+
+						<div class="col col-1of2">
+							7/31/2017
+						</div><!-- /.col col-1of2 -->
+					</div><!-- /.col col-medium -->
+
+					<div class="col col-medium col-title">
+						<p>Amazing Stories</p>
+					</div><!-- /.col col-medium col-title -->
+
+					<div class="col col-large col-speaker">
+						<p>Mansour, Robbi Eli</p>
+					</div><!-- /.col col-large col-speaker -->
+
+					<div class="col col-small col-duration">
+						30 MIN
+						<a href="#">EN</a>
+					</div><!-- /.col col-small -->
+
+					<div class="col col-small">
+						<a href="#" class="btn btn-download">
+							<i class="ico-download"></i> mp3
+						</a><!-- /.btn btn-download -->
+					</div><!-- /.col col-small -->
+
+					<div class="col col-large col-status">
+						<a href="#" class="btn btn-status btn-completed">Not Started</a>
+					</div><!-- /.col col-large col-status -->
+				</li><!-- /.search-resultsult -->
+
+				<li class="search-resultsult">
+					<div class="col col-medium">
+						<div class="col col-1of2">
+							<a href="#">
+								<i class="ico-mic"></i>
+							</a>
+						</div><!-- /.col col-1of2 -->
+
+						<div class="col col-1of2">
+							7/31/2017
+						</div><!-- /.col col-1of2 -->
+					</div><!-- /.col col-medium -->
+
+					<div class="col col-medium col-title">
+						<p>Amazing Stories</p>
+					</div><!-- /.col col-medium col-title -->
+
+					<div class="col col-large col-speaker">
+						<p>Mansour, Robbi Eli</p>
+					</div><!-- /.col col-large col-speaker -->
+
+					<div class="col col-small col-duration">
+						30 MIN
+						<a href="#">EN</a>
+					</div><!-- /.col col-small -->
+
+					<div class="col col-small">
+						<a href="#" class="btn btn-download">
+							<i class="ico-download"></i> mp3
+						</a><!-- /.btn btn-download -->
+					</div><!-- /.col col-small -->
+
+					<div class="col col-large col-status">
+						<a href="#" class="btn btn-status">Not Started</a>
+					</div><!-- /.col col-large col-status -->
+				</li><!-- /.search-resultsult -->
+
+				<li class="search-resultsult">
+					<div class="col col-medium">
+						<div class="col col-1of2">
+							<a href="#">
+								<i class="ico-mic"></i>
+							</a>
+						</div><!-- /.col col-1of2 -->
+
+						<div class="col col-1of2">
+							7/31/2017
+						</div><!-- /.col col-1of2 -->
+					</div><!-- /.col col-medium -->
+
+					<div class="col col-medium col-title">
+						<p>Amazing Stories</p>
+					</div><!-- /.col col-medium col-title -->
+
+					<div class="col col-large col-speaker">
+						<p>Mansour, Robbi Eli</p>
+					</div><!-- /.col col-large col-speaker -->
+
+					<div class="col col-small col-duration">
+						30 MIN
+						<a href="#">EN</a>
+					</div><!-- /.col col-small -->
+
+					<div class="col col-small">
+						<a href="#" class="btn btn-download">
+							<i class="ico-download"></i> mp3
+						</a><!-- /.btn btn-download -->
+					</div><!-- /.col col-small -->
+
+					<div class="col col-large col-status">
+						<a href="#" class="btn btn-status">Not Started</a>
+					</div><!-- /.col col-large col-status -->
+				</li><!-- /.search-resultsult -->
+
+				<li class="search-resultsult">
+					<div class="col col-medium">
+						<div class="col col-1of2">
+							<a href="#">
+								<i class="ico-mic"></i>
+							</a>
+						</div><!-- /.col col-1of2 -->
+
+						<div class="col col-1of2">
+							7/31/2017
+						</div><!-- /.col col-1of2 -->
+					</div><!-- /.col col-medium -->
+
+					<div class="col col-medium col-title">
+						<p>Amazing Stories</p>
+					</div><!-- /.col col-medium col-title -->
+
+					<div class="col col-large col-speaker">
+						<p>Mansour, Robbi Eli</p>
+					</div><!-- /.col col-large col-speaker -->
+
+					<div class="col col-small col-duration">
+						30 MIN
+						<a href="#">EN</a>
+					</div><!-- /.col col-small -->
+
+					<div class="col col-small">
+						<a href="#" class="btn btn-download">
+							<i class="ico-download"></i> mp3
+						</a><!-- /.btn btn-download -->
+					</div><!-- /.col col-small -->
+
+					<div class="col col-large col-status">
+						<a href="#" class="btn btn-status">Not Started</a>
+					</div><!-- /.col col-large col-status -->
+				</li><!-- /.search-resultsult -->
+
+				<li class="search-resultsult">
+					<div class="col col-medium">
+						<div class="col col-1of2">
+							<a href="#">
+								<i class="ico-mic"></i>
+							</a>
+						</div><!-- /.col col-1of2 -->
+
+						<div class="col col-1of2">
+							7/31/2017
+						</div><!-- /.col col-1of2 -->
+					</div><!-- /.col col-medium -->
+
+					<div class="col col-medium col-title">
+						<p>Amazing Stories</p>
+					</div><!-- /.col col-medium col-title -->
+
+					<div class="col col-large col-speaker">
+						<p>Mansour, Robbi Eli</p>
+					</div><!-- /.col col-large col-speaker -->
+
+					<div class="col col-small col-duration">
+						30 MIN
+						<a href="#">EN</a>
+					</div><!-- /.col col-small -->
+
+					<div class="col col-small">
+						<a href="#" class="btn btn-download">
+							<i class="ico-download"></i> mp3
+						</a><!-- /.btn btn-download -->
+					</div><!-- /.col col-small -->
+
+					<div class="col col-large col-status">
+						<a href="#" class="btn btn-status">Not Started</a>
+					</div><!-- /.col col-large col-status -->
+				</li><!-- /.search-resultsult -->
+
+				<li class="search-resultsult">
+					<div class="col col-medium">
+						<div class="col col-1of2">
+							<a href="#">
+								<i class="ico-mic"></i>
+							</a>
+						</div><!-- /.col col-1of2 -->
+
+						<div class="col col-1of2">
+							7/31/2017
+						</div><!-- /.col col-1of2 -->
+					</div><!-- /.col col-medium -->
+
+					<div class="col col-medium col-title">
+						<p>Amazing Stories</p>
+					</div><!-- /.col col-medium col-title -->
+
+					<div class="col col-large col-speaker">
+						<p>Mansour, Robbi Eli</p>
+					</div><!-- /.col col-large col-speaker -->
+
+					<div class="col col-small col-duration">
+						30 MIN
+						<a href="#">EN</a>
+					</div><!-- /.col col-small -->
+
+					<div class="col col-small">
+						<a href="#" class="btn btn-download">
+							<i class="ico-download"></i> mp3
+						</a><!-- /.btn btn-download -->
+					</div><!-- /.col col-small -->
+
+					<div class="col col-large col-status">
+						<a href="#" class="btn btn-status">Not Started</a>
+					</div><!-- /.col col-large col-status -->
+				</li><!-- /.search-resultsult -->
+
+				<li class="search-resultsult">
+					<div class="col col-medium">
+						<div class="col col-1of2">
+							<a href="#">
+								<i class="ico-mic"></i>
+							</a>
+						</div><!-- /.col col-1of2 -->
+
+						<div class="col col-1of2">
+							7/31/2017
+						</div><!-- /.col col-1of2 -->
+					</div><!-- /.col col-medium -->
+
+					<div class="col col-medium col-title">
+						<p>Amazing Stories</p>
+					</div><!-- /.col col-medium col-title -->
+
+					<div class="col col-large col-speaker">
+						<p>Mansour, Robbi Eli</p>
+					</div><!-- /.col col-large col-speaker -->
+
+					<div class="col col-small col-duration">
+						30 MIN
+						<a href="#">EN</a>
+					</div><!-- /.col col-small -->
+
+					<div class="col col-small">
+						<a href="#" class="btn btn-download">
+							<i class="ico-download"></i> mp3
+						</a><!-- /.btn btn-download -->
+					</div><!-- /.col col-small -->
+
+					<div class="col col-large col-status">
+						<a href="#" class="btn btn-status">Not Started</a>
+					</div><!-- /.col col-large col-status -->
+				</li><!-- /.search-resultsult -->
+
+				<li class="search-resultsult">
+					<div class="col col-medium">
+						<div class="col col-1of2">
+							<a href="#">
+								<i class="ico-mic"></i>
+							</a>
+						</div><!-- /.col col-1of2 -->
+
+						<div class="col col-1of2">
+							7/31/2017
+						</div><!-- /.col col-1of2 -->
+					</div><!-- /.col col-medium -->
+
+					<div class="col col-medium col-title">
+						<p>Amazing Stories</p>
+					</div><!-- /.col col-medium col-title -->
+
+					<div class="col col-large col-speaker">
+						<p>Mansour, Robbi Eli</p>
+					</div><!-- /.col col-large col-speaker -->
+
+					<div class="col col-small col-duration">
+						30 MIN
+						<a href="#">EN</a>
+					</div><!-- /.col col-small -->
+
+					<div class="col col-small">
+						<a href="#" class="btn btn-download">
+							<i class="ico-download"></i> mp3
+						</a><!-- /.btn btn-download -->
+					</div><!-- /.col col-small -->
+
+					<div class="col col-large col-status">
+						<a href="#" class="btn btn-status">Not Started</a>
+					</div><!-- /.col col-large col-status -->
+				</li><!-- /.search-resultsult -->
+			</ul><!-- /.search-resultsults -->
+		</div><!-- /.popup-body -->
+
+		<div class="popup-foot">
+			<div class="paging">
+				<ul>
+					<li>
+						<a href="#" class="paging-prev">
+							<i class="ico-paging-prev"></i>
+						</a>
+					</li>
+
+					<li>
+						<a href="#">1</a>
+					</li>
+
+					<li>
+						<a href="#">2</a>
+					</li>
+
+					<li>
+						<a href="#">3</a>
+					</li>
+
+					<li>
+						<a href="#">4</a>
+					</li>
+
+					<li>
+						<a href="#">5</a>
+					</li>
+
+					<li>
+						<a href="#">6</a>
+					</li>
+
+					<li>
+						<a href="#" class="paging-next">
+							<i class="ico-paging-next"></i>
+						</a>
+					</li>
+				</ul>
+			</div><!-- /.paging -->
+		</div><!-- /.popup-foot -->
+	</div><!-- /.popup classes -->
+
+	<div class="popup dedications" id="dedications">
+		<div class="popup-head">
+			<form action="?" method="get">
+				<label for="field-search-content">Dedications</label>
+
+				<a href="#" class="link-close">
+					<i class="ico-close"></i>
+				</a>
+			</form>
+		</div><!-- /.popup-head -->
+
+		<div class="popup-body" id="list-dedications">
+			<a href="#make-dedication" class="btn btn-yellow btn-make-dedication">Make a dedication</a>
+
+			<ul class="list-dedications">
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+
+				<li>
+					<i class="ico-leaf"></i>
+
+					<p>
+						Dedicated in memory of <strong>Robbi Jacob S Kassin</strong>
+						<a href="#">DailyHalacha.com</a>
+					</p>
+				</li>
+			</ul><!-- /.list-dedications -->
+		</div><!-- /.popup-body -->
+
+		<div class="popup-body hidden" id="make-dedication">
+			<a href="#list-dedications" class="btn btn-yellow btn-make-dedication btn-back">Make a dedication</a>
+
+			<div class="cols cols-2">
+				<div class="col-1of2">
+					<div class="form-order form-sponsor">
+						<form action="?" method="post">
+							<div class="form-head">
+								<h4>Dedications</h4>
+							</div><!-- /.form-head -->
+
+							<div class="form-body">
+								<div class="form-row">
+									<label for="field-dedication-type" class="form__label">Dedication type</label>
+
+									<div class="form-controls">
+										<div class="select">
+											<select name="field-dedication-type" id="field-dedication-type">
+												<option value="">In Memory of</option>
+											</select>
+										</div><!-- /.select -->
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<label for="field-dedication-name" class="form__label">Dedication name</label>
+
+									<div class="form-controls">
+										<div class="select">
+											<select name="field-dedication-name" id="field-dedication-name">
+												<option value="">Name</option>
+											</select>
+										</div><!-- /.select -->
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<label for="field-dedication-by" class="form__label">Dedication by</label>
+
+									<div class="form-controls">
+										<div class="select">
+											<select name="field-dedication-by" id="field-dedication-by">
+												<option value="">Name</option>
+											</select>
+										</div><!-- /.select -->
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<label for="field-dedicated-per" class="form__label">Dedicated per</label>
+
+									<p style="text-align: center; color: #123fa0;">Dedicated is $100.00 per month or $1,000.00 per year</p>
+
+									<div class="form-controls">
+										<div class="select">
+											<select name="field-dedicated-per" id="field-dedicated-per">
+												<option value="">Month</option>
+											</select>
+										</div><!-- /.select -->
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+							</div><!-- /.form-body -->
+
+							<div class="form-actions">
+								<input type="submit" value="Process order" class="form-btn">
+							</div><!-- /.form-actions -->
+						</form>
+					</div><!-- /.form-order -->
+				</div><!-- /.col-1of2 -->
+
+				<div class="col-1of2">
+					<div class="form-order form-sponsor">
+						<form action="?" method="post">
+							<div class="form-head">
+								<h4>Credit card detail</h4>
+							</div><!-- /.form-head -->
+
+							<div class="form-body">
+								<div class="form-row">
+									<label for="field-select-card-on-file" class="form__label">Select card on file</label>
+
+									<div class="form-controls">
+										<div class="select">
+											<select name="field-select-card-on-file" id="field-select-card-on-file">
+												<option value="1234 4567 7890">1234 4567 7890</option>
+												<option value="1234 1234 1234">1234 1234 1234</option>
+											</select>
+										</div><!-- /.select -->
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<span>or</span>
+
+									<label for="field-card-number" class="form__label">Card number</label>
+
+									<div class="form-controls">
+										<input type="text" class="field" name="field-card-number" id="field-card-number" value="" placeholder="5261 XXXX XXXX XXXX">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<label for="field-expiration" class="form__label">Expiration</label>
+
+									<div class="form-controls">
+										<input type="text" class="field field-date" name="field-expiration" id="field-expiration" value="" placeholder="20/2020">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<label for="field-cvv" class="form__label">CVV</label>
+
+									<div class="form-controls">
+										<input type="text" class="field" name="field-cvv" id="field-cvv" value="" placeholder="123">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row form-row-small">
+									<label for="field-total" class="form__label">Total (USD)</label>
+
+									<div class="form-controls">
+										<input type="text" class="field" name="field-total" id="field-total" value="" placeholder="$ 0.00">
+									</div><!-- /.form__controls -->
+								</div><!-- /.form-row form-row-small -->
+
+								<div class="form-row">
+									<p>You will get an email with process order information</p>
+
+									<div class="g-recaptcha" data-sitekey="6LfMsi4UAAAAACwKrKCRPHYpmqVFCuCZYNM7mFH9"></div>
+								</div><!-- /.form-row -->
+							</div><!-- /.form-body -->
+
+							<div class="form-actions">
+								<input type="submit" value="Process order" class="form-btn">
+							</div><!-- /.form-actions -->
+						</form>
+					</div><!-- /.form-order -->
+				</div><!-- /.col-1of2 -->
+			</div><!-- /.cols -->
+		</div><!-- /.popup-body -->
+	</div><!-- /#dedications.popup dedications -->
+	    
 		    
 
-			<app-privacy-policy></app-privacy-policy>
+			<!--<app-privacy-policy></app-privacy-policy>
 
 			<app-about></app-about>
 			
 			<app-contact></app-contact>
 
-			<app-recover [accion]="emailRecover"></app-recover>
+			<app-recover [accion]="emailRecover"></app-recover>-->
 
 			<section class="section section-tiles">
 				<div class="shell">

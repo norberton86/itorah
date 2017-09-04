@@ -64,16 +64,66 @@
 			});
 		}
 
-        $('.link-donate').on('click', function(e) {
+       		$('.sponsor-toggle input').on('click', function(e){
+			var $input = $(this);
+			var id = '#' + $input.attr('name');
+
+			$input
+				.closest('li')
+					.siblings()
+					.find('input')
+					.prop( "checked", false )
+
+			$(id)
+				.toggleClass('hidden')
+					.siblings('.form-sponsor:not(.form-placeholder)')
+					.addClass('hidden')
+
+			if ( $('.form-placeholder ~ .form-sponsor:not(.hidden)').length == 0 ) {
+				$('.form-placeholder').show()
+			} else {
+				$('.form-placeholder').hide()
+			}
+		})
+
+		$('.btn-make-dedication').on('click', function(e){
+			e.preventDefault()
+			var id = $(this).attr('href');
+
+			$(id)
+				.removeClass('hidden')
+					.siblings()
+					.addClass('hidden')
+		})
+
+
+		$('.btn-status').on('click', function(e){
+			e.preventDefault()
+			var $btn = $(this);
+
+			$btn.addClass('in-progress')
+
+			setTimeout(function () {
+				$btn
+					.removeClass('in-progress')
+					.addClass('completed')
+			}, 500)
+		})
+
+
+		$('.link-popup a').on('click', function(e) {
 			e.preventDefault();
-			
+
 			var currentHref = $(this).attr('href');
-			
+
+			$('.nav.visible').removeClass('visible');
+			$('.btn-menu').removeClass('open');
+			$('.popup').removeClass('shown');
 			$(currentHref).toggleClass('shown');
 		})
-		
-		$('.donate .link-close').on('click', function() {
-			$(this).closest('.donate').toggleClass('shown');
+
+		$('.popup .link-close').on('click', function() {
+			$(this).closest('.popup').toggleClass('shown');
 		})
 
 		$( ".wrapper" ).delegate( ".select-speakers select", "change", function() {

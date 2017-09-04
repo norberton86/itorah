@@ -1,29 +1,23 @@
-#aboutUs .donate-head{
-   padding: 9px 0 9px 20px;
-}
 
-#aboutUs .donate-head .link-close{
-   top:8px;
-}
 
-#aboutUs .donate-body{
+#aboutUs .popup-body{
   padding: 1em;
 }
 
 
-#aboutUs .donate-body .content
+#aboutUs .popup-body .content
 {
 max-height: 500px;    
 overflow: auto;
 }
 
-#aboutUs .donate-body .content p,#aboutUs .donate-body .content div,#aboutUs .donate-body .content ul{
+#aboutUs .popup-body .content p,#aboutUs .popup-body .content div,#aboutUs .popup-body .content ul{
   padding-left: 2em;
   padding-right: 2em;
   margin-top: 0.5em;
 }
 
-#aboutUs .donate-body .content h4{
+#aboutUs .popup-body .content h4{
     background:none;
     text-align:left;
     color:#000;
@@ -32,7 +26,7 @@ overflow: auto;
     margin-right: 1em;
 }
 
-#aboutUs .donate-body ul{
+#aboutUs .popup-body ul{
   list-style-type: none;
 }
 

@@ -4,13 +4,7 @@ p{
     color: cornflowerblue;
 }
 
-#contact .donate-head{
-   padding: 9px 0 9px 20px;
-}
 
-#contact .donate-head .link-close{
-   top:8px;
-}
 
 .mydisabled {
    cursor: not-allowed !important; 

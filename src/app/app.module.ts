@@ -39,7 +39,8 @@ import { RecoverComponent } from './component/recover/recover.component';
 import { GlobalSearchComponent } from './component/global-search/global-search.component';
 import { AboutComponent } from './component/about/about.component';
 import { ContactComponent } from './component/contact/contact.component';
-import { ClassesComponent } from './component/classes/classes.component'
+import { ClassesComponent } from './component/classes/classes.component';
+import { WeeklyResultComponent } from './component/weekly-result/weekly-result.component'
 
 
 
@@ -85,7 +86,8 @@ let providers = {
     GlobalSearchComponent,
     AboutComponent,
     ContactComponent,
-    ClassesComponent
+    ClassesComponent,
+    WeeklyResultComponent
   ],
   imports: [
     BrowserModule,

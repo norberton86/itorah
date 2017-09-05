@@ -25,5 +25,15 @@ export class HomeService extends Service{
         )
     }
 
+    public readPlayNow(id:number): Observable<any> {
+        
+        return this.http.get("http://itorahapi.3nom.com/api/PlayNow?SourceID="+id).map(
+            (response) => {
+                return response.json();
+            }
+        )
+    }
+
+
 }
 

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalitycService} from './service/analityc.service';
+import { HomeService} from './service/home.service';
+import { PlayerService} from './service/player.service';
 declare var $:any; 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers:[AnalitycService]
+  providers:[AnalitycService,HomeService,PlayerService]
 })
 export class AppComponent implements OnInit{
   
@@ -24,7 +26,9 @@ export class AppComponent implements OnInit{
 
  emailRecover:string=""
 
-  constructor(private analitycService:AnalitycService){ }
+
+
+  constructor(private analitycService:AnalitycService,private homeService:HomeService,private playerService:PlayerService){ }
 
 
 keyDownFunction(event) {
@@ -129,6 +133,15 @@ keyDownFunction(event) {
   Contact()
   {
     	$("#contact").toggleClass('shown');
+  }
+
+  ReadPlayNow(id:number,title:string) {
+    let self = this;
+    this.homeService.readPlayNow(id).subscribe(
+      function (response) {
+          self.playerService.PlayAudio(title,response)
+      }, function (error) { }, function () { }
+    )
   }
 
 }

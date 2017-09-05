@@ -13,7 +13,7 @@
 						<div class="form-controls">
 							<i class="ico-search-3"></i>
 							
-							<input type="text" class="field" name="field-search" id="field-search" value="" placeholder="Type your search here ...">
+							<input type="text" class="field" name="field-search" id="field-search" value="" placeholder="Type your search here ..." (keydown)="keyDownFunction($event)" [(ngModel)]="wSearch">
 						</div><!-- /.form-controls -->
 					</div><!-- /.form-content -->
 					

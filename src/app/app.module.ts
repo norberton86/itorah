@@ -38,7 +38,8 @@ import { PrivacyPolicyComponent } from './component/privacy-policy/privacy-polic
 import { RecoverComponent } from './component/recover/recover.component';
 import { GlobalSearchComponent } from './component/global-search/global-search.component';
 import { AboutComponent } from './component/about/about.component';
-import { ContactComponent } from './component/contact/contact.component'
+import { ContactComponent } from './component/contact/contact.component';
+import { ClassesComponent } from './component/classes/classes.component'
 
 
 
@@ -83,7 +84,8 @@ let providers = {
     RecoverComponent,
     GlobalSearchComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    ClassesComponent
   ],
   imports: [
     BrowserModule,

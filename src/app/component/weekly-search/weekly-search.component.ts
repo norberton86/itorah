@@ -13,8 +13,8 @@ export class WeeklySearchComponent implements OnInit,OnChanges{
 
 keyDownFunction(event) {
 	if (event.keyCode == 13) {
-		$('#gSearch').toggleClass('vissible');
-		$('.header .search .search-field').blur();
+		$('#wResult').toggleClass('vissible');
+	//	$('.header .search .search-field').blur();
     this.ShowResult()
 	}
 }
@@ -25,7 +25,7 @@ ShowResult()
     var borde=8;
     var altura=  $('#item-content-8')[0].offsetTop
     var tamano= parseInt( $('.tile-box#item-content-8').css('height').split("px")[0])
-    $('#gSearch').css('margin-top',altura+tamano+borde+"px")
+    $('#wResult').css('margin-top',altura+tamano+borde+"px")
 }
 
 

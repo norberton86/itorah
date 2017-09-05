@@ -1,3 +1,426 @@
-<p>
-  weekly-result works!
-</p>
+<div id="wResult" class="tile tile-search ballon tile-full">
+  <div class="tile-box-primary">
+    <div class="tile-box-head tile-box-head-block">
+      <h3>Showing results for: <a href="#">{{pattern}}</a></h3>
+
+     
+    </div>
+    <!-- /.tile-box-head tile-box-head-block -->
+
+    <div class="tabs-head">
+      <ul class="tabs-nav">
+        <li>
+          <a href="#search-tile-tab-1">
+										All
+										<span>{{all.length}} Halachat</span>
+									</a>
+        </li>
+
+        <li class="current">
+          <a href="#search-tile-tab-2">
+										Halachat
+
+										<span>{{halachat.length}} Halachat</span>
+									</a>
+        </li>
+
+        <li>
+          <a href="#search-tile-tab-3">
+										Weekly Parasha
+
+										<span>{{weekly.length}} Halachat</span>
+									</a>
+        </li>
+
+        <li>
+          <a href="#search-tile-tab-4">
+										Mishnah Berurah Q &amp; A
+
+										<span>{{berura.length}} Halachat</span>
+									</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.tabs-head -->
+
+    <div class="tile-box-tab" id="search-tile-tab-1">
+      <ul class="search-resultsults">
+        <li class="search-resultsult search-resultsult-title">
+          <div class="col col-medium">
+            <div class="col col-1of2"></div>
+            <!-- /.col col-1of2 -->
+
+            <div class="col col-1of2">
+              <a href="#/" (click)="Sort(all)" class="current">Data</a>
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col col-medium -->
+
+          <div class="col col-large">
+            <a href="#">Title</a>
+          </div>
+          <!-- /.col col-large -->
+
+          <div class="col col-small">
+            <a href="#">Duration</a>
+          </div>
+          <!-- /.col col-small -->
+
+          <div class="col col-small"></div>
+          <!-- /.col col-small -->
+
+          <div class="col">
+            <div class="col col-1of2">
+              <a href="#">download</a>
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col -->
+        </li>
+        <!-- /.search-resultsult -->
+
+        <li class="search-resultsult" *ngFor="let a of all">
+          <div class="col col-medium">
+            <div class="col col-1of2">
+              <a href="#/" (click)="Play(a.title,a.url)">
+												<i class="ico-mic"></i>
+											</a>
+            </div>
+            <!-- /.col col-1of2 -->
+
+            <div class="col col-1of2">
+              {{a.date|date: 'MM/dd/yyyy'}}
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col col-medium -->
+
+          <div class="col col-large">
+            <p>{{a.title}}</p>
+          </div>
+          <!-- /.col col-large -->
+
+          <div class="col col-small col-duration">
+            {{a.duration}} min
+            <a href="#">{{a.language}}</a>
+          </div>
+          <!-- /.col col-small -->
+
+          <div class="col col-small">
+            <div class="col col-1of2">
+              <a href="#/" (click)="Read(a.content)">read</a>
+            </div>
+            <!-- /.col col-1of2 -->
+
+            <div class="col col-1of2">
+              <a href="#/" (click)="Print(a.title,a.content)">print</a>
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col col-small -->
+
+          <div class="col">
+            <!--<a href="#" class="btn btn-download">
+											<i class="ico-download"></i> wma
+										</a>-->
+            <!-- /.btn btn-download -->
+
+            <a href="{{a.url}}" class="btn btn-download" download>
+											<i class="ico-download"></i> mp3
+										</a>
+            <!-- /.btn btn-download -->
+          </div>
+          <!-- /.col -->
+        </li>
+        <!-- /.search-resultsult -->
+
+      </ul>
+      <!-- /.search-resultsults -->
+    </div>
+
+    <div class="tile-box-tab current" id="search-tile-tab-2">
+      <ul class="search-resultsults">
+        <li class="search-resultsult search-resultsult-title">
+          <div class="col col-medium">
+            <div class="col col-1of2"></div>
+            <!-- /.col col-1of2 -->
+
+            <div class="col col-1of2">
+              <a href="#" class="current" (click)="Sort(halachat)">Data</a>
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col col-medium -->
+
+          <div class="col col-large">
+            <a href="#">Title</a>
+          </div>
+          <!-- /.col col-large -->
+
+          <div class="col col-small">
+            <a href="#">Duration</a>
+          </div>
+          <!-- /.col col-small -->
+
+          <div class="col col-small"></div>
+          <!-- /.col col-small -->
+
+          <div class="col">
+            <div class="col col-1of2">
+              <a href="#">download</a>
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col -->
+        </li>
+        <!-- /.search-resultsult -->
+
+        <li class="search-resultsult" *ngFor="let a of halachat">
+          <div class="col col-medium">
+            <div class="col col-1of2">
+              <a href="#/" (click)="Play(a.title,a.url)">
+												<i class="ico-mic"></i>
+											</a>
+            </div>
+            <!-- /.col col-1of2 -->
+
+            <div class="col col-1of2">
+              {{a.date|date: 'MM/dd/yyyy'}}
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col col-medium -->
+
+          <div class="col col-large">
+            <p>{{a.title}}</p>
+          </div>
+          <!-- /.col col-large -->
+
+          <div class="col col-small col-duration">
+            {{a.duration}} min
+            <a href="#">{{a.language}}</a>
+          </div>
+          <!-- /.col col-small -->
+
+          <div class="col col-small">
+            <div class="col col-1of2">
+              <a href="#/" (click)="Read(a.content)">read</a>
+            </div>
+            <!-- /.col col-1of2 -->
+
+            <div class="col col-1of2">
+              <a href="#/" (click)="Print(a.title,a.content)">print</a>
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col col-small -->
+
+          <div class="col">
+            <!--<a href="#" class="btn btn-download">
+											<i class="ico-download"></i> wma
+										</a>-->
+            <!-- /.btn btn-download -->
+
+            <a href="{{a.url}}" class="btn btn-download" download>
+											<i class="ico-download"></i> mp3
+										</a>
+            <!-- /.btn btn-download -->
+          </div>
+          <!-- /.col -->
+        </li>
+      </ul>
+      <!-- /.search-resultsults -->
+    </div>
+
+    <div class="tile-box-tab" id="search-tile-tab-3">
+      <ul class="search-resultsults">
+        <li class="search-resultsult search-resultsult-title">
+          <div class="col col-medium">
+            <div class="col col-1of2"></div>
+            <!-- /.col col-1of2 -->
+
+            <div class="col col-1of2">
+              <a href="#" class="current" (click)="Sort(weekly)">Data</a>
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col col-medium -->
+
+          <div class="col col-large">
+            <a href="#">Title</a>
+          </div>
+          <!-- /.col col-large -->
+
+          <div class="col col-small">
+            <a href="#">Duration</a>
+          </div>
+          <!-- /.col col-small -->
+
+          <div class="col col-small"></div>
+          <!-- /.col col-small -->
+
+          <div class="col">
+            <div class="col col-1of2">
+              <a href="#">download</a>
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col -->
+        </li>
+        <!-- /.search-resultsult -->
+
+        <li class="search-resultsult" *ngFor="let a of weekly">
+          <div class="col col-medium">
+            <div class="col col-1of2">
+              <a href="#/" (click)="Play(a.title,a.url)">
+												<i class="ico-mic"></i>
+											</a>
+            </div>
+            <!-- /.col col-1of2 -->
+
+            <div class="col col-1of2">
+              {{a.date|date: 'MM/dd/yyyy'}}
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col col-medium -->
+
+          <div class="col col-large">
+            <p>{{a.title}}</p>
+          </div>
+          <!-- /.col col-large -->
+
+          <div class="col col-small col-duration">
+            {{a.duration}} min
+            <a href="#">{{a.language}}</a>
+          </div>
+          <!-- /.col col-small -->
+
+          <div class="col col-small">
+            <div class="col col-1of2">
+              <a href="#/" (click)="Read(a.content)">read</a>
+            </div>
+            <!-- /.col col-1of2 -->
+
+            <div class="col col-1of2">
+              <a href="#/" (click)="Print(a.title,a.content)">print</a>
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col col-small -->
+
+          <div class="col">
+            <!--<a href="#" class="btn btn-download">
+											<i class="ico-download"></i> wma
+										</a>-->
+            <!-- /.btn btn-download -->
+
+            <a href="{{a.url}}" class="btn btn-download" download>
+											<i class="ico-download"></i> mp3
+										</a>
+            <!-- /.btn btn-download -->
+          </div>
+          <!-- /.col -->
+        </li>
+      </ul>
+      <!-- /.search-resultsults -->
+    </div>
+
+    <div class="tile-box-tab" id="search-tile-tab-4">
+      <ul class="search-resultsults">
+        <li class="search-resultsult search-resultsult-title">
+          <div class="col col-medium">
+            <div class="col col-1of2"></div>
+            <!-- /.col col-1of2 -->
+
+            <div class="col col-1of2">
+              <a href="#" class="current" (click)="Sort(berura)">Data</a>
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col col-medium -->
+
+          <div class="col col-large">
+            <a href="#">Title</a>
+          </div>
+          <!-- /.col col-large -->
+
+          <div class="col col-small">
+            <a href="#">Duration</a>
+          </div>
+          <!-- /.col col-small -->
+
+          <div class="col col-small"></div>
+          <!-- /.col col-small -->
+
+          <div class="col">
+            <div class="col col-1of2">
+              <a href="#">download</a>
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col -->
+        </li>
+        <!-- /.search-resultsult -->
+
+       <li class="search-resultsult" *ngFor="let a of berura">
+          <div class="col col-medium">
+            <div class="col col-1of2">
+              <a href="#/" (click)="Play(a.title,a.url)">
+												<i class="ico-mic"></i>
+											</a>
+            </div>
+            <!-- /.col col-1of2 -->
+
+            <div class="col col-1of2">
+              {{a.date|date: 'MM/dd/yyyy'}}
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col col-medium -->
+
+          <div class="col col-large">
+            <p>{{a.title}}</p>
+          </div>
+          <!-- /.col col-large -->
+
+          <div class="col col-small col-duration">
+            {{a.duration}} min
+            <a href="#">{{a.language}}</a>
+          </div>
+          <!-- /.col col-small -->
+
+          <div class="col col-small">
+            <div class="col col-1of2">
+              <a href="#/" (click)="Read(a.content)">read</a>
+            </div>
+            <!-- /.col col-1of2 -->
+
+            <div class="col col-1of2">
+              <a href="#/" (click)="Print(a.title,a.content)">print</a>
+            </div>
+            <!-- /.col col-1of2 -->
+          </div>
+          <!-- /.col col-small -->
+
+          <div class="col">
+            <!--<a href="#" class="btn btn-download">
+											<i class="ico-download"></i> wma
+										</a>-->
+            <!-- /.btn btn-download -->
+
+            <a href="{{a.url}}" class="btn btn-download" download>
+											<i class="ico-download"></i> mp3
+										</a>
+            <!-- /.btn btn-download -->
+          </div>
+          <!-- /.col -->
+        </li>
+      </ul>
+      <!-- /.search-resultsults -->
+    </div>
+
+  </div>
+  <!-- /.tile-box-primary -->
+</div>

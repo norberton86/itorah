@@ -14,7 +14,7 @@ export class ClassesComponent implements OnInit {
 
   allClasses:Array<Classes>;
   classesS:Array<Classes>;
-  query_main:string='';
+  
 
   amount:number;
 
@@ -43,7 +43,7 @@ export class ClassesComponent implements OnInit {
              
               self.allClasses=respond;
 
-              localStorage.setItem("classes",JSON.stringify(respond));
+             
 
               self.Update();  
            },
@@ -56,14 +56,6 @@ export class ClassesComponent implements OnInit {
   Update()
   {
 
-      if(this.query_main!="")
-      {
-        var query= this.query_main;
-         this.allClasses= this.allClasses.filter(function (s) {
-            return s.title.toLowerCase().includes(query.toLowerCase());
-         });
-      }
-      
         this.amount=this.allClasses.length; 
 
         this.allPages=this.allClasses.length/9; //pagination
@@ -72,6 +64,9 @@ export class ClassesComponent implements OnInit {
        this.CreatePages();
 
   }
+
+
+
 
   CreatePages()
   {
@@ -165,6 +160,8 @@ Page(id:number)
      col=col.sort(this.Asc)
      else
      col=col.sort(this.Desc)
+
+     this.Update()
  }
 
 }

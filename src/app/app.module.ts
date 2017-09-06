@@ -41,7 +41,8 @@ import { GlobalSearchComponent } from './component/global-search/global-search.c
 import { AboutComponent } from './component/about/about.component';
 import { ContactComponent } from './component/contact/contact.component';
 import { ClassesComponent } from './component/classes/classes.component';
-import { WeeklyResultComponent } from './component/weekly-result/weekly-result.component'
+import { WeeklyResultComponent } from './component/weekly-result/weekly-result.component';
+
 
 
 

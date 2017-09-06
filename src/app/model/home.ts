@@ -34,3 +34,11 @@ export class Lectures
       MediaType: string;
       PicUrl:string;
 }
+
+export class ReadNow
+{
+    
+  title: string
+  content: string
+
+}

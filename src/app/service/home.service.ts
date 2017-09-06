@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Home } from '../model/Home';
+import { Home, ReadNow } from '../model/Home';
 import { Service } from '../model/service';
 
 import {Http, Headers} from '@angular/http';
@@ -25,7 +25,7 @@ export class HomeService extends Service{
         )
     }
 
-    public readPlayNow(id:number): Observable<any> {
+    public playNow(id:number): Observable<any> {
         
         return this.http.get("http://itorahapi.3nom.com/api/PlayNow?SourceID="+id).map(
             (response) => {
@@ -34,6 +34,13 @@ export class HomeService extends Service{
         )
     }
 
-
+    public readNow(id:number): Observable<ReadNow> {
+        
+        return this.http.get("http://itorahapi.3nom.com/api/ReadNow?SourceID="+id).map(
+            (response) => {
+                return response.json();
+            }
+        )
+    }
 }
 

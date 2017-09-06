@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnalitycService} from './service/analityc.service';
 import { HomeService} from './service/home.service';
 import { PlayerService} from './service/player.service';
+import { ReadNow} from './model/home';
 declare var $:any; 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit{
 
  emailRecover:string=""
 
-
+ rNow:ReadNow
 
   constructor(private analitycService:AnalitycService,private homeService:HomeService,private playerService:PlayerService){ }
 
@@ -135,11 +136,20 @@ keyDownFunction(event) {
     	$("#contact").toggleClass('shown');
   }
 
-  ReadPlayNow(id:number,title:string) {
+  playNow(id:number,title:string) {
     let self = this;
-    this.homeService.readPlayNow(id).subscribe(
+    this.homeService.playNow(id).subscribe(
       function (response) {
           self.playerService.PlayAudio(title,response)
+      }, function (error) { }, function () { }
+    )
+  }
+
+  readNow(id:number) {
+    let self = this;
+    this.homeService.readNow(id).subscribe(
+      function (response) {
+          self.rNow=response
       }, function (error) { }, function () { }
     )
   }

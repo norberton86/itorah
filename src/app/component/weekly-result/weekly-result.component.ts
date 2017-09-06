@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { GlobalSearchService } from '../../service/global-search.service';
+import { Component, OnInit } from '@angular/core';
+import { WeeklyResultService } from '../../service/weekly-result.service';
 import { PlayerService } from '../../service/player.service';
 import { GlobalSearch } from '../../model/global-search';
 import { Observable } from 'rxjs/Observable';
@@ -11,11 +11,12 @@ declare var $:any;
   selector: 'app-weekly-result',
   templateUrl: './weekly-result.component.html',
   styleUrls: ['./weekly-result.component.css'],
-  providers: [GlobalSearchService, PlayerService]
+  providers: [PlayerService]
 })
-export class WeeklyResultComponent implements OnInit, OnChanges {
+export class WeeklyResultComponent implements OnInit {
 
   pattern: string;
+  data:Array<string>=[]
 
   parragraphs:Array<string>;
   asc:boolean=false;
@@ -24,19 +25,30 @@ export class WeeklyResultComponent implements OnInit, OnChanges {
   halachat: Array<GlobalSearch> = []
   weekly: Array<GlobalSearch> = []
   berura: Array<GlobalSearch> = []
+  tehillim: Array<GlobalSearch> = []
 
-  @Input()
-  accion: string = "";
+  constructor(private weeklyResultService: WeeklyResultService, private playerService: PlayerService) {
+     this.weeklyResultService.getData().subscribe(item => {
+         if(item.pattern!="")
+         {
+             this.pattern=item.pattern;
+             this.data=item.data;
 
-  constructor(private globalSearchService: GlobalSearchService, private playerService: PlayerService) { }
+             this.ReadData();
+         }
+    });
+   }
+
+
+  isAvailable(id:string)
+  {
+      return this.data.find(i=>i==id)
+  }
 
   ngOnInit() {
   }
 
-  ngOnChanges(changes: any) {
-
-
-    this.pattern = changes.accion.currentValue
+  ReadData() {
 
     if (this.pattern == "") {
 
@@ -44,20 +56,33 @@ export class WeeklyResultComponent implements OnInit, OnChanges {
     else {
       let self = this;
       Observable.forkJoin(
-        this.globalSearchService.readHalachat(),
-        this.globalSearchService.readWeekly(),
-        this.globalSearchService.readBerura()
+        this.weeklyResultService.readHalachat(),
+        this.weeklyResultService.readWeekly(),
+        this.weeklyResultService.readBerura(),
+        this.weeklyResultService.readTehillim()
       )
         .subscribe(function (response) {
           self.halachat = response[0]
           self.weekly = response[1]
           self.berura = response[2]
-          var temp=response[0].concat(response[1])
-          self.all=temp.concat(response[2])
-        }, function (error) { }, function () { }
+          self.tehillim=response[3];
+
+          self.all=[];
+          self.data.forEach(function(a){
+               switch(a)
+               {
+                case 'Halachot': self.all=self.all.concat(self.halachat); break;
+                case 'Perasha': self.all=self.all.concat(self.weekly); break;
+                case 'Tehillim': self.all=self.all.concat(self.tehillim); break;
+                case 'Mishna Berura': self.all=self.all.concat(self.berura); break;
+               }
+               
+          })
+          
+        
+      }, function (error) { }, function () { }
         );
     }
-
 
   }
   

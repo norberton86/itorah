@@ -33,6 +33,7 @@ import {DndModule} from 'ng2-dnd';
 import {ShareButtonsModule} from 'ngx-sharebuttons';
 import { SubscribeComponent } from './component/subscribe/subscribe.component';
 import {SubscribeService} from './service/subscribe.service';
+import {WeeklyResultService} from './service/weekly-result.service';
 import { InspireComponent } from './component/inspire/inspire.component';
 import { PrivacyPolicyComponent } from './component/privacy-policy/privacy-policy.component';
 import { RecoverComponent } from './component/recover/recover.component';
@@ -97,7 +98,7 @@ let providers = {
      DndModule.forRoot(),
      ShareButtonsModule.forRoot()
   ],
-  providers: [QueueService,PodcastService,SubscribeService],
+  providers: [QueueService,PodcastService,SubscribeService,WeeklyResultService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

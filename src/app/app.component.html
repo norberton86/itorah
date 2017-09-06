@@ -212,6 +212,7 @@
 
 				<app-global-search [accion]="gSearch"></app-global-search>
 				<app-weekly-result></app-weekly-result>
+				<app-read-now [title]="rNow?.title" [content]="rNow?.content"></app-read-now>
 			</div><!-- /.shell -->
 		</header><!-- /.header -->
 
@@ -1025,7 +1026,7 @@
 										<span>Play Now</span>
 
 										<i class="ico-play" (click)="playNow(6,'DailyHalacha.com')"></i>
-										<i class="fa fa-book fa-lg" title="Today's Reading"></i>
+										<i class="fa fa-book fa-lg" title="Today's Reading" (click)="readNow(6)"></i>
 										
 									</a>
 
@@ -1074,7 +1075,7 @@
 											</a>
 												</li>
 												<li >
-													<a href="#" data-size="half" title="Today's Reading">
+													<a href="#" data-size="half" title="Today's Reading" (click)="readNow(7)">
 												<i class="fa fa-book fa-lg" style="color:#fc0" ></i>
 											</a>
 												</li>
@@ -1115,7 +1116,7 @@
 										<span>Play Now</span>
 
 										<i class="ico-play" (click)="playNow(8,'DailyGemara.com')"></i>
-										<i class="fa fa-book fa-lg" title="Today's Reading"></i>
+										<i class="fa fa-book fa-lg" title="Today's Reading" (click)="readNow(8)"></i>
 									</a>
 
 											<a href="#" class="link-search">
@@ -1342,7 +1343,7 @@
 										<span>Play Now</span>
 
 										<i class="ico-play" (click)="playNow(15,'WeeklyInspire.com')"></i>
-										<i class="fa fa-book fa-lg" title="Today's Reading"></i>
+										<i class="fa fa-book fa-lg" title="Today's Reading" (click)="readNow(15)"></i>
 									</a>
 
 											<ul class="list-actions">

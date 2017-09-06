@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject  } from '@angular/core';
 import { AnalitycService} from './service/analityc.service';
 import { HomeService} from './service/home.service';
 import { PlayerService} from './service/player.service';
 import { ReadNow} from './model/home';
 declare var $:any; 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -149,7 +150,29 @@ keyDownFunction(event) {
     let self = this;
     this.homeService.readNow(id).subscribe(
       function (response) {
-          self.rNow=response
+          
+          if(response.title=="")
+          {
+               if(response.content.indexOf('.pdf')>0)
+               {
+                window.open(response.content)
+               }
+               else
+               if(response.content.indexOf('.gif,')>0)
+               {
+                   response.content.split(',').forEach(function(a){
+                     window.open('http://'+a)
+                   })
+
+               }
+               
+          }
+          else
+          {
+            self.rNow=response
+            $("#readNow").toggleClass('shown');
+          }
+          
       }, function (error) { }, function () { }
     )
   }

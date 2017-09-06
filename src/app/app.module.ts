@@ -42,6 +42,7 @@ import { AboutComponent } from './component/about/about.component';
 import { ContactComponent } from './component/contact/contact.component';
 import { ClassesComponent } from './component/classes/classes.component';
 import { WeeklyResultComponent } from './component/weekly-result/weekly-result.component';
+import { ReadNowComponent } from './component/read-now/read-now.component';
 
 
 
@@ -89,7 +90,8 @@ let providers = {
     AboutComponent,
     ContactComponent,
     ClassesComponent,
-    WeeklyResultComponent
+    WeeklyResultComponent,
+    ReadNowComponent
   ],
   imports: [
     BrowserModule,

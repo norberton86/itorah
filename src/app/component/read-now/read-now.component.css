@@ -1,0 +1,15 @@
+#readNow .popup-body{
+  padding: 1em;
+}
+
+
+#readNow .popup-body .content
+{
+max-height: 500px;    
+overflow: auto;
+}
+
+#readNow .popup-body .content p
+{
+margin-bottom: 1em;
+}

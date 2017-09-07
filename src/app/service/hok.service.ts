@@ -19,6 +19,18 @@ export class HokService extends Service{
 
     }
 
+
+  readDefault() :Observable<any>{
+
+        return this.http.get(this.ruta+"/default").map(
+            (response) => {
+                let body = response.json();
+                return body[0];
+            }
+        )
+   }
+
+
   readParasha(idChumash:number) :Observable<Parasha[]>{
 
     

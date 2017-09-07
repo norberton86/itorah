@@ -27,7 +27,9 @@ export class HokSearchComponent implements OnInit {
   classes: Array<string>=["Class","Additional","Rashi"]
   selectedClass: string = "Class"
 
-
+  defaultChumash:number;
+  defaultparasha:number;
+  firstTime:boolean=true
 
   query_main: string = '';
 
@@ -68,14 +70,32 @@ export class HokSearchComponent implements OnInit {
       self.ReadHok()
     });
 
-    this.ReadChumash()
+    this.ReadDefault()
+  }
+
+  ReadDefault()
+  {
+  
+    let self = this;
+    this.hokService.readDefault().subscribe(
+      function (response) {
+        self.defaultChumash = response.ChumashID;
+        self.defaultparasha = response.ParashaID;
+        self.ReadChumash()
+
+      }, function (error) { }, function () { }
+    )
+  
   }
 
   ReadChumash() {
    
     this.chumashs = [{id:1,name: "Bereshit"},{id:2,name: "Shemot"},{id:3,name: "Vayikra"},{id:4,name: "Bamidbar"},{id:5,name: "Devarim"}];
 
+    if(!this.firstTime)
     this.selectedChumash = this.chumashs[0].id;
+    else
+    this.selectedChumash = this.defaultChumash;
 
     this.ReadParasha(this.selectedChumash);
 
@@ -86,7 +106,16 @@ export class HokSearchComponent implements OnInit {
     this.hokService.readParasha(idChumash).subscribe(
       function (response) {
         self.parashas = response;
+
+        if(!self.firstTime)
         self.selectedParasha = response[0].ID;
+        else
+        {
+          self.selectedParasha = self.defaultparasha;
+          self.firstTime=false;
+        }
+        
+        
         self.ReadHok()
 
       }, function (error) { }, function () { }

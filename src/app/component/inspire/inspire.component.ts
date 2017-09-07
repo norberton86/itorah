@@ -12,47 +12,52 @@ import { Inspire } from '../../model/inspire';
 export class InspireComponent implements OnInit {
 
   inspire: Inspire;
+  possible: boolean=false
+  currentWeekId:number=0
 
   constructor(private inspireService: InspireService, private playerService: PlayerService) { }
 
   ngOnInit() {
-    this.Read(1)
-  }
-
-  Read(id: number) {
-    this.inspireService.read(id).subscribe(
-      result => this.inspire = result
-    )
+    this.Read()
   }
 
   Play() {
-    this.playerService.PlayAudio(this.inspire.title, this.inspire.url);
+    this.playerService.PlayAudio(this.inspire.title, this.inspire.audio);
   }
 
   Download() {
     document.getElementById('inspireDownload').click()
   }
 
+  Read() {
+    this.inspireService.read().subscribe(
+      result =>this.setValue(result)
+    )
+  }
+
   Forward() {
-   
-    this.Read(this.inspire.id + 1);
+    this.inspireService.navigate(this.inspire.id,"next").subscribe(
+      result => this.setValue(result)
+    )
   }
 
   Back() {
-    this.Read(this.inspire.id - 1);
+    this.inspireService.navigate(this.inspire.id,"prev").subscribe(
+      result => this.setValue(result)
+    )
   }
  
-  ForwardImPosible():boolean
-  {
-    var curr = new Date; // get current date
-    var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
-    var last = first + 6; // last day is the first day + 6
 
-    if(this.inspire.date.getDate()>= first)
-    return true
-    else
-    return false
+  setValue(_inspire:Inspire)
+  {
+      if(this.currentWeekId==0)//if is the first time
+      {
+         this.currentWeekId=_inspire.id  //set the current week id
+      }
+      this.inspire=_inspire
+      this.possible=_inspire.id==this.currentWeekId  //checkif is possible go to the next week
   }
+  
 
 
 }

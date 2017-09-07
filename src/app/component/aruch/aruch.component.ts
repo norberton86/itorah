@@ -48,7 +48,7 @@ export class AruchComponent implements OnInit {
 
   ReadPdf()
   {
-      window.open(this.siman.pdf)
+      window.open(this.siman.pdfUrl)
   }
 
 }

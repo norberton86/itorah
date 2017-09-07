@@ -85,9 +85,9 @@
       <div class="content" style="    max-height: 500px;    overflow: auto;">
         
         <ul *ngIf="siman!=null">
-          <li *ngFor="let a of siman.audios" class="audiosLi row">
+          <li *ngFor="let a of siman.audio" class="audiosLi row">
              <div class="col-xs-1 col-lg-1"><b> {{a.letter}}</b></div>
-             <div class="col-lg-11"> <audio controls> <source src="{{a.url}}" type="	audio/mpeg"></audio></div> 
+             <div class="col-lg-11"> <audio controls> <source src="{{a.audio}}" type="	audio/mpeg"></audio></div> 
           </li>
         </ul>
 

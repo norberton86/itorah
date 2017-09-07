@@ -1,13 +1,13 @@
 export class Siman {
     id:number
     title:string
-    audios:Array<Audio>
-    pdf:string
+    audio:Array<Audio>
+    pdfUrl:string
 }
 
 export class Audio{
     letter:string
-    url:string
+    audio:string
 }
 
 

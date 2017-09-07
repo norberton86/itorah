@@ -75,6 +75,11 @@ margin-top: 1em
    padding-top: 0.4em;
    border-right:none;
   }
+
+  .tracks .track {
+    border-top: none;
+    padding: 2px 4px 2px 2px;
+  }
 }
 
 /*remove the borders*/

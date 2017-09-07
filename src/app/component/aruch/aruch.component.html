@@ -1,0 +1,102 @@
+<div class="tile-box" id="item-content-25">
+  <div class="tile-box-primary tile-box-results">
+
+    <div class="tile-box-head ">
+      <span>Aruch Hashulchan</span>
+
+
+      <a href="#" class="link-close">
+						<i class="ico-close"></i>
+					</a>
+    </div>
+    <!-- /.donate-head -->
+
+    <div class="donate-body" *ngIf="!selected">
+
+
+      <form action="?" method="get" class="row">
+        <div class="col-xs-12 col-sm-6">
+          Click the Siman below for the audio file and text or enter the <b>Siman # </b>
+        </div>
+
+        <div class=" search-tertiary col-xs-12 col-sm-6">
+
+          <input type="search" name="q" id="q" value="" placeholder="Search ..." class="search-field" [(ngModel)]="query_main">
+
+          <button type="submit" class="search-btn">
+				      <i class="ico-magnify"></i>
+				    </button>
+
+        </div>
+      </form>
+
+
+      <div class="content" style="    max-height: 500px;    overflow: auto;">
+        <div class="lists">
+
+
+          <div class="lists-body">
+            <ul class="tracks tracks-secondary">
+
+              <li class="track" *ngFor="let s of simans | filterFor:query_main">
+                <button type="button" class="aruchButton" (click)=" Select(s.id)">
+						           {{s.title}}
+				            </button>
+              </li>
+              <!-- /.track -->
+
+            </ul>
+            <!-- /.tracks -->
+          </div>
+          <!-- /.lists-body -->
+        </div>
+        <!-- /.lists -->
+
+      </div>
+      <!--content-->
+
+    </div>
+    <!-- /.donate-body -->
+
+    <div class="donate-body" *ngIf="selected">
+
+
+      <form action="?" method="get" class="row">
+
+        <div class="col-lg-6">
+
+          <button type="button" id="buttonBack" (click)="Back()">
+						 <i class="fa fa-long-arrow-left"></i> Back
+				  </button>
+
+          <b id="bselected">Siman # {{siman?.id}}</b>
+
+          <button type="button" id="read" (click)="ReadPdf()">
+						  Read Text
+				  </button>
+
+        </div>
+
+
+
+      </form>
+
+
+      <div class="content" style="    max-height: 500px;    overflow: auto;">
+        
+        <ul *ngIf="siman!=null">
+          <li *ngFor="let a of siman.audios" class="audiosLi row">
+             <div class="col-xs-1 col-lg-1"><b> {{a.letter}}</b></div>
+             <div class="col-lg-11"> <audio controls> <source src="{{a.url}}" type="	audio/mpeg"></audio></div> 
+          </li>
+        </ul>
+
+      </div>
+      <!--content-->
+
+    </div>
+    <!-- /.donate-body -->
+
+
+  </div>
+</div>

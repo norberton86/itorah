@@ -1,0 +1,79 @@
+<div class="tile-box" id="item-content-9">
+  <div class="tile-box-primary tile-box-results">
+
+    <div class="tile-box-head ">
+      <span>Mishna Berura Daily</span>
+
+
+      <a href="#" class="link-close">
+						<i class="ico-close"></i>
+					</a>
+    </div>
+    <!-- /.donate-head -->
+
+    <div class="donate-body" >
+
+
+      <form action="?" method="get" class="row">
+        
+        <div class=" search-tertiary col-xs-12 col-sm-6">
+
+          <input type="search" name="q" id="q" value="" placeholder="Search ..." class="search-field" [(ngModel)]="query_main">
+
+          <button type="submit" class="search-btn">
+				      <i class="ico-magnify"></i>
+				    </button>
+
+        </div>
+        
+        <div class="col-xs-12 col-sm-6">
+          Brought to you under the direction of the Edmond J Safra Synagogue 
+        </div>
+
+        
+      </form>
+
+
+      <div class="content" style="    max-height: 500px;    overflow: auto;">
+        <div class="lists">
+
+
+          <div class="lists-body">
+            <ul class="tracks tracks-secondary">
+
+              <li class="track" *ngFor="let s of dailys">
+               <div class="row" style=" border: 1px solid #d3d3d3;border-radius: 4px;"> 
+                
+                <div class="col-xs-8" style="border-right: 1px solid #dadada;">
+                 <span>Siman <b>{{s.siman}}</b>-Seif <b>{{s.seif}}</b></span>
+                </div>
+
+                <div class="col-xs-4" style="padding-left: 1em">
+                 <a href="#/" (click)="ReadPdf(s.textUrl)" style="margin-right: 0.5em;" title="Read">
+								    <i class="fa fa-book"></i>
+								 </a>
+                 <a href="#/" (click)="Play('audio',s.audio)"  title="Play">
+								    <i class="fa fa-volume-up"></i>
+								 </a> 
+                </div>
+
+                </div> 
+              </li>
+              <!-- /.track -->
+
+            </ul>
+            <!-- /.tracks -->
+          </div>
+          <!-- /.lists-body -->
+        </div>
+        <!-- /.lists -->
+
+      </div>
+      <!--content-->
+
+    </div>
+    <!-- /.donate-body -->
+
+
+  </div>
+</div>

@@ -1,0 +1,51 @@
+#item-content-9 .donate-body form{
+   padding-bottom: 0.5em;
+   border-bottom: 1px solid #dadada;
+}
+
+#item-content-9 .donate-body{
+  padding: 1em;
+}
+
+ul{
+margin-top: 1em
+}
+      
+.tracks-secondary .track {
+    width: 25%;
+    
+}
+
+.row{
+    height: 90%;
+    padding-top: 4%;
+    width: 95%;
+}
+
+@media(max-width:768px) {
+ 
+  .tracks-secondary .track {
+       width: 100%;
+  }
+
+  .tracks .track {
+    border-top: none;
+   /* padding: 2px 4px 2px 2px;*/
+  }
+
+  .row{
+    height: 90%;
+    margin-bottom: 1em;
+    width: 100%;
+  }
+}
+
+/*remove the borders*/
+.tracks .track{
+  border-top:none;
+  padding: 0 4px 0 2px;
+}
+
+.tracks .track:before{
+  background:none
+}

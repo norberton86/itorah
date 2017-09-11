@@ -44,6 +44,7 @@ import { ClassesComponent } from './component/classes/classes.component';
 import { WeeklyResultComponent } from './component/weekly-result/weekly-result.component';
 import { ReadNowComponent } from './component/read-now/read-now.component';
 import { AruchComponent } from './component/aruch/aruch.component';
+import { BeruraDailyComponent } from './component/berura-daily/berura-daily.component';
 
 
 
@@ -93,7 +94,8 @@ let providers = {
     ClassesComponent,
     WeeklyResultComponent,
     ReadNowComponent,
-    AruchComponent
+    AruchComponent,
+    BeruraDailyComponent
   ],
   imports: [
     BrowserModule,

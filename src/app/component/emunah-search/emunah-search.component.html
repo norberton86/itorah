@@ -14,7 +14,7 @@
 						</select>--><!-- /.form-row -->
 				<!--	</div>--><!-- /.select -->
 					
-					<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field" [(ngModel)]="query_main" (keydown)="keyDownEmunahFunction($event)">
+					<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field" [(ngModel)]="query_main" (keyup)="keyDownEmunahFunction($event)">
 					
 					<button data-type="search-shirium-emunah" type="button" class="search-btn" (click)="searchShiriumEmunah()">
 						<i class="ico-magnify"></i>

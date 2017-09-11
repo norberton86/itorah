@@ -14,7 +14,7 @@
 						</select>--><!-- /.form-row -->
 					<!--</div> --><!-- /.select -->
 					
-					<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field"  [(ngModel)]="query_main" (keydown)="keyDownPeleFunction($event)">
+					<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field"  [(ngModel)]="query_main" (keyup)="keyDownPeleFunction($event)">
 					
 					<button data-type="search-shirium" type="button" class="search-btn" (click)="Search()">
 						<i class="ico-magnify"></i>

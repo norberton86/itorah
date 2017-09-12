@@ -1003,7 +1003,7 @@
 							</div><!-- /.tile tile-large -->
 
 							<div class="tile ballon" id="item-content-1">
-								<app-speaker (myEvent) = "ShowLoader($event)" (myEventSpeakers) = "ChangeSpeakers($event)"></app-speaker>
+							<!--	<app-speaker (myEvent) = "ShowLoader($event)" (myEventSpeakers) = "ChangeSpeakers($event)"></app-speaker>-->
 							</div><!-- /.tile ballon -->
 
 							<div class="tile tile-sizer" id="tile-2">
@@ -1310,14 +1310,19 @@
 											<i class="ico-play"></i>
 										</a>-->
 
-										<ul class="list-actions">
+									<!--	<ul class="list-actions">
 											<li>
-											<!--	<a href="#">
+												<a href="#">
 													<i class="ico-envelope"></i>
-												</a>-->
+												</a>
 											</li>
-										</ul><!-- /.list-actions -->
-
+										</ul>--><!-- /.list-actions -->
+                                        <a class="link-search" href="#item-content-9" data-size="full">
+											<i class="ico-magnifier-large"></i>
+										</a>
+										<a class="link-search" href="#item-content-88" data-size="full">
+											<i class="ico-magnifier-large"></i>
+										</a>
 										<a class="link-search" href="#item-content-9" data-size="full">
 											<i class="ico-magnifier-large"></i>
 										</a>
@@ -1328,6 +1333,11 @@
 
 						<p class="sorting">10</p>
 					</div><!-- /.tile -->
+                    
+                    
+					<div class="tile ballon" id="item-content-88">
+						<app-mishna-berura-yomi></app-mishna-berura-yomi>
+					</div><!-- /.tile ballon -->
 
 					<div class="tile ballon" id="item-content-9">
 						<app-berura-daily></app-berura-daily>

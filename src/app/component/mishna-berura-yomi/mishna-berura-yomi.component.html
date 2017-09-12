@@ -1,104 +1,100 @@
-<div class="tile-box" id="item-content-9">
+<div class="tile-box" id="item-content-88">
 	<div class="tile-box-primary tile-box-form">
 		<div class="tile-box-head ">
-			<h4>Mishna Berura by Rabbi Eli Mansour <span>With current day application and augmentation from the sefer Halacha Berura written by Chacham David Yoseph of Yichaave Daat</span></h4>
-		</div><!-- /.table-head -->
-		
+			<h4>Mishna Berura Yomi <span>by Rabbi Meyer Yedid</span></h4>
+			<a href="#" class="link-close">
+						<i class="ico-close"></i>
+			 </a>
+		</div>
+		<!-- /.table-head -->
+
 		<div class="tile-box-body">
-			<div class="form-secondary">
-				<form action="?" method="post">
-					<div class="form-body">
-						<div class="form-row">
-							<label for="field-select-halacha" class="form-label">Select Halacha by Chelek and Siman/Seif#</label>
-							
-							<div class="form-controls">
-								<div class="form-cols">
-									<div class="form-col">
-										<div class="select select-yellow">
-											<select name="field-chelek" id="field-chelek">
-												<option value="">Chelek He</option>
-											</select>
-										</div><!-- /.select -->	
-									</div><!-- /.form-col -->
-									
-									<div class="form-col">
-										<div class="select select-yellow">
-											<select name="field-siman" id="field-siman">
-												<option value="">Siman : 486, 01</option>
-											</select>
-										</div><!-- /.select -->
-									</div><!-- /.form-col -->
-								</div><!-- /.form-cols -->
-							</div><!-- /.form-controls -->
-						</div><!-- /.form-row -->
-						
-						<div class="form-row">
-							<label for="field-by-date" class="form-label">By date:</label>
-							
-							<div class="form-controls">
-								<div class="form-cols">
-									<div class="form-col">
-										<div class="select select-yellow">
-											<select name="field-chelek" id="field-chelek">
-												<option value="">December</option>
-											</select>
-										</div><!-- /.select -->	
-									</div><!-- /.form-col -->
-									
-									<div class="form-col">
-										<div class="form-cols">
-											<div class="form-col">
-												<div class="select select-yellow">
-													<select name="field-chelek" id="field-chelek">
-														<option value="">13</option>
-													</select>
-												</div><!-- /.select -->	
-											</div><!-- /.form-col -->
-											
-											<div class="form-col">
-												<div class="select select-yellow">
-													<select name="field-chelek" id="field-chelek">
-														<option value="">2013</option>
-													</select>
-												</div>
-											</div><!-- /.form-col -->
-										</div><!-- /.form-cols -->
-									</div><!-- /.form-col -->
-								</div><!-- /.form-cols -->
-							</div><!-- /.form-controls -->
-						</div><!-- /.form-row -->
-						
-						<div class="form-row">
-							<label for="field-by-topic" class="form-label">by-topic</label>
-							
-							<div class="form-controls">
-								<div class="select select-yellow">
-									<select name="field-by-topic" id="field-by-topic">
-										<option value="">The Laws of Pesah</option>
-									</select>
-								</div><!-- /.select -->
-								
-								<div class="select select-yellow">
-									<select name="field-by-topic" id="field-by-topic">
-										<option value="">How much is a kezayit</option>
-									</select>
-								</div><!-- /.select -->
-							</div><!-- /.form-controls -->
-						</div><!-- /.form-row -->
-						
-						<div class="form-row">
-							<label for="field-by-keyword" class="form-label">By Keyword</label>
-							
-							<div class="form-controls form-controls-search">
-								<input type="text" class="field" name="field-by-keyword" id="field-by-keyword" value="" placeholder="Enter Search word ...">
-								
-								<input type="submit" value="" class="form-btn">
-							</div><!-- /.form-controls -->
-						</div><!-- /.form-row -->
-					</div><!-- /.form-body -->
-				</form>
-			</div><!-- /.form-secondary -->
-		</div><!-- /.table-body -->
-		
-	</div><!-- /.tile-box-primary -->
+
+			<form action="?" method="post" class="row">
+
+
+				<div class="col-lg-3">
+					<label for="field-chelek" class="form-label">By Chelek and Siman/Seif#</label>
+
+					<div class="select select-yellow">
+						<select name="field-chelek" id="field-chelek" [(ngModel)]="selectedCheleck" (change)="onChangeCheleck()">
+							<option *ngFor="let c of cheleks" [ngValue]="c">{{c.name}}</option>
+						</select>
+					</div>
+				</div>
+				<!-- /.form-row -->
+
+
+				<div class="col-lg-3" id="simanSelect">
+
+					<label for="field-siman" class="form-label" style="visibility: hidden">Siman</label>
+
+					<div class="select select-yellow">
+						<select name="field-siman" id="field-siman" [(ngModel)]="selectedSeif" (change)="onChangeSeif()">
+								<option *ngFor="let c of seifs" [ngValue]="c">{{c.name}}</option>
+					        </select>
+					</div>
+				</div>
+
+				<div class="col-lg-3">
+					<label for="field-by-topic" class="form-label">By Topic/SubTopic</label>
+					<div class="select select-yellow">
+						<select name="field-by-topic" id="field-by-topic" [(ngModel)]="selectedTopic" (change)="onChangeTopic()">
+							<option *ngFor="let c of topics" [ngValue]="c">{{c.name}}</option>	
+						</select>
+					</div>
+					<!-- /.select -->
+				</div>
+
+				<div class="col-lg-3">
+					<label for="field-by-subtopic" class="form-label" style="visibility: hidden">SubTopic</label>
+					<div class="select select-yellow">
+						<select name="field-by-topic" id="field-by-subtopic" [(ngModel)]="selectedSubTopic">
+			              <option *ngFor="let c of subTopics" [ngValue]="c">{{c.name}}</option>
+						</select>
+					</div>
+					<!-- /.select -->
+				</div>
+
+			</form>
+
+			<div class="row">
+				<div class="col-xs-12 col-lg-2 columna">
+
+					<i class="fa fa-play fa-rotate-180" aria-hidden="true" (click)="Back()"></i>
+					<button type="button" class="search-btn" (click)="Read()">
+						   This Week
+				    </button>
+					<a (click)="Forward()" [class.mydisabled]="possible"><i class="fa fa-play" aria-hidden="true"></i></a>
+
+				</div>
+
+				<div class="col-xs-6 col-lg-2 columna" id="mediaColum">
+
+					<a href="#/"><i class="ico-play-yellow" aria-hidden="true" style="padding-right: 0.2em" (click)="Play()"></i></a>
+
+				</div>
+
+				<div class="col-xs-6 col-lg-1 columna">
+
+					<a href="#/"><i class="ico-print-yellow" (click)="Print()"></i></a>
+
+				</div>
+			</div>
+
+			<div class="content" style="max-height: 500px;overflow: auto;">
+				
+				<div [innerHTML]="content?.text" id="print">
+
+
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /.table-body -->
+
+	</div>
+	<!-- /.tile-box-primary -->
 </div>

@@ -80,3 +80,16 @@ padding: 0.5em;
     background: #508992;
     text-align: center;
 }
+
+/**************************************************************************************************/
+/**** Mishna Beroura Yomi  *******/
+#tile-10 .tile-actions{
+  text-align: right;
+  padding: 0 10px 7px 19px;
+}
+
+#tile-10 .tile-actions .link-search{
+    display: list-item;
+    margin-top: 2em;
+    position: initial;
+}

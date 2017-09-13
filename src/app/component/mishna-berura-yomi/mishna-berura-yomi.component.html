@@ -10,10 +10,10 @@
 
 		<div class="tile-box-body">
 
-			<form action="?" method="post" class="row">
+			<div class="row">
 
 
-				<div class="col-lg-3">
+				<div class="col-lg-2">
 					<label for="field-chelek" class="form-label">By Chelek and Siman/Seif#</label>
 
 					<div class="select select-yellow">
@@ -25,13 +25,13 @@
 				<!-- /.form-row -->
 
 
-				<div class="col-lg-3" id="simanSelect">
+				<div class="col-lg-2" id="simanSelect">
 
 					<label for="field-siman" class="form-label" style="visibility: hidden">Siman</label>
 
 					<div class="select select-yellow">
 						<select name="field-siman" id="field-siman" [(ngModel)]="selectedSeif" (change)="onChangeSeif()">
-								<option *ngFor="let c of seifs" [ngValue]="c">{{c.name}}</option>
+								<option *ngFor="let s of seifs" [ngValue]="s">{{s.name}}</option>
 					        </select>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 					<label for="field-by-topic" class="form-label">By Topic/SubTopic</label>
 					<div class="select select-yellow">
 						<select name="field-by-topic" id="field-by-topic" [(ngModel)]="selectedTopic" (change)="onChangeTopic()">
-							<option *ngFor="let c of topics" [ngValue]="c">{{c.name}}</option>	
+							<option *ngFor="let t of topics" [ngValue]="t">{{t.name}}</option>	
 						</select>
 					</div>
 					<!-- /.select -->
@@ -49,23 +49,34 @@
 				<div class="col-lg-3">
 					<label for="field-by-subtopic" class="form-label" style="visibility: hidden">SubTopic</label>
 					<div class="select select-yellow">
-						<select name="field-by-topic" id="field-by-subtopic" [(ngModel)]="selectedSubTopic">
-			              <option *ngFor="let c of subTopics" [ngValue]="c">{{c.name}}</option>
+						<select name="field-by-topic" id="field-by-subtopic" [(ngModel)]="selectedSubTopic"  (ngModelChange)="ReadBySubTopics(selectedSubTopic.id)" > 
+			              <option [ngValue]="sub" *ngFor="let sub of subTopics">{{sub.name}}</option>
 						</select>
 					</div>
 					<!-- /.select -->
 				</div>
 
-			</form>
+
+				<div class="col-lg-2">
+					<label for="field-by-subtopic" class="form-label" style="visibility: hidden">Related</label>
+					<div class="select select-yellow">
+						<select name="field-by-topic" id="field-by-subtopic" [(ngModel)]="selectedRelated" (change)="ReadContent(selectedRelated.id)">
+			              <option *ngFor="let co of relateds" [ngValue]="co">{{co.name}}</option>
+						</select>
+					</div>
+					<!-- /.select -->
+				</div>
+
+			</div>
 
 			<div class="row">
 				<div class="col-xs-12 col-lg-2 columna">
 
 					<i class="fa fa-play fa-rotate-180" aria-hidden="true" (click)="Back()"></i>
-					<button type="button" class="search-btn" (click)="Read()">
-						   This Week
+					<button type="button" class="search-btn">
+						   <i class="fa fa-calendar" aria-hidden="true"> </i>
 				    </button>
-					<a (click)="Forward()" [class.mydisabled]="possible"><i class="fa fa-play" aria-hidden="true"></i></a>
+					<a (click)="Forward()"><i class="fa fa-play" aria-hidden="true"></i></a>
 
 				</div>
 
@@ -84,7 +95,7 @@
 
 			<div class="content" style="max-height: 500px;overflow: auto;">
 				
-				<div [innerHTML]="content?.text" id="print">
+				<div [innerHTML]="content?.text" id="printYomi">
 
 
 

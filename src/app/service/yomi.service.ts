@@ -71,6 +71,29 @@ export class YomiService  extends Service {
        )
 }
 
+  public navigate(id:number,operation:string): Observable<any> {
+        
+        var url=this.ruta+"next?SeifID="+id;
+        if(operation=='prev')
+            url=this.ruta+"prev?SeifID="+id
 
+        return this.http.get(url).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    }
+
+
+ public readBySubTopic(SubTopicID:number): Observable<seif[]> {
+       
+       return this.http.get(this.ruta+"bysubtopic?SubTopicID="+SubTopicID).map(
+           (response) => {
+               let body = response.json()
+               return body;
+           }
+       )
+}
 
 }

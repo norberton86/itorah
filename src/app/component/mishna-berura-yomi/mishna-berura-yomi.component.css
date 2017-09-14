@@ -80,6 +80,11 @@
     padding-left: 0px;
  }
 
+ #simanSelect{
+       border-right: none;
+}
+
+
 }
 
 .mydisabled {

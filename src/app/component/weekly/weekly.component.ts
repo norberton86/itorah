@@ -184,7 +184,7 @@ Back()
 
   Play() {
 
-    this.playerService.Play("Lana", "", true);
+    this.playerService.PlayAudio("",this.selectedPerasha.audio)
 
   }
 }

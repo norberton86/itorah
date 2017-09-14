@@ -7,7 +7,7 @@ export class Perasha {
     chumashName: string
     artScrollBookNumber: number
     clipTitle: string
-    ltLink: string
+    audio: string
     clipKeywords: string
     clipLength: string
     wmaSize: number

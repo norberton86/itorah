@@ -83,13 +83,48 @@ padding: 0.5em;
 
 /**************************************************************************************************/
 /**** Mishna Beroura Yomi  *******/
-#tile-10 .tile-actions{
-  text-align: right;
-  padding: 0 10px 7px 19px;
+
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 992px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+  .tile .tile-actions {
+   margin-bottom: none;
+  }
+
+  .mishna h3{
+     font-size: 1.2em;
+  }
+
+  
+  .mishna span{
+     font-size: 0.8em;
+  }
+
+      
 }
 
-#tile-10 .tile-actions .link-search{
-    display: list-item;
-    margin-top: 2em;
-    position: initial;
+
+.tile .tile-actions {
+   padding: none;
+   margin-bottom: 2em;
+}
+
+
+.mishna{
+  background: rgba(43, 58, 90, 0.8);
+  padding: 1px 11px 5px 19px;
+  margin-top: 0.3em;
+  line-height: 1;
+}
+
+.mishna h3{
+  font-size: 1.9em;
+}
+
+.mishna span{
+  color: white;
 }

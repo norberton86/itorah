@@ -78,7 +78,7 @@ margin-top: 1em
 
   .tracks .track {
     border-top: none;
-    padding: 2px 4px 2px 2px;
+    padding: 2px 4px 2px 2px !important;
   }
 }
 
@@ -86,6 +86,7 @@ margin-top: 1em
 .tracks .track{
   border-top:none;
   padding: 0 4px 0 2px;
+  font-size: 0.8em;
 }
 
 .tracks .track:before{

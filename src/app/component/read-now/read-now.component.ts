@@ -38,7 +38,7 @@ export class ReadNowComponent implements OnInit,OnChanges {
     
     if(this.content!=null && this.content!='')
     {
-       if(this.content.indexOf('<p')>=0)//determinate the format type(in this case has hmtl tags)
+       if(this.content.indexOf('</p>')>=0)//determinate the format type(in this case has hmtl tags)
       {
         this.formatted=true
       }

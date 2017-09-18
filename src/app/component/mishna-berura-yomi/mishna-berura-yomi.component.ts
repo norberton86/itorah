@@ -190,6 +190,7 @@ export class MishnaBeruraYomiComponent implements OnInit {
           {
             self.selectedSubTopic=subs[0]
             self.selectedRelated=self.relateds[0]
+            self.ReadContent(self.selectedRelated.id,false)
           }
           else
           {

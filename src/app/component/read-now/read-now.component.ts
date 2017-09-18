@@ -1,6 +1,7 @@
 import { Component, OnInit,Input ,OnChanges} from '@angular/core';
 import { ReadNow } from '../../model/home';
 import { PlayerService } from '../../service/player.service';
+import { HomeService } from '../../service/home.service';
 
 declare var $: any;
 
@@ -19,14 +20,13 @@ export class ReadNowComponent implements OnInit,OnChanges {
   content: string
 
   
-  @Input()
-  audio: string
+  
 
   parragraphs:Array<string>=[]
 
   formatted:boolean;
 
-  constructor(private playerService:PlayerService) { }
+  constructor(private playerService:PlayerService,private homeService: HomeService) { }
 
   ngOnInit() {
   }
@@ -34,7 +34,7 @@ export class ReadNowComponent implements OnInit,OnChanges {
   ngOnChanges(changes: any): void {
     this.title=changes.title.currentValue
     this.content=changes.content.currentValue
-    this.audio=changes.audio.currentValue
+
     
     if(this.content!=null && this.content!='')
     {
@@ -64,7 +64,12 @@ export class ReadNowComponent implements OnInit,OnChanges {
 
   Play() {
 
-    this.playerService.PlayAudio("",this.audio)
+    let self = this;
+    this.homeService.playNow(6).subscribe(
+      function (response) {
+          self.playerService.PlayAudio("",response)
+      }, function (error) { }, function () { }
+    )
 
   }
   

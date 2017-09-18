@@ -16,6 +16,8 @@ export class ReadNowComponent implements OnInit,OnChanges {
 
   parragraphs:Array<string>=[]
 
+  formatted:boolean;
+
   constructor() { }
 
   ngOnInit() {
@@ -25,10 +27,25 @@ export class ReadNowComponent implements OnInit,OnChanges {
     this.title=changes.title.currentValue
     this.content=changes.content.currentValue
     
-    //if(this.content!=null && this.content!='')
-    /* this.parragraphs=this.content.split("\n").filter(function (s) {
+    if(this.content!=null && this.content!='')
+    {
+       if(this.content.indexOf('<p')>=0)
+      {
+        this.formatted=true
+      }
+      else
+      if(this.content.indexOf('\n')>=0)
+      {
+        this.parragraphs=this.content.split("\n").filter(function (s) {
           return s != "";
-        });*/
+        });
+         
+         this.formatted=false
+
+      }
+      
+    }
+     
 
   }
   

@@ -12,10 +12,16 @@
 
   <div class="popup-body">
 
-    <div class="content" [innerHTML]="content">
+    <div *ngIf="formatted" class="content" [innerHTML]="content">
       
        
 
+    </div>
+    
+    <div *ngIf="!formatted">
+    <p *ngFor="let p of parragraphs">
+					{{p}}
+		</p>
     </div>
 
   </div>

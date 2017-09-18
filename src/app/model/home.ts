@@ -40,5 +40,5 @@ export class ReadNow
     
   title: string
   content: string
-
+  audio:string
 }

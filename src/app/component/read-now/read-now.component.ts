@@ -1,10 +1,14 @@
 import { Component, OnInit,Input ,OnChanges} from '@angular/core';
 import { ReadNow } from '../../model/home';
+import { PlayerService } from '../../service/player.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-read-now',
   templateUrl: './read-now.component.html',
-  styleUrls: ['./read-now.component.css']
+  styleUrls: ['./read-now.component.css'],
+  providers:[PlayerService]
 })
 export class ReadNowComponent implements OnInit,OnChanges {
 
@@ -14,11 +18,15 @@ export class ReadNowComponent implements OnInit,OnChanges {
   @Input()
   content: string
 
+  
+  @Input()
+  audio: string
+
   parragraphs:Array<string>=[]
 
   formatted:boolean;
 
-  constructor() { }
+  constructor(private playerService:PlayerService) { }
 
   ngOnInit() {
   }
@@ -26,17 +34,18 @@ export class ReadNowComponent implements OnInit,OnChanges {
   ngOnChanges(changes: any): void {
     this.title=changes.title.currentValue
     this.content=changes.content.currentValue
+    this.audio=changes.audio.currentValue
     
     if(this.content!=null && this.content!='')
     {
-       if(this.content.indexOf('<p')>=0)
+       if(this.content.indexOf('<p')>=0)//determinate the format type(in this case has hmtl tags)
       {
         this.formatted=true
       }
       else
-      if(this.content.indexOf('\n')>=0)
+      if(this.content.indexOf('\n')>=0) //in this case has special characters format
       {
-        this.parragraphs=this.content.split("\n").filter(function (s) {
+        this.parragraphs=this.content.split("\n").filter(function (s) {  //split by '\n' and get parragraphs
           return s != "";
         });
          
@@ -46,6 +55,16 @@ export class ReadNowComponent implements OnInit,OnChanges {
       
     }
      
+
+  }
+
+  Print() {
+    $('#printRead').print();
+  }
+
+  Play() {
+
+    this.playerService.PlayAudio("",this.audio)
 
   }
   

@@ -1,6 +1,7 @@
 <div class="popup" id="readNow">
   <div class="popup-head">
     <span>Read Now <b> {{title}}</b> </span>
+    
 
 
     <a href="#" class="link-close">
@@ -18,7 +19,12 @@
 
     </div>
     
-    <div *ngIf="!formatted">
+    <div *ngIf="!formatted" id="printRead">
+      <h5>
+        {{title}}
+        <a href="#/"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a> 
+        <a href="#/"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a>
+      </h5>
     <p *ngFor="let p of parragraphs">
 					{{p}}
 		</p>

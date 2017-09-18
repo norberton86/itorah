@@ -22,6 +22,11 @@ export class seif
     name: string
 }
 
+export class SubSeif extends seif
+{
+    idFather:number
+}
+
 export class ContentSeif
 {
   id: number

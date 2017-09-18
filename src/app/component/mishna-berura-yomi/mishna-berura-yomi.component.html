@@ -17,7 +17,7 @@
 					<label for="field-chelek" class="form-label">By Chelek and Siman/Seif#</label>
 
 					<div class="select select-yellow">
-						<select name="field-chelek" id="field-chelek" [(ngModel)]="selectedCheleck" (change)="onChangeCheleck()">
+						<select name="field-chelek" id="field-chelek" [(ngModel)]="selectedCheleck" (change)="ReadSeif(selectedCheleck.id)">
 							<option *ngFor="let c of cheleks" [ngValue]="c">{{c.name}}</option>
 						</select>
 					</div>
@@ -30,7 +30,7 @@
 					<label for="field-siman" class="form-label" style="visibility: hidden">Siman</label>
 
 					<div class="select select-yellow">
-						<select name="field-siman" id="field-siman" [(ngModel)]="selectedSeif" (change)="onChangeSeif()">
+						<select name="field-siman" id="field-siman" [(ngModel)]="selectedSeif" (change)="ReadContent(selectedSeif.id,true)">
 								<option *ngFor="let s of seifs" [ngValue]="s">{{s.name}}</option>
 					        </select>
 					</div>
@@ -39,33 +39,25 @@
 				<div class="col-lg-3">
 					<label for="field-by-topic" class="form-label">By Topic/SubTopic</label>
 					<div class="select select-yellow">
-						<select name="field-by-topic" id="field-by-topic" [(ngModel)]="selectedTopic" (change)="onChangeTopic()">
+						<select name="field-by-topic" id="field-by-topic" [(ngModel)]="selectedTopic" (change)="ReadSubTopics(selectedTopic.id,false)">
 							<option *ngFor="let t of topics" [ngValue]="t">{{t.name}}</option>	
 						</select>
 					</div>
 					<!-- /.select -->
 				</div>
 
-				<div class="col-lg-3">
-					<label for="field-by-subtopic" class="form-label" style="visibility: hidden">SubTopic</label>
+				<div class="col-lg-5">
+					<label for="field-by-subtopic" class="form-label">{{loading}}</label>  
 					<div class="select select-yellow">
-						<select name="field-by-topic" id="field-by-subtopic" [(ngModel)]="selectedSubTopic"  (ngModelChange)="ReadBySubTopics(selectedSubTopic.id)" > 
-			              <option [ngValue]="sub" *ngFor="let sub of subTopics">{{sub.name}}</option>
+						<select name="field-by-topic" id="field-by-subtopic" [(ngModel)]="selectedRelated" (change)="ReadContent(selectedRelated.id,false)"> 
+						  <optgroup label="{{sub.name}}" *ngFor="let sub of subTopics">
+			                     <option *ngFor="let re of getRelated(sub.id)" [ngValue]="re">{{re.name}}</option>
+						  </optgroup>
 						</select>
 					</div>
 					<!-- /.select -->
 				</div>
 
-
-				<div class="col-lg-2">
-					<label for="field-by-subtopic" class="form-label" >Content</label>
-					<div class="select select-yellow">
-						<select name="field-by-topic" id="field-by-subtopic" [(ngModel)]="selectedRelated" (change)="ReadContent(selectedRelated.id)">
-			              <option *ngFor="let co of relateds" [ngValue]="co">{{co.name}}</option>
-						</select>
-					</div>
-					<!-- /.select -->
-				</div>
 
 			</div>
 

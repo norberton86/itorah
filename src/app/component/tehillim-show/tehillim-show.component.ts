@@ -60,7 +60,9 @@ export class TehillimShowComponent implements OnInit {
       if (this.isAuthenticated())
       {
         this.backupTehillim=this.tehellims //create backup
-        this.ReadMyTehillim()              //get the favorites
+        this.tehellims=this.backupMyTehillim
+        this.action = "long-arrow-left"   //put the back icon
+        this.tableHeader="Remove from"
       }
         
     }
@@ -126,7 +128,7 @@ export class TehillimShowComponent implements OnInit {
 
     });
 
-    if (localStorage.getItem('userItorah') != null && localStorage.getItem('userItorah') != "")
+    if (localStorage.getItem('userItorah') != null && localStorage.getItem('userItorah') != "") //at the begining we check if we are signed to load the favorites
     {
         this.ReadMyTehillim();
     }
@@ -197,10 +199,9 @@ export class TehillimShowComponent implements OnInit {
     let self = this;
     this.tehillimService.readMyTehillim().subscribe(
       function (response) {
-        self.tehellims = response;
+        
         self.backupMyTehillim=response      //make backup for my favorites
-        self.action = "long-arrow-left"   //put the back icon
-        self.tableHeader="Remove from"
+        
       }, function (error) { }, function () { }
     )
   }
@@ -218,7 +219,7 @@ export class TehillimShowComponent implements OnInit {
     }
     else  //add
     {
-
+      this.backupMyTehillim.push(this.tehellims.filter(i=>i.ID==id)[0])
     }
   }
 

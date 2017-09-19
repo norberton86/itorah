@@ -10,7 +10,7 @@
 				</h4>
 				
 				<div class="select">
-					<select name="field-1" id="field-1" [(ngModel)]="selectedCategory" [disabled]="action!='list'">
+					<select name="field-1" id="field-1" [(ngModel)]="selectedCategory" [disabled]="action!='heart'">
 						<option *ngFor="let c of categories" [ngValue]="c.id">{{c.name}}</option>
 					</select>
 				</div><!-- /.select -->
@@ -20,7 +20,7 @@
 				<label for="field-3">in</label>
 				
 				<div class="select">
-			        <select name="field-3" id="field-3" [(ngModel)]="selectedCountry" [disabled]="action!='list'">
+			        <select name="field-3" id="field-3" [(ngModel)]="selectedCountry" [disabled]="action!='heart'">
 						<option *ngFor="let c of countries" [ngValue]="c.id">{{c.name}}</option>
 					</select>
 				</div><!-- /.select -->
@@ -29,7 +29,7 @@
 				<label for="field-2">Currently showing</label>
 				
 				<div class="select">
-					<select name="field-2" id="field-2" [(ngModel)]="selectedComunity" [disabled]="action!='list'">
+					<select name="field-2" id="field-2" [(ngModel)]="selectedComunity" [disabled]="action!='heart'">
 						<option *ngFor="let c of comunities" [ngValue]="c.id">{{c.name}}</option>
 					</select>
 				</div><!-- /.select -->

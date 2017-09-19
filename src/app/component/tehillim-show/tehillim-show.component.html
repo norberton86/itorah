@@ -5,12 +5,12 @@
 			<div class="table-head-content">
 				<h4>Please read Tehillim for these people  
 					
-					<a title="My List" style="text-decoration: none;" href="#/"  (click)="MyList()"> <i class="fa fa-list"></i> </a>
+					<a title="My List" style="text-decoration: none;" href="#/"  (click)="MyList()"> <i class="fa fa-{{action}}"></i> </a>
 					<a title="Print" href="#/" style="margin-left: 0.5em;" (click)="Print()"><i id="weekly-print" class="ico-print-yellow" ></i></a>
 				</h4>
 				
 				<div class="select">
-					<select name="field-1" id="field-1" [(ngModel)]="selectedCategory">
+					<select name="field-1" id="field-1" [(ngModel)]="selectedCategory" [disabled]="action!='list'">
 						<option *ngFor="let c of categories" [ngValue]="c.id">{{c.name}}</option>
 					</select>
 				</div><!-- /.select -->
@@ -20,7 +20,7 @@
 				<label for="field-3">in</label>
 				
 				<div class="select">
-			        <select name="field-3" id="field-3" [(ngModel)]="selectedCountry">
+			        <select name="field-3" id="field-3" [(ngModel)]="selectedCountry" [disabled]="action!='list'">
 						<option *ngFor="let c of countries" [ngValue]="c.id">{{c.name}}</option>
 					</select>
 				</div><!-- /.select -->
@@ -29,7 +29,7 @@
 				<label for="field-2">Currently showing</label>
 				
 				<div class="select">
-					<select name="field-2" id="field-2" [(ngModel)]="selectedComunity">
+					<select name="field-2" id="field-2" [(ngModel)]="selectedComunity" [disabled]="action!='list'">
 						<option *ngFor="let c of comunities" [ngValue]="c.id">{{c.name}}</option>
 					</select>
 				</div><!-- /.select -->
@@ -44,7 +44,7 @@
 			<table>
 				<thead>
 					<tr id="header">
-						<th class="panel-heading">Add to list</th>
+						<th class="panel-heading">{{tableHeader}} list</th>
 						
 						<th>Transliteration Name</th>
 						
@@ -63,8 +63,8 @@
 				<tbody>
 					<tr *ngFor="let t of tehellims">
 						<td class="panel-heading">
-							<a href="#" class="link-add">
-								<i class="ico-plus"></i>
+							<a href="#" class="link-add" (click)="Manage(t.ID)">
+								<i class="{{GetType(t.ID)}}" ></i>
 							</a>
 						</td>
 						

@@ -1,5 +1,5 @@
 export class Tehillim {
-    
+ID:number
 TName:string
 HName:string
 Reason:string

@@ -22,7 +22,7 @@
 }
 
 
-.fa-list{
+.fa-list,.fa-long-arrow-left{
    
     vertical-align: middle;
     text-align: center;
@@ -31,5 +31,23 @@
     height: 35px;
     background: #ffcc00;
     border-radius: 2px;
+}
+
+.fa
+{
     margin-left: 0.5em;
+}
+
+
+
+.fa-minus{
+   
+    vertical-align: middle;
+    text-align: center;
+    line-height: 21px;
+    width: 19px;
+    height: 19px;
+    background: #e14b29;
+    border-radius: 50%;
+    margin-right: 0.7em;
 }

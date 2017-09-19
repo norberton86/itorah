@@ -144,4 +144,10 @@ export class TehillimShowComponent implements OnInit {
   }
 
 
+  Print()
+  {
+    $('.table-body').print();
+  }
+
+
 }

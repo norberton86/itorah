@@ -1,0 +1,22 @@
+
+@media print {
+
+  .panel-heading {
+        display:none
+  }
+
+
+   table 
+   {
+       border-collapse:separate; 
+       border-spacing:0.5em; 
+   }
+
+   th,td
+  {
+   padding:0px 0.2em 0px 0.2em;
+   font-size: 12px;
+   text-align:left;
+  }
+
+}

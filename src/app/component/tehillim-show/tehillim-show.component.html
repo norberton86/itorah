@@ -3,7 +3,7 @@
 	<div class="table-primary">
 		<div class="table-head">
 			<div class="table-head-content">
-				<h4>Please read Tehillim for these people</h4>
+				<h4>Please read Tehillim for these people  <a href="#/" style="margin-left: 0.5em;"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a></h4>
 				
 				<div class="select">
 					<select name="field-1" id="field-1" [(ngModel)]="selectedCategory">
@@ -39,8 +39,8 @@
 		<div class="table-body">
 			<table>
 				<thead>
-					<tr>
-						<th>Add to list</th>
+					<tr id="header">
+						<th class="panel-heading">Add to list</th>
 						
 						<th>Transliteration Name</th>
 						
@@ -58,7 +58,7 @@
 				
 				<tbody>
 					<tr *ngFor="let t of tehellims">
-						<td>
+						<td class="panel-heading">
 							<a href="#" class="link-add">
 								<i class="ico-plus"></i>
 							</a>

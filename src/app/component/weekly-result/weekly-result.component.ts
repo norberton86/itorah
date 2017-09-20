@@ -50,38 +50,37 @@ export class WeeklyResultComponent implements OnInit {
 
   ReadData() {
 
-    if (this.pattern == "") {
+    if (this.pattern == ""||this.data.length<=0) {
 
     }
     else {
-      let self = this;
-      Observable.forkJoin(
-        this.weeklyResultService.readHalachat(),
-        this.weeklyResultService.readWeekly(),
-        this.weeklyResultService.readBerura(),
-        this.weeklyResultService.readTehillim()
-      )
-        .subscribe(function (response) {
-          self.halachat = response[0]
-          self.weekly = response[1]
-          self.berura = response[2]
-          self.tehillim=response[3];
 
-          self.all=[];
-          self.data.forEach(function(a){
-               switch(a)
-               {
-                case 'Halachot': self.all=self.all.concat(self.halachat); break;
-                case 'Perasha': self.all=self.all.concat(self.weekly); break;
-                case 'Tehillim': self.all=self.all.concat(self.tehillim); break;
-                case 'Mishna Berura': self.all=self.all.concat(self.berura); break;
-               }
-               
-          })
-          
+      this.all=[];
+      this.halachat = []
+      this.weekly= []
+      this.berura = []
+      this.tehillim = []
+
+
+      let self = this;
+      self.weeklyResultService.read(this.pattern,this.data.join(","))
+        .subscribe(function (response) {
+
+
+         response.forEach(function(a){
+           switch(a.sourceID)
+           {
+             case 6: self.halachat.push(a);  break;
+             case 7: self.tehillim.push(a);  break;
+             case 16: self.weekly.push(a);  break;
+             case 12: self.berura.push(a);  break;
+           }
+
+           self.all.push(a)
+         })
         
       }, function (error) { }, function () { }
-        );
+      );
     }
 
   }
@@ -112,7 +111,7 @@ export class WeeklyResultComponent implements OnInit {
 
   Read(content:string)
   {
-
+    
   }
   
   Play(title: string, media: string) {

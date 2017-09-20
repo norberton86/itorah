@@ -1,8 +1,9 @@
 export class GlobalSearch {
-  url:string
-  date:Date
+  id: number
+  sourceID:number
   title:string
-  duration:string
-  language:string
-  content:string
+  text:string
+  date:Date
+  audioUrl:string
+  length:string
 }

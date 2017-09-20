@@ -85,7 +85,7 @@
         <li class="search-resultsult" *ngFor="let a of all">
           <div class="col col-medium">
             <div class="col col-1of2">
-              <a href="#/" (click)="Play(a.title,a.url)">
+              <a href="#/" (click)="Play(a.title,a.audioUrl)">
 												<i class="ico-mic"></i>
 											</a>
             </div>
@@ -104,19 +104,19 @@
           <!-- /.col col-large -->
 
           <div class="col col-small col-duration">
-            {{a.duration}} min
-            <a href="#">{{a.language}}</a>
+            {{a.length}} min
+            <a href="#">EN</a>
           </div>
           <!-- /.col col-small -->
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.content)">read</a>
+              <a href="#/" (click)="Read(a.text)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 
             <div class="col col-1of2">
-              <a href="#/" (click)="Print(a.title,a.content)">print</a>
+              <a href="#/" (click)="Print(a.title,a.text)">print</a>
             </div>
             <!-- /.col col-1of2 -->
           </div>
@@ -128,7 +128,7 @@
 										</a>-->
             <!-- /.btn btn-download -->
 
-            <a href="{{a.url}}" class="btn btn-download" download>
+            <a href="{{a.audioUrl}}" class="btn btn-download" download>
 											<i class="ico-download"></i> mp3
 										</a>
             <!-- /.btn btn-download -->
@@ -181,7 +181,7 @@
         <li class="search-resultsult" *ngFor="let a of halachat">
           <div class="col col-medium">
             <div class="col col-1of2">
-              <a href="#/" (click)="Play(a.title,a.url)">
+              <a href="#/" (click)="Play(a.title,a.audioUrl)">
 												<i class="ico-mic"></i>
 											</a>
             </div>
@@ -200,19 +200,19 @@
           <!-- /.col col-large -->
 
           <div class="col col-small col-duration">
-            {{a.duration}} min
-            <a href="#">{{a.language}}</a>
+            {{a.length}} min
+            <a href="#">EN</a>
           </div>
           <!-- /.col col-small -->
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.content)">read</a>
+              <a href="#/" (click)="Read(a.text)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 
             <div class="col col-1of2">
-              <a href="#/" (click)="Print(a.title,a.content)">print</a>
+              <a href="#/" (click)="Print(a.title,a.text)">print</a>
             </div>
             <!-- /.col col-1of2 -->
           </div>
@@ -224,7 +224,7 @@
 										</a>-->
             <!-- /.btn btn-download -->
 
-            <a href="{{a.url}}" class="btn btn-download" download>
+            <a href="{{a.audioUrl}}" class="btn btn-download" download>
 											<i class="ico-download"></i> mp3
 										</a>
             <!-- /.btn btn-download -->
@@ -275,7 +275,7 @@
         <li class="search-resultsult" *ngFor="let a of weekly">
           <div class="col col-medium">
             <div class="col col-1of2">
-              <a href="#/" (click)="Play(a.title,a.url)">
+              <a href="#/" (click)="Play(a.title,a.audioUrl)">
 												<i class="ico-mic"></i>
 											</a>
             </div>
@@ -294,19 +294,19 @@
           <!-- /.col col-large -->
 
           <div class="col col-small col-duration">
-            {{a.duration}} min
-            <a href="#">{{a.language}}</a>
+            {{a.length}} min
+            <a href="#">EN</a>
           </div>
           <!-- /.col col-small -->
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.content)">read</a>
+              <a href="#/" (click)="Read(a.text)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 
             <div class="col col-1of2">
-              <a href="#/" (click)="Print(a.title,a.content)">print</a>
+              <a href="#/" (click)="Print(a.title,a.text)">print</a>
             </div>
             <!-- /.col col-1of2 -->
           </div>
@@ -318,7 +318,7 @@
 										</a>-->
             <!-- /.btn btn-download -->
 
-            <a href="{{a.url}}" class="btn btn-download" download>
+            <a href="{{a.audioUrl}}" class="btn btn-download" download>
 											<i class="ico-download"></i> mp3
 										</a>
             <!-- /.btn btn-download -->
@@ -369,7 +369,7 @@
        <li class="search-resultsult" *ngFor="let a of berura">
           <div class="col col-medium">
             <div class="col col-1of2">
-              <a href="#/" (click)="Play(a.title,a.url)">
+              <a href="#/" (click)="Play(a.title,a.audioUrl)">
 												<i class="ico-mic"></i>
 											</a>
             </div>
@@ -388,19 +388,19 @@
           <!-- /.col col-large -->
 
           <div class="col col-small col-duration">
-            {{a.duration}} min
-            <a href="#">{{a.language}}</a>
+            {{a.length}} min
+            <a href="#">EN</a>
           </div>
           <!-- /.col col-small -->
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.content)">read</a>
+              <a href="#/" (click)="Read(a.text)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 
             <div class="col col-1of2">
-              <a href="#/" (click)="Print(a.title,a.content)">print</a>
+              <a href="#/" (click)="Print(a.title,a.text)">print</a>
             </div>
             <!-- /.col col-1of2 -->
           </div>
@@ -412,7 +412,7 @@
 										</a>-->
             <!-- /.btn btn-download -->
 
-            <a href="{{a.url}}" class="btn btn-download" download>
+            <a href="{{a.audioUrl}}" class="btn btn-download" download>
 											<i class="ico-download"></i> mp3
 										</a>
             <!-- /.btn btn-download -->

@@ -25,6 +25,7 @@ export class AppComponent implements OnInit{
  loader:boolean=false;
  amountSpeaker:string=""
  gSearch:string="";
+ gSearchPattern:string=""
 
  emailRecover:string=""
 
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit{
 
 keyDownFunction(event) {
 	if (event.keyCode == 13) {
+    this.gSearchPattern=this.gSearch
 		$('#gSearch').toggleClass('vissible');
 		$('.header .search .search-field').blur();
 	}

@@ -47,6 +47,7 @@ import { ReadNowComponent } from './component/read-now/read-now.component';
 import { AruchComponent } from './component/aruch/aruch.component';
 import { BeruraDailyComponent } from './component/berura-daily/berura-daily.component';
 import { BeruraComponent } from './component/berura/berura.component';
+import { BrowseComponent } from './component/browse/browse.component';
 
 
 
@@ -98,7 +99,8 @@ let providers = {
     ReadNowComponent,
     AruchComponent,
     BeruraDailyComponent,
-    BeruraComponent
+    BeruraComponent,
+    BrowseComponent
   ],
   imports: [
     BrowserModule,

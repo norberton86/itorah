@@ -4,6 +4,7 @@ import { QueueService } from '../../service/queue.service';
 import { PodcastService } from '../../service/podcast.service';
 import { SubscribeService } from '../../service/subscribe.service';
 import { SocialLoginServic } from '../../service/social-login.service';
+import { TehillimService } from '../../service/tehillim.service';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 
@@ -37,7 +38,7 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
 
   form:FormGroup;
 
-  constructor(private fb: FormBuilder,public _auth: AuthService,private ngZone:NgZone,private queueService:QueueService,private podcastService:PodcastService,private subscribeService:SubscribeService,private socialLoginServic:SocialLoginServic){
+  constructor(private fb: FormBuilder,public _auth: AuthService,private ngZone:NgZone,private queueService:QueueService,private podcastService:PodcastService,private subscribeService:SubscribeService,private socialLoginServic:SocialLoginServic,private tehillimService:TehillimService){
     this.InitializeForm();
    }
   
@@ -130,6 +131,7 @@ Save(data:any)
         this.queueService.setLogin("Signed");
         this.podcastService.setLogin("Signed");
         this.subscribeService.setLogin("Signed");
+        this.tehillimService.setLogin("Signed");
         this.RefreshView();
 }
 
@@ -206,6 +208,7 @@ Save(data:any)
              this.queueService.setLogin("LogOut");
              this.podcastService.setLogin("LogOut");
              this.subscribeService.setLogin("LogOut");
+             this.tehillimService.setLogin("LogOut");
              this.RefreshView();
  }
 

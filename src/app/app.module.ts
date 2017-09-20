@@ -29,6 +29,7 @@ import { TimePipe } from './pipe/time.pipe';
 import { FilterForPipe } from './pipe/filter-for.pipe';
 import {QueueService} from './service/queue.service'
 import {PodcastService} from './service/podcast.service'
+import {TehillimService} from './service/tehillim.service'
 import {DndModule} from 'ng2-dnd';
 import {ShareButtonsModule} from 'ngx-sharebuttons';
 import { SubscribeComponent } from './component/subscribe/subscribe.component';
@@ -107,7 +108,7 @@ let providers = {
      DndModule.forRoot(),
      ShareButtonsModule.forRoot()
   ],
-  providers: [QueueService,PodcastService,SubscribeService,WeeklyResultService],
+  providers: [QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

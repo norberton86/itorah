@@ -6,8 +6,7 @@ declare var $: any;
 @Component({
   selector: 'app-tehillim-show',
   templateUrl: './tehillim-show.component.html',
-  styleUrls: ['./tehillim-show.component.css'],
-  providers: [TehillimService]
+  styleUrls: ['./tehillim-show.component.css']
 })
 export class TehillimShowComponent implements OnInit {
 
@@ -37,6 +36,19 @@ export class TehillimShowComponent implements OnInit {
     this.comunities = [];
     this.categories = [];
     this.tehellims = [];
+
+    this.tehillimService.getLogin().subscribe(item => {
+      if (item == "Signed")
+      {
+        this.ReadMyTehillim();
+      }
+      else
+      {
+        this.backupMyTehillim=[]
+        this.action="heart"                 //restore the original icon 
+        this.tableHeader="Add to"
+      }
+    });
   }
 
   isAuthenticated(): boolean {
@@ -195,7 +207,7 @@ export class TehillimShowComponent implements OnInit {
   }
 
   ReadMyTehillim() {
-    this.action="spinner fa-pulse fa-fw"
+
     let self = this;
     this.tehillimService.readMyTehillim().subscribe(
       function (response) {

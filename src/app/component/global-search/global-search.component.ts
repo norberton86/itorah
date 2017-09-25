@@ -36,16 +36,13 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: any) {
 
-
-    this.pattern = changes.accion.currentValue
-
-
-
-
-    if (this.pattern == "") {
+    if(changes.accion.currentValue == "" || changes.accion.currentValue==this.pattern) {
 
     }
     else {
+
+      this.pattern=changes.accion.currentValue;
+
       this.all = [];
       this.halachat = []
       this.weekly = []

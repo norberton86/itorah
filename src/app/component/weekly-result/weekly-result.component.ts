@@ -29,8 +29,8 @@ export class WeeklyResultComponent implements OnInit {
 
   constructor(private weeklyResultService: WeeklyResultService, private playerService: PlayerService) {
      this.weeklyResultService.getData().subscribe(item => {
-         if(item.pattern!="")
-         {
+         if(item.pattern!="" && this.pattern!=item.pattern)
+         {  
              this.pattern=item.pattern;
              this.data=item.data;
 

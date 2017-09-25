@@ -22,6 +22,20 @@ export class WeeklyResultService extends Service {
     this.subjectClean.next(action);
   }
 
+
+  private subjectRead: Subject<any> = new Subject<any>();
+
+   getDataRead():Observable<any>
+  {
+    return this.subjectRead.asObservable();
+  }
+
+   setDataRead(action:any): void {
+    this.subjectRead.next(action);
+  }
+
+
+
   constructor(http: Http) {
     super(http);
     this.ruta = "http://itorahapi.3nom.com/api/Search/";

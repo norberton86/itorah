@@ -85,33 +85,16 @@ export class WeeklyResultComponent implements OnInit {
 
   }
   
-  Print(title:string,content:string)
+  Print(_title:string,_content:string)
   {
-     
-     this.parragraphs=content.split("\n").filter(function (s) {
-                     return s!="";
-                  });  
-      
-      var  p = '<div>'
-		  	p+=  "<h2>"+title+"</h2>"
-         
-        this.parragraphs.forEach(function(a){
-
-            p+='<p>'
-            p+=a
-            p+='</p>'
-        })
-
-		    p+='</div>'
-
-
-
-    $(p).print();
+    this.weeklyResultService.setDataRead({title:_title,content:"<h4 style='margin-bottom: 2em;'>"+_title+"</h4>"+_content})
+     $("#readSearch .content").print();
   }
 
-  Read(content:string)
+  Read(_title:string,_content:string)
   {
-    
+    this.weeklyResultService.setDataRead({title:_title,content:_content})
+    $("#readSearch").toggleClass('shown');
   }
   
   Play(title: string, media: string) {

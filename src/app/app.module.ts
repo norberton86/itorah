@@ -48,6 +48,7 @@ import { AruchComponent } from './component/aruch/aruch.component';
 import { BeruraDailyComponent } from './component/berura-daily/berura-daily.component';
 import { BeruraComponent } from './component/berura/berura.component';
 import { BrowseComponent } from './component/browse/browse.component';
+import { ReadSearchComponent } from './component/read-search/read-search.component';
 
 
 
@@ -100,7 +101,8 @@ let providers = {
     AruchComponent,
     BeruraDailyComponent,
     BeruraComponent,
-    BrowseComponent
+    BrowseComponent,
+    ReadSearchComponent
   ],
   imports: [
     BrowserModule,

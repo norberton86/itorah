@@ -117,7 +117,7 @@
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.text)">read</a>
+              <a href="#/" (click)="Read(a.title,a.text)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 
@@ -213,7 +213,7 @@
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.text)">read</a>
+              <a href="#/" (click)="Read(a.title,a.text)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 
@@ -307,7 +307,7 @@
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.text)">read</a>
+              <a href="#/" (click)="Read(a.title,a.text)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 
@@ -338,13 +338,13 @@
     <div class="tile-box-tab" id="search-tile-tab-4-r">
       <ul class="search-resultsults">
         <li class="search-resultsult search-resultsult-title">
-          <div class="col col-medium">
+          <div class="col col-small">
             <div class="col col-1of2"></div>
             <!-- /.col col-1of2 -->
 
-            <div class="col col-1of2">
+            <!--<div class="col col-1of2" >
               <a href="#" class="current" (click)="Sort(berura)">Data</a>
-            </div>
+            </div> -->
             <!-- /.col col-1of2 -->
           </div>
           <!-- /.col col-medium -->
@@ -354,9 +354,9 @@
           </div>
           <!-- /.col col-large -->
 
-          <div class="col col-small">
+          <!--div class="col col-small">
             <a href="#">Duration</a>
-          </div>
+          </div> -->
           <!-- /.col col-small -->
 
           <div class="col col-small"></div>
@@ -373,7 +373,7 @@
         <!-- /.search-resultsult -->
 
        <li class="search-resultsult" *ngFor="let a of berura">
-          <div class="col col-medium">
+          <div class="col col-small">
             <div class="col col-1of2">
               <a href="#/" (click)="Play(a.title,a.audioUrl)">
 												<i class="ico-mic"></i>
@@ -381,9 +381,9 @@
             </div>
             <!-- /.col col-1of2 -->
 
-            <div class="col col-1of2">
+            <!--<div class="col col-1of2">
               {{a.date|date: 'MM/dd/yyyy'}}
-            </div>
+            </div>-->
             <!-- /.col col-1of2 -->
           </div>
           <!-- /.col col-medium -->
@@ -393,15 +393,15 @@
           </div>
           <!-- /.col col-large -->
 
-          <div class="col col-small col-duration">
+          <!--<div class="col col-small col-duration">
             {{a.length}} min
             <a href="#">EN</a>
-          </div>
+          </div> -->
           <!-- /.col col-small -->
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.text)">read</a>
+              <a href="#/" (click)="Read(a.title,a.text)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 
@@ -432,13 +432,13 @@
     <div class="tile-box-tab" id="search-tile-tab-5-r">
       <ul class="search-resultsults">
         <li class="search-resultsult search-resultsult-title">
-          <div class="col col-medium">
+          <div class="col col-small">
             <div class="col col-1of2"></div>
             <!-- /.col col-1of2 -->
 
-            <div class="col col-1of2">
+            <!--<div class="col col-1of2">
               <a href="#" class="current" (click)="Sort(tehillim)">Data</a>
-            </div>
+            </div> -->
             <!-- /.col col-1of2 -->
           </div>
           <!-- /.col col-medium -->
@@ -467,7 +467,7 @@
         <!-- /.search-resultsult -->
 
        <li class="search-resultsult" *ngFor="let a of tehillim">
-          <div class="col col-medium">
+          <div class="col col-small">
             <div class="col col-1of2">
               <a href="#/" (click)="Play(a.title,a.audioUrl)">
 												<i class="ico-mic"></i>
@@ -475,9 +475,9 @@
             </div>
             <!-- /.col col-1of2 -->
 
-            <div class="col col-1of2">
+            <!--<div class="col col-1of2">
               {{a.date|date: 'MM/dd/yyyy'}}
-            </div>
+            </div> -->
             <!-- /.col col-1of2 -->
           </div>
           <!-- /.col col-medium -->
@@ -495,7 +495,7 @@
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.text)">read</a>
+              <a href="#/" (click)="Read(a.title,a.text)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 

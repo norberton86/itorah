@@ -103,9 +103,12 @@
           </div>
           <!-- /.col col-large -->
 
-          <div class="col col-small col-duration">
+         <div class="col col-small col-duration" *ngIf="a.length!=null && a.length!=''">
             {{a.length}} min
             <a href="#">EN</a>
+          </div>
+          <div class="col col-small col-duration" *ngIf="a.length==null || a.length==''">
+            <a href="#">Not Available</a>
           </div>
           <!-- /.col col-small -->
 

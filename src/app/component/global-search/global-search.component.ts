@@ -73,14 +73,14 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
  Print(_title:string,_content:string)
   {
-    this.weeklyResultService.setDataRead({title:_title,content:"<h4 style='margin-bottom: 2em;'>"+_title+"</h4>"+_content})
-     $("#readSearch .content").print();
+    this.weeklyResultService.setDataRead({title:_title,content:"<h4 style='margin-bottom: 2em;'>"+_title+"</h4>"+_content,accion:'print'})
+     
   }
 
   Read(_title:string,_content:string)
   {
-    this.weeklyResultService.setDataRead({title:_title,content:_content})
-    $("#readSearch").toggleClass('shown');
+     this.weeklyResultService.setDataRead({title:_title,content:_content,accion:'read'})
+    
   }
 
   Play(title: string, media: string) {

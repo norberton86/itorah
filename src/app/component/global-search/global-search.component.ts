@@ -26,6 +26,9 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
   weekly: Array<GlobalSearch> = []
   berura: Array<GlobalSearch> = []
 
+   loading:boolean=false
+
+
   @Input()
   accion: string = "";
 
@@ -40,7 +43,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
     }
     else {
-
+      this.loading=true
       this.pattern=changes.accion.currentValue;
 
       this.all = [];
@@ -63,6 +66,8 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
            self.all.push(a)
          })
+
+         self.loading=false
         
       }, function (error) { }, function () { }
       );

@@ -27,6 +27,8 @@ export class WeeklyResultComponent implements OnInit {
   berura: Array<GlobalSearch> = []
   tehillim: Array<GlobalSearch> = []
 
+  loading:boolean=false
+
   constructor(private weeklyResultService: WeeklyResultService, private playerService: PlayerService) {
      this.weeklyResultService.getData().subscribe(item => {
          if(item.pattern!="" && this.pattern!=item.pattern)
@@ -55,6 +57,8 @@ export class WeeklyResultComponent implements OnInit {
     }
     else {
 
+      this.loading=true
+
       this.all=[];
       this.halachat = []
       this.weekly= []
@@ -78,6 +82,8 @@ export class WeeklyResultComponent implements OnInit {
 
            self.all.push(a)
          })
+
+         self.loading=false
         
       }, function (error) { }, function () { }
       );

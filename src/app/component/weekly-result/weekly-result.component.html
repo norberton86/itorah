@@ -1,8 +1,8 @@
 <div id="wResult" class="tile tile-search ballon tile-full" style="z-index: 51">
   <div class="tile-box-primary">
     <div class="tile-box-head tile-box-head-block">
-      <h3>Showing results for: <a href="#">{{pattern}}</a></h3>
-
+      <h3 *ngIf="!loading">Showing results for: <a href="#">{{pattern}}</a></h3>
+      <i  *ngIf="loading" class="fa fa-spinner fa-pulse fa-2x"></i>
      
     </div>
     <!-- /.tile-box-head tile-box-head-block -->

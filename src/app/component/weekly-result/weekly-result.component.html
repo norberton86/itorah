@@ -338,15 +338,15 @@
     <div class="tile-box-tab" id="search-tile-tab-4-r">
       <ul class="search-resultsults">
         <li class="search-resultsult search-resultsult-title">
-          <div class="col col-small">
-            <div class="col col-1of2"></div>
+          <!--<div class="col col-small">
+            <div class="col col-1of2"></div>-->
             <!-- /.col col-1of2 -->
 
             <!--<div class="col col-1of2" >
               <a href="#" class="current" (click)="Sort(berura)">Data</a>
-            </div> -->
+            </div>-->
             <!-- /.col col-1of2 -->
-          </div>
+          <!--</div> -->
           <!-- /.col col-medium -->
 
           <div class="col col-large">
@@ -362,33 +362,33 @@
           <div class="col col-small"></div>
           <!-- /.col col-small -->
 
-          <div class="col">
+          <!--<div class="col">
             <div class="col col-1of2">
               <a href="#">download</a>
-            </div>
+            </div>-->
             <!-- /.col col-1of2 -->
-          </div>
+          <!--</div>-->
           <!-- /.col -->
         </li>
         <!-- /.search-resultsult -->
 
        <li class="search-resultsult" *ngFor="let a of berura">
-          <div class="col col-small">
+          <!--<div class="col col-small">
             <div class="col col-1of2">
               <a href="#/" (click)="Play(a.title,a.audioUrl)">
 												<i class="ico-mic"></i>
 											</a>
-            </div>
+            </div>-->
             <!-- /.col col-1of2 -->
 
             <!--<div class="col col-1of2">
               {{a.date|date: 'MM/dd/yyyy'}}
             </div>-->
             <!-- /.col col-1of2 -->
-          </div>
+          <!--</div>-->
           <!-- /.col col-medium -->
 
-          <div class="col col-large">
+          <div class="col col-large" style="text-align: -webkit-left;justify-content: left;">
             <p>{{a.title}}</p>
           </div>
           <!-- /.col col-large -->
@@ -412,17 +412,17 @@
           </div>
           <!-- /.col col-small -->
 
-          <div class="col">
+          <!--<div class="col">-->
             <!--<a href="#" class="btn btn-download">
 											<i class="ico-download"></i> wma
 										</a>-->
             <!-- /.btn btn-download -->
 
-            <a href="{{a.audioUrl}}" class="btn btn-download" download>
+            <!--<a href="{{a.audioUrl}}" class="btn btn-download" download>
 											<i class="ico-download"></i> mp3
-										</a>
+										</a> -->
             <!-- /.btn btn-download -->
-          </div>
+          <!--</div> -->
           <!-- /.col -->
         </li>
       </ul>

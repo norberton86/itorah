@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { GlobalSearchService } from '../../service/global-search.service';
+import { WeeklyResultService } from '../../service/weekly-result.service';
 import { PlayerService } from '../../service/player.service';
 import { GlobalSearch } from '../../model/global-search';
 import { Observable } from 'rxjs/Observable';
@@ -28,7 +29,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
   @Input()
   accion: string = "";
 
-  constructor(private globalSearchService: GlobalSearchService, private playerService: PlayerService) { }
+  constructor(private globalSearchService: GlobalSearchService, private playerService: PlayerService,private weeklyResultService:WeeklyResultService) { }
 
   ngOnInit() {
   }
@@ -73,31 +74,16 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
   }
 
-  Print(title: string, content: string) {
-
-    this.parragraphs = content.split("\n").filter(function (s) {
-      return s != "";
-    });
-
-    var p = '<div>'
-    p += "<h2>" + title + "</h2>"
-
-    this.parragraphs.forEach(function (a) {
-
-      p += '<p>'
-      p += a
-      p += '</p>'
-    })
-
-    p += '</div>'
-
-
-
-    $(p).print();
+ Print(_title:string,_content:string)
+  {
+    this.weeklyResultService.setDataRead({title:_title,content:"<h4 style='margin-bottom: 2em;'>"+_title+"</h4>"+_content})
+     $("#readSearch .content").print();
   }
 
-  Read(content: string) {
-
+  Read(_title:string,_content:string)
+  {
+    this.weeklyResultService.setDataRead({title:_title,content:_content})
+    $("#readSearch").toggleClass('shown');
   }
 
   Play(title: string, media: string) {

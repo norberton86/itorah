@@ -212,6 +212,7 @@
 
 				<app-global-search [accion]="gSearchPattern"></app-global-search>
 				<app-weekly-result></app-weekly-result>
+				<app-browse></app-browse>
 				<app-read-now [title]="rNow?.title" [content]="rNow?.content" ></app-read-now>
 				<app-read-search></app-read-search>
 			</div><!-- /.shell -->
@@ -972,6 +973,8 @@
 
 			<app-recover [accion]="emailRecover"></app-recover>
 
+			
+
 			<section class="section section-tiles">
 				<div class="shell">
 					<div class="section-content">
@@ -993,7 +996,7 @@
 										<div class="tile-actions">
 											<a href="#item-content-1" class="btn btn-yellow btn-medium" data-size="full" (click)="AccionSpeaker()">Speakers</a>
 
-											<a href="#" class="link-search">
+											<a href="#" class="link-search" (click)="Browse()">
 										<i class="ico-magnifier-large"></i>
 									</a>
 										</div><!-- /.tile-actions -->

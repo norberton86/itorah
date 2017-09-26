@@ -3,10 +3,6 @@ import { GlobalSearchService } from '../../service/global-search.service';
 import { WeeklyResultService } from '../../service/weekly-result.service';
 import { PlayerService } from '../../service/player.service';
 import { GlobalSearch } from '../../model/global-search';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/forkJoin';
-
-declare var $: any;
 
 @Component({
   selector: 'app-global-search',

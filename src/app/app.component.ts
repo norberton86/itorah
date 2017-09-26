@@ -179,4 +179,9 @@ keyDownFunction(event) {
     )
   }
 
+  Browse()
+  {
+    $("#browseSearch").toggleClass('vissible')
+  }
+
 }

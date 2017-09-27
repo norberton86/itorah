@@ -1,0 +1,98 @@
+<div class="tile-box" id="item-content-666">
+  <div class="tile-box-primary tile-box-results">
+
+    <div class="tile-box-head ">
+      <span>This week's Levayot/Mournings </span> 
+
+
+      <a href="#" class="link-close">
+						<i class="ico-close"></i>
+			</a>
+    </div>
+    <!-- /.donate-head -->
+
+
+		<div class="tile-box-body">
+      <div *ngFor="let s of shibas" class="col-xs-12 col-lg-3">
+
+        <div>
+          <b>Levaya is for: </b> <span>{{s.name}}</span>
+        </div>
+
+        <div>
+          <b>Hebrew: </b> <span>{{s.hebrewName}}</span>
+        </div>
+
+        <div>
+          <b>Deceased On: </b> <span>{{s.deceased| date: 'MM/dd/yyyy'}}</span>
+        </div>
+
+
+        <div>
+          <b>Family Members: </b>
+          <ul>
+             <li>
+               <i>Spouse--</i>{{s.spouse}}
+             </li>
+             <li>
+               <i>Children--</i> 
+               <span *ngFor="let c of s.children;let i = index">
+                 {{c}} <span *ngIf="i<s.children.length-1">,</span>
+               </span>
+             </li>  
+             <li>
+               <i>Siblings--</i> 
+               <span *ngFor="let c of s.sibblings;let i = index">
+                 {{c}} <span *ngIf="i<s.sibblings.length-1">,</span>
+               </span>
+             </li>
+             <li>
+               <i>In Israel--</i> 
+               <span *ngFor="let c of s.israel;let i = index">
+                   {{c}} <span *ngIf="i<s.israel.length-1">,</span>
+               </span>
+             </li>   
+          </ul> 
+        </div>
+
+        <div>
+          <b>Prayer Times: </b> 
+           <ul>
+             <li>
+               Shacharit {{s.shacharit}}
+             </li>
+             <li>
+               Mincha {{s.mincha}}
+             </li>
+          </ul> 
+        </div>
+
+         <div>
+          <b>Sitting at: </b> <span>{{s.sittingAt}}</span>
+         </div>
+
+         <div>
+          <b>Arayat Details: </b> <span>{{s.arayatDetais}}</span>
+         </div>
+
+         <div>
+          <b>Shiva Until: </b> <span>{{s.until| date: 'MM/dd/yyyy'}}</span>
+         </div>
+
+      </div>
+    </div>
+    <!-- /.donate-body -->
+
+    <div class="tile-box-actions">
+			<div class="paging">
+			    <ul>
+			          <li data-type="back"><a href="#/" class="paging-prev-shiba" (click)="PagingPrev()"><i class="ico-paging-prev"></i></a></li>
+				      <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/" data-type="page-shiba" id="{{p.id}}" (click)="Page(p.id)">{{p.id}}</a></li>
+				      <li data-type="go"><a href="#/" class="paging-next-shiba" (click)="PagingNext()"><i class="ico-paging-next"></i></a></li>
+			    </ul>
+			</div><!-- /.paging -->
+		</div><!-- /.table-actions -->
+
+  </div>
+</div>
+

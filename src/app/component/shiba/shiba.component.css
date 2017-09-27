@@ -1,0 +1,30 @@
+.donate-body{
+    padding: 0.5em
+
+}
+ul{
+        list-style-type: none;
+        margin-left: 0.5em;
+}
+
+.tile-box-results .tile-box-body {
+    height: 340px;
+}
+
+
+
+.col-lg-3:nth-of-type(1),.col-lg-3:nth-of-type(2),.col-lg-3:nth-of-type(3){
+
+    border-right: 1px solid #dadada;
+}
+
+
+@media(max-width:768px) {
+
+.col-lg-3:nth-of-type(1),.col-lg-3:nth-of-type(2),.col-lg-3:nth-of-type(3){
+
+    border-right: none;
+    padding-bottom: 1em;
+}
+
+}

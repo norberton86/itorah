@@ -49,6 +49,7 @@ import { BeruraDailyComponent } from './component/berura-daily/berura-daily.comp
 import { BeruraComponent } from './component/berura/berura.component';
 import { BrowseComponent } from './component/browse/browse.component';
 import { ReadSearchComponent } from './component/read-search/read-search.component';
+import { ShibaComponent } from './component/shiba/shiba.component';
 
 
 
@@ -102,7 +103,8 @@ let providers = {
     BeruraDailyComponent,
     BeruraComponent,
     BrowseComponent,
-    ReadSearchComponent
+    ReadSearchComponent,
+    ShibaComponent
   ],
   imports: [
     BrowserModule,

@@ -32,23 +32,23 @@
           <b>Family Members: </b>
           <ul>
              <li>
-               <i>Spouse--</i>{{s.spouse}}
+               Spouse - <span style="opacity: .7;font-weight: 400;">{{s.spouse}}</span>
              </li>
              <li>
-               <i>Children--</i> 
-               <span *ngFor="let c of s.children;let i = index">
+               Children - 
+               <span *ngFor="let c of s.children;let i = index" >
                  {{c}} <span *ngIf="i<s.children.length-1">,</span>
                </span>
              </li>  
              <li>
-               <i>Siblings--</i> 
-               <span *ngFor="let c of s.sibblings;let i = index">
+               Siblings - 
+               <span *ngFor="let c of s.sibblings;let i = index" >
                  {{c}} <span *ngIf="i<s.sibblings.length-1">,</span>
                </span>
              </li>
              <li>
-               <i>In Israel--</i> 
-               <span *ngFor="let c of s.israel;let i = index">
+               In Israel - 
+               <span *ngFor="let c of s.israel;let i = index" >
                    {{c}} <span *ngIf="i<s.israel.length-1">,</span>
                </span>
              </li>   

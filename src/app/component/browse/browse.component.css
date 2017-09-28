@@ -11,3 +11,9 @@
 .col-xs-12{
 margin:0.5em
 }
+
+
+.search-resultsults .search-resultsult-title > .col a.current{
+    background-color:inherit ;
+    border-bottom: none;
+}

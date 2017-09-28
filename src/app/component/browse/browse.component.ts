@@ -1,55 +1,83 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PlayerService } from '../../service/player.service';
 import { BrowseService } from '../../service/browse.service';
-import { GlobalSearch } from '../../model/global-search';
+import { ItemQueue, Category } from '../../model/shiurim';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-browse',
   templateUrl: './browse.component.html',
   styleUrls: ['./browse.component.css'],
-  providers:[PlayerService,BrowseService]
+  providers: [PlayerService, BrowseService]
 })
-export class BrowseComponent   implements OnInit{
+export class BrowseComponent implements OnInit {
 
   asc: boolean = false;
 
-  all: Array<GlobalSearch> = []
-  recently: Array<GlobalSearch> = []
-  popular: Array<GlobalSearch> = []
-  relevant: Array<GlobalSearch> = []
-  browse: Array<GlobalSearch> = []
+  all: Array<ItemQueue> = []
+  recently: Array<ItemQueue> = []
+  popular: Array<ItemQueue> = []
+  relevant: Array<ItemQueue> = []
+  browse: Array<ItemQueue> = []
 
-  loading:boolean=false
+  loading: boolean = false
 
-  constructor(private playerService:PlayerService,private browseService:BrowseService) { }
+  category: Category
+  categorys: Array<Category> = []
+
+  constructor(private playerService: PlayerService, private browseService: BrowseService) { }
+
+  ReadCategory() {
+    let self = this
+    this.browseService.getCategorys().subscribe(function (response) {
+      self.categorys.push({ id: 0, name: "Select Category" })
+      self.categorys = self.categorys.concat(response)
+      self.category = self.categorys[0]
+
+    }, function (error) { }, function () { })
+  }
+
+  Category() {
+    this.browse = []
+    if (this.category.id != 0) {
+      let self = this
+      this.browseService.readCategory(this.category.id).subscribe(function (response) {
+        self.browse = response
+      }, function (error) { }, function () { }
+      );
+    }
+  }
 
   ngOnInit() {
-    
-      let self = this;
-      self.browseService.read("rabbi","6,12,16,7")
-        .subscribe(function (response) {
 
+    this.ReadCategory();
+    this.Read();
+  }
 
-         response.forEach(function(a){
-           switch(a.sourceID)
-           {
-             case 6: self.recently.push(a);  break;
-             case 16: self.popular.push(a);  break;
-             case 12: self.relevant.push(a);  break;
-             case 7: self.browse.push(a);  break;
-           }
+  Read() {
+    let self = this
+    Observable.forkJoin(
+      this.browseService.readRecently(),
+      this.browseService.readPopular(),
+      this.browseService.readRelevant()
+    )
+      .subscribe(function (response) {
 
-           self.all.push(a)
-         })
+        self.recently = response[0]
+        self.popular = response[1]
+        self.relevant = response[2]
 
-         self.loading=false
-        
+        self.all = self.all.concat(self.recently)
+        self.all = self.all.concat(self.popular)
+        self.all = self.all.concat(self.relevant)
+
       }, function (error) { }, function () { }
       );
   }
 
-  Play(title: string, media: string) {
-    this.playerService.PlayAudio(title, media)
+  Play(id: string, title: string) {
+    var onlyAudio = title.includes('LT-Audio');
+    this.playerService.Play(title, id, onlyAudio);
   }
 
   Desc(a, b) {
@@ -76,6 +104,7 @@ export class BrowseComponent   implements OnInit{
       col = col.sort(this.Desc)
   }
 
-  
+
+
 
 }

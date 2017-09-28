@@ -43,7 +43,7 @@
                 <li>
                     <a href="#search-tile-tab-5-b">
 										Browse by Category
-										<span>{{browse.length}} </span>
+									<!--<span>{{browse.length}} </span> -->
 									</a>
                 </li>
 
@@ -52,6 +52,7 @@
         </div>
         <!-- /.tabs-head -->
         <div style="max-height: 500px;overflow: auto;">
+
             <div class="tile-box-tab current" id="search-tile-tab-1-b">
                 <ul class="search-resultsults">
                     <li class="search-resultsult search-resultsult-title">
@@ -92,14 +93,21 @@
                     <li class="search-resultsult" *ngFor="let a of all">
                         <div class="col col-medium">
                             <div class="col col-1of2">
-                                <a href="#/" (click)="Play(a.title,a.audioUrl)">
-												<i class="ico-mic"></i>
-											</a>
+                             
+
+                                <a href="#/"  *ngIf="a?.video!=''"  (click)="Play(a.video,a.title)">
+								    <i class="ico-camera"></i>
+								</a>
+
+								<a href="#/"  *ngIf="a?.audio!=''"  (click)="Play(a.audio,a.title)">
+								    <i class="ico-mic"></i>
+								</a>
+
                             </div>
                             <!-- /.col col-1of2 -->
 
                             <div class="col col-1of2">
-                                {{a.date|date: 'MM/dd/yyyy'}}
+                                {{a.dateRecorded|date: 'MM/dd/yyyy'}}
                             </div>
                             <!-- /.col col-1of2 -->
                         </div>
@@ -120,7 +128,7 @@
                         <!-- /.col col-small -->
 
                         <div class="col col-small">
-                            Mansour, Rabbi Eli
+                           {{a.speaker}}
                         </div>
                         <!-- /.col col-small -->
 
@@ -130,7 +138,7 @@
 										</a>-->
                             <!-- /.btn btn-download -->
 
-                            <a href="{{a.audioUrl}}" class="btn btn-download" download>
+                            <a href="#" class="btn btn-download" download>
 											<i class="ico-download"></i> mp3
 										</a>
                             <!-- /.btn btn-download -->
@@ -183,14 +191,18 @@
                     <li class="search-resultsult" *ngFor="let a of recently">
                         <div class="col col-medium">
                             <div class="col col-1of2">
-                                <a href="#/" (click)="Play(a.title,a.audioUrl)">
-												<i class="ico-mic"></i>
-											</a>
+                                <a href="#/"  *ngIf="a?.video!=''"  (click)="Play(a.video,a.title)">
+								    <i class="ico-camera"></i>
+								</a>
+
+								<a href="#/"  *ngIf="a?.audio!=''"  (click)="Play(a.audio,a.title)">
+								    <i class="ico-mic"></i>
+								</a>
                             </div>
                             <!-- /.col col-1of2 -->
 
                             <div class="col col-1of2">
-                                {{a.date|date: 'MM/dd/yyyy'}}
+                                {{a.dateRecorded|date: 'MM/dd/yyyy'}}
                             </div>
                             <!-- /.col col-1of2 -->
                         </div>
@@ -211,7 +223,7 @@
                         <!-- /.col col-small -->
 
                         <div class="col col-small">
-                            Mansour, Rabbi Eli
+                            {{a.speaker}}
                         </div>
                         <!-- /.col col-small -->
 
@@ -221,7 +233,7 @@
 										</a>-->
                             <!-- /.btn btn-download -->
 
-                            <a href="{{a.audioUrl}}" class="btn btn-download" download>
+                            <a href="#" class="btn btn-download" download>
 											<i class="ico-download"></i> mp3
 										</a>
                             <!-- /.btn btn-download -->
@@ -274,14 +286,18 @@
                     <li class="search-resultsult" *ngFor="let a of popular">
                         <div class="col col-medium">
                             <div class="col col-1of2">
-                                <a href="#/" (click)="Play(a.title,a.audioUrl)">
-												<i class="ico-mic"></i>
-											</a>
+                               <a href="#/"  *ngIf="a?.video!=''"  (click)="Play(a.video,a.title)">
+								    <i class="ico-camera"></i>
+								</a>
+
+								<a href="#/"  *ngIf="a?.audio!=''"  (click)="Play(a.audio,a.title)">
+								    <i class="ico-mic"></i>
+								</a>
                             </div>
                             <!-- /.col col-1of2 -->
 
                             <div class="col col-1of2">
-                                {{a.date|date: 'MM/dd/yyyy'}}
+                                {{a.dateRecorded|date: 'MM/dd/yyyy'}}
                             </div>
                             <!-- /.col col-1of2 -->
                         </div>
@@ -302,7 +318,7 @@
                         <!-- /.col col-small -->
 
                         <div class="col col-small">
-                            Mansour, Rabbi Eli
+                            {{a.speaker}}
                         </div>
                         <!-- /.col col-small -->
 
@@ -312,7 +328,7 @@
 										</a>-->
                             <!-- /.btn btn-download -->
 
-                            <a href="{{a.audioUrl}}" class="btn btn-download" download>
+                            <a href="#" class="btn btn-download" download>
 											<i class="ico-download"></i> mp3
 										</a>
                             <!-- /.btn btn-download -->
@@ -365,14 +381,18 @@
                     <li class="search-resultsult" *ngFor="let a of relevant">
                         <div class="col col-medium">
                             <div class="col col-1of2">
-                                <a href="#/" (click)="Play(a.title,a.audioUrl)">
-												<i class="ico-mic"></i>
-											</a>
+                                <a href="#/"  *ngIf="a?.video!=''"  (click)="Play(a.video,a.title)">
+								    <i class="ico-camera"></i>
+								</a>
+
+								<a href="#/"  *ngIf="a?.audio!=''"  (click)="Play(a.audio,a.title)">
+								    <i class="ico-mic"></i>
+								</a>
                             </div>
                             <!-- /.col col-1of2 -->
 
                             <div class="col col-1of2">
-                                {{a.date|date: 'MM/dd/yyyy'}}
+                                {{a.dateRecorded|date: 'MM/dd/yyyy'}}
                             </div>
                             <!-- /.col col-1of2 -->
                         </div>
@@ -393,7 +413,7 @@
                         <!-- /.col col-small -->
 
                         <div class="col col-small">
-                            Mansour, Rabbi Eli
+                            {{a.speaker}}
                         </div>
                         <!-- /.col col-small -->
 
@@ -403,7 +423,7 @@
 										</a>-->
                             <!-- /.btn btn-download -->
 
-                            <a href="{{a.audioUrl}}" class="btn btn-download" download>
+                            <a href="#" class="btn btn-download" download>
 											<i class="ico-download"></i> mp3
 										</a>
                             <!-- /.btn btn-download -->
@@ -417,6 +437,21 @@
             </div>
 
             <div class="tile-box-tab" id="search-tile-tab-5-b">
+
+                <div class="col-xs-12 col-sm-3">
+                    <div class="select select-yellow">
+                        <select name="Scategory" id="Scategory" [(ngModel)]="category" (change)="Category()">
+					        <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
+				        </select>
+                    </div>
+                </div>
+                
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
                 <ul class="search-resultsults">
                     <li class="search-resultsult search-resultsult-title">
                         <div class="col col-medium">
@@ -456,14 +491,18 @@
                     <li class="search-resultsult" *ngFor="let a of browse">
                         <div class="col col-medium">
                             <div class="col col-1of2">
-                                <a href="#/" (click)="Play(a.title,a.audioUrl)">
-												<i class="ico-mic"></i>
-											</a>
+                                <a href="#/"  *ngIf="a?.video!=''"  (click)="Play(a.video,a.title)">
+								    <i class="ico-camera"></i>
+								</a>
+
+								<a href="#/"  *ngIf="a?.audio!=''"  (click)="Play(a.audio,a.title)">
+								    <i class="ico-mic"></i>
+								</a>
                             </div>
                             <!-- /.col col-1of2 -->
 
                             <div class="col col-1of2">
-                                {{a.date|date: 'MM/dd/yyyy'}}
+                                {{a.dateRecorded|date: 'MM/dd/yyyy'}}
                             </div>
                             <!-- /.col col-1of2 -->
                         </div>
@@ -484,7 +523,7 @@
                         <!-- /.col col-small -->
 
                         <div class="col col-small">
-                            Mansour, Rabbi Eli
+                            {{a.speaker}}
                         </div>
                         <!-- /.col col-small -->
 
@@ -494,7 +533,7 @@
 										</a>-->
                             <!-- /.btn btn-download -->
 
-                            <a href="{{a.audioUrl}}" class="btn btn-download" download>
+                            <a href="#" class="btn btn-download" download>
 											<i class="ico-download"></i> mp3
 										</a>
                             <!-- /.btn btn-download -->
@@ -512,3 +551,8 @@
 
     <!-- /.tile-box-primary -->
 </div>
+
+
+
+
+                                        

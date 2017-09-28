@@ -82,7 +82,8 @@ export class PlayerService {
 
       let self=this;
 
-      if ($('#video-modal').length == 0)     //if not exist
+      if ($('#mediaAudio').length == 0)     //if not exist
+      {
       $.notify({                          //create the popup
         title: "",
         message: '<video id="mediaAudio" controls="" autoplay="" name="media" style="background-image: url(./assets/build/css/images/images/audio.jpg);background-size: 100% 80%;"><source src="'+url+'" type="audio/mpeg"></video>'
@@ -102,7 +103,11 @@ export class PlayerService {
      
       $('.alert-info').css('background-color', 'white'); //change background-color to white 
       $('.alert-info').css('text-align', 'center');
-
+    }
+    else
+    {
+      $('#mediaAudio').attr('src',url)
+    }
    }
 
 }

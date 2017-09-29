@@ -93,13 +93,13 @@
                     <li class="search-resultsult" *ngFor="let a of all">
                         <div class="col col-medium">
                             <div class="col col-1of2">
-                             
 
-                                <a href="#/"  *ngIf="a?.video!=''"  (click)="Play(a.video,a.title)">
+
+                                <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title)" style="margin-right: 0.4em;">
 								    <i class="ico-camera"></i>
 								</a>
 
-								<a href="#/"  *ngIf="a?.audio!=''"  (click)="Play(a.audio,a.title)">
+                                <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title)">
 								    <i class="ico-mic"></i>
 								</a>
 
@@ -128,7 +128,7 @@
                         <!-- /.col col-small -->
 
                         <div class="col col-small">
-                           {{a.speaker}}
+                            {{a.speaker}}
                         </div>
                         <!-- /.col col-small -->
 
@@ -191,11 +191,11 @@
                     <li class="search-resultsult" *ngFor="let a of recently">
                         <div class="col col-medium">
                             <div class="col col-1of2">
-                                <a href="#/"  *ngIf="a?.video!=''"  (click)="Play(a.video,a.title)">
+                                <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title)" style="margin-right: 0.4em;">
 								    <i class="ico-camera"></i>
 								</a>
 
-								<a href="#/"  *ngIf="a?.audio!=''"  (click)="Play(a.audio,a.title)">
+                                <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title)">
 								    <i class="ico-mic"></i>
 								</a>
                             </div>
@@ -286,11 +286,11 @@
                     <li class="search-resultsult" *ngFor="let a of popular">
                         <div class="col col-medium">
                             <div class="col col-1of2">
-                               <a href="#/"  *ngIf="a?.video!=''"  (click)="Play(a.video,a.title)">
+                                <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title)" style="margin-right: 0.4em;">
 								    <i class="ico-camera"></i>
 								</a>
 
-								<a href="#/"  *ngIf="a?.audio!=''"  (click)="Play(a.audio,a.title)">
+                                <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title)">
 								    <i class="ico-mic"></i>
 								</a>
                             </div>
@@ -381,11 +381,11 @@
                     <li class="search-resultsult" *ngFor="let a of relevant">
                         <div class="col col-medium">
                             <div class="col col-1of2">
-                                <a href="#/"  *ngIf="a?.video!=''"  (click)="Play(a.video,a.title)">
+                                <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title)" style="margin-right: 0.4em;">
 								    <i class="ico-camera"></i>
 								</a>
 
-								<a href="#/"  *ngIf="a?.audio!=''"  (click)="Play(a.audio,a.title)">
+                                <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title)">
 								    <i class="ico-mic"></i>
 								</a>
                             </div>
@@ -438,112 +438,110 @@
 
             <div class="tile-box-tab" id="search-tile-tab-5-b">
 
-                <div class="col-xs-12 col-sm-3">
+                <div class="col-xs-12 col-sm-3" style="padding:15px;">
                     <div class="select select-yellow">
                         <select name="Scategory" id="Scategory" [(ngModel)]="category" (change)="Category()">
 					        <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
 				        </select>
                     </div>
                 </div>
-                
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
 
-                <ul class="search-resultsults">
-                    <li class="search-resultsult search-resultsult-title">
-                        <div class="col col-medium">
-                            <div class="col col-1of2"></div>
-                            <!-- /.col col-1of2 -->
+                <div class="col-xs-12" style="padding:0">
 
-                            <div class="col col-1of2">
-                                <a href="#/" (click)="Sort(browse)" class="current">Data</a>
+
+                    <ul class="search-resultsults">
+                        <li class="search-resultsult search-resultsult-title">
+                            <div class="col col-medium">
+                                <div class="col col-1of2"></div>
+                                <!-- /.col col-1of2 -->
+
+                                <div class="col col-1of2">
+                                    <a href="#/" (click)="Sort(browse)" class="current">Data</a>
+                                </div>
+                                <!-- /.col col-1of2 -->
                             </div>
-                            <!-- /.col col-1of2 -->
-                        </div>
-                        <!-- /.col col-medium -->
+                            <!-- /.col col-medium -->
 
-                        <div class="col col-large">
-                            <a href="#">Title</a>
-                        </div>
-                        <!-- /.col col-large -->
-
-                        <div class="col col-small">
-                            <a href="#">Duration</a>
-                        </div>
-                        <!-- /.col col-small -->
-
-                        <div class="col col-small">Speaker</div>
-                        <!-- /.col col-small -->
-
-                        <div class="col">
-                            <div class="col col-1of2">
-                                <a href="#">download</a>
+                            <div class="col col-large">
+                                <a href="#">Title</a>
                             </div>
-                            <!-- /.col col-1of2 -->
-                        </div>
-                        <!-- /.col -->
-                    </li>
-                    <!-- /.search-resultsult -->
+                            <!-- /.col col-large -->
 
-                    <li class="search-resultsult" *ngFor="let a of browse">
-                        <div class="col col-medium">
-                            <div class="col col-1of2">
-                                <a href="#/"  *ngIf="a?.video!=''"  (click)="Play(a.video,a.title)">
+                            <div class="col col-small">
+                                <a href="#">Duration</a>
+                            </div>
+                            <!-- /.col col-small -->
+
+                            <div class="col col-small">Speaker</div>
+                            <!-- /.col col-small -->
+
+                            <div class="col">
+                                <div class="col col-1of2">
+                                    <a href="#">download</a>
+                                </div>
+                                <!-- /.col col-1of2 -->
+                            </div>
+                            <!-- /.col -->
+                        </li>
+                        <!-- /.search-resultsult -->
+
+                        <li class="search-resultsult" *ngFor="let a of browse">
+                            <div class="col col-medium">
+                                <div class="col col-1of2">
+                                    <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title)" style="margin-right: 0.4em;">
 								    <i class="ico-camera"></i>
 								</a>
 
-								<a href="#/"  *ngIf="a?.audio!=''"  (click)="Play(a.audio,a.title)">
+                                    <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title)">
 								    <i class="ico-mic"></i>
 								</a>
+                                </div>
+                                <!-- /.col col-1of2 -->
+
+                                <div class="col col-1of2">
+                                    {{a.dateRecorded|date: 'MM/dd/yyyy'}}
+                                </div>
+                                <!-- /.col col-1of2 -->
                             </div>
-                            <!-- /.col col-1of2 -->
+                            <!-- /.col col-medium -->
 
-                            <div class="col col-1of2">
-                                {{a.dateRecorded|date: 'MM/dd/yyyy'}}
+                            <div class="col col-large">
+                                <p>{{a.title}}</p>
                             </div>
-                            <!-- /.col col-1of2 -->
-                        </div>
-                        <!-- /.col col-medium -->
+                            <!-- /.col col-large -->
 
-                        <div class="col col-large">
-                            <p>{{a.title}}</p>
-                        </div>
-                        <!-- /.col col-large -->
+                            <div class="col col-small col-duration" *ngIf="a.length!=null && a.length!=''">
+                                {{a.length}} min
+                                <a href="#">EN</a>
+                            </div>
+                            <div class="col col-small col-duration" *ngIf="a.length==null || a.length==''">
+                                <a href="#">Not Available</a>
+                            </div>
+                            <!-- /.col col-small -->
 
-                        <div class="col col-small col-duration" *ngIf="a.length!=null && a.length!=''">
-                            {{a.length}} min
-                            <a href="#">EN</a>
-                        </div>
-                        <div class="col col-small col-duration" *ngIf="a.length==null || a.length==''">
-                            <a href="#">Not Available</a>
-                        </div>
-                        <!-- /.col col-small -->
+                            <div class="col col-small">
+                                {{a.speaker}}
+                            </div>
+                            <!-- /.col col-small -->
 
-                        <div class="col col-small">
-                            {{a.speaker}}
-                        </div>
-                        <!-- /.col col-small -->
-
-                        <div class="col">
-                            <!--<a href="#" class="btn btn-download">
+                            <div class="col">
+                                <!--<a href="#" class="btn btn-download">
 											<i class="ico-download"></i> wma
 										</a>-->
-                            <!-- /.btn btn-download -->
+                                <!-- /.btn btn-download -->
 
-                            <a href="#" class="btn btn-download" download>
+                                <a href="#" class="btn btn-download" download>
 											<i class="ico-download"></i> mp3
 										</a>
-                            <!-- /.btn btn-download -->
-                        </div>
-                        <!-- /.col -->
-                    </li>
-                    <!-- /.search-resultsult -->
+                                <!-- /.btn btn-download -->
+                            </div>
+                            <!-- /.col -->
+                        </li>
+                        <!-- /.search-resultsult -->
 
-                </ul>
-                <!-- /.search-resultsults -->
+                    </ul>
+                    <!-- /.search-resultsults -->
+                </div>
             </div>
         </div>
     </div>
@@ -551,8 +549,3 @@
 
     <!-- /.tile-box-primary -->
 </div>
-
-
-
-
-                                        

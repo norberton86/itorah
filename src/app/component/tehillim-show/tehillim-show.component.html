@@ -5,7 +5,7 @@
 			<div class="table-head-content">
 				<h4>Please read Tehillim for these people  
 					
-					<a title="My List" style="text-decoration: none;" href="#/"  (click)="MyList()"> <i class="fa fa-{{action}}"></i> </a>
+					<a title="My List" style="text-decoration: none;" href="#/"  (click)="MyList()"> <i class="fa fa-{{action}} briefHeader" ></i> </a>
 					<a title="Print" href="#/" style="margin-left: 0.5em;" (click)="Print()"><i id="weekly-print" class="ico-print-yellow" ></i></a>
 				</h4>
 				
@@ -44,7 +44,7 @@
 			<table>
 				<thead>
 					<tr id="header">
-						<th class="panel-heading">{{tableHeader}} list</th>
+						<th style="min-width: 6%;" class="panel-heading">{{tableHeader}} list <i class="fa fa-briefcase"></i></th>
 						
 						<th>Transliteration Name</th>
 						

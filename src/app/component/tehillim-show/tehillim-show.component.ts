@@ -23,7 +23,7 @@ export class TehillimShowComponent implements OnInit {
 
   tehellims: Array<Tehillim>
 
-  action: string = "heart"
+  action: string = "briefcase"
 
   tableHeader:string="Add to"
 
@@ -45,7 +45,7 @@ export class TehillimShowComponent implements OnInit {
       else
       {
         this.backupMyTehillim=[]
-        this.action="heart"                 //restore the original icon 
+        this.action="briefcase"                 //restore the original icon 
         this.tableHeader="Add to"
       }
     });
@@ -67,7 +67,7 @@ export class TehillimShowComponent implements OnInit {
   }
 
   MyList() {
-    if (this.action=="heart")
+    if (this.action=="briefcase")
     {
       if (this.isAuthenticated())
       {
@@ -81,7 +81,7 @@ export class TehillimShowComponent implements OnInit {
     else
     {
       this.tehellims=this.backupTehillim  //restore the original data
-       this.action="heart"                 //restore the original icon 
+       this.action="briefcase"                 //restore the original icon 
        this.tableHeader="Add to"
     }
 
@@ -201,7 +201,7 @@ export class TehillimShowComponent implements OnInit {
     this.tehillimService.readTehillim(self.selectedComunity, self.selectedCategory).subscribe(
       function (response) {
         self.tehellims = response;
-        self.action="heart"
+        self.action="briefcase"
       }, function (error) { }, function () { }
     )
   }

@@ -181,6 +181,15 @@ keyDownFunction(event) {
 
   Browse()
   {
+    try{
+    //close any open ballon
+    $('.ballon').removeClass('vissible');
+		$('.tile').css('margin-bottom', 7)
+    }
+    catch(e){
+
+    }
+    //open the browser
     $("#browseSearch").toggleClass('vissible')
   }
 

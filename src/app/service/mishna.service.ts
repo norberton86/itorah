@@ -7,12 +7,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class YomiService extends Service {
+export class MIshnaService  extends Service {
 
 
     constructor(http: Http) {
         super(http);
-        this.ruta="http://itorahapi.3nom.com/api/MishnaBeruraYomi/";
+        this.ruta="http://itorahapi.3nom.com/api/MishnaBerura/";
     }
     
 

@@ -1,3 +1,105 @@
-<p>
-  berura works!
-</p>
+<div class="tile-box" id="item-content-77">
+	<div class="tile-box-primary tile-box-form">
+		<div class="tile-box-head ">
+			<h4>Mishna Berura Yomi</h4>
+			<a href="#" class="link-close">
+						<i class="ico-close"></i>
+			 </a>
+		</div>
+		<!-- /.table-head -->
+
+		<div class="tile-box-body">
+
+			<div class="row">
+
+
+				<div class="col-lg-2">
+					<label for="field-chelek" class="form-label">By Chelek and Siman/Seif#</label>
+
+					<div class="select select-yellow">
+						<select name="field-chelek" id="field-chelek" [(ngModel)]="selectedCheleck" (change)="ReadSeif(selectedCheleck.id)">
+							<option *ngFor="let c of cheleks" [ngValue]="c">{{c.name}}</option>
+						</select>
+					</div>
+				</div>
+				<!-- /.form-row -->
+
+
+				<div class="col-lg-2" id="simanSelect">
+
+					<label for="field-siman" class="form-label" style="visibility: hidden">Siman</label>
+
+					<div class="select select-yellow">
+						<select name="field-siman" id="field-siman" [(ngModel)]="selectedSeif" (change)="ReadContent(selectedSeif.id,true)">
+								<option *ngFor="let s of seifs" [ngValue]="s">{{s.name}}</option>
+					        </select>
+					</div>
+				</div>
+
+				<div class="col-lg-2">
+					<label for="field-by-topic" class="form-label">By Topic/SubTopic</label>
+					<div class="select select-yellow">
+						<select name="field-by-topic" id="field-by-topic" [(ngModel)]="selectedTopic" (change)="ReadSubTopics(selectedTopic.id,false)">
+							<option *ngFor="let t of topics" [ngValue]="t">{{t.name}}</option>	
+						</select>
+					</div>
+					<!-- /.select -->
+				</div>
+
+				<div class="col-lg-4">
+					<label for="field-by-subtopic" class="form-label">{{loading}}</label>  
+					<div class="select select-yellow">
+						<select name="field-by-topic" id="field-by-subtopic" [(ngModel)]="selectedRelated" (change)="ReadContent(selectedRelated.id,false)"> 
+						  <optgroup label="{{sub.name}}" *ngFor="let sub of subTopics">
+			                     <option *ngFor="let re of getRelated(sub.id)" [ngValue]="re">{{re.name}}</option>
+						  </optgroup>
+						</select>
+					</div>
+					<!-- /.select -->
+				</div>
+
+
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-lg-2 columna">
+
+					<a (click)="Back()"><i class="fa fa-play fa-rotate-180" aria-hidden="true"></i></a>
+					
+					<button type="button" class="search-btn">
+						   <i class="fa fa-calendar" aria-hidden="true"> </i>
+				    </button>
+					
+					<a (click)="Forward()"><i class="fa fa-play" aria-hidden="true"></i></a>
+
+				</div>
+
+				<div class="col-xs-6 col-lg-2 columna" id="mediaColum">
+
+					<a href="#/"><i class="ico-play-yellow" aria-hidden="true" style="padding-right: 0.2em" (click)="Play()"></i></a>
+
+				</div>
+
+				<div class="col-xs-6 col-lg-1 columna">
+
+					<a href="#/"><i class="ico-print-yellow" (click)="Print()"></i></a>
+
+				</div>
+			</div>
+
+			<div class="content" style="max-height: 500px;overflow: auto;">
+				
+				<div [innerHTML]="content?.text" id="printMishna">
+
+
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /.table-body -->
+
+	</div>
+	<!-- /.tile-box-primary -->
+</div>

@@ -47,7 +47,12 @@
   
   #item-content-77 .tile-box-body .columna:nth-of-type(3){
     text-align: left;
+    border-right: 1px solid #dadada;
+    width: 3.5em;
+    padding-left: 11px;
   }
+
+ 
 
   
 #item-content-77 .tile-box-body .content div{
@@ -74,6 +79,11 @@
  #item-content-77 .tile-box-body .columna:nth-of-type(3) {
    margin-top: 0.5em;
    padding-left: 0px;
+   border-right: none;
+ }
+
+  #item-content-77 .tile-box-body .columna:nth-of-type(4) {
+   padding-top: 0.5em;
  }
 
  .col-xs-6,.col-xs-12 {
@@ -84,6 +94,9 @@
        border-right: none;
 }
 
+.search-tertiary input[type="search"] {
+    width: 17.5em;
+}
 
 }
 

@@ -1,7 +1,7 @@
 <div class="tile-box" id="item-content-77">
 	<div class="tile-box-primary tile-box-form">
 		<div class="tile-box-head ">
-			<h4>Mishna Berura Yomi</h4>
+			<h4>Mishna Berura</h4>
 			<a href="#" class="link-close">
 						<i class="ico-close"></i>
 			 </a>
@@ -58,6 +58,17 @@
 					<!-- /.select -->
 				</div>
 
+        <div class="col-lg-2">
+         <div class="search-tertiary" style="padding-top: 1.2em;">
+          <form  action="">
+			    <input type="search" style="min-width: 2.5em;"  id="search" name="search" value="" placeholder="Enter Search word ..." class="search-field"  [(ngModel)]="query_main" (keyup)="keyDown()">
+					<button  type="button" class="search-btn">
+						<i class="ico-magnify"></i>
+					</button>
+          </form>
+         </div> 
+				</div>
+
 
 			</div>
 
@@ -85,6 +96,17 @@
 					<a href="#/"><i class="ico-print-yellow" (click)="Print()"></i></a>
 
 				</div>
+
+        <div class="col-xs-12 col-lg-2 columna">
+
+					<button type="button" class="search-btn" >
+						   Q&A
+				    </button>
+            
+           Most recent Q&A
+
+				</div>
+
 			</div>
 
 			<div class="content" style="max-height: 500px;overflow: auto;">

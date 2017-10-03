@@ -33,6 +33,8 @@ export class BeruraComponent implements OnInit {
   subTopics:Array<SubTopic>=[]
   selectedSubTopic:SubTopic
 
+  query_main:string=''
+
   constructor(private playerService:PlayerService,private mishnaService:MIshnaService) { }
 
   ngOnInit() {
@@ -40,6 +42,10 @@ export class BeruraComponent implements OnInit {
    this.ReadTopic()
  }
 
+ keyDown()
+ {
+   
+ }
 
   setValue(cont:ContentSeif)
   {

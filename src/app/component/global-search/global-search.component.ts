@@ -29,6 +29,17 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
   allPages: number;
   iteration: number;
 
+  pagesHalachat: Array<Page> = [];
+  allPagesHalachat: number;
+  iterationHalachat: number;
+
+  pagesWeekly: Array<Page> = [];
+  allPagesWeekly: number;
+  iterationWeekly: number;
+
+  pagesMishna: Array<Page> = [];
+  allPagesMishna: number;
+  iterationMishna: number;
 
   @Input()
   accion: string = "";
@@ -96,7 +107,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
     }
     else
       this.CreatePages();
-    
+
     this.Page(this.iteration)
   }
 
@@ -121,6 +132,19 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
         }, function (error) { }, function () { }
         );
+
+       self.globalSearchService.read(this.pattern, "6", 9, 1)
+        .subscribe(function (response) {
+
+
+          self.UpdateHalachat(response.totalPageCount, response.searchItems)
+
+          //self.loading = false
+
+        }, function (error) { }, function () { }
+        );
+
+     
     }
 
 
@@ -163,4 +187,67 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
     else
       col = col.sort(this.Desc)
   }
+
+  //-------------------------------------------------------------------------------------------------------------------------------------
+  UpdateHalachat(totalPageCount: number, searchItems: Array<any>) {
+
+    this.allPagesHalachat = totalPageCount; //pagination
+    this.iterationHalachat = 1; //pagination
+
+    this.CreatePagesHalachat();
+    this.halachat = searchItems
+  }
+
+  CreatePagesHalachat() {
+    this.pagesHalachat = [];
+
+    for (var i = this.iterationHalachat * 6 - 6; i < this.iterationHalachat * 6 && i < this.allPagesHalachat; i++) //populate the pages array
+    {
+      if (i == (this.iterationHalachat - 1) * 6) {
+        this.pagesHalachat.push({ id: i + 1, current: true });
+      }
+      else
+        this.pagesHalachat.push({ id: i + 1, current: false });
+    }
+
+  }
+
+
+  PageHalachat(id: number) {
+
+    this.pagesHalachat.forEach(function (p) {
+
+      if (p.id != id)
+        p.current = false;
+      else
+        p.current = true;
+    })
+
+    this.globalSearchService.read(this.pattern, "6", 9, id)
+      .subscribe(response => this.halachat = response.searchItems)
+
+  }
+
+  PagingPrevHalachat() {
+    this.iterationHalachat--;
+    if (this.iterationHalachat <= 0) {
+      this.iterationHalachat = 1;
+    }
+    else
+      this.CreatePagesHalachat();
+
+    this.PageHalachat(this.iterationHalachat)
+  }
+
+  PagingNextHalachat() {
+    this.iterationHalachat++;
+    if (this.iterationHalachat > Math.ceil(this.allPagesHalachat / 6)) {
+      this.iterationHalachat = Math.ceil(this.allPagesHalachat / 6);
+    }
+    else
+      this.CreatePagesHalachat();
+
+    this.PageHalachat(this.iterationHalachat)
+  }
+  //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 }

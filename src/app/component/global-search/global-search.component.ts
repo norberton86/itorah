@@ -154,6 +154,17 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
         }, function (error) { }, function () { }
         );
+
+         self.globalSearchService.read(this.pattern, "12", 9, 1)
+        .subscribe(function (response) {
+
+
+          self.UpdateMishna(response.totalPageCount, response.searchItems)
+
+          //self.loading = false
+
+        }, function (error) { }, function () { }
+        );
     }
 
 
@@ -318,5 +329,66 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
       this.CreatePagesWeekly();
 
     this.PageWeekly(this.iterationWeekly)
+  }
+  //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   UpdateMishna(totalPageCount: number, searchItems: Array<any>) {
+
+    this.allPagesMishna = totalPageCount; //pagination
+    this.iterationMishna = 1; //pagination
+
+    this.CreatePagesMishna();
+    this.berura = searchItems
+  }
+
+  CreatePagesMishna() {
+    this.pagesMishna = [];
+
+    for (var i = this.iterationMishna * 6 - 6; i < this.iterationMishna * 6 && i < this.allPagesMishna; i++) //populate the pages array
+    {
+      if (i == (this.iterationMishna - 1) * 6) {
+        this.pagesMishna.push({ id: i + 1, current: true });
+      }
+      else
+        this.pagesMishna.push({ id: i + 1, current: false });
+    }
+
+  }
+
+
+  PageMishna(id: number) {
+
+    this.pagesMishna.forEach(function (p) {
+
+      if (p.id != id)
+        p.current = false;
+      else
+        p.current = true;
+    })
+
+    this.globalSearchService.read(this.pattern, "6", 9, id)
+      .subscribe(response => this.berura = response.searchItems)
+
+  }
+
+  PagingPrevMishna() {
+    this.iterationMishna--;
+    if (this.iterationMishna <= 0) {
+      this.iterationMishna = 1;
+    }
+    else
+      this.CreatePagesMishna();
+
+    this.PageMishna(this.iterationMishna)
+  }
+
+  PagingNextMishna() {
+    this.iterationMishna++;
+    if (this.iterationMishna > Math.ceil(this.allPagesMishna / 6)) {
+      this.iterationMishna = Math.ceil(this.allPagesMishna / 6);
+    }
+    else
+      this.CreatePagesMishna();
+
+    this.PageMishna(this.iterationMishna)
   }
 }

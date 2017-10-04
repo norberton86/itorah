@@ -353,6 +353,17 @@
         </li>
       </ul>
       <!-- /.search-resultsults -->
+       <div class="tile-box-actions">
+        <div class="paging">
+          <ul>
+            <li data-type="back"><a href="#/" class="paging-prev-emula" (click)="PagingPrevWeekly()"><i class="ico-paging-prev"></i></a></li>
+            <li *ngFor="let p of pagesWeekly"><a [ngClass]="{'current': p.current}" href="#/"  (click)="PageWeekly(p.id)">{{p.id}}</a></li>
+            <li data-type="go"><a href="#/" class="paging-next-emula" (click)="PagingNextWeekly()"><i class="ico-paging-next"></i></a></li>
+          </ul>
+        </div>
+        <!-- /.paging -->
+      </div>
+      <!-- /.table-actions -->
     </div>
 
     <div class="tile-box-tab" id="search-tile-tab-4">

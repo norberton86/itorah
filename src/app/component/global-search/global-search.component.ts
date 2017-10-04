@@ -144,7 +144,16 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
         }, function (error) { }, function () { }
         );
 
-     
+        self.globalSearchService.read(this.pattern, "16", 9, 1)
+        .subscribe(function (response) {
+
+
+          self.UpdateWeekly(response.totalPageCount, response.searchItems)
+
+          //self.loading = false
+
+        }, function (error) { }, function () { }
+        );
     }
 
 
@@ -250,4 +259,64 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
     this.PageHalachat(this.iterationHalachat)
   }
   //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   UpdateWeekly(totalPageCount: number, searchItems: Array<any>) {
+
+    this.allPagesWeekly = totalPageCount; //pagination
+    this.iterationWeekly = 1; //pagination
+
+    this.CreatePagesWeekly();
+    this.weekly = searchItems
+  }
+
+  CreatePagesWeekly() {
+    this.pagesWeekly = [];
+
+    for (var i = this.iterationWeekly * 6 - 6; i < this.iterationWeekly * 6 && i < this.allPagesWeekly; i++) //populate the pages array
+    {
+      if (i == (this.iterationWeekly - 1) * 6) {
+        this.pagesWeekly.push({ id: i + 1, current: true });
+      }
+      else
+        this.pagesWeekly.push({ id: i + 1, current: false });
+    }
+
+  }
+
+
+  PageWeekly(id: number) {
+
+    this.pagesWeekly.forEach(function (p) {
+
+      if (p.id != id)
+        p.current = false;
+      else
+        p.current = true;
+    })
+
+    this.globalSearchService.read(this.pattern, "6", 9, id)
+      .subscribe(response => this.weekly = response.searchItems)
+
+  }
+
+  PagingPrevWeekly() {
+    this.iterationWeekly--;
+    if (this.iterationWeekly <= 0) {
+      this.iterationWeekly = 1;
+    }
+    else
+      this.CreatePagesWeekly();
+
+    this.PageWeekly(this.iterationWeekly)
+  }
+
+  PagingNextWeekly() {
+    this.iterationWeekly++;
+    if (this.iterationWeekly > Math.ceil(this.allPagesWeekly / 6)) {
+      this.iterationWeekly = Math.ceil(this.allPagesWeekly / 6);
+    }
+    else
+      this.CreatePagesWeekly();
+
+    this.PageWeekly(this.iterationWeekly)
+  }
 }

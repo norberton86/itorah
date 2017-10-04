@@ -17,9 +17,9 @@ export class GlobalSearchService extends Service{
 
     }
     
-     public read(SearchText:string,Sources:string): Observable<Array<GlobalSearch>> {
+     public read(SearchText:string,Sources:string,PageSize:number,PageIndex:number): Observable<any> {
        
-       return this.http.get(this.ruta+"?SearchText="+SearchText+"&Sources="+Sources).map(
+       return this.http.get(this.ruta+"?SearchText="+SearchText+"&Sources="+Sources+"&PageSize="+PageSize+"&PageIndex="+PageIndex).map(
            (response) => {
                let body = response.json()
                return body;

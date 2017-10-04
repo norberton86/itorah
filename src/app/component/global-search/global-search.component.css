@@ -2,3 +2,7 @@
     background-color:inherit ;
     border-bottom: none;
 }
+
+.tile-box-actions{
+    margin-top: 1em;
+}

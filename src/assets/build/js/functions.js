@@ -86,13 +86,13 @@
 			}
 		})
 
-		$('.btn-make-dedication').on('click', function(e){
+		$('.btn-make-dedication, .btn-toggle').on('click', function(e){
 			e.preventDefault()
 			var id = $(this).attr('href');
 
 			$(id)
 				.removeClass('hidden')
-					.siblings()
+					.siblings('.popup-body')
 					.addClass('hidden')
 		})
 

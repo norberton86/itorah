@@ -20,7 +20,7 @@
           <a href="#search-tile-tab-2-r">
 										Halachat
 
-										<span>{{halachat.length}} Halachat</span>
+										<span> Halachat</span>
 									</a>
         </li>
 
@@ -28,7 +28,7 @@
           <a href="#search-tile-tab-3-r">
 										Weekly Parasha
 
-										<span>{{weekly.length}} Halachat</span>
+										<span> Halachat</span>
 									</a>
         </li>
 
@@ -36,7 +36,7 @@
           <a href="#search-tile-tab-4-r">
 										Mishnah Berurah Q &amp; A
 
-										<span>{{berura.length}} Halachat</span>
+										<span> Halachat</span>
 									</a>
         </li>
         
@@ -44,7 +44,7 @@
           <a href="#search-tile-tab-5-r">
 										Tehillim
 
-										<span>{{tehillim.length}} Halachat</span>
+										<span> Halachat</span>
 									</a>
         </li>
       </ul>
@@ -148,6 +148,17 @@
 
       </ul>
       <!-- /.search-resultsults -->
+      <div class="tile-box-actions">
+        <div class="paging">
+          <ul>
+            <li data-type="back"><a href="#/" class="paging-prev-emula" (click)="PagingPrev()"><i class="ico-paging-prev"></i></a></li>
+            <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/"   (click)="Page(p.id)">{{p.id}}</a></li>
+            <li data-type="go"><a href="#/" class="paging-next-emula" (click)="PagingNext()"><i class="ico-paging-next"></i></a></li>
+          </ul>
+        </div>
+        <!-- /.paging -->
+      </div>
+      <!-- /.table-actions -->
     </div>
 
     <div class="tile-box-tab" id="search-tile-tab-2-r">
@@ -242,6 +253,17 @@
         </li>
       </ul>
       <!-- /.search-resultsults -->
+       <div class="tile-box-actions">
+        <div class="paging">
+          <ul>
+            <li data-type="back"><a href="#/" class="paging-prev-emula" (click)="PagingPrevHalachat()"><i class="ico-paging-prev"></i></a></li>
+            <li *ngFor="let p of pagesHalachat"><a [ngClass]="{'current': p.current}" href="#/"  (click)="PageHalachat(p.id)">{{p.id}}</a></li>
+            <li data-type="go"><a href="#/" class="paging-next-emula" (click)="PagingNextHalachat()"><i class="ico-paging-next"></i></a></li>
+          </ul>
+        </div>
+        <!-- /.paging -->
+      </div>
+      <!-- /.table-actions -->
     </div>
 
     <div class="tile-box-tab" id="search-tile-tab-3-r">
@@ -336,6 +358,17 @@
         </li>
       </ul>
       <!-- /.search-resultsults -->
+       <div class="tile-box-actions">
+        <div class="paging">
+          <ul>
+            <li data-type="back"><a href="#/" class="paging-prev-emula" (click)="PagingPrevWeekly()"><i class="ico-paging-prev"></i></a></li>
+            <li *ngFor="let p of pagesWeekly"><a [ngClass]="{'current': p.current}" href="#/"  (click)="PageWeekly(p.id)">{{p.id}}</a></li>
+            <li data-type="go"><a href="#/" class="paging-next-emula" (click)="PagingNextWeekly()"><i class="ico-paging-next"></i></a></li>
+          </ul>
+        </div>
+        <!-- /.paging -->
+      </div>
+      <!-- /.table-actions -->
     </div>
 
     <div class="tile-box-tab" id="search-tile-tab-4-r">
@@ -430,6 +463,17 @@
         </li>
       </ul>
       <!-- /.search-resultsults -->
+       <div class="tile-box-actions">
+        <div class="paging">
+          <ul>
+            <li data-type="back"><a href="#/" class="paging-prev-emula" (click)="PagingPrevMishna()"><i class="ico-paging-prev"></i></a></li>
+            <li *ngFor="let p of pagesMishna"><a [ngClass]="{'current': p.current}" href="#/"  (click)="PageMishna(p.id)">{{p.id}}</a></li>
+            <li data-type="go"><a href="#/" class="paging-next-emula" (click)="PagingNextMishna()"><i class="ico-paging-next"></i></a></li>
+          </ul>
+        </div>
+        <!-- /.paging -->
+      </div>
+      <!-- /.table-actions -->
     </div>
 
     <div class="tile-box-tab" id="search-tile-tab-5-r">
@@ -527,6 +571,17 @@
         </li>
       </ul>
       <!-- /.search-resultsults -->
+       <div class="tile-box-actions">
+        <div class="paging">
+          <ul>
+            <li data-type="back"><a href="#/" class="paging-prev-emula" (click)="PagingPrevTehillim()"><i class="ico-paging-prev"></i></a></li>
+            <li *ngFor="let p of pagesTehillim"><a [ngClass]="{'current': p.current}" href="#/"  (click)="PageTehillim(p.id)">{{p.id}}</a></li>
+            <li data-type="go"><a href="#/" class="paging-next-emula" (click)="PagingNextTehillim()"><i class="ico-paging-next"></i></a></li>
+          </ul>
+        </div>
+        <!-- /.paging -->
+      </div>
+      <!-- /.table-actions -->
     </div>
 
   </div>

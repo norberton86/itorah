@@ -304,7 +304,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
         p.current = true;
     })
 
-    this.globalSearchService.read(this.pattern, "6", 9, id)
+    this.globalSearchService.read(this.pattern, "16", 9, id)
       .subscribe(response => this.weekly = response.searchItems)
 
   }
@@ -365,7 +365,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
         p.current = true;
     })
 
-    this.globalSearchService.read(this.pattern, "6", 9, id)
+    this.globalSearchService.read(this.pattern, "12", 9, id)
       .subscribe(response => this.berura = response.searchItems)
 
   }

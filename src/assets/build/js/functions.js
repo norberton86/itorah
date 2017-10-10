@@ -110,6 +110,13 @@
 			}, 500)
 		})
 
+		$('.next-step').on('click', function(e){
+			e.preventDefault()
+
+			$(this).closest('.col-1of3').next('.col-1of3').find('.form-sponsor').removeClass('dissabled')
+		})
+
+
 
 		$('.link-popup a').on('click', function(e) {
 			e.preventDefault();
@@ -120,6 +127,12 @@
 			$('.btn-menu').removeClass('open');
 			$('.popup').removeClass('shown');
 			$(currentHref).toggleClass('shown');
+
+			setTimeout(function () {
+				$('html,body').animate({
+					 scrollTop: 0 //Scroll to position
+				}, 1000);
+			}, 250)
 		})
 
 		$('.popup .link-close').on('click', function() {

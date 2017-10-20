@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Topic, SubTopic, chelek, seif, ContentSeif } from '../model/topic';
+import { Topic, SubTopic, chelek, seif, ContentSeifMishna } from '../model/topic';
 import { Service } from '../model/service';
 
 import { Http, Headers } from '@angular/http';
@@ -60,7 +60,7 @@ export class MIshnaService  extends Service {
     }
 
 
-    public readContentSeif(SeifID: number): Observable<ContentSeif> {
+    public readContentSeif(SeifID: number): Observable<ContentSeifMishna> {
 
         return this.http.get(this.ruta + "byseif?SeifID=" + SeifID).map(
             (response) => {

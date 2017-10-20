@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Topic,SubTopic,chelek,seif,SubSeif,ContentSeif } from '../../model/topic';
+import { Topic,SubTopic,chelek,seif,SubSeif,ContentSeifMishna,Question } from '../../model/topic';
 import { MIshnaService } from '../../service/mishna.service';
 import { PlayerService } from '../../service/player.service';
 import { Observable } from 'rxjs/Observable';
@@ -16,7 +16,7 @@ export class BeruraComponent implements OnInit {
 
   loading:string="Loading..."
   firstTime:boolean=true
-  content: ContentSeif
+  content: ContentSeifMishna
   
   relateds:Array<SubSeif>=[]
   selectedRelated:SubSeif
@@ -47,13 +47,13 @@ export class BeruraComponent implements OnInit {
    
  }
 
-  setValue(cont:ContentSeif)
+  setValue(cont:ContentSeifMishna)
   {
       this.content=cont
       this.loading=cont.subTopicName
   }
 
-  setValueCombo(cont:ContentSeif)
+  setValueCombo(cont:ContentSeifMishna)
   {
       this.content=cont
       this.setByContent()
@@ -221,6 +221,13 @@ export class BeruraComponent implements OnInit {
     $('#printMishna').print();
   }
 
+
+  //--------------------------------------------------------------------------------------------------------
+
+  ShowQuestion(q:Question)
+  {
+    q.status=!q.status
+  }
 
 
 

@@ -21,13 +21,17 @@
     margin-top: 0.7em;
 }
 
-#item-content-77 .tile-box-body .columna button{
+#item-content-77 .tile-box-body .columna button,#QA{
     width: 80px;
     height: 33px;
     border: 1px solid #d3d3d3;
     background: #ffcc00;
     border-radius: 2px;
     border-radius: 4px;
+}
+
+#QA{
+  width: 150px;
 }
 
 
@@ -105,3 +109,13 @@
    cursor: not-allowed; 
    color:#dadada
 }
+
+/*------------------*/
+
+
+h3{
+    font-size: initial;
+    font-weight: initial;
+    color: inherit;
+}
+

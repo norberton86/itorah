@@ -1,14 +1,21 @@
 export class Shiba {
-    name:string
+    levayaIsFor:string
     hebrewName:string
-    deceased:Date
+    transliterationName:string
+    deceasedOn:Date
+    
+
+    familyMembers:string
     spouse:string
     children:Array<string>
     sibblings:Array<string>
     israel:Array<string>
+
+    prayerTimes:string    //.split("\r\nMincha/")
     shacharit:string
     mincha:string
+    
     sittingAt:string
-    arayatDetais:string
-    until:Date
+    arayatDetails:string
+    shivaUntil:Date
 }

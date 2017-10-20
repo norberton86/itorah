@@ -16,67 +16,71 @@
       <div *ngFor="let s of shibas" class="col-xs-12 col-md-6 col-lg-3">
 
         <div>
-          <b>Levaya is for: </b> <span>{{s.name}}</span>
+          <b>Levaya is for: </b> <span>{{s.levayaIsFor}}</span>
         </div>
 
         <div>
-          <b>Hebrew: </b> <span>{{s.hebrewName}}</span>
+          <b>Hebrew: </b> <span>{{s.hebrewName}} {{s.transliterationName}}</span>
         </div>
 
         <div>
-          <b>Deceased On: </b> <span>{{s.deceased| date: 'MM/dd/yyyy'}}</span>
+          <b>Deceased On: </b> <span>{{s.deceasedOn| date: 'MM/dd/yyyy'}}</span>
         </div>
 
 
         <div>
           <b>Family Members: </b>
           <ul>
-             <li>
+             <li *ngIf="s.spouse!=''">
                Spouse - <span style="opacity: .7;font-weight: 400;">{{s.spouse}}</span>
              </li>
-             <li>
+             <li *ngIf="s.children.length>0">
                Children - 
                <span *ngFor="let c of s.children;let i = index" >
                  {{c}} <span *ngIf="i<s.children.length-1">,</span>
                </span>
              </li>  
-             <li>
+             <li *ngIf="s.sibblings.length>0">
                Siblings - 
                <span *ngFor="let c of s.sibblings;let i = index" >
                  {{c}} <span *ngIf="i<s.sibblings.length-1">,</span>
                </span>
              </li>
-             <li>
+            <!-- <li>
                In Israel - 
                <span *ngFor="let c of s.israel;let i = index" >
                    {{c}} <span *ngIf="i<s.israel.length-1">,</span>
                </span>
-             </li>   
+             </li>   -->
           </ul> 
         </div>
 
-        <div>
+      <!--<div>
           <b>Prayer Times: </b> 
            <ul>
              <li>
                Shacharit {{s.shacharit}}
              </li>
              <li>
-               Mincha {{s.mincha}}
+               Minha {{s.mincha}}
              </li>
           </ul> 
-        </div>
+        </div>-->
+
+        <div>
+          <b>Prayer Times: </b> <span>{{s.prayerTimes}}</span>
+         </div>
 
          <div>
           <b>Sitting at: </b> <span>{{s.sittingAt}}</span>
          </div>
 
          <div>
-          <b>Arayat Details: </b> <span>{{s.arayatDetais}}</span>
+          <b>Arayat Details: </b> <span>{{s.arayatDetails}}</span>
          </div>
 
          <div>
-          <b>Shiva Until: </b> <span>{{s.until| date: 'MM/dd/yyyy'}}</span>
+          <b>Shiva Until: </b> <span>{{s.shivaUntil| date: 'MM/dd/yyyy'}}</span>
          </div>
 
       </div>

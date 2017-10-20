@@ -229,7 +229,13 @@ export class BeruraComponent implements OnInit {
     q.status=!q.status
   }
 
+  Hebrew()
+  {
+    this.content.imageUrl.split(',').forEach(function(a){
 
+      window.open(a)
+    })
+  }
 
 
 }

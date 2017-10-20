@@ -33,22 +33,27 @@ export class WeeklyResultComponent implements OnInit {
   pages: Array<Page> = [];
   allPages: number;
   iteration: number;
+  alltotal:number
 
   pagesHalachat: Array<Page> = [];
   allPagesHalachat: number;
   iterationHalachat: number;
+  halachatotal:number
 
   pagesWeekly: Array<Page> = [];
   allPagesWeekly: number;
   iterationWeekly: number;
+  weeklytotal:number
 
   pagesMishna: Array<Page> = [];
   allPagesMishna: number;
   iterationMishna: number;
+  mishnatotal:number
 
   pagesTehillim: Array<Page> = [];
   allPagesTehillim: number;
   iterationTehillim: number;
+  tehellimtotal:number
 
   constructor(private weeklyResultService: WeeklyResultService, private playerService: PlayerService) {
     this.weeklyResultService.getData().subscribe(item => {
@@ -84,7 +89,7 @@ export class WeeklyResultComponent implements OnInit {
 
 
           self.Update(response.totalPageCount, response.searchItems)
-
+          self.alltotal=response.totalResultCount;
           self.loading = false
 
         }, function (error) { }, function () { }
@@ -95,7 +100,7 @@ export class WeeklyResultComponent implements OnInit {
 
 
           self.UpdateHalachat(response.totalPageCount, response.searchItems)
-
+          self.halachatotal=response.totalResultCount;
           //self.loading = false
 
         }, function (error) { }, function () { }
@@ -106,7 +111,7 @@ export class WeeklyResultComponent implements OnInit {
 
 
           self.UpdateWeekly(response.totalPageCount, response.searchItems)
-
+          self.weeklytotal=response.totalResultCount;
           //self.loading = false
 
         }, function (error) { }, function () { }
@@ -117,7 +122,7 @@ export class WeeklyResultComponent implements OnInit {
 
 
           self.UpdateMishna(response.totalPageCount, response.searchItems)
-
+          self.mishnatotal=response.totalResultCount;
           //self.loading = false
 
         }, function (error) { }, function () { }
@@ -128,7 +133,7 @@ export class WeeklyResultComponent implements OnInit {
 
 
           self.UpdateTehillim(response.totalPageCount, response.searchItems)
-
+          self.tehellimtotal=response.totalResultCount;
           //self.loading = false
 
         }, function (error) { }, function () { }
@@ -186,6 +191,7 @@ export class WeeklyResultComponent implements OnInit {
 
     this.CreatePages();
     this.all = searchItems
+  
   }
 
   CreatePages() {

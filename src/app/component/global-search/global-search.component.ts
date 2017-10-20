@@ -28,18 +28,22 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
   pages: Array<Page> = [];
   allPages: number;
   iteration: number;
+  alltotal:number
 
   pagesHalachat: Array<Page> = [];
   allPagesHalachat: number;
   iterationHalachat: number;
+  halachatotal:number
 
   pagesWeekly: Array<Page> = [];
   allPagesWeekly: number;
   iterationWeekly: number;
+    weeklytotal:number
 
   pagesMishna: Array<Page> = [];
   allPagesMishna: number;
   iterationMishna: number;
+  mishnatotal:number
 
   @Input()
   accion: string = "";
@@ -127,7 +131,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
 
           self.Update(response.totalPageCount, response.searchItems)
-
+          self.alltotal=response.totalResultCount;
           self.loading = false
 
         }, function (error) { }, function () { }
@@ -138,7 +142,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
 
           self.UpdateHalachat(response.totalPageCount, response.searchItems)
-
+          self.halachatotal=response.totalResultCount;
           //self.loading = false
 
         }, function (error) { }, function () { }
@@ -149,7 +153,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
 
           self.UpdateWeekly(response.totalPageCount, response.searchItems)
-
+          self.weeklytotal=response.totalResultCount;
           //self.loading = false
 
         }, function (error) { }, function () { }
@@ -160,7 +164,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
 
           self.UpdateMishna(response.totalPageCount, response.searchItems)
-
+          self.mishnatotal=response.totalResultCount;
           //self.loading = false
 
         }, function (error) { }, function () { }

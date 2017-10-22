@@ -120,7 +120,7 @@
 					</div>
 
 					<div class="col-md-4">
-						<button type="button" class="search-btn" id="QA" (click)="Hebrew()">
+						<button type="button" class="search-btn" id="QA" (click)="Hebrew()" *ngIf="action!='search'">
 						   		Click here for Hebrew
 				    		</button>
 					</div>
@@ -138,7 +138,7 @@
 				<ul style="list-style-type: none;margin-top: 4em;" *ngIf="action=='search'">
 					<li *ngFor="let s of search" style="line-height: 2;">
 					   <span class="col-xs-12 col-lg-11"> {{s.question}} </span> 
-					   <span class="col-xs-12 col-lg-1" style="cursor: pointer;text-align: right;">  <i class="fa fa-book fa-lg" title="Read" (click)="Read(s)" style="color:#ffcc00;"></i> Read </span>
+					   <span class="col-xs-12 col-lg-1" style="cursor: pointer;text-align: right;" (click)="Read(s)">  <i class="fa fa-book fa-lg" title="Read" style="color:#ffcc00;"></i> Read </span>
 					</li>
 				</ul>
 

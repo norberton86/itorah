@@ -54,3 +54,21 @@ export class Question {
     answer: string
     status:boolean=false
 }
+
+
+export class SearchResult
+{
+    questionAndAnswerID: number
+    question: string
+    answer: string
+    imageUrl:string
+    chelekID: number
+    chelekName: string
+    simanID: number
+    seifID: number
+    simanSeifName: string
+    topicID: number
+    topicName: string
+    subTopicID: number
+    subTopicName: string
+}

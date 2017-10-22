@@ -62,7 +62,7 @@
 					<div class="search-tertiary" style="padding-top: 1.2em;">
 						<form action="">
 							<input type="search" style="min-width: 2.5em;" id="search" name="search" value="" placeholder="Enter Search word ..." class="search-field"
-							 [(ngModel)]="query_main" (keyup)="keyDown()">
+							 [(ngModel)]="query_main" (keyup)="keyDown($event)">
 							<button type="button" class="search-btn">
 						<i class="ico-magnify"></i>
 					</button>
@@ -127,10 +127,18 @@
 
 				</div>
 
-				<ul style="list-style-type: none;margin-top: 4em;">
-					<li *ngFor="let q of content?.qaList" class="col-sm-12 col-md-6" style="margin-top: 0.5em;">
-						<span  style="font-weight: bold;cursor: pointer;" (click)="ShowQuestion(q)">Q.</span> <span style="cursor:pointer" (click)="ShowQuestion(q)">{{q.question}}</span>
-						<span *ngIf="q.status" style="display: block;font-weight: bold;">A. <span style="display: initial;font-weight: initial">{{q.answer}}</span></span> 
+				<ul style="list-style-type: none;margin-top: 4em;" *ngIf="action=='combo'">
+					<li *ngFor="let q of content?.qaList" class="col-sm-12 col-md-6" style="margin-top: 0.8em;">
+						<span  style="font-weight: bold;cursor: pointer;color: blue;" (click)="ShowQuestion(q)">Q.</span> <span style="cursor:pointer" (click)="ShowQuestion(q)">{{q.question}}</span>
+						<span *ngIf="q.status" style="display: block;font-weight: bold;color: red;margin-top: 0.2em;">A. <span style="display: initial;font-weight: initial;color: initial;">{{q.answer}}</span></span> 
+					</li>
+				</ul>
+
+				
+				<ul style="list-style-type: none;margin-top: 4em;" *ngIf="action=='search'">
+					<li *ngFor="let s of search" style="line-height: 2;">
+					   <span class="col-xs-12 col-lg-11"> {{s.question}} </span> 
+					   <span class="col-xs-12 col-lg-1" style="cursor: pointer;text-align: right;">  <i class="fa fa-book fa-lg" title="Read" (click)="Read(s)" style="color:#ffcc00;"></i> Read </span>
 					</li>
 				</ul>
 

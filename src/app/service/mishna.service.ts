@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Topic, SubTopic, chelek, seif, ContentSeifMishna } from '../model/topic';
+import { Topic, SubTopic, chelek, seif, ContentSeifMishna,SearchResult } from '../model/topic';
 import { Service } from '../model/service';
 
 import { Http, Headers } from '@angular/http';
@@ -88,6 +88,16 @@ export class MIshnaService  extends Service {
     public readBySubTopic(SubTopicID: number): Observable<seif[]> {
 
         return this.http.get(this.ruta + "bysubtopic?SubTopicID=" + SubTopicID).map(
+            (response) => {
+                let body = response.json()
+                return body;
+            }
+        )
+    }
+
+    public Search(search: string): Observable<SearchResult[]> {
+
+        return this.http.get(this.ruta + "search?SearchText=" + search).map(
             (response) => {
                 let body = response.json()
                 return body;

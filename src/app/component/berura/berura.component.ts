@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Topic,SubTopic,chelek,seif,SubSeif,ContentSeifMishna,Question } from '../../model/topic';
+import { Topic,SubTopic,chelek,seif,SubSeif,ContentSeifMishna,Question,SearchResult } from '../../model/topic';
 import { MIshnaService } from '../../service/mishna.service';
 import { PlayerService } from '../../service/player.service';
 import { Observable } from 'rxjs/Observable';
@@ -34,6 +34,8 @@ export class BeruraComponent implements OnInit {
   selectedSubTopic:SubTopic
 
   query_main:string=''
+  search:Array<SearchResult>=[]
+  action:string='combo'
 
   constructor(private playerService:PlayerService,private mishnaService:MIshnaService) { }
 
@@ -42,9 +44,19 @@ export class BeruraComponent implements OnInit {
    this.ReadTopic()
  }
 
- keyDown()
+ keyDown(event)
  {
-   
+   if (event.keyCode == 13)
+   {
+     let self=this
+      this.mishnaService.Search(this.query_main).subscribe( function(respond){
+             
+             self.search=respond
+             self.action='search'
+           },
+           function(error){},
+           function(){})
+   }
  }
 
   setValue(cont:ContentSeifMishna)
@@ -235,6 +247,11 @@ export class BeruraComponent implements OnInit {
 
       window.open(a)
     })
+  }
+
+  Read(s:SearchResult)
+  {
+
   }
 
 

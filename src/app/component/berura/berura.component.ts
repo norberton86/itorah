@@ -110,6 +110,8 @@ export class BeruraComponent implements OnInit {
   }
 
   ReadContent(idSeif: number, combo: boolean) {
+    
+    this.action="combo"
     let self = this;
     this.mishnaService.readContentSeif(idSeif).subscribe(
       function (respond) {
@@ -231,6 +233,7 @@ export class BeruraComponent implements OnInit {
   }
 
   Read(s: SearchResult) {
+  
     let self = this;
 
     this.selectedCheleck = this.cheleks.filter(i => i.id == s.chelekID)[0]
@@ -299,7 +302,7 @@ export class BeruraComponent implements OnInit {
       function (respond) {
         self.content=respond
         self.content.qaList=[{id:s.questionAndAnswerID,question:s.question,answer:s.answer,status:false}]
-        self.action="combo"
+        self.action="comboread"
       },
       function (error) { },
       function () { }

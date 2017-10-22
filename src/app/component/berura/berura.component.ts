@@ -293,7 +293,17 @@ export class BeruraComponent implements OnInit {
       function (error) { },
       function () { }
     )
+    
 
+    this.mishnaService.readContentSeif(s.seifID).subscribe(
+      function (respond) {
+        self.content=respond
+        self.content.qaList=[{id:s.questionAndAnswerID,question:s.question,answer:s.answer,status:false}]
+        self.action="combo"
+      },
+      function (error) { },
+      function () { }
+    )
 
   }
 

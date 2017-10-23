@@ -25,11 +25,11 @@ export class TehillimShowComponent implements OnInit {
 
   action: string = "briefcase"
 
-  tableHeader:string="Add to"
+  tableHeader: string = "Add to"
 
 
-  backupTehillim:Array<Tehillim>=[]
-  backupMyTehillim:Array<Tehillim>=[]
+  backupTehillim: Array<Tehillim> = []
+  backupMyTehillim: Array<Tehillim> = []
 
   constructor(private ngZone: NgZone, private tehillimService: TehillimService) {
     this.countries = [];
@@ -38,15 +38,13 @@ export class TehillimShowComponent implements OnInit {
     this.tehellims = [];
 
     this.tehillimService.getLogin().subscribe(item => {
-      if (item == "Signed")
-      {
+      if (item == "Signed") {
         this.ReadMyTehillim();
       }
-      else
-      {
-        this.backupMyTehillim=[]
-        this.action="briefcase"                 //restore the original icon 
-        this.tableHeader="Add to"
+      else {
+        this.backupMyTehillim = []
+        this.action = "briefcase"                 //restore the original icon 
+        this.tableHeader = "Add to"
       }
     });
   }
@@ -67,34 +65,29 @@ export class TehillimShowComponent implements OnInit {
   }
 
   MyList() {
-    if (this.action=="briefcase")
-    {
-      if (this.isAuthenticated())
-      {
-        this.backupTehillim=this.tehellims //create backup
-        this.tehellims=this.backupMyTehillim
+    if (this.action == "briefcase") {
+      if (this.isAuthenticated()) {
+        this.backupTehillim = this.tehellims //create backup
+        this.tehellims = this.backupMyTehillim
         this.action = "long-arrow-left"   //put the back icon
-        this.tableHeader="Remove from"
+        this.tableHeader = "Remove from"
       }
-        
+
     }
-    else
-    {
-      this.tehellims=this.backupTehillim  //restore the original data
-       this.action="briefcase"                 //restore the original icon 
-       this.tableHeader="Add to"
+    else {
+      this.tehellims = this.backupTehillim  //restore the original data
+      this.action = "briefcase"                 //restore the original icon 
+      this.tableHeader = "Add to"
     }
 
   }
 
-  GetType(id:number)
-  {
-     if(this.backupMyTehillim.find(i=>i.ID==id))
-     {
-       return "fa fa-minus" 
-     }
-     else
-     return  "ico-plus"
+  GetType(id: number) {
+    if (this.backupMyTehillim.find(i => i.ID == id)) {
+      return "fa fa-minus"
+    }
+    else
+      return "ico-plus"
   }
 
   ngOnInit() {
@@ -142,7 +135,7 @@ export class TehillimShowComponent implements OnInit {
 
     if (localStorage.getItem('userItorah') != null && localStorage.getItem('userItorah') != "") //at the begining we check if we are signed to load the favorites
     {
-        this.ReadMyTehillim();
+      this.ReadMyTehillim();
     }
   }
 
@@ -196,12 +189,12 @@ export class TehillimShowComponent implements OnInit {
   }
 
   ReadTehillim() {
-    this.action="spinner fa-pulse fa-fw"
+    this.action = "spinner fa-pulse fa-fw"
     let self = this;
     this.tehillimService.readTehillim(self.selectedComunity, self.selectedCategory).subscribe(
       function (response) {
         self.tehellims = response;
-        self.action="briefcase"
+        self.action = "briefcase"
       }, function (error) { }, function () { }
     )
   }
@@ -211,9 +204,9 @@ export class TehillimShowComponent implements OnInit {
     let self = this;
     this.tehillimService.readMyTehillim().subscribe(
       function (response) {
-        
-        self.backupMyTehillim=response      //make backup for my favorites
-        
+
+        self.backupMyTehillim = response      //make backup for my favorites
+
       }, function (error) { }, function () { }
     )
   }
@@ -222,16 +215,30 @@ export class TehillimShowComponent implements OnInit {
     $('.table-body').print();
   }
 
-  Manage(id:number)
-  {
-     var index=  this.backupMyTehillim.findIndex(i=>i.ID==id)
-    if(index>=0) //if is on the list then remove
+  Manage(id: number) {
+    var index = this.backupMyTehillim.findIndex(i => i.ID == id)
+    if (index >= 0) //if is on the list then remove
     {
-        this.backupMyTehillim.splice(index, 1)
+
+      let self = this;
+      this.tehillimService.remove(id).subscribe(
+        function (response) {
+
+          self.backupMyTehillim.splice(index, 1)
+        }, function (error) { }, function () { }
+      )
+
     }
     else  //add
     {
-      this.backupMyTehillim.push(this.tehellims.filter(i=>i.ID==id)[0])
+      let self = this;
+      this.tehillimService.add(id).subscribe(
+        function (response) {
+
+          self.backupMyTehillim.push(self.tehellims.filter(i => i.ID == id)[0])
+        }, function (error) { }, function () { }
+      )
+
     }
   }
 

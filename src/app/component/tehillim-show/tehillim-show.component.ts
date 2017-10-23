@@ -216,30 +216,34 @@ export class TehillimShowComponent implements OnInit {
   }
 
   Manage(id: number) {
-    var index = this.backupMyTehillim.findIndex(i => i.ID == id)
-    if (index >= 0) //if is on the list then remove
-    {
 
-      let self = this;
-      this.tehillimService.remove(id).subscribe(
-        function (response) {
+    if (this.isAuthenticated()) {
+      var index = this.backupMyTehillim.findIndex(i => i.ID == id)
+      if (index >= 0) //if is on the list then remove
+      {
 
-          self.backupMyTehillim.splice(index, 1)
-        }, function (error) { }, function () { }
-      )
+        let self = this;
+        this.tehillimService.remove(id).subscribe(
+          function (response) {
 
+            self.backupMyTehillim.splice(index, 1)
+          }, function (error) { }, function () { }
+        )
+
+      }
+      else  //add
+      {
+        let self = this;
+        this.tehillimService.add(id).subscribe(
+          function (response) {
+
+            self.backupMyTehillim.push(self.tehellims.filter(i => i.ID == id)[0])
+          }, function (error) { }, function () { }
+        )
+
+      }
     }
-    else  //add
-    {
-      let self = this;
-      this.tehillimService.add(id).subscribe(
-        function (response) {
 
-          self.backupMyTehillim.push(self.tehellims.filter(i => i.ID == id)[0])
-        }, function (error) { }, function () { }
-      )
-
-    }
   }
 
 }

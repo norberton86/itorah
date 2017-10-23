@@ -25,9 +25,15 @@
         <a href="#/"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a> 
         <a href="#/"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a>
       </h5>
-    <p *ngFor="let p of parragraphs">
+
+      <div style="white-space: pre-wrap;">
+          
+              {{content}}
+      </div>
+
+   <!-- <p *ngFor="let p of parragraphs">
 					{{p}}
-		</p>
+		</p>-->
     </div>
 
   </div>

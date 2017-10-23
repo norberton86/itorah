@@ -45,9 +45,10 @@ export class ReadNowComponent implements OnInit,OnChanges {
       else
       if(this.content.indexOf('\n')>=0) //in this case has special characters format
       {
+        /*
         this.parragraphs=this.content.split("\n").filter(function (s) {  //split by '\n' and get parragraphs
           return s != "";
-        });
+        });*/
          
          this.formatted=false
 

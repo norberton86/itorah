@@ -17,6 +17,7 @@ export class BeruraComponent implements OnInit {
   loading: string = "Loading..."
   firstTime: boolean = true
   content: ContentSeifMishna
+  currentSimanId:number
 
   relateds: Array<SubSeif> = []
   selectedRelated: SubSeif
@@ -233,7 +234,8 @@ export class BeruraComponent implements OnInit {
   }
 
   Read(s: SearchResult) {
-  
+    
+    this.currentSimanId=s.simanID
     let self = this;
 
     this.selectedCheleck = this.cheleks.filter(i => i.id == s.chelekID)[0]
@@ -310,5 +312,33 @@ export class BeruraComponent implements OnInit {
 
   }
 
+
+ QA()
+ {
+
+   let self=this;
+   this.mishnaService.QuestionAndAnswer(this.currentSimanId).subscribe(
+      function (respond) {
+ 
+           self.content.qaList=[]                  
+          respond.forEach(function(a){
+
+               var q=new Question()
+               q.id=a.QuestionAndAnswerID
+               q.answer=a.Answer
+               q.question=a.Question
+               q.status=false
+
+               self.content.qaList.push(q);
+
+          })
+
+          self.action="comboonly"
+        
+      },
+      function (error) { },
+      function () { }
+    )
+ }
 
 }

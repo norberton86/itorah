@@ -78,7 +78,7 @@
 
 					<a (click)="Back()"><i class="fa fa-play fa-rotate-180" aria-hidden="true"></i></a>
 
-					<button type="button" class="search-btn">
+					<button type="button" class="search-btn" style="cursor: initial;">
 						   <i class="fa fa-calendar" aria-hidden="true"> </i>
 				    </button>
 
@@ -100,7 +100,7 @@
 
 				<div class="col-xs-12 col-lg-2 columna">
 
-					<button type="button" class="search-btn" *ngIf="action.indexOf('read')>=0">
+					<button type="button" class="search-btn" *ngIf="action.indexOf('read')>=0" (click)="QA()">
 						   Q&A
 				    </button> <span *ngIf="action.indexOf('read')>=0">Most recent Q&A</span>
 
@@ -115,14 +115,15 @@
 					<div class="col-md-4">
 					</div>
 
-					<div class="col-md-4">
-						<h3>Questions & Answers on Siman 540</h3>
+					<div class="col-md-4" style="text-align: center;">
+						<!--<h3>Questions & Answers on Siman 540</h3>-->
+							<button type="button" class="search-btn" id="QA" (click)="Hebrew()" *ngIf="action.indexOf('combo')>=0 && action.indexOf('only')<0">
+						   		Click here for Hebrew
+				    		</button>
 					</div>
 
 					<div class="col-md-4">
-						<button type="button" class="search-btn" id="QA" (click)="Hebrew()" *ngIf="action.indexOf('combo')>=0">
-						   		Click here for Hebrew
-				    		</button>
+					
 					</div>
 
 				</div>

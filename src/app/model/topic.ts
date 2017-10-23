@@ -72,3 +72,9 @@ export class SearchResult
     subTopicID: number
     subTopicName: string
 }
+
+export class QuestionAndAnswer {
+    QuestionAndAnswerID: number
+    Question: string
+    Answer: string
+}

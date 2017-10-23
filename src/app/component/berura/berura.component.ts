@@ -17,7 +17,7 @@ export class BeruraComponent implements OnInit {
   loading: string = "Loading..."
   firstTime: boolean = true
   content: ContentSeifMishna
-  currentSimanId:number
+  currentSimanId: number
 
   relateds: Array<SubSeif> = []
   selectedRelated: SubSeif
@@ -111,8 +111,8 @@ export class BeruraComponent implements OnInit {
   }
 
   ReadContent(idSeif: number, combo: boolean) {
-    
-    this.action="combo"
+
+    this.action = "combo"
     let self = this;
     this.mishnaService.readContentSeif(idSeif).subscribe(
       function (respond) {
@@ -216,7 +216,13 @@ export class BeruraComponent implements OnInit {
   }
 
   Print() {
-    $('#printMishna').print();
+
+    this.content.imageUrl.split(',').forEach(function (a) {
+      $("body").append("<img src='"+a+"' id='im'/>")
+      $('#im').print();
+      $('#im').remove();
+    })
+
   }
 
 
@@ -234,8 +240,8 @@ export class BeruraComponent implements OnInit {
   }
 
   Read(s: SearchResult) {
-    
-    this.currentSimanId=s.simanID
+
+    this.currentSimanId = s.simanID
     let self = this;
 
     this.selectedCheleck = this.cheleks.filter(i => i.id == s.chelekID)[0]
@@ -283,10 +289,10 @@ export class BeruraComponent implements OnInit {
 
             })
             self.subTopics = subs
-         
+
             self.selectedSubTopic = self.subTopics.filter(i => i.id == s.subTopicID)[0]
             self.selectedRelated = self.relateds.filter(i => i.id == s.seifID)[0]
-            
+
             self.loading = self.selectedSubTopic.name
 
 
@@ -298,13 +304,13 @@ export class BeruraComponent implements OnInit {
       function (error) { },
       function () { }
     )
-    
+
 
     this.mishnaService.readContentSeif(s.seifID).subscribe(
       function (respond) {
-        self.content=respond
-        self.content.qaList=[{id:s.questionAndAnswerID,question:s.question,answer:s.answer,status:false}]
-        self.action="comboread"
+        self.content = respond
+        self.content.qaList = [{ id: s.questionAndAnswerID, question: s.question, answer: s.answer, status: false }]
+        self.action = "comboread"
       },
       function (error) { },
       function () { }
@@ -313,32 +319,31 @@ export class BeruraComponent implements OnInit {
   }
 
 
- QA()
- {
+  QA() {
 
-   let self=this;
-   this.mishnaService.QuestionAndAnswer(this.currentSimanId).subscribe(
+    let self = this;
+    this.mishnaService.QuestionAndAnswer(this.currentSimanId).subscribe(
       function (respond) {
- 
-           self.content.qaList=[]                  
-          respond.forEach(function(a){
 
-               var q=new Question()
-               q.id=a.QuestionAndAnswerID
-               q.answer=a.Answer
-               q.question=a.Question
-               q.status=false
+        self.content.qaList = []
+        respond.forEach(function (a) {
 
-               self.content.qaList.push(q);
+          var q = new Question()
+          q.id = a.QuestionAndAnswerID
+          q.answer = a.Answer
+          q.question = a.Question
+          q.status = false
 
-          })
+          self.content.qaList.push(q);
 
-          self.action="comboonly"
-        
+        })
+
+        self.action = "comboonly"
+
       },
       function (error) { },
       function () { }
     )
- }
+  }
 
 }

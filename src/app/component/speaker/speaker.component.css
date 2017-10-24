@@ -8,4 +8,9 @@
 	opacity: 0.2;
 }
 
+.tile-box-speakers { min-height: 626px;  }
 
+.tile-box-speakers .tile-box-body {
+
+    height: 620px;
+}

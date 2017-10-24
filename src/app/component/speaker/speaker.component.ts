@@ -199,9 +199,9 @@ Letter(id:string)
                 
                                 var page;
                                 if(i==0)
-                                page =  Math.ceil (1/9);
+                                page =  Math.ceil (1/40);
                                 else
-                                page =  Math.ceil (i/9);
+                                page =  Math.ceil (i/40);
 
                                 this.iterationAll=  Math.ceil(page/6);
 
@@ -518,7 +518,7 @@ Play(id:string,title:string)
          });
       }
 
-     this.allPagesAll=this.allSpeakers.length/9;
+     this.allPagesAll=this.allSpeakers.length/40;
      this.iterationAll=1;
 
      this.CreatePagesAll();
@@ -568,7 +568,7 @@ Play(id:string,title:string)
   PopulatedShiriumAll(id:number)
   {
        this.speakers=[];
-       for(var i=id*9-9;i<id*9 && i<this.allSpeakers.length;i++)
+       for(var i=id*40-40;i<id*40 && i<this.allSpeakers.length;i++)
        {
            this.speakers.push(this.allSpeakers[i]);  //populate the grid
        }
@@ -676,7 +676,7 @@ Play(id:string,title:string)
       
         this.speaker.totalShiurim=this.allShiriums.length; 
 
-        this.allPages=this.allShiriums.length/9; //pagination
+        this.allPages=this.allShiriums.length/40; //pagination
         this.iteration=1; //pagination
 
        this.CreatePages();
@@ -703,7 +703,7 @@ Play(id:string,title:string)
   PopulatedShirium(id:number)
   {
        this.shiriums=[];
-       for(var i=id*9-9;i<id*9 && i<this.allShiriums.length;i++)
+       for(var i=id*40-40;i<id*40 && i<this.allShiriums.length;i++)
        {
            this.shiriums.push(this.allShiriums[i]);  //populate the grid
        }

@@ -1,8 +1,9 @@
 <div class="popup" id="readNow">
   <div class="popup-head">
-    <span>Read Now <b> {{title}}</b> </span>
+    <span> <b> {{title}}</b> </span>
     
-
+    <a *ngIf="!formatted" href="#/" style="margin-left: 2em;"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a> 
+    <a *ngIf="!formatted" href="#/"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a>
 
     <a href="#" class="link-close">
 						<i class="ico-close"></i>
@@ -21,9 +22,9 @@
     
     <div *ngIf="!formatted" id="printRead">
       <h5>
-        {{title}}
-        <a href="#/"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a> 
-        <a href="#/"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a>
+       <!-- {{title}}-->
+       <!-- <a href="#/"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a> 
+        <a href="#/"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a>-->
       </h5>
 
       <div style="white-space: pre-wrap;">

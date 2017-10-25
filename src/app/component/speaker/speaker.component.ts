@@ -23,6 +23,7 @@ declare var $: any;
 export class SpeakerComponent implements OnInit {
 
   current: string = "tile-tab-1"
+  detailed:boolean=false
 
   @Output()
   public myEvent = new EventEmitter<boolean>();
@@ -358,7 +359,7 @@ export class SpeakerComponent implements OnInit {
 
 
   InitializeMySlide(data: Array<Speaker>) {
-  this.currentSpeakers = data;
+    this.currentSpeakers = data;
     this.RefreshSlide(data);
 
     let self = this;
@@ -665,5 +666,26 @@ export class SpeakerComponent implements OnInit {
 
   //---------------------------------------------------------------------------------------------------------------------- 
 
+  Back()
+  {
+    this.current="tile-tab-3"
+    this.detailed=false
+  }
 
+  Detailed(id:number)
+  {
+    
+  
+    this.query_main = "";
+
+    this.speaker = this.allSpeakers.filter(function (s) {
+      return s.id == id;
+    })[0];
+
+    this.ReadLectures(id);
+  
+    this.current="tile-tab-1"
+    this.detailed=true
+
+  }
 }

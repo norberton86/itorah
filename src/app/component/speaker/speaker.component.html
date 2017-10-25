@@ -43,6 +43,11 @@
 			<div class="tile-box-body">
 				<div class="lists">
 					<div class="lists-head">
+
+                        <button type="button" class="search-btn" id="buttonBackAll" (click)="Back()" *ngIf="detailed">
+						  <i class="fa fa-long-arrow-left"></i> Back
+				        </button>
+
 						<div class="lists-head-inner" >
 							<h5>{{speaker?.title}} {{speaker?.firstName}} {{speaker?.lastName}}</h5> <p>{{speaker?.totalShiurim}} Shiurim</p>
 						</div><!-- /.lists-head-inner -->
@@ -561,7 +566,7 @@
 						<ul class="tracks tracks-secondary">
 
 							<li class="track" *ngFor="let s of speakers">
-								<div class="track-content">
+								<div class="track-content" (click)="Detailed(s.id)">
 									<h6>{{s.lastName}}, {{s.firstName}}</h6>
 									
 									<p>
@@ -570,7 +575,7 @@
 								</div><!-- /.track-content -->
 								
 								<div class="track-actions">
-									<a href="#/"  class="link-star"  [class.link-star-active]="s.isMySpeaker" id="{{s.id}}" attr.is="{{s.isMySpeaker}}" (click)="ManageFavorites(s.id,s.isMySpeaker)" >
+									<a href="#/"  class="link-star"  [class.link-star-active]="s.isMySpeaker" id="{{s.id}}" attr.is="{{s.isMySpeaker}}" (click)="ManageFavorites(s.id,s.isMySpeaker);Detailed()" >
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>

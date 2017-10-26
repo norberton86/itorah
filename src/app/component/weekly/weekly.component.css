@@ -29,3 +29,11 @@ text-decoration:none;
 .tile-box-primary .tile-box-body {
     height: 340px;
 }
+
+@media(max-width:768px) {
+ 
+ select{
+     padding-left: 1em !important;
+ }
+
+}

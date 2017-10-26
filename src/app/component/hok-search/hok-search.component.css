@@ -1,0 +1,33 @@
+.tile-box-results .tile-box-head .search-tertiary{
+
+    padding-left: 0%;
+    width: 100%;
+}
+
+.tile-box-primary .tile-box-head .select:last-child
+{
+        border-left: none;
+}
+
+.tile-box-primary .tile-box-head label{
+        margin-left: 0.7em;
+}
+
+
+@media(max-width:768px) {
+ 
+ .col-lg-4{
+    padding-left: 9px;
+ }
+
+ .tile-box-primary .tile-box-head label {
+    margin-left: 0px;
+}
+
+.tile-box-results .tile-box-head h4{
+    width: 100%;
+    padding-right: 0px; 
+    display: initial;
+}
+
+}

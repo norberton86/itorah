@@ -1,16 +1,20 @@
 <div id="gSearch" class="tile tile-search ballon tile-full">
   <div class="tile-box-primary">
     <div class="tile-box-head tile-box-head-block">
-      <h3 *ngIf="!loading">Showing results for: <a href="#">{{pattern}}</a></h3>
+      <h3 *ngIf="!loading&&content==''">Showing results for: <a href="#">{{pattern}}</a></h3>
+      <h3 *ngIf="content!=''">Title: <a href="#">{{title}}</a></h3>
       <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-2x"></i>
+      <button type="button" class="search-btn" id="buttonBackGlobal" (click)="Back()" *ngIf="content!=''">
+						 <i class="fa fa-long-arrow-left"></i> Back
+			</button>
 
-      <a class="link-close" href="#">
+      <a class="link-close" href="#" *ngIf="content==''">
 								<i class="ico-close"></i>
-							</a>
+			</a>
     </div>
     <!-- /.tile-box-head tile-box-head-block -->
 
-    <div class="tabs-head">
+    <div class="tabs-head" *ngIf="content==''">
       <ul class="tabs-nav">
         <li class="current">
           <a href="#search-tile-tab-1">
@@ -46,7 +50,7 @@
     </div>
     <!-- /.tabs-head -->
 
-    <div class="tile-box-tab current" id="search-tile-tab-1">
+    <div class="tile-box-tab current" id="search-tile-tab-1" *ngIf="content==''">
       <ul class="search-resultsults">
         <li class="search-resultsult search-resultsult-title">
           <div class="col col-medium">
@@ -156,7 +160,7 @@
       <!-- /.table-actions -->
     </div>
 
-    <div class="tile-box-tab" id="search-tile-tab-2">
+    <div class="tile-box-tab" id="search-tile-tab-2" *ngIf="content==''">
       <ul class="search-resultsults">
         <li class="search-resultsult search-resultsult-title">
           <div class="col col-medium">
@@ -261,7 +265,7 @@
       <!-- /.table-actions -->
     </div>
 
-    <div class="tile-box-tab" id="search-tile-tab-3">
+    <div class="tile-box-tab" id="search-tile-tab-3" *ngIf="content==''">
       <ul class="search-resultsults">
         <li class="search-resultsult search-resultsult-title">
           <div class="col col-medium">
@@ -366,7 +370,7 @@
       <!-- /.table-actions -->
     </div>
 
-    <div class="tile-box-tab" id="search-tile-tab-4">
+    <div class="tile-box-tab" id="search-tile-tab-4" *ngIf="content==''">
       <ul class="search-resultsults">
         <li class="search-resultsult search-resultsult-title">
           <!--<div class="col col-small">
@@ -471,6 +475,13 @@
       <!-- /.table-actions -->
     </div>
 
+    <div class="tile-box-tab" id="search-tile-tab-4" *ngIf="content!=''" [ngClass]="{'current': content!=''}">
+        <div  class="content" [innerHTML]="content" style="white-space: pre-wrap;">
+      
+       
+
+        </div>
+    </div>
 
   </div>
   <!-- /.tile-box-primary -->

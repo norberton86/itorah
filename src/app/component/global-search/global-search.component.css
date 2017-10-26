@@ -6,3 +6,17 @@
 .tile-box-actions{
     margin-top: 1em;
 }
+
+#buttonBackGlobal{
+    width: 80px;
+    height: 33px;
+    border: 1px solid #d3d3d3;
+    background: #ffcc00;
+    border-radius: 2px;
+    border-radius: 4px;
+}
+
+.content
+{
+    padding: 1.2em
+}

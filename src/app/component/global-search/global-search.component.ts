@@ -48,6 +48,15 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
   @Input()
   accion: string = "";
 
+
+  content:string=""
+  title:string=""
+  Back()
+  {
+    this.content=''
+  }
+
+
   constructor(private globalSearchService: GlobalSearchService, private playerService: PlayerService, private weeklyResultService: WeeklyResultService) { }
 
   ngOnInit() {
@@ -180,8 +189,9 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
   }
 
   Read(_title: string, _content: string) {
-    this.weeklyResultService.setDataRead({ title: _title, content: _content, accion: 'read' })
-
+    //this.weeklyResultService.setDataRead({ title: _title, content: _content, accion: 'read' })
+    this.content=_content;
+    this.title=_title;
   }
 
   Play(title: string, media: string) {

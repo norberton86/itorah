@@ -58,6 +58,7 @@ export class WeeklyResultComponent implements OnInit {
 
   content:string=""
   title:string=""
+  media:string=""
   Back()
   {
     this.content=''
@@ -157,15 +158,25 @@ export class WeeklyResultComponent implements OnInit {
     this.weeklyResultService.setDataRead({ title: _title, content: "<h4 style='margin-bottom: 2em;'>" + _title + "</h4>" + _content, accion: 'print' })
 
   }
+  PrintHeader() {
+    this.weeklyResultService.setDataRead({ title: this.title, content: "<h4 style='margin-bottom: 2em;'>" + this.title + "</h4>" + this.content, accion: 'print' })
 
-  Read(_title: string, _content: string) {
+  }
+
+  Read(_title: string, _content: string,_media:string) {
     //this.weeklyResultService.setDataRead({ title: _title, content: _content, accion: 'read' })
     this.content=_content;
     this.title=_title;
+    this.media=_media;
   }
 
   Play(title: string, media: string) {
     this.playerService.PlayAudio(title, media)
+  }
+
+  PlayHeader()
+  {
+     this.playerService.PlayAudio(this.title, this.media)
   }
 
   Desc(a, b) {

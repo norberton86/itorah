@@ -18,4 +18,9 @@ export class DownloadShiriumComponent implements OnInit {
     	$('#downloadShirium').toggleClass('shown');
   }
 
+  Download()
+  {
+    
+  }
+
 }

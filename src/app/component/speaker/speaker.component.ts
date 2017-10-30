@@ -18,7 +18,7 @@ declare var $: any;
   selector: 'app-speaker',
   templateUrl: './speaker.component.html',
   styleUrls: ['./speaker.component.css'],
-  providers: [SpeakerService, ShiurimService, PlayerService, DatabaseService]
+  providers: [SpeakerService, PlayerService, DatabaseService]
 })
 export class SpeakerComponent implements OnInit {
 
@@ -696,6 +696,7 @@ export class SpeakerComponent implements OnInit {
       if (this.isAuthenticated())
       {
         $("#downloadShirium").toggleClass('shown');
+        this.shiurimService.setItem(s)
       }
       
 

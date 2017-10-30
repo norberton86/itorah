@@ -12,20 +12,23 @@
 
   <div class="popup-body">
 
-    <p>This Download will cost 2 Credits. Your current balance is: XX Credits. Click DOWNLOAD below to buy this Class and reduce
-      your balance by 2 credits.
-    </p>
-
- 
-
+    <p *ngIf="enough"> This Download will cost {{currentShirium?.credits}} Credits. Your current balance is: {{credits}} Credits. Click DOWNLOAD below to buy this Class and reduce your balance by {{currentShirium?.credits}} credits.</p>
+    <p *ngIf="!enough"> This Download will cost {{currentShirium?.credits}} credits.  You do not have any credits in your account. Click the button SHOP below to purchase credits.</p>
 
     <div style="float: right;margin-bottom: 1em;">
-      <button type="button" class="search-btn buttonPurchase" (click)="Download()" style="width:100px;">
+
+      <button type="button" class="search-btn buttonPurchase" (click)="goShop()" style="width:100px;" *ngIf="!enough">
+						 <i class="fa fa-download"></i> Shop
+			</button>
+
+      <button type="button" class="search-btn buttonPurchase" (click)="Download()" style="width:100px;" *ngIf="enough">
 						 <i class="fa fa-download"></i> Download
-				</button>
+			</button>
+      
       <button type="button" class="search-btn buttonPurchase" (click)="Close()" style="background: #f05122">
 						 <i class="fa fa-ban"></i> Cancel
-				</button>
+			</button>
+
     </div>
 
 

@@ -51,6 +51,7 @@ import { BrowseComponent } from './component/browse/browse.component';
 import { ReadSearchComponent } from './component/read-search/read-search.component';
 import { ShibaComponent } from './component/shiba/shiba.component';
 import { DownloadShiriumComponent } from './component/download-shirium/download-shirium.component';
+import { ShiurimService } from "app/service/shiurim.service";
 
 
 
@@ -116,7 +117,7 @@ let providers = {
      DndModule.forRoot(),
      ShareButtonsModule.forRoot()
   ],
-  providers: [QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService],
+  providers: [QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

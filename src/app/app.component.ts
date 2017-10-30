@@ -13,7 +13,7 @@ declare var $:any;
 })
 export class AppComponent implements OnInit{
   
- credits:number=-1 
+ credit:number=5
 
  val:string=""
  valEmunah:string=""

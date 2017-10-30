@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { ShiurimService } from "app/service/shiurim.service";
+import { Shiurim } from "app/model/shiurim";
 declare var $: any;
 
 @Component({
@@ -6,21 +8,45 @@ declare var $: any;
   templateUrl: './download-shirium.component.html',
   styleUrls: ['./download-shirium.component.css']
 })
-export class DownloadShiriumComponent implements OnInit {
+export class DownloadShiriumComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  @Input()
+  credits: number
+
+  currentShirium:Shiurim
+
+  enough:boolean
+
+
+  constructor(private shiurimService:ShiurimService) {
+
+     this.shiurimService.getItem().subscribe(item => {
+
+       this.enough=item.credits<=this.credits?true:false
+       this.currentShirium=item
+      
+     });
+   }
+
+  ngOnChanges(changes: any): void {
+    this.credits = changes.credits.currentValue
+  }
 
   ngOnInit() {
   }
 
-  Close()
-  {
-    	$('#downloadShirium').toggleClass('shown');
+  Close() {
+    $('#downloadShirium').toggleClass('shown');
   }
 
-  Download()
+  Download() {
+
+  }
+
+  goShop()
   {
-    
+    this.Close();
+    $("#shop").toggleClass('shown')
   }
 
 }

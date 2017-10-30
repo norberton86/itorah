@@ -36,3 +36,11 @@ margin-bottom: 1em;
 }
 
 }
+
+/*----------------------------------------*/
+
+.popup .popup-head .link-close-download {
+    position: absolute;
+    top: 15px;
+    right: 16px;
+}

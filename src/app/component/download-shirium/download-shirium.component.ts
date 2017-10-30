@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-download-shirium',
@@ -10,6 +11,11 @@ export class DownloadShiriumComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  Close()
+  {
+    	$('#downloadShirium').toggleClass('shown');
   }
 
 }

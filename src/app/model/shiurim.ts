@@ -9,8 +9,8 @@ export class Shiurim {
     audio: string
     video: string
     wowzaVideoUrl:string
-    credits:number
-    sponsored:true;
+    credits:number=Math.floor((Math.random() * 10) + 1);
+    sponsored:false;
 }
 
 

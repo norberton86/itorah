@@ -50,6 +50,7 @@ import { BeruraComponent } from './component/berura/berura.component';
 import { BrowseComponent } from './component/browse/browse.component';
 import { ReadSearchComponent } from './component/read-search/read-search.component';
 import { ShibaComponent } from './component/shiba/shiba.component';
+import { DownloadShiriumComponent } from './component/download-shirium/download-shirium.component';
 
 
 
@@ -104,7 +105,8 @@ let providers = {
     BeruraComponent,
     BrowseComponent,
     ReadSearchComponent,
-    ShibaComponent
+    ShibaComponent,
+    DownloadShiriumComponent
   ],
   imports: [
     BrowserModule,

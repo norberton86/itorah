@@ -23,7 +23,7 @@ declare var $: any;
 export class SpeakerComponent implements OnInit {
 
   current: string = "tile-tab-1"
-  detailed:boolean=false
+  detailed: boolean = false
 
   @Output()
   public myEvent = new EventEmitter<boolean>();
@@ -666,16 +666,14 @@ export class SpeakerComponent implements OnInit {
 
   //---------------------------------------------------------------------------------------------------------------------- 
 
-  Back()
-  {
-    this.current="tile-tab-3"
-    this.detailed=false
+  Back() {
+    this.current = "tile-tab-3"
+    this.detailed = false
   }
 
-  Detailed(id:number)
-  {
-    
-  
+  Detailed(id: number) {
+
+
     this.query_main = "";
 
     this.speaker = this.allSpeakers.filter(function (s) {
@@ -683,9 +681,24 @@ export class SpeakerComponent implements OnInit {
     })[0];
 
     this.ReadLectures(id);
-  
-    this.current="tile-tab-1"
-    this.detailed=true
 
+    this.current = "tile-tab-1"
+    this.detailed = true
+
+  }
+
+  Download(s: Shiurim) {
+    if (s.sponsored) {
+      //download
+    }
+    else {
+
+      if (this.isAuthenticated())
+      {
+        $("#downloadShirium").toggleClass('shown');
+      }
+      
+
+    }
   }
 }

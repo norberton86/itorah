@@ -9,6 +9,8 @@ export class Shiurim {
     audio: string
     video: string
     wowzaVideoUrl:string
+    credits:number
+    sponsored:true;
 }
 
 

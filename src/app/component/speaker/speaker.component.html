@@ -1,4 +1,3 @@
-
 <div class="tile-box" id="item-content-1">
 	<div class="tile-box-primary tile-box-speakers">
 		<div class="tile-box-head tile-box-head-block">
@@ -8,123 +7,150 @@
 					<option id="my" value="#tile-tab-2">My Favorites</option>
 					<option id="all" value="#tile-tab-3">All Speakers</option>
 				</select>
-			</div><!-- /.select -->		
-			
-			<div class="slider-profiles">
-					<div class="slider-clip">
-						<ul class="slides">
-						
+			</div>
+			<!-- /.select -->
 
-						   <li *ngFor="let s of currentSpeakers;" class="slider-slide" [class.current_letter]="Selected(s.id)"  data-type="lecture" id="{{s.id}}" (click)="lecturesBySpeaker(s.id)" >
-								<div class="slider-inner" >
-									<div class="slider-avatar">
-										<img  *ngIf="s.picUrl!=''" src="{{s.picUrl}}" alt="">
-									</div><!-- /.slider-avatar -->
-									
-									<div class="slider-content">  
-										<h5>{{s.title}} {{s.firstName}} {{s.lastName}}</h5>
-										
-										<p>{{s.totalShiurim}}  Shiurim</p>
-									</div><!-- /.slider-content -->
-								</div><!-- /.slider-inner -->
-							</li><!-- /.slider-slide -->
-							
-						
-						</ul><!-- /.slides -->
-					</div><!-- /.slider-clip -->
-				</div><!-- /.slider-profiles -->	
-			
+			<div class="slider-profiles">
+				<div class="slider-clip">
+					<ul class="slides">
+
+
+						<li *ngFor="let s of currentSpeakers;" class="slider-slide" [class.current_letter]="Selected(s.id)" data-type="lecture" id="{{s.id}}"
+						 (click)="lecturesBySpeaker(s.id)">
+							<div class="slider-inner">
+								<div class="slider-avatar">
+									<img *ngIf="s.picUrl!=''" src="{{s.picUrl}}" alt="">
+								</div>
+								<!-- /.slider-avatar -->
+
+								<div class="slider-content">
+									<h5>{{s.title}} {{s.firstName}} {{s.lastName}}</h5>
+
+									<p>{{s.totalShiurim}} Shiurim</p>
+								</div>
+								<!-- /.slider-content -->
+							</div>
+							<!-- /.slider-inner -->
+						</li>
+						<!-- /.slider-slide -->
+
+
+					</ul>
+					<!-- /.slides -->
+				</div>
+				<!-- /.slider-clip -->
+			</div>
+			<!-- /.slider-profiles -->
+
 			<a href="#" class="link-close">
 				<i class="ico-close"></i>
-			</a>					
-		</div><!-- /.table-head -->
-		
+			</a>
+		</div>
+		<!-- /.table-head -->
+
 		<div class="tile-box-tab" [class.current]="Current('tile-tab-1')" id="tile-tab-1">
 			<div class="tile-box-body">
 				<div class="lists">
 					<div class="lists-head">
 
-                        <button type="button" class="search-btn" id="buttonBackAll" (click)="Back()" *ngIf="detailed">
+						<button type="button" class="search-btn" id="buttonBackAll" (click)="Back()" *ngIf="detailed">
 						  <i class="fa fa-long-arrow-left"></i> Back
 				        </button>
 
-						<div class="lists-head-inner" >
-							<h5>{{speaker?.title}} {{speaker?.firstName}} {{speaker?.lastName}}</h5> <p>{{speaker?.totalShiurim}} Shiurim</p>
-						</div><!-- /.lists-head-inner -->
-						
-						<div class="search-secondary" >
+						<div class="lists-head-inner">
+							<h5>{{speaker?.title}} {{speaker?.firstName}} {{speaker?.lastName}}</h5>
+							<p>{{speaker?.totalShiurim}} Shiurim</p>
+						</div>
+						<!-- /.lists-head-inner -->
+
+						<div class="search-secondary">
 							<form action="?" method="get" id="form-main">
 								<label for="q" class="hidden">Search</label>
-								
-								<input  type="search" name="q" id="q"  placeholder="Search through {{speaker?.totalShiurim}} Shiurim " class="search-field main-search-nor" [(ngModel)]="query_main" (keyup)="keyDownSpeakerFunction($event)">
-								
-								<button data-type="search-shirium" type="button"  class="search-btn" ><i class="ico-magnify" id="prueba" (click)="mainSearch()"></i></button>
+
+								<input type="search" name="q" id="q" placeholder="Search through {{speaker?.totalShiurim}} Shiurim " class="search-field main-search-nor"
+								 [(ngModel)]="query_main" (keyup)="keyDownSpeakerFunction($event)">
+
+								<button data-type="search-shirium" type="button" class="search-btn"><i class="ico-magnify" id="prueba" (click)="mainSearch()"></i></button>
 							</form>
-						</div><!-- /.search -->
-					</div><!-- /.lists-head -->
-					
+						</div>
+						<!-- /.search -->
+					</div>
+					<!-- /.lists-head -->
+
 					<div class="lists-body">
 						<ul class="tracks">
 							<li class="track" *ngFor="let s of shiriums">
 								<!--<a href="#" class="link-play-secondary"></a>-->
-								
+
 								<div class="track-content" style="padding-left: 0.5em">
 									<h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
-									
+
 									<p>
 										<span class="date">{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span>
-										
+
 										<span class="min">{{s.length|time}}min</span>
-										
+
 										<span class="lang">{{s.language|language}}</span>
-										
+
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
-									
-                                        <a href="#/" class="link-mic" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}" (click)="Play(s.video,s.title)">
+
+									<a href="#/" class="link-mic" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}" (click)="Play(s.video,s.title)">
 											<i class="ico-camera"></i>
 										</a>
 
-										<a href="#/" class="link-mic" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}" (click)="Play(s.audio,s.title)">
+									<a href="#/" class="link-mic" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}" (click)="Play(s.audio,s.title)">
 											<i class="ico-mic"></i>
 										</a>
 
-									<a href="{{s?.wowzaVideoUrl}}" class="link-download" download title="Download">
-										<i class="ico-download"></i>
-									</a>
-									
+
 									<a href="#/" class="link-add" title="Add to My Queue List" id="{{s.id}}" (click)="addToQueue(s.id)">
 										<i class="ico-plus-thick"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
-						</ul><!-- /.tracks -->
-					</div><!-- /.lists-body -->
-				</div><!-- /.lists -->
-			</div><!-- /.table-body -->
-			
+
+									<a href="#/" class="link-download"  title="Download" *ngIf="s.audio!=''" (click)="Download(s)">
+										<i class="ico-download"></i>
+									</a>
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
+						</ul>
+						<!-- /.tracks -->
+					</div>
+					<!-- /.lists-body -->
+				</div>
+				<!-- /.lists -->
+			</div>
+			<!-- /.table-body -->
+
 			<div class="tile-box-actions">
 				<div class="paging">
-				    <ul>
-				        <li data-type="back"><a href="#/" class="paging-prev" (click)="pagingPrev()"><i class="ico-paging-prev"></i></a></li>
-				        <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/" data-type="page" id="{{p.id}}" (click)="Page(p.id)">{{p.id}}</a></li>
-				        <li data-type="go"><a href="#/" class="paging-next" (click)="pagindNext()"><i class="ico-paging-next"></i></a></li>
-				    </ul>
-				</div><!-- /.paging -->
-			</div><!-- /.table-actions -->
-		</div><!-- /#tile-tab-1.tile-box-tab -->
-		
+					<ul>
+						<li data-type="back"><a href="#/" class="paging-prev" (click)="pagingPrev()"><i class="ico-paging-prev"></i></a></li>
+						<li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/" data-type="page" id="{{p.id}}" (click)="Page(p.id)">{{p.id}}</a></li>
+						<li data-type="go"><a href="#/" class="paging-next" (click)="pagindNext()"><i class="ico-paging-next"></i></a></li>
+					</ul>
+				</div>
+				<!-- /.paging -->
+			</div>
+			<!-- /.table-actions -->
+		</div>
+		<!-- /#tile-tab-1.tile-box-tab -->
+
 		<div id="tile-tab-2" class="tile-box-tab" [class.current]="Current('tile-tab-2')">
 			<div class="tile-box-body">
 				<div class="lists">
 					<div class="lists-head">
 						<div class="lists-head-inner">
 							<a href="#">Manage My Speakers</a>
-						</div><!-- /.lists-head-inner -->
-						
+						</div>
+						<!-- /.lists-head-inner -->
+
 						<div class="search-secondary">
 							<ul class="list-alphabet">
 								<li>
@@ -230,373 +256,442 @@
 								<li>
 									<a href="#">Z</a>
 								</li>
-							</ul><!-- /.list-alphabet -->
-							
+							</ul>
+							<!-- /.list-alphabet -->
+
 							<form action="?" method="get">
 								<label for="q" class="hidden">Search</label>
-								
+
 								<input type="search" name="q" id="q" value="" placeholder="Search through 9110 Shiurim " class="search-field">
-								
+
 								<button type="submit" class="search-btn"><i class="ico-magnify"></i></button>
 							</form>
-						</div><!-- /.search -->
-					</div><!-- /.lists-head -->
-					
+						</div>
+						<!-- /.search -->
+					</div>
+					<!-- /.lists-head -->
+
 					<div class="lists-body">
 						<ul class="tracks tracks-secondary">
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-							
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+
 							<li class="track">
 								<div class="track-content">
 									<h6>Abell, R’ Jeff</h6>
-									
+
 									<p>
 										<span class="date">25 Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
 									<a href="#" class="link-star">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-						</ul><!-- /.tracks -->
-					</div><!-- /.lists-body -->
-				</div><!-- /.lists -->
-			</div><!-- /.table-body -->
-			
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
+						</ul>
+						<!-- /.tracks -->
+					</div>
+					<!-- /.lists-body -->
+				</div>
+				<!-- /.lists -->
+			</div>
+			<!-- /.table-body -->
+
 			<div class="tile-box-actions">
 				<div class="paging">
-				    <ul>
-				        <li><a href="#" class="paging-prev"><i class="ico-paging-prev"></i></a></li>
-				        <li><a class="current" href="#">1</a></li>
-				        <li><a href="#">2</a></li>
-				        <li><a href="#">3</a></li>
-				        <li><a href="#">4</a></li>
-				        <li><a href="#">5</a></li>
-				        <li><a href="#">6</a></li>
-				        <li><a href="#" class="paging-next"><i class="ico-paging-next"></i></a></li>
-				    </ul>
-				</div><!-- /.paging -->
-			</div><!-- /.table-actions -->
-		</div><!-- /#tile-tab-2.tile-box-tab -->
-		
+					<ul>
+						<li><a href="#" class="paging-prev"><i class="ico-paging-prev"></i></a></li>
+						<li><a class="current" href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">6</a></li>
+						<li><a href="#" class="paging-next"><i class="ico-paging-next"></i></a></li>
+					</ul>
+				</div>
+				<!-- /.paging -->
+			</div>
+			<!-- /.table-actions -->
+		</div>
+		<!-- /#tile-tab-2.tile-box-tab -->
+
 		<div id="tile-tab-3" class="tile-box-tab" [class.current]="Current('tile-tab-3')">
 			<div class="tile-box-body">
 				<div class="lists">
 					<div class="lists-head" style="padding-left:0px">
 						<div class="lists-head-inner" style="font-size:14px">
-						      <a   class=" link-star-active">
+							<a class=" link-star-active">
 										<i class="ico-star-full"></i>
-							  </a>
-							&nbsp; Add To Favorites
-						</div><!-- /.lists-head-inner -->
-						
+							  </a> &nbsp; Add To Favorites
+						</div>
+						<!-- /.lists-head-inner -->
+
 						<div class="search-secondary">
 							<ul class="list-alphabet">
-								<li  *ngFor="let l of letters">
+								<li *ngFor="let l of letters">
 									<a href="#/" [ngClass]="{'current_letter': l.current,'disabled_letter':l.disable}" data-type="letter" id="{{l.letter}}" (click)="Letter(l.letter)">{{l.letter}}</a>
 								</li>
-							</ul><!-- /.list-alphabet -->
-							
+							</ul>
+							<!-- /.list-alphabet -->
+
 							<form action="?" method="get" id="form-all">
 								<label for="q" class="hidden">Search</label>
-								
-								<input type="search" name="q" id="q" value="" placeholder="Search by LastName" class="search-field all-search-nor" [(ngModel)]="query_all" (keydown)="keyDownSpeakerAllFunction($event)">
-								
+
+								<input type="search" name="q" id="q" value="" placeholder="Search by LastName" class="search-field all-search-nor" [(ngModel)]="query_all"
+								 (keydown)="keyDownSpeakerAllFunction($event)">
+
 								<button data-type="all-search-shirium" type="button" class="search-btn"><i class="ico-magnify" (click)="searchAll()"></i></button>
 							</form>
-						</div><!-- /.search -->
-					</div><!-- /.lists-head -->
-					
+						</div>
+						<!-- /.search -->
+					</div>
+					<!-- /.lists-head -->
+
 					<div class="lists-body">
 						<ul class="tracks tracks-secondary">
 
 							<li class="track" *ngFor="let s of speakers">
 								<div class="track-content" (click)="Detailed(s.id)">
 									<h6>{{s.lastName}}, {{s.firstName}}</h6>
-									
+
 									<p>
 										<span class="date">{{s.totalShiurim}} Shiurim</span>
 									</p>
-								</div><!-- /.track-content -->
-								
+								</div>
+								<!-- /.track-content -->
+
 								<div class="track-actions">
-									<a href="#/"  class="link-star"  [class.link-star-active]="s.isMySpeaker" id="{{s.id}}" attr.is="{{s.isMySpeaker}}" (click)="ManageFavorites(s.id,s.isMySpeaker);Detailed()" >
+									<a href="#/" class="link-star" [class.link-star-active]="s.isMySpeaker" id="{{s.id}}" attr.is="{{s.isMySpeaker}}" (click)="ManageFavorites(s.id,s.isMySpeaker);Detailed()">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>
 									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
+								</div>
+								<!-- /.track-actions -->
+							</li>
+							<!-- /.track -->
 
-						</ul><!-- /.tracks -->
-					</div><!-- /.lists-body -->
-				</div><!-- /.lists -->
-			</div><!-- /.table-body -->
-			
+						</ul>
+						<!-- /.tracks -->
+					</div>
+					<!-- /.lists-body -->
+				</div>
+				<!-- /.lists -->
+			</div>
+			<!-- /.table-body -->
+
 			<div class="tile-box-actions">
 				<div class="paging">
-				    <ul>
-				        <li data-type="back"><a href="#/" class="paging-prev-all"><i class="ico-paging-prev" (click)="pagePrevAll()"></i></a></li>
-				        <li *ngFor="let p of pagesAll"><a [ngClass]="{'current': p.current}" href="#/" data-type="page-All" (click)="PageAll(p.id)" id="{{p.id}}">{{p.id}}</a></li>
-				        <li data-type="go"><a href="#/" class="paging-next-all"><i class="ico-paging-next" (click)="pageNextAll()"></i></a></li>
-				    </ul>
-				</div><!-- /.paging -->
-			</div><!-- /.table-actions -->
+					<ul>
+						<li data-type="back"><a href="#/" class="paging-prev-all"><i class="ico-paging-prev" (click)="pagePrevAll()"></i></a></li>
+						<li *ngFor="let p of pagesAll"><a [ngClass]="{'current': p.current}" href="#/" data-type="page-All" (click)="PageAll(p.id)" id="{{p.id}}">{{p.id}}</a></li>
+						<li data-type="go"><a href="#/" class="paging-next-all"><i class="ico-paging-next" (click)="pageNextAll()"></i></a></li>
+					</ul>
+				</div>
+				<!-- /.paging -->
+			</div>
+			<!-- /.table-actions -->
 		</div>
-	</div><!-- /.tile-box-primary -->
+	</div>
+	<!-- /.tile-box-primary -->
 </div>

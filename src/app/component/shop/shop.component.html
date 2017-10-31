@@ -155,7 +155,7 @@
                     </tfoot>
 
                     <tbody>
-                      <tr>
+                      <tr *ngIf="rows.length>0">
                         <th>Product</th>
 
                         <th>QTY</th>
@@ -198,7 +198,7 @@
             <!-- /.form-body -->
 
             <div class="form-actions">
-              <a href="#shop-2" class="form-submit btn-toggle">continue to checkout</a>
+              <a href="#shop-2" class="form-submit" (click)="Buy()">continue to checkout</a>
             </div>
             <!-- /.form-actions -->
           </form>
@@ -400,7 +400,7 @@
             <!-- /.form-body -->
 
             <div class="form-actions">
-              <input type="submit" value="Process order" class="form-btn">
+              <input type="submit" value="Process order" class="form-btn" [disabled]="Validate()" [class.mydisabled]="Validate()" >
             </div>
             <!-- /.form-actions -->
           </form>

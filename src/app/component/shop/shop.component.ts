@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { CreditCardValidator } from 'ng2-cc-library';
-
+declare var $:any; 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -69,6 +69,22 @@ export class ShopComponent implements OnInit {
   {
     
     
+  }
+
+  Buy()
+  {
+    if(this.rows.length>0)
+    {
+      	$('#shop-2')
+				.removeClass('hidden')
+					.siblings('.popup-body')
+					.addClass('hidden')
+    }
+  }
+
+  Validate()
+  {
+    return this.form.controls.cvc.errors!=null || this.form.controls.creditCard.errors!=null||this.form.controls.expirationDate.errors!=null
   }
 
 }

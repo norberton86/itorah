@@ -28,3 +28,8 @@ strong
     border-radius: 50%;
     margin-right: 0.7em;
 }
+
+
+.mydisabled {
+   cursor: not-allowed !important; 
+}

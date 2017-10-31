@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { CreditCardValidator } from 'ng2-cc-library';
+import { CreditCardValidator } from 'angular-cc-library';
 declare var $:any; 
 @Component({
   selector: 'app-shop',

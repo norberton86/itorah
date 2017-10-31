@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { CreditCardValidator } from 'ng2-cc-library';
 
 @Component({
   selector: 'app-shop',
@@ -17,7 +19,9 @@ export class ShopComponent implements OnInit {
 
   numbers: Array<number> = []
 
-  constructor() {
+  form: FormGroup;
+
+  constructor(private _fb: FormBuilder) {
     var i = 0                     
     for (i = 1; i <= 10; i++) {
       this.numbers.push(i);
@@ -26,6 +30,11 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.form = this._fb.group({
+      creditCard: ['',Validators.compose([ <any>CreditCardValidator.validateCCNumber,Validators.required])],
+      expirationDate: ['', [<any>CreditCardValidator.validateExpDate]],
+      cvc: ['', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4)]]
+    });
   }
 
   Add(id: number) {
@@ -54,6 +63,12 @@ export class ShopComponent implements OnInit {
        sum+=r.Total()
     })
     return sum
+  }
+
+  onSubmit()
+  {
+    
+    
   }
 
 }

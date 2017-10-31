@@ -53,6 +53,7 @@ import { ShibaComponent } from './component/shiba/shiba.component';
 import { DownloadShiriumComponent } from './component/download-shirium/download-shirium.component';
 import { ShiurimService } from "app/service/shiurim.service";
 import { ShopComponent } from './component/shop/shop.component';
+import { CreditCardDirectivesModule } from 'ng2-cc-library'
 
 
 
@@ -112,7 +113,7 @@ let providers = {
     ShopComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,CreditCardDirectivesModule,
      HttpModule,
      FormsModule,ReactiveFormsModule,
      Angular2SocialLoginModule,

@@ -198,7 +198,7 @@
             <!-- /.form-body -->
 
             <div class="form-actions">
-              <a href="#shop-2" class="form-submit" (click)="Buy()">continue to checkout</a>
+              <a href="#shop-2" class="form-submit" (click)="Buy()"  [class.mydisabled]="rows.length<=0">continue to checkout</a>
             </div>
             <!-- /.form-actions -->
           </form>
@@ -271,11 +271,11 @@
                           {{r.price| currency:'USD':true:'2.2-2'}}
                         </td>
 
-                        <td>
+                        <!--<td>
                           <a href="#/" class="link-add" (click)="Remove(r.id)">
 								            <i class="fa fa-minus" ></i>
 							            </a>
-                        </td>
+                        </td> -->
 
                       </tr>
 

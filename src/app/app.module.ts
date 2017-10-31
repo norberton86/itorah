@@ -52,6 +52,7 @@ import { ReadSearchComponent } from './component/read-search/read-search.compone
 import { ShibaComponent } from './component/shiba/shiba.component';
 import { DownloadShiriumComponent } from './component/download-shirium/download-shirium.component';
 import { ShiurimService } from "app/service/shiurim.service";
+import { ShopComponent } from './component/shop/shop.component';
 
 
 
@@ -107,7 +108,8 @@ let providers = {
     BrowseComponent,
     ReadSearchComponent,
     ShibaComponent,
-    DownloadShiriumComponent
+    DownloadShiriumComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

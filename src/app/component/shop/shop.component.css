@@ -1,0 +1,30 @@
+p:last-child{
+    padding: 0 15px; 
+    color: #8a8989; 
+    font-weight: 400; 
+    line-height: 1.1; 
+    font-size: 15px; 
+}
+
+strong
+{
+    color: #14213d;
+    font-weight: 400;
+}
+
+.form-total-credits .total-credits span{
+    font-size: 50px;
+}
+
+
+.fa-minus{
+   
+    vertical-align: middle;
+    text-align: center;
+    line-height: 21px;
+    width: 19px;
+    height: 19px;
+    background: #e14b29;
+    border-radius: 50%;
+    margin-right: 0.7em;
+}

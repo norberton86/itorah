@@ -1,0 +1,107 @@
+<div class="popup shop" id="credits">
+  <div class="popup-head">
+    <form action="?" method="get">
+      <label for="field-search-content">My Credits</label>
+
+      <a href="#" class="link-close">
+					<i class="ico-close"></i>
+				</a>
+    </form>
+  </div>
+  <!-- /.popup-head -->
+
+  <div class="popup-body">
+    <div class="cols">
+      <div class="col">
+        <div class="form-credits">
+          <form action="?" method="post">
+            <div class="form-head">
+              <h4>Order History</h4>
+            </div>
+            <!-- /.form-head -->
+
+            <div class="form-body">
+              <div class="form-row" style="border-bottom: 2px solid #f4f4f4;">
+
+                <div class="form-total-credits">
+                  <h3 class="total-credits-label">Current Shiurim balance</h3>
+
+                  <h1 class="total-credits">
+                    <span>32</span> Shiurim
+                    <small class="average-price">($16)</small>
+                  </h1>
+                </div>
+
+
+
+              </div>
+              <!-- /.form-row -->
+
+
+
+              <div class="form-row">
+
+                <div class="table-credits">
+                  <table>
+                    <!--<tfoot>
+                      <tr>
+                        <th colspan="2">Total</th>
+
+                        <th>{{Total()| currency:'USD':true:'2.2-2'}}</th>
+                      </tr>
+                    </tfoot> -->
+
+                    <tbody style="border-bottom: 2px solid #b8b8b8;">
+                      <tr *ngIf="rows.length>0" style="border-bottom: 2px solid #b8b8b8;">
+                        <th>Order Date</th>
+
+                        <th>Product</th>
+
+                        <th>QTY</th>
+
+                        <th>Price</th>
+                      </tr>
+
+                      <tr *ngFor="let r of rows">
+                        <td>{{r.date|date: 'MM/dd/yyyy'}}</td>
+                        
+                        <td>{{r.quantity}} Shiurim</td>
+
+                        <td>
+                            {{r.count}}
+                        </td>
+
+                        <td>
+                          {{r.price*r.count| currency:'USD':true:'2.2-2'}}
+                        </td>
+
+
+
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+              <!-- /.form-row -->
+            </div>
+            <!-- /.form-body -->
+
+            <div class="form-actions">
+              <input type="button" value="BUY CREDITS" class="form-btn" id="buyCredits" (click)="Navigate()">
+            </div>
+            <!-- /.form-actions -->
+          </form>
+        </div>
+        <!-- /.form-credits -->
+      </div>
+      <!-- /.col-1of2 -->
+
+    </div>
+    <!-- /.cols -->
+  </div>
+  <!-- /.popup-body -->
+
+</div>
+<!-- /#shop.popup shop -->

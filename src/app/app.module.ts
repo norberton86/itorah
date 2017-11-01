@@ -53,7 +53,8 @@ import { ShibaComponent } from './component/shiba/shiba.component';
 import { DownloadShiriumComponent } from './component/download-shirium/download-shirium.component';
 import { ShiurimService } from "app/service/shiurim.service";
 import { ShopComponent } from './component/shop/shop.component';
-import { CreditCardDirectivesModule } from 'angular-cc-library'
+import { CreditCardDirectivesModule } from 'angular-cc-library';
+import { MyCreditsComponent } from './component/my-credits/my-credits.component'
 
 
 
@@ -110,7 +111,8 @@ let providers = {
     ReadSearchComponent,
     ShibaComponent,
     DownloadShiriumComponent,
-    ShopComponent
+    ShopComponent,
+    MyCreditsComponent
   ],
   imports: [
     BrowserModule,CreditCardDirectivesModule,

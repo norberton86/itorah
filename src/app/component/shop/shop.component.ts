@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { CreditCardValidator } from 'angular-cc-library';
+import { ShiurimBuy,ShiurimBuyTable } from '../../model/shiurim-buy';
+
 declare var $:any; 
 @Component({
   selector: 'app-shop',
@@ -90,25 +92,3 @@ export class ShopComponent implements OnInit {
 }
 
 
-class ShiurimBuy {
-  id: number
-  quantity: number
-  price: number
-}
-
-class ShiurimBuyTable extends ShiurimBuy {
-  count: number = 1
-
-  constructor(s: ShiurimBuy) {
-    super()
-    this.id = s.id
-    this.quantity = s.quantity
-    this.price = s.price
-  }
-
-  Total()
-  {
-    return this.count*this.price
-  }
-
-}

@@ -117,6 +117,7 @@ Agree()
     this.sub = this._auth.login(provider).subscribe(
       (data:any) => {
 
+       console.log(data)
        this.Save(data)
         
       }

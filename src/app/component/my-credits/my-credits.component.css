@@ -1,0 +1,73 @@
+#buyCredits{
+    background: #37c47c;
+    font-size: 16px;
+    color: #464646;
+    padding: 10px;
+    border-radius: 4px;
+    max-width: 284px;
+    margin: 0 auto;
+    display: block;
+    border: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #fff;
+    width: 100%;
+    text-align: center !important;
+    text-decoration: none !important;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+
+    float: right;
+}
+
+.form-head{
+    padding-right: 33%;
+    padding-left: 33%;
+}
+.form-total-credits{
+    padding-left: 33%;
+    padding-right: 33%;
+}
+
+h3{
+   margin-left: 4em;
+}
+
+.form-body{
+    margin: 4em;
+}
+
+@media (max-width: 767px){
+.form-total-credits{
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+.form-body{
+    margin: 0em;
+}
+
+#buyCredits{
+    float: none;
+}
+
+h3{
+   margin-left: 0em;
+   text-align: center;
+}
+
+h1{
+    text-align: center;
+    width: 100%;
+}
+
+.form-credits{
+padding-top: 0.2em;
+padding-bottom: 0.2em;
+padding-left: 0.1em;
+padding-right: 0.1em;
+}
+
+
+}

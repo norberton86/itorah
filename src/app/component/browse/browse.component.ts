@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit,Input ,OnChanges } from '@angular/core';
 import { PlayerService } from '../../service/player.service';
 import { BrowseService } from '../../service/browse.service';
 import { ItemQueue, Category } from '../../model/shiurim';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./browse.component.css'],
   providers: [PlayerService, BrowseService]
 })
-export class BrowseComponent implements OnInit {
+export class BrowseComponent implements OnInit,OnChanges {
 
   asc: boolean = false;
 
@@ -24,6 +24,11 @@ export class BrowseComponent implements OnInit {
 
   category: Category
   categorys: Array<Category> = []
+
+  current:string="All"
+
+  @Input()
+  browseClass: string
 
   constructor(private playerService: PlayerService, private browseService: BrowseService) { }
 
@@ -52,6 +57,11 @@ export class BrowseComponent implements OnInit {
 
     this.ReadCategory();
     this.Read();
+  }
+
+   ngOnChanges(changes: any): void {
+    this.current=changes.browseClass.currentValue
+    
   }
 
   Read() {
@@ -104,7 +114,14 @@ export class BrowseComponent implements OnInit {
       col = col.sort(this.Desc)
   }
 
-
-
+  Current(c:string)
+  {
+    return c==this.current
+  }
+  
+  setCurrent(c:string)
+  {
+    this.current=c
+  }
 
 }

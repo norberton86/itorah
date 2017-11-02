@@ -125,12 +125,18 @@
 						</ul><!-- /.nav-utilities -->
 
 						<div class="select-box">
-							<select class="select">
+							<select class="select" (change)="ChangeBrowse($event.target.value)">
 								<option value="" hidden selected>Browse</option>
 
-								<option value="">Option 1</option>
+								<option value="All">All</option>
 
-								<option value="">Option 2</option>
+								<option value="Recently">Recently Uploaded</option>
+
+								<option value="Popular">Popular</option>
+
+								<option value="Relevant">Relevant</option>
+
+								<option value="Category">Category</option>
 							</select>
 						</div><!-- /.select-box -->
 
@@ -212,7 +218,7 @@
 
 				<app-global-search [accion]="gSearchPattern"></app-global-search>
 				<app-weekly-result></app-weekly-result>
-				<app-browse></app-browse>
+				<app-browse [browseClass]="browseClasses"></app-browse>
 				<app-read-now [title]="rNow?.title" [content]="rNow?.content" ></app-read-now>
 				<app-read-search></app-read-search>
 				<app-download-shirium [credits]="credit"></app-download-shirium>

@@ -11,37 +11,37 @@
         <!-- /.tile-box-head tile-box-head-block -->
 
         <div class="tabs-head">
-            <ul class="tabs-nav">
-                <li class="current">
-                    <a href="#search-tile-tab-1-b">
+            <ul class="">  <!--<ul class="tabs-nav-->
+                <li [class.current]="Current('All')" (click)="setCurrent('All')">
+                    <a href="#/">
 										All
 										<span>{{all.length}} </span>
 									</a>
                 </li>
 
-                <li>
-                    <a href="#search-tile-tab-2-b">
+                <li [class.current]="Current('Recently')" (click)="setCurrent('Recently')">
+                    <a href="#/">
 										Recently Uploaded Classes
 										<span>{{recently.length}} </span>
 									</a>
                 </li>
 
-                <li>
-                    <a href="#search-tile-tab-3-b">
+                <li [class.current]="Current('Popular')" (click)="setCurrent('Popular')">
+                    <a href="#/">
 										Popular Classes
 										<span>{{popular.length}} </span>
 									</a>
                 </li>
 
-                <li>
-                    <a href="#search-tile-tab-4-b">
+                <li [class.current]="Current('Relevant')" (click)="setCurrent('Relevant')">
+                    <a href="#/">
 										Relevant Classes
 										<span>{{relevant.length}} </span>
 									</a>
                 </li>
 
-                <li>
-                    <a href="#search-tile-tab-5-b">
+                <li [class.current]="Current('Category')" (click)="setCurrent('Category')">
+                    <a href="#/">
 										Browse by Category
 									<!--<span>{{browse.length}} </span> -->
 									</a>
@@ -53,7 +53,7 @@
         <!-- /.tabs-head -->
         <div style="max-height: 500px;overflow: auto;">
 
-            <div class="tile-box-tab current" id="search-tile-tab-1-b">
+            <div class="tile-box-tab" [class.current]="Current('All')" id="search-tile-tab-1-b">
                 <ul class="search-resultsults">
                     <li class="search-resultsult search-resultsult-title">
                         <div class="col col-medium">
@@ -151,7 +151,7 @@
                 <!-- /.search-resultsults -->
             </div>
 
-            <div class="tile-box-tab" id="search-tile-tab-2-b">
+            <div class="tile-box-tab" [class.current]="Current('Recently')" id="search-tile-tab-2-b">
                 <ul class="search-resultsults">
                     <li class="search-resultsult search-resultsult-title">
                         <div class="col col-medium">
@@ -246,7 +246,7 @@
                 <!-- /.search-resultsults -->
             </div>
 
-            <div class="tile-box-tab" id="search-tile-tab-3-b">
+            <div class="tile-box-tab" [class.current]="Current('Popular')" id="search-tile-tab-3-b">
                 <ul class="search-resultsults">
                     <li class="search-resultsult search-resultsult-title">
                         <div class="col col-medium">
@@ -341,7 +341,7 @@
                 <!-- /.search-resultsults -->
             </div>
 
-            <div class="tile-box-tab" id="search-tile-tab-4-b">
+            <div class="tile-box-tab" [class.current]="Current('Relevant')" id="search-tile-tab-4-b">
                 <ul class="search-resultsults">
                     <li class="search-resultsult search-resultsult-title">
                         <div class="col col-medium">
@@ -436,7 +436,7 @@
                 <!-- /.search-resultsults -->
             </div>
 
-            <div class="tile-box-tab" id="search-tile-tab-5-b">
+            <div class="tile-box-tab" [class.current]="Current('Category')" id="search-tile-tab-5-b">
 
                 <div class="col-xs-12 col-sm-3" style="padding:15px;">
                     <div class="select select-yellow">

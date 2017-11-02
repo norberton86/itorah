@@ -29,4 +29,13 @@ export class MyCreditsComponent implements OnInit {
      $("#shop").toggleClass('shown')
   }
 
+  Total():number
+  {
+    var sum=0;
+    this.rows.forEach(function(r){
+       sum+=r.Total()
+    })
+    return sum
+  }
+
 }

@@ -87,11 +87,6 @@ export class AppComponent implements OnInit {
   AccionSpeaker() {
     this.valSpeaker = this.Generate();
     this.analitycService.emitEvent("Module", "Open", "Speakers");
-    if($(window).width()>768)
-    {
-      $('#item-content-1').draggable().resizable()
-      $('#item-content-1').css('cursor','-webkit-grab')
-    }
   }
 
   AccionHok() {

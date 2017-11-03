@@ -114,11 +114,28 @@ Agree()
   //---------------------------------------------------------------------------------------
 
   SignIn(provider){
+
+   let self=this;
+
     this.sub = this._auth.login(provider).subscribe(
       (data:any) => {
 
-       console.log(data)
-       this.Save(data)
+
+         var grant_type =data.provider=="google"?"googleAuth":"facebookAuth"
+         
+
+         self.socialLoginServic.SignThirdParty(grant_type,data.token).subscribe(function(respond){
+                self.Save({name:data.name,email:self.form.value.email,token:respond.access_token,provider:data.provider})
+                self.messageVisible=false;
+           },
+           function(error){
+             self.messageVisible=true;
+             
+             setTimeout(function(){
+               self.messageVisible=false;
+             },3000)
+           },
+           function(){})
         
       }
     )

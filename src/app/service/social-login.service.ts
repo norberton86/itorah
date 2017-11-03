@@ -14,16 +14,28 @@ export class SocialLoginServic extends Service{
    
     constructor(http: Http) {
         super(http);
-        this.ruta="http://itorahapi.3nom.com/api/";
+        this.ruta="https://itorahid.3nom.com/connect/token";
         this.header = new Headers({"Content-Type":"application/x-www-form-urlencoded"});
 
     }
   
     public Sign(email:string,pass:string): Observable<any> {
 
-        let body =`username=${email}&password=${pass}`;
+        let body =`grant_type=password&username=${email}&password=${pass}&client_id=resourceOwner&client_secret=secret`;
 
-        return this.http.post(this.ruta + "token", body, { headers: this.header }).map(
+        return this.http.post(this.ruta , body, { headers: this.header }).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    }
+
+    public SignThirdParty(grant_type:string,token:string): Observable<any> {
+
+        let body =`grant_type=${grant_type}&id_token=${token}&client_id=resourceOwner&client_secret=secret`;
+
+        return this.http.post(this.ruta , body, { headers: this.header }).map(
             (response) => {
                 let body = response.json();
                 return body;

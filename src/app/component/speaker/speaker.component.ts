@@ -255,9 +255,28 @@ export class SpeakerComponent implements OnInit {
     this.playerService.Play(title, id, onlyAudio);
   }
 
+
+  enter: false;
   ngOnInit() {
     this.ReadMainSpeaker();
     this.ReadAllSpeaker();
+
+
+    if (document.addEventListener) {
+      document.addEventListener('webkitfullscreenchange', exitHandler, false);
+      document.addEventListener('mozfullscreenchange', exitHandler, false);
+      document.addEventListener('fullscreenchange', exitHandler, false);
+      document.addEventListener('MSFullscreenChange', exitHandler, false);
+    }
+
+    function exitHandler() {
+      this.enter = !this.enter
+      if (!this.enter) {
+        console.log('going out from fullscreen mode')
+      }
+    }
+
+
 
   }
 
@@ -693,13 +712,23 @@ export class SpeakerComponent implements OnInit {
     }
     else {
 
-      if (this.isAuthenticated())
-      {
+      if (this.isAuthenticated()) {
         $("#downloadShirium").toggleClass('shown');
         this.shiurimService.setItem(s)
       }
-      
 
+
+    }
+  }
+
+  FullScreen() {
+    var i = document.getElementById("item-content-1");
+
+    // go full-screen
+    if (i.requestFullscreen) {
+      i.requestFullscreen();
+    } else if (i.webkitRequestFullscreen) {
+      i.webkitRequestFullscreen();
     }
   }
 }

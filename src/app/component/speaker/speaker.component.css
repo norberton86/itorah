@@ -31,3 +31,19 @@
 .tracks-secondary .track-content {
     cursor: pointer;
 }
+
+/*****************************************************************************************/
+.tile-box-primary .link-expand {
+    position: absolute;
+    bottom: -2em;
+    right: 2em;
+    z-index: 500;
+    color: #959595;
+}
+
+
+@media(max-width:768px) {
+   .tile-box-primary .link-expand {
+       visibility: hidden
+   } 
+}

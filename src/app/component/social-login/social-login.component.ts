@@ -124,7 +124,7 @@ Agree()
          var grant_type =data.provider=="google"?"googleAuth":"facebookAuth"
          
 
-         self.socialLoginServic.SignThirdParty(grant_type,data.token).subscribe(function(respond){
+         self.socialLoginServic.SignThirdParty(grant_type,data.idToken).subscribe(function(respond){
                 self.Save({name:data.name,email:self.form.value.email,token:respond.access_token,provider:data.provider})
                 self.messageVisible=false;
            },

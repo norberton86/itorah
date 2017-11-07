@@ -43,10 +43,16 @@
 			<!-- /.slider-profiles -->
 
             
-			<a href="#/" class="link-expand" title="Expand" (click)="FullScreen()" id="expand" *ngIf="enter">
-				<i class="fa fa-arrows-alt" aria-hidden="true"></i>
+			<a href="#/" class="link-expand" title="Restore" (click)="FullScreen()" id="expand" *ngIf="enter">
+				<i class="fa fa-window-restore" aria-hidden="true"></i>
 			</a>
-			<a href="#" class="link-close" title="Close" *ngIf="enter">
+			
+
+			<a href="#/" class="link-expand" title="Expand" (click)="FullScreen()" id="expand" *ngIf="!enter">
+				<i class="fa fa-expand" aria-hidden="true"></i>
+			</a>
+
+			<a href="#" class="link-close" title="Close" *ngIf="!enter">
 				<i class="ico-close"></i>
 			</a>
 		</div>

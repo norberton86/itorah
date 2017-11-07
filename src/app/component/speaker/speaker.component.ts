@@ -256,43 +256,64 @@ export class SpeakerComponent implements OnInit {
   }
 
 
-  enter: boolean=true;
+  enter: boolean = false;
   ngOnInit() {
     this.ReadMainSpeaker();
     this.ReadAllSpeaker();
-
-
-    let self=this;
-
-    if (document.addEventListener) {
-      document.addEventListener('webkitfullscreenchange', exitHandler, false);
-      document.addEventListener('mozfullscreenchange', exitHandler, false);
-      document.addEventListener('fullscreenchange', exitHandler, false);
-      document.addEventListener('MSFullscreenChange', exitHandler, false);
-    }
-
-    function exitHandler() {
-      
-      if (!self.enter) {
-        console.log('going out from fullscreen mode')
-
-         self.enter=true  
-      }
-    }
   }
 
-  
-  FullScreen() {
-    var i = document.getElementById("item-content-1");
 
-    // go full-screen
-    if (i.requestFullscreen) {
-      i.requestFullscreen();
-    } else if (i.webkitRequestFullscreen) {
-      i.webkitRequestFullscreen();
+  zIndex: number;
+  width: string;
+  height: number;
+  position: string;
+  left: number;
+  top: number;
+  background: string;
+
+
+  FullScreen() {
+
+    this.enter = !this.enter
+
+    if (this.enter) {
+
+      this.zIndex = $('.tile-box-speakers').css('z-index');
+      this.width = $('.tile-box-speakers').css('width')
+      this.height = $('.tile-box-speakers').css('height')
+      this.position = $('.tile-box-speakers').css('position')
+      this.left = $('.tile-box-speakers').css('left')
+      this.top = $('.tile-box-speakers').css('top')
+      this.background = $('.tile-box-speakers').css('background')
+
+      $('.tile-box-speakers').css('z-index', '9999')
+      $('.tile-box-speakers').css('width', ' 100%')
+      $('.tile-box-speakers').css('height', ' 100%')
+      $('.tile-box-speakers').css('position', ' fixed')
+      $('.tile-box-speakers').css('left', ' 0')
+      $('.tile-box-speakers').css('top', ' 0')
+      $('.tile-box-speakers').css('background', 'rgb(255,255,255)')
+
+      $('.tile-box-tab').forEach(function (a) {
+        $(a).addClass('expanded')
+      })
+    }
+    else {
+
+      $('.tile-box-speakers').css('z-index', this.zIndex)
+      $('.tile-box-speakers').css('width', this.width)
+      $('.tile-box-speakers').css('height', this.height)
+      $('.tile-box-speakers').css('position', this.position)
+      $('.tile-box-speakers').css('left', this.left)
+      $('.tile-box-speakers').css('top', this.top)
+      $('.tile-box-speakers').css('background', this.background)
+
+      $('.tile-box-tab').forEach(function (a) {
+        $(a).removeClass('expanded')
+      })
+
     }
 
-    this.enter = false
   }
 
 

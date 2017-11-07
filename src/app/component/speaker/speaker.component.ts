@@ -256,11 +256,13 @@ export class SpeakerComponent implements OnInit {
   }
 
 
-  enter: false;
+  enter: boolean=true;
   ngOnInit() {
     this.ReadMainSpeaker();
     this.ReadAllSpeaker();
 
+
+    let self=this;
 
     if (document.addEventListener) {
       document.addEventListener('webkitfullscreenchange', exitHandler, false);
@@ -270,14 +272,27 @@ export class SpeakerComponent implements OnInit {
     }
 
     function exitHandler() {
-      this.enter = !this.enter
-      if (!this.enter) {
+      
+      if (!self.enter) {
         console.log('going out from fullscreen mode')
+
+         self.enter=true  
       }
     }
+  }
 
+  
+  FullScreen() {
+    var i = document.getElementById("item-content-1");
 
+    // go full-screen
+    if (i.requestFullscreen) {
+      i.requestFullscreen();
+    } else if (i.webkitRequestFullscreen) {
+      i.webkitRequestFullscreen();
+    }
 
+    this.enter = false
   }
 
 
@@ -721,14 +736,4 @@ export class SpeakerComponent implements OnInit {
     }
   }
 
-  FullScreen() {
-    var i = document.getElementById("item-content-1");
-
-    // go full-screen
-    if (i.requestFullscreen) {
-      i.requestFullscreen();
-    } else if (i.webkitRequestFullscreen) {
-      i.webkitRequestFullscreen();
-    }
-  }
 }

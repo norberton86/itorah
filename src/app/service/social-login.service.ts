@@ -53,9 +53,12 @@ export class SocialLoginServic extends Service{
         )
     }
 
-    public Create(a:any):Observable<string>
+    public Create(data:any):Observable<string>
     {
-           return this.http.post(this.ruta+"Create",a).map(
+            let h = new Headers();
+            h.append('Content-Type','application/json');
+
+           return this.http.post("http://itorahapi.3nom.com/api/Users",data,{headers: h}).map(
             (response) => {
                 return response.toString();
             }

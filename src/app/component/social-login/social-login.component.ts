@@ -90,12 +90,17 @@ export class SocialLoginComponent implements OnInit,OnDestroy  {
 
   Register()
   {
-    this.socialLoginServic.Create(this.form.value).subscribe(
+
+    this.socialLoginServic.Create({Email:this.form.value.email,
+                                   FirstName:this.form.value.first,
+                                   LastName:this.form.value.last,
+                                   Password:this.form.value.password}).subscribe(
       (data)=>{
            if(data)
            {
                 this.Reset()
-                this.GoBackfromAccount();        
+                this.GoBackfromAccount();   
+                this.socialLoginServic.Notify("Account Created",false)     
            }
       })
   }
@@ -196,7 +201,7 @@ Save(data:any)
       first:['', Validators.required],
       last:['', Validators.required],
       confirm:['', Validators.required],
-      agree:['', Validators.required]
+      agree:false
     }
 
      this.form = this.fb.group(data);

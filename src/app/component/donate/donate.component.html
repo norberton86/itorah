@@ -1,0 +1,221 @@
+<div class="popup donate" id="donate">
+  <div class="popup-head">
+    <form action="?" method="get">
+      <label for="field-search-content">Donate: </label>
+
+      <a href="#" class="link-close">
+					<i class="ico-close"></i>
+				</a>
+    </form>
+  </div>
+  <!-- /.popup-head -->
+
+  <div class="popup-body">
+    <div class="cols cols-2">
+      <div class="col-1of2">
+        <div class="form-sponsor">
+          <form [formGroup]="formCheck" (ngSubmit)="onSubmitCheck()">
+            <div class="form-head">
+              <h4>General Donation</h4>
+            </div>
+            <!-- /.form-head -->
+
+            <div class="form-body">
+              <div class="form-row">
+                <ul class="list-checkboxes">
+                  <li>
+                    <div class="checkbox checkbox-secondary">
+                      <input type="checkbox" name="field-5" id="field-5" formControlName="five" (click)="Check('five')">
+
+                      <label class="form__label" for="field-5">$5</label>
+                    </div>
+                    <!-- /.checkbox -->
+                  </li>
+
+                  <li>
+                    <div class="checkbox checkbox-secondary">
+                      <input type="checkbox" name="field-10" id="field-10" formControlName="ten" (click)="Check('ten')">
+
+                      <label class="form__label" for="field-10">$10</label>
+                    </div>
+                    <!-- /.checkbox -->
+                  </li>
+
+                  <li>
+                    <div class="checkbox checkbox-secondary">
+                      <input type="checkbox" name="field-15" id="field-15" formControlName="fifteen" (click)="Check('fifteen')">
+
+                      <label class="form__label" for="field-15">$15</label>
+                    </div>
+                    <!-- /.checkbox -->
+                  </li>
+
+                  <li>
+                    <div class="checkbox checkbox-secondary">
+                      <input type="checkbox" name="field-25" id="field-25" formControlName="twentyFive" (click)="Check('twentyFive')">
+
+                      <label class="form__label" for="field-25">$25</label>
+                    </div>
+                    <!-- /.checkbox -->
+                  </li>
+
+                  <li>
+                    <div class="checkbox checkbox-secondary">
+                      <input type="checkbox" name="field-50" id="field-50" formControlName="fifty" (click)="Check('fifty')">
+
+                      <label class="form__label" for="field-50">$50</label>
+                    </div>
+                    <!-- /.checkbox -->
+                  </li>
+
+                  <li>
+                    <div class="checkbox checkbox-secondary">
+                      <input type="checkbox" name="field-100" id="field-100" formControlName="oneHundred" (click)="Check('oneHundred')">
+
+                      <label class="form__label" for="field-100">$100</label>
+                    </div>
+                    <!-- /.checkbox -->
+                  </li>
+
+                  <li>
+                    <div class="checkbox checkbox-secondary">
+                      <input type="checkbox" name="field-250" id="field-250" formControlName="twoHundred" (click)="Check('twoHundred')">
+
+                      <label class="form__label" for="field-250">$250</label>
+                    </div>
+                    <!-- /.checkbox -->
+                  </li>
+
+                  <li>
+                    <div class="checkbox checkbox-secondary">
+                      <input type="checkbox" name="field-300" id="field-300" formControlName="threeHundred" (click)="Check('threeHundred')">
+
+                      <label class="form__label" for="field-300">$300</label>
+                    </div>
+                    <!-- /.checkbox -->
+                  </li>
+
+                  <li>
+                    <div class="checkbox checkbox-secondary">
+                      <input type="checkbox" name="field-1000" id="field-1000" formControlName="oneThousand" (click)="Check('oneThousand')">
+
+                      <label class="form__label" for="field-1000">$1,000</label>
+                    </div>
+                    <!-- /.checkbox -->
+                  </li>
+                </ul>
+                <!-- /.list-checkboxes -->
+              </div>
+              <!-- /.form-row -->
+
+              <div class="form-row">
+                <span>or</span>
+
+                <div class="form-controls">
+                  <input type="number" OnlyNumber="true" class="field" name="field-name" id="field-name" value="" placeholder="$Other amount" formControlName="other" (keyup)="Check('other')">
+                </div>
+                <!-- /.form-controls -->
+              </div>
+              <!-- /.form-row -->
+            </div>
+            <!-- /.form-body -->
+
+            <div class="form-actions hidden">
+              <input type="submit" value="Process order" class="form-btn">
+            </div>
+            <!-- /.form-actions -->
+          </form>
+        </div>
+      </div>
+      <!-- /.col-1of2 -->
+
+      <div class="col-1of2">
+        <div class="form-order form-sponsor">
+          <form action="?" method="post">
+            <div class="form-head">
+              <h4>Credit card detail</h4>
+            </div>
+            <!-- /.form-head -->
+
+            <div class="form-body">
+              <div class="form-row">
+                <label for="field-select-card-on-file" class="form__label">Select card on file</label>
+
+                <div class="form-controls">
+                  <div class="select">
+                    <select name="field-select-card-on-file" id="field-select-card-on-file">
+												<option value="1234 4567 7890">1234 4567 7890</option>
+												<option value="1234 1234 1234">1234 1234 1234</option>
+											</select>
+                  </div>
+                  <!-- /.select -->
+                </div>
+                <!-- /.form-controls -->
+              </div>
+              <!-- /.form-row -->
+
+              <div class="form-row">
+                <span>or</span>
+
+                <label for="field-card-number" class="form__label">Card number</label>
+
+                <div class="form-controls">
+                  <input type="text" class="field" name="field-card-number" id="field-card-number" value="" placeholder="5261 XXXX XXXX XXXX">
+                </div>
+                <!-- /.form-controls -->
+              </div>
+              <!-- /.form-row -->
+
+              <div class="form-row">
+                <label for="field-expiration" class="form__label">Expiration</label>
+
+                <div class="form-controls">
+                  <input type="text" class="field field-date" name="field-expiration" id="field-expiration" value="" placeholder="20/2020">
+                </div>
+                <!-- /.form-controls -->
+              </div>
+              <!-- /.form-row -->
+
+              <div class="form-row">
+                <label for="field-cvv" class="form__label">CVV</label>
+
+                <div class="form-controls">
+                  <input type="text" class="field" name="field-cvv" id="field-cvv" value="" placeholder="123">
+                </div>
+                <!-- /.form-controls -->
+              </div>
+              <!-- /.form-row -->
+
+              <div class="form-row form-row-small">
+                <label for="field-total" class="form__label">Total (USD)</label>
+
+                <div class="form-controls">
+                  <input type="text" class="field" name="field-total" id="field-total" value="" placeholder="$ 0.00">
+                </div>
+                <!-- /.form__controls -->
+              </div>
+              <!-- /.form-row form-row-small -->
+
+              <div class="form-row">
+                <p>You will get an email with process order information</p>
+
+                <div class="g-recaptcha" data-sitekey="6LfMsi4UAAAAACwKrKCRPHYpmqVFCuCZYNM7mFH9"></div>
+              </div>
+              <!-- /.form-row -->
+            </div>
+            <!-- /.form-body -->
+
+            <div class="form-actions">
+              <input type="submit" value="Process order" class="form-btn">
+            </div>
+            <!-- /.form-actions -->
+          </form>
+        </div>
+        <!-- /.form-order -->
+      </div>
+      <!-- /.col-1of2 -->
+    </div>
+    <!-- /.cols -->
+  </div>
+  <!-- /.popup-body -->
+</div>

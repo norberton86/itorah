@@ -112,7 +112,8 @@
                 <span>or</span>
 
                 <div class="form-controls">
-                  <input type="number" OnlyNumber="true" class="field" name="field-name" id="field-name" value="" placeholder="$Other amount" formControlName="other" (keyup)="Check('other')">
+                  <input type="number" OnlyNumber="true" class="field" name="field-name" id="field-name" value="" placeholder="$Other amount"
+                    formControlName="other" (keyup)="Check('other')">
                 </div>
                 <!-- /.form-controls -->
               </div>
@@ -131,7 +132,7 @@
 
       <div class="col-1of2">
         <div class="form-order form-sponsor">
-          <form action="?" method="post">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="form-head">
               <h4>Credit card detail</h4>
             </div>
@@ -160,8 +161,16 @@
                 <label for="field-card-number" class="form__label">Card number</label>
 
                 <div class="form-controls">
-                  <input type="text" class="field" name="field-card-number" id="field-card-number" value="" placeholder="5261 XXXX XXXX XXXX">
+                  <input formControlName="creditCard" class="field" type="tel" autocomplete="cc-number" ccNumber name="field-card-number" id="field-card-number">
                 </div>
+                <div class="animated bounceIn" style="color:red;" *ngIf="form.get('creditCard').hasError('required') && form.get('creditCard').touched">
+                  Credit Card is required
+                </div>
+
+                <div class="animated bounceIn" style="color:red;" *ngIf="form.controls.creditCard.errors!=null && form.get('creditCard').touched">
+                  Credit Card number is invalid
+                </div>
+
                 <!-- /.form-controls -->
               </div>
               <!-- /.form-row -->
@@ -170,7 +179,16 @@
                 <label for="field-expiration" class="form__label">Expiration</label>
 
                 <div class="form-controls">
-                  <input type="text" class="field field-date" name="field-expiration" id="field-expiration" value="" placeholder="20/2020">
+                  <input type="text" class="field field-date" name="field-expiration" id="field-expiration" formControlName="expirationDate"
+                    type="tel" autocomplete="cc-exp" ccExp>
+                </div>
+
+                <div class="animated bounceIn" style="color:red;" *ngIf="form.get('expirationDate').hasError('required') && form.get('expirationDate').touched">
+                  Expiration Date is required
+                </div>
+
+                <div class="animated bounceIn" style="color:red;" *ngIf="form.controls.expirationDate.errors!=null && form.get('expirationDate').touched">
+                  Expiration Date is invalid
                 </div>
                 <!-- /.form-controls -->
               </div>
@@ -180,8 +198,17 @@
                 <label for="field-cvv" class="form__label">CVV</label>
 
                 <div class="form-controls">
-                  <input type="text" class="field" name="field-cvv" id="field-cvv" value="" placeholder="123">
+                  <input type="text" class="field" name="field-cvv" id="field-cvv" formControlName="cvc" type="tel" autocomplete="off" ccCvc>
                 </div>
+
+                <div class="animated bounceIn" style="color:red;" *ngIf="form.get('cvc').hasError('required') && form.get('cvc').touched">
+                  CVV is required
+                </div>
+
+                <div class="animated bounceIn" style="color:red;" *ngIf="form.controls.cvc.errors!=null && form.get('cvc').touched">
+                  CVV is invalid
+                </div>
+
                 <!-- /.form-controls -->
               </div>
               <!-- /.form-row -->
@@ -190,8 +217,12 @@
                 <label for="field-total" class="form__label">Total (USD)</label>
 
                 <div class="form-controls">
-                  <input type="text" class="field" name="field-total" id="field-total" value="" placeholder="$ 0.00">
+                  <input type="text" class="field" name="field-total" id="field-total" value="" placeholder="{{value| currency:'USD':true:'2.2-2'}}"
+                    disabled>
                 </div>
+
+
+
                 <!-- /.form__controls -->
               </div>
               <!-- /.form-row form-row-small -->
@@ -206,7 +237,7 @@
             <!-- /.form-body -->
 
             <div class="form-actions">
-              <input type="submit" value="Process order" class="form-btn">
+              <input type="submit" value="Process order" class="form-btn" [disabled]="Validate()" [class.mydisabled]="Validate()">
             </div>
             <!-- /.form-actions -->
           </form>

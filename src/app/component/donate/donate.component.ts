@@ -78,7 +78,7 @@ export class DonateComponent implements OnInit {
   }
 
 
-  onSubmitCheck() {
+  onSubmit() {
 
   }
 

@@ -56,7 +56,8 @@ import { ShopComponent } from './component/shop/shop.component';
 import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { MyCreditsComponent } from './component/my-credits/my-credits.component';
 import { DonateComponent } from './component/donate/donate.component';
-import { OnlyNumberDirective } from './directive/only-number.directive'
+import { OnlyNumberDirective } from './directive/only-number.directive';
+import { DedicationComponent } from './component/dedication/dedication.component'
 
 
 
@@ -116,7 +117,8 @@ let providers = {
     ShopComponent,
     MyCreditsComponent,
     DonateComponent,
-    OnlyNumberDirective
+    OnlyNumberDirective,
+    DedicationComponent
   ],
   imports: [
     BrowserModule,CreditCardDirectivesModule,

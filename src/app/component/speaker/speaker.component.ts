@@ -22,6 +22,8 @@ declare var $: any;
 })
 export class SpeakerComponent implements OnInit {
 
+  elem:number=28
+
   current: string = "tile-tab-1"
   detailed: boolean = false
 
@@ -104,8 +106,6 @@ export class SpeakerComponent implements OnInit {
 
   }
 
-
-
   isAuthenticated(): boolean {
     let self = this;
     if (localStorage.getItem('userItorah') == null || localStorage.getItem('userItorah') == "")//needs credentials to access
@@ -122,7 +122,6 @@ export class SpeakerComponent implements OnInit {
     else
       return true;
   }
-
 
   mainSearch() {
     this.Search()
@@ -189,9 +188,9 @@ export class SpeakerComponent implements OnInit {
 
         var page;
         if (i == 0)
-          page = Math.ceil(1 / 28);
+          page = Math.ceil(1 / this.elem);
         else
-          page = Math.ceil(i / 28);
+          page = Math.ceil(i / this.elem);
 
         this.iterationAll = Math.ceil(page / 6);
 
@@ -271,9 +270,12 @@ export class SpeakerComponent implements OnInit {
   top: number;
   background: string;
 
+  height_primary:string
+
 
   FullScreen() {
-
+    
+    let self=this;
     this.enter = !this.enter
 
     if (this.enter) {
@@ -294,9 +296,24 @@ export class SpeakerComponent implements OnInit {
       $('.tile-box-speakers').css('top', ' 0')
       $('.tile-box-speakers').css('background', 'rgb(255,255,255)')
 
-      $('.tile-box-tab').forEach(function (a) {
-        $(a).addClass('expanded')
+     //------------------------------------------------------------------------------ set the table height
+      var father_height = $('.tile-box-speakers').css('height').split("px")[0]
+      this.height_primary=$('.tile-box-body').css('height')
+
+      $('.tile-box-body').each(function (index) 
+      {
+        $(this).css('height',father_height*90/100+'px')
       })
+      //----------------------------------------------------------------------------- set how many element we have 
+      
+      var current_height_primary=$('.tile-box-body').css('height').split("px")[0]
+      var track_height= $('.track').css('height').split("px")[0]
+      
+      this.elem=Math.floor(parseFloat( current_height_primary)/track_height)*4
+
+       this.Update()
+       this.UpdateAll()
+
     }
     else {
 
@@ -307,10 +324,15 @@ export class SpeakerComponent implements OnInit {
       $('.tile-box-speakers').css('left', this.left)
       $('.tile-box-speakers').css('top', this.top)
       $('.tile-box-speakers').css('background', this.background)
-
-      $('.tile-box-tab').forEach(function (a) {
-        $(a).removeClass('expanded')
+//------------------------------------------------------------------------------ reset the table height
+      $('.tile-box-body').each(function (index) 
+      {
+        $(this).css('height',self.height_primary)
       })
+ //----------------------------------------------------------------------------- reset how many element we have 
+       this.elem=28
+       this.Update()
+       this.UpdateAll()
 
     }
 
@@ -536,7 +558,7 @@ export class SpeakerComponent implements OnInit {
       });
     }
 
-    this.allPagesAll = this.allSpeakers.length / 28;
+    this.allPagesAll = this.allSpeakers.length / this.elem;
     this.iterationAll = 1;
 
     this.CreatePagesAll();
@@ -580,7 +602,7 @@ export class SpeakerComponent implements OnInit {
 
   PopulatedShiriumAll(id: number) {
     this.speakers = [];
-    for (var i = id * 28 - 28; i < id * 28 && i < this.allSpeakers.length; i++) {
+    for (var i = id * this.elem - this.elem; i < id * this.elem && i < this.allSpeakers.length; i++) {
       this.speakers.push(this.allSpeakers[i]);  //populate the grid
     }
 
@@ -680,7 +702,7 @@ export class SpeakerComponent implements OnInit {
 
     this.speaker.totalShiurim = this.allShiriums.length;
 
-    this.allPages = this.allShiriums.length / 28; //pagination
+    this.allPages = this.allShiriums.length / this.elem; //pagination
     this.iteration = 1; //pagination
 
     this.CreatePages();
@@ -704,7 +726,7 @@ export class SpeakerComponent implements OnInit {
 
   PopulatedShirium(id: number) {
     this.shiriums = [];
-    for (var i = id * 28 - 28; i < id * 28 && i < this.allShiriums.length; i++) {
+    for (var i = id * this.elem - this.elem; i < id * this.elem && i < this.allShiriums.length; i++) {
       this.shiriums.push(this.allShiriums[i]);  //populate the grid
     }
 

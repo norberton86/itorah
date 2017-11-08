@@ -36,7 +36,7 @@
 .tile-box-primary .link-expand {
     position: absolute;
     bottom: -2em;
-    right: 2em;
+    right: 2.5em;
     z-index: 500;
     color: #959595;
 }

@@ -67,11 +67,7 @@ export class ShopComponent implements OnInit {
     return sum
   }
 
-  onSubmit()
-  {
-    
-    
-  }
+
 
   Buy()
   {
@@ -84,10 +80,6 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  Validate()
-  {
-    return this.form.controls.cvc.errors!=null || this.form.controls.creditCard.errors!=null||this.form.controls.expirationDate.errors!=null
-  }
 
 }
 

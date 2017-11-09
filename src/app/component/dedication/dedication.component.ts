@@ -30,6 +30,8 @@ export class DedicationComponent implements OnInit {
   dedicatedPer: Array<ComboItem> = [{id:"month",description:"Month"},{id:"year",description:"Year"}]
   dP:ComboItem
 
+  value:number=100
+
   constructor(private dedicationService: DedicationService) { }
 
   ngOnInit() {

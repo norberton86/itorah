@@ -10,7 +10,7 @@ import { CreditCardValidator } from 'angular-cc-library';
 export class DonateComponent implements OnInit {
 
   formCheck: FormGroup;
-  form: FormGroup;
+
 
   value: number = 0;
 
@@ -34,11 +34,7 @@ export class DonateComponent implements OnInit {
 
     });
 
-    this.form = this._fb.group({
-      creditCard: ['', Validators.compose([<any>CreditCardValidator.validateCCNumber, Validators.required])],
-      expirationDate: ['', [<any>CreditCardValidator.validateExpDate]],
-      cvc: ['', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4)]]
-    });
+   
   }
 
   Check(name: string) {
@@ -78,14 +74,7 @@ export class DonateComponent implements OnInit {
   }
 
 
-  onSubmit() {
 
-  }
-
-   Validate()
-  {
-    return this.form.controls.cvc.errors!=null || this.form.controls.creditCard.errors!=null||this.form.controls.expirationDate.errors!=null
-  }
 
 
 }

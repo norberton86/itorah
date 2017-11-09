@@ -37,7 +37,10 @@ export class DedicationComponent implements OnInit {
     this.dT=this.dedicationType[0]
     this.dP=this.dedicatedPer[0]
     
-    this.Read()
+    for(var i=0;i<15;i++)
+    this.dedications.push( {memory:"John Smith",rabbi:"Rabbi Jacob S Kassin",dedicated :"The Kassin Family"})
+
+    //this.Read()
   }
 
   Read() {

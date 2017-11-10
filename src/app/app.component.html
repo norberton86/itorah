@@ -230,6 +230,14 @@
 		<div class="main">
 	   <app-donate></app-donate>
 
+	<app-popup-register></app-popup-register>
+
+	<app-popup-regular></app-popup-regular>
+
+	<app-popup-emergency></app-popup-emergency>
+
+	<app-popup-levaya></app-popup-levaya>
+
 	<div class="popup sponsor" id="sponsor">
 		<div class="popup-head">
 			<form action="?" method="get">
@@ -782,7 +790,7 @@
 				<div class="shell">
 					<div class="section-content">
 						<div class="tiles">
-							<div class="tile tile-large" id="tile-1">
+							<div class="tile" id="tile-1">
 								<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-1.jpg);">
 									<div class="tile-body">
 										<div class="tile-content">
@@ -805,6 +813,35 @@
 										</div><!-- /.tile-actions -->
 									</div><!-- /.tile-body -->
 								</div><!-- /.tile-inner -->
+														<p class="sorting">0</p>
+					</div><!-- /.tile -->
+
+					<div class="tile" id="tile-12">
+						<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-1.jpg);">
+							<div class="tile-body">
+								<div class="tile-content">
+									<h3>ParashaInsight.com</h3>
+
+									<p>Lessons learned from the Weekly Parasha or Holiday</p>
+
+									<span>Authored by Rabbi Eli J Mansour</span>
+								</div><!-- /.tile-content -->
+
+								<div class="tile-actions">
+									<a href="#" class="link-play">
+										<img  src="/assets/build/css/images/play_button.png" (click)="playNow(6,'DailyHalacha.com')"/>
+
+										<i class="fa fa-book fa-lg" title="Today's Reading"></i>
+									</a>
+
+									<a href="#item-content-8" data-size="half" class="link-search" (click)="AccionHalacha()">
+										<i class="ico-magnifier-large"></i>
+									</a>
+								</div><!-- /.tile-actions -->
+							</div><!-- /.tile-body -->
+						</div><!-- /.tile-inner -->
+
+
 
 								<p class="sorting">1</p>
 							</div><!-- /.tile tile-large -->
@@ -876,8 +913,8 @@
 											</a>
 												</li>
 
-												<li style="padding-right: 0.5em;">
-													<a href="#item-content-7" data-size="half" title="Register">
+												<li class="link-popup" style="padding-right: 0.5em;">
+													<a href="#popup-register" class="popup-toggle" data-size="half" title="Register">
 												<i class="fa fa-user-plus" style="color:white"></i>
 											</a>
 												</li>

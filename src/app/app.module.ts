@@ -4,6 +4,10 @@ import { HttpModule } from '@angular/http';
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { PopupRegisterComponent } from './component/popup-register/popup-register.component';
+import { PopupEmergencyComponent } from './component/popup-emergency/popup-emergency.component';
+import { PopupLevayaComponent } from './component/popup-levaya/popup-levaya.component';
+import { PopupRegularComponent } from './component/popup-regular/popup-regular.component';
 import { PodcastComponent } from './component/podcast/podcast.component';
 import { SponsorComponent } from './component/sponsor/sponsor.component';
 import { QueueComponent } from './component/queue/queue.component';
@@ -98,6 +102,10 @@ let providers = {
     LanguagePipe,
     TimePipe,
     FilterForPipe,
+    PopupRegisterComponent,
+    PopupEmergencyComponent,
+    PopupLevayaComponent,
+    PopupRegularComponent,
     SubscribeComponent,
     InspireComponent,
     PrivacyPolicyComponent,

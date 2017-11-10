@@ -3,6 +3,12 @@
 	var $doc = $(document);
 
 	$doc.ready(function() {
+				// $('.VirtualKeyboardHolder').each(function () {
+		// 	var $keyboard = $(this);
+		// 	var $input = $keyboard.prev();
+		// 	VirtualKeyboard.toggle( $input.attr('id'), $keyboard.attr('id'));
+		// })
+
 		$doc.mouseup(function(e) {
 		    var container = $('.dropdown');
 
@@ -12,11 +18,11 @@
 		    }
 		});
         
-		$('.tile-actions a').each(function () {
+		$('.tile-actions a:not(.popup-toggle)').each(function () {
 			ballonPosition($(this))
 		})
 
-		$('.tile-actions a').each(function () {
+		$('.tile-actions a:not(.popup-toggle)').each(function () {
 			var $ballon = $($(this).attr('href'));
 			var size = $(this).data('size');
 
@@ -75,6 +81,7 @@
 					.prop( "checked", false )
 
 			$(id)
+			.add($('.form-sponsor[data-related="'+ id +'"]'))
 				.toggleClass('hidden')
 					.siblings('.form-sponsor:not(.form-placeholder)')
 					.addClass('hidden')
@@ -86,7 +93,7 @@
 			}
 		})
 
-		$('.btn-make-dedication, .btn-toggle').on('click', function(e){
+		$('.btn-make-dedication:not(.link-popup), .btn-toggle').on('click', function(e){
 			e.preventDefault()
 			var id = $(this).attr('href');
 
@@ -118,10 +125,17 @@
 
 
 
-		$('.link-popup a').on('click', function(e) {
+		$('.link-popup a, a.link-popup, input.link-close').on('click', function(e) {
 			e.preventDefault();
 
 			var currentHref = $(this).attr('href');
+			if ( $(this).hasClass('link-close') ) {
+				var currentHref = '#' + $(this).attr('name');
+			}
+
+			var $keyboard = $(currentHref).find('.VirtualKeyboardHolder');
+			var $input = $keyboard.prev();
+			VirtualKeyboard.toggle( $input.attr('id'), $keyboard.attr('id'));
 
 			$('.nav.visible').removeClass('visible');
 			$('.btn-menu').removeClass('open');
@@ -136,7 +150,7 @@
 		})
 
 		$('.popup .link-close').on('click', function() {
-			$(this).closest('.popup').toggleClass('shown');
+			$(this).closest('.popup').removeClass('shown');
 		})
 
 		$( ".wrapper" ).delegate( ".select-speakers select", "change", function() {
@@ -219,7 +233,7 @@
 			}
 		})
 
-		$('.tile-actions a').on('click', function (e) {
+		$('.tile-actions a:not(.popup-toggle)').on('click', function (e) {
 			e.preventDefault();
 			// ballonPosition($(this))
 
@@ -263,7 +277,7 @@
 				var $tile = $('a[href="#' + id + '"]').closest('.tile')
 				$('.ballon.vissible').addClass('animate')
 
-				$('.tile-actions a').each(function () {
+				$('.tile-actions a:not(.popup-toggle)').each(function () {
 					ballonPosition($(this))
 				})
 

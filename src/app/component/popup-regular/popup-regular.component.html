@@ -130,13 +130,16 @@
 
 								<div class="form__controls">
 									<div class="form__col form__col-size4">
-										<input type="date" class="field field-dates" name="field-dates" id="field-dates" value="" placeholder="Dates">
+										<!--<input type="date" class="field field-dates" name="field-dates" id="field-dates" value="" placeholder="Dates">
 
-										<i class="ico-calendar"></i>
+										<i class="ico-calendar"></i>-->
+
+										<my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions" [(ngModel)]="model" required></my-date-range-picker>
+
 									</div><!-- /.form__col form__col-/-size4 -->
 
 									<div class="form__col form__col-size1">
-										<input type="tel" class="field" name="field-phone-number" id="field-phone-number" value="" placeholder="Your Phone #">
+										<input type="tel" class="field" name="field-phone-number" id="field-phone-number" value="" placeholder="Your Phone #" [(ngModel)]="phone">
 									</div><!-- /.form__col form__col-/-size1 -->
 								</div><!-- /.form__controls -->
 							</div><!-- /.form__row -->
@@ -148,7 +151,7 @@
 									<ul class="list-radios">
 										<li>
 											<div class="radio">
-												<input type="radio" name="immediate-family-member" id="field-yes" (click)="openField()">
+												<input type="radio" name="immediate-family-member" id="field-yes" (click)="openField()" [(ngModel)]="isImmediateFamily" [value]='1'>
 
 												<label class="form__label" for="field-yes">Yes</label>
 											</div><!-- /.radio -->
@@ -156,7 +159,7 @@
 
 										<li>
 											<div class="radio">
-												<input type="radio" name="immediate-family-member" id="field-no" (click)="closeField()">
+												<input type="radio" name="immediate-family-member" id="field-no" (click)="closeField()" [(ngModel)]="isImmediateFamily" [value]='2'>
 
 												<label class="form__label" for="field-no">No</label>
 											</div><!-- /.radio -->
@@ -170,23 +173,23 @@
 
 								<div class="form__controls">
 									<div class="form__col">
-										<input type="text" class="field" name="field-relationship-to-person" id="field-relationship-to-person" value="">
+										<input type="text" class="field" name="field-relationship-to-person" id="field-relationship-to-person" value="" [(ngModel)]="relationshiptoPerson">
 									</div><!-- /.form__col -->
 
 									<div class="form__col col-1of2">
-										<input type="text" class="field" name="field-relationship-to-person-name" id="field-relationship-to-person-name" value="" placeholder="Name">
+										<input type="text" class="field" name="field-relationship-to-person-name" id="field-relationship-to-person-name" value="" placeholder="Name" [(ngModel)]="contactName">
 									</div><!-- /.form__col col-1of2 -->
 
 									<div class="form__col col-1of2">
-										<input type="text" class="field" name="field-relationship-to-person-phone" id="field-relationship-to-person-phone" value="" placeholder="Their phone #	">
+										<input type="text" class="field" name="field-relationship-to-person-phone" id="field-relationship-to-person-phone" value="" placeholder="Their phone #	" [(ngModel)]="contactPhone">
 									</div><!-- /.form__col col-1of2 -->
 
 									<div class="form__col">
-										<input type="text" class="field" name="field-relationship-to-person-above" id="field-relationship-to-person-above" value="" placeholder="Their relationship the person above">
+										<input type="text" class="field" name="field-relationship-to-person-above" id="field-relationship-to-person-above" value="" placeholder="Their relationship the person above" [(ngModel)]="contactRelationshipToPerson">
 									</div><!-- /.form__col -->
 
 									<div class="form__col">
-										<input type="text" class="field" name="field-relationship-to-person-email" id="field-relationship-to-person-email" value="" placeholder="Their email address:">
+										<input type="text" class="field" name="field-relationship-to-person-email" id="field-relationship-to-person-email" value="" placeholder="Their email address:" [(ngModel)]="contactEmail">
 									</div><!-- /.form__col -->
 								</div><!-- /.form__controls -->
 							</div><!-- /.form__row -->
@@ -195,7 +198,7 @@
 								<label for="field-requests-or-comments" class="form__label">Below, please type any special requests or comments to the administrator</label>
 
 								<div class="form__controls">
-									<textarea class="textarea" name="field-requests-or-comments" id="field-requests-or-comments" placeholder="Comments/Requests"></textarea>
+									<textarea class="textarea" name="field-requests-or-comments" id="field-requests-or-comments" placeholder="Comments/Requests" [(ngModel)]="commentsToAdmin"></textarea>
 								</div><!-- /.form__controls -->
 							</div><!-- /.form__row -->
 						</div><!-- /.col col-1of2 -->

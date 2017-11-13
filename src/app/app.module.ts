@@ -64,7 +64,7 @@ import { OnlyNumberDirective } from './directive/only-number.directive';
 import { DedicationComponent } from './component/dedication/dedication.component';
 import { PaymentComponent } from './component/payment/payment.component'
 
-
+import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 
 let providers = {
@@ -131,7 +131,7 @@ let providers = {
     PaymentComponent
   ],
   imports: [
-    BrowserModule,CreditCardDirectivesModule,
+    BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,
      HttpModule,
      FormsModule,ReactiveFormsModule,
      Angular2SocialLoginModule,

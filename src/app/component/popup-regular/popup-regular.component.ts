@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TehillimService } from '../../service/tehillim.service';
 import { Country, Category, Comunity } from '../../model/Tehillim/tehillim';
 import { RegisterTehellim } from '../../model/register-tehellim';
+import { IMyDrpOptions } from 'mydaterangepicker';
 
 declare var $: any;
 
@@ -13,18 +14,29 @@ declare var $: any;
 export class PopupRegularComponent implements OnInit {
 
   country: Country;
-  countries: Array<Country>=[];
+  countries: Array<Country> = [];
 
   comunity: Comunity;
-  comunities: Array<Comunity>=[];
+  comunities: Array<Comunity> = [];
 
   category: Category;
-  categories: Array<Category>=[];
-  
+  categories: Array<Category> = [];
+
+  myDateRangePickerOptions: IMyDrpOptions = {
+    // other options...
+    dateFormat: 'dd.mm.yyyy',
+  };
+
+  private model: any = {
+    beginDate: { year: 2018, month: 10, day: 9 },
+    endDate: { year: 2018, month: 10, day: 19 }
+  };
+
   constructor(private tehillimService: TehillimService) { }
 
   ngOnInit() {
     this.ReadCountry()
+
   }
 
   openField() {
@@ -78,48 +90,52 @@ export class PopupRegularComponent implements OnInit {
     )
   }
 
-  ChangeCountry()
-  {
+  ChangeCountry() {
     this.ReadComunity()
   }
 
-  ChangeCommunity()
-  {
-   this.ReadCategory()
+  ChangeCommunity() {
+    this.ReadCategory()
   }
 
-  Send()
-  {
-    var data=new RegisterTehellim()
-    data.isEmergency=false
-    data.categoryID=this.country.id
-    data.hebrewFirstName=this.hebrewFirstName
-    data.hebrewMotherName=this.hebrewMotherName
-    data.translitFirstName=this.translitFirstName
-    data.translitMotherName=this.translitMotherName
-    data.isBat=false
-    data.countryID=this.country.id
-    data.communityID=this.comunity.id
+  Send() {
+    var data = new RegisterTehellim()
+
+    data.isEmergency = false
+    data.categoryID = this.category.id
+    data.hebrewFirstName = this.hebrewFirstName
+    data.hebrewMotherName = this.hebrewMotherName
+    data.translitFirstName = this.translitFirstName
+    data.translitMotherName = this.translitMotherName
+    data.isBat = false
+    data.countryID = this.country.id
+    data.communityID = this.comunity.id
+    data.condition = this.condition
+    data.startDate = new Date(this.model.beginDate.year, this.model.beginDate.month, this.model.beginDate.day)
+    data.endDate = new Date(this.model.endDate.year, this.model.endDate.month, this.model.endDate.day)
+    data.isImmediateFamily=this.isImmediateFamily=='2'?false:true
+    data.phone = this.phone
+    data.relationshiptoPerson=this.relationshiptoPerson
+    data.contactName=this.contactName;
+    data.contactPhone=this.contactPhone
+    data.contactRelationshipToPerson=this.contactRelationshipToPerson
+    data.contactEmail=this.contactEmail
+    data.commentsToAdmin=this.commentsToAdmin
+    data.emailMessage=""
   }
 
-  hebrewFirstName:string
-  hebrewMotherName:string
-  translitFirstName:string
-  translitMotherName:string
+  hebrewFirstName: string
+  hebrewMotherName: string
+  translitFirstName: string
+  translitMotherName: string
   condition: string
-  
-  /*
-  
-  startDate: Date
-  endDate: string
-  emailMessage: string
+  isImmediateFamily: string='2'
   phone: string
-  isImmediateFamily: boolean
-  relationshiptoPerson: string
+  relationshiptoPerson:string
+  
   contactName: string
-  contactRelationshipToPerson: string
   contactPhone: string
+  contactRelationshipToPerson: string
   contactEmail: string
   commentsToAdmin: string
-  */
 }

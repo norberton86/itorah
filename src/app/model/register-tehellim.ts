@@ -10,7 +10,7 @@ export class RegisterTehellim {
   communityID: number
   condition: string
   startDate: Date
-  endDate: string
+  endDate: Date
   emailMessage: string
   phone: string
   isImmediateFamily: boolean

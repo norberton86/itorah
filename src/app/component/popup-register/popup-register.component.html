@@ -23,7 +23,7 @@
 								<ul class="list-checkboxes list-checkboxes-blocks">
 									<li>
 										<div class="checkbox checkbox-secondary checkbox-block">
-											<input type="checkbox" name="form-register-tehillim" id="field-register-tehillim">
+											<input type="checkbox" name="form-register-tehillim" id="field-register-tehillim" (click)="CloseResults()">
 
 											<label class="form__label" for="field-register-tehillim">Register a name for TEHILLIM</label>
 										</div><!-- /.checkbox -->
@@ -31,7 +31,7 @@
 
 									<li>
 										<div class="checkbox checkbox-secondary checkbox-block">
-											<input type="checkbox" name="form-register-levaya" id="field-register-levaya">
+											<input type="checkbox" name="form-register-levaya" id="field-register-levaya" (click)="CloseResults()">
 
 											<label class="form__label" for="field-register-levaya">Register a name for LEVAYA</label>
 										</div><!-- /.checkbox -->
@@ -51,7 +51,7 @@
 				<div class="form-sponsor form-database form--large hidden" id="form-register-tehillim">
 					<form action="?" method="post">
 						<div class="form__head">
-							<h4>Levaya Announcement </h4>
+							<h4>Tehillim Announcement </h4>
 
 							<div class="form__head-inner">
 								<p>First, we have to check if the person is already in our database <br> Enter the transliteration name of the person for whol to say Tehillim for:</p>
@@ -63,7 +63,7 @@
 								<label for="field-mothers-name" class="form-label">Transliteration Name of the deceased  :</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-mothers-name" id="field-mothers-name" value="" placeholder="First Name">
+									<input type="text" class="field" name="field-mothers-name" id="field-mothers-name" value="" placeholder="First Name" [(ngModel)]="firstName">
 								</div><!-- /.form-controls -->
 
 								<p class="form-hint">Please type the transliteration of the Hebrew name</p><!-- /.form-hint -->
@@ -74,19 +74,20 @@
 									<div class="form__col form__col-size-4">
 										<div class="select">
 											<select class="select" name="field-8" id="field-8">
-												<option value="">Ben</option>
+												<option value="ben">Ben</option>
+												<option value="bat">Bat</option>
 											</select>
 										</div><!-- /.select -->
 									</div><!-- /.form__col form__col-size-4 -->
 
 									<div class="form__col">
-										<input type="text" class="field" name="field-mothers-name" id="field-mothers-name" value="" placeholder="Mother’s First Name">
+										<input type="text" class="field" name="field-mothers-name" id="field-mothers-name" value="" placeholder="Mother’s First Name" [(ngModel)]="mother">
 									</div><!-- /.form__col -->
 
 									<div class="form__col">
 										<div class="select">
-											<select class="select" name="field-community" id="field-community">
-												<option value="">Community</option>
+											<select class="select" name="field-community" id="field-community" [(ngModel)]="comunity">
+												<option *ngFor="let c of comunities" [ngValue]="c">{{c.name}}</option>
 											</select>
 										</div><!-- /.select -->
 									</div><!-- /.form__col -->
@@ -95,7 +96,7 @@
 						</div><!-- /.form-body -->
 
 						<div class="form-actions">
-							<input type="submit" value="Search Database" class="form-btn">
+							<input type="submit" value="Search Database" class="form-btn" (click)="searchDatabase('tehillim')">
 						</div><!-- /.form-actions -->
 					</form>
 				</div><!-- /.form-database -->
@@ -119,7 +120,7 @@
 								<label for="field-fname" class="form__label">Transliteration Name :</label>
 
 								<div class="form__controls">
-									<input type="text" class="field" name="field-fname" id="field-fname" value="" placeholder="First Name">
+									<input type="text" class="field" name="field-fname" id="field-fname" value="" placeholder="First Name" [(ngModel)]="firstName">
 								</div><!-- /.form__controls -->
 							</div><!-- /.form-row -->
 
@@ -127,7 +128,7 @@
 								<label for="field-lname" class="form__label hidden">lname</label>
 
 								<div class="form__controls">
-									<input type="text" class="field" name="field-lname" id="field-lname" value="" placeholder="Last Name">
+									<input type="text" class="field" name="field-lname" id="field-lname" value="" placeholder="Last Name" [(ngModel)]="lastName">
 								</div><!-- /.form__controls -->
 
 								<p class="form-hint">Please type the transliteration of the Hebrew name</p>
@@ -142,6 +143,7 @@
 											<div class="select">
 												<select name="field-age" id="field-age">
 													<option value="">Select age</option>
+													<option *ngFor="let a of ages" >{{a}}</option>
 												</select>
 											</div><!-- /.select -->
 										</div><!-- /.form__controls -->
@@ -154,8 +156,7 @@
 											<div class="select">
 												<select name="field-ben" id="field-ben">
 													<option value="">Ben</option>
-													<option value="">Ben 1</option>
-													<option value="">Ben 2</option>
+													<option value="">Bat</option>
 												</select>
 											</div><!-- /.select -->
 										</div><!-- /.form__controls -->
@@ -167,7 +168,7 @@
 								<label for="field-mother-fname" class="form__label hidden">Mother’s First Name</label>
 
 								<div class="form__controls">
-									<input type="text" class="field" name="field-mother-fname" id="field-mother-fname" value="" placeholder="Mother’s First Name">
+									<input type="text" class="field" name="field-mother-fname" id="field-mother-fname" value="" placeholder="Mother’s First Name" [(ngModel)]="mother">
 								</div><!-- /.form__controls -->
 							</div><!-- /.form-row -->
 
@@ -187,21 +188,21 @@
 						</div><!-- /.form-body -->
 
 						<div class="form-actions">
-							<input type="submit" value="Search Database" class="form-btn">
+							<input type="submit" value="Search Database" class="form-btn" (click)="searchDatabase('levaya')">
 						</div><!-- /.form-actions -->
 					</form>
 				</div><!-- /.form-database -->
 			</div><!-- /.col-1of3 -->
 
 			<div class="col-1of3 col-center">
-				<div class="form-sponsor sponsor-toggle hidden" data-related="#form-register-tehillim">
+				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==1"> <!-- hidden data-related="#form-register-tehillim"-->
 					<form action="?" method="post">
 						<div class="form__body">
 							<div class="form-row">
 								<ul class="list-checkboxes list-checkboxes-blocks">
 									<li>
 										<div class="checkbox checkbox-secondary checkbox-block">
-											<input type="checkbox" name="form-register-tehillim-step-regular" id="field-regular-reading" class="link-close">
+											<input type="checkbox" name="form-register-tehillim-step-regular" id="field-regular-reading" class="link-close" (click)="OpenRegular()">
 
 											<label class="form__label" for="field-regular-reading">Regular Reading</label>
 
@@ -214,7 +215,7 @@
 
 									<li>
 										<div class="checkbox checkbox-secondary checkbox-block">
-											<input type="checkbox" name="form-register-tehillim-step-emergency" id="field-emergency" class="link-close">
+											<input type="checkbox" name="form-register-tehillim-step-emergency" id="field-emergency" class="link-close" (click)="OpenEmergency()">
 
 											<label class="form__label form__label-red" for="field-emergency">EMERGENCY</label>
 
@@ -231,7 +232,7 @@
 					</form>
 				</div><!-- /.form-sponsor sponsor-toggle -->
 
-				<div class="form-sponsor sponsor-toggle hidden" data-related="#form-register-levaya">
+				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==2"> <!-- hidden data-related="#form-register-levaya"-->
 					<form action="?" method="post">
 						<div class="form__body">
 							<div class="form-row">
@@ -253,7 +254,7 @@
 					</form>
 				</div><!-- /.form-sponsor sponsor-toggle -->
 
-				<div class="form-sponsor sponsor-toggle hidden" data-related="#form-register-tehillim-step-next">
+				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==3"> <!-- hidden data-related="#form-register-tehillim-step-next"-->
 					<form action="?" method="post">
 						<div class="form__head">
 							<div class="form__head-inner">
@@ -267,12 +268,12 @@
 											<th>Category</th>
 										</tr>
 
-										<tr>
-											<td>Norma תב Betty</td>
+										<tr *ngFor="let r of results">
+											<td>{{r.TransliterationName}}</td>
 
-											<td>תב</td>
+											<td>{{r.HebrewName}}</td>
 
-											<td>Funeral</td>
+											<td>{{r.CategoryName}}</td>
 										</tr>
 									</table>
 								</div><!-- /.table -->
@@ -286,7 +287,7 @@
 										<div class="checkbox checkbox-secondary checkbox-block">
 											<p class="form-hint">Click continue to proceed with a new name submission</p><!-- /.form-hint -->
 
-											<input type="checkbox" name="form-register-levaya-step" id="field-regular-reading-levaya" class="link-close">
+											<input type="checkbox" name="form-register-levaya-step" id="field-regular-reading-levaya" class="link-close" (click)="NavigateNewRegistration()">
 
 											<label class="form__label" for="field-regular-reading-levaya">Continue with New Registration</label>
 										</div><!-- /.checkbox -->
@@ -296,7 +297,7 @@
 										<div class="checkbox checkbox-secondary checkbox-block">
 											<p class="form-hint">Click cancel if the name of your submission is shown above</p><!-- /.form-hint -->
 
-											<input type="checkbox" name="form-emergency" id="field-emergency">
+											<input type="checkbox" name="form-emergency" id="field-emergency" (click)="Close()">
 
 											<label class="form__label form__label-red" for="field-emergency">Cancel Registration</label>
 										</div><!-- /.checkbox -->

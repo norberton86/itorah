@@ -1,0 +1,33 @@
+export class RegisterLevaya {
+  englishFirstName: string
+  englishLastName: string
+  survivingMembers: string
+  prayerTimes: string
+  funeralInfo: string
+  funeralDate: Date
+  shivaAddress: string
+  arayatDate: Date
+  arayatDetails: string
+  additionalCommentsForEmail: string
+  isEmergency: true
+  categoryID: number
+  hebrewFirstName: string
+  isBat: true
+  hebrewMotherName: string
+  translitFirstName: string
+  translitMotherName: string
+  countryID: number
+  communityID: number
+  condition: string
+  startDate: Date
+  endDate: string
+  emailMessage: string
+  phone: string
+  isImmediateFamily: true
+  relationshiptoPerson: string
+  contactName: string
+  contactRelationshipToPerson: string
+  contactPhone: string
+  contactEmail: string
+  commentsToAdmin: string
+}

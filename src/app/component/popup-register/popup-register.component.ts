@@ -112,6 +112,10 @@ export class PopupRegisterComponent implements OnInit {
 
 
   NavigateNewRegistration() {
+
+   if(this.section=="levaya")
+    this.OpenLevaya()
+    else
     this.existResults = 1
   }
 
@@ -140,10 +144,13 @@ export class PopupRegisterComponent implements OnInit {
     $('#form-register-levaya-step').toggleClass('shown');
   }
 
-  CloseResults()
+  CloseResults(section:string)
   {
     this.existResults=0
+    this.section=section
   }
+
+  section:string
 
 }
 

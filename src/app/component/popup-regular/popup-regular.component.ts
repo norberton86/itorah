@@ -31,8 +31,8 @@ export class PopupRegularComponent implements OnInit {
   };
 
   private model: any = {
-    beginDate: { year: new Date().getFullYear(), month: new Date().getMonth(), day: new Date().getDate() },
-    endDate: { year: new Date().getFullYear(), month: new Date().getMonth(), day: new Date().getDate() }
+    beginDate: { year: new Date().getFullYear(), month: new Date().getMonth()+1, day: new Date().getDate() },
+    endDate: { year: new Date().getFullYear(), month: new Date().getMonth()+1, day: new Date().getDate() }
   };
 
   constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) { }
@@ -136,6 +136,7 @@ export class PopupRegularComponent implements OnInit {
       function (response) 
       {
         self.registerTehellimService.Notify("Registered", false)
+        $('#form-register-tehillim-step-regular').toggleClass('shown');
       },
       function (error) 
       {

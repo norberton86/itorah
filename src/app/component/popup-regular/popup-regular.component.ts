@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { TehillimService } from '../../service/tehillim.service';
+import { RegisterTehellimService } from '../../service/register-tehellim.service';
 import { Country, Category, Comunity } from '../../model/Tehillim/tehillim';
 import { RegisterTehellim } from '../../model/register-tehellim';
 import { IMyDrpOptions } from 'mydaterangepicker';
 
 declare var $: any;
+declare var VirtualKeyboard: any;
 
 @Component({
   selector: 'app-popup-regular',
   templateUrl: './popup-regular.component.html',
   styleUrls: ['./popup-regular.component.css'],
+  providers: [RegisterTehellimService]
 })
 export class PopupRegularComponent implements OnInit {
 
@@ -24,19 +27,24 @@ export class PopupRegularComponent implements OnInit {
 
   myDateRangePickerOptions: IMyDrpOptions = {
     // other options...
-    dateFormat: 'dd.mm.yyyy',
+    dateFormat: 'mm.dd.yyyy',
   };
 
   private model: any = {
-    beginDate: { year: 2018, month: 10, day: 9 },
-    endDate: { year: 2018, month: 10, day: 19 }
+    beginDate: { year: new Date().getFullYear(), month: new Date().getMonth(), day: new Date().getDate() },
+    endDate: { year: new Date().getFullYear(), month: new Date().getMonth(), day: new Date().getDate() }
   };
 
-  constructor(private tehillimService: TehillimService) { }
+  constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) { }
 
   ngOnInit() {
     this.ReadCountry()
 
+  }
+
+  SetKeyboard(id) {
+    var $keyboard = $('#VirtualKeyboardHolder-2');
+    VirtualKeyboard.toggle(id, $keyboard.attr('id'));
   }
 
   openField() {
@@ -103,8 +111,8 @@ export class PopupRegularComponent implements OnInit {
 
     data.isEmergency = false
     data.categoryID = this.category.id
-    data.hebrewFirstName = this.hebrewFirstName
-    data.hebrewMotherName = this.hebrewMotherName
+    data.hebrewFirstName = $('#field-hebrew-fname').val()
+    data.hebrewMotherName = $('#field-hebrew-lname').val()
     data.translitFirstName = this.translitFirstName
     data.translitMotherName = this.translitMotherName
     data.isBat = false
@@ -113,15 +121,30 @@ export class PopupRegularComponent implements OnInit {
     data.condition = this.condition
     data.startDate = new Date(this.model.beginDate.year, this.model.beginDate.month, this.model.beginDate.day)
     data.endDate = new Date(this.model.endDate.year, this.model.endDate.month, this.model.endDate.day)
-    data.isImmediateFamily=this.isImmediateFamily=='2'?false:true
+    data.isImmediateFamily = this.isImmediateFamily == '2' ? false : true
     data.phone = this.phone
-    data.relationshiptoPerson=this.relationshiptoPerson
-    data.contactName=this.contactName;
-    data.contactPhone=this.contactPhone
-    data.contactRelationshipToPerson=this.contactRelationshipToPerson
-    data.contactEmail=this.contactEmail
-    data.commentsToAdmin=this.commentsToAdmin
-    data.emailMessage=""
+    data.relationshiptoPerson = this.relationshiptoPerson
+    data.contactName = this.contactName;
+    data.contactPhone = this.contactPhone
+    data.contactRelationshipToPerson = this.contactRelationshipToPerson
+    data.contactEmail = this.contactEmail
+    data.commentsToAdmin = this.commentsToAdmin
+    data.emailMessage = ""
+
+    let self = this;
+    this.registerTehellimService.addTehillim(data).subscribe(
+      function (response) 
+      {
+        self.registerTehellimService.Notify("Registered", false)
+      },
+      function (error) 
+      {
+        self.registerTehellimService.Notify("Error trying to register", true)
+      },
+      function () {
+
+      }
+    )
   }
 
   hebrewFirstName: string
@@ -129,10 +152,10 @@ export class PopupRegularComponent implements OnInit {
   translitFirstName: string
   translitMotherName: string
   condition: string
-  isImmediateFamily: string='2'
+  isImmediateFamily: string = '2'
   phone: string
-  relationshiptoPerson:string
-  
+  relationshiptoPerson: string
+
   contactName: string
   contactPhone: string
   contactRelationshipToPerson: string

@@ -44,9 +44,13 @@ export class RegisterTehellimService extends Service {
     )
   }
 
-  public addTehillim(name: RegisterTehellim): Observable<any> {
+  public addTehillim(register: RegisterTehellim): Observable<any> {
 
-    return this.http.post(this.ruta + "/addtehillim", name, { headers: this.header }).map(
+    let h = new Headers();
+    h.append('Authorization', 'bearer ' + this.getToken());
+    h.append('Content-Type', 'application/json');
+
+    return this.http.post(this.ruta + "/addtehillim", register, { headers: h }).map(
       (response) => {
         let body = response.json();
         return body;
@@ -55,6 +59,10 @@ export class RegisterTehellimService extends Service {
   }
 
   public addLevaya(name: RegisterLevaya): Observable<any> {
+
+    let h = new Headers();
+    h.append('Authorization', 'bearer ' + this.getToken());
+    h.append('Content-Type', 'application/json');
 
     return this.http.post(this.ruta + "/addlevaya", name, { headers: this.header }).map(
       (response) => {

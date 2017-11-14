@@ -31,8 +31,8 @@ export class PopupRegularComponent implements OnInit {
   };
 
   private model: any = {
-    beginDate: { year: new Date().getFullYear(), month: new Date().getMonth()+1, day: new Date().getDate() },
-    endDate: { year: new Date().getFullYear(), month: new Date().getMonth()+1, day: new Date().getDate() }
+    beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
+    endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() }
   };
 
   constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) { }
@@ -133,13 +133,12 @@ export class PopupRegularComponent implements OnInit {
 
     let self = this;
     this.registerTehellimService.addTehillim(data).subscribe(
-      function (response) 
-      {
+      function (response) {
         self.registerTehellimService.Notify("Registered", false)
+        self.Reset()
         $('#form-register-tehillim-step-regular').toggleClass('shown');
       },
-      function (error) 
-      {
+      function (error) {
         self.registerTehellimService.Notify("Error trying to register", true)
       },
       function () {
@@ -162,4 +161,30 @@ export class PopupRegularComponent implements OnInit {
   contactRelationshipToPerson: string
   contactEmail: string
   commentsToAdmin: string
+
+  Reset() {
+    this.hebrewFirstName = ""
+    this.hebrewMotherName = ""
+    this.translitFirstName = ""
+    this.translitMotherName = ""
+    this.condition = ""
+    this.isImmediateFamily = '2'
+    this.phone = ""
+    this.relationshiptoPerson = ""
+
+    this.contactName = ""
+    this.contactPhone = ""
+    this.contactRelationshipToPerson = ""
+    this.contactEmail = ""
+    this.commentsToAdmin = ""
+
+    this.model = {
+      beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
+      endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() }
+    }
+    
+    $('#field-hebrew-fname').val('')
+    $('#field-hebrew-lname').val('')
+
+  }
 }

@@ -20,22 +20,39 @@
 
 						<div class="form__controls">
 							<div class="form__col-size1">
-								<input type="text" class="field" name="field-transliteration-fname" id="field-transliteration-fname" value="" placeholder="First Name">
+								<input type="text" class="field" name="field-transliteration-fname" id="field-transliteration-fname" value="" placeholder="First Name" [(ngModel)]="translitFirstName">
 							</div><!-- /.form__col-size1 -->
 
 							<div class="form__col-size3">
 								<div class="select">
 									<select name="field-field-transliteration-name-2" id="field-field-transliteration-name-2">
-										<option value="">Ben</option>
+										<option value="Ben">Ben</option>
+										<option value="Bat">Bat</option>
 									</select>
 								</div><!-- /.select -->
 							</div><!-- /.form__col-size3 -->
 
 							<div class="form__col-size2">
-								<input type="text" class="field" name="field-transliteration-mother-name" id="field-transliteration-mother-name" value="" placeholder="Mother’s First Name">
+								<input type="text" class="field" name="field-transliteration-mother-name" id="field-transliteration-mother-name" value="" placeholder="Mother’s First Name" [(ngModel)]="translitMotherName">
 							</div><!-- /.form__col-size2 -->
 						</div><!-- /.form__controls -->
 					</div><!-- /.form__row -->
+
+
+					<div class="form__row">
+						<label for="field-hebrew-fname" class="form__label">Hebrew Name</label>
+
+						<div class="form__controls">
+							<div class="form__col col-1of2">
+								<input type="text" class="field" name="field-hebrew-fname" id="field-hebrew-fname-levaya" value="" placeholder="hebrew-fname" (focus)="SetKeyboard('field-hebrew-fname-levaya')">
+							</div><!-- /.form__col col-1of2 -->
+
+							<div class="form__col col-1of2">
+								<input type="text" class="field" name="field-hebrew-lname" id="field-hebrew-lname-levaya" value="" placeholder="hebrew-lname" (focus)="SetKeyboard('field-hebrew-lname-levaya')">
+							</div><!-- /.form__col col-1of2 -->
+						</div><!-- /.form__controls -->
+					</div><!-- /.form__row -->
+
 
 					<div class="form__row keyboard">
 						<label for="field-translation" class="form__label">
@@ -44,7 +61,7 @@
 
 						<div class="form__controls">
 							<div class="form__col">
-								<input class="field" name="field-translation" id="field-translation" value="" onfocus="VirtualKeyboard.attachInput(this)">
+								<!--<input class="field" name="field-translation" id="field-translation" value="" onfocus="VirtualKeyboard.attachInput(this)">-->
 
 								<div class="VirtualKeyboardHolder" id="VirtualKeyboardHolder"></div>
 							</div><!-- /.form__col -->
@@ -53,18 +70,19 @@
 					</div><!-- /.form__row -->
 
 					<div class="form__row">
-						<label for="field-hebrew-fname" class="form__label">Hebrew Name</label>
+						<label for="field-hebrew-fname" class="form__label">English Name</label>
 
 						<div class="form__controls">
 							<div class="form__col col-1of2">
-								<input type="text" class="field" name="field-hebrew-fname" id="field-hebrew-fname" value="" placeholder="hebrew-fname">
+								<input type="text" class="field" name="field-english-fname" id="field-english-fname-levaya" value="" placeholder="english-fname" [(ngModel)]="englishFirstName">
 							</div><!-- /.form__col col-1of2 -->
 
 							<div class="form__col col-1of2">
-								<input type="text" class="field" name="field-hebrew-lname" id="field-hebrew-lname" value="" placeholder="hebrew-lname">
+								<input type="text" class="field" name="field-english-lname" id="field-english-lname-levaya" value="" placeholder="english-lname" [(ngModel)]="englishLastName">
 							</div><!-- /.form__col col-1of2 -->
 						</div><!-- /.form__controls -->
 					</div><!-- /.form__row -->
+
 
 					<div class="form__row">
 						<label for="field-their-country" class="form__label">Their Country</label>
@@ -72,8 +90,8 @@
 						<div class="form__controls">
 							<div class="form__col col-1of2">
 								<div class="select">
-									<select name="field-their-country" id="field-their-country">
-										<option value="">Their Country</option>
+									<select name="field-their-country" id="field-their-country" [(ngModel)]="country" (change)="ChangeCountry()">
+										<option *ngFor="let s of countries" [ngValue]="s">{{s.name}}</option>
 									</select>
 								</div><!-- /.select -->
 
@@ -84,8 +102,8 @@
 
 							<div class="form__col col-1of2">
 								<div class="select">
-									<select name="field-their-community" id="field-their-community">
-										<option value="">Their Community</option>
+									<select name="field-their-community" id="field-their-community" [(ngModel)]="comunity" (change)="ChangeCommunity()">
+										<option *ngFor="let s of comunities" [ngValue]="s">{{s.name}}</option>
 									</select>
 								</div><!-- /.select -->
 
@@ -103,13 +121,13 @@
 
 						<div class="form__controls">
 							<div class="form__col form__col-1of2">
-								<input type="text" class="field field-dates" name="field-deceaseddates" id="field-deceaseddates" value="" placeholder="Deceased date">
+								<input type="date" class="field field-dates" name="field-deceaseddates" id="field-deceaseddates" value="" placeholder="Deceased date" [(ngModel)]="startDate">
 
 								<i class="ico-calendar"></i>
 							</div><!-- /.form__col form__col-/-size4 -->
 
 							<div class="form__col form__col-1of2">
-								<input type="text" class="field field-dates" name="field-funeral" id="field-funeral" value="" placeholder="Funeral date">
+								<input type="date" class="field field-dates" name="field-funeral" id="field-funeral" value="" placeholder="Funeral date" [(ngModel)]="funeralDate">
 
 								<i class="ico-calendar"></i>
 							</div><!-- /.form__col form__col-/-size4 -->
@@ -120,7 +138,7 @@
 						<label for="field-funeral-info" class="form__label">When and where is the Levaya (funeral)? </label>
 
 						<div class="form__controls">
-							<textarea class="textarea" name="field-funeral-info" id="field-funeral-info" placeholder="Funeral info"></textarea>
+							<textarea class="textarea" name="field-funeral-info" id="field-funeral-info" placeholder="Funeral info" [(ngModel)]="funeralInfo"></textarea>
 						</div><!-- /.form__controls -->
 					</div><!-- /.form__row -->
 
@@ -128,7 +146,7 @@
 						<label for="field-family-member" class="form__label">Enter the names of the family members of the deceased's family</label>
 
 						<div class="form__controls">
-							<textarea class="textarea textarea--small" name="field-family-member" id="field-family-member" placeholder="Family Member"></textarea>
+							<textarea class="textarea textarea--small" name="field-family-member" id="field-family-member" placeholder="Family Member" [(ngModel)]="survivingMembers" ></textarea>
 						</div><!-- /.form__controls -->
 					</div><!-- /.form__row -->
 
@@ -137,15 +155,15 @@
 
 						<div class="form__controls">
 							<div class="form__col">
-								<textarea class="textarea textarea--small" name="field-prayer-times" id="field-prayer-times" placeholder="Prayer Times"></textarea>
+								<textarea class="textarea textarea--small" name="field-prayer-times" id="field-prayer-times" placeholder="Prayer Times" [(ngModel)]="prayerTimes"></textarea>
 							</div><!-- /.form__col -->
 
 							<div class="form__col col-1of2">
-								<input type="text" class="field" name="field-where-sitting" id="field-where-sitting" value="" placeholder="Where Sitting">
+								<input type="text" class="field" name="field-where-sitting" id="field-where-sitting" value="" placeholder="Where Sitting" [(ngModel)]="shivaAddress">
 							</div><!-- /.form__col col-1of2 -->
 
 							<div class="form__col col-1of2">
-								<input type="text" class="field" name="field-arayat-date" id="field-arayat-date" value="" placeholder="Arayat Date">
+								<input type="date" class="field" name="field-arayat-date" id="field-arayat-date" value="" placeholder="Arayat Date" [(ngModel)]="arayatDate">
 							</div><!-- /.form__col col-1of2 -->
 						</div><!-- /.form__controls -->
 					</div><!-- /.form__row -->
@@ -154,7 +172,7 @@
 						<label for="field-arayat-details" class="form__label">Enter the details of the Arayat; time, location, schedule.</label>
 
 						<div class="form__controls">
-							<textarea class="textarea" name="field-arayat-details" id="field-arayat-details" placeholder="Arayat Details"></textarea>
+							<textarea class="textarea" name="field-arayat-details" id="field-arayat-details" placeholder="Arayat Details" [(ngModel)]="arayatDetails"></textarea>
 
 							<ul class="list-checkboxes">
 								<li>
@@ -179,17 +197,17 @@
 
 							<div class="form__controls">
 								<div class="form__col">
-									<textarea class="textarea" name="field-text-message" id="field-text-message" placeholder="Text Message"></textarea>
+									<textarea class="textarea" name="field-text-message" id="field-text-message" placeholder="Text Message" [(ngModel)]="emailMessage"></textarea>
 								</div><!-- /.form__col -->
 
 								<div class="form__col form__col-1of2">
-									<input type="text" class="field field-dates" name="field-deceaseddates" id="field-deceaseddates" value="" placeholder="Deceased date">
+									<input type="date" class="field field-dates" name="field-deceaseddates" id="field-deceaseddates" value="" placeholder="Shiva Until" [(ngModel)]="endDate">
 
 									<i class="ico-calendar"></i>
 								</div><!-- /.form__col form__col-/-size4 -->
 
 								<div class="form__col form__col-1of2">
-									<input type="text" class="field" name="field-phone-number" id="field-phone-number" value="" placeholder="Your Phone #">
+									<input type="text" class="field" name="field-phone-number" id="field-phone-number" value="" placeholder="Your Phone #" [(ngModel)]="phone">
 								</div><!-- /.form__col form__col-/-size1 -->
 							</div><!-- /.form__controls -->
 						</div><!-- /.form__row -->
@@ -223,23 +241,23 @@
 
 							<div class="form__controls">
 								<div class="form__col">
-									<input type="text" class="field" name="field-relationship-to-person" id="field-relationship-to-person" value="">
+									<input type="text" class="field" name="field-relationship-to-person" id="field-relationship-to-person" value="" [(ngModel)]="relationshiptoPerson">
 								</div><!-- /.form__col -->
 
 								<div class="form__col col-1of2">
-									<input type="text" class="field" name="field-relationship-to-person-name" id="field-relationship-to-person-name" value="" placeholder="Name">
+									<input type="text" class="field" name="field-relationship-to-person-name" id="field-relationship-to-person-name" value="" placeholder="Name" [(ngModel)]="contactName">
 								</div><!-- /.form__col col-1of2 -->
 
 								<div class="form__col col-1of2">
-									<input type="text" class="field" name="field-relationship-to-person-phone" id="field-relationship-to-person-phone" value="" placeholder="Their phone #	">
+									<input type="text" class="field" name="field-relationship-to-person-phone" id="field-relationship-to-person-phone" value="" placeholder="Their phone #	" [(ngModel)]="contactPhone">
 								</div><!-- /.form__col col-1of2 -->
 
 								<div class="form__col">
-									<input type="text" class="field" name="field-relationship-to-person-above" id="field-relationship-to-person-above" value="" placeholder="Their relationship the person above">
+									<input type="text" class="field" name="field-relationship-to-person-above" id="field-relationship-to-person-above" value="" placeholder="Their relationship the person above" [(ngModel)]="contactRelationshipToPerson">
 								</div><!-- /.form__col -->
 
 								<div class="form__col">
-									<input type="text" class="field" name="field-relationship-to-person-email" id="field-relationship-to-person-email" value="" placeholder="Their email address:">
+									<input type="text" class="field" name="field-relationship-to-person-email" id="field-relationship-to-person-email" value="" placeholder="Their email address:" [(ngModel)]="contactEmail">
 								</div><!-- /.form__col -->
 							</div><!-- /.form__controls -->
 						</div><!-- /.form__row -->
@@ -248,7 +266,7 @@
 							<label for="field-comments" class="form__label">(This text will be included in the email broadcast, and on the web site)</label>
 
 							<div class="form__controls">
-								<textarea class="textarea" name="field-comments" id="field-comments" placeholder="Comments"></textarea>
+								<textarea class="textarea" name="field-comments" id="field-comments" placeholder="Comments" [(ngModel)]="additionalCommentsForEmail"></textarea>
 							</div><!-- /.form__controls -->
 						</div><!-- /.form__row -->
 
@@ -256,13 +274,13 @@
 							<label for="field-comments-requests" class="form__label">Below, please type any special requests or comments to the administrator</label>
 
 							<div class="form__controls">
-								<textarea class="textarea" name="field-comments-requests" id="field-comments-requests" placeholder="Comments/Requests"></textarea>
+								<textarea class="textarea" name="field-comments-requests" id="field-comments-requests" placeholder="Comments/Requests" [(ngModel)]="commentsToAdmin"></textarea>
 							</div><!-- /.form__controls -->
 						</div><!-- /.form__row -->
 					</div><!-- /.form__body -->
 
 					<div class="form__actions">
-						<input type="submit" value="Submit" class="form__btn">
+						<input type="submit" value="Submit" class="form__btn" (click)="Send()">
 
 						<p>This form will be sent to one of the administrators of your community for approval. Approvals and updates are usually posted within 24 hours. An administrator will contact you by email or phone if further information is needed.</p>
 					</div><!-- /.form__actions -->

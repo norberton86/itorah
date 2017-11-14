@@ -50,7 +50,7 @@ export class RegisterTehellimService extends Service {
     h.append('Authorization', 'bearer ' + this.getToken());
     h.append('Content-Type', 'application/json');
 
-    return this.http.post(this.ruta + "/addtehillim", register, { headers: h }).map(
+    return this.http.post(this.ruta + "addtehillim", register, { headers: h }).map(
       (response) => {
         let body = response.json();
         return body;
@@ -64,7 +64,7 @@ export class RegisterTehellimService extends Service {
     h.append('Authorization', 'bearer ' + this.getToken());
     h.append('Content-Type', 'application/json');
 
-    return this.http.post(this.ruta + "/addlevaya", name, { headers: this.header }).map(
+    return this.http.post(this.ruta + "addlevaya", name, { headers: h }).map(
       (response) => {
         let body = response.json();
         return body;

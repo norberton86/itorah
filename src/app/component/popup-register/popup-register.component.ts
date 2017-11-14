@@ -134,6 +134,12 @@ export class PopupRegisterComponent implements OnInit {
     $('.mydrp').css('width','224px')
   }
 
+  OpenLevaya()
+  {
+    this.Close()
+    $('#form-register-levaya-step').toggleClass('shown');
+  }
+
   CloseResults()
   {
     this.existResults=0

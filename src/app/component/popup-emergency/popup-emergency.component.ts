@@ -28,8 +28,8 @@ export class PopupEmergencyComponent implements OnInit {
   };
 
   private model: any = {
-    beginDate: { year: new Date().getFullYear(), month: new Date().getMonth()+1, day: new Date().getDate() },
-    endDate: { year: new Date().getFullYear(), month: new Date().getMonth()+1, day: new Date().getDate() }
+    beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
+    endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() }
   };
 
   constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) { }
@@ -43,8 +43,8 @@ export class PopupEmergencyComponent implements OnInit {
     var $keyboard = $('#VirtualKeyboardHolder-1');
     VirtualKeyboard.toggle(id, $keyboard.attr('id'));
   }
-  
-    ReadCountry() {
+
+  ReadCountry() {
     let self = this;
     this.tehillimService.readCountry().subscribe(
       function (response) {
@@ -68,21 +68,19 @@ export class PopupEmergencyComponent implements OnInit {
     )
   }
 
-    ChangeCountry() {
+  ChangeCountry() {
     this.ReadComunity()
   }
 
-  openField()
-  {
-  	$('#form__row-info-emergency').removeClass('hidden');
+  openField() {
+    $('#form__row-info-emergency').removeClass('hidden');
   }
 
-  closeField()
-  {
-  	$('#form__row-info-emergency').addClass('hidden');
+  closeField() {
+    $('#form__row-info-emergency').addClass('hidden');
   }
 
-    Send() {
+  Send() {
     var data = new RegisterTehellim()
 
     data.isEmergency = true
@@ -109,13 +107,12 @@ export class PopupEmergencyComponent implements OnInit {
 
     let self = this;
     this.registerTehellimService.addTehillim(data).subscribe(
-      function (response) 
-      {
+      function (response) {
         self.registerTehellimService.Notify("Registered", false)
+        self.Reset()
         $('#form-register-tehillim-step-emergency').toggleClass('shown');
       },
-      function (error) 
-      {
+      function (error) {
         self.registerTehellimService.Notify("Error trying to register", true)
       },
       function () {
@@ -138,7 +135,31 @@ export class PopupEmergencyComponent implements OnInit {
   contactRelationshipToPerson: string
   contactEmail: string
   commentsToAdmin: string
-  emailMessage:string
+  emailMessage: string
 
+  Reset() {
+    this.hebrewFirstName = ""
+    this.hebrewMotherName = ""
+    this.translitFirstName = ""
+    this.translitMotherName = ""
+    this.condition = ""
+    this.isImmediateFamily = '2'
+    this.phone = ""
+    this.relationshiptoPerson = ""
 
+    this.contactName = ""
+    this.contactPhone = ""
+    this.contactRelationshipToPerson = ""
+    this.contactEmail = ""
+    this.commentsToAdmin = ""
+    this.emailMessage = ""
+
+    this.model = {
+      beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
+      endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() }
+    }
+
+    $('#field-hebrew-fname-eme').val('')
+    $('#field-hebrew-lname-eme').val('')
+  }
 }

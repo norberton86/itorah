@@ -9,10 +9,10 @@ export class RegisterLevaya {
   arayatDate: Date
   arayatDetails: string
   additionalCommentsForEmail: string
-  isEmergency: true
+  isEmergency: boolean
   categoryID: number
   hebrewFirstName: string
-  isBat: true
+  isBat: boolean
   hebrewMotherName: string
   translitFirstName: string
   translitMotherName: string
@@ -20,10 +20,10 @@ export class RegisterLevaya {
   communityID: number
   condition: string
   startDate: Date
-  endDate: string
+  endDate: Date
   emailMessage: string
   phone: string
-  isImmediateFamily: true
+  isImmediateFamily: boolean
   relationshiptoPerson: string
   contactName: string
   contactRelationshipToPerson: string

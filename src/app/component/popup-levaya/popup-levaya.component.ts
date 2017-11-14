@@ -3,7 +3,7 @@ import { TehillimService } from '../../service/tehillim.service';
 import { RegisterTehellimService } from '../../service/register-tehellim.service';
 import { Country, Comunity } from '../../model/Tehillim/tehillim';
 import { RegisterLevaya } from '../../model/register-levaya';
-import { IMyDrpOptions } from 'mydaterangepicker';
+import {IMyDpOptions} from 'mydatepicker';
 
 declare var $: any;
 declare var VirtualKeyboard: any;
@@ -23,15 +23,16 @@ export class PopupLevayaComponent implements OnInit {
   comunities: Array<Comunity> = [];
 
 
-  myDateRangePickerOptions: IMyDrpOptions = {
-    // other options...
-    dateFormat: 'mm.dd.yyyy',
-  };
+    public myDatePickerOptions: IMyDpOptions = {
+        // other options...
+        dateFormat: 'mm.dd.yyyy',
+    };
 
-  private model: any = {
-    beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
-    endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() }
-  };
+    // Initialized to specific date (09.10.2018).
+    public funeralDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} };
+    public arayatDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} };
+    public startDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} };
+    public endDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} };
 
   constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) { }
 
@@ -84,13 +85,13 @@ export class PopupLevayaComponent implements OnInit {
   survivingMembers: string
   prayerTimes: string
   funeralInfo: string
-  funeralDate: Date
+  
   shivaAddress: string
-  arayatDate: Date
+ 
   arayatDetails: string
   additionalCommentsForEmail: string
-  startDate: Date
-  endDate: string
+ 
+ 
   emailMessage: string
   phone: string
   isImmediateFamily: string = '2'
@@ -109,9 +110,9 @@ export class PopupLevayaComponent implements OnInit {
     data.survivingMembers = this.survivingMembers
     data.prayerTimes = this.prayerTimes
     data.funeralInfo = this.funeralInfo
-    data.funeralDate = this.funeralDate
+    data.funeralDate = new Date(this.funeralDate.date.year, this.funeralDate.date.month, this.funeralDate.date.day)
     data.shivaAddress = this.shivaAddress
-    data.arayatDate = this.arayatDate
+    data.arayatDate = new Date(this.arayatDate.date.year, this.arayatDate.date.month, this.arayatDate.date.day)
     data.arayatDetails = this.arayatDetails
     data.additionalCommentsForEmail = this.additionalCommentsForEmail
     data.isEmergency = false
@@ -139,8 +140,8 @@ export class PopupLevayaComponent implements OnInit {
     data.hebrewFirstName = $('#field-hebrew-fname-levaya').val()
     data.hebrewMotherName = $('#field-hebrew-lname-levaya').val()
 
-    data.startDate = new Date(this.model.beginDate.year, this.model.beginDate.month, this.model.beginDate.day)
-    data.endDate = new Date(this.model.endDate.year, this.model.endDate.month, this.model.endDate.day)
+    data.startDate = new Date(this.startDate.date.year, this.startDate.date.month, this.startDate.date.day)
+    data.endDate = new Date(this.endDate.date.year, this.endDate.date.month, this.endDate.date.day)
     data.isImmediateFamily = this.isImmediateFamily == '2' ? false : true
 
 
@@ -148,7 +149,7 @@ export class PopupLevayaComponent implements OnInit {
     this.registerTehellimService.addLevaya(data).subscribe(
       function (response) {
         self.registerTehellimService.Notify("Registered", false)
-        //self.Reset()
+        self.Reset()
         $('#form-register-levaya-step').toggleClass('shown');
       },
       function (error) {
@@ -160,7 +161,7 @@ export class PopupLevayaComponent implements OnInit {
     )
   }
 
-  /*Reset() {
+  Reset() {
     this.englishFirstName=""
     this.englishLastName=""
     this.translitFirstName=""
@@ -168,13 +169,13 @@ export class PopupLevayaComponent implements OnInit {
     this.survivingMembers=""
     this.prayerTimes=""
     this.funeralInfo=""
-    this.funeralDate: Date
+    this.funeralDate= { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} }
     this.shivaAddress=""
-    this.arayatDate: Date
+    this.arayatDate= { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} }
     this.arayatDetails=""
     this.additionalCommentsForEmail=""
-    this.startDate: Date
-    this.endDate=""
+    this.startDate= { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} }
+    this.endDate= { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} }
     this.emailMessage=""
     this.phone =""
     this.isImmediateFamily = '2'
@@ -184,7 +185,10 @@ export class PopupLevayaComponent implements OnInit {
     this.contactRelationshipToPerson=""
     this.contactPhone=""
     this.contactEmail=""
-  }*/
+
+    $('#field-hebrew-fname-levaya').val('')
+    $('#field-hebrew-lname-levaya').val('')
+  }
 }
 
 

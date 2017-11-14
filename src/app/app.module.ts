@@ -65,6 +65,7 @@ import { DedicationComponent } from './component/dedication/dedication.component
 import { PaymentComponent } from './component/payment/payment.component'
 
 import { MyDateRangePickerModule } from 'mydaterangepicker';
+import { MyDatePickerModule } from 'mydatepicker';
 
 
 let providers = {
@@ -131,7 +132,7 @@ let providers = {
     PaymentComponent
   ],
   imports: [
-    BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,
+    BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,MyDatePickerModule ,
      HttpModule,
      FormsModule,ReactiveFormsModule,
      Angular2SocialLoginModule,

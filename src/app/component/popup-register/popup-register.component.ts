@@ -131,6 +131,7 @@ export class PopupRegisterComponent implements OnInit {
 
     this.Close()
     $('#form-register-tehillim-step-emergency').toggleClass('shown');
+    $('.mydrp').css('width','224px')
   }
 
   CloseResults()

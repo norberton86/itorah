@@ -1,5 +1,16 @@
 export class Dedication {
-memory:string
-rabbi:string
-dedicated :string
+    id: number
+    type: string
+    dedicationForName: string
+    dedicationByName: string
+}
+
+export class DedicationPost {
+    id: number
+    dedicationTypeID: number
+    dedicationForName: string
+    dedicationByName: string
+    timeLimit: string
+    details: string
+    paid: boolean
 }

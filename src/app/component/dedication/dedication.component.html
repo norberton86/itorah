@@ -15,10 +15,10 @@
 
 		<ul class="list-dedications">
 			<li *ngFor="let d of dedications">
-				<h5>- In Memory of {{d.memory}} - </h5>
+				<h5>- {{d.type}} - </h5>
 
 				<p>
-					<strong>{{d.rabbi}}</strong> <br> Dedicated by {{d.dedicated}}
+					<strong>{{d.dedicationForName}}</strong> <br> Dedicated by {{d.dedicationByName}}
 				</p>
 			</li>
 		</ul>
@@ -54,6 +54,16 @@
 							</div>
 							<!-- /.form-row -->
 
+							
+							<div class="form-row" *ngIf="dT.id=='6'">
+								<label for="field-dedication-name" class="form__label">Other</label>
+
+								<div class="form-controls">
+									<input type="text" class="field" name="Name" value="" placeholder="Other" [(ngModel)]="other">
+								</div>
+							</div>
+							<!-- /.form-row -->
+
 							<div class="form-row">
 								<label for="field-dedication-name" class="form__label">Dedication name</label>
 
@@ -80,7 +90,7 @@
 
 								<div class="form-controls">
 									<div class="select">
-										<select name="field-dedicated-per" id="field-dedicated-per" [(ngModel)]="dP">
+										<select name="field-dedicated-per" id="field-dedicated-per" [(ngModel)]="dP" (change)="ChangePer()">
 												<option *ngFor="let s of dedicatedPer" [ngValue]="s">{{s.description}}</option>
 										</select>
 									</div>
@@ -103,7 +113,7 @@
 			<!-- /.col-1of2 -->
 
 			<div class="col-1of2">
-				<app-payment [valPar]="value"></app-payment>
+				<app-payment [valPar]="value" (myEvent) = "Save($event)"></app-payment>
 				<!-- /.form-order -->
 			</div>
 			<!-- /.col-1of2 -->

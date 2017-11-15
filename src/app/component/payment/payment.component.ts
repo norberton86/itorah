@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input,Output,EventEmitter} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreditCardValidator } from 'angular-cc-library';
 
@@ -9,6 +9,9 @@ import { CreditCardValidator } from 'angular-cc-library';
 })
 export class PaymentComponent implements OnInit, OnChanges {
 
+
+  @Output()
+  public myEvent = new EventEmitter<boolean>();
 
   @Input()
   valPar: number
@@ -31,7 +34,7 @@ export class PaymentComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
-
+      this.myEvent.next(true)
   }
 
   Validate() {

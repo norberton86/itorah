@@ -182,4 +182,27 @@ export class AppComponent implements OnInit {
     this.Browse()
   }
 
+  isAuthenticated(): boolean {
+    let self = this;
+    if (localStorage.getItem('userItorah') == null || localStorage.getItem('userItorah') == "")//needs credentials to access
+    {
+      setTimeout(function () {
+
+        $('.nav-access > li > .dropdown-signin').addClass('shown').show() //open the Sign in session
+
+      }, 500)
+      return false;
+    }
+    else
+      return true;
+  }
+
+  OpenRegister()
+  {
+    if(this.isAuthenticated())
+    {
+      $('#popup-register').toggleClass('shown');
+    }
+  }
+
 }

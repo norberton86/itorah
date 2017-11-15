@@ -53,6 +53,11 @@ export class PopupLevayaComponent implements OnInit {
   closeField() {
     $('#form__row-info-levaya').addClass('hidden');
   }
+    
+  ChangeCountry() {
+    this.ReadComunity()
+  }
+
 
   ReadCountry() {
     let self = this;

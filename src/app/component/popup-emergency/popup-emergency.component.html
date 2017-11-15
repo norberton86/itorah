@@ -91,7 +91,7 @@
 
 									<div class="form__col col-1of2">
 										<div class="select">
-											<select name="field-their-community" id="field-their-community"  [(ngModel)]="comunity" (change)="ChangeCommunity()">
+											<select name="field-their-community" id="field-their-community"  [(ngModel)]="comunity" >
 												<option *ngFor="let s of comunities" [ngValue]="s">{{s.name}}</option>
 											</select>
 										</div><!-- /.select -->

@@ -51,7 +51,7 @@ export class DedicationComponent implements OnInit {
   }
 
   ChangePer() {
-    if (this.dP.id == "month")
+    if (this.dP.id == "Month")
       this.value = 100
     else
       this.value = 1000

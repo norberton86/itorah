@@ -3,18 +3,11 @@ export class Shiba {
     hebrewName:string
     transliterationName:string
     deceasedOn:Date
-    
-
     familyMembers:string
     spouse:string
-    children:Array<string>
-    sibblings:Array<string>
-    israel:Array<string>
-
-    prayerTimes:string    //.split("\r\nMincha/")
+    prayerTimes:string    
     shacharit:string
     mincha:string
-    
     sittingAt:string
     arayatDetails:string
     shivaUntil:Date

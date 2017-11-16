@@ -31,27 +31,6 @@ export class ShibaComponent implements OnInit {
     this.shibaService.read().subscribe(
       function (respond) {
         self.allShibas = respond;
-        self.allShibas.forEach(element => {
-
-               element.children=[]
-               element.sibblings=[]
-
-              var results= element.familyMembers.split("Children:")
-              if(results[0]=="")
-              element.spouse=""
-              else
-               element.spouse=element.familyMembers.split("Children:")[0].split("Wife:")[1]
-
-               element.children=element.familyMembers.split("Children:")[1].split('Siblings:')[0].split(",")
-
-               if(element.familyMembers.split('Siblings:').length>1)
-               element.sibblings=element.familyMembers.split('Siblings:')[1].split(",")
-
-
-               
-
-
-        });
         self.Update();
       },
       function (error) { },

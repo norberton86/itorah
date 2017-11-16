@@ -30,7 +30,10 @@
 
         <div>
           <b>Family Members: </b>
-          <ul>
+          <p>
+            {{s.familyMembers}}
+          </p>
+          <!--<ul>
              <li *ngIf="s.spouse!=''">
                Spouse - <span style="opacity: .7;font-weight: 400;">{{s.spouse}}</span>
              </li>
@@ -46,26 +49,8 @@
                  {{c}} <span *ngIf="i<s.sibblings.length-1">,</span>
                </span>
              </li>
-            <!-- <li>
-               In Israel - 
-               <span *ngFor="let c of s.israel;let i = index" >
-                   {{c}} <span *ngIf="i<s.israel.length-1">,</span>
-               </span>
-             </li>   -->
-          </ul> 
+          </ul> -->
         </div>
-
-      <!--<div>
-          <b>Prayer Times: </b> 
-           <ul>
-             <li>
-               Shacharit {{s.shacharit}}
-             </li>
-             <li>
-               Minha {{s.mincha}}
-             </li>
-          </ul> 
-        </div>-->
 
         <div>
           <b>Prayer Times: </b> <span>{{s.prayerTimes}}</span>

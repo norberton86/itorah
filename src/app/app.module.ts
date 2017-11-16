@@ -66,6 +66,7 @@ import { PaymentComponent } from './component/payment/payment.component'
 
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { MyDatePickerModule } from 'mydatepicker';
+import { AdvertiseComponent } from './component/advertise/advertise.component';
 
 
 let providers = {
@@ -129,7 +130,8 @@ let providers = {
     DonateComponent,
     OnlyNumberDirective,
     DedicationComponent,
-    PaymentComponent
+    PaymentComponent,
+    AdvertiseComponent
   ],
   imports: [
     BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,MyDatePickerModule ,

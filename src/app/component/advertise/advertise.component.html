@@ -27,9 +27,15 @@
 									</label>
 
 								<div class="form-controls form-controls-file">
-									<input type="file" class="field" name="field-upload" id="field-upload" value="">
+									<input type="file" class="field" name="field-upload" id="field-upload" (change)="readUrl($event)" accept="image/x-png">
 								</div>
 								<!-- /.form-controls -->
+							</div>
+							<!-- /.form-row -->
+
+							<div class="form-row" id="image-holder">
+							   <img [src]="url">
+							   <p *ngIf="errorSize!=''" style="color: red;" class="animated bounce">{{errorSize}}</p>
 							</div>
 							<!-- /.form-row -->
 
@@ -41,8 +47,8 @@
 										<span>${{impression.price}}</span>
 
 										<select name="field-impressions" id="field-impressions" [(ngModel)]="impression">
-                            <option *ngFor="let s of impressions" [ngValue]="s">{{s.amount}} Impressions</option>
-											</select>
+                            				<option *ngFor="let s of impressions" [ngValue]="s">{{s.amount}} Impressions</option>
+										</select>
 									</div>
 									<!-- /.select -->
 								</div>
@@ -55,9 +61,9 @@
 						</div>
 						<!-- /.form__body -->
 
-						<div class="form__actions hidden">
-							<input type="submit" value="Upload" class="form-btn btn-yellow">
-						</div>
+						<!--<div class="form__actions">
+							<input type="submit" value="Upload" class="form-btn btn-yellow" (click)="upload()">
+						</div> -->
 						<!-- /.form__actions -->
 					</form>
 				</div>
@@ -78,7 +84,7 @@
 								<label for="field-last-name" class="form__label">Last Name</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-last-name" id="field-last-name" value="" [(ngModel)]="lastName">
+									<input type="text" class="field" name="field-last-name" id="field-last-name" value="" [(ngModel)]="LastName">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -88,7 +94,7 @@
 								<label for="field-first-name" class="form__label">First Name</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-first-name" id="field-first-name" value="" [(ngModel)]="firstName">
+									<input type="text" class="field" name="field-first-name" id="field-first-name" value="" [(ngModel)]="FirstName">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -98,7 +104,7 @@
 								<label for="field-address" class="form__label">Address</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-address" id="field-address" value="" [(ngModel)]="address">
+									<input type="text" class="field" name="field-address" id="field-address" value="" [(ngModel)]="Address">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -116,7 +122,7 @@
 								<label for="field-phone number" class="form__label">Phone Number</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-phone number" id="field-phone number" value="" [(ngModel)]="phone">
+									<input type="text" class="field" name="field-phone number" id="field-phone number" value="" [(ngModel)]="PhoneNumber">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -126,7 +132,7 @@
 								<label for="field-email" class="form__label">Email</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-email" id="field-email" value="" [(ngModel)]="email">
+									<input type="text" class="field" name="field-email" id="field-email" value="" [(ngModel)]="Email">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -136,7 +142,7 @@
 								<label for="field-city" class="form__label">City</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-city" id="field-city" value="" [(ngModel)]="city">
+									<input type="text" class="field" name="field-city" id="field-city" value="" [(ngModel)]="City">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -146,7 +152,7 @@
 								<label for="field-state" class="form__label">State</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-state" id="field-state" value="" [(ngModel)]="state">
+									<input type="text" class="field" name="field-state" id="field-state" value="" [(ngModel)]="State">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -156,7 +162,7 @@
 								<label for="field-zip" class="form__label">Zip Code</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-zip" id="field-zip" value="" [(ngModel)]="zip">
+									<input type="text" class="field" name="field-zip" id="field-zip" value="" [(ngModel)]="ZipCode">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -175,7 +181,7 @@
 			<!-- /.col-1of3 -->
 
 			<div class="col-1of3">
-				<app-payment [valPar]="impression.price" (myEvent)="Save($event)"></app-payment>
+				<app-payment [valPar]="impression.price" (myEvent)="upload($event)"></app-payment>
 			</div>
 			<!-- /.col-1of3 -->
 		</div>

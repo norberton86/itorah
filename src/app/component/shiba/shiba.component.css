@@ -27,6 +27,11 @@ ul li span{
     border-right: 1px solid #dadada;
 }
 
+.col-xs-12, .col-md-6, .col-lg-3{
+    height: 95%
+}
+
+
 
 @media(max-width:768px) {
 

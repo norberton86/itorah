@@ -16,10 +16,17 @@ export class UploadService extends Service {
   }
 
   public upload(data: any): Observable<any> {
-    
-
-
     return this.http.post(this.ruta, data).map(
+      (response) => {
+        let body = response.json();
+        return body;
+      }
+    )
+  }
+
+  public get(): Observable<string[]> {
+    
+    return this.http.get("http://itorahapi.3nom.com/api/Advertise").map(
       (response) => {
         let body = response.json();
         return body;

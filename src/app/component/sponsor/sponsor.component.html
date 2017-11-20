@@ -30,7 +30,7 @@
 									<ul class="list-checkboxes list-checkboxes-blocks">
 										<li>
 											<div class="checkbox checkbox-secondary checkbox-block">
-												<input type="checkbox" name="form-sponsor-day" id="field-sponsor-a-day">
+												<input type="checkbox" name="form-sponsor-day" id="field-sponsor-a-day" (click)="SetSection('day')">
 
 												<label class="form__label" for="field-sponsor-a-day">Sponsor a day</label>
 											</div><!-- /.checkbox -->
@@ -38,7 +38,7 @@
 
 										<li>
 											<div class="checkbox checkbox-secondary checkbox-block">
-												<input type="checkbox" name="form-sponsor-shiur" id="field-sponsor-a-shiur">
+												<input type="checkbox" name="form-sponsor-shiur" id="field-sponsor-a-shiur" (click)="SetSection('shiur')">
 
 												<label class="form__label" for="field-sponsor-a-shiur">Sponsor a shiur</label>
 											</div><!-- /.checkbox -->
@@ -90,7 +90,7 @@
 									<ul class="list-checkboxes list-checkboxes-blocks">
 										<li>
 											<div class="checkbox">
-												<input type="checkbox" name="field-sponsor-day-itorah" id="field-sponsor-day-itorah">
+												<input type="checkbox" name="field-sponsor-day-itorah" id="field-sponsor-day-itorah" [(ngModel)]="itorah" (click)="Check(17)">
 
 												<label class="form__label" data-per-day="$180.00 per day" for="field-sponsor-day-itorah">Sponsor a day for iTorah.com</label>
 											</div><!-- /.checkbox -->
@@ -98,7 +98,7 @@
 
 										<li>
 											<div class="checkbox">
-												<input type="checkbox" name="field-sponsor-day-daliy-halacha" id="field-sponsor-day-daliy-halacha">
+												<input type="checkbox" name="field-sponsor-day-daliy-halacha" id="field-sponsor-day-daliy-halacha" [(ngModel)]="halacha" (click)="Check(6)">
 
 												<label class="form__label" data-per-day="$52.00 per day" for="field-sponsor-day-daliy-halacha">Sponsor a day for DaliyHalacha.com</label>
 											</div><!-- /.checkbox -->
@@ -106,7 +106,7 @@
 
 										<li>
 											<div class="checkbox">
-												<input type="checkbox" name="field-sponsor-day-daliy-tehillin" id="field-sponsor-day-daliy-tehillin">
+												<input type="checkbox" name="field-sponsor-day-daliy-tehillin" id="field-sponsor-day-daliy-tehillin" [(ngModel)]="tehillim" (click)="Check(7)">
 
 												<label class="form__label" data-per-day="$52.00 per day" for="field-sponsor-day-daliy-tehillin">Sponsor a day for DaliyTehillin.com</label>
 											</div><!-- /.checkbox -->
@@ -116,8 +116,8 @@
 
 								<div class="form-row">
 									<div class="select select-tertiary">
-										<select name="field-sponsorship" id="field-sponsorship">
-											<option value="">Select sponsorship</option>
+										<select name="field-sponsorship" id="field-sponsorship" [(ngModel)]="dT">
+											<option *ngFor="let s of dedicationType" [ngValue]="s">{{s.description}}</option>
 										</select>
 									</div><!-- /.select -->
 								</div><!-- /.form-row -->
@@ -138,31 +138,22 @@
 									</p>
 								</div><!-- /.form-row -->
 
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-sponsorship" id="field-sponsorship">
-											<option value="">Repeat</option>
-										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
 
 								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-sponsorship" id="field-sponsorship">
-											<option value="">Sponsorship for</option>
-										</select>
+									<div class="form-controls">
+										<input type="text" class="field" name="field-sponsor" id="field-sponsorshipFor" value="" placeholder="Sponsorship for" [(ngModel)]="sponsorshipFor">
 									</div><!-- /.select -->
 								</div><!-- /.form-row -->
 
 								<div class="form-row">
 									<div class="form-controls">
-										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name">
+										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name" [(ngModel)]="name">
 									</div><!-- /.form-controls -->
 								</div><!-- /.form-row -->
 							</div><!-- /.form-body -->
 
 							<div class="form-actions">
-								<input type="submit" value="Process order" class="form-btn next-step">
+								<input type="button" value="Continue" class="form-btn next-step" (click)="ShowPayment()">
 							</div><!-- /.form-actions -->
 						</form>
 					</div><!-- /.form-sponsor hidden -->
@@ -191,21 +182,21 @@
 
 								<div class="form-row">
 									<div class="select select-tertiary">
-										<select name="field-sponsorship" id="field-sponsorship">
-											<option value="">Sponsorship for</option>
+										<select name="field-sponsorship" id="field-sponsorship" [(ngModel)]="dT">
+											<option *ngFor="let s of dedicationType" [ngValue]="s">{{s.description}}</option>
 										</select>
 									</div><!-- /.select -->
 								</div><!-- /.form-row -->
 
 								<div class="form-row">
 									<div class="form-controls">
-										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name">
+										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name" [(ngModel)]="name">
 									</div><!-- /.form-controls -->
 								</div><!-- /.form-row -->
 
 								<div class="form-row">
 									<div class="form__controls">
-										<input type="text" class="field" name="field-sponsored-by" id="field-sponsored-by" value="" placeholder="Sponsored by">
+										<input type="text" class="field" name="field-sponsor" id="field-sponsorshipFor" value="" placeholder="Sponsorship for" [(ngModel)]="sponsorshipFor">
 										<br>
 										<p>
 											<small>(Leave blank if you want to remain anonymous)</small>
@@ -214,8 +205,8 @@
 								</div><!-- /.form-row -->
 							</div><!-- /.form-body -->
 
-							<div class="form-actions hidden">
-								<input type="submit" value="Process order" class="form-btn">
+							<div class="form-actions">
+								<input type="button" value="Continue" class="form-btn next-step" (click)="ShowPayment()">
 							</div><!-- /.form-actions -->
 						</form>
 
@@ -224,7 +215,7 @@
 				</div><!-- /.col-1of3 -->
 
 				<div class="col-1of3">
-					<app-payment [valPar]="value" (myEvent) = "Save($event)"></app-payment>
+					<app-payment [valPar]="value" (myEvent) = "Save($event)" *ngIf="payment"></app-payment>
 				</div><!-- /.col-1of3 -->
 			</div><!-- /.cols -->
 		</div><!-- /.popup-body -->

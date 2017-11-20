@@ -1,11 +1,231 @@
-<li *ngFor="let s of sponsors">
-												<i class="ico-leaf"></i>
-												
-												<h6>{{s.name}}</h6>
-												
-												<p>{{s.description}}</p>
-												
-												<p>
-													<a href="#">{{s.url}}</a>
-												</p>
-											</li>
+	<div class="popup sponsor" id="sponsor">
+		<div class="popup-head">
+			<form action="?" method="get">
+				<label for="field-search-content">Donate: </label>
+
+				<a href="#" class="link-close">
+					<i class="ico-close"></i>
+				</a>
+			</form>
+		</div><!-- /.popup-head -->
+
+		<div class="popup-body">
+			<div class="cols cols-3">
+				<div class="col-1of3 col-center">
+					<div class="form-sponsor sponsor-toggle">
+						<form action="?" method="post">
+							<div class="form__head">
+								<h4 class="step-title">
+									<span>
+										step
+										<span>1</span>
+									</span>
+
+									Select
+								</h4>
+							</div><!-- /.form__head -->
+
+							<div class="form__body">
+								<div class="form-row">
+									<ul class="list-checkboxes list-checkboxes-blocks">
+										<li>
+											<div class="checkbox checkbox-secondary checkbox-block">
+												<input type="checkbox" name="form-sponsor-day" id="field-sponsor-a-day">
+
+												<label class="form__label" for="field-sponsor-a-day">Sponsor a day</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox checkbox-secondary checkbox-block">
+												<input type="checkbox" name="form-sponsor-shiur" id="field-sponsor-a-shiur">
+
+												<label class="form__label" for="field-sponsor-a-shiur">Sponsor a shiur</label>
+											</div><!-- /.checkbox -->
+										</li>
+									</ul><!-- /.list-checkboxes -->
+								</div><!-- /.form-row -->
+							</div><!-- /.form__body -->
+
+							<div class="form__actions hidden">
+								<input type="submit" value="Submit" class="form__btn">
+							</div><!-- /.form__actions -->
+						</form>
+					</div><!-- /.form-sponsor -->
+				</div><!-- /.col-1of3 -->
+
+				<div class="col-1of3">
+					<div class="form-sponsor form-placeholder">
+						<form action="?" method="post">
+							<div class="form-head">
+								<h4 class="step-title">
+									<span>
+										step
+										<span>2</span>
+									</span>
+
+									Sponsor a Day
+								</h4>
+							</div><!-- /.form-head -->
+
+							<div class="form-body"></div><!-- /.form-body -->
+						</form>
+					</div><!-- /.form-sponsor hidden -->
+
+					<div class="form-sponsor hidden" id="form-sponsor-day">
+						<form action="?" method="post">
+							<div class="form-head">
+								<h4 class="step-title">
+									<span>
+										step
+										<span>2</span>
+									</span>
+
+									Sponsor a Day
+								</h4>
+							</div><!-- /.form-head -->
+
+							<div class="form-body">
+								<div class="form-row">
+									<ul class="list-checkboxes list-checkboxes-blocks">
+										<li>
+											<div class="checkbox">
+												<input type="checkbox" name="field-sponsor-day-itorah" id="field-sponsor-day-itorah">
+
+												<label class="form__label" data-per-day="$180.00 per day" for="field-sponsor-day-itorah">Sponsor a day for iTorah.com</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox">
+												<input type="checkbox" name="field-sponsor-day-daliy-halacha" id="field-sponsor-day-daliy-halacha">
+
+												<label class="form__label" data-per-day="$52.00 per day" for="field-sponsor-day-daliy-halacha">Sponsor a day for DaliyHalacha.com</label>
+											</div><!-- /.checkbox -->
+										</li>
+
+										<li>
+											<div class="checkbox">
+												<input type="checkbox" name="field-sponsor-day-daliy-tehillin" id="field-sponsor-day-daliy-tehillin">
+
+												<label class="form__label" data-per-day="$52.00 per day" for="field-sponsor-day-daliy-tehillin">Sponsor a day for DaliyTehillin.com</label>
+											</div><!-- /.checkbox -->
+										</li>
+									</ul><!-- /.list-checkboxes -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<div class="select select-tertiary">
+										<select name="field-sponsorship" id="field-sponsorship">
+											<option value="">Select sponsorship</option>
+										</select>
+									</div><!-- /.select -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+
+									<my-date-picker id="sponsorDate" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="date" ></my-date-picker>
+
+									<div class="form-controls">
+										<!--<input type="text" class="field field-date" name="field-date" id="field-date" value="" placeholder="Date">
+
+										<i class="ico-calendar"></i>-->
+										
+									</div><!-- /.form-controls -->
+
+									<p>
+										<a href="#">Add another day</a>
+									</p>
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<div class="select select-tertiary">
+										<select name="field-sponsorship" id="field-sponsorship">
+											<option value="">Repeat</option>
+										</select>
+									</div><!-- /.select -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<div class="select select-tertiary">
+										<select name="field-sponsorship" id="field-sponsorship">
+											<option value="">Sponsorship for</option>
+										</select>
+									</div><!-- /.select -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<div class="form-controls">
+										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+							</div><!-- /.form-body -->
+
+							<div class="form-actions">
+								<input type="submit" value="Process order" class="form-btn next-step">
+							</div><!-- /.form-actions -->
+						</form>
+					</div><!-- /.form-sponsor hidden -->
+
+					<div class="form-sponsor hidden" id="form-sponsor-shiur">
+						<form action="?" method="post">
+							<div class="form-head">
+								<h4 class="step-title">
+									<span>
+										step
+										<span>2</span>
+									</span>
+
+									Sponsor a Day
+								</h4>
+							</div><!-- /.form-head -->
+
+							<div class="form-body">
+								<div class="form-row">
+									<p style="text-align: center; color: #123fa0; padding: 10px; ">
+										<span>Sponsor a Shiur = $118.00</span>
+									</p>
+
+									<a href="#" class="btn btn-yellow">BROWSE iTorah</a>
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<div class="select select-tertiary">
+										<select name="field-sponsorship" id="field-sponsorship">
+											<option value="">Sponsorship for</option>
+										</select>
+									</div><!-- /.select -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<div class="form-controls">
+										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+
+								<div class="form-row">
+									<div class="form__controls">
+										<input type="text" class="field" name="field-sponsored-by" id="field-sponsored-by" value="" placeholder="Sponsored by">
+										<br>
+										<p>
+											<small>(Leave blank if you want to remain anonymous)</small>
+										</p>
+									</div><!-- /.form__controls -->
+								</div><!-- /.form-row -->
+							</div><!-- /.form-body -->
+
+							<div class="form-actions hidden">
+								<input type="submit" value="Process order" class="form-btn">
+							</div><!-- /.form-actions -->
+						</form>
+
+						<p>Sponsoring a Shiur enables viewers to download the shiur for free.</p>
+					</div><!-- /.form-sponsor hidden -->
+				</div><!-- /.col-1of3 -->
+
+				<div class="col-1of3">
+					<app-payment [valPar]="value" (myEvent) = "Save($event)"></app-payment>
+				</div><!-- /.col-1of3 -->
+			</div><!-- /.cols -->
+		</div><!-- /.popup-body -->
+	</div>

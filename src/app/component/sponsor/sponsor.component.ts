@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Sponsors } from '../../model/sponsors';
 import { SponsorService } from '../../service/sponsor.service';
+import { IMyDpOptions } from 'mydatepicker';
+declare var $: any;
 
 @Component({
   selector: 'app-sponsor',
@@ -9,37 +11,31 @@ import { SponsorService } from '../../service/sponsor.service';
   providers: [SponsorService]
 })
 export class SponsorComponent implements OnInit {
+  value: number = 0
 
-   sponsors:Array<Sponsors>;
+  public myDatePickerOptions: IMyDpOptions = {
+    // other options...
+    dateFormat: 'mm.dd.yyyy',
+  };
+
   
-  constructor(private sponsorService:SponsorService) {
+  public date: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
 
+  constructor(private sponsorService: SponsorService) {
 
-       this.sponsors=[];
-      //mock
-      var p1=new Sponsors();
-      p1.description="Company description or tag line 1";
-      p1.name="Sponsor Name 1";
-      p1.url="www.Url1.com";
-
-      var p2=new Sponsors();
-      p2.description="Company description or tag line 2";
-      p2.name="Sponsor Name 2";
-      p2.url="www.Url2.com";
-
-      this.sponsors.push(p1);
-      this.sponsors.push(p2);
-
-   }
-
-  ngOnInit() {
-    //this.Read();
   }
 
-  Read() {
-       this.sponsorService.read().subscribe( 
-           result=>this.sponsors = result
-       )
+  ngOnInit() {
+    setTimeout(function(){
+      $('#sponsorDate .mydp .selectiongroup').css('padding-right','10px')
+      $('#sponsorDate .mydp .btnclear,#sponsorDate .mydp .btnpicker').css('background','transparent')
+      $('#sponsorDate .mydp .selbtngroup').css('top','6px')
+    },1000)
+   
+  }
 
-   }
+  Save(status: boolean) {
+
+  }
+
 }

@@ -205,4 +205,12 @@ export class AppComponent implements OnInit {
     }
   }
 
+  OpenSponsor()
+  {
+    if(this.isAuthenticated())
+    {
+      $('#sponsor').toggleClass('shown');
+    }
+  }
+
 }

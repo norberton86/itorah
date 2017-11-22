@@ -120,10 +120,15 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
 
 
         var grant_type = data.provider == "google" ? "googleAuth" : "facebookAuth"
+        var token="";  
 
+        if(data.provider=="google")
+        token=data.idToken
+        else
+        token=data.token
 
-        self.socialLoginServic.SignThirdParty(grant_type, data.idToken).subscribe(function (respond) {
-          self.Save({ name: data.name, email: self.form.value.email, token: respond.access_token, provider: data.provider })
+        self.socialLoginServic.SignThirdParty(grant_type, token).subscribe(function (respond) {
+          self.Save({ name: data.name, email:data.email, token: respond.access_token, provider: data.provider })
           self.messageVisible = false;
         },
           function (error) {

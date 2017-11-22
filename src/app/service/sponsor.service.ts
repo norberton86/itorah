@@ -18,6 +18,16 @@ export class SponsorService extends Service {
 
     }
 
+    public getUnAvailable(source: number): Observable<Array<Date>> {
+
+        return this.http.get("http://itorahapi.3nom.com/api/Sponsor?SourceID="+source).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    }
+
     public addDay(sponsor: Sponsor): Observable<any> {
 
         let h = new Headers();

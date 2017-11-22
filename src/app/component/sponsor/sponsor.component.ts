@@ -32,7 +32,7 @@ export class SponsorComponent implements OnInit {
   dT: ComboItem
   other: string = ''
 
-  shiurID: number=10386
+  shiurID: number = 10386
 
 
   public date: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
@@ -53,9 +53,30 @@ export class SponsorComponent implements OnInit {
     }, 1000)
 
     this.dT = this.dedicationType[0]
-
   }
 
+
+  unAvailable(source: number) {
+    let self=this
+    this.sponsorService.getUnAvailable(source).subscribe(function (response) {
+
+      var un = []
+
+      response.forEach(function (a) {
+         un.push( {year: new Date(a).getFullYear(), month: new Date(a).getMonth()+1, day: new Date(a).getDate()})
+      })
+      
+      self.myDatePickerOptions = {
+      // other options...
+       dateFormat: 'mm.dd.yyyy',
+       disableDays:un
+      };
+
+            
+    }, function (error) {
+
+    }, function () { })
+  }
 
   Save(status: boolean) {
     if (status) {
@@ -104,6 +125,8 @@ export class SponsorComponent implements OnInit {
     this.tehillim = name == 7 ? true : false
 
     this.sourceId = name
+
+    this.unAvailable(name)
   }
 
   itorah: boolean = false

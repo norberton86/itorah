@@ -11,7 +11,7 @@ declare var $: any;
 })
 export class AdvertiseComponent implements OnInit {
 
-  impressions: Array<Impression> = [{ price: 50, amount: 100 }, { price: 100, amount: 200 }]
+  impressions: Array<Impression> = [{ price: 50, amount: 100 }, { price: 80, amount: 200 }]
   impression: Impression
 
 

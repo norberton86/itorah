@@ -13,173 +13,56 @@ export class BrowseService extends Service {
 
     constructor(http: Http) {
         super(http);
-        this.ruta = "http://itorahapi.3nom.com/api/Search";
+        this.ruta = "http://itorahapi.3nom.com/api/Browse/";
 
     }
 
     public readRecently(): Observable<Array<ItemQueue>> {
 
-        return Observable.create(observer => {
-
-            observer.next([{
-                "title": "The Transition / Bene Gad",
-                "dateRecorded": new Date(),
-                "length": "60:0         ",
-                "language": "English",
-                "audio": "http://media.learntorah.com/LT-Audio/mp4:SD47.m4a/playlist.m3u8",
-                "video": "",
-                "id": "1",
-                "wowzaVideoUrl": "",
-                "speaker": "Rabbi Eli J Mansour",
-                "sourceID": 1,
-                "dayWeek": "",
-                "type": "",
-                "pdfUrl": ""
-            },
-            {
-                "title": "Word Power",
-                "dateRecorded": new Date(),
-                "length": "60:0         ",
-                "language": "English",
-                "audio": "http://media.learntorah.com/LT-Audio/mp4:SD47.m4a/playlist.m3u8",
-                "video": "",
-                "id": "2",
-                "wowzaVideoUrl": "",
-                "speaker": "Rabbi Eli J Mansour",
-                "sourceID": 1,
-                "dayWeek": "",
-                "type": "",
-                "pdfUrl": ""
-            }]);
-
-            observer.complete();
-        });
+        return this.http.get(this.ruta+"recent").map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
     }
 
     public readPopular(): Observable<Array<ItemQueue>> {
 
-        return Observable.create(observer => {
-
-            observer.next([{
-                "title": "Perush Rashi on Parashat Hukat",
-                "dateRecorded": new Date(),
-                "length": "60:0         ",
-                "language": "English",
-                "audio": "http://media.learntorah.com/LT-Audio/mp4:SD47.m4a/playlist.m3u8",
-                "video": "",
-                "id": "3",
-                "wowzaVideoUrl": "",
-                "speaker": "Rabbi Eli J Mansour",
-                "sourceID": 1,
-                "dayWeek": "",
-                "type": "",
-                "pdfUrl": ""
-            },
-            {
-                "title": "The Aderet / Jewish Home",
-                "dateRecorded": new Date(),
-                "length": "60:0         ",
-                "language": "English",
-                "audio": "http://media.learntorah.com/LT-Audio/mp4:SD47.m4a/playlist.m3u8",
-                "video": "http://media.learntorah.com/LT-Video/mp4:LBM227.mp4/playlist.m3u8",
-                "id": "4",
-                "speaker": "Rabbi Eli J Mansour",
-                "wowzaVideoUrl": "",
-                "sourceID": 1,
-                "dayWeek": "",
-                "type": "",
-                "pdfUrl": ""
-            }]);
-
-            observer.complete();
-        });
+        return this.http.get(this.ruta+"popular").map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
     }
 
     public readRelevant(): Observable<Array<ItemQueue>> {
 
-        return Observable.create(observer => {
-
-            observer.next([{
-                "title": "Perush Rashi on Parashat Hukat",
-                "dateRecorded": new Date(),
-                "length": "60:0         ",
-                "language": "English",
-                "audio": "http://media.learntorah.com/LT-Audio/mp4:SD47.m4a/playlist.m3u8",
-                "video": "",
-                "id": "3",
-                "wowzaVideoUrl": "",
-                "speaker": "Rabbi Eli J Mansour",
-                "sourceID": 1,
-                "dayWeek": "",
-                "type": "",
-                "pdfUrl": ""
-            },
-            {
-                "title": "The Aderet / Jewish Home",
-                "dateRecorded": new Date(),
-                "length": "60:0         ",
-                "language": "English",
-                "audio": "http://media.learntorah.com/LT-Audio/mp4:SD47.m4a/playlist.m3u8",
-                "video": "http://media.learntorah.com/LT-Video/mp4:LBM227.mp4/playlist.m3u8",
-                "id": "4",
-                "speaker": "Rabbi Eli J Mansour",
-                "wowzaVideoUrl": "",
-                "sourceID": 1,
-                "dayWeek": "",
-                "type": "",
-                "pdfUrl": ""
-            }]);
-
-            observer.complete();
-        });
+        return this.http.get(this.ruta+"relevant").map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
     }
 
     getCategorys(): Observable<Array<Category>> {
-        return Observable.create(observer => {
-
-            observer.next([{ ID: 333, name: "Halacha" },
-            { ID: 23, name: "Navi" }]);
-
-            observer.complete();
-        });
+        return this.http.get("http://itorahapi.3nom.com/api/Categories").map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
     }
 
     public readCategory(category:number): Observable<Array<ItemQueue>> {
 
-        return Observable.create(observer => {
-
-            observer.next([{
-                "title": "Perush Rashi on Parashat Hukat",
-                "dateRecorded": new Date(),
-                "length": "60:0         ",
-                "language": "English",
-                "audio": "http://media.learntorah.com/LT-Audio/mp4:SD47.m4a/playlist.m3u8",
-                "video": "",
-                "id": "3",
-                "wowzaVideoUrl": "",
-                "speaker": "Rabbi Eli J Mansour",
-                "sourceID": 1,
-                "dayWeek": "",
-                "type": "",
-                "pdfUrl": ""
-            },
-            {
-                "title": "The Aderet / Jewish Home",
-                "dateRecorded": new Date(),
-                "length": "60:0         ",
-                "language": "English",
-                "audio": "http://media.learntorah.com/LT-Audio/mp4:SD47.m4a/playlist.m3u8",
-                "video": "http://media.learntorah.com/LT-Video/mp4:LBM227.mp4/playlist.m3u8",
-                "id": "4",
-                "speaker": "Rabbi Eli J Mansour",
-                "wowzaVideoUrl": "",
-                "sourceID": 1,
-                "dayWeek": "",
-                "type": "",
-                "pdfUrl": ""
-            }]);
-
-            observer.complete();
-        });
+        return this.http.get(this.ruta+"category?CategoryID="+category).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
     }
 }

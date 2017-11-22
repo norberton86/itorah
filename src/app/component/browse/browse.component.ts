@@ -1,4 +1,4 @@
-import { Component, OnInit,Input ,OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { PlayerService } from '../../service/player.service';
 import { BrowseService } from '../../service/browse.service';
 import { ItemQueue, Category } from '../../model/shiurim';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./browse.component.css'],
   providers: [PlayerService, BrowseService]
 })
-export class BrowseComponent implements OnInit,OnChanges {
+export class BrowseComponent implements OnInit, OnChanges {
 
   asc: boolean = false;
 
@@ -25,7 +25,9 @@ export class BrowseComponent implements OnInit,OnChanges {
   category: Category
   categorys: Array<Category> = []
 
-  current:string="All"
+  current: string = "All"
+
+  loadingCategory:boolean=false
 
   @Input()
   browseClass: string
@@ -43,12 +45,17 @@ export class BrowseComponent implements OnInit,OnChanges {
   }
 
   Category() {
-    this.browse = []
+    
     if (this.category.id != 0) {
+      this.browse = []
       let self = this
+      this.loadingCategory=true
       this.browseService.readCategory(this.category.id).subscribe(function (response) {
         self.browse = response
-      }, function (error) { }, function () { }
+        self.loadingCategory=false
+      }, function (error) { 
+        self.loadingCategory=false
+      }, function () { }
       );
     }
   }
@@ -59,9 +66,9 @@ export class BrowseComponent implements OnInit,OnChanges {
     this.Read();
   }
 
-   ngOnChanges(changes: any): void {
-    this.current=changes.browseClass.currentValue
-    
+  ngOnChanges(changes: any): void {
+    this.current = changes.browseClass.currentValue
+
   }
 
   Read() {
@@ -114,14 +121,12 @@ export class BrowseComponent implements OnInit,OnChanges {
       col = col.sort(this.Desc)
   }
 
-  Current(c:string)
-  {
-    return c==this.current
+  Current(c: string) {
+    return c == this.current
   }
-  
-  setCurrent(c:string)
-  {
-    this.current=c
+
+  setCurrent(c: string) {
+    this.current = c
   }
 
 }

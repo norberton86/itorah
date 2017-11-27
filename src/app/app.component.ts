@@ -13,8 +13,6 @@ declare var $: any;
 })
 export class AppComponent implements OnInit {
 
-  credit: number = 5
-
   val: string = ""
   valEmunah: string = ""
   valHalacha: string = ""

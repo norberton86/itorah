@@ -189,8 +189,8 @@
 								<a href="#">My Dynamic Playlist</a>
 							</li>
 
-							<li>
-								<a href="#">My Alerts</a>
+							<li class="link-popup">
+								<a href="#myAlert">My Alerts</a>
 							</li>
 
 							<li class="link-popup">
@@ -221,7 +221,7 @@
 				<app-browse [browseClass]="browseClasses"></app-browse>
 				<app-read-now [title]="rNow?.title" [content]="rNow?.content" ></app-read-now>
 				<app-read-search></app-read-search>
-				<app-download-shirium [credits]="credit"></app-download-shirium>
+				<app-download-shirium></app-download-shirium>
 			</div><!-- /.shell -->
 		</header><!-- /.header -->
 
@@ -262,6 +262,8 @@
 	</div><!-- /.popup tour -->
 
     <app-classes></app-classes>
+
+	<app-alert></app-alert>
 
     <app-advertise></app-advertise>
 

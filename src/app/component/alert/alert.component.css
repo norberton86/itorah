@@ -1,0 +1,31 @@
+
+.myHeader .col-lg-3:nth-of-type(1)
+{
+    border-right: 1px solid #dadada;
+}
+
+.search-btn
+{
+    width: 6em;
+    height: 33px;
+    border: 1px solid #d3d3d3;
+    background: #ffcc00;
+    border-radius: 4px;
+}
+
+
+.myHeader
+{
+    margin: 1em 0 1em 0;
+    border-bottom: 1px solid #dadada;
+    padding-bottom: 0.3em;
+}
+
+.myHeader .buttonContainer
+{
+    padding-top: 0.2em;
+}
+
+.button-save{
+    float: right
+}

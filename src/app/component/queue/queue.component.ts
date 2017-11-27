@@ -47,8 +47,8 @@ export class QueueComponent implements OnInit, OnDestroy {
       "dayWeek":"",
       "type":"",
       "pdfUrl":"",
-       "credits":6,
-       "sponsored":true
+       "cost":6,
+       "sponsor":"Rabbi Mansour"
     },
     {
       "title": "Word Power",
@@ -64,8 +64,8 @@ export class QueueComponent implements OnInit, OnDestroy {
       "dayWeek":"",
       "type":"",
       "pdfUrl":"",
-      "credits":6,
-       "sponsored":true
+       "cost":6,
+       "sponsor":"Rabbi Mansour"
     },
     {
       "title": "Perush Rashi on Parashat Hukat",
@@ -81,8 +81,8 @@ export class QueueComponent implements OnInit, OnDestroy {
       "dayWeek":"",
       "type":"",
       "pdfUrl":"",
-      "credits":6,
-       "sponsored":true
+       "cost":6,
+       "sponsor":"Rabbi Mansour"
     },
     {
       "title": "The Aderet / Jewish Home",
@@ -98,8 +98,8 @@ export class QueueComponent implements OnInit, OnDestroy {
       "dayWeek":"",
       "type":"",
       "pdfUrl":"",
-      "credits":6,
-       "sponsored":true
+       "cost":6,
+       "sponsor":"Rabbi Mansour"
     }];
   }
 

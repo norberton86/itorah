@@ -22,7 +22,7 @@ declare var $: any;
 })
 export class SpeakerComponent implements OnInit {
 
-  elem:number=28
+  elem: number = 28
 
   current: string = "tile-tab-1"
   detailed: boolean = false
@@ -270,12 +270,12 @@ export class SpeakerComponent implements OnInit {
   top: number;
   background: string;
 
-  height_primary:string
+  height_primary: string
 
 
   FullScreen() {
-    
-    let self=this;
+
+    let self = this;
     this.enter = !this.enter
 
     if (this.enter) {
@@ -296,23 +296,22 @@ export class SpeakerComponent implements OnInit {
       $('.tile-box-speakers').css('top', ' 0')
       $('.tile-box-speakers').css('background', 'rgb(255,255,255)')
 
-     //------------------------------------------------------------------------------ set the table height
+      //------------------------------------------------------------------------------ set the table height
       var father_height = $('.tile-box-speakers').css('height').split("px")[0]
-      this.height_primary=$('.tile-box-body').css('height')
+      this.height_primary = $('.tile-box-body').css('height')
 
-      $('.tile-box-body').each(function (index) 
-      {
-        $(this).css('height',father_height*90/100+'px')
+      $('.tile-box-body').each(function (index) {
+        $(this).css('height', father_height * 90 / 100 + 'px')
       })
       //----------------------------------------------------------------------------- set how many element we have 
-      
-      var current_height_primary=$('.tile-box-body').css('height').split("px")[0]
-      var track_height= $('.track').css('height').split("px")[0]
-      
-      this.elem=Math.floor(parseFloat( current_height_primary)/track_height)*4
 
-       this.Update()
-       this.UpdateAll()
+      var current_height_primary = $('.tile-box-body').css('height').split("px")[0]
+      var track_height = $('.track').css('height').split("px")[0]
+
+      this.elem = Math.floor(parseFloat(current_height_primary) / track_height) * 4
+
+      this.Update()
+      this.UpdateAll()
 
     }
     else {
@@ -324,15 +323,14 @@ export class SpeakerComponent implements OnInit {
       $('.tile-box-speakers').css('left', this.left)
       $('.tile-box-speakers').css('top', this.top)
       $('.tile-box-speakers').css('background', this.background)
-//------------------------------------------------------------------------------ reset the table height
-      $('.tile-box-body').each(function (index) 
-      {
-        $(this).css('height',self.height_primary)
+      //------------------------------------------------------------------------------ reset the table height
+      $('.tile-box-body').each(function (index) {
+        $(this).css('height', self.height_primary)
       })
- //----------------------------------------------------------------------------- reset how many element we have 
-       this.elem=28
-       this.Update()
-       this.UpdateAll()
+      //----------------------------------------------------------------------------- reset how many element we have 
+      this.elem = 28
+      this.Update()
+      this.UpdateAll()
 
     }
 
@@ -765,18 +763,26 @@ export class SpeakerComponent implements OnInit {
   }
 
   Download(s: Shiurim) {
-    if (s.sponsored) {
-      //download
+
+    if (this.isAuthenticated()) {
+      
+      let self=this
+
+      this.shiurimService.Status(s.id).subscribe(function (response) {
+
+        if (response.indexOf("http://") >= 0) {
+
+        }
+        else {
+
+          $("#downloadShirium").toggleClass('shown');
+          self.shiurimService.setItem({id:s.id,description:response})
+        }
+
+      }, function (error) { }, function () { });
+
     }
-    else {
 
-      if (this.isAuthenticated()) {
-        $("#downloadShirium").toggleClass('shown');
-        this.shiurimService.setItem(s)
-      }
-
-
-    }
   }
 
 }

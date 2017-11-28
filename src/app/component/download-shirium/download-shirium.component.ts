@@ -36,8 +36,10 @@ export class DownloadShiriumComponent implements OnInit {
   Download() {
 
    this.shiurimService.ConfirmDownload(this.id).subscribe(item=>{
+       this.Close()
        $('#downloadShiur').attr("href",item)
        document.getElementById('downloadShiur').click()
+       
    })
 
   }

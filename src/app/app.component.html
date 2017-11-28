@@ -323,11 +323,11 @@
 									<a href="#" class="link-play">
 										<img  src="/assets/build/css/images/play_button.png" (click)="playNow(6,'DailyHalacha.com')"/>
 									</a>
-									<a href="#item-content-2" data-size="full">
+									<a href="#item-content-2" data-size="full" (click)="AccionHalacha('first')">
 										<img  src="/assets/build/css/images/read_now.png" />
 									</a>
 
-									<a href="#item-content-67" data-size="full" class="link-search" (click)="AccionHalacha()">
+									<a href="#item-content-2" data-size="full" class="link-search" (click)="AccionHalacha('more')">
 										<i class="ico-magnifier-large"></i>
 									</a>
 								</div><!-- /.tile-actions -->
@@ -380,7 +380,7 @@
 							</div><!-- /.tile -->
 
 							<div class="tile ballon"  id="item-content-2">
-								<app-weekly></app-weekly>
+								<app-weekly [valCombo]='halachacomboValue'></app-weekly>
 							</div><!-- /.tile ballon -->
 
 							<div class="tile ballon" id="item-content-8">

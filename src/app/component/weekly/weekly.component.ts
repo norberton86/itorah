@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, Renderer2 } from '@angular/core';
+import { Component, OnInit, NgZone, Renderer2, Input,OnChanges } from '@angular/core';
 
 import { Perasha, AllParasha } from '../../model/perasha';
 import { PerashaService } from '../../service/perasha.service';
@@ -12,7 +12,7 @@ declare var $: any;
   styleUrls: ['./weekly.component.css'],
   providers: [PerashaService, PlayerService]
 })
-export class WeeklyComponent implements OnInit {
+export class WeeklyComponent implements OnInit,OnChanges {
 
   perashas: Array<Perasha>;
   selectedPerasha: Perasha = null;
@@ -25,9 +25,12 @@ export class WeeklyComponent implements OnInit {
 
   matrix: any = [];
   visited: Array<number> = []
-  data:Array<any>=[]
+  data: Array<any> = []
 
-  optional:boolean=false
+  optional: boolean = false
+
+  @Input()
+  valCombo: string;
 
   constructor(private renderer: Renderer2, private perashaService: PerashaService, private ngZone: NgZone, private playerService: PlayerService) {
     this.perashas = [];
@@ -46,10 +49,21 @@ export class WeeklyComponent implements OnInit {
     this.AllParashas();
   }
 
-Back()
-{
-  this.more=true
-}
+  
+  ngOnChanges(changes: any) {
+    if(!changes.valCombo.isFirstChange())
+    {
+         if(changes.valCombo.currentValue=="more")
+         this.filterChanged('More...')
+         else
+          this.filterChanged(this.perashas[0].parashaName)
+    }
+
+  }
+
+  Back() {
+    this.more = true
+  }
   ReadParasha() {
     let self = this;
     this.perashaService.read().subscribe(
@@ -69,7 +83,7 @@ Back()
 
   }
 
-  
+
 
   AllParashas() {
     let self = this;
@@ -112,7 +126,7 @@ Back()
     let self = this;
     this.perashaService.readById(id).subscribe(
       function (response) {
-        
+
         self.SaveData(response);
 
         var obj = '{';
@@ -128,7 +142,7 @@ Back()
           selector: '#wp' + id,
           trigger: 'left',
           callback: function (key, options) {
-              self.ShowParashaTotal(key);
+            self.ShowParashaTotal(key);
           },
           items: JSON.parse(obj)
         });
@@ -138,27 +152,25 @@ Back()
       }, function (error) { }, function () { }
     )
   }
-  
 
-  SaveData(_data:Array<any>)
-  {
-      this.data = this.data.concat(_data)
+
+  SaveData(_data: Array<any>) {
+    this.data = this.data.concat(_data)
   }
-  
-  ShowParashaTotal(id:any)
-  {
-      this.selectedPerasha= this.data.filter(function (s) { 
-        return s.id == id
-      })[0]
 
-      this.parragraphs = this.selectedPerasha.emailText.split("\n").filter(function (s) {
-        return s != "";
-      });
+  ShowParashaTotal(id: any) {
+    this.selectedPerasha = this.data.filter(function (s) {
+      return s.id == id
+    })[0]
 
-      this.more=false;
-      this.optional=true
+    this.parragraphs = this.selectedPerasha.emailText.split("\n").filter(function (s) {
+      return s != "";
+    });
+
+    this.more = false;
+    this.optional = true
   }
-  
+
 
   filterChanged(value) {
     if (value == "More...") {
@@ -166,7 +178,7 @@ Back()
     }
     else {
       this.more = false;
-      this.optional=false
+      this.optional = false
 
       this.selectedPerasha = this.perashas.filter(function (s) { //select by name
         return s.parashaName == value
@@ -184,7 +196,7 @@ Back()
 
   Play() {
 
-    this.playerService.PlayAudio("",this.selectedPerasha.audio)
+    this.playerService.PlayAudio("", this.selectedPerasha.audio)
 
   }
 }

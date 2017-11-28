@@ -72,9 +72,11 @@ export class AppComponent implements OnInit {
     this.analitycService.emitEvent("Module", "Open", "Emunah");
   }
 
-  AccionHalacha() {
+  halachacomboValue:string
+  AccionHalacha(halachacomboValue:string) {
     this.valHalacha = this.Generate();
     this.analitycService.emitEvent("Module", "Open", "Halacha");
+    this.halachacomboValue=halachacomboValue
   }
 
   AccionPele() {

@@ -43,13 +43,13 @@ export class ShiurimService extends Service {
         return this.subject.asObservable();
     }
 
-    Status(id:string):Observable<string> {
+    Status(id: string): Observable<string> {
 
         let h = new Headers();
         h.append('Authorization', 'bearer ' + this.getToken());
         h.append('Content-Type', 'application/json');
 
-        return this.http.get(this.ruta+"download?ShiurID="+id, { headers: h }).map(
+        return this.http.get(this.ruta + "download?ShiurID=" + id, { headers: h }).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -57,15 +57,25 @@ export class ShiurimService extends Service {
         )
     }
 
-    ConfirmDownload(id:string):Observable<string> {
+    ConfirmDownload(id: string): Observable<string> {
 
         let h = new Headers();
         h.append('Authorization', 'bearer ' + this.getToken());
         h.append('Content-Type', 'application/json');
 
-        return this.http.get(this.ruta+"download/confirm?ShiurID="+id, { headers: h }).map(
+        return this.http.get(this.ruta + "download/confirm?ShiurID=" + id, { headers: h }).map(
             (response) => {
                 let body = response.json();
+                return body;
+            }
+        )
+    }
+
+    search(SearchText: string,  PageSize: number, PageIndex: number): Observable<any> {
+
+        return this.http.get(this.ruta + "?SearchText=" + SearchText + "&PageSize=" + PageSize + "&PageIndex=" + PageIndex).map(
+            (response) => {
+                let body = response.json()
                 return body;
             }
         )

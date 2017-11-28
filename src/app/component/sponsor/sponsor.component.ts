@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Sponsor, SponsorShiur } from '../../model/sponsors';
+import { Page } from '../../model/Page';
+import { Shiurim } from '../../model/shiurim';
 import { SponsorService } from '../../service/sponsor.service';
+import { ShiurimService } from '../../service/shiurim.service';
 import { IMyDpOptions } from 'mydatepicker';
 import { ComboItem } from '../../model/combo-item';
 declare var $: any;
@@ -32,7 +35,7 @@ export class SponsorComponent implements OnInit {
   dT: ComboItem
   other: string = ''
 
-  shiurID: number = 10386
+  shiurID: number = -1
 
 
   public date: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
@@ -40,8 +43,9 @@ export class SponsorComponent implements OnInit {
   sponsorshipFor: string
   name: string
 
+ 
 
-  constructor(private sponsorService: SponsorService) {
+  constructor(private sponsorService: SponsorService, private shiurimService: ShiurimService) {
 
   }
 
@@ -53,26 +57,32 @@ export class SponsorComponent implements OnInit {
     }, 1000)
 
     this.dT = this.dedicationType[0]
+
+    this.shiurimService.read(8).subscribe(response=>{  //remove this
+      this.all=response
+    })
+
+    //load
+
   }
 
-
   unAvailable(source: number) {
-    let self=this
+    let self = this
     this.sponsorService.getUnAvailable(source).subscribe(function (response) {
 
       var un = []
 
       response.forEach(function (a) {
-         un.push( {year: new Date(a).getFullYear(), month: new Date(a).getMonth()+1, day: new Date(a).getDate()})
+        un.push({ year: new Date(a).getFullYear(), month: new Date(a).getMonth() + 1, day: new Date(a).getDate() })
       })
-      
+
       self.myDatePickerOptions = {
-      // other options...
-       dateFormat: 'mm.dd.yyyy',
-       disableDays:un
+        // other options...
+        dateFormat: 'mm.dd.yyyy',
+        disableDays: un
       };
 
-            
+
     }, function (error) {
 
     }, function () { })
@@ -150,5 +160,112 @@ export class SponsorComponent implements OnInit {
   ShowPayment() {
     this.payment = true
   }
+
+  //------------------------------------------------------------------------------------------------------------------------------------------
+  searchShiurim: boolean = false
+  query_main: string
+  sectionPanel: string = "main"
+  nameShiurSelected:string=''
+
+  FindShiur() {
+    this.sectionPanel = 'shiur'
+  }
+
+  Back() {
+    this.sectionPanel = 'main'
+  }
+
+  pages: Array<Page> = [];
+  allPages: number;
+  iteration: number;
+  alltotal: number
+  all: Array<Shiurim> = []
+
+  keyDown(event) {
+    if (event.keyCode == 13) {
+      this.Load()
+    }
+  }
+
+  Load() {
+    let self = this;
+    self.shiurimService.search(this.query_main, 9, 1)
+      .subscribe(function (response) {
+
+        self.Update(response.totalPageCount, response.searchItems)
+        self.alltotal = response.totalResultCount;
+
+      }, function (error) { }, function () { }
+      );
+  }
+
+  setShiur(s:Shiurim)
+  {
+    this.shiurID=parseInt(s.id)
+    this.Back();
+    this.nameShiurSelected=s.title
+  }
+
+  Update(totalPageCount: number, searchItems: Array<any>) {
+
+    this.allPages = totalPageCount; //pagination
+    this.iteration = 1; //pagination
+
+    this.CreatePages();
+    this.all = searchItems
+  }
+
+  CreatePages() {
+    this.pages = [];
+
+    for (var i = this.iteration * 6 - 6; i < this.iteration * 6 && i < this.allPages; i++) //populate the pages array
+    {
+      if (i == (this.iteration - 1) * 6) {
+        this.pages.push({ id: i + 1, current: true });
+      }
+      else
+        this.pages.push({ id: i + 1, current: false });
+    }
+
+  }
+
+
+  Page(id: number) {
+
+    this.pages.forEach(function (p) {
+
+      if (p.id != id)
+        p.current = false;
+      else
+        p.current = true;
+    })
+
+    this.shiurimService.search(this.query_main, 9, id)
+      .subscribe(response => this.all = response.searchItems)
+
+  }
+
+  PagingPrev() {
+    this.iteration--;
+    if (this.iteration <= 0) {
+      this.iteration = 1;
+    }
+    else
+      this.CreatePages();
+
+    this.Page(this.iteration)
+  }
+
+  PagingNext() {
+    this.iteration++;
+    if (this.iteration > Math.ceil(this.allPages / 6)) {
+      this.iteration = Math.ceil(this.allPages / 6);
+    }
+    else
+      this.CreatePages();
+
+    this.Page(this.iteration)
+  }
+
 
 }

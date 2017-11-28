@@ -9,3 +9,34 @@ background: transparent;
 #sponsorDate .mydp .selbtngroup{
     top: 6px;
 }
+
+
+/*************************************************************************************************************************************************/
+
+.lists .lists-head {
+    padding: 0.5em 48px 10px 0.5em;
+}
+
+.tile-box-speakers { min-height: 426px;  }
+
+.tile-box-speakers .tile-box-body {
+
+    height: 420px;
+}
+
+#buttonBackAll{
+    width: 80px;
+    height: 33px;
+    border: 1px solid #d3d3d3;
+    background: #ffcc00;
+    border-radius: 2px;
+    border-radius: 4px;
+}
+
+.tracks .track {
+    cursor: pointer;
+}
+
+[hidden], .hidden {
+    display: none !important;
+}

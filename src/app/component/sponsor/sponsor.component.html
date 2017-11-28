@@ -1,222 +1,339 @@
-	<div class="popup sponsor" id="sponsor">
-		<div class="popup-head">
-			<form action="?" method="get">
-				<label for="field-search-content">Donate: </label>
+<div class="popup sponsor" id="sponsor">
+	<div class="popup-head">
+		<form action="?" method="get">
+			<label for="field-search-content">Donate: </label>
 
-				<a href="#" class="link-close">
+			<a href="#" class="link-close">
 					<i class="ico-close"></i>
 				</a>
-			</form>
-		</div><!-- /.popup-head -->
+		</form>
+	</div>
+	<!-- /.popup-head -->
 
-		<div class="popup-body">
-			<div class="cols cols-3">
-				<div class="col-1of3 col-center">
-					<div class="form-sponsor sponsor-toggle">
-						<form action="?" method="post">
-							<div class="form__head">
-								<h4 class="step-title">
-									<span>
+	<div class="popup-body">
+		<div class="cols cols-3" [hidden]="sectionPanel!='main'">
+			<div class="col-1of3 col-center">
+				<div class="form-sponsor sponsor-toggle">
+					<form action="?" method="post">
+						<div class="form__head">
+							<h4 class="step-title">
+								<span>
 										step
 										<span>1</span>
-									</span>
+								</span>
 
-									Select
-								</h4>
-							</div><!-- /.form__head -->
+								Select
+							</h4>
+						</div>
+						<!-- /.form__head -->
 
-							<div class="form__body">
-								<div class="form-row">
-									<ul class="list-checkboxes list-checkboxes-blocks">
-										<li>
-											<div class="checkbox checkbox-secondary checkbox-block">
-												<input type="checkbox" name="form-sponsor-day" id="field-sponsor-a-day" (click)="SetSection('day')">
+						<div class="form__body">
+							<div class="form-row">
+								<ul class="list-checkboxes list-checkboxes-blocks">
+									<li>
+										<div class="checkbox checkbox-secondary checkbox-block">
+											<input type="checkbox" name="form-sponsor-day" id="field-sponsor-a-day" (click)="SetSection('day')">
 
-												<label class="form__label" for="field-sponsor-a-day">Sponsor a day</label>
-											</div><!-- /.checkbox -->
-										</li>
+											<label class="form__label" for="field-sponsor-a-day">Sponsor a day</label>
+										</div>
+										<!-- /.checkbox -->
+									</li>
 
-										<li>
-											<div class="checkbox checkbox-secondary checkbox-block">
-												<input type="checkbox" name="form-sponsor-shiur" id="field-sponsor-a-shiur" (click)="SetSection('shiur')">
+									<li>
+										<div class="checkbox checkbox-secondary checkbox-block">
+											<input type="checkbox" name="form-sponsor-shiur" id="field-sponsor-a-shiur" (click)="SetSection('shiur')">
 
-												<label class="form__label" for="field-sponsor-a-shiur">Sponsor a shiur</label>
-											</div><!-- /.checkbox -->
-										</li>
-									</ul><!-- /.list-checkboxes -->
-								</div><!-- /.form-row -->
-							</div><!-- /.form__body -->
+											<label class="form__label" for="field-sponsor-a-shiur">Sponsor a shiur</label>
+										</div>
+										<!-- /.checkbox -->
+									</li>
+								</ul>
+								<!-- /.list-checkboxes -->
+							</div>
+							<!-- /.form-row -->
+						</div>
+						<!-- /.form__body -->
 
-							<div class="form__actions hidden">
-								<input type="submit" value="Submit" class="form__btn">
-							</div><!-- /.form__actions -->
-						</form>
-					</div><!-- /.form-sponsor -->
-				</div><!-- /.col-1of3 -->
+						<div class="form__actions hidden">
+							<input type="submit" value="Submit" class="form__btn">
+						</div>
+						<!-- /.form__actions -->
+					</form>
+				</div>
+				<!-- /.form-sponsor -->
+			</div>
+			<!-- /.col-1of3 -->
 
-				<div class="col-1of3">
-					<div class="form-sponsor form-placeholder">
-						<form action="?" method="post">
-							<div class="form-head">
-								<h4 class="step-title">
-									<span>
+			<div class="col-1of3">
+				<div class="form-sponsor form-placeholder">
+					<form action="?" method="post">
+						<div class="form-head">
+							<h4 class="step-title">
+								<span>
 										step
 										<span>2</span>
-									</span>
+								</span>
 
-									Sponsor a Day
-								</h4>
-							</div><!-- /.form-head -->
+								Sponsor a Day
+							</h4>
+						</div>
+						<!-- /.form-head -->
 
-							<div class="form-body"></div><!-- /.form-body -->
-						</form>
-					</div><!-- /.form-sponsor hidden -->
+						<div class="form-body"></div>
+						<!-- /.form-body -->
+					</form>
+				</div>
+				<!-- /.form-sponsor hidden -->
 
-					<div class="form-sponsor hidden" id="form-sponsor-day">
-						<form action="?" method="post">
-							<div class="form-head">
-								<h4 class="step-title">
-									<span>
+				<div class="form-sponsor hidden" id="form-sponsor-day">
+					<form action="?" method="post">
+						<div class="form-head">
+							<h4 class="step-title">
+								<span>
 										step
 										<span>2</span>
-									</span>
+								</span>
 
-									Sponsor a Day
-								</h4>
-							</div><!-- /.form-head -->
+								Sponsor a Day
+							</h4>
+						</div>
+						<!-- /.form-head -->
 
-							<div class="form-body">
-								<div class="form-row">
-									<ul class="list-checkboxes list-checkboxes-blocks">
-										<li>
-											<div class="checkbox">
-												<input type="checkbox" name="field-sponsor-day-itorah" id="field-sponsor-day-itorah" [(ngModel)]="itorah" (click)="Check(17)">
+						<div class="form-body">
+							<div class="form-row">
+								<ul class="list-checkboxes list-checkboxes-blocks">
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" name="field-sponsor-day-itorah" id="field-sponsor-day-itorah" [(ngModel)]="itorah" (click)="Check(17)">
 
-												<label class="form__label" data-per-day="$180.00 per day" for="field-sponsor-day-itorah">Sponsor a day for iTorah.com</label>
-											</div><!-- /.checkbox -->
-										</li>
+											<label class="form__label" data-per-day="$180.00 per day" for="field-sponsor-day-itorah">Sponsor a day for iTorah.com</label>
+										</div>
+										<!-- /.checkbox -->
+									</li>
 
-										<li>
-											<div class="checkbox">
-												<input type="checkbox" name="field-sponsor-day-daliy-halacha" id="field-sponsor-day-daliy-halacha" [(ngModel)]="halacha" (click)="Check(6)">
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" name="field-sponsor-day-daliy-halacha" id="field-sponsor-day-daliy-halacha" [(ngModel)]="halacha"
+											 (click)="Check(6)">
 
-												<label class="form__label" data-per-day="$52.00 per day" for="field-sponsor-day-daliy-halacha">Sponsor a day for DaliyHalacha.com</label>
-											</div><!-- /.checkbox -->
-										</li>
+											<label class="form__label" data-per-day="$52.00 per day" for="field-sponsor-day-daliy-halacha">Sponsor a day for DaliyHalacha.com</label>
+										</div>
+										<!-- /.checkbox -->
+									</li>
 
-										<li>
-											<div class="checkbox">
-												<input type="checkbox" name="field-sponsor-day-daliy-tehillin" id="field-sponsor-day-daliy-tehillin" [(ngModel)]="tehillim" (click)="Check(7)">
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" name="field-sponsor-day-daliy-tehillin" id="field-sponsor-day-daliy-tehillin" [(ngModel)]="tehillim"
+											 (click)="Check(7)">
 
-												<label class="form__label" data-per-day="$52.00 per day" for="field-sponsor-day-daliy-tehillin">Sponsor a day for DaliyTehillin.com</label>
-											</div><!-- /.checkbox -->
-										</li>
-									</ul><!-- /.list-checkboxes -->
-								</div><!-- /.form-row -->
+											<label class="form__label" data-per-day="$52.00 per day" for="field-sponsor-day-daliy-tehillin">Sponsor a day for DaliyTehillin.com</label>
+										</div>
+										<!-- /.checkbox -->
+									</li>
+								</ul>
+								<!-- /.list-checkboxes -->
+							</div>
+							<!-- /.form-row -->
 
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-sponsorship" id="field-sponsorship" [(ngModel)]="dT">
+							<div class="form-row">
+								<div class="select select-tertiary">
+									<select name="field-sponsorship" id="field-sponsorship" [(ngModel)]="dT">
 											<option *ngFor="let s of dedicationType" [ngValue]="s">{{s.description}}</option>
 										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
+								</div>
+								<!-- /.select -->
+							</div>
+							<!-- /.form-row -->
 
-								<div class="form-row">
+							<div class="form-row">
 
-									<my-date-picker id="sponsorDate" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="date" ></my-date-picker>
+								<my-date-picker id="sponsorDate" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="date"></my-date-picker>
 
-									<div class="form-controls">
-										<!--<input type="text" class="field field-date" name="field-date" id="field-date" value="" placeholder="Date">
+								<div class="form-controls">
+									<!--<input type="text" class="field field-date" name="field-date" id="field-date" value="" placeholder="Date">
 
 										<i class="ico-calendar"></i>-->
-										
-									</div><!-- /.form-controls -->
 
-									<p>
-										<a href="#">Add another day</a>
-									</p>
-								</div><!-- /.form-row -->
+								</div>
+								<!-- /.form-controls -->
+
+								<p>
+									<a href="#">Add another day</a>
+								</p>
+							</div>
+							<!-- /.form-row -->
 
 
-								<div class="form-row">
-									<div class="form-controls">
-										<input type="text" class="field" name="field-sponsor" id="field-sponsorshipFor" value="" placeholder="Sponsorship for" [(ngModel)]="sponsorshipFor">
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="text" class="field" name="field-sponsor" id="field-sponsorshipFor" value="" placeholder="Sponsorship for" [(ngModel)]="sponsorshipFor">
+								</div>
+								<!-- /.select -->
+							</div>
+							<!-- /.form-row -->
 
-								<div class="form-row">
-									<div class="form-controls">
-										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name" [(ngModel)]="name">
-									</div><!-- /.form-controls -->
-								</div><!-- /.form-row -->
-							</div><!-- /.form-body -->
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name" [(ngModel)]="name">
+								</div>
+								<!-- /.form-controls -->
+							</div>
+							<!-- /.form-row -->
+						</div>
+						<!-- /.form-body -->
 
-							<div class="form-actions">
-								<input type="button" value="Continue" class="form-btn next-step" (click)="ShowPayment()">
-							</div><!-- /.form-actions -->
-						</form>
-					</div><!-- /.form-sponsor hidden -->
+						<div class="form-actions">
+							<input type="button" value="Continue" class="form-btn next-step" (click)="ShowPayment()">
+						</div>
+						<!-- /.form-actions -->
+					</form>
+				</div>
+				<!-- /.form-sponsor hidden -->
 
-					<div class="form-sponsor hidden" id="form-sponsor-shiur">
-						<form action="?" method="post">
-							<div class="form-head">
-								<h4 class="step-title">
-									<span>
+				<div class="form-sponsor hidden" id="form-sponsor-shiur">
+					<form action="?" method="post">
+						<div class="form-head">
+							<h4 class="step-title">
+								<span>
 										step
 										<span>2</span>
-									</span>
+								</span>
 
-									Sponsor a Day
-								</h4>
-							</div><!-- /.form-head -->
+								Sponsor a Day
+							</h4>
+						</div>
+						<!-- /.form-head -->
 
-							<div class="form-body">
-								<div class="form-row">
-									<p style="text-align: center; color: #123fa0; padding: 10px; ">
-										<span>Sponsor a Shiur = $118.00</span>
-									</p>
+						<div class="form-body">
+							<div class="form-row">
+								<p style="text-align: center; color: #123fa0; padding: 10px; ">
+									<span>Sponsor a Shiur = $118.00</span>
+								</p>
 
-									<a href="#" class="btn btn-yellow">BROWSE iTorah</a>
-								</div><!-- /.form-row -->
+								<a href="#" class="btn btn-yellow" (click)="FindShiur()">BROWSE iTorah</a>
+								<p style="color:#1d8d54;margin-top: 1.5em;text-align: initial;" *ngIf="nameShiurSelected!=''" class="animated bounce">{{nameShiurSelected}}</p>
+							</div>
+							<!-- /.form-row -->
 
-								<div class="form-row">
-									<div class="select select-tertiary">
-										<select name="field-sponsorship" id="field-sponsorship" [(ngModel)]="dT">
+							<div class="form-row">
+								<div class="select select-tertiary">
+									<select name="field-sponsorship" id="field-sponsorship" [(ngModel)]="dT">
 											<option *ngFor="let s of dedicationType" [ngValue]="s">{{s.description}}</option>
 										</select>
-									</div><!-- /.select -->
-								</div><!-- /.form-row -->
+								</div>
+								<!-- /.select -->
+							</div>
+							<!-- /.form-row -->
 
-								<div class="form-row">
-									<div class="form-controls">
-										<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name" [(ngModel)]="name">
-									</div><!-- /.form-controls -->
-								</div><!-- /.form-row -->
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name" [(ngModel)]="name">
+								</div>
+								<!-- /.form-controls -->
+							</div>
+							<!-- /.form-row -->
 
-								<div class="form-row">
-									<div class="form__controls">
-										<input type="text" class="field" name="field-sponsor" id="field-sponsorshipFor" value="" placeholder="Sponsorship for" [(ngModel)]="sponsorshipFor">
-										<br>
+							<div class="form-row">
+								<div class="form__controls">
+									<input type="text" class="field" name="field-sponsor" id="field-sponsorshipFor" value="" placeholder="Sponsorship for" [(ngModel)]="sponsorshipFor">
+									<br>
+									<p>
+										<small>(Leave blank if you want to remain anonymous)</small>
+									</p>
+								</div>
+								<!-- /.form__controls -->
+							</div>
+							<!-- /.form-row -->
+						</div>
+						<!-- /.form-body -->
+
+						<div class="form-actions">
+							<input type="button" value="Continue" class="form-btn next-step" (click)="ShowPayment()">
+						</div>
+						<!-- /.form-actions -->
+					</form>
+
+					<p>Sponsoring a Shiur enables viewers to download the shiur for free.</p>
+				</div>
+				<!-- /.form-sponsor hidden -->
+			</div>
+			<!-- /.col-1of3 -->
+
+			<div class="col-1of3">
+				<app-payment [valPar]="value" (myEvent)="Save($event)" *ngIf="payment"></app-payment>
+			</div>
+			<!-- /.col-1of3 -->
+		</div>
+		<!-- /.cols -->
+		<div class="tile-box-primary tile-box-speakers" [hidden]="sectionPanel=='main'">
+			<div class="tile-box-tab current">
+				<div class="tile-box-body">
+					<div class="lists">
+						<div class="lists-head">
+
+							<button type="button" class="search-btn" id="buttonBackAll" (click)="Back()">
+						  <i class="fa fa-long-arrow-left"></i> Back
+				        </button>
+
+							<!-- /.lists-head-inner -->
+
+							<div class="search-secondary">
+								<form action="?" method="get" id="form-main">
+									<label for="q" class="hidden">Search</label>
+
+									<input type="search" name="q" id="q" placeholder="Search by name or speaker" class="search-field" [(ngModel)]="query_main"
+									 (keyup)="keyDown()">
+
+									<button data-type="search-shirium" type="button" class="search-btn"><i class="ico-magnify" id="prueba" (click)="keyDown($event)"></i></button>
+								</form>
+							</div>
+							<!-- /.search -->
+						</div>
+						<!-- /.lists-head -->
+
+						<div class="lists-body">
+							<ul class="tracks">
+								<li class="track" *ngFor="let s of all" (click)="setShiur(s)">
+									<!--<a href="#" class="link-play-secondary"></a>-->
+
+									<div class="track-content" style="padding-left: 0.5em">
+										<h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
+
 										<p>
-											<small>(Leave blank if you want to remain anonymous)</small>
+											<span class="date">{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span>
+
+											<span class="min">{{s.length|time}}min</span>
+
+											<span class="lang">{{s.language|language}}</span>
+
 										</p>
-									</div><!-- /.form__controls -->
-								</div><!-- /.form-row -->
-							</div><!-- /.form-body -->
+									</div>
+									<!-- /.track-content -->
+								</li>
+								<!-- /.track -->
 
-							<div class="form-actions">
-								<input type="button" value="Continue" class="form-btn next-step" (click)="ShowPayment()">
-							</div><!-- /.form-actions -->
-						</form>
+							</ul>
+							<!-- /.tracks -->
+						</div>
+						<!-- /.lists-body -->
+					</div>
+					<!-- /.lists -->
+				</div>
+				<!-- /.table-body -->
 
-						<p>Sponsoring a Shiur enables viewers to download the shiur for free.</p>
-					</div><!-- /.form-sponsor hidden -->
-				</div><!-- /.col-1of3 -->
+				<div class="tile-box-actions">
+					<div class="paging">
+						<ul>
+							<li data-type="back"><a href="#/" class="paging-prev-emula" (click)="PagingPrev()"><i class="ico-paging-prev"></i></a></li>
+							<li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/" (click)="Page(p.id)">{{p.id}}</a></li>
+							<li data-type="go"><a href="#/" class="paging-next-emula" (click)="PagingNext()"><i class="ico-paging-next"></i></a></li>
+						</ul>
+					</div>
+					<!-- /.paging -->
+				</div>
 
-				<div class="col-1of3">
-					<app-payment [valPar]="value" (myEvent) = "Save($event)" *ngIf="payment"></app-payment>
-				</div><!-- /.col-1of3 -->
-			</div><!-- /.cols -->
-		</div><!-- /.popup-body -->
+			</div>
+		</div>
 	</div>
+	<!-- /.popup-body -->
+</div>

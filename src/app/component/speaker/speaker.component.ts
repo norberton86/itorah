@@ -765,18 +765,21 @@ export class SpeakerComponent implements OnInit {
   Download(s: Shiurim) {
 
     if (this.isAuthenticated()) {
-      
-      let self=this
+
+      let self = this
 
       this.shiurimService.Status(s.id).subscribe(function (response) {
 
         if (response.indexOf("http://") >= 0) {
 
+          $('#downloadShiur').attr("href", response)
+          document.getElementById('downloadShiur').click()
+
         }
         else {
 
           $("#downloadShirium").toggleClass('shown');
-          self.shiurimService.setItem({id:s.id,description:response})
+          self.shiurimService.setItem({ id: s.id, description: response })
         }
 
       }, function (error) { }, function () { });

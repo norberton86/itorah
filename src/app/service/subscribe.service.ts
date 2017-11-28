@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Subscribe } from '../model/subscribe';
+import { Subscribe,SubscribeRequest } from '../model/subscribe';
 import { ServiceLogin } from '../model/service';
 
 import { Http, Headers } from '@angular/http';
@@ -16,47 +16,31 @@ export class SubscribeService extends ServiceLogin {
     super(http);
   }
 
-  /*
-  public read(token:string): Observable<Subscribe> {
-      
-      return this.http.get(this.ruta+"/Read").map(
-          (response) => {
-              let body = response.json();
-              return body;
-          }
-      )
-  }
-  */
-  read(token:string): Observable<Subscribe> {
 
-    return Observable.create(observer => {
+  read(): Observable<SubscribeRequest> {
 
-      observer.next({
-        checkBoxHalacha: true,
-        checkBoxPerasha: true,
-        checkBoxEmunah: true,
-        checkBoxTehillim: true,
-        checkBoxPrayers: true,
-        checkBoxEmailTehillim: true,
-        checkBoxSmsTehillim: true,
-        checkBoxEmailFuneral: true,
-        checkBoxSmsFuneral: true,
-        EmailTehillim: 'Name@email.com',
-        SmsTehillim: '(212)123-4567',
-        EmailFuneral: 'Name@email.com',
-        SmsFuneral: '(212)123-4567'
-      });
-      observer.complete();
-    });
-
-  }
-
-
-  public Save(subscribe: Subscribe): Observable<string> {
-        return this.http.post(this.ruta + "/Create", JSON.stringify(subscribe), { headers: this.header }).map(
+       let h = new Headers();
+       h.append('Authorization','bearer '+this.getToken());
+       
+        return this.http.get("https://itorahapi.3nom.com/api/Subscribe",{headers: h}).map(
             (response) => {
                 let body = response.json();
-                return body.result;
+                return body;
+
+            }
+        )
+  }
+      
+  Save(subscribe: SubscribeRequest): Observable<string> {
+        
+        let h = new Headers();
+        h.append('Authorization','bearer '+this.getToken());
+         h.append('Content-Type','application/json');
+
+        return this.http.post("https://itorahapi.3nom.com/api/Subscribe", subscribe, { headers: h }).map(
+            (response) => {
+                let body = response.json();
+                return body;
             }
         )
  }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { SubscribeService } from '../../service/subscribe.service';
+import { Subscribe,SubscribeRequest } from '../../model/subscribe';
 
 @Component({
   selector: 'app-subscribe',
@@ -27,8 +28,25 @@ export class SubscribeComponent implements OnInit {
   }
 
    Read() {
-    this.subscribeService.read(this.subscribeService.getToken()).subscribe(
-      result => this.form.patchValue(result)
+    this.subscribeService.read().subscribe(
+      result => {
+
+       var  sub=new Subscribe();   
+
+       sub.checkBoxHalacha=result.emailSubscriptions.find(i=>i==1)!=undefined?true:false
+       sub.checkBoxPerasha=result.emailSubscriptions.find(i=>i==2)!=undefined?true:false
+       sub.checkBoxEmunah=result.emailSubscriptions.find(i=>i==53)!=undefined?true:false
+       sub.checkBoxTehillim=result.emailSubscriptions.find(i=>i==9)!=undefined?true:false
+       sub.checkBoxPrayers=result.emailSubscriptions.find(i=>i==54)!=undefined?true:false
+       sub.checkBoxEmailTehillim=result.emailSubscriptions.find(i=>i==10)!=undefined?true:false
+       sub.checkBoxEmailFuneral=result.emailSubscriptions.find(i=>i==24)!=undefined?true:false
+
+       sub.checkBoxSmsTehillim=result.textSubscriptions.find(i=>i==10)!=undefined?true:false
+       sub.checkBoxSmsFuneral=result.textSubscriptions.find(i=>i==24)!=undefined?true:false
+
+        //---------------------------------
+        this.form.patchValue(sub)
+      }
     )
 
   }
@@ -41,37 +59,15 @@ export class SubscribeComponent implements OnInit {
       checkBoxEmunah:false,
       checkBoxTehillim:false,
       checkBoxPrayers:false,
+
       checkBoxEmailTehillim:false,
       checkBoxSmsTehillim:false,
       checkBoxEmailFuneral:false,
       checkBoxSmsFuneral:false,
-      EmailTehillim:['',[Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      SmsTehillim:'',
-      EmailFuneral:'',
-      SmsFuneral:''
+
     }
       
     this.form = this.fb.group(data);
-  }
-
-  EmailTehillimChecked()
-  {
-    return this.form.value.checkBoxEmailTehillim
-  }
-
-  SmsTehillimChecked()
-  {
-    return this.form.value.checkBoxSmsTehillim
-  }
-
-  EmailFuneralChecked()
-  {
-     return this.form.value.checkBoxEmailFuneral
-  }
-
-  SmsFuneralChecked()
-  {
-    return this.form.value.checkBoxSmsFuneral
   }
 
   Cancel()
@@ -86,18 +82,48 @@ export class SubscribeComponent implements OnInit {
       checkBoxSmsTehillim:false,
       checkBoxEmailFuneral:false,
       checkBoxSmsFuneral:false,
-      EmailTehillim:'',
-      SmsTehillim:'',
-      EmailFuneral:'',
-      SmsFuneral:''
+
     }
     this.form.patchValue(data);
   }
 
   Save()
   {
-      this.subscribeService.Save(this.form.value).subscribe(
-       result => console.log(result)
+      var sub=new SubscribeRequest();
+      
+      if(this.form.value.checkBoxHalacha)
+      sub.emailSubscriptions.push(1)
+
+      if(this.form.value.checkBoxPerasha)
+      sub.emailSubscriptions.push(2)
+
+      if(this.form.value.checkBoxEmunah)
+      sub.emailSubscriptions.push(53)
+      
+      if(this.form.value.checkBoxTehillim)
+      sub.emailSubscriptions.push(9)
+
+      if(this.form.value.checkBoxPrayers)
+      sub.emailSubscriptions.push(54)
+
+      if(this.form.value.checkBoxEmailTehillim)
+      sub.emailSubscriptions.push(10)
+
+      if(this.form.value.checkBoxEmailFuneral)
+      sub.emailSubscriptions.push(24)
+
+      if(this.form.value.checkBoxSmsTehillim)
+      sub.textSubscriptions.push(10)
+
+      if(this.form.value.checkBoxSmsFuneral)
+      sub.textSubscriptions.push(24)
+
+
+
+      this.subscribeService.Save(sub).subscribe(
+         result => {
+           this.subscribeService.Notify("Subscription succesfull",false);
+         }
       )
   }
 

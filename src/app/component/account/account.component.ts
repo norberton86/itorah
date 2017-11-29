@@ -31,8 +31,8 @@ export class AccountComponent implements OnInit {
     let EMAIL_REGEXP = /^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/;
 
     this.form = this.fb.group({
-      firstName: '',
-      lastName: '',
+      firstName:  ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       address: '',
       addressTwo: '',
       city: '',
@@ -40,7 +40,7 @@ export class AccountComponent implements OnInit {
       zip: '',
       phone: '',
       phoneProviderID: [1],
-      email: ['', [Validators.required, Validators.pattern(EMAIL_REGEXP)]],
+      email: ['', [Validators.required, Validators.pattern(EMAIL_REGEXP)]]
     });
 
 
@@ -58,9 +58,9 @@ export class AccountComponent implements OnInit {
   InitializePassForm() {
 
     this.formPasword = this.fbPass.group({
-      oldp: '',
-      newp: '',
-      confirmp: '',
+      oldp: ['', Validators.required],
+      newp: ['', Validators.required],
+      confirmp: ['', Validators.required],
     });
 
   }
@@ -152,6 +152,13 @@ export class AccountComponent implements OnInit {
     }
     this.formPasword.patchValue(data);
     this.main = true
+  }
+
+  Validate() {
+    if(!this.main)
+    return this.formPasword.controls.oldp.errors != null || this.formPasword.controls.newp.errors != null || this.formPasword.controls.confirmp.errors != null||this.formPasword.value.newp!=this.formPasword.value.confirmp
+    else
+    return this.form.controls.firstName.errors != null || this.form.controls.lastName.errors != null || this.form.controls.email.errors != null
   }
 
 }

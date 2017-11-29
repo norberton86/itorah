@@ -16,7 +16,7 @@
         <div class="form-row">
           <div class="form-header-wrap">
             <div class="form-header-title"> <strong>My Information</strong> </div>
-            <div class="form-header-btn"> <a class="btn btn-yellow btn-make-dedication" href="" style="margin: 0" (click)="Save()">Save</a></div>
+            <div class="form-header-btn"> <a class="btn btn-yellow btn-make-dedication" href="" style="margin: 0" (click)="Save()" [class.mydisabled]="Validate()">Save</a></div>
 
           </div>
         </div>
@@ -47,6 +47,9 @@
                 <div class="form-controls">
                   <input type="text" class="field" name="user-first-name" id="user-first-name" value="" placeholder="" formControlName="firstName">
                 </div>
+                <div class="animated bounceIn" style="color:red;" *ngIf="form.get('firstName').hasError('required') && form.get('firstName').touched">
+                  First Name is required
+                </div>
                 <!-- /.form-controls -->
               </div>
               <!-- /.form-row -->
@@ -56,6 +59,9 @@
                 <label for="user-last-name" class="form__label">Last Name</label>
                 <div class="form-controls">
                   <input type="text" class="field" name="user-last-name" id="user-last-name" value="" placeholder="" formControlName="lastName">
+                </div>
+                <div class="animated bounceIn" style="color:red;" *ngIf="form.get('lastName').hasError('required') && form.get('lastName').touched">
+                  Last Name is required
                 </div>
                 <!-- /.form-controls -->
               </div>
@@ -208,6 +214,12 @@
                 <div class="form-controls">
                   <input type="email" class="field" name="user-email" id="user-email" value="" placeholder="" formControlName="email">
                 </div>
+                <div class="animated bounceIn" style="color:red;" *ngIf="form.get('email').hasError('required') && form.get('email').touched">
+                  Email is required
+                </div>
+                <div   class="animated bounceIn" style="color:red;" *ngIf="!form.get('email').valid  && form.get('email').touched">
+        					Email is invalid
+      					</div>
                 <!-- /.form-controls -->
               </div>
               <!-- /.form-row -->
@@ -245,7 +257,7 @@
         <div class="form-row">
           <div class="form-header-wrap">
             <div class="form-header-title"> <strong>My Information</strong> </div>
-            <div class="form-header-btn"> <a class="btn btn-yellow btn-make-dedication" href="" style="margin: 0" (click)="Save()">Save</a></div>
+            <div class="form-header-btn"> <a class="btn btn-yellow btn-make-dedication" href="" style="margin: 0" (click)="Save()" [class.mydisabled]="Validate()">Save</a></div>
 
           </div>
         </div>
@@ -275,6 +287,9 @@
                 <div class="form-controls">
                   <input type="text" class="field" name="user-first-name" id="user-first-name" value="" placeholder="" formControlName="oldp">
                 </div>
+                <div class="animated bounceIn" style="color:red;" *ngIf="formPasword.get('oldp').hasError('required') && formPasword.get('oldp').touched">
+                  Old Password is required
+                </div>
                 <!-- /.form-controls -->
               </div>
               <!-- /.form-row -->
@@ -301,6 +316,9 @@
                 <div class="form-controls">
                   <input type="tel" class="field" name="user-phone" id="user-phone" value="" placeholder="" formControlName="newp">
                 </div>
+                <div class="animated bounceIn" style="color:red;" *ngIf="formPasword.get('newp').hasError('required') && formPasword.get('newp').touched">
+                  New Password is required
+                </div>
                 <!-- /.form-controls -->
               </div>
               <!-- /.form-row -->
@@ -310,6 +328,14 @@
                 <label for="user-phone" class="form__label">Confirm Password</label>
                 <div class="form-controls">
                   <input type="email" class="field" name="user-email" id="user-email" value="" placeholder="" formControlName="confirmp">
+                </div>
+
+                <div class="animated bounceIn" style="color:red;" *ngIf="formPasword.get('confirmp').hasError('required') && formPasword.get('confirmp').touched">
+                  Confirm is required
+                </div>
+
+                <div class="animated bounceIn" style="color:red;" *ngIf="formPasword.get('confirmp').value!=formPasword.get('newp').value && formPasword.get('confirmp').touched">
+                  Password doesn't match
                 </div>
                 <!-- /.form-controls -->
               </div>
@@ -326,7 +352,7 @@
         <div class="col-1of3 sponsor-col-10" style="border-left:none;">
           <div class="sponsor-btn-wrap">
             <div class="form-row" style="text-align:right;padding:1rem 1rem .5rem 1rem;">
-              <a class="btn btn-yellow btn-make-dedication sponsor-btn-grey" href="#/" style="margin: 0;"  (click)="ClosePassword()">Cancel</a>
+              <a class="btn btn-yellow btn-make-dedication sponsor-btn-grey" href="#/" style="margin: 0;" (click)="ClosePassword()">Cancel</a>
             </div>
 
           </div>

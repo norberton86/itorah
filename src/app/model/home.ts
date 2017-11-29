@@ -3,11 +3,15 @@
 
 export class Home {
 
-    Table:Array<Block>;
-    Table1:Array<Speaker>;
-    Table2:Array<Lectures>;
+    Table:Array<Block>
+    Table1:Array<Speaker>
+    Table2:Array<Lectures>
+    Table3:Array<SponsorDedicated>
 }
 
+export class SponsorDedicated{
+  Sponsor:string
+}
 
 export class Block
 {
@@ -40,4 +44,5 @@ export class ReadNow
     
   title: string
   content: string
+  dedication:string
 }

@@ -68,6 +68,7 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { MyDatePickerModule } from 'mydatepicker';
 import { AdvertiseComponent } from './component/advertise/advertise.component';
 import { AlertComponent } from './component/alert/alert.component';
+import { TodaySponsorComponent } from './component/today-sponsor/today-sponsor.component';
 
 
 let providers = {
@@ -133,7 +134,8 @@ let providers = {
     DedicationComponent,
     PaymentComponent,
     AdvertiseComponent,
-    AlertComponent
+    AlertComponent,
+    TodaySponsorComponent
   ],
   imports: [
     BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,MyDatePickerModule ,

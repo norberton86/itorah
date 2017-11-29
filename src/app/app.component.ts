@@ -44,9 +44,18 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.CheckResetPassword();
+    this.getTehillimDedication();
   }
+
+  getTehillimDedication()
+  {
+    this.homeService.readNow(7).subscribe(response=>{
+       this.tehillimDedication=response.dedication
+    })
+  }
+
+  tehillimDedication:string=""
 
   OpenLogin(id: string) {
     $("#" + id).hide().removeClass('shown')  //close it!!!!
@@ -72,11 +81,11 @@ export class AppComponent implements OnInit {
     this.analitycService.emitEvent("Module", "Open", "Emunah");
   }
 
-  halachacomboValue:string
-  AccionHalacha(halachacomboValue:string) {
+  halachacomboValue: string
+  AccionHalacha(halachacomboValue: string) {
     this.valHalacha = this.Generate();
     this.analitycService.emitEvent("Module", "Open", "Halacha");
-    this.halachacomboValue=halachacomboValue
+    this.halachacomboValue = halachacomboValue
   }
 
   AccionPele() {
@@ -197,18 +206,14 @@ export class AppComponent implements OnInit {
       return true;
   }
 
-  OpenRegister()
-  {
-    if(this.isAuthenticated())
-    {
+  OpenRegister() {
+    if (this.isAuthenticated()) {
       $('#popup-register').toggleClass('shown');
     }
   }
 
-  OpenSponsor()
-  {
-    if(this.isAuthenticated())
-    {
+  OpenSponsor() {
+    if (this.isAuthenticated()) {
       $('#sponsor').toggleClass('shown');
     }
   }

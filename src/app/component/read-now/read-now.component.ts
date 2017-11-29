@@ -19,6 +19,9 @@ export class ReadNowComponent implements OnInit,OnChanges {
   @Input()
   content: string
 
+  @Input()
+  dedication:string
+
   
   
 
@@ -34,6 +37,7 @@ export class ReadNowComponent implements OnInit,OnChanges {
   ngOnChanges(changes: any): void {
     this.title=changes.title.currentValue
     this.content=changes.content.currentValue
+    this.dedication=changes.dedication.currentValue
 
     
     if(this.content!=null && this.content!='')

@@ -282,7 +282,7 @@
 									<label for="q" class="hidden">Search</label>
 
 									<input type="search" name="q" id="q" placeholder="Search by name or speaker" class="search-field" [(ngModel)]="query_main"
-									 (keyup)="keyDown()">
+									 (keyup)="keyDown($event)">
 
 									<button data-type="search-shirium" type="button" class="search-btn"><i class="ico-magnify" id="prueba" (click)="keyDown($event)"></i></button>
 								</form>

@@ -219,14 +219,14 @@
 				<app-global-search [accion]="gSearchPattern"></app-global-search>
 				<app-weekly-result></app-weekly-result>
 				<app-browse [browseClass]="browseClasses"></app-browse>
-				<app-read-now [title]="rNow?.title" [content]="rNow?.content" ></app-read-now>
+				<app-read-now [title]="rNow?.title" [content]="rNow?.content" [dedication]="rNow?.dedication"></app-read-now>
 				<app-read-search></app-read-search>
 				<app-download-shirium></app-download-shirium>
 			</div><!-- /.shell -->
 		</header><!-- /.header -->
 
 		<i class="ico-ballon-arrow"></i>
-
+      
 		<div class="main">
 	   <app-donate></app-donate>
 
@@ -276,14 +276,14 @@
 
 			<app-recover [accion]="emailRecover"></app-recover>
 
-			
+			<app-today-sponsor></app-today-sponsor>
 
 			<section class="section section-tiles">
 				<div class="shell">
 					<div class="section-content">
 						<div class="tiles">
 							<div class="tile" id="tile-1">
-								<div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-1.jpg);">
+								 <div class="tile-inner" style="background-image: url(/assets/build/css/images/temp/tile-image-1.jpg);">
 									<div class="tile-body">
 										<div class="tile-content">
 											<h3>LearnTorah<small>.com</small></h3>
@@ -369,8 +369,9 @@
 
 											<!--<a href="#item-content-2" class="btn btn-yellow btn-small" data-size="full" id="" >Weekly Parasha</a>-->
 
-											<a href="#item-content-8" data-size="full" class="link-search" (click)="AccionHalacha()">
-										<i class="ico-magnifier-large"></i>
+											
+											<a href="#item-content-8" data-size="full" class="link-search">
+										 <i class="ico-magnifier-large"></i>
 									</a>
 										</div><!-- /.tile-actions -->
 									</div><!-- /.tile-body -->
@@ -396,6 +397,7 @@
 											<p>Tehillim List and Levayot by Community</p>
 
 											<span>Listen - Read - Learn</span>
+											<marquee>{{tehillimDedication}} </marquee>
 										</div><!-- /.tile-content -->
 
 										<div class="tile-actions">

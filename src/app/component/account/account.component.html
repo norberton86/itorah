@@ -1,0 +1,253 @@
+<div class="popup sponsor" id="myAccount">
+  <div class="popup-head" style="padding:1rem">
+    <form>
+      <label for="field-search-content">Personal Account Information</label>
+
+      <a href="#" class="link-close">
+					<i class="ico-close"></i>
+				</a>
+    </form>
+  </div>
+  <!-- /.popup-head -->
+  <!-- This is sponsor Componenet -->
+  <div class="popup-body">
+     <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-row">
+        <div class="form-header-wrap">
+          <div class="form-header-title"> <strong>My Information</strong> </div>
+          <div class="form-header-btn"> <a class="btn btn-yellow btn-make-dedication" href="" style="margin: 0" (click)="Save()">Save</a></div>
+       
+        </div>
+      </div>
+    </div>
+
+    <div class="cols cols-3" style="padding: 1rem 0 3rem 0;">
+      <div class="col-1of3 col-center sponsor-col-1of4">
+        <div class="form-row" style="padding-left:1rem">
+          <h2>Account</h2>
+
+
+        </div>
+
+      </div>
+      <!-- /.col-1of3 -->
+
+      <div class="col-1of3 sponsor-col-35" style="border-left:none;">
+
+
+        <div class="form-sponsor form-order" id="form-sponsor-day">
+
+
+
+          <div class="form-body">
+            <!-- first name -->
+            <div class="form-row">
+              <label for="user-first-name" class="form__label">First Name</label>
+              <div class="form-controls">
+                <input type="text" class="field" name="user-first-name" id="user-first-name" value="" placeholder="" formControlName="firstName">
+              </div>
+              <!-- /.form-controls -->
+            </div>
+            <!-- /.form-row -->
+
+            <!-- last name -->
+            <div class="form-row">
+              <label for="user-last-name" class="form__label">Last Name</label>
+              <div class="form-controls">
+                <input type="text" class="field" name="user-last-name" id="user-last-name" value="" placeholder="" formControlName="lastName">
+              </div>
+              <!-- /.form-controls -->
+            </div>
+            <!-- /.form-row -->
+
+            <!-- Address -->
+            <div class="form-row">
+              <label for="user-address" class="form__label">Address</label>
+              <div class="form-controls">
+                <input type="text" class="field" name="user-address" id="user-address" value="" placeholder="" formControlName="address">
+              </div>
+              <!-- /.form-controls -->
+            </div>
+
+            <!-- Address -->
+            <div class="form-row">
+              <label for="user-address" class="form__label"></label>
+              <div class="form-controls">
+                <input type="text" class="field" name="user-address" id="user-address-two" value="" placeholder="" formControlName="addressTwo">
+              </div>
+              <!-- /.form-controls -->
+            </div>
+
+            <!-- /.form-row -->
+            <!-- City -->
+            <div class="form-row">
+              <label for="user-city" class="form__label">City</label>
+              <div class="form-controls">
+                <input type="text" class="field" name="user-city" id="user-city" value="" placeholder="" formControlName="city">
+              </div>
+              <!-- /.form-controls -->
+            </div>
+            <!-- /.form-row -->
+
+            <!-- State -->
+            <div class="form-row">
+              <label for="user-state" class="form__label">State</label>
+              <div class="form-controls">
+                <div class="select">
+                  <select name="user-state" id="user-state" formControlName="state">
+										<option value="AL">Alabama</option>
+	                  <option value="AK">Alaska</option>
+	                  <option value="AZ">Arizona</option>
+	                  <option value="AR">Arkansas</option>
+	                  <option value="CA">California</option>
+	                  <option value="CO">Colorado</option>
+	                  <option value="CT">Connecticut</option>
+	                  <option value="DE">Delaware</option>
+	                  <option value="DC">District Of Columbia</option>
+	                  <option value="FL">Florida</option>
+	                  <option value="GA">Georgia</option>
+	                  <option value="HI">Hawaii</option>
+	                  <option value="ID">Idaho</option>
+	                  <option value="IL">Illinois</option>
+	                  <option value="IN">Indiana</option>
+	                  <option value="IA">Iowa</option>
+	                  <option value="KS">Kansas</option>
+	                  <option value="KY">Kentucky</option>
+	                  <option value="LA">Louisiana</option>
+	                  <option value="ME">Maine</option>
+	                  <option value="MD">Maryland</option>
+	                  <option value="MA">Massachusetts</option>
+	                  <option value="MI">Michigan</option>
+	                  <option value="MN">Minnesota</option>
+	                  <option value="MS">Mississippi</option>
+	                  <option value="MO">Missouri</option>
+	                  <option value="MT">Montana</option>
+	                  <option value="NE">Nebraska</option>
+	                  <option value="NV">Nevada</option>
+	                  <option value="NH">New Hampshire</option>
+	                  <option value="NJ">New Jersey</option>
+	                  <option value="NM">New Mexico</option>
+	                  <option value="NY">New York</option>
+	                  <option value="NC">North Carolina</option>
+	                  <option value="ND">North Dakota</option>
+	                  <option value="OH">Ohio</option>
+	                  <option value="OK">Oklahoma</option>
+	                  <option value="OR">Oregon</option>
+	                  <option value="PA">Pennsylvania</option>
+	                  <option value="RI">Rhode Island</option>
+	                  <option value="SC">South Carolina</option>
+	                  <option value="SD">South Dakota</option>
+	                  <option value="TN">Tennessee</option>
+	                  <option value="TX">Texas</option>
+	                  <option value="UT">Utah</option>
+	                  <option value="VT">Vermont</option>
+	                  <option value="VA">Virginia</option>
+	                  <option value="WA">Washington</option>
+	                  <option value="WV">West Virginia</option>
+	                  <option value="WI">Wisconsin</option>
+	                  <option value="WY">Wyoming</option>
+                  </select>
+                </div>
+                <!-- /.select -->
+              </div>
+              <!-- /.form-controls -->
+            </div>
+
+            <!-- City -->
+            <div class="form-row">
+              <label for="user-zipcode" class="form__label">Zip Code</label>
+              <div class="form-controls">
+                <input type="number" class="field" name="user-zipcode" id="user-zipcode" value="" placeholder="" formControlName="zip">
+              </div>
+              <!-- /.form-controls -->
+            </div>
+            <!-- /.form-row -->
+
+
+
+
+
+
+          </div>
+          <!-- /.form-body -->
+
+
+
+        </div>
+        <!-- /.form-sponsor hidden -->
+
+
+      </div>
+      <!-- /.col-1of3 -->
+
+      <div class="col-1of3 sponsor-col-35" style="border-left:none;">
+        <div class="form-order  form-sponsor">
+
+            <div class="form-body">
+
+            <div class="form-row">
+              <label for="user-state" class="form__label">Phone Provider</label>
+              <div class="form-controls">
+                <div class="select">
+                  <select name="user-state" id="user-state" formControlName="phoneProviderID">
+										<option *ngFor="let p of phoneProviders" [value]="p.ID">{{p.Name}}</option>
+                  </select>
+                </div>
+                <!-- /.select -->
+              </div>
+              <!-- /.form-controls -->
+            </div>
+
+              <!-- Phone -->
+              <div class="form-row">
+                <label for="user-phone" class="form__label">Phone Number</label>
+                <div class="form-controls">
+                  <input type="tel" class="field" name="user-phone" id="user-phone" value="" placeholder="" formControlName="phone">
+                </div>
+                <!-- /.form-controls -->
+              </div>
+              <!-- /.form-row -->
+
+              <!-- Email -->
+              <div class="form-row">
+                <label for="user-phone" class="form__label">Email</label>
+                <div class="form-controls">
+                  <input type="email" class="field" name="user-email" id="user-email" value="" placeholder="" formControlName="email">
+                </div>
+                <!-- /.form-controls -->
+              </div>
+              <!-- /.form-row -->
+
+
+
+
+            </div>
+            <!-- /.form-body -->
+
+
+          
+        </div>
+        <!-- /.form-order -->
+      </div>
+      <!-- /.col-1of3 -->
+
+      <div class="col-1of3 sponsor-col-10" style="border-left:none;">
+        <div class="sponsor-btn-wrap">
+
+          <div class="form-row" style="text-align:right;padding:1rem 1rem .5rem 1rem;">
+            <a class="btn btn-yellow btn-make-dedication sponsor-btn-grey" href="" style="margin: 0;" *ngIf="changePasword">Change Password</a>
+          </div>
+          <div class="form-row" style="text-align:right;padding:0 1rem .5rem 1rem;">
+            <!-- <a class="btn btn-yellow btn-make-dedication sponsor-btn-grey" href="" style="margin: 0;">Edit Info</a>-->
+          </div>
+
+          <!-- <a class="btn btn-yellow btn-make-dedication" href="" style="margin: 0;visibility: none;">Delete Me</a>--></div>
+
+      </div>
+    </div>
+    <!-- /.cols -->
+    </form>
+  </div>
+  <!-- /.popup-body -->
+</div>

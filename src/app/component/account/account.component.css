@@ -1,0 +1,49 @@
+@media(max-width: 1450px){
+  .sponsor-col-1of4{width:20%; }
+  .sponsor-col-35{width:30%; }
+  .sponsor-col-10{width:20%; }
+  .sponsor-col-35 .form-order{  padding-left: 5rem;}
+  .sponsor-col-1of4 .form-sponsor{padding-left: 1rem;}
+
+
+}
+
+@media(max-width: 1024px){
+  .sponsor-col-1of4{width:20%; }
+  .sponsor-col-35{width:30%; }
+  .sponsor-col-10{width:20%; }
+  .sponsor-col-35 .form-order{  padding-left: 5rem;}
+  .sponsor-col-1of4 .form-sponsor{padding-left: 1rem;}
+}
+
+@media(max-width: 767px){
+  .sponsor-col-1of4{width:100%; }
+  .sponsor-col-35{width:100%; }
+  .sponsor-col-10{width:100%; }
+  .sponsor-col-35 .form-order{  padding-left: 5rem;}
+  .sponsor-col-1of4 .form-sponsor{padding-left: 1rem;}
+  .form-header-btn { width:100%; padding:1rem;display: inline-block;text-align: right; }
+
+
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+      .sponsor-col-35{width:100%; }
+  .sponsor-col-35 .form-order{  padding-left: 0 !important;}
+  .form-header-btn { width:100% !important; padding:1rem;display: inline-block;text-align: right; }
+}
+
+  .sponsor-col-1of4{width:20%; }
+  .sponsor-col-35{width:30%; }
+  .sponsor-col-10{width:20%; }
+  .sponsor-col-35 .form-order{  padding-left: 5rem;}
+  .sponsor-col-1of4 .form-sponsor{padding-left: 1rem;}
+  .sponsor-btn-wrap{padding-left:1rem; }
+  .form-header-wrap{margin-bottom: 1rem;}
+  .form-header-title { width:75%; padding:1rem; display: inline-block;}
+  .form-header-btn { width:24%; padding:1rem;display: inline-block;text-align: right; }
+  .sponsor-btn-grey{background: #d8d8d8}
+  .sponsor-btn-grey:hover{ background: #b5b5b5; }

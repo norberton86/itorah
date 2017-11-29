@@ -218,4 +218,10 @@ export class AppComponent implements OnInit {
     }
   }
 
+  OpenPopup(id:string) {
+    if (this.isAuthenticated()) {
+      $(id).toggleClass('shown');
+    }
+  }
+
 }

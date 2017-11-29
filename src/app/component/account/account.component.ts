@@ -8,7 +8,7 @@ declare var $: any;
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
-  providers: [AccountService]
+
 })
 export class AccountComponent implements OnInit {
 
@@ -20,7 +20,16 @@ export class AccountComponent implements OnInit {
   changePasword: boolean = false
   main: boolean = true
 
-  constructor(private fb: FormBuilder, private fbPass: FormBuilder, private accountService: AccountService) { }
+  constructor(private fb: FormBuilder, private fbPass: FormBuilder, private accountService: AccountService) {
+    this.accountService.getLogin().subscribe(item => {
+      if (item == "Signed") {
+         this.Load()
+      }
+      else {
+
+      }
+    });
+  }
 
   ngOnInit() {
     this.InitializeMainForm();
@@ -31,7 +40,7 @@ export class AccountComponent implements OnInit {
     let EMAIL_REGEXP = /^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/;
 
     this.form = this.fb.group({
-      firstName:  ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       address: '',
       addressTwo: '',
@@ -44,6 +53,10 @@ export class AccountComponent implements OnInit {
     });
 
     if (localStorage.getItem('userItorah') != null && localStorage.getItem('userItorah') != "")
+      this.Load()
+  }
+
+  Load() {
     this.accountService.providers().subscribe(providers => {
 
       this.phoneProviders = providers
@@ -155,10 +168,10 @@ export class AccountComponent implements OnInit {
   }
 
   Validate() {
-    if(!this.main)
-    return this.formPasword.controls.oldp.errors != null || this.formPasword.controls.newp.errors != null || this.formPasword.controls.confirmp.errors != null||this.formPasword.value.newp!=this.formPasword.value.confirmp
+    if (!this.main)
+      return this.formPasword.controls.oldp.errors != null || this.formPasword.controls.newp.errors != null || this.formPasword.controls.confirmp.errors != null || this.formPasword.value.newp != this.formPasword.value.confirmp
     else
-    return this.form.controls.firstName.errors != null || this.form.controls.lastName.errors != null || this.form.controls.email.errors != null
+      return this.form.controls.firstName.errors != null || this.form.controls.lastName.errors != null || this.form.controls.email.errors != null
   }
 
 }

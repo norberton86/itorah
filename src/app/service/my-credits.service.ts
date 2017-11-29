@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Service } from '../model/service';
+import { Service,ServiceLogin } from '../model/service';
 import { creditsTable } from '../model/shiurim-buy';
 
 import { Http, Headers } from '@angular/http';
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class MyCreditsService extends Service {
+export class MyCreditsService extends ServiceLogin {
 
   constructor(http: Http) {
     super(http);

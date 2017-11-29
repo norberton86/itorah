@@ -7,7 +7,8 @@ import { SocialLoginServic } from '../../service/social-login.service';
 import { TehillimService } from '../../service/tehillim.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-
+import { MyCreditsService } from '../../service/my-credits.service';
+import { AccountService } from '../../service/account.service';
 
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -38,7 +39,7 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, public _auth: AuthService, private ngZone: NgZone, private queueService: QueueService, private podcastService: PodcastService, private subscribeService: SubscribeService, private socialLoginServic: SocialLoginServic, private tehillimService: TehillimService) {
+  constructor(private fb: FormBuilder, public _auth: AuthService, private ngZone: NgZone, private queueService: QueueService, private podcastService: PodcastService, private subscribeService: SubscribeService, private socialLoginServic: SocialLoginServic, private tehillimService: TehillimService,private accountService:AccountService,private myCreditsService:MyCreditsService) {
     this.InitializeForm();
   }
 
@@ -152,6 +153,8 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
     this.podcastService.setLogin("Signed");
     this.subscribeService.setLogin("Signed");
     this.tehillimService.setLogin("Signed");
+    this.accountService.setLogin("Signed");
+    this.myCreditsService.setLogin("Signed");
     this.RefreshView();
   }
 

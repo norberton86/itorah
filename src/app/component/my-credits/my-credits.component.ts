@@ -18,6 +18,7 @@ export class MyCreditsComponent implements OnInit {
   constructor(private myCreditsService:MyCreditsService) { }
 
   ngOnInit() {
+     if (localStorage.getItem('userItorah') != null && localStorage.getItem('userItorah') != "")
     this.myCreditsService.read().subscribe(response=>{
       this.table=response
     })    

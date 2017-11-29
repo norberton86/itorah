@@ -43,7 +43,7 @@ export class AccountComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern(EMAIL_REGEXP)]]
     });
 
-
+    if (localStorage.getItem('userItorah') != null && localStorage.getItem('userItorah') != "")
     this.accountService.providers().subscribe(providers => {
 
       this.phoneProviders = providers

@@ -1,91 +1,99 @@
-
 <div class="tile-box" id="item-content-4">
 	<div class="tile-box-primary tile-box-results">
 		<div class="tile-box-head " id="daily-emunah">
-			<h4>Daily  Emunah</h4>
-			
+			<h4>Daily Emunah</h4>
+
 			<div class="search-tertiary">
 				<form action="?" method="get">
 					<label for="q">Search: </label>
-					
+
 					<!--<div class="select">
 						<select name="field-search-content" id="field-search-content">
 							<option value="">All Content</option>
-						</select>--><!-- /.form-row -->
-				<!--	</div>--><!-- /.select -->
-					
-					<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field" [(ngModel)]="query_main" (keyup)="keyDownEmunahFunction($event)">
-					
+						</select>-->
+					<!-- /.form-row -->
+					<!--	</div>-->
+					<!-- /.select -->
+
+					<input type="search" name="q" id="q" value="" placeholder="Enter Search word ..." class="search-field" [(ngModel)]="query_main"
+					 (keyup)="keyDownEmunahFunction($event)">
+
 					<button data-type="search-shirium-emunah" type="button" class="search-btn" (click)="searchShiriumEmunah()">
 						<i class="ico-magnify"></i>
 					</button>
 				</form>
-			</div><!-- /.search-tertiary -->
-			
+			</div>
+			<!-- /.search-tertiary -->
+
 			<a href="#" class="link-close">
 				<i class="ico-close"></i>
-			</a>					
-		</div><!-- /.table-head -->
-		
+			</a>
+		</div>
+		<!-- /.table-head -->
+
 		<div class="tile-box-body">
 			<div class="lists">
 				<div class="lists-head">
 					<div class="lists-head-inner">
-						<p>About {{amount}}  results</p>
-					</div><!-- /.lists-head-inner -->
-				</div><!-- /.lists-head -->
-				
+						<p>About {{amount}} results</p>
+					</div>
+					<!-- /.lists-head-inner -->
+				</div>
+				<!-- /.lists-head -->
+
 				<div class="lists-body">
 					<ul class="tracks">
-						<li class="track" *ngFor="let s of shiriums;">
-								<!--<a href="#" class="link-play-secondary"></a>-->
-								
-								<div class="track-content" style="padding-left: 0.6em">
-									<h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
-									
-									<p>
-										<span class="date">{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span>
-										
-										<span class="min">{{s.length|time}}min</span>
-										
-										<span class="lang">{{s.language|language}}</span>
-										
-									</p>
-								</div><!-- /.track-content -->
-								
-								<div class="track-actions">
-									
-                                        <a href="#/" class="link-mic" *ngIf="s?.video!=''" data-type="media-emuna" id="{{s?.video}}" data-title="{{s.title}}" (click)="PLayEmunah(s.video,s.title)">
-											<i class="ico-camera"></i>
-										</a>
+						<li class="track" *ngFor="let s of emunas;">
+							<!--<a href="#" class="link-play-secondary"></a>-->
 
-										<a href="#/" class="link-mic" *ngIf="s?.audio!=''" data-type="media-emuna" id="{{s?.audio}}" data-title="{{s.title}}" (click)="PLayEmunah(s.audio,s.title)">
+							<div class="track-content" style="padding-left: 0.6em">
+								<h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
+
+								<p>
+									<span class="date">{{s.date| date: 'MM/dd/yyyy'}}</span>
+
+									<!--<span class="min">{{s.length|time}}min</span>
+										
+										<span class="lang">{{s.language|language}}</span>-->
+
+								</p>
+							</div>
+							<!-- /.track-content -->
+
+							<div class="track-actions">
+
+
+
+								<a href="#/" class="link-mic" *ngIf="s?.audioUrl!=''" data-type="media-emuna" id="{{s?.audioUrl}}" data-title="{{s.title}}" (click)="PLayEmunah(s.audioUrl,s.title)">
 											<i class="ico-mic"></i>
-										</a>
+								</a>
 
-									<a href="{{s?.audio}}" class="link-download" download title="Download">
-										<i class="ico-download"></i>
-									</a>
-									
-									<a href="#/" class="link-add" title="Add to My List" id="{{s.id}}" (click)="Add(s.id)">
-										<i class="ico-plus-thick"></i>
-									</a>
-								</div><!-- /.track-actions -->
-							</li><!-- /.track -->
-						
-					</ul><!-- /.tracks -->
-				</div><!-- /.lists-body -->
-			</div><!-- /.lists -->
-		</div><!-- /.table-body -->
-		
+
+							</div>
+							<!-- /.track-actions -->
+						</li>
+						<!-- /.track -->
+
+					</ul>
+					<!-- /.tracks -->
+				</div>
+				<!-- /.lists-body -->
+			</div>
+			<!-- /.lists -->
+		</div>
+		<!-- /.table-body -->
+
 		<div class="tile-box-actions">
 			<div class="paging">
-			    <ul>
-			          <li data-type="back"><a href="#/" class="paging-prev-emula" (click)="PagingPrev()"><i class="ico-paging-prev"></i></a></li>
-				      <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/" data-type="page-emula" id="{{p.id}}" (click)="Page(p.id)">{{p.id}}</a></li>
-				      <li data-type="go"><a href="#/" class="paging-next-emula" (click)="PagingNext()"><i class="ico-paging-next"></i></a></li>
-			    </ul>
-			</div><!-- /.paging -->
-		</div><!-- /.table-actions -->
-	</div><!-- /.tile-box-primary -->
+				<ul>
+					<li data-type="back"><a href="#/" class="paging-prev-emula" (click)="PagingPrev()"><i class="ico-paging-prev"></i></a></li>
+					<li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/" data-type="page-emula" id="{{p.id}}" (click)="Page(p.id)">{{p.id}}</a></li>
+					<li data-type="go"><a href="#/" class="paging-next-emula" (click)="PagingNext()"><i class="ico-paging-next"></i></a></li>
+				</ul>
+			</div>
+			<!-- /.paging -->
+		</div>
+		<!-- /.table-actions -->
+	</div>
+	<!-- /.tile-box-primary -->
 </div>

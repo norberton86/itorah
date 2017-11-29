@@ -27,8 +27,8 @@
                   <h3 class="total-credits-label">Current Shiurim balance</h3>
 
                   <h1 class="total-credits">
-                    <span>32</span> Shiurim
-                    <small class="average-price">($16)</small>
+                    <span>{{table?.shiurimBalance}}</span> Shiurim
+                    <small class="average-price">(${{table?.dollarBalance}})</small>
                   </h1>
                 </div>
 
@@ -52,30 +52,24 @@
                     </tfoot> -->
 
                     <tbody style="border-bottom: 2px solid #b8b8b8;">
-                      <tr *ngIf="rows.length>0" style="border-bottom: 2px solid #b8b8b8;">
+                      <tr *ngIf="table?.orderHistory.length>0" style="border-bottom: 2px solid #b8b8b8;">
                         <th>Order Date</th>
 
                         <th>Product</th>
 
-                        <th>QTY</th>
+                        
 
                         <th>Price</th>
                       </tr>
 
-                      <tr *ngFor="let r of rows">
+                      <tr *ngFor="let r of table?.orderHistory">
                         <td>{{r.date|date: 'MM/dd/yyyy'}}</td>
                         
-                        <td>{{r.quantity}} Shiurim</td>
+                        <td>{{r.shiurim}} Shiurim</td>
 
                         <td>
-                            {{r.count}}
+                          {{r.price| currency:'USD':true:'2.2-2'}}
                         </td>
-
-                        <td>
-                          {{r.price*r.count| currency:'USD':true:'2.2-2'}}
-                        </td>
-
-
 
                       </tr>
 

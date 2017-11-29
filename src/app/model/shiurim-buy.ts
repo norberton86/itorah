@@ -4,7 +4,7 @@ export class ShiurimBuy {
   price: number
 }
 
-export  class ShiurimBuyTable extends ShiurimBuy {
+export class ShiurimBuyTable extends ShiurimBuy {
   count: number = 1
 
 
@@ -15,24 +15,25 @@ export  class ShiurimBuyTable extends ShiurimBuy {
     this.price = s.price
   }
 
-  Total()
-  {
-    return this.count*this.price
+  Total() {
+    return this.count * this.price
   }
 
 
 
 }
 
-export class ShiurimBuyTableHistory extends ShiurimBuyTable
-{
-  date:Date
 
-  constructor(s:ShiurimBuyTable,date:Date)
-  {
-    super({id:s.id,quantity:s.quantity,price:s.quantity})
-    this.count=s.count
-    this.date=date
-  }
+export class creditsTable {
+  shiurimBalance: number
+  dollarBalance: number
+  orderHistory: Array<History>=[]
+}
+
+export class History {
+
+  date: Date
+  shiurim: number
+  price: number
 
 }

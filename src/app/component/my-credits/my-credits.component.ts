@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { ShiurimBuy,ShiurimBuyTable,ShiurimBuyTableHistory } from '../../model/shiurim-buy';
+import { ShiurimBuy,ShiurimBuyTable,creditsTable } from '../../model/shiurim-buy';
+import { MyCreditsService } from '../../service/my-credits.service';
+
 declare var $: any;
 
 @Component({
   selector: 'app-my-credits',
   templateUrl: './my-credits.component.html',
-  styleUrls: ['./my-credits.component.css']
+  styleUrls: ['./my-credits.component.css'],
+  providers:[MyCreditsService]
 })
 export class MyCreditsComponent implements OnInit {
 
 
-  rows: Array<ShiurimBuyTableHistory> = []
+  table: creditsTable
 
-  constructor() { }
+  constructor(private myCreditsService:MyCreditsService) { }
 
   ngOnInit() {
-
-    var s=new ShiurimBuyTable({ id: 2, quantity: 10, price: 20 })
-    var item=new ShiurimBuyTableHistory(s,new Date())
-    this.rows.push(item);
-    this.rows.push(item);
-    this.rows.push(item);
+    this.myCreditsService.read().subscribe(response=>{
+      this.table=response
+    })    
   }
 
   Navigate()
@@ -29,13 +29,6 @@ export class MyCreditsComponent implements OnInit {
      $("#shop").toggleClass('shown')
   }
 
-  Total():number
-  {
-    var sum=0;
-    this.rows.forEach(function(r){
-       sum+=r.Total()
-    })
-    return sum
-  }
+
 
 }

@@ -131,7 +131,7 @@ export class AccountComponent implements OnInit {
       self.ClosePassword();
     },
       function (error) {
-        self.accountService.Notify("Service not available", true)
+        self.accountService.Notify(error, true)
       },
       function () { })
   }

@@ -14,14 +14,20 @@ export class AccountComponent implements OnInit {
 
 
   form: FormGroup;
+  formPasword: FormGroup
   phoneProviders: Array<PhoneProvider> = []
 
-  changePasword:boolean=false
+  changePasword: boolean = false
+  main: boolean = true
 
-  constructor(private fb: FormBuilder, private accountService: AccountService) { }
+  constructor(private fb: FormBuilder, private fbPass: FormBuilder, private accountService: AccountService) { }
 
   ngOnInit() {
+    this.InitializeMainForm();
+    this.InitializePassForm();
+  }
 
+  InitializeMainForm() {
     let EMAIL_REGEXP = /^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/;
 
     this.form = this.fb.group({
@@ -39,7 +45,7 @@ export class AccountComponent implements OnInit {
 
 
     this.accountService.providers().subscribe(providers => {
-      
+
       this.phoneProviders = providers
 
       this.accountService.read().subscribe(response => {
@@ -47,7 +53,15 @@ export class AccountComponent implements OnInit {
       })
 
     })
+  }
 
+  InitializePassForm() {
+
+    this.formPasword = this.fbPass.group({
+      oldp: '',
+      newp: '',
+      confirmp: '',
+    });
 
   }
 
@@ -66,38 +80,78 @@ export class AccountComponent implements OnInit {
     }
     this.form.patchValue(data);
 
-    this.changePasword=account.allowChangePassword
+    this.changePasword = account.allowChangePassword
   }
 
-  Save()
-  {
-    var account =new Account()
-    account.firstName=this.form.value.firstName
-    account.lastName=this.form.value.lastName
-    account.address=this.form.value.address
-    account.address2=this.form.value.addressTwo
-    account.city=this.form.value.city
-    account.state=this.form.value.state
-    account.zipCode=this.form.value.zip
-    account.phoneNumber=this.form.value.phone
-    account.phoneProviderID=this.form.value.phoneProviderID
-    account.email=this.form.value.email
-    account.allowChangePassword=true
+  Save() {
+    if (this.main)
+      this.SaveAccount()
+    else
+      this.ChangePassword()
+  }
 
-    let self=this
+  SaveAccount() {
+    var account = new Account()
+    account.firstName = this.form.value.firstName
+    account.lastName = this.form.value.lastName
+    account.address = this.form.value.address
+    account.address2 = this.form.value.addressTwo
+    account.city = this.form.value.city
+    account.state = this.form.value.state
+    account.zipCode = this.form.value.zip
+    account.phoneNumber = this.form.value.phone
+    account.phoneProviderID = this.form.value.phoneProviderID
+    account.email = this.form.value.email
+    account.allowChangePassword = true
+
+    let self = this
 
     this.accountService.add(account).subscribe(function (respond) {
-        self.accountService.Notify("Account Updated", false)
-        self.Close()
-      },
+      self.accountService.Notify("Account Updated", false)
+      self.Close()
+    },
       function (error) {
         self.accountService.Notify("Service not available", true)
       },
       function () { })
   }
 
- Close() {
+  ChangePassword() {
+
+    var pass = {
+      oldp: this.formPasword.value.oldp,
+      newp: this.formPasword.value.newp,
+      confirmp: this.formPasword.value.confirmp
+    }
+
+    let self = this
+
+    this.accountService.changePassword(pass).subscribe(function (respond) {
+      self.accountService.Notify("Password changed", false)
+      self.ClosePassword();
+    },
+      function (error) {
+        self.accountService.Notify("Service not available", true)
+      },
+      function () { })
+  }
+
+  Close() {
     $('#myAccount').toggleClass('shown');
+  }
+
+  goPassword() {
+    this.main = false
+  }
+
+  ClosePassword() {
+    var data = {
+      oldp: '',
+      newp: '',
+      confirmp: ''
+    }
+    this.formPasword.patchValue(data);
+    this.main = true
   }
 
 }

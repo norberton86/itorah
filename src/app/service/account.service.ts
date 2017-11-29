@@ -26,7 +26,7 @@ export class AccountService extends ServiceLogin {
     )
   }
 
-  public add(data: any): Observable<any> {
+  public add(data: Account): Observable<any> {
 
     let h = new Headers();
     h.append('Authorization', 'bearer ' + this.getToken());
@@ -43,6 +43,20 @@ export class AccountService extends ServiceLogin {
   providers(): Observable<PhoneProvider[]> {
 
     return this.http.get("http://itorahapi.3nom.com/api/phoneprovider").map(
+      (response) => {
+        let body = response.json();
+        return body;
+      }
+    )
+  }
+
+  public changePassword(data: any): Observable<any> {
+
+    let h = new Headers();
+    h.append('Authorization', 'bearer ' + this.getToken());
+    h.append('Content-Type', 'application/json');
+
+    return this.http.post("http://itorahapi.3nom.com/api/Password/editpassword", data, { headers: h }).map(
       (response) => {
         let body = response.json();
         return body;

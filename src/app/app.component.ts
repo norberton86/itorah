@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
 
   CheckResetPassword() {
     if (location.href.indexOf('#email:') >= 0) {
-      this.emailRecover = location.href.split('#email:')[1];
+      this.emailRecover = location.href;
       $("#recover").toggleClass('shown');
     }
   }

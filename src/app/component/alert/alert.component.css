@@ -29,3 +29,11 @@
 .button-save{
     float: right
 }
+
+table{
+    border-bottom: 1px solid #dadada;
+}
+
+th,td{
+padding-left: 0.5em;
+}

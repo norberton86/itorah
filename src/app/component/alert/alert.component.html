@@ -12,21 +12,69 @@
 
   <div class="popup-body">
 
-    <div class="row myHeader">
+    <div class="row myHeader" style="padding: 1em;">
       <div class="col-lg-3">
         <p>Current alerts</p>
         <p style="font-weight: 200;">Email alerts for shiurim/lectures by Rabbis/teacher</p>
       </div>
 
       <div class="col-lg-3 buttonContainer">
-        <button class="search-btn" type="button" style="background: #3dc277;color: white;">NEW ALERT</button>
+        <button class="search-btn" type="button" style="background: #3dc277;color: white;" [hidden]="manage!=false" (click)="New()">NEW ALERT</button>
+        <button class="search-btn" type="button" style="background: #3dc277;color: white;" [hidden]="manage==false" (click)="Back()">CANCEL</button>
       </div>
 
       <div class="col-lg-6 buttonContainer">
-        <button class="search-btn button-save" type="button">SAVE</button>
+        <button class="search-btn button-save" type="button" [hidden]="manage==false" (click)="Save()">SAVE</button>
       </div>
     </div>
-      
+
+    <div class="row" style="padding: 1em;" [hidden]="manage==false">
+      <div class="select col-lg-2">
+        <select name="field-2" id="field-2" [(ngModel)]="frecuency">
+						<option *ngFor="let c of frecuencys" [ngValue]="c">{{c.description}}</option>
+					</select>
+      </div>
+
+      <div class="select  col-lg-2">
+        <select name="field-2" id="field-2" [(ngModel)]="option">
+						<option *ngFor="let c of options" [ngValue]="c">{{c.description}}</option>
+					</select>
+      </div>
+
+      <div class="select  col-lg-2" [hidden]="option.id!='0'">
+        <select name="field-2" id="field-2" [(ngModel)]="category">
+						<option *ngFor="let c of categories" [ngValue]="c">{{c.description}}</option>
+					</select>
+      </div>
+
+      <div class="select  col-lg-2" [hidden]="option.id=='0'">
+        <select name="field-2" id="field-2" [(ngModel)]="speaker">
+						<option *ngFor="let c of speakers" [ngValue]="c">{{c.description}}</option>
+					</select>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1em;" [hidden]="manage!=false">
+
+      <table class="table">
+        <thead>
+          <tr style="background:#d8d8d8;height: 2em;">
+            <th style="text-align: left;">Frecuency</th>
+            <th style="text-align: left;">Category/Speaker</th>
+            <th style="text-align: left;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of alerts" style="height: 2.5em;">
+            <td>{{a.frecuency}}</td>
+            <td>{{a.dataText}}</td>
+            <td style="color: #1e68e7"> <a href="#" (click)="Edit(a)">Edit</a>|<a href="#" (click)="Delete(a)">Delete</a> </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
   </div>
   <!-- /.popup-body -->
 

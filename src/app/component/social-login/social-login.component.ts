@@ -61,7 +61,10 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
     let self = this;
     this.socialLoginServic.Forgot(this.form.value.email).subscribe(
       function (respond) {
+        if(respond=="Email sent")
         self.socialLoginServic.Notify("Check your email", false)
+        else
+        self.socialLoginServic.Notify("Recover password service is not available ", false)
       },
       function (error) {
         self.socialLoginServic.Notify("Service not available", true)

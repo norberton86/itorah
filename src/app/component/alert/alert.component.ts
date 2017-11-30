@@ -35,7 +35,16 @@ export class AlertComponent implements OnInit {
 
   manage: boolean = false
 
-  constructor(private alertService: AlertService, private speakerService: SpeakerService, private browseService: BrowseService) { }
+  constructor(private alertService: AlertService, private speakerService: SpeakerService, private browseService: BrowseService) {
+    this.alertService.getLogin().subscribe(item => {
+      if (item == "Signed") {
+         this.Load()
+      }
+      else {
+
+      }
+    });
+   }
 
   ngOnInit() {
 

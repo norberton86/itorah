@@ -58,11 +58,12 @@ export class SponsorComponent implements OnInit {
 
     this.dT = this.dedicationType[0]
 
-    this.shiurimService.read(8).subscribe(response=>{  //remove this
+   /* this.shiurimService.read(8).subscribe(response=>{  //remove this
       this.all=response
-    })
+    }) */
 
-    //load
+   
+    this.Load()
 
   }
 
@@ -163,7 +164,7 @@ export class SponsorComponent implements OnInit {
 
   //------------------------------------------------------------------------------------------------------------------------------------------
   searchShiurim: boolean = false
-  query_main: string
+  query_main: string=""
   sectionPanel: string = "main"
   nameShiurSelected:string=''
 
@@ -189,10 +190,10 @@ export class SponsorComponent implements OnInit {
 
   Load() {
     let self = this;
-    self.shiurimService.search(this.query_main, 9, 1)
+    self.shiurimService.search(this.query_main, 24, 1)
       .subscribe(function (response) {
 
-        self.Update(response.totalPageCount, response.searchItems)
+        self.Update(response.totalPageCount, response.shiurList)
         self.alltotal = response.totalResultCount;
 
       }, function (error) { }, function () { }
@@ -240,8 +241,8 @@ export class SponsorComponent implements OnInit {
         p.current = true;
     })
 
-    this.shiurimService.search(this.query_main, 9, id)
-      .subscribe(response => this.all = response.searchItems)
+    this.shiurimService.search(this.query_main, 24, id)
+      .subscribe(response => this.all = response.shiurList)
 
   }
 

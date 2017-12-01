@@ -48,14 +48,13 @@ export class AppComponent implements OnInit {
     this.getTehillimDedication();
   }
 
-  getTehillimDedication()
-  {
-    this.homeService.readNow(7).subscribe(response=>{
-       this.tehillimDedication=response.dedication
+  getTehillimDedication() {
+    this.homeService.readNow(7).subscribe(response => {
+      this.tehillimDedication = response.dedication
     })
   }
 
-  tehillimDedication:string=""
+  tehillimDedication: string = ""
 
   OpenLogin(id: string) {
     $("#" + id).hide().removeClass('shown')  //close it!!!!
@@ -151,23 +150,23 @@ export class AppComponent implements OnInit {
     this.homeService.readNow(id).subscribe(
       function (response) {
 
-        if (response.title == "") {
-          if (response.content.indexOf('.pdf') > 0) {
-            window.open(response.content)
+
+
+        if (response.content.indexOf('.pdf') > 0) {
+          window.open(response.content)
+        }
+        else
+          if (response.content.indexOf('.gif,') > 0)
+          {
+            response.content.split(',').forEach(function (a) {
+              window.open('http://' + a)
+            })
+
           }
-          else
-            if (response.content.indexOf('.gif,') > 0) {
-              response.content.split(',').forEach(function (a) {
-                window.open('http://' + a)
-              })
-
-            }
-
-        }
-        else {
-          self.rNow = response
-          $("#readNow").toggleClass('shown');
-        }
+          else {
+            self.rNow = response
+            $("#readNow").toggleClass('shown');
+          }
 
       }, function (error) { }, function () { }
     )
@@ -218,7 +217,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  OpenPopup(id:string) {
+  OpenPopup(id: string) {
     if (this.isAuthenticated()) {
       $(id).toggleClass('shown');
     }

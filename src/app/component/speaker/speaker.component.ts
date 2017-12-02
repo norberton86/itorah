@@ -345,6 +345,13 @@ export class SpeakerComponent implements OnInit {
         self.speakerService.readMy().subscribe(
           function (response) {
 
+
+            if (response == "No speakers saved for this user") {
+              self.speakerService.Notify(response, true);
+              return;
+            }
+
+
             self.current = "tile-tab-1"
             self.InitializeMySlide(response);
 
@@ -625,6 +632,7 @@ export class SpeakerComponent implements OnInit {
   InitializeMainSpeakers(data: Array<Speaker>) {
     this.myEvent.next(false)
     this.currentSpeakers = data;
+    this.RefreshSlide(this.currentSpeakers)
 
     localStorage.setItem("mainSpeakers", JSON.stringify(data));
 

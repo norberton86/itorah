@@ -245,7 +245,7 @@
 			setTimeout(function () {
 				$('.ballon.visible .slider-profiles .slides').slick('unslick');
 				setTimeout(function () {
-					try{executeFunctions();}catch(error){console.log(error.message)}
+					//try{executeFunctions();}catch(error){console.log(error.message)}
 				},500)
 			},500)
 

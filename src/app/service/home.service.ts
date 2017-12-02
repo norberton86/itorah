@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Home, ReadNow } from '../model/Home';
-import { Service } from '../model/service';
+import { Service,ServiceLogin } from '../model/service';
 
 import {Http, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class HomeService extends Service{
+export class HomeService extends ServiceLogin{
 
    
     constructor(http: Http) {

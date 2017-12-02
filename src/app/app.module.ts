@@ -33,6 +33,7 @@ import { TimePipe } from './pipe/time.pipe';
 import { FilterForPipe } from './pipe/filter-for.pipe';
 import {QueueService} from './service/queue.service'
 import {PodcastService} from './service/podcast.service'
+import {HomeService} from './service/home.service'
 import {AlertService} from './service/alert.service'
 import {TehillimService} from './service/tehillim.service'
 import {AccountService} from './service/account.service'
@@ -150,7 +151,7 @@ let providers = {
      DndModule.forRoot(),
      ShareButtonsModule.forRoot()
   ],
-  providers: [QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
+  providers: [HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

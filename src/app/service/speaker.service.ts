@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 
 import { Speaker } from '../model/speaker';
-import { Service } from '../model/service';
+import { ServiceLogin } from '../model/service';
 
-import {Http, Headers} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { Http, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class SpeakerService extends Service{
+export class SpeakerService extends ServiceLogin {
 
-   
+
     constructor(http: Http) {
         super(http);
-        this.ruta="http://itorahapi.3nom.com/api/Speakers";
+        this.ruta = "http://itorahapi.3nom.com/api/Speakers";
 
     }
 
     public read(): Observable<Speaker[]> {
-        
-        return this.http.get(this.ruta+"/allSpeakers").map(
+
+        return this.http.get(this.ruta + "/allSpeakers").map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -28,8 +28,8 @@ export class SpeakerService extends Service{
     }
 
     public readMain(): Observable<Speaker[]> {
-        
-        return this.http.get(this.ruta+"/mainSpeakers").map(
+
+        return this.http.get(this.ruta + "/mainSpeakers").map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -37,11 +37,11 @@ export class SpeakerService extends Service{
         )
     }
 
-    public readMy(): Observable<Speaker[]> {
-        
+    public readMy(): Observable<any> {
+
         let h = new Headers();
-            h.append('Authorization','bearer '+JSON.parse(localStorage.getItem('userItorah')).token);
-        return this.http.get(this.ruta+"/mySpeakers",{headers: h}).map(
+        h.append('Authorization', 'bearer ' + JSON.parse(localStorage.getItem('userItorah')).token);
+        return this.http.get(this.ruta + "/mySpeakers", { headers: h }).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -50,18 +50,22 @@ export class SpeakerService extends Service{
     }
 
 
-    public activateSpeaker(id:number):Observable<string>
-    {
-           return this.http.post(this.ruta+"/mySpeakers?SpeakerID="+id.toString(),{}).map(
+    public activateSpeaker(id: number): Observable<string> {
+        let h = new Headers();
+        h.append('Authorization', 'bearer ' + this.getToken());
+
+        return this.http.post(this.ruta + "/mySpeakers?SpeakerID=" + id.toString(), {},{ headers: h }).map(
             (response) => {
                 return response.toString();
             }
         )
     }
 
-    public deactivateSpeaker(id:number):Observable<string>
-    {
-           return this.http.delete(this.ruta+"/mySpeakers?SpeakerID="+id.toString(),{}).map(
+    public deactivateSpeaker(id: number): Observable<string> {
+        let h = new Headers();
+        h.append('Authorization', 'bearer ' + this.getToken());
+
+        return this.http.delete(this.ruta + "/mySpeakers?SpeakerID=" + id.toString(),{ headers: h }).map(
             (response) => {
                 return response.toString();
             }

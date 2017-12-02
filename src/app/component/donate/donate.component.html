@@ -131,7 +131,7 @@
       <!-- /.col-1of2 -->
 
       <div class="col-1of2">
-        <app-payment [valPar]="value"></app-payment>
+        <app-payment [valPar]="value" [isDonate]="true" (myEvent) = "Save($event)"></app-payment>
         <!-- /.form-order -->
       </div>
       <!-- /.col-1of2 -->

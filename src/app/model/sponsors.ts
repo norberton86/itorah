@@ -1,16 +1,30 @@
 export class Sponsor {
-    sourceID: number
-    forDate: Date
-    dedicationTypeID: number
-    sponsoredForName: string
-    sponsoredByName: string
+    SourceID: number
+    ForDate: Date
+    DedicationTypeID: number
+    SponsoredForName: string
+    SponsoredByName: string
+    PaymentInfo: {
+        Amount: number,
+        CardExpDate: string,
+        CardHolderName: string,
+        CardNumber: string,
+        CVV: string
+    }
 }
 
 
 
 export class SponsorShiur {
-    shiurID: number
-    dedicationTypeID: number
-    sponsoredForName: string
-    sponsoredByName: string
+    ShiurID: number
+    DedicationTypeID: number
+    SponsoredForName: string
+    SponsoredByName: string
+    PaymentInfo: {
+        Amount: number,
+        CardExpDate: string,
+        CardHolderName: string,
+        CardNumber: string,
+        CVV: string
+    }
 }

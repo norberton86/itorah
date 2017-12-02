@@ -23,6 +23,37 @@
       <!-- /.form-row -->
 
       <div class="form-row">
+        <label for="field-name" class="form__label">Name</label>
+
+        <div class="form-controls">
+          <input type="text" class="field" name="field-name" id="field-name" formControlName="name">
+        </div>
+
+        <div class="animated bounceIn" style="color:red;" *ngIf="form.get('name').hasError('required') && form.get('name').touched">
+          Name is required
+        </div>
+
+        <!-- /.form-controls -->
+      </div>
+      <!-- /.form-row -->
+
+      <div class="form-row" [hidden]="isDonate==false||isAuthenticated()">
+        <label for="field-name" class="form__label">Email</label>
+
+        <div class="form-controls">
+          <input type="text" class="field" name="field-email" id="field-email" formControlName="email">
+        </div>
+
+        <div class="animated bounceIn" style="color:red;" *ngIf="!form.get('email').valid  && form.get('email').touched">
+          Email is invalid
+        </div>
+
+        <!-- /.form-controls -->
+      </div>
+      <!-- /.form-row -->
+
+
+      <div class="form-row">
         <!--<span>or</span>-->
 
         <label for="field-card-number" class="form__label">Card number</label>

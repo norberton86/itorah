@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreditCardValidator } from 'angular-cc-library';
-import { ShiurimBuy,ShiurimBuyTable } from '../../model/shiurim-buy';
+import { ShiurimBuy, ShiurimBuyTable } from '../../model/shiurim-buy';
+import { CreditCard } from '../../model/credit-card';
+import { ShopService } from '../../service/shop.service';
 
-declare var $:any; 
+declare var $: any;
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css']
+  styleUrls: ['./shop.component.css'],
+  providers: [ShopService]
 })
 export class ShopComponent implements OnInit {
 
@@ -23,8 +26,8 @@ export class ShopComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private _fb: FormBuilder) {
-    var i = 0                     
+  constructor(private _fb: FormBuilder, private shopService: ShopService) {
+    var i = 0
     for (i = 1; i <= 10; i++) {
       this.numbers.push(i);
     }
@@ -33,7 +36,7 @@ export class ShopComponent implements OnInit {
 
   ngOnInit() {
     this.form = this._fb.group({
-      creditCard: ['',Validators.compose([ <any>CreditCardValidator.validateCCNumber,Validators.required])],
+      creditCard: ['', Validators.compose([<any>CreditCardValidator.validateCCNumber, Validators.required])],
       expirationDate: ['', [<any>CreditCardValidator.validateExpDate]],
       cvc: ['', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4)]]
     });
@@ -42,42 +45,60 @@ export class ShopComponent implements OnInit {
   Add(id: number) {
     if (!this.rows.find(i => i.id == id)) {        //if doesn't exists
       var s = this.shiriumBuys.filter(i => i.id == id)[0]  //get the value
-      if (s != null) {                                 
+      if (s != null) {
         this.rows.push(new ShiurimBuyTable(s));        //add to the table
       }
     }
 
   }
 
-  Remove(id:number)
-  {
-    this.rows.splice(this.rows.findIndex(i=>i.id==id), 1)
+  Remove(id: number) {
+    this.rows.splice(this.rows.findIndex(i => i.id == id), 1)
   }
 
   ChangeCount(id: number, value: number) {
     this.rows.filter(i => i.id == id)[0].count = value
   }
 
-  Total():number
-  {
-    var sum=0;
-    this.rows.forEach(function(r){
-       sum+=r.Total()
+  Total(): number {
+    var sum = 0;
+    this.rows.forEach(function (r) {
+      sum += r.Total()
     })
     return sum
   }
 
 
 
-  Buy()
-  {
-    if(this.rows.length>0)
-    {
-      	$('#shop-2')
-				.removeClass('hidden')
-					.siblings('.popup-body')
-					.addClass('hidden')
+  Buy() {
+    if (this.rows.length > 0) {
+      $('#shop-2')
+        .removeClass('hidden')
+        .siblings('.popup-body')
+        .addClass('hidden')
     }
+  }
+
+
+  Save(cc: CreditCard) {
+
+
+    var data = { Amount: cc.Amount, CardExpDate: cc.CardExpDate, CardHolderName: cc.CardHolderName, CardNumber: cc.CardNumber, CVV: cc.CVV }
+
+
+
+    this.shopService.add(data).subscribe(result => {
+
+      if (result == "Success")
+        this.shopService.Notify("Transaction Completed", false);
+      else
+        this.shopService.Notify("Transaction Declined", true);
+    },
+      error => {
+        this.shopService.Notify("Error trying to access", true);
+      }, () => {
+
+      })
   }
 
 

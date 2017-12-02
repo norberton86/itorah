@@ -6,6 +6,7 @@ import { SponsorService } from '../../service/sponsor.service';
 import { ShiurimService } from '../../service/shiurim.service';
 import { IMyDpOptions } from 'mydatepicker';
 import { ComboItem } from '../../model/combo-item';
+import { CreditCard } from '../../model/credit-card';
 declare var $: any;
 
 @Component({
@@ -17,7 +18,7 @@ declare var $: any;
 export class SponsorComponent implements OnInit {
   value: number = 0
 
-  sourceId: number
+  sourceId: number=-1
 
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -40,10 +41,10 @@ export class SponsorComponent implements OnInit {
 
   public date: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
 
-  sponsorshipFor: string
-  name: string
+  sponsorshipFor: string=''
+  name: string=''
 
- 
+
 
   constructor(private sponsorService: SponsorService, private shiurimService: ShiurimService) {
 
@@ -58,11 +59,11 @@ export class SponsorComponent implements OnInit {
 
     this.dT = this.dedicationType[0]
 
-   /* this.shiurimService.read(8).subscribe(response=>{  //remove this
-      this.all=response
-    }) */
+    /* this.shiurimService.read(8).subscribe(response=>{  //remove this
+       this.all=response
+     }) */
 
-   
+
     this.Load()
 
   }
@@ -89,44 +90,69 @@ export class SponsorComponent implements OnInit {
     }, function () { })
   }
 
-  Save(status: boolean) {
-    if (status) {
+  Save(cc: CreditCard) {
 
-      let self = this
-      if (this.section == 'day') {
 
-        var sponsor = new Sponsor()
-        sponsor.sourceID = this.sourceId
-        sponsor.forDate = new Date(this.date.date.year, this.date.date.month, this.date.date.day)
-        sponsor.dedicationTypeID = parseInt(this.dT.id)
-        sponsor.sponsoredForName = this.sponsorshipFor
-        sponsor.sponsoredByName = this.name
+    let self = this
+    if (this.section == 'day') {
 
-        this.sponsorService.addDay(sponsor).subscribe(function (response) {
-          self.sponsorService.Notify("Sponsor Created", false)
-          self.Reset();
-        }, function (error) {
-          self.sponsorService.Notify("Error trying to create the sponsor", true)
-        }, function () { })
-      }
-      else {
-
-        var sponsorShiur = new SponsorShiur()
-
-        sponsorShiur.shiurID = this.shiurID
-        sponsorShiur.dedicationTypeID = parseInt(this.dT.id)
-        sponsorShiur.sponsoredForName = this.sponsorshipFor
-        sponsorShiur.sponsoredByName = this.name
-
-        this.sponsorService.addShiur(sponsorShiur).subscribe(function (response) {
-          self.sponsorService.Notify("Sponsor Created", false)
-          self.Reset();
-        }, function (error) {
-          self.sponsorService.Notify("Error trying to create the sponsor", true)
-        }, function () { })
+      var sponsor = new Sponsor()
+      sponsor.SourceID = this.sourceId
+      sponsor.ForDate = new Date(this.date.date.year, this.date.date.month, this.date.date.day)
+      sponsor.DedicationTypeID = parseInt(this.dT.id)
+      sponsor.SponsoredForName = this.sponsorshipFor
+      sponsor.SponsoredByName = this.name
+      sponsor.PaymentInfo = {
+        Amount: cc.Amount,
+        CardExpDate: cc.CardExpDate.replace(" / ", ""),
+        CardHolderName: cc.CardHolderName,
+        CardNumber: cc.CardNumber,
+        CVV: cc.CVV
       }
 
+      this.sponsorService.addDay(sponsor).subscribe(result => {
+        if (result == "Success")
+          this.sponsorService.Notify("Sponsor Completed", false);
+        else
+          this.sponsorService.Notify("Transaction Declined", true);
+      },
+        error => {
+          this.sponsorService.Notify("Error trying to access", true);
+        }, () => {
+
+        })
     }
+    else {
+
+      var sponsorShiur = new SponsorShiur()
+
+      sponsorShiur.ShiurID = this.shiurID
+      sponsorShiur.DedicationTypeID = parseInt(this.dT.id)
+      sponsorShiur.SponsoredForName = this.sponsorshipFor
+      sponsorShiur.SponsoredByName = this.name
+      sponsorShiur.PaymentInfo = {
+        Amount: cc.Amount,
+        CardExpDate: cc.CardExpDate.replace(" / ", ""),
+        CardHolderName: cc.CardHolderName,
+        CardNumber: cc.CardNumber,
+        CVV: cc.CVV
+      }
+
+
+      this.sponsorService.addShiur(sponsorShiur).subscribe(result => {
+        if (result == "Success")
+          this.sponsorService.Notify("Sponsor Completed", false);
+        else
+          this.sponsorService.Notify("Transaction Declined", true);
+      },
+        error => {
+          this.sponsorService.Notify("Error trying to access", true);
+        }, () => {
+
+        })
+    }
+
+
   }
 
   Check(name: number) {
@@ -134,6 +160,13 @@ export class SponsorComponent implements OnInit {
     this.itorah = name == 17 ? true : false
     this.halacha = name == 6 ? true : false
     this.tehillim = name == 7 ? true : false
+
+    switch(name)
+    {
+      case 17: this.value=180; break;
+      case 6: this.value=52;break;
+      case 7: this.value=52;break;
+    }
 
     this.sourceId = name
 
@@ -159,14 +192,27 @@ export class SponsorComponent implements OnInit {
   payment: boolean = false
 
   ShowPayment() {
+
+   if(this.section == 'day' && ((!this.tehillim&&!this.halacha&&!this.itorah) || this.sponsorshipFor=='' || this.name==''))
+   {
+     this.sponsorService.Notify("Please fill the form complety",true);
+     return;
+   } 
+
+   if(this.section == 'shiur' && (this.sponsorshipFor==''|| this.name==''|| this.shiurID==-1))
+   {
+     this.sponsorService.Notify("Please fill the form complety",true);
+     return;
+   } 
+
     this.payment = true
   }
 
   //------------------------------------------------------------------------------------------------------------------------------------------
   searchShiurim: boolean = false
-  query_main: string=""
+  query_main: string = ""
   sectionPanel: string = "main"
-  nameShiurSelected:string=''
+  nameShiurSelected: string = ''
 
   FindShiur() {
     this.sectionPanel = 'shiur'
@@ -200,11 +246,10 @@ export class SponsorComponent implements OnInit {
       );
   }
 
-  setShiur(s:Shiurim)
-  {
-    this.shiurID=parseInt(s.id)
+  setShiur(s: Shiurim) {
+    this.shiurID = parseInt(s.id)
     this.Back();
-    this.nameShiurSelected=s.title
+    this.nameShiurSelected = s.title
   }
 
   Update(totalPageCount: number, searchItems: Array<any>) {

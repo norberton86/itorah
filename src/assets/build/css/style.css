@@ -944,6 +944,10 @@ blockquote:last-child { margin-bottom: 0; }
 .table-credits td:nth-child(1) { width: 25%; }
 .table-credits td:nth-child(2) { width: 42%; }
 .table-credits td:nth-child(3) { width: 33%; }
+.table-credits td .select.select-yellow { width: 60px; display: inline-block; vertical-align: middle; }
+.table-credits .link-add { margin-left: 10px; display: inline-block; vertical-align: middle; }
+.table-credits .link-add i { background: none !important; }
+.table-credits .link-add:hover i { background-color: #f00; }
 
 .popup .video { display: block; text-align: center; margin: 20px auto; overflow: hidden; border-radius: 5px; max-width: 1058px; width: 95%; }
 
@@ -954,6 +958,9 @@ blockquote:last-child { margin-bottom: 0; }
 	.table-credits th,
 	.table-credits tfoot th,
 	.table-credits td { padding-left: 20px; padding-right: 20px; }
+
+	.table-credits td:nth-child(1) { width: 30%; }
+	.table-credits td:nth-child(2) { width: 35%; }
 }
 
 @media(max-width: 767px){
@@ -979,7 +986,7 @@ blockquote:last-child { margin-bottom: 0; }
 
 /* ------------------------------------------------------------ *\
 	List Credits
-\* ------------------------------------------------------------
+\* ------------------------------------------------------------ */
 
 .list-credits { margin: 0 -1.5%;
 	-webkit-flex-wrap: wrap;
@@ -1002,10 +1009,6 @@ blockquote:last-child { margin-bottom: 0; }
 
 @media(max-width: 1400px){
 	.list-credits li { width: 28%; min-width: 100px; }
-}
-
-@media(max-width: 1024px){
-
 }
 
 /* ------------------------------------------------------------ *\
@@ -1798,6 +1801,7 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 .tabs .tab h4 + p { font-size: 14px; color: #a2a2a2;  }
 .tabs .form-database { padding-top: 14px; }
 .tabs .steps { margin-top: -5px;  }
+
 /* ------------------------------------------------------------ *\
 	Tile
 \* ------------------------------------------------------------ */
@@ -1814,7 +1818,7 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 	display: -ms-flex;
 	display: -o-flex;
 	display: flex; }
-.tile { margin-bottom: 7px; width: 25%; padding: 0 4px; position: relative; max-height: 1000px;
+.tile { margin-bottom: 7px; width: 25%; padding: 0 4px; position: relative; max-height: 1000px; overflow: hidden;
 	-webkit-transition: margin .3s;
 	     -o-transition: margin .3s;
 	        transition: margin .3s; }

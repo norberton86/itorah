@@ -10,6 +10,7 @@ export class Account {
     phoneProviderID: number
     email: string
     allowChangePassword: true
+    communityID:number
 }
 
 export class PhoneProvider {

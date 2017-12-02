@@ -186,6 +186,20 @@
             <div class="form-body">
 
               <div class="form-row">
+                <label for="user-state" class="form__label">Communities</label>
+                <div class="form-controls">
+                  <div class="select">
+                    <select name="user-state" id="user-state" formControlName="communityID">
+										<option *ngFor="let p of communities" [value]="p.ID">{{p.Name}}</option>
+                  </select>
+                  </div>
+                  <!-- /.select -->
+                </div>
+                <!-- /.form-controls -->
+              </div>
+
+
+              <div class="form-row">
                 <label for="user-state" class="form__label">Phone Provider</label>
                 <div class="form-controls">
                   <div class="select">
@@ -217,9 +231,9 @@
                 <div class="animated bounceIn" style="color:red;" *ngIf="form.get('email').hasError('required') && form.get('email').touched">
                   Email is required
                 </div>
-                <div   class="animated bounceIn" style="color:red;" *ngIf="!form.get('email').valid  && form.get('email').touched">
-        					Email is invalid
-      					</div>
+                <div class="animated bounceIn" style="color:red;" *ngIf="!form.get('email').valid  && form.get('email').touched">
+                  Email is invalid
+                </div>
                 <!-- /.form-controls -->
               </div>
               <!-- /.form-row -->

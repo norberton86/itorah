@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Account, PhoneProvider } from '../../model/account';
 import { AccountService } from '../../service/account.service';
+import { CommunitiesService,Communities } from '../../service/communities.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 declare var $: any;
 
@@ -8,6 +9,7 @@ declare var $: any;
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
+  providers:[CommunitiesService]
 
 })
 export class AccountComponent implements OnInit {
@@ -16,11 +18,13 @@ export class AccountComponent implements OnInit {
   form: FormGroup;
   formPasword: FormGroup
   phoneProviders: Array<PhoneProvider> = []
+  communities:Array<Communities>=[]
+
 
   changePasword: boolean = false
   main: boolean = true
 
-  constructor(private fb: FormBuilder, private fbPass: FormBuilder, private accountService: AccountService) {
+  constructor(private fb: FormBuilder, private fbPass: FormBuilder, private accountService: AccountService,private communitiesService:CommunitiesService) {
     this.accountService.getLogin().subscribe(item => {
       if (item == "Signed") {
          this.Load()
@@ -49,7 +53,8 @@ export class AccountComponent implements OnInit {
       zip: '',
       phone: '',
       phoneProviderID: [1],
-      email: ['', [Validators.required, Validators.pattern(EMAIL_REGEXP)]]
+      email: ['', [Validators.required, Validators.pattern(EMAIL_REGEXP)]],
+      communityID:[1]
     });
 
     if (localStorage.getItem('userItorah') != null && localStorage.getItem('userItorah') != "")
@@ -66,6 +71,11 @@ export class AccountComponent implements OnInit {
       })
 
     })
+
+    this.communitiesService.read().subscribe(respond=>{
+       this.communities=respond
+       
+    },error=>{},()=>{})
   }
 
   InitializePassForm() {
@@ -90,6 +100,7 @@ export class AccountComponent implements OnInit {
       phone: account.phoneNumber,
       phoneProviderID: account.phoneProviderID,
       email: account.email,
+      communityID:account.communityID
     }
     this.form.patchValue(data);
 
@@ -116,6 +127,7 @@ export class AccountComponent implements OnInit {
     account.phoneProviderID = this.form.value.phoneProviderID
     account.email = this.form.value.email
     account.allowChangePassword = true
+    account.communityID=this.form.value.communityID
 
     let self = this
 

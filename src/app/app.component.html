@@ -111,14 +111,14 @@
 								</a>
 							</li>
 
-							<li class="link-popup">
-								<a href="#donate" data-tooltip="General anonymous donation to iTorah and helping us cover our expenses associated with the recording all the classes and maintaining this web site.">
+							<li class="">
+								<a  (click)="OpenPopup('#donate')"  href="#donate" data-tooltip="General anonymous donation to iTorah and helping us cover our expenses associated with the recording all the classes and maintaining this web site.">
 									<i class="ico-donate"></i> <span>DONATE</span>
 								</a>
 							</li>
 
-							<li class="link-popup">
-								<a href="#dedications" data-tooltip="Dedications in honor, memory, or for Refuah of someone on iTorah.com. May the merit of all the learning stemming for iTorah.com be attributable to the beneficiary.">
+							<li >
+								<a (click)="OpenPopup('#dedications')" href="#dedications" data-tooltip="Dedications in honor, memory, or for Refuah of someone on iTorah.com. May the merit of all the learning stemming for iTorah.com be attributable to the beneficiary.">
 									<i class="ico-dedications"></i> <span>DEDICATIONS</span>
 								</a>
 							</li>
@@ -209,8 +209,8 @@
 								<a href="#">Donate/Sponsor</a>
 							</li>-->
 
-							<li class="link-popup">
-								<a href="#shop">Shop</a>
+							<li>
+								<a (click)="OpenPopup('#shop')">Shop</a>
 							</li>
 						</ul>
 					</div><!-- /.shell -->
@@ -795,8 +795,8 @@
 								<a href="#" (click)="Privacy()">Privacy</a>
 							</li>
 
-							<li class="link-popup">
-								<a href="#popup-advertise">Advertise on iTorah</a>
+							<li >
+								<a (click)="OpenPopup('#popup-advertise')" href="#popup-advertise">Advertise on iTorah</a>
 							</li>
 						</ul>
 					</nav><!-- /.nav-secondary -->

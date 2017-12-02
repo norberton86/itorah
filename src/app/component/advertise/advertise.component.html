@@ -34,8 +34,8 @@
 							<!-- /.form-row -->
 
 							<div class="form-row" id="image-holder">
-							   <img [src]="url">
-							   <p *ngIf="errorSize!=''" style="color: red;" class="animated bounce">{{errorSize}}</p>
+								<img [src]="url">
+								<p *ngIf="errorSize!=''" style="color: red;" class="animated bounce">{{errorSize}}</p>
 							</div>
 							<!-- /.form-row -->
 
@@ -73,7 +73,7 @@
 
 			<div class="col-1of3">
 				<div class="form-order form-sponsor">
-					<form action="?" method="post">
+					<form [formGroup]="form">
 						<div class="form-head">
 							<h4>Info</h4>
 						</div>
@@ -84,7 +84,10 @@
 								<label for="field-last-name" class="form__label">Last Name</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-last-name" id="field-last-name" value="" [(ngModel)]="LastName">
+									<input type="text" class="field" name="field-last-name" id="field-last-name" value="" formControlName="LastName">
+								</div>
+								<div class="animated bounceIn" style="color:red;" *ngIf="form.get('LastName').hasError('required') && form.get('LastName').touched">
+									Last Name is required
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -94,7 +97,10 @@
 								<label for="field-first-name" class="form__label">First Name</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-first-name" id="field-first-name" value="" [(ngModel)]="FirstName">
+									<input type="text" class="field" name="field-first-name" id="field-first-name" value="" formControlName="FirstName">
+								</div>
+								<div class="animated bounceIn" style="color:red;" *ngIf="form.get('FirstName').hasError('required') && form.get('FirstName').touched">
+									First Name is required
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -104,7 +110,7 @@
 								<label for="field-address" class="form__label">Address</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-address" id="field-address" value="" [(ngModel)]="Address">
+									<input type="text" class="field" name="field-address" id="field-address" value="" formControlName="Address">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -112,7 +118,7 @@
 
 							<div class="form-row">
 								<div class="form-controls">
-									<input type="text" class="field" name="field-address-2" id="field-address-2" value="" [(ngModel)]="addressTwo">
+									<input type="text" class="field" name="field-address-2" id="field-address-2" value="" formControlName="addressTwo">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -122,7 +128,7 @@
 								<label for="field-phone number" class="form__label">Phone Number</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-phone number" id="field-phone number" value="" [(ngModel)]="PhoneNumber">
+									<input type="text" class="field" name="field-phone number" id="field-phone number" value="" formControlName="PhoneNumber">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -132,7 +138,13 @@
 								<label for="field-email" class="form__label">Email</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-email" id="field-email" value="" [(ngModel)]="Email">
+									<input type="text" class="field" name="field-email" id="field-email" value="" formControlName="Email">
+								</div>
+								<div class="animated bounceIn" style="color:red;" *ngIf="form.get('Email').hasError('required') && form.get('Email').touched">
+									Email is required
+								</div>
+								<div class="animated bounceIn" style="color:red;" *ngIf="!form.get('Email').valid  && form.get('Email').touched">
+									Email is invalid
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -142,7 +154,7 @@
 								<label for="field-city" class="form__label">City</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-city" id="field-city" value="" [(ngModel)]="City">
+									<input type="text" class="field" name="field-city" id="field-city" value="" formControlName="City">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -152,7 +164,7 @@
 								<label for="field-state" class="form__label">State</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-state" id="field-state" value="" [(ngModel)]="State">
+									<input type="text" class="field" name="field-state" id="field-state" value="" formControlName="State">
 								</div>
 								<!-- /.form-controls -->
 							</div>
@@ -162,7 +174,7 @@
 								<label for="field-zip" class="form__label">Zip Code</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-zip" id="field-zip" value="" [(ngModel)]="ZipCode">
+									<input type="text" class="field" name="field-zip" id="field-zip" value="" formControlName="ZipCode">
 								</div>
 								<!-- /.form-controls -->
 							</div>

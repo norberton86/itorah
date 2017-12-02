@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UploadService } from '../../service/upload.service';
+import { CreditCard } from '../../model/credit-card';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 declare var $: any;
 
@@ -13,20 +16,12 @@ export class AdvertiseComponent implements OnInit {
 
   impressions: Array<Impression> = [{ price: 50, amount: 100 }, { price: 80, amount: 200 }]
   impression: Impression
-
-
-  LastName: string
-  FirstName: string
-  Address: string
-  addressTwo: string
-  PhoneNumber: string
-  Email: string
-  City: string
-  State: string
-  ZipCode: string
   File: any
+  form: FormGroup;
 
-  constructor(private uploadService: UploadService) { }
+  constructor(private uploadService: UploadService, private fb: FormBuilder) {
+    this.InitializeMainForm();
+   }
 
 
   ngOnInit() {
@@ -64,50 +59,88 @@ export class AdvertiseComponent implements OnInit {
   url: string
   errorSize: string = ''
 
-  upload(status: boolean) {
-    if (status) {
-      const formData = new FormData();
+  InitializeMainForm() {
+    let EMAIL_REGEXP = /^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/;
 
-      formData.append('TotalImpressionCount', this.impression.amount.toString());
-      formData.append('LastName', this.LastName);
-      formData.append('FirstName', this.FirstName);
-      formData.append('Address', this.Address + " " + this.addressTwo);
-      formData.append('PhoneNumber', this.PhoneNumber);
-      formData.append('Email', this.Email);
-      formData.append('City', this.City);
-      formData.append('State', this.State);
-      formData.append('ZipCode', this.ZipCode);
-      formData.append('File', this.File, this.File.name);
+    this.form = this.fb.group({
+      FirstName: ['', [Validators.required]],
+      LastName: ['', [Validators.required]],
+      Address: '',
+      addressTwo: '',
+      PhoneNumber: '',
+      Email: ['', [Validators.required, Validators.pattern(EMAIL_REGEXP)]],
+      City: '',
+      State: '',
+      ZipCode: '',
+    });
+  }
 
-      let self = this;
-      this.uploadService.upload(formData).subscribe(
-        function (respond) {
-          self.uploadService.Notify("Advertise Created", false)
-          self.Reset();
-          $('#popup-advertise').toggleClass('shown');
-        },
-        function (error) {
-          self.uploadService.Notify("Error trying to upload the image", true)
-        },
-        function () { }
-      )
+  Invalid(): boolean {
+    return this.form.controls.FirstName.errors != null || this.form.controls.LastName.errors != null || this.form.controls.Email.errors != null
+  }
+
+  upload(cc: CreditCard) {
+
+    if (this.errorSize != '' || this.File == undefined||this.File == null) {
+      this.uploadService.Notify("Upload a valid image", true);
+      return;
     }
+
+    if (this.Invalid())
+      return;
+
+
+    const formData = new FormData();
+
+    formData.append('TotalImpressionCount', this.impression.amount.toString());
+    formData.append('LastName', this.form.value.LastName);
+    formData.append('FirstName', this.form.value.FirstName);
+    formData.append('Address', this.form.value.Address + " " + this.form.value.addressTwo);
+    formData.append('PhoneNumber', this.form.value.PhoneNumber);
+    formData.append('Email', this.form.value.Email);
+    formData.append('City', this.form.value.City);
+    formData.append('State', this.form.value.State);
+    formData.append('ZipCode', this.form.value.ZipCode);
+    formData.append('File', this.File, this.File.name);
+
+    formData.append('Amount', cc.Amount.toString());
+    formData.append('CardExpDate', cc.CardExpDate.replace(" / ", ""));
+    formData.append('CardHolderName', cc.CardHolderName);
+    formData.append('CardNumber', cc.CardNumber);
+    formData.append('CVV', cc.CVV);
+
+
+
+    let self = this;
+    this.uploadService.upload(formData).subscribe(
+      function (respond) {
+        self.uploadService.Notify("Advertise Created", false)
+        self.Reset();
+        $('#popup-advertise').toggleClass('shown');
+      },
+      function (error) {
+        self.uploadService.Notify("Error trying to upload the image", true)
+      },
+      function () { }
+    )
+
   }
 
   Reset() {
-    this.LastName = ""
-    this.FirstName = ""
-    this.Address = ""
-    this.addressTwo = ""
-    this.addressTwo = ""
-    this.PhoneNumber = ""
-    this.Email = ""
-    this.City = ""
-    this.State = ""
-    this.ZipCode = ""
-    this.File = ""
-    this.impression = this.impressions[0]
-    this.errorSize = '';
+    var data = {
+      FirstName: '',
+      LastName: '',
+      Address: '',
+      addressTwo: '',
+      PhoneNumber: '',
+      Email: '',
+      City: '',
+      State: '',
+      ZipCode: ''
+    }
+    this.form.patchValue(data);
+    this.errorSize=''
+    this.File=null
   }
 }
 

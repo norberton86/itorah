@@ -3,6 +3,8 @@ import { Dedication, DedicationPost } from '../../model/dedication';
 import { ComboItem } from '../../model/combo-item';
 import { DedicationService } from '../../service/dedication.service';
 declare var $: any;
+import { CreditCard } from '../../model/credit-card';
+
 @Component({
   selector: 'app-dedication',
   templateUrl: './dedication.component.html',
@@ -25,9 +27,9 @@ export class DedicationComponent implements OnInit {
   other: string = ''
 
 
-  dedicationName: string
+  dedicationName: string = ''
 
-  dedicationBy: string
+  dedicationBy: string = ''
 
   dedicatedPer: Array<ComboItem> = [{ id: "Month", description: "Month" }, { id: "Year", description: "Year" }]
   dP: ComboItem
@@ -57,38 +59,49 @@ export class DedicationComponent implements OnInit {
       this.value = 1000
   }
 
-  Save(status: boolean) {
-    if (status)
-    {
-      var ded = new DedicationPost()
+  Save(cc: CreditCard) {
 
-      ded.timeLimit = this.dP.id
-      ded.id = 0
-      ded.paid = true
-      ded.details = this.other
-      ded.dedicationForName = this.dedicationName
-      ded.dedicationByName = this.dedicationBy
-      ded.dedicationTypeID = parseInt(this.dT.id)
-
-      let self = this;
-      this.dedicationService.add(ded).subscribe(
-        function (response) {
-          self.dedicationService.Notify("Dedication successful", false)
-          $('#dedications').toggleClass('shown');
-        },
-        function (error) {
-          self.dedicationService.Notify("Error trying to dedicate", true)
-        },
-        function () {
-
-        }
-      )
-
+    if (this.dedicationName == '') {
+      this.dedicationService.Notify("Please fill Dedication Name", true);
+      return;
     }
-    else
-    {
-      this.dedicationService.Notify("Error trying to pay", true)
+
+    if (this.dedicationBy == '') {
+      this.dedicationService.Notify("Please fill Dedication By", true);
+      return;
     }
+
+    var ded = new DedicationPost()
+
+    ded.TimeLimit = this.dP.id
+    ded.ID = null
+    ded.Details = this.other
+    ded.DedicationForName = this.dedicationName
+    ded.DedicationByName = this.dedicationBy
+    ded.DedicationTypeID = parseInt(this.dT.id)
+    ded.PaymentInfo = {
+      Amount: cc.Amount,
+      CardExpDate: cc.CardExpDate.replace(" / ", ""),
+      CardHolderName: cc.CardHolderName,
+      CardNumber: cc.CardNumber,
+      CVV: cc.CVV
+    }
+
+    let self = this;
+    this.dedicationService.add(ded).subscribe(
+      function (response) {
+        self.dedicationService.Notify("Dedication successful", false)
+        $('#dedications').toggleClass('shown');
+      },
+      function (error) {
+        self.dedicationService.Notify("Error trying to dedicate", true)
+      },
+      function () {
+
+      }
+    )
+
+
   }
 
 }

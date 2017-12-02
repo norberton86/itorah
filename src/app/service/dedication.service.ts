@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Service } from '../model/service';
-import { Dedication,DedicationPost } from '../model/dedication';
+import { Service ,ServiceLogin} from '../model/service';
+import { Dedication, DedicationPost } from '../model/dedication';
 
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 
 
 @Injectable()
-export class DedicationService extends Service {
+export class DedicationService extends ServiceLogin {
 
     value: boolean;
     constructor(http: Http) {
@@ -34,6 +34,7 @@ export class DedicationService extends Service {
 
         let h = new Headers();
         h.append('Content-Type', 'application/json');
+        h.append('Authorization', 'bearer ' + this.getToken());
 
         return this.http.post(this.ruta, data, { headers: h }).map(
             (response) => {

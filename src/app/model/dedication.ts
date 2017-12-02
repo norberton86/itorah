@@ -6,11 +6,17 @@ export class Dedication {
 }
 
 export class DedicationPost {
-    id: number
-    dedicationTypeID: number
-    dedicationForName: string
-    dedicationByName: string
-    timeLimit: string
-    details: string
-    paid: boolean
+    ID: number
+    DedicationTypeID: number
+    DedicationForName: string
+    DedicationByName: string
+    TimeLimit: string
+    Details: string
+    PaymentInfo: {
+        Amount: number,
+        CardExpDate: string,
+        CardHolderName: string,
+        CardNumber: string,
+        CVV: string
+    }
 }

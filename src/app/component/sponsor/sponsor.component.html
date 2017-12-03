@@ -136,16 +136,6 @@
 							<!-- /.form-row -->
 
 							<div class="form-row">
-								<div class="select select-tertiary">
-									<select name="field-sponsorship" id="field-sponsorship" [(ngModel)]="dT">
-											<option *ngFor="let s of dedicationType" [ngValue]="s">{{s.description}}</option>
-										</select>
-								</div>
-								<!-- /.select -->
-							</div>
-							<!-- /.form-row -->
-
-							<div class="form-row">
 
 								<my-date-picker id="sponsorDate" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="date"></my-date-picker>
 
@@ -157,12 +147,24 @@
 								</div>
 								<!-- /.form-controls -->
 
-								<p>
+								<!--<p>
 									<a href="#">Add another day</a>
-								</p>
+								</p>-->
 							</div>
 							<!-- /.form-row -->
 
+
+							<div class="form-row">
+								<div class="select select-tertiary">
+									<select name="field-sponsorship" id="field-sponsorship" [(ngModel)]="dT">
+											<option *ngFor="let s of dedicationType" [ngValue]="s">{{s.description}}</option>
+										</select>
+								</div>
+								<!-- /.select -->
+							</div>
+							<!-- /.form-row -->
+
+							
 
 							<div class="form-row">
 								<div class="form-controls">

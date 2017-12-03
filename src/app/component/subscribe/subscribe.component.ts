@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { SubscribeService } from '../../service/subscribe.service';
 import { Subscribe,SubscribeRequest } from '../../model/subscribe';
+declare var $: any;
 
 @Component({
   selector: 'app-subscribe',
@@ -85,6 +86,9 @@ export class SubscribeComponent implements OnInit {
 
     }
     this.form.patchValue(data);
+
+    $('#subscribeBox').toggleClass('shown')
+    $('#subscribeBox').css('display','none')
   }
 
   Save()

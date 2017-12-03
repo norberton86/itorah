@@ -336,7 +336,7 @@ export class SpeakerComponent implements OnInit {
 
   }
 
-
+  isMy: boolean = false
   filterChanged(value: string) {
     let self = this
     if (value == '#tile-tab-2') //if is 'my'
@@ -351,7 +351,7 @@ export class SpeakerComponent implements OnInit {
               return;
             }
 
-
+            self.isMy = true
             self.current = "tile-tab-1"
             self.InitializeMySlide(response);
 
@@ -371,6 +371,7 @@ export class SpeakerComponent implements OnInit {
 
       if (value == '#tile-tab-1')  //if is "main"
       {
+        self.isMy = false;
         self.current = "tile-tab-1"
         self.speaker = JSON.parse(localStorage.getItem("mainSpeakers"))[0]; //set the first                         
         self.checkLocalExistence(JSON.parse(localStorage.getItem("mainSpeakers"))[0].id); //get the lectures for the first
@@ -379,6 +380,7 @@ export class SpeakerComponent implements OnInit {
       }
       else  //if is all
       {
+        self.isMy = false;
         self.current = "tile-tab-3"
       }
 
@@ -444,16 +446,7 @@ export class SpeakerComponent implements OnInit {
     this.currentSpeakers = data;
     this.RefreshSlide(data);
 
-    let self = this;
-    $('li[data-type="lecture"]').click(function () {
-
-      var id = $(this).attr('id')
-
-      self.ngZone.run(() => {
-        self.lecturesBySpeaker(id)
-      })
-
-    })
+   
   }
 
   RefreshSlide(data: Array<Speaker>) {
@@ -522,7 +515,16 @@ export class SpeakerComponent implements OnInit {
         }]
     });
 
+     let self = this;
+    $('li[data-type="lecture"]').click(function () {
 
+      var id = $(this).attr('id')
+
+      self.ngZone.run(() => {
+        self.lecturesBySpeaker(id)
+      })
+
+    })
   }
 
 
@@ -644,7 +646,7 @@ export class SpeakerComponent implements OnInit {
   checkLocalExistence(id: number) {
     let self = this;
 
-    if ($('#field-8').val() == '#tile-tab-2') //if is 'my'
+    if (self.isMy) //if is 'my'
     {
       self.ReadLectures(id);
       return;

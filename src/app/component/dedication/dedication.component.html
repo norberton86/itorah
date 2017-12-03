@@ -11,7 +11,17 @@
 	<!-- /.popup-head -->
 
 	<div class="popup-body" id="list-dedications">
-		<a href="#make-dedication" class="btn btn-yellow btn-make-dedication">Make a dedication</a>
+
+		<div class="row">
+			<div class="col-lg-3">
+				<a href="#make-dedication" class="btn btn-yellow btn-make-dedication">Make a dedication</a>
+			</div>
+			<div class="col-lg-9" style="margin-top: 0.5em;">
+				<p style="margin-bottom: 0.5em;"> DailyHalacha.com continuing in the tradition of The Chief Rabbi of The Syriam Sepharic Community if New York-Rabbi Jacob
+					S Kassin A"H(1900-1994)[see <a target="_blank" href="http://www.dailyhalacha.com" style="color: #375ce3;">www.dailyhalacha.com</a> forn reference]</p>
+				<p> LearnTorah.com- the Eddie B Sitt Judaica Learning Center [see <a target="_blank" href="http://www.learntorah.com" style="color: #375ce3;">www.learntorah.com</a>]</p>
+			</div>
+		</div>
 
 		<ul class="list-dedications">
 			<li *ngFor="let d of dedications">
@@ -54,7 +64,7 @@
 							</div>
 							<!-- /.form-row -->
 
-							
+
 							<div class="form-row" *ngIf="dT.id=='6'">
 								<label for="field-dedication-name" class="form__label">Other</label>
 
@@ -113,7 +123,7 @@
 			<!-- /.col-1of2 -->
 
 			<div class="col-1of2">
-				<app-payment [valPar]="value" (myEvent) = "Save($event)" [isDonate]="false"></app-payment>
+				<app-payment [valPar]="value" (myEvent)="Save($event)" [isDonate]="false"></app-payment>
 				<!-- /.form-order -->
 			</div>
 			<!-- /.col-1of2 -->

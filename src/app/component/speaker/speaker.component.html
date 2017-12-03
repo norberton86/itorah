@@ -15,24 +15,23 @@
 					<ul class="slides">
 
 
-						<li *ngFor="let s of currentSpeakers;" class="slider-slide" [class.current_letter]="Selected(s.id)" data-type="lecture" id="{{s.id}}"
-						 (click)="lecturesBySpeaker(s.id)">
+						<!--<li *ngFor="let s of currentSpeakers;" class="slider-slide" [class.current_letter]="Selected(s.id)" data-type="lecture" id="{{s.id}}"> 
 							<div class="slider-inner">
 								<div class="slider-avatar">
 									<img *ngIf="s.picUrl!=''" src="{{s.picUrl}}" alt="">
 								</div>
-								<!-- /.slider-avatar -->
+								
 
 								<div class="slider-content">
 									<h5>{{s.title}} {{s.firstName}} {{s.lastName}}</h5>
 
 									<p>{{s.totalShiurim}} Shiurim</p>
 								</div>
-								<!-- /.slider-content -->
+								
 							</div>
-							<!-- /.slider-inner -->
-						</li>
-						<!-- /.slider-slide -->
+							
+						</li>-->
+						
 
 
 					</ul>

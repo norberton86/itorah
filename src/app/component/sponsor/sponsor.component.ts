@@ -3,6 +3,7 @@ import { Sponsor, SponsorShiur } from '../../model/sponsors';
 import { Page } from '../../model/Page';
 import { Shiurim } from '../../model/shiurim';
 import { SponsorService } from '../../service/sponsor.service';
+import { HomeService } from '../../service/home.service';
 import { ShiurimService } from '../../service/shiurim.service';
 import { IMyDpOptions } from 'mydatepicker';
 import { ComboItem } from '../../model/combo-item';
@@ -18,7 +19,7 @@ declare var $: any;
 export class SponsorComponent implements OnInit {
   value: number = 0
 
-  sourceId: number=-1
+  sourceId: number = -1
 
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -41,13 +42,15 @@ export class SponsorComponent implements OnInit {
 
   public date: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
 
-  sponsorshipFor: string=''
-  name: string=''
+  sponsorshipFor: string = ''
+  name: string = ''
 
 
 
-  constructor(private sponsorService: SponsorService, private shiurimService: ShiurimService) {
-
+  constructor(private sponsorService: SponsorService, private shiurimService: ShiurimService, private homeService: HomeService) {
+    this.homeService.getLogin().subscribe(item => {
+        this.SetSection('day')
+    });
   }
 
   ngOnInit() {
@@ -161,11 +164,10 @@ export class SponsorComponent implements OnInit {
     this.halacha = name == 6 ? true : false
     this.tehillim = name == 7 ? true : false
 
-    switch(name)
-    {
-      case 17: this.value=180; break;
-      case 6: this.value=52;break;
-      case 7: this.value=52;break;
+    switch (name) {
+      case 17: this.value = 180; break;
+      case 6: this.value = 52; break;
+      case 7: this.value = 52; break;
     }
 
     this.sourceId = name
@@ -193,17 +195,15 @@ export class SponsorComponent implements OnInit {
 
   ShowPayment() {
 
-   if(this.section == 'day' && ((!this.tehillim&&!this.halacha&&!this.itorah) || this.sponsorshipFor=='' || this.name==''))
-   {
-     this.sponsorService.Notify("Please fill the form complety",true);
-     return;
-   } 
+    if (this.section == 'day' && ((!this.tehillim && !this.halacha && !this.itorah) || this.sponsorshipFor == '' || this.name == '')) {
+      this.sponsorService.Notify("Please fill the form complety", true);
+      return;
+    }
 
-   if(this.section == 'shiur' && (this.sponsorshipFor==''|| this.name==''|| this.shiurID==-1))
-   {
-     this.sponsorService.Notify("Please fill the form complety",true);
-     return;
-   } 
+    if (this.section == 'shiur' && (this.sponsorshipFor == '' || this.name == '' || this.shiurID == -1)) {
+      this.sponsorService.Notify("Please fill the form complety", true);
+      return;
+    }
 
     this.payment = true
   }

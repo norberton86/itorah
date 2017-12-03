@@ -26,7 +26,7 @@ export class WeeklyResultComponent implements OnInit {
   halachat: Array<GlobalSearch> = []
   weekly: Array<GlobalSearch> = []
   berura: Array<GlobalSearch> = []
-  tehillim: Array<GlobalSearch> = []
+  //tehillim: Array<GlobalSearch> = []
 
   loading: boolean = false
 
@@ -50,10 +50,10 @@ export class WeeklyResultComponent implements OnInit {
   iterationMishna: number;
   mishnatotal:number
 
-  pagesTehillim: Array<Page> = [];
+ /* pagesTehillim: Array<Page> = [];
   allPagesTehillim: number;
   iterationTehillim: number;
-  tehellimtotal:number
+  tehellimtotal:number*/
 
 
   content:string=""
@@ -94,7 +94,7 @@ export class WeeklyResultComponent implements OnInit {
       this.loading = true
 
       let self = this;
-      self.weeklyResultService.read(this.pattern, "6,16,12,7", 9, 1)
+      self.weeklyResultService.read(this.pattern, "6,16,12", 9, 1)
         .subscribe(function (response) {
 
 
@@ -138,7 +138,7 @@ export class WeeklyResultComponent implements OnInit {
         }, function (error) { }, function () { }
         );
 
-        self.weeklyResultService.read(this.pattern, "7", 9, 1)
+      /*  self.weeklyResultService.read(this.pattern, "7", 9, 1)
         .subscribe(function (response) {
 
 
@@ -147,7 +147,7 @@ export class WeeklyResultComponent implements OnInit {
           //self.loading = false
 
         }, function (error) { }, function () { }
-        );
+        );*/
 
     }
 
@@ -452,7 +452,7 @@ export class WeeklyResultComponent implements OnInit {
   }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  UpdateTehillim(totalPageCount: number, searchItems: Array<any>) {
+ /* UpdateTehillim(totalPageCount: number, searchItems: Array<any>) {
 
     this.allPagesTehillim = totalPageCount; //pagination
     this.iterationTehillim = 1; //pagination
@@ -511,7 +511,7 @@ export class WeeklyResultComponent implements OnInit {
       this.CreatePagesTehillim();
 
     this.PageTehillim(this.iterationTehillim)
-  }
+  }*/
 
 
 }

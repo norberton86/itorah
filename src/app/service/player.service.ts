@@ -10,14 +10,20 @@ export class PlayerService {
 
 
 
-  Play(title: string, url: string, onlyAudio: boolean) {
+  Play(title: string, url: string, onlyAudio: boolean,speaker:string,sponsor:string) {
 
     let self = this;
+    if(sponsor=='')
+    sponsor="Sponsor this shiur"
+
 
     if ($('#video-modal').length == 0)     //if not exist
       $.notify({                          //create the popup
         title: "",
         message: '<div style="padding-top:0.5em">' +
+        '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;">' + title + '</p>' +
+        '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;">' + speaker + '</p>' +
+        '<p id="sponsorPlay" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>' +
         '<div  id="video-modal" class="" style="width: inherit;height: 20em;">' +
         '</div>' +
         '</div>'
@@ -66,6 +72,13 @@ export class PlayerService {
 
     });
 
+    $('#sponsorPlay').click(function () {
+      if (self.isAuthenticated()) {
+        $('#sponsor').toggleClass('shown');
+      }
+    })
+
+
   }
 
 
@@ -104,6 +117,21 @@ export class PlayerService {
     else {
       $('#mediaAudio').attr('src', url)
     }
+  }
+
+  isAuthenticated(): boolean {
+    let self = this;
+    if (localStorage.getItem('userItorah') == null || localStorage.getItem('userItorah') == "")//needs credentials to access
+    {
+      setTimeout(function () {
+
+        $('.nav-access > li > .dropdown-signin').addClass('shown').show() //open the Sign in session
+
+      }, 500)
+      return false;
+    }
+    else
+      return true;
   }
 
 }

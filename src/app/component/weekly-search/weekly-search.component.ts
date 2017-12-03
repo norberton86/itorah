@@ -14,30 +14,30 @@ export class WeeklySearchComponent implements OnInit, OnChanges {
 
   keyDownFunction(event) {
     if (event.keyCode == 13) {
-       
-      if(!$('#wResult').hasClass('vissible')) //if window result is not open
-      $('#wResult').toggleClass('vissible'); //open
-      
+
+      if (!$('#wResult').hasClass('vissible')) //if window result is not open
+        $('#wResult').toggleClass('vissible'); //open
+
       this.ShowResult()   //calculate and set the window result position 
     }
   }
 
   ShowResult() {
-    var borde = 8;
+    var size = parseInt($('#todaySponsor').css('height').split("px")[0])
+
+    var borde = 8 + size;
     var altura = $('#item-content-8')[0].offsetTop
     var tamano = parseInt($('.tile-box#item-content-8').css('height').split("px")[0]) * 1.4
     $('#wResult').css('margin-top', altura + tamano + borde + "px")
 
-
-   this.RefreshData()
+    this.RefreshData()
   }
 
-  RefreshData()
-  {
-    if($('.ballon .SlectBox').val()!=null && $('.ballon .SlectBox').val().length>0)
-        this.weeklyResultService.setData({pattern:this.wSearch,data:$('.ballon .SlectBox').val()})
+  RefreshData() {
+    if ($('.ballon .SlectBox').val() != null && $('.ballon .SlectBox').val().length > 0)
+      this.weeklyResultService.setData({ pattern: this.wSearch, data: $('.ballon .SlectBox').val() })
     else
-    this.weeklyResultService.Notify('You need to select a value',true);
+      this.weeklyResultService.Notify('You need to select a value', true);
   }
 
 
@@ -55,11 +55,11 @@ export class WeeklySearchComponent implements OnInit, OnChanges {
   @Input()
   accion: string = "";
 
-  constructor(private weeklyResultService:WeeklyResultService) { }
+  constructor(private weeklyResultService: WeeklyResultService) { }
 
   ngOnInit() {
 
-    let self=this
+    let self = this
     setTimeout(function () {
 
       $('.ballon .SlectBox').SumoSelect({ csvDispCount: 3, selectAll: true, captionFormatAllSelected: "All" }); //create the select

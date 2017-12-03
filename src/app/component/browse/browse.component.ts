@@ -92,9 +92,9 @@ export class BrowseComponent implements OnInit, OnChanges {
       );
   }
 
-  Play(id: string, title: string) {
+  Play(id: string, title: string,speaker:string,sponsor:string) {
     var onlyAudio = title.includes('LT-Audio');
-    this.playerService.Play(title, id, onlyAudio);
+    this.playerService.Play(title, id, onlyAudio,speaker,sponsor);
   }
 
   Desc(a, b) {

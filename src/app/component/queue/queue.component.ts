@@ -144,7 +144,7 @@ export class QueueComponent implements OnInit, OnDestroy {
 
     this.queueService.add(this.queueService.getToken(),req).subscribe(
         function(respond){
-              
+              self.queueService.Notify("Item added to queue",false);
            },
            function(error){
                 

@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { AnalitycService } from './service/analityc.service';
 import { HomeService } from './service/home.service';
 import { PlayerService } from './service/player.service';
+import { PerashaService } from './service/perasha.service';
 import { ReadNow } from './model/home';
 declare var $: any;
 
@@ -9,7 +10,7 @@ declare var $: any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AnalitycService, PlayerService]
+  providers: [AnalitycService, PlayerService,PerashaService]
 })
 export class AppComponent implements OnInit {
 
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit {
 
   browseClasses: string = "All"
 
-  constructor(private analitycService: AnalitycService, private homeService: HomeService, private playerService: PlayerService) { }
+  constructor(private analitycService: AnalitycService, private homeService: HomeService, private playerService: PlayerService,private perashaService:PerashaService) { }
 
 
   keyDownFunction(event) {
@@ -221,6 +222,13 @@ export class AppComponent implements OnInit {
     if (this.isAuthenticated()) {
       $(id).toggleClass('shown');
     }
+  }
+
+  ReadPerashaInsigth()
+  {
+    this.perashaService.read().subscribe(result=>{
+       this.playerService.PlayAudio("",result[0].audio)  
+    },error=>{},()=>{})
   }
 
 }

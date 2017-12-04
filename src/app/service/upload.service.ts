@@ -19,7 +19,7 @@ export class UploadService extends ServiceLogin {
     
     let h = new Headers();
             h.append('Authorization','bearer '+this.getToken());
-            h.append('Content-Type','application/json');
+           // h.append('Content-Type','application/json');
     return this.http.post(this.ruta, data,{headers: h}).map(
       (response) => {
         let body = response.json();

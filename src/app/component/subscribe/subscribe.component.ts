@@ -17,18 +17,20 @@ export class SubscribeComponent implements OnInit {
   constructor(private fb: FormBuilder, private subscribeService: SubscribeService, private accountService: AccountService) {
     this.InitializeForm();
     this.subscribeService.getLogin().subscribe(item => {
-      if (item == "Signed")
+      if (item == "Signed") {
         this.Read()
+        this.getEmailAndPhone()
+      }
       else
         this.Cancel()
     });
   }
 
   ngOnInit() {
-    if (this.subscribeService.getToken() != "")
+    if (this.subscribeService.getToken() != "") {
       this.Read()
-
-    this.getEmailAndPhone()
+      this.getEmailAndPhone()
+    }
   }
   email: string = ''
   phone: string = ''

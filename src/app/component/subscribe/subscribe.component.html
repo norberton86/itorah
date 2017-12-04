@@ -87,6 +87,8 @@
             <label for="checkbox12">
 															Notify by email
 														</label>
+            <p class="fieldEmpty" *ngIf='email==""' (click)="OpenAccount()">Please set your account email</p>
+
           </div>
 
           <div class="checkbox">
@@ -95,6 +97,7 @@
             <label for="checkbox13">
 															Notify by text message
 														</label>
+            <p class="fieldEmpty" *ngIf='phone==""' (click)="OpenAccount()">Please set your account phone number</p>
           </div>
           <!-- /.checkbox -->
 
@@ -138,6 +141,7 @@
             <label for="checkbox14">
 															Notify by email
 														</label>
+            <p class="fieldEmpty" *ngIf='email==""' (click)="OpenAccount()">Please set your account email</p>
           </div>
 
           <div class="checkbox">
@@ -146,6 +150,7 @@
             <label for="checkbox15">
 															Notify by text message
 														</label>
+            <p class="fieldEmpty" *ngIf='phone==""' (click)="OpenAccount()">Please set your account phone number</p>
           </div>
           <!-- /.checkbox -->
 

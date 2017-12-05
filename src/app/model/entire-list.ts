@@ -19,4 +19,5 @@ export class Perek{
     perekSummary:string
     categories: Array<number>
     needs: Array<number>
+    audioUrl:string
 }

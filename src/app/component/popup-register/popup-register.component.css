@@ -37,3 +37,9 @@
   	.body_left{width: 100%}
   	.body_right{width:100%;}
 }
+
+@media print {
+
+    .body-content-wrap {overflow: visible; }
+
+}

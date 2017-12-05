@@ -165,8 +165,8 @@ export class PopupRegisterComponent implements OnInit {
 
   pereks: Array<Perek> = []
 
-  kindSearch:string=''
-  searchValue:string=''
+  kindSearch: string = ''
+  searchValue: string = ''
 
   readCategories() {
     this.registerTehellimService.readCategory().subscribe(result => {
@@ -217,8 +217,8 @@ export class PopupRegisterComponent implements OnInit {
         })
       })
       this.existResults = 22
-      this.kindSearch="Category"
-      this.searchValue=this.categoryPerek.name
+      this.kindSearch = "Category"
+      this.searchValue = this.categoryPerek.name
     }
 
   }
@@ -234,8 +234,8 @@ export class PopupRegisterComponent implements OnInit {
         this.pereksGroup.push(p)
     })
     this.existResults = 22
-    this.kindSearch="Need"
-    this.searchValue=this.perekSearch
+    this.kindSearch = "Need"
+    this.searchValue = this.perekSearch
   }
 
   Decrement() {
@@ -258,5 +258,63 @@ export class PopupRegisterComponent implements OnInit {
     this.existResults = 23
   }
 
+  NavigatePerek() {
+    this.perekPassuk = 'perek'
+    this.images = this.pereks.find(p => p.id == this.perek).hebrewText
+    this.TitleNUmber();
+
+  }
+
+  TitleNUmber() {
+    this.perekNumberSelected = this.pereks.find(p => p.id == this.perek).id
+    this.perekTitleSelected = ''
+    this.pereks.find(p => p.id == this.perek).categories.forEach(c => {
+      this.perekTitleSelected += this.categoriesPerek.find(t => t.id == c).name
+    })
+  }
+
+  setPerek(id: number) {
+    this.perek = id
+    this.NavigatePerek()
+  }
+
+  //--------------------------------------------------------------------Perek-------------------------------------------------------------------
+  perekPassuk: string = ''
+  images: Array<string> = []
+  summary: string = ''
+  perekNumberSelected: number = 0
+  perekTitleSelected: string = ""
+
+  Back() {
+    this.perekPassuk = ''
+  }
+
+  setTabPerek(tab: string) {
+    switch (tab) {
+      case "hebrew": this.images = this.pereks.find(p => p.id == this.perek).hebrewText; this.summary = ''; break;
+      case "english": this.images = this.pereks.find(p => p.id == this.perek).englishText; this.summary = ''; break;
+      case "transliteration": this.images = this.pereks.find(p => p.id == this.perek).transliteration; this.summary = ''; break;
+      case "both": this.images = this.pereks.find(p => p.id == this.perek).both; this.summary = ''; break;
+      case "summary":
+        this.summary = this.pereks.find(p => p.id == this.perek).perekSummary
+        break;
+    }
+  }
+
+  IncrementSpecial() {
+    this.Increment()
+    this.setTabPerek('hebrew')
+    this.TitleNUmber();
+  }
+
+  DecrementSpecial() {
+    this.Decrement()
+    this.setTabPerek('hebrew')
+    this.TitleNUmber();
+  }
+
+  Print() {
+    $('#printPerek').print();
+  }
 }
 

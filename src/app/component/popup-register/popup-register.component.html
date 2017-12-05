@@ -10,7 +10,7 @@
 	</div>
 	<!-- /.popup-head -->
 
-	<div class="popup-body" id="form-register">
+	<div class="popup-body" id="form-register" [hidden]="perekPassuk!=''">
 		<div class="cols cols-3">
 			<div class="col-1of3 col-center">
 				<div class="form-sponsor sponsor-toggle">
@@ -498,10 +498,10 @@
 							<div class="form-row">
 								<p style="text-align:center;padding-right: 16px; line-height: 32px;">
 									You have selected</p>
-								<p style="text-align:center;padding-right: 16px; line-height: 32px;"><strong>Perek # 14</strong></p>
+								<p style="text-align:center;padding-right: 16px; line-height: 32px;" ><strong>Perek # {{perek}}</strong></p>
 							</div>
 							<div class="form-row" style="text-align: center;">
-								<input type="submit" value="Select" class="form-btn btn_small_yellow " style="width:40%;">
+								<input type="submit" value="Select" class="form-btn btn_small_yellow " style="width:40%;" (click)="NavigatePerek()">
 							</div>
 						</div>
 					</form>
@@ -516,7 +516,7 @@
 								<p style="text-align:center;padding-right: 16px; line-height: 32px;"><strong>{{searchValue}}</strong></p>
 							</div>
 							<div class="form-row" style="text-align: center;">
-								<div class="col-1of33" *ngFor="let p of pereksGroup"><input type="submit" value="Perek {{p.id}}" class="form-btn btn_small_yellow " style="width:100%;"></div>
+								<div class="col-1of33" *ngFor="let p of pereksGroup"><input type="submit" value="Perek {{p.id}}" class="form-btn btn_small_yellow " style="width:100%;" (click)="setPerek(p.id)"></div>
 							</div>
 						</div>
 					</form>
@@ -532,7 +532,7 @@
 								<span class="list_paragr" *ngFor="let e of entireList">
 									<p style="text-align:left;padding-right: 16px;margin-bottom: 0.3em;"> <strong>{{e.title}}</strong></p>
 									<p style="text-align:left;padding-right: 16px;margin-bottom: 0.1em;" *ngFor="let n of e.needs">{{n.need}} - Perek 
-										<b style="cursor: pointer" *ngFor="let p of n.perek"> {{p}} &nbsp; </b>
+										<b style="cursor: pointer" *ngFor="let p of n.perek" (click)="setPerek(p)"> {{p}} &nbsp; </b>
 									</p>
 								</span>
 
@@ -548,4 +548,80 @@
 		<!-- /.cols -->
 	</div>
 	<!-- /.popup-body -->
+
+	<div class="popup-body" id="form-perek" [hidden]="perekPassuk!='perek'">
+		<div class="cols cols-3" style="min-height: 350px;">
+			<div class="form-row" style="padding:.5rem 1rem;width: 100%;">
+
+				<button class="search-btn btn_small_yellow" id="buttonBackSearch" type="button" (click)="Back()">
+						 <i  class="fa fa-long-arrow-left" style="font-size: 2rem;padding-right: .5rem;padding-left: .5rem;"></i> 
+			</button>
+			</div>
+
+
+			<!-- body -->
+			<!-- LEFT SIDE	 -->
+			<div class="form-sponsor sponsor-toggle body_left">
+				<form action="?" method="post">
+					<div class="form__body">
+
+						<div class="form-row" style="text-align: center;">
+							<span class="span_text">Play</span>
+							<span> <a href="#/"><i  class="ico-play-yellow" id="weekly-play"></i></a></span>
+						</div>
+						<div class="form-row" style="text-align: center;">
+							<span class="span_text">Download</span>
+							<span> <a href="#/" class="icon-yellow-download"><i  class="ico-download"></i></a></span>
+
+						</div>
+						<div class="form-row" style="text-align: center;">
+							<span class="span_text">Print</span>
+							<span> <a href="#/" (click)="Print()"><i  class="ico-print-yellow" id="weekly-print"></i></a></span>
+						</div>
+						<div class="form-row" style="    margin-top: 1rem;padding-bottom: 1rem;">
+							<div class="text-wrap-left" style="width:100%;padding-bottom: 1rem;">
+								<p style="text-align: center;">Choose tehillim By Perek</p>
+								<p style="text-align: center;">Number Between 1-150</p>
+							</div>
+							<div class="text-wrap-right" style="width:100%;text-align: center;">
+								<input type="submit" value="+" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:10%" (click)="IncrementSpecial()">
+								<input type="text" class="field" name="perek-number" id="field-specific-need" value="{{perek}}" placeholder="" style="width:36%">
+								<input type="submit" value="-" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:10%" (click)="DecrementSpecial()">
+							</div>
+
+						</div>
+					</div>
+				</form>
+			</div>
+
+
+			<!-- RIGHT SIDE -->
+
+			<div class="body_right">
+				<div class="head-btn-wrap">
+					<a class="btn btn-yellow  sponsor-btn-grey active" href="#/" style="margin: 0;" (click)="setTabPerek('hebrew')">Hebrew Text</a>
+					<a class="btn btn-yellow  sponsor-btn-grey" href="#/" style="margin: 0;" (click)="setTabPerek('english')">English Text</a>
+					<a class="btn btn-yellow  sponsor-btn-grey" href="#/" style="margin: 0;" (click)="setTabPerek('transliteration')">Transliteration</a>
+					<a class="btn btn-yellow  sponsor-btn-grey" href="#/" style="margin: 0;" (click)="setTabPerek('both')">Hebrew/English/Transliteration</a>
+					<a class="btn btn-yellow  sponsor-btn-grey" href="#/" style="margin: 0;" (click)="setTabPerek('summary')">Perek Summary</a>
+				</div>
+				<div class="body-wrap">
+					<div class="body-wrap-header">
+						<strong>Perek {{perekNumberSelected}}</strong> Categories: {{perekTitleSelected}}
+					</div>
+				</div>
+				<div class="body-content-wrap" *ngIf="summary==''" id="printPerek">
+					<img src="{{i}}" *ngFor="let i of images">
+				</div>
+			    <div class="body-content-wrap" [innerHTML]="summary" *ngIf="summary!=''" id="printPerek">
+					
+				</div>
+
+			</div>
+
+
+		</div>
+		<!-- /.cols -->
+	</div>
+
 </div>

@@ -291,9 +291,10 @@
 								<div class="form-row">
 									<label for="field-specific-need" class="form-label">Search By Specific Need:</label>
 									<div class="form-controls">
-										<input [(ngModel)]="perekSearch" type="text" class="field" name="field-specific-need" id="field-specific-need" value="" placeholder="" style="width:78%">
+										<input [(ngModel)]="perekSearch" auto-complete [source]="needsToShow" (ngModelChange)="Go($event)" type="text" class="field"
+										 name="field-specific-need" id="field-specific-need" value="" placeholder="" style="width:100%">
 
-										<input type="button" value="go" class="form-btn btn_small_yellow" style="width:20%" (click)="Go()">
+										<!--<input type="button" value="go" class="form-btn btn_small_yellow" style="width:20%;margin-top: 0.5em;" (click)="Go()">-->
 
 
 									</div>
@@ -319,7 +320,8 @@
 							</div>
 							<div class="text-wrap-right">
 								<input type="submit" value="+" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:21%" (click)="Increment()">
-								<input [(ngModel)]="perek" type="text" class="field" name="perek-number" id="field-specific-need" value="" placeholder="" style="width:52%">
+								<input [(ngModel)]="perek" type="text" class="field" name="perek-number" id="field-specific-need" value="" placeholder=""
+								 style="width:52%">
 								<input type="submit" value="-" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:21%" (click)="Decrement()">
 							</div>
 
@@ -510,16 +512,11 @@
 					<form action="?" method="post">
 						<div class="form__body">
 							<div class="form-row">
-								<p style="text-align:center;padding-right: 16px; line-height: 32px;"> Category</p>
-								<p style="text-align:center;padding-right: 16px; line-height: 32px;"><strong>For Help in Difficult Times</strong></p>
+								<p style="text-align:center;padding-right: 16px; line-height: 32px;"> {{kindSearch}}</p>
+								<p style="text-align:center;padding-right: 16px; line-height: 32px;"><strong>{{searchValue}}</strong></p>
 							</div>
 							<div class="form-row" style="text-align: center;">
-								<div class="col-1of33"><input type="submit" value="Perek 34" class="form-btn btn_small_yellow " style="width:100%;"></div>
-								<div class="col-1of33"><input type="submit" value="Perek 15" class="form-btn btn_small_yellow " style="width:100%;"></div>
-								<div class="col-1of33"><input type="submit" value="Perek 67" class="form-btn btn_small_yellow " style="width:100%;"></div>
-								<div class="col-1of33"><input type="submit" value="Perek 89" class="form-btn btn_small_yellow " style="width:100%;"></div>
-								<div class="col-1of33"><input type="submit" value="Perek 90" class="form-btn btn_small_yellow " style="width:100%;"></div>
-								<div class="col-1of33"><input type="submit" value="Perek 120" class="form-btn btn_small_yellow " style="width:100%;"></div>
+								<div class="col-1of33" *ngFor="let p of pereksGroup"><input type="submit" value="Perek {{p.id}}" class="form-btn btn_small_yellow " style="width:100%;"></div>
 							</div>
 						</div>
 					</form>
@@ -532,31 +529,13 @@
 						<div class="form__body form_body_no_margin">
 							<div class="form-row">
 								<p style="text-align:center;padding-right: 16px; line-height: 32px;"> <strong>Entire List</strong></p>
-								<span class="list_paragr">
-								<p style="text-align:left;padding-right: 16px;"> <strong>Birth</strong></p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times</p>
-								<p style="text-align:left;padding-right: 16px;">For Help in Difficult Times</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times</p>
-								<p style="text-align:left;padding-right: 16px;">For Help in Difficult Times</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times</p>
+								<span class="list_paragr" *ngFor="let e of entireList">
+									<p style="text-align:left;padding-right: 16px;margin-bottom: 0.3em;"> <strong>{{e.title}}</strong></p>
+									<p style="text-align:left;padding-right: 16px;margin-bottom: 0.1em;" *ngFor="let n of e.needs">{{n.need}} - Perek 
+										<b style="cursor: pointer" *ngFor="let p of n.perek"> {{p}} &nbsp; </b>
+									</p>
 								</span>
-								<span class="list_paragr">
-								<p style="text-align:left;padding-right: 16px; "> <strong>Emonitions</strong></p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p>
-								<p style="text-align:left;padding-right: 16px;">For Help in Difficult Times</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p>
-								<p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p><p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p><p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p><p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p><p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p><p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p><p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p><p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p><p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p><p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p><p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p><p style="text-align:left;padding-right: 16px; ">For Help in Difficult Times Lojhjdhjfhjhsjhfjhdjhjhgjhfggfbvchjbhdfhbhbhfdgb boooooooooooooooom</p>
-								</span>
+
 							</div>
 						</div>
 					</form>

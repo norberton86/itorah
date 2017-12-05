@@ -3,7 +3,7 @@ import { Comunity, Category } from '../../model/Tehillim/tehillim';
 import { RegisterLevaya } from '../../model/register-levaya';
 import { RegisterTehellim, TehillimResult } from '../../model/register-tehellim';
 import { RegisterTehellimService } from '../../service/register-tehellim.service';
-import { EntireList, Perek } from '../../model/entire-list';
+import { EntireList, Perek, Need } from '../../model/entire-list';
 
 declare var $: any;
 
@@ -157,9 +157,16 @@ export class PopupRegisterComponent implements OnInit {
 
   perekSearch: string = ''
   perek: number = 1
-  needs: Array<string> = []
+
+  needsToShow: Array<string> = []
+  needs: Array<Need> = []
+
   entireList: Array<EntireList> = []
+
   pereks: Array<Perek> = []
+
+  kindSearch:string=''
+  searchValue:string=''
 
   readCategories() {
     this.registerTehellimService.readCategory().subscribe(result => {
@@ -181,7 +188,8 @@ export class PopupRegisterComponent implements OnInit {
       a => {
         a.needs.forEach(
           n => {
-            this.needs.push(n.need)
+            this.needsToShow.push(n.need)
+            this.needs.push(n)
           }
         )
       }
@@ -198,16 +206,36 @@ export class PopupRegisterComponent implements OnInit {
     }, error => { }, () => { })
   }
 
+  pereksGroup: Array<Perek> = []
   ChangeCategoryPerek() {
     if (this.categoryPerek.id != 0) {
-
+      this.pereksGroup = []
+      this.pereks.forEach(p => {
+        p.categories.forEach(c => {
+          if (c == this.categoryPerek.id)
+            this.pereksGroup.push(p)
+        })
+      })
       this.existResults = 22
+      this.kindSearch="Category"
+      this.searchValue=this.categoryPerek.name
     }
 
   }
 
-  Go() {
+  Go(event: any) {
+    var need = this.needs.find(n => n.need == this.perekSearch)
+    if (need == null || need == undefined)
+      return
+
+    this.pereksGroup = []
+    this.pereks.forEach(p => {
+      if (p.needs != null && p.needs.find(c => c == need.id))
+        this.pereksGroup.push(p)
+    })
     this.existResults = 22
+    this.kindSearch="Need"
+    this.searchValue=this.perekSearch
   }
 
   Decrement() {

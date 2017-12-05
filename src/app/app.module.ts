@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
+ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 
 import { AppComponent } from './app.component';
 import { PopupRegisterComponent } from './component/popup-register/popup-register.component';
@@ -144,7 +145,7 @@ let providers = {
     AccountComponent
   ],
   imports: [
-    BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,MyDatePickerModule ,
+    BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,MyDatePickerModule ,NguiAutoCompleteModule,
      HttpModule,
      FormsModule,ReactiveFormsModule,
      Angular2SocialLoginModule,

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Comunity ,Category} from '../../model/Tehillim/tehillim';
+import { Comunity, Category } from '../../model/Tehillim/tehillim';
 import { RegisterLevaya } from '../../model/register-levaya';
 import { RegisterTehellim, TehillimResult } from '../../model/register-tehellim';
 import { RegisterTehellimService } from '../../service/register-tehellim.service';
+import { EntireList, Perek } from '../../model/entire-list';
 
 declare var $: any;
 
@@ -34,6 +35,8 @@ export class PopupRegisterComponent implements OnInit {
     }
 
     this.readCategories()
+    this.readNeeds()
+    this.readPerek()
   }
 
   searchDatabase(type: string) {
@@ -154,24 +157,53 @@ export class PopupRegisterComponent implements OnInit {
 
   perekSearch: string = ''
   perek: number = 1
-  needs:Array<string>=[]
+  needs: Array<string> = []
+  entireList: Array<EntireList> = []
+  pereks: Array<Perek> = []
 
-  readCategories()
-  {
-    this.registerTehellimService.readCategory().subscribe(result=>{
-      for(var i=0;i<result.length;i++)
-      this.categoriesPerek.push(result[i])
-    },error=>{},()=>{})
+  readCategories() {
+    this.registerTehellimService.readCategory().subscribe(result => {
+      for (var i = 0; i < result.length; i++)
+        this.categoriesPerek.push(result[i])
+    }, error => { }, () => { })
   }
 
+  readNeeds() {
+    this.registerTehellimService.readEntireList().subscribe(result => {
+      this.entireList = result
+      this.getNeeds()
+    }, error => { }, () => { })
+  }
+
+  getNeeds() {
+    let self = this
+    this.entireList.forEach(
+      a => {
+        a.needs.forEach(
+          n => {
+            this.needs.push(n.need)
+          }
+        )
+      }
+    )
+  }
+
+  readPerek() {
+    this.registerTehellimService.readPerek().subscribe(result => {
+      this.pereks = result
+      this.pereks.forEach(p => {
+        if (p.categories == null)
+          p.categories = []
+      })
+    }, error => { }, () => { })
+  }
 
   ChangeCategoryPerek() {
-    if(this.categoryPerek.id!=0)
-    {
+    if (this.categoryPerek.id != 0) {
 
       this.existResults = 22
     }
-    
+
   }
 
   Go() {

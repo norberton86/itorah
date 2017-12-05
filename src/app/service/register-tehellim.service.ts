@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Service } from '../model/service';
 import { RegisterTehellim, TehillimResult } from '../model/register-tehellim';
 import { RegisterLevaya } from '../model/register-levaya';
-import { Category} from '../model/Tehillim/tehillim';
+import { Category } from '../model/Tehillim/tehillim';
+import { EntireList,Perek } from '../model/entire-list';
 
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -17,7 +18,7 @@ export class RegisterTehellimService extends Service {
     this.ruta = "http://itorahapi.3nom.com/api/RegisterName/";
   }
 
-    public readCategory(): Observable<Category[]> {
+  public readCategory(): Observable<Category[]> {
 
     return this.http.get("http://itorahapi.3nom.com/api/Tehillim/categories?CommunityID=1").map(
       (response) => {
@@ -26,6 +27,27 @@ export class RegisterTehellimService extends Service {
       }
     )
   }
+
+  public readEntireList(): Observable<EntireList[]> {
+
+    return this.http.get("http://itorahapi.3nom.com/api/Tehillim/entirelist").map(
+      (response) => {
+        let body = response.json()
+        return body;
+      }
+    )
+  }
+
+  public readPerek(): Observable<Perek[]> {
+
+    return this.http.get("http://itorahapi.3nom.com/api/Tehillim/content").map(
+      (response) => {
+        let body = response.json()
+        return body;
+      }
+    )
+  }
+
 
   public checkTehillim(type: string, mother: string, firstName: string, communityID: number): Observable<any> {
 

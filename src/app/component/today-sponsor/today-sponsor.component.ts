@@ -27,7 +27,9 @@ export class TodaySponsorComponent implements OnInit {
   OpenSponsor() {
     if (this.isAuthenticated()) {
       $('#sponsor').toggleClass('shown');
-      this.homeService.setLogin("day")
+      $('#sponsorPlaceHolder').addClass('hidden')
+      $('#form-sponsor-day').removeClass('hidden')
+      $('#form-sponsor-shiur').addClass('hidden')
     }
   }
 

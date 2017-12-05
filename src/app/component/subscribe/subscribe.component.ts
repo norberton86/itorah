@@ -52,7 +52,7 @@ export class SubscribeComponent implements OnInit {
         sub.checkBoxPerasha = result.emailSubscriptions.find(i => i == 2) != undefined ? true : false
         sub.checkBoxEmunah = result.emailSubscriptions.find(i => i == 53) != undefined ? true : false
         sub.checkBoxTehillim = result.emailSubscriptions.find(i => i == 9) != undefined ? true : false
-        sub.checkBoxPrayers = result.emailSubscriptions.find(i => i == 54) != undefined ? true : false
+        sub.checkBoxPrayers = result.emailSubscriptions.find(i => i == 55) != undefined ? true : false
         sub.checkBoxEmailTehillim = result.emailSubscriptions.find(i => i == 10) != undefined ? true : false
         sub.checkBoxEmailFuneral = result.emailSubscriptions.find(i => i == 24) != undefined ? true : false
 
@@ -119,7 +119,7 @@ export class SubscribeComponent implements OnInit {
       sub.emailSubscriptions.push(9)
 
     if (this.form.value.checkBoxPrayers)
-      sub.emailSubscriptions.push(54)
+      sub.emailSubscriptions.push(55)
 
     if (this.form.value.checkBoxEmailTehillim)
       sub.emailSubscriptions.push(10)

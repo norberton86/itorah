@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Service } from '../model/service';
 import { RegisterTehellim, TehillimResult } from '../model/register-tehellim';
 import { RegisterLevaya } from '../model/register-levaya';
+import { Category} from '../model/Tehillim/tehillim';
 
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -14,6 +15,16 @@ export class RegisterTehellimService extends Service {
   constructor(http: Http) {
     super(http);
     this.ruta = "http://itorahapi.3nom.com/api/RegisterName/";
+  }
+
+    public readCategory(): Observable<Category[]> {
+
+    return this.http.get("http://itorahapi.3nom.com/api/Tehillim/categories?CommunityID=1").map(
+      (response) => {
+        let body = response.json()
+        return body;
+      }
+    )
   }
 
   public checkTehillim(type: string, mother: string, firstName: string, communityID: number): Observable<any> {

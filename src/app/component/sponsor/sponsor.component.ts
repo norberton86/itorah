@@ -48,9 +48,7 @@ export class SponsorComponent implements OnInit {
 
 
   constructor(private sponsorService: SponsorService, private shiurimService: ShiurimService, private homeService: HomeService) {
-    this.homeService.getLogin().subscribe(item => {
-        this.SetSection('day')
-    });
+
   }
 
   ngOnInit() {

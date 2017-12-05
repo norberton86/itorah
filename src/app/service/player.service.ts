@@ -10,11 +10,11 @@ export class PlayerService {
 
 
 
-  Play(title: string, url: string, onlyAudio: boolean,speaker:string,sponsor:string) {
+  Play(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string) {
 
     let self = this;
-    if(sponsor=='')
-    sponsor="Sponsor this shiur"
+    if (sponsor == '')
+      sponsor = "Sponsor this shiur"
 
 
     if ($('#video-modal').length == 0)     //if not exist
@@ -75,6 +75,9 @@ export class PlayerService {
     $('#sponsorPlay').click(function () {
       if (self.isAuthenticated()) {
         $('#sponsor').toggleClass('shown');
+        $('#sponsorPlaceHolder').addClass('hidden')
+        $('#form-sponsor-shiur').removeClass('hidden')
+        $('#form-sponsor-day').addClass('hidden')
       }
     })
 

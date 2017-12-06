@@ -334,6 +334,80 @@
 
 					</form>
 				</div>
+
+				<div class="form-sponsor form-database form--large hidden" id="form-register-119">
+					<form action="?" method="post">
+						<div class="form__head">
+							<h4>Chapter 119 Pasuk</h4>
+
+							<!--<div class="form__head-inner">
+								<p>First, we have to check if the person is already in our database <br> Enter the transliteration name of the person
+									for whol to say Tehillim for:
+								</p>
+							</div>-->
+							<!-- /.form__head-inner -->
+						</div>
+						<!-- /.form__head -->
+
+						<div class="form-body">
+							<div class="form-row">
+
+								<label for="field-mothers-name" class="form-label" style="text-align: center;">Please Provide de Hebrew Names</label>
+								<label for="field-mothers-name" class="form-label" style="text-align: center;">(Must be in Hebrew only,to properly utilize this tool)</label>
+
+								<div class="form-controls">
+									<input type="text" class="field" name="field-first-Pasuk-name" id="field-first-Pasuk-name" value="" placeholder="First Name" [(ngModel)]="firstName" (focus)="SetKeyboard('field-first-Pasuk-name')">
+								</div>
+								<!-- /.form-controls -->
+
+
+
+							</div>
+							<!-- /.form-row -->
+
+							<div class="form-row">
+								<div class="form__controls">
+									<div class="form__col form__col-size-4">
+										<div class="select">
+											<select class="select" name="field-8" id="field-8">
+												<option value="ben">Ben</option>
+												<option value="bat">Bat</option>
+											</select>
+										</div>
+										<!-- /.select -->
+									</div>
+									<!-- /.form__col form__col-size-4 -->
+
+									<div class="form__col">
+										<input type="text" class="field" name="field-mothers-Pasuk-name" id="field-mothers-Pasuk-name" value="" placeholder="Mother’s First Name"
+										 [(ngModel)]="mother" (focus)="SetKeyboard('field-mothers-Pasuk-name')">
+									</div>
+									<!-- /.form__col -->
+
+									<div class="form__controls">
+										<div class="form__col">
+											<!--<input class="field" name="field-translation" id="field-translation2" value="" onfocus="VirtualKeyboard.attachInput(this)">-->
+
+											<div class="VirtualKeyboardHolder" id="VirtualKeyboardHolderPasuk"></div>
+										</div>
+										<!-- /.form__col -->
+									</div>
+
+									<!-- /.form__col -->
+								</div>
+								<!-- /.form__controls -->
+							</div>
+							<!-- /.form-row -->
+						</div>
+						<!-- /.form-body -->
+
+						<!--<div class="form-actions">
+							<input type="submit" value="Search Database" class="form-btn" (click)="searchDatabase('tehillim')">
+						</div> -->
+						<!-- /.form-actions -->
+					</form>
+				</div>
+
 			</div>
 			<!-- /.col-1of3 -->
 
@@ -498,7 +572,7 @@
 							<div class="form-row">
 								<p style="text-align:center;padding-right: 16px; line-height: 32px;">
 									You have selected</p>
-								<p style="text-align:center;padding-right: 16px; line-height: 32px;" ><strong>Perek # {{perek}}</strong></p>
+								<p style="text-align:center;padding-right: 16px; line-height: 32px;"><strong>Perek # {{perek}}</strong></p>
 							</div>
 							<div class="form-row" style="text-align: center;">
 								<input type="submit" value="Select" class="form-btn btn_small_yellow " style="width:40%;" (click)="NavigatePerek()">
@@ -613,8 +687,8 @@
 				<div class="body-content-wrap" *ngIf="summary==''" id="printPerek">
 					<img src="{{i}}" *ngFor="let i of images">
 				</div>
-			    <div class="body-content-wrap" [innerHTML]="summary" *ngIf="summary!=''" id="printPerek">
-					
+				<div class="body-content-wrap" [innerHTML]="summary" *ngIf="summary!=''" id="printPerek">
+
 				</div>
 
 			</div>

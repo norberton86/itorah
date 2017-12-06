@@ -7,12 +7,13 @@ import { PlayerService } from '../../service/player.service';
 import { EntireList, Perek, Need } from '../../model/entire-list';
 
 declare var $: any;
+declare var VirtualKeyboard: any;
 
 @Component({
   selector: 'app-popup-register',
   templateUrl: './popup-register.component.html',
   styleUrls: ['./popup-register.component.css'],
-  providers: [RegisterTehellimService,PlayerService]
+  providers: [RegisterTehellimService, PlayerService]
 })
 export class PopupRegisterComponent implements OnInit {
 
@@ -28,7 +29,7 @@ export class PopupRegisterComponent implements OnInit {
   ages: Array<number> = []
 
 
-  constructor(private registerTehellimService: RegisterTehellimService,private playerService:PlayerService) { }
+  constructor(private registerTehellimService: RegisterTehellimService, private playerService: PlayerService) { }
 
   ngOnInit() {
     for (var i = 1; i <= 90; i++) {
@@ -272,7 +273,7 @@ export class PopupRegisterComponent implements OnInit {
     this.pereks.find(p => p.id == this.perek).categories.forEach(c => {
       this.perekTitleSelected += this.categoriesPerek.find(t => t.id == c).name
     })
-    this.downloadUrl= this.pereks.find(p => p.id == this.perek).audioUrl
+    this.downloadUrl = this.pereks.find(p => p.id == this.perek).audioUrl
   }
 
   setPerek(id: number) {
@@ -286,7 +287,7 @@ export class PopupRegisterComponent implements OnInit {
   summary: string = ''
   perekNumberSelected: number = 0
   perekTitleSelected: string = ""
-  downloadUrl:string=''
+  downloadUrl: string = ''
 
   Back() {
     this.perekPassuk = ''
@@ -320,10 +321,14 @@ export class PopupRegisterComponent implements OnInit {
     $('#printPerek').print();
   }
 
-  Play()
-  {
-    this.playerService.PlayAudio("",this.pereks.find(p=>p.id==this.perek).audioUrl)
+  Play() {
+    this.playerService.PlayAudio("", this.pereks.find(p => p.id == this.perek).audioUrl)
   }
-   
+  //----------------------------------------------------------Pasuk----------------------------------------------------------
+  SetKeyboard(id) {
+    var $keyboard = $('#VirtualKeyboardHolderPasuk');
+    VirtualKeyboard.toggle(id, $keyboard.attr('id'));
+  }
+
 }
 

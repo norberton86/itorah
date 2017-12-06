@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Comunity, Category } from '../../model/Tehillim/tehillim';
 import { RegisterLevaya } from '../../model/register-levaya';
 import { RegisterTehellim, TehillimResult } from '../../model/register-tehellim';
-import { RegisterTehellimService } from '../../service/register-tehellim.service';
+import { RegisterTehellimService,Generate } from '../../service/register-tehellim.service';
 import { PlayerService } from '../../service/player.service';
 import { EntireList, Perek, Need } from '../../model/entire-list';
 
@@ -149,6 +149,9 @@ export class PopupRegisterComponent implements OnInit {
   CloseResults(section: string) {
     this.existResults = 0
     this.section = section
+
+    if (this.section == 'cientoNueve')
+      this.existResults = 119
   }
 
   section: string
@@ -328,6 +331,34 @@ export class PopupRegisterComponent implements OnInit {
   SetKeyboard(id) {
     var $keyboard = $('#VirtualKeyboardHolderPasuk');
     VirtualKeyboard.toggle(id, $keyboard.attr('id'));
+
+  }
+
+  option: number = 1
+  motherPasuk: string = ''
+  firstNamePasuk: string = ''
+  benPasuk: string = 'ben'
+  generate:Generate
+
+  Generate() {
+    var isBat = 'true'
+    if (this.benPasuk == 'ben')
+      isBat = 'false'
+
+     var motherHebrew= $('#field-mothers-Pasuk-name').val()
+     var firstHebrew= $('#field-first-Pasuk-name').val() 
+
+    this.registerTehellimService.Generate(motherHebrew, isBat, firstHebrew, this.option).subscribe(result => {
+      this.generate=result
+      this.perekPassuk="pasuk"
+    }, error => { 
+          this.registerTehellimService.Notify("No content for this selection",true);
+    }, () => { })
+  }
+
+  PrintPasuk()
+  {
+    $('#printPasuk').print();
   }
 
 }

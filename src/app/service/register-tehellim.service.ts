@@ -3,7 +3,7 @@ import { Service } from '../model/service';
 import { RegisterTehellim, TehillimResult } from '../model/register-tehellim';
 import { RegisterLevaya } from '../model/register-levaya';
 import { Category } from '../model/Tehillim/tehillim';
-import { EntireList,Perek } from '../model/entire-list';
+import { EntireList, Perek } from '../model/entire-list';
 
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -47,6 +47,17 @@ export class RegisterTehellimService extends Service {
       }
     )
   }
+
+  public Generate(FirstName:string,isBat:string,MotherName:string,OptionID:number): Observable<any> {
+
+    return this.http.get("http://itorahapi.3nom.com/api/Generator?FirstName="+FirstName+"&isBat="+isBat+"&MotherName="+MotherName+"&OptionID="+OptionID).map(
+      (response) => {
+        let body = response.json()
+        return body;
+      }
+    )
+  }
+
 
 
   public checkTehillim(type: string, mother: string, firstName: string, communityID: number): Observable<any> {
@@ -106,3 +117,8 @@ export class RegisterTehellimService extends Service {
   }
 
 }
+
+export class Generate {
+  configuredFor: string
+  textList: Array<string> = []
+} 

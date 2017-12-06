@@ -335,8 +335,8 @@
 					</form>
 				</div>
 
-				<div class="form-sponsor form-database form--large hidden" id="form-register-119">
-					<form action="?" method="post">
+				<div class="form-sponsor form-database form--large hidden" id="form-register-119" style="margin-right: 0;margin-left: 0;max-width: 100%;">
+					<form action="?" method="post" style="margin: 0 auto;max-width: 340px;">
 						<div class="form__head">
 							<h4>Chapter 119 Pasuk</h4>
 
@@ -353,10 +353,11 @@
 							<div class="form-row">
 
 								<label for="field-mothers-name" class="form-label" style="text-align: center;">Please Provide de Hebrew Names</label>
-								<label for="field-mothers-name" class="form-label" style="text-align: center;">(Must be in Hebrew only,to properly utilize this tool)</label>
+								<label for="field-mothers-name" class="form-label" style="text-align: center;margin-bottom: 0.7em;">(Must be in Hebrew only,to properly utilize this tool)</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-first-Pasuk-name" id="field-first-Pasuk-name" value="" placeholder="First Name" [(ngModel)]="firstName" (focus)="SetKeyboard('field-first-Pasuk-name')">
+									<input type="text" class="field" name="field-first-Pasuk-name" id="field-first-Pasuk-name" value="" placeholder="First Name"
+									 [(ngModel)]="firstNamePasuk" (focus)="SetKeyboard('field-first-Pasuk-name')">
 								</div>
 								<!-- /.form-controls -->
 
@@ -369,7 +370,7 @@
 								<div class="form__controls">
 									<div class="form__col form__col-size-4">
 										<div class="select">
-											<select class="select" name="field-8" id="field-8">
+											<select class="select" name="field-8" id="field-8" [(ngModel)]="benPasuk">
 												<option value="ben">Ben</option>
 												<option value="bat">Bat</option>
 											</select>
@@ -380,24 +381,24 @@
 
 									<div class="form__col">
 										<input type="text" class="field" name="field-mothers-Pasuk-name" id="field-mothers-Pasuk-name" value="" placeholder="Mother’s First Name"
-										 [(ngModel)]="mother" (focus)="SetKeyboard('field-mothers-Pasuk-name')">
+										 [(ngModel)]="motherPasuk" (focus)="SetKeyboard('field-mothers-Pasuk-name')">
 									</div>
 									<!-- /.form__col -->
 
-									<div class="form__controls">
-										<div class="form__col">
-											<!--<input class="field" name="field-translation" id="field-translation2" value="" onfocus="VirtualKeyboard.attachInput(this)">-->
 
-											<div class="VirtualKeyboardHolder" id="VirtualKeyboardHolderPasuk"></div>
-										</div>
-										<!-- /.form__col -->
-									</div>
-
-									<!-- /.form__col -->
 								</div>
 								<!-- /.form__controls -->
+
+
+								<!--<div class="form__controls">
+									<div class="form__col">
+										<div class="VirtualKeyboardHolder" id="VirtualKeyboardHolderPasuk"></div>
+									</div>
+								</div>-->
+
 							</div>
 							<!-- /.form-row -->
+
 						</div>
 						<!-- /.form-body -->
 
@@ -406,6 +407,11 @@
 						</div> -->
 						<!-- /.form-actions -->
 					</form>
+
+
+					<div class="VirtualKeyboardHolder" id="VirtualKeyboardHolderPasuk"></div>
+
+
 				</div>
 
 			</div>
@@ -616,6 +622,47 @@
 				</div>
 				<!-- END -->
 
+				<div class="form-sponsor sponsor-toggle tool-wrap" *ngIf="existResults==119">
+					<form action="?" method="post">
+						<div class="form__body" style="height:100%">
+							<div class="form-row" style="min-height: 200px;">
+								<ul>
+									<li>
+										<input type="radio" id="f-option" name="selector" [value]="1" [(ngModel)]="option">
+										<label for="f-option">System adds the word at the end when generating reading for the sick.(Recomended) </label>
+
+										<div class="check"></div>
+									</li>
+
+									<li>
+										<input type="radio" id="s-option" name="selector" [value]="2" [(ngModel)]="option">
+										<label for="s-option">System adds the word at the end when generating reading for the deceased.(Recomended) </label>
+
+										<div class="check">
+											<div class="inside"></div>
+										</div>
+									</li>
+
+									<li>
+										<input type="radio" id="t-option" name="selector" [value]="3" [(ngModel)]="option">
+										<label for="t-option">Generating reading without additional special words.(Recomended)</label>
+										<div class="check">
+											<div class="inside"></div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="form-row" style="text-align: center;">
+
+								<input (click)="Generate()" class="form-btn btn_small_yellow " type="button" value="Generate" style="padding: .5rem 2rem;">
+
+							</div>
+						</div>
+
+					</form>
+					<span style=" position: absolute; bottom: 0; color:blue;">Click here for explanation about how to read Chapter 119<a href=""> <i class="fa fa-info-circle" aria-hidden="true"></i>  </a></span>
+				</div>
+
 			</div>
 			<!-- /.col-1of3 -->
 		</div>
@@ -689,6 +736,58 @@
 				</div>
 				<div class="body-content-wrap" [innerHTML]="summary" *ngIf="summary!=''" id="printPerek">
 
+				</div>
+
+			</div>
+
+
+		</div>
+		<!-- /.cols -->
+	</div>
+
+	<div class="popup-body" id="form-pasuk" [hidden]="perekPassuk!='pasuk'">
+		<div class="cols cols-3" style="min-height: 350px;">
+			<div class="form-row" style="padding:.5rem 1rem;width: 100%;">
+
+				<button class="search-btn btn_small_yellow" id="buttonBackSearch" type="button" (click)="Back()">
+						 <i  class="fa fa-long-arrow-left" style="font-size: 2rem;padding-right: .5rem;padding-left: .5rem;"></i> 
+			</button>
+			</div>
+
+
+			<!-- body -->
+			<!-- LEFT SIDE	 -->
+			<div class="form-sponsor sponsor-toggle body_left">
+				<form action="?" method="post">
+					<div class="form__body">
+
+
+						<div class="form-row" style="text-align: center;">
+							<span class="span_text" style="padding-left:3%">Add To My Tehillim List</span>
+							<span><input  class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:22%" type="submit" value="+"></span>
+
+						</div>
+						<div class="form-row" style="text-align: center;">
+							<span class="span_text" style="padding-left:3%">Print</span>
+							<span> <a href="#/" ><i  class="ico-print-yellow" id="weekly-print" (click)="PrintPasuk()"></i></a></span>
+						</div>
+
+					</div>
+				</form>
+			</div>
+
+
+			<!-- RIGHT SIDE -->
+
+			<div class="body_right">
+
+				<div class="body-wrap">
+					<div class="body-wrap-header">
+						<strong>Chapter 119 Configured For:</strong> {{generate?.configuredFor}}
+					</div>
+				</div>
+				<div class="body-content-wrap" style="min-height: 400px;" id="printPasuk">
+					<img src="{{i}}" *ngFor="let i of generate?.textList">
 				</div>
 
 			</div>

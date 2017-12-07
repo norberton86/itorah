@@ -21,8 +21,8 @@ export class ReduceStringPipe implements PipeTransform {
 export class ReduceStringLinkPipe implements PipeTransform {
 
   transform(value: string): string {
-    if(value.length>37)
-       value=value.substring(0,37)+"...";
+    if(value.length>39)
+       value=value.substring(0,39)+"...";
 
       return value;
   }

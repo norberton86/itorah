@@ -76,7 +76,7 @@ export class EmunahSearchComponent implements OnInit {
 
   PLayEmunah(id: string, title: string) {
     var onlyAudio = title.includes('LT-Audio');
-    this.playerService.PlayAudio(title, id);
+    this.playerService.PlayAudio(title, id,"");
   }
 
   ngOnInit() {

@@ -207,7 +207,7 @@ export class MishnaBeruraYomiComponent implements OnInit {
 
   Play()
   {
-    this.playerService.PlayAudio("",this.content.audio)
+    this.playerService.PlayAudio("",this.content.audio,"")
   }
 
   Print()

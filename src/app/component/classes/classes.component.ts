@@ -134,7 +134,7 @@ Page(id:number)
 
   
   Play(title: string, media: string) {
-      this.playerService.PlayAudio(title, media)
+      this.playerService.PlayAudio(title, media,"")
   }
 
  Desc(a,b) {

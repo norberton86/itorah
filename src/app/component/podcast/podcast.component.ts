@@ -38,7 +38,7 @@ export class PodcastComponent implements OnInit {
   }
 
   Play(title: string, media: string) {
-      this.playerService.PlayAudio(title, media)
+      this.playerService.PlayAudio(title, media,"")
   }
 
   Fill() {

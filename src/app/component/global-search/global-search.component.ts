@@ -202,11 +202,11 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
   }
 
   Play(title: string, media: string) {
-    this.playerService.PlayAudio(title, media)
+    this.playerService.PlayAudio(title, media,"")
   }
   PlayHeader()
   {
-     this.playerService.PlayAudio(this.title, this.media)
+     this.playerService.PlayAudio(this.title, this.media,"")
   }
 
 

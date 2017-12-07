@@ -325,7 +325,7 @@ export class PopupRegisterComponent implements OnInit {
   }
 
   Play() {
-    this.playerService.PlayAudio("", this.pereks.find(p => p.id == this.perek).audioUrl)
+    this.playerService.PlayAudio("", this.pereks.find(p => p.id == this.perek).audioUrl,"")
   }
   //----------------------------------------------------------Pasuk----------------------------------------------------------
   SetKeyboard(id) {

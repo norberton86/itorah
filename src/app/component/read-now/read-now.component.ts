@@ -70,7 +70,7 @@ export class ReadNowComponent implements OnInit, OnChanges {
   Play() {
 
     if (this.link != undefined && this.link != null) {
-      this.playerService.PlayAudio("", this.link.AudioUrl)
+      this.playerService.PlayAudio("", this.link.AudioUrl,"")
       return
     }
 
@@ -78,7 +78,7 @@ export class ReadNowComponent implements OnInit, OnChanges {
     let self = this;
     this.homeService.playNow(6).subscribe(
       function (response) {
-        self.playerService.PlayAudio("", response)
+        self.playerService.PlayAudio("", response,"")
       }, function (error) { }, function () { }
     )
 

@@ -121,6 +121,7 @@ export class PlayerService {
         $('#sponsorPlaceHolder').addClass('hidden')
         $('#form-sponsor-shiur').removeClass('hidden')
         $('#form-sponsor-day').addClass('hidden')
+        $('#form-sponsor-play').addClass('hidden')
       }
     })
 
@@ -133,15 +134,43 @@ export class PlayerService {
   }
 
 
-  PlayAudio(title: string, url: string) {
+  PlayAudio(title: string, url: string,sponsor:string) {
 
+     
+    if (sponsor == '' && !this.requesting) {
+
+      this.requesting = true
+
+      this.getMediaSponsor().subscribe(result => {
+
+        this.requesting = false
+
+        if (result == '')
+          sponsor = "Sponsor this shiur"
+        else
+          sponsor = result
+
+        this.BuildAudio(title, url, sponsor)
+
+      }, error => {
+        this.requesting = false
+        sponsor = "Sponsor this shiur"
+        this.BuildAudio(title, url, sponsor)
+      }, () => { })
+  }
+  }
+
+  BuildAudio(title: string, url: string,sponsor:string)
+  {
     let self = this;
+
+    var finalSponsor= '<p id="sponsorPlayAudio" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>'
 
     if ($('#mediaAudio').length == 0)     //if not exist
     {
       $.notify({                          //create the popup
         title: "",
-        message: '<video id="mediaAudio" controls="" autoplay="" name="media" style="background-image: url(./assets/build/css/images/images/audio.jpg);background-size: 100% 80%;"><source src="' + url + '" type="audio/mpeg"></video>'
+        message: finalSponsor+ '<video id="mediaAudio" controls="" autoplay="" name="media" style="background-image: url(./assets/build/css/images/images/audio.jpg);background-size: 100% 80%;"><source src="' + url + '" type="audio/mpeg"></video>'
       },
         {
           delay: 0,                       //never autoclose
@@ -162,6 +191,18 @@ export class PlayerService {
     else {
       $('#mediaAudio').attr('src', url)
     }
+
+    
+    $('#sponsorPlayAudio').click(function () {
+      if (self.isAuthenticated()) {
+        $('#sponsor').toggleClass('shown');
+        $('#sponsorPlaceHolder').addClass('hidden')
+        $('#form-sponsor-play').removeClass('hidden')
+        $('#form-sponsor-day').addClass('hidden')
+        $('#form-sponsor-shiur').addClass('hidden')
+      }
+    })
+
   }
 
   isAuthenticated(): boolean {

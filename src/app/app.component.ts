@@ -141,7 +141,7 @@ export class AppComponent implements OnInit {
     let self = this;
     this.homeService.playNow(id).subscribe(
       function (response) {
-        self.playerService.PlayAudio(title, response)
+        self.playerService.PlayAudio(title, response,"")
       }, function (error) { }, function () { }
     )
   }
@@ -227,7 +227,7 @@ export class AppComponent implements OnInit {
   ReadPerashaInsigth()
   {
     this.perashaService.read().subscribe(result=>{
-       this.playerService.PlayAudio("",result[0].audio)  
+       this.playerService.PlayAudio("",result[0].audio,"")  
     },error=>{},()=>{})
   }
 

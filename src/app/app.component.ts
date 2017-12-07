@@ -10,7 +10,7 @@ declare var $: any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AnalitycService, PlayerService,PerashaService]
+  providers: [AnalitycService, PlayerService, PerashaService]
 })
 export class AppComponent implements OnInit {
 
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
 
   browseClasses: string = "All"
 
-  constructor(private analitycService: AnalitycService, private homeService: HomeService, private playerService: PlayerService,private perashaService:PerashaService) { }
+  constructor(private analitycService: AnalitycService, private homeService: HomeService, private playerService: PlayerService, private perashaService: PerashaService) { }
 
 
   keyDownFunction(event) {
@@ -137,13 +137,37 @@ export class AppComponent implements OnInit {
     $("#contact").toggleClass('shown');
   }
 
+  requesting: boolean = false
   playNow(id: number, title: string) {
-    let self = this;
-    this.homeService.playNow(id).subscribe(
-      function (response) {
-        self.playerService.PlayAudio(title, response,"")
-      }, function (error) { }, function () { }
-    )
+
+    if (this.requesting)
+      return;
+
+    if (id == 6 || id == 7) //halacha or tehellim
+    {
+      this.requesting=true
+      this.homeService.readNow(id).subscribe(result => {   //execute to get the dedication field
+        this.homeService.playNow(id).subscribe(resultPlay => {
+          this.requesting = false
+          this.playerService.PlayAudio(title, resultPlay, result.dedication) //use that dedication field
+        }, error => {
+          this.requesting = false
+        }, () => { })
+      }, error => {
+        this.requesting = false
+
+      }, () => { })
+    }
+    else {
+      let self = this;
+      this.homeService.playNow(id).subscribe(
+        function (response) {
+          self.playerService.PlayAudio(title, response, "")
+        }, function (error) { }, function () { }
+      )
+    }
+
+
   }
 
   readNow(id: number) {
@@ -151,14 +175,11 @@ export class AppComponent implements OnInit {
     this.homeService.readNow(id).subscribe(
       function (response) {
 
-
-
         if (response.content.indexOf('.pdf') > 0) {
           window.open(response.content)
         }
         else
-          if (response.content.indexOf('.gif,') > 0)
-          {
+          if (response.content.indexOf('.gif,') > 0) {
             response.content.split(',').forEach(function (a) {
               window.open('http://' + a)
             })
@@ -224,11 +245,10 @@ export class AppComponent implements OnInit {
     }
   }
 
-  ReadPerashaInsigth()
-  {
-    this.perashaService.read().subscribe(result=>{
-       this.playerService.PlayAudio("",result[0].audio,"")  
-    },error=>{},()=>{})
+  ReadPerashaInsigth() {
+    this.perashaService.read().subscribe(result => {
+      this.playerService.PlayAudio("", result[0].audio, "")
+    }, error => { }, () => { })
   }
 
 }

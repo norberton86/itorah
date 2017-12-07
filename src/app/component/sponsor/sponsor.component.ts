@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Sponsor, SponsorShiur, SponsorMedia } from '../../model/sponsors';
 import { Page } from '../../model/Page';
 import { Shiurim } from '../../model/shiurim';
-import { SponsorService } from '../../service/sponsor.service';
+import { SponsorService, Category } from '../../service/sponsor.service';
 import { HomeService } from '../../service/home.service';
 import { ShiurimService } from '../../service/shiurim.service';
 import { IMyDpOptions } from 'mydatepicker';
@@ -65,7 +65,9 @@ export class SponsorComponent implements OnInit {
      }) */
 
 
-    this.Load()
+    
+
+    this.getCats()
 
   }
 
@@ -270,9 +272,26 @@ export class SponsorComponent implements OnInit {
     }
   }
 
+  getBySubs()
+  {
+    this.Load()
+  }
+
+  getSelecteCategory():number
+  {
+    var categoryQuery=this.cat.id
+    if(this.sub.id!=-1)
+    categoryQuery=this.sub.id
+
+    return categoryQuery
+  }
+
   Load() {
     let self = this;
-    self.shiurimService.search(this.query_main, 24, 1)
+
+
+
+    self.shiurimService.search(this.query_main, 24, 1,this.getSelecteCategory())
       .subscribe(function (response) {
 
         self.Update(response.totalPageCount, response.shiurList)
@@ -322,7 +341,7 @@ export class SponsorComponent implements OnInit {
         p.current = true;
     })
 
-    this.shiurimService.search(this.query_main, 24, id)
+    this.shiurimService.search(this.query_main, 24, id,this.getSelecteCategory())
       .subscribe(response => this.all = response.shiurList)
 
   }
@@ -354,5 +373,31 @@ export class SponsorComponent implements OnInit {
     this.value = value
   }
 
+
+  cats: Array<Category> = []
+  cat: Category
+  subs: Array<Category> = []
+  sub: Category
+
+  getCats() {
+    this.sponsorService.getCategory().subscribe(result => {
+      this.cats = result
+      this.cat=this.cats[0]
+      this.getSubs()
+    }, error => { }, () => { })
+  }
+
+  getSubs() {
+    this.subs=[]
+    this.sponsorService.getSubCategory().subscribe(result => {
+      this.subs.push({id:-1,name:"All",parentID:0})
+      var others=result.filter(r=>r.parentID==this.cat.id)
+      others.forEach(o=>{
+        this.subs.push(o)
+      })
+      this.sub=this.subs[0]
+      this.Load()
+    }, error => { }, () => { })
+  }
 
 }

@@ -70,4 +70,33 @@ export class SponsorService extends Service {
         )
     }
 
+    
+    public getCategory(): Observable<Array<Category>> {
+
+        return this.http.get("http://itorahapi.3nom.com/api/Categories").map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    }
+
+    public getSubCategory(): Observable<Array<Category>> {
+
+        return this.http.get("http://itorahapi.3nom.com/api/Categories/sub").map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    }
+
+}
+
+
+export class Category
+{
+    id:number
+    name:string
+    parentID:number
 }

@@ -71,13 +71,13 @@ export class ShiurimService extends Service {
         )
     }
 
-    search(SearchText: string, PageSize: number, PageIndex: number): Observable<any> {
+    search(SearchText: string, PageSize: number, PageIndex: number,categoryId:number): Observable<any> {
 
         var query = ""
         if (SearchText != '')
             query = "&SearchText=" + SearchText
 
-        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/all?PageIndex=" + PageIndex + "&PageSize=" + PageSize + query).map(
+        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/all?PageIndex=" + PageIndex + "&PageSize=" + PageSize + query+"&CategoryID="+categoryId).map(
             (response) => {
                 let body = response.json()
                 return body;

@@ -47,6 +47,16 @@
 										</div>
 										<!-- /.checkbox -->
 									</li>
+
+									<li>
+										<div class="checkbox checkbox-secondary checkbox-block">
+											<input type="checkbox" name="form-sponsor-play" id="field-sponsor-a-play" (click)="SetSection('play')">
+
+											<label class="form__label" for="field-sponsor-a-play">Sponsor a Media Player</label>
+										</div>
+										<!-- /.checkbox -->
+									</li>
+
 								</ul>
 								<!-- /.list-checkboxes -->
 							</div>
@@ -164,7 +174,7 @@
 							</div>
 							<!-- /.form-row -->
 
-							
+
 
 							<div class="form-row">
 								<div class="form-controls">
@@ -258,6 +268,88 @@
 					<p>Sponsoring a Shiur enables viewers to download the shiur for free.</p>
 				</div>
 				<!-- /.form-sponsor hidden -->
+
+				<div class="form-sponsor hidden tool-wrap" id="form-sponsor-play">
+					<form action="?" method="post">
+						<div class="form-head">
+							<h4 class="step-title">
+								<span>
+										step
+										<span>2</span>
+								</span>
+
+								Sponsor a Media Player
+							</h4>
+						</div>
+						<!-- /.form-head -->
+
+						<div class="form-body">
+
+							<div class="form-row" style="min-height: 200px;">
+								<ul>
+									<li>
+										<input type="radio" id="f-option" name="selector" [value]="1" [(ngModel)]="option" (click)="setOptionValue(25)">
+										<label for="f-option"> $25.00  10 Displays </label>
+
+										<div class="check"></div>
+									</li>
+
+									<li>
+										<input type="radio" id="s-option" name="selector" [value]="2" [(ngModel)]="option" (click)="setOptionValue(50)">
+										<label for="s-option">$50.00  25 Displays </label>
+
+										<div class="check">
+											<div class="inside"></div>
+										</div>
+									</li>
+
+									<li>
+										<input type="radio" id="t-option" name="selector" [value]="3" [(ngModel)]="option" (click)="setOptionValue(100)">
+										<label for="t-option">$100.00  60 Displays</label>
+										<div class="check">
+											<div class="inside"></div>
+										</div>
+									</li>
+								</ul>
+							</div>
+
+							<div class="form-row">
+								<div class="select select-tertiary">
+									<select name="field-sponsorship" id="field-sponsorship" [(ngModel)]="dT">
+											<option *ngFor="let s of dedicationType" [ngValue]="s">{{s.description}}</option>
+										</select>
+								</div>
+								<!-- /.select -->
+							</div>
+							<!-- /.form-row -->
+
+
+
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="text" class="field" name="field-sponsor" id="field-sponsorshipFor" value="" placeholder="Sponsorship for" [(ngModel)]="sponsorshipFor">
+								</div>
+								<!-- /.select -->
+							</div>
+							<!-- /.form-row -->
+
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Name" [(ngModel)]="name">
+								</div>
+								<!-- /.form-controls -->
+							</div>
+							<!-- /.form-row -->
+						</div>
+						<!-- /.form-body -->
+
+						<div class="form-actions">
+							<input type="button" value="Continue" class="form-btn next-step" (click)="ShowPayment()">
+						</div>
+						<!-- /.form-actions -->
+					</form>
+				</div>
+
 			</div>
 			<!-- /.col-1of3 -->
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Sponsor,SponsorShiur } from '../model/sponsors';
+import { Sponsor,SponsorShiur,SponsorMedia } from '../model/sponsors';
 import { Service } from '../model/service';
 
 import { Http, Headers } from '@angular/http';
@@ -49,6 +49,20 @@ export class SponsorService extends Service {
         h.append('Authorization', 'bearer ' + this.getToken());
 
         return this.http.post("http://itorahapi.3nom.com/api/Sponsor/shiur", sponsor, { headers: h }).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    }
+
+    public addMedia(sponsor: SponsorMedia): Observable<any> {
+
+        let h = new Headers();
+        h.append('Content-Type', 'application/json');
+        h.append('Authorization', 'bearer ' + this.getToken());
+
+        return this.http.post("http://itorahapi.3nom.com/api/Sponsor/mediaplayer", sponsor, { headers: h }).map(
             (response) => {
                 let body = response.json();
                 return body;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Sponsor, SponsorShiur } from '../../model/sponsors';
+import { Sponsor, SponsorShiur, SponsorMedia } from '../../model/sponsors';
 import { Page } from '../../model/Page';
 import { Shiurim } from '../../model/shiurim';
 import { SponsorService } from '../../service/sponsor.service';
@@ -123,36 +123,69 @@ export class SponsorComponent implements OnInit {
 
         })
     }
-    else {
+    else
+      if (this.section == 'shiur') {
 
-      var sponsorShiur = new SponsorShiur()
+        var sponsorShiur = new SponsorShiur()
 
-      sponsorShiur.ShiurID = this.shiurID
-      sponsorShiur.DedicationTypeID = parseInt(this.dT.id)
-      sponsorShiur.SponsoredForName = this.sponsorshipFor
-      sponsorShiur.SponsoredByName = this.name
-      sponsorShiur.PaymentInfo = {
-        Amount: cc.Amount,
-        CardExpDate: cc.CardExpDate.replace(" / ", ""),
-        CardHolderName: cc.CardHolderName,
-        CardNumber: cc.CardNumber,
-        CVV: cc.CVV
+        sponsorShiur.ShiurID = this.shiurID
+        sponsorShiur.DedicationTypeID = parseInt(this.dT.id)
+        sponsorShiur.SponsoredForName = this.sponsorshipFor
+        sponsorShiur.SponsoredByName = this.name
+        sponsorShiur.PaymentInfo = {
+          Amount: cc.Amount,
+          CardExpDate: cc.CardExpDate.replace(" / ", ""),
+          CardHolderName: cc.CardHolderName,
+          CardNumber: cc.CardNumber,
+          CVV: cc.CVV
+        }
+
+
+        this.sponsorService.addShiur(sponsorShiur).subscribe(result => {
+          if (result == "Success")
+            this.sponsorService.Notify("Sponsor Completed", false);
+          else
+            this.sponsorService.Notify("Transaction Declined", true);
+        },
+          error => {
+            this.sponsorService.Notify("Error trying to access", true);
+          }, () => {
+
+          })
       }
+      else {
 
+        var sponsorMedia = new SponsorMedia()
+        sponsorMedia.PaymentInfo = {
+          Amount: cc.Amount,
+          CardExpDate: cc.CardExpDate.replace(" / ", ""),
+          CardHolderName: cc.CardHolderName,
+          CardNumber: cc.CardNumber,
+          CVV: cc.CVV
+        }
 
-      this.sponsorService.addShiur(sponsorShiur).subscribe(result => {
-        if (result == "Success")
-          this.sponsorService.Notify("Sponsor Completed", false);
-        else
-          this.sponsorService.Notify("Transaction Declined", true);
-      },
-        error => {
-          this.sponsorService.Notify("Error trying to access", true);
-        }, () => {
+        switch (this.value) {
+          case 25: sponsorMedia.impressionCount = 10; break;
+          case 50: sponsorMedia.impressionCount = 25; break;
+          case 100: sponsorMedia.impressionCount = 60; break;
+        }
 
-        })
-    }
+        sponsorMedia.DedicationTypeID = parseInt(this.dT.id)
+        sponsorMedia.SponsoredForName = this.sponsorshipFor
+        sponsorMedia.SponsoredByName = this.name
 
+        this.sponsorService.addMedia(sponsorMedia).subscribe(result => {
+          if (result == "Success")
+            this.sponsorService.Notify("Sponsor Completed", false);
+          else
+            this.sponsorService.Notify("Transaction Declined", true);
+        },
+          error => {
+            this.sponsorService.Notify("Error trying to access", true);
+          }, () => {
+
+          })
+      }
 
   }
 
@@ -199,6 +232,11 @@ export class SponsorComponent implements OnInit {
     }
 
     if (this.section == 'shiur' && (this.sponsorshipFor == '' || this.name == '' || this.shiurID == -1)) {
+      this.sponsorService.Notify("Please fill the form complety", true);
+      return;
+    }
+
+    if (this.section == 'play' && (this.sponsorshipFor == '' || this.name == '' || this.option == 0)) {
       this.sponsorService.Notify("Please fill the form complety", true);
       return;
     }
@@ -309,6 +347,11 @@ export class SponsorComponent implements OnInit {
       this.CreatePages();
 
     this.Page(this.iteration)
+  }
+  //-----------------------------------------------------------Media PLayer---------------------------------------------------------------
+  option: number = 0
+  setOptionValue(value) {
+    this.value = value
   }
 
 

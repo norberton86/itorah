@@ -28,3 +28,17 @@ export class SponsorShiur {
         CVV: string
     }
 }
+
+export class SponsorMedia {
+    impressionCount: number
+    DedicationTypeID: number
+    SponsoredForName: string
+    SponsoredByName: string
+    PaymentInfo: {
+        Amount: number,
+        CardExpDate: string,
+        CardHolderName: string,
+        CardNumber: string,
+        CVV: string
+    }
+}

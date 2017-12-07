@@ -2,20 +2,63 @@ import { Injectable } from '@angular/core';
 declare var $: any;
 declare var WowzaPlayer: any;
 
+import { Http, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
 @Injectable()
 export class PlayerService {
 
-  constructor() {
+  constructor(private http: Http) {
   }
 
+  getMediaSponsor(): Observable<string> {
 
+    return this.http.get("http://itorahapi.3nom.com/api/Sponsor/mediaplayer").map(
+      (response) => {
+        let body = response.json();
+        return body;
+      }
+    )
+  }
 
+  requesting: boolean = false;
   Play(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string) {
 
-    let self = this;
-    if (sponsor == '')
-      sponsor = "Sponsor this shiur"
 
+    if (sponsor == '' && !this.requesting) {
+
+      this.requesting = true
+
+      this.getMediaSponsor().subscribe(result => {
+
+        this.requesting = false
+
+        if (result == '')
+          sponsor = "Sponsor this shiur"
+        else
+          sponsor = result
+
+        this.Build(title, url, onlyAudio, speaker, sponsor)
+
+      }, error => {
+        this.requesting = false
+        sponsor = "Sponsor this shiur"
+        this.Build(title, url, onlyAudio, speaker, sponsor)
+      }, () => { })
+
+    }
+    else
+    if(!this.requesting) {
+      this.Build(title, url, onlyAudio, speaker, sponsor)
+    }
+
+
+
+  }
+
+  Build(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string) {
+    let self = this;
 
     if ($('#video-modal').length == 0)     //if not exist
       $.notify({                          //create the popup
@@ -80,7 +123,6 @@ export class PlayerService {
         $('#form-sponsor-day').addClass('hidden')
       }
     })
-
 
   }
 

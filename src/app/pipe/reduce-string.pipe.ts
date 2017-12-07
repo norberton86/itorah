@@ -13,3 +13,18 @@ export class ReduceStringPipe implements PipeTransform {
   }
 
 }
+
+
+@Pipe({
+  name: 'reduceStringLink'
+})
+export class ReduceStringLinkPipe implements PipeTransform {
+
+  transform(value: string): string {
+    if(value.length>37)
+       value=value.substring(0,37)+"...";
+
+      return value;
+  }
+
+}

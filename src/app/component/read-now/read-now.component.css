@@ -13,3 +13,19 @@ overflow: auto;
 {
 margin-bottom: 1em;
 }
+
+.link-container{
+    border-top: 1px solid #dadada;
+    padding-top: 0.6em;
+}
+
+.link-halacha{
+    background: #D8D8D8;
+    padding: 0.4em;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0.3em;
+    text-align: center;
+    width: 20%;
+    cursor: pointer;
+}

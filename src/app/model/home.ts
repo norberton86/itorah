@@ -46,3 +46,12 @@ export class ReadNow
   content: string
   dedication:string
 }
+
+export class Link
+{
+  ID: number
+  Title: string
+  Content:string
+  AudioUrl:string
+  Dedication:string
+}

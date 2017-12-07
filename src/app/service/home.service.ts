@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Home, ReadNow } from '../model/Home';
+import { Home, ReadNow,Link } from '../model/Home';
 import { Service,ServiceLogin } from '../model/service';
 
 import {Http, Headers} from '@angular/http';
@@ -37,6 +37,15 @@ export class HomeService extends ServiceLogin{
     public readNow(id:number): Observable<ReadNow> {
         
         return this.http.get("http://itorahapi.3nom.com/api/ReadNow?SourceID="+id).map(
+            (response) => {
+                return response.json();
+            }
+        )
+    }
+
+    public readLinks(): Observable<Array<Link>> {
+        
+        return this.http.get("http://itorahapi.3nom.com/api/Halacha").map(
             (response) => {
                 return response.json();
             }

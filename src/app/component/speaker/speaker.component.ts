@@ -819,7 +819,10 @@ export class SpeakerComponent implements OnInit {
 
     this.shiurimService.relatedShiur(idShiur, idCategory).subscribe(result => {
       this.requesting = false
+
+      if(!this.navigatedToCategory)  //only the first time when the user navigaet for categories
       this.shiurOriginalsBeforecategory = this.allShiriums //create the copy  
+      
       this.FillShirium(result)
       this.navigatedToCategory = true
     }, error => { this.requesting = false }, () => { })

@@ -69,7 +69,7 @@
 }
 
 .popover-title{
-    color: black
+    color: black !important
 }
 
     /*popup*/

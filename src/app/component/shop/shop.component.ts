@@ -80,21 +80,26 @@ export class ShopComponent implements OnInit {
   }
 
 
+  requesting:boolean=false
+
   Save(cc: CreditCard) {
 
+    if (this.requesting)
+      return
+
+    this.requesting = true
 
     var data = { Amount: cc.Amount, CardExpDate: cc.CardExpDate, CardHolderName: cc.CardHolderName, CardNumber: cc.CardNumber, CVV: cc.CVV }
 
-
-
     this.shopService.add(data).subscribe(result => {
-
+      this.requesting=false
       if (result == "Success")
         this.shopService.Notify("Transaction Completed", false);
       else
         this.shopService.Notify("Transaction Declined", true);
     },
       error => {
+        this.requesting=false
         this.shopService.Notify("Error trying to access", true);
       }, () => {
 

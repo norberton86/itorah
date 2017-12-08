@@ -59,7 +59,14 @@ export class DedicationComponent implements OnInit {
       this.value = 1000
   }
 
+  requesting:boolean=false
+
   Save(cc: CreditCard) {
+
+    if (this.requesting)
+      return
+
+    this.requesting = true
 
     if (this.dedicationName == '') {
       this.dedicationService.Notify("Please fill Dedication Name", true);
@@ -90,10 +97,12 @@ export class DedicationComponent implements OnInit {
     let self = this;
     this.dedicationService.add(ded).subscribe(
       function (response) {
+        self.requesting=false
         self.dedicationService.Notify("Dedication successful", false)
         $('#dedications').toggleClass('shown');
       },
       function (error) {
+        self.requesting=false
         self.dedicationService.Notify("Error trying to dedicate", true)
       },
       function () {

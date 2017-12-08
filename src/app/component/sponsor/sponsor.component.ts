@@ -93,8 +93,14 @@ export class SponsorComponent implements OnInit {
     }, function () { })
   }
 
+  requesting:boolean=false
+
   Save(cc: CreditCard) {
 
+    if (this.requesting)
+      return
+
+    this.requesting = true
 
     let self = this
     if (this.section == 'day') {
@@ -114,12 +120,14 @@ export class SponsorComponent implements OnInit {
       }
 
       this.sponsorService.addDay(sponsor).subscribe(result => {
+        this.requesting=false
         if (result == "Success")
           this.sponsorService.Notify("Sponsor Completed", false);
         else
           this.sponsorService.Notify("Transaction Declined", true);
       },
         error => {
+          this.requesting=false
           this.sponsorService.Notify("Error trying to access", true);
         }, () => {
 
@@ -144,12 +152,14 @@ export class SponsorComponent implements OnInit {
 
 
         this.sponsorService.addShiur(sponsorShiur).subscribe(result => {
+          this.requesting=false
           if (result == "Success")
             this.sponsorService.Notify("Sponsor Completed", false);
           else
             this.sponsorService.Notify("Transaction Declined", true);
         },
           error => {
+            this.requesting=false
             this.sponsorService.Notify("Error trying to access", true);
           }, () => {
 
@@ -177,12 +187,14 @@ export class SponsorComponent implements OnInit {
         sponsorMedia.SponsoredByName = this.name
 
         this.sponsorService.addMedia(sponsorMedia).subscribe(result => {
+          this.requesting=false
           if (result == "Success")
             this.sponsorService.Notify("Sponsor Completed", false);
           else
             this.sponsorService.Notify("Transaction Declined", true);
         },
           error => {
+            this.requesting=false
             this.sponsorService.Notify("Error trying to access", true);
           }, () => {
 

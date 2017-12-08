@@ -12,6 +12,8 @@ import { DonateService } from '../../service/donate.service';
 })
 export class DonateComponent implements OnInit {
 
+  requesting:boolean=false
+
   formCheck: FormGroup;
 
 
@@ -42,6 +44,10 @@ export class DonateComponent implements OnInit {
 
   Save(cc: CreditCard) {
 
+    if(this.requesting)
+    return
+        
+    this.requesting=true    
 
     var data = { Amount: cc.Amount, CardExpDate: cc.CardExpDate, CardHolderName: cc.CardHolderName, CardNumber: cc.CardNumber, CVV: cc.CVV }
     if (cc.Email != '')
@@ -50,12 +56,15 @@ export class DonateComponent implements OnInit {
     if (cc.Email == '') {
       this.donateService.add(data).subscribe(result => {
 
+        this.requesting=false
+  
         if (result == "Success")
           this.donateService.Notify("Donation Completed", false);
         else
           this.donateService.Notify("Transaction Declined", true);
       },
         error => {
+          this.requesting=false
           this.donateService.Notify("Error trying to access", true);
         }, () => {
 
@@ -63,13 +72,14 @@ export class DonateComponent implements OnInit {
     }
     else {
       this.donateService.addEmail(data).subscribe(result => {
-
+        this.requesting=false
         if (result == "Success")
           this.donateService.Notify("Donation Completed", false);
         else
           this.donateService.Notify("Transaction Declined", true);
       },
         error => {
+          this.requesting=false
           this.donateService.Notify("Error trying to access", true);
         }, () => {
 

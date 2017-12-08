@@ -79,7 +79,13 @@ export class AdvertiseComponent implements OnInit {
     return this.form.controls.FirstName.errors != null || this.form.controls.LastName.errors != null || this.form.controls.Email.errors != null
   }
 
+  requesting:boolean=false
   upload(cc: CreditCard) {
+
+    if(this.requesting)
+    return
+
+    this.requesting=true
 
     if (this.errorSize != '' || this.File == undefined||this.File == null) {
       this.uploadService.Notify("Upload a valid image", true);
@@ -114,11 +120,13 @@ export class AdvertiseComponent implements OnInit {
     let self = this;
     this.uploadService.upload(formData).subscribe(
       function (respond) {
+        self.requesting=false
         self.uploadService.Notify("Advertise Created", false)
         self.Reset();
         $('#popup-advertise').toggleClass('shown');
       },
       function (error) {
+        self.requesting=false
         self.uploadService.Notify("Error trying to upload the image", true)
       },
       function () { }

@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import { Subject } from 'rxjs/Subject';
 
 declare var Notification: any;
+declare var $: any;
 
 export class Service {
 
@@ -16,35 +17,22 @@ export class Service {
     }
 
     Notify(message: string, error: boolean) {
-        var iconUrl = "";
-        if (error)
-            iconUrl = './assets/build/css/images/images/notification_error.png'
-        else
-            iconUrl = './assets/build/css/images/images/notification_done.png'
-
-
-        if (!("Notification" in window)) {
-            console.log("no notifications in this browser");
-        }
-        else if (Notification.permission === "granted") {
-            // If it's okay let's create a notification
-            var notification = new Notification(message, { icon: iconUrl });
-            notification.onshow = function () {
-                setTimeout(notification.close.bind(notification), 3000);
-            }
-        }
-        else if (Notification.permission !== 'denied') {
-            Notification.requestPermission(function (permission) {
-
-                if (permission === "granted") {
-                    var notification = new Notification(message, { icon: iconUrl });
-                    notification.onshow = function () {
-                        setTimeout(notification.close.bind(notification), 3000);
-                    }
-                }
-            });
-        }
-
+        $.notify({                          //create the popup
+            title: "",
+            message: "<p>"+message+"</p>"
+        },
+        {
+                delay: 3000,                       //never autoclose
+                placement: {                    //placed
+                    from: "bottom",
+                    align: "right"
+                },
+                animate: {                                   //animation to in/out
+                    enter: 'animated bounceInRight',
+                    exit: 'animated bounceOutRight'
+                },
+                type: error==false?"success":"error"
+        });
     }
 
     getToken(): string {

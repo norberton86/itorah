@@ -51,5 +51,14 @@ export class HomeService extends ServiceLogin{
             }
         )
     }
+
+    public readCalendar(): Observable<Array<string>> {
+        
+        return this.http.get("http://itorahapi.3nom.com/api/Calendar").map(
+            (response) => {
+                return response.json();
+            }
+        )
+    }
 }
 

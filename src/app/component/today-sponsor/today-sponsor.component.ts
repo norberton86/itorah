@@ -12,7 +12,8 @@ export class TodaySponsorComponent implements OnInit {
 
 
   dedicated: string
-  todayDate: Date = new Date()
+  englishDate:string=''
+  hebrewDate:string =''
 
   constructor(private homeService: HomeService) { }
 
@@ -22,6 +23,8 @@ export class TodaySponsorComponent implements OnInit {
       if (response.Table3.length > 0)
         this.dedicated = response.Table3[0].Sponsor
     })
+
+    this.getDates()
   }
 
   OpenSponsor() {
@@ -47,5 +50,12 @@ export class TodaySponsorComponent implements OnInit {
     else
       return true;
   }
-
+  
+  getDates()
+  {
+    this.homeService.readCalendar().subscribe(result=>{
+      this.englishDate=result[0]
+      this.hebrewDate=result[1]
+    },error=>{},()=>{})
+  }
 }

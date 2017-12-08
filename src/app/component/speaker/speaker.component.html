@@ -31,7 +31,7 @@
 							</div>
 							
 						</li>-->
-						
+
 
 
 					</ul>
@@ -41,11 +41,11 @@
 			</div>
 			<!-- /.slider-profiles -->
 
-            
+
 			<a href="#/" class="link-close" title="Restore" (click)="FullScreen()" id="restore" *ngIf="enter">
 				<i class="fa fa-window-restore" aria-hidden="true"></i>
 			</a>
-			
+
 
 			<a href="#/" class="link-expand" title="Expand" (click)="FullScreen()" id="expand" *ngIf="!enter">
 				<i class="fa fa-expand" aria-hidden="true"></i>
@@ -66,7 +66,11 @@
 						  <i class="fa fa-long-arrow-left"></i> Back
 				        </button>
 
-						<div class="lists-head-inner">
+						<button type="button" class="search-btn" id="buttonBackAll" (click)="BackFromCategories()" *ngIf="navigatedToCategory">
+						  <i class="fa fa-long-arrow-left"></i> Back
+				        </button>
+
+						<div class="lists-head-inner" *ngIf="!navigatedToCategory">
 							<h5>{{speaker?.title}} {{speaker?.firstName}} {{speaker?.lastName}}</h5>
 							<p>{{speaker?.totalShiurim}} Shiurim</p>
 						</div>
@@ -91,15 +95,46 @@
 							<li class="track" *ngFor="let s of shiriums">
 								<!--<a href="#" class="link-play-secondary"></a>-->
 
-								<div class="track-content" style="padding-left: 0.5em">
+								<div class="track-content " style="padding-left: 0.5em">
 									<h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
 
-									<p>
-										<span class="date">{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span>
+									<p class="icons-p">
 
-										<span class="min">{{s.length|time}}min</span>
+										<a href="#/" class="link-mic icons-wrap" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}"
+										 (click)="Play(s.video,s.title)">
+											<i class="ico-camera"></i>
+										</a>
 
-										<span class="lang">{{s.language|language}}</span>
+										<a href="#/" class="link-mic icons-wrap" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}"
+										 (click)="Play(s.audio,s.title)">
+											<i class="ico-mic"></i>
+										</a>
+
+
+										<a href="#/" class="link-add icons-wrap" title="Add to My Queue List" id="{{s.id}}" (click)="addToQueue(s.id)">
+											<i class="ico-plus-thick"></i>
+										</a>
+
+										<a href="#/" class="link-download icons-wrap" title="Download" *ngIf="s.audio!=''" (click)="Download(s)">
+											<i class="ico-download"></i>
+										</a>
+
+										<a [popover]="myPopover" href="#/" class="link-download icons-wrap tooltip boom" title="Categories/SubCategories" (click)="OpenPopover(s.id)">
+												<i class="fa fa-info" aria-hidden="true"></i>
+										</a>
+
+										<popover-content #myPopover title="{{s.title}}" placement="right" [animation]="true" [closeOnClickOutside]="true">
+											<ul style="list-style-type: none;">
+												<li *ngFor="let rc of rCategories">
+													<a href="#/" (click)="RelatedShiurs(s.id,rc.ID)">{{rc.Name}}</a>
+													<!--<ul style="list-style-type: none;margin-left: 0.5em;color: blue;" *ngIf="idRelatedCategorySelected==rc.ID">
+														<li *ngFor="let rs of rShiurms">
+															<a href="#/" (click)="NavigateToRelated()" style="text-decoration: inherit;">{{rs.title}}</a>
+														</li>
+													</ul>-->
+												</li>
+											</ul>
+										</popover-content>
 
 									</p>
 								</div>
@@ -107,22 +142,11 @@
 
 								<div class="track-actions">
 
-									<a href="#/" class="link-mic" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}" (click)="Play(s.video,s.title,s.sponsor)">
-											<i class="ico-camera"></i>
-										</a>
+									<span class="min">{{s.length|time}}min</span>
 
-									<a href="#/" class="link-mic" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}" (click)="Play(s.audio,s.title,s.sponsor)">
-											<i class="ico-mic"></i>
-										</a>
+									<span class="lang">{{s.language|language}}</span>
 
-
-									<a href="#/" class="link-add" title="Add to My Queue List" id="{{s.id}}" (click)="addToQueue(s.id)">
-										<i class="ico-plus-thick"></i>
-									</a>
-
-									<a href="#/" class="link-download"  title="Download" *ngIf="s.audio!=''" (click)="Download(s)">
-										<i class="ico-download"></i>
-									</a>
+									<p class="icons-p"><span class="date">{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span></p>
 								</div>
 								<!-- /.track-actions -->
 							</li>
@@ -130,6 +154,7 @@
 
 						</ul>
 						<!-- /.tracks -->
+
 					</div>
 					<!-- /.lists-body -->
 				</div>
@@ -659,7 +684,7 @@
 					<div class="lists-body">
 						<ul class="tracks tracks-secondary">
 
-							<li class="track" *ngFor="let s of speakers" >
+							<li class="track" *ngFor="let s of speakers">
 								<div class="track-content" (click)="Detailed(s.id)">
 									<h6>{{s.lastName}}, {{s.firstName}}</h6>
 

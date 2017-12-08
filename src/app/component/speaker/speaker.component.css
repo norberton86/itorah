@@ -54,3 +54,23 @@
     height: 100%;
     background: rgb(255,255,255)
 }
+
+.icons-wrap{
+    text-decoration: none;
+    margin: .5rem;
+}
+.icons-p{
+    margin-top:.3rem;
+    margin-bottom:.10px;
+
+}
+.tracks .track {
+    padding: 10px 88px 10px 0;
+}
+
+.popover-title{
+    color: black
+}
+
+    /*popup*/
+/* tooltip */

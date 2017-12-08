@@ -76,6 +76,8 @@ import { AlertComponent } from './component/alert/alert.component';
 import { TodaySponsorComponent } from './component/today-sponsor/today-sponsor.component';
 import { AccountComponent } from './component/account/account.component';
 
+import {PopoverModule} from "ngx-popover";
+
 
 let providers = {
     "google": {
@@ -145,7 +147,7 @@ let providers = {
     AccountComponent
   ],
   imports: [
-    BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,MyDatePickerModule ,NguiAutoCompleteModule,
+    BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,MyDatePickerModule ,NguiAutoCompleteModule,PopoverModule,
      HttpModule,
      FormsModule,ReactiveFormsModule,
      Angular2SocialLoginModule,

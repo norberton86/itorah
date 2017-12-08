@@ -1,15 +1,13 @@
 import { Component, OnInit, NgZone, EventEmitter, Output } from '@angular/core';
-
 import { Speaker } from '../../model/speaker';
 import { Shiurim } from '../../model/shiurim';
 import { Page } from '../../model/page';
 import { Letter } from '../../model/letter';
 import { SpeakerService } from '../../service/speaker.service';
-import { ShiurimService } from '../../service/shiurim.service';
+import { ShiurimService, Category } from '../../service/shiurim.service';
 import { PlayerService } from '../../service/player.service';
 import { DatabaseService } from '../../service/database.service';
 import { QueueService } from '../../service/queue.service';
-
 import { Injectable } from '@angular/core'
 
 declare var $: any;
@@ -249,9 +247,9 @@ export class SpeakerComponent implements OnInit {
     }
   }
 
-  Play(id: string, title: string,sponsor:string) {
+  Play(id: string, title: string, sponsor: string) {
     var onlyAudio = title.includes('LT-Audio');
-    this.playerService.Play(title, id, onlyAudio,this.speaker.firstName+" "+this.speaker.lastName,sponsor);
+    this.playerService.Play(title, id, onlyAudio, this.speaker.firstName + " " + this.speaker.lastName, sponsor);
   }
 
 
@@ -446,7 +444,7 @@ export class SpeakerComponent implements OnInit {
     this.currentSpeakers = data;
     this.RefreshSlide(data);
 
-   
+
   }
 
   RefreshSlide(data: Array<Speaker>) {
@@ -515,8 +513,11 @@ export class SpeakerComponent implements OnInit {
         }]
     });
 
-     let self = this;
+    let self = this;
     $('li[data-type="lecture"]').click(function () {
+
+      if (self.navigatedToCategory)
+        return
 
       var id = $(this).attr('id')
 
@@ -797,5 +798,41 @@ export class SpeakerComponent implements OnInit {
     }
 
   }
+  //-----------------------------------------------------------------------------------------------------------------------
+  OpenPopover(id) {
+    if (this.requesting)
+      return;
+
+    this.requesting = true
+
+    this.shiurimService.relatedCategories(id).subscribe(result => {
+      this.requesting = false
+      this.rCategories = result
+    }, error => { this.requesting = false }, () => { })
+  }
+
+  RelatedShiurs(idShiur, idCategory) {
+    if (this.requesting)
+      return;
+
+    this.requesting = true
+
+    this.shiurimService.relatedShiur(idShiur, idCategory).subscribe(result => {
+      this.requesting = false
+      this.shiurOriginalsBeforecategory = this.allShiriums //create the copy  
+      this.FillShirium(result)
+      this.navigatedToCategory = true
+    }, error => { this.requesting = false }, () => { })
+  }
+
+  BackFromCategories() {
+    this.FillShirium(this.shiurOriginalsBeforecategory)
+    this.navigatedToCategory = false
+  }
+
+  rCategories: Array<Category> = []
+  shiurOriginalsBeforecategory: Array<Shiurim> = []  //copy to navigate back
+  requesting: boolean = false
+  navigatedToCategory: boolean = false
 
 }

@@ -26,14 +26,31 @@ export class ShiurimService extends Service {
         return this.http.get(this.ruta + "Shiurim?SpeakerID=" + idSpeaker).map(
             (response) => {
                 let body = response.json();
-                body.forEach(function (a) {
-                    a.credits = Math.floor((Math.random() * 10) + 1)
-                    a.sponsored = false
-                });
                 return body;
             }
         )
     }
+
+    public relatedCategories(shiur: number): Observable<Category[]> {
+
+        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/relatedcategories?ShiurID=" + shiur).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    }
+
+    public relatedShiur(shiur: number,CategoryID:number): Observable<Shiurim[]> {
+
+        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/relatedshiurim?ShiurID="+shiur+"&CategoryID="+CategoryID).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    }
+
 
     setItem(message: ComboItem): void {
         this.subject.next(message);
@@ -71,13 +88,13 @@ export class ShiurimService extends Service {
         )
     }
 
-    search(SearchText: string, PageSize: number, PageIndex: number,categoryId:number): Observable<any> {
+    search(SearchText: string, PageSize: number, PageIndex: number, categoryId: number): Observable<any> {
 
         var query = ""
         if (SearchText != '')
             query = "&SearchText=" + SearchText
 
-        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/all?PageIndex=" + PageIndex + "&PageSize=" + PageSize + query+"&CategoryID="+categoryId).map(
+        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/all?PageIndex=" + PageIndex + "&PageSize=" + PageSize + query + "&CategoryID=" + categoryId).map(
             (response) => {
                 let body = response.json()
                 return body;
@@ -85,4 +102,9 @@ export class ShiurimService extends Service {
         )
     }
 
+}
+
+export class Category {
+    ID: number
+    Name: string
 }

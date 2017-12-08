@@ -14,6 +14,7 @@ export class TodaySponsorComponent implements OnInit {
   dedicated: string
   englishDate:string=''
   hebrewDate:string =''
+  superhebrewDate:string=''
 
   constructor(private homeService: HomeService) { }
 
@@ -56,6 +57,7 @@ export class TodaySponsorComponent implements OnInit {
     this.homeService.readCalendar().subscribe(result=>{
       this.englishDate=result[0]
       this.hebrewDate=result[1]
+      this.superhebrewDate=result[2]
     },error=>{},()=>{})
   }
 }

@@ -1,3 +1,9 @@
 @media(max-width: 767px){
   .daty{ display: none;}
 }
+
+.withMargin{
+  padding-right: 0.5em;
+  margin-right: 0.5em;
+  border-right: 1px solid #bababa;
+}

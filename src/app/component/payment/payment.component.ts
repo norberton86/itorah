@@ -36,10 +36,10 @@ export class PaymentComponent implements OnInit, OnChanges {
     let EMAIL_REGEXP = /^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/;
 
     this.form = this._fb.group({
-      creditCard: ['4242424242424242', Validators.compose([<any>CreditCardValidator.validateCCNumber, Validators.required])],
-      expirationDate: ['08 / 20', [<any>CreditCardValidator.validateExpDate]],
-      cvc: ['036', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4)]],
-      name: ['norberto', [Validators.required]],
+      creditCard: ['', Validators.compose([<any>CreditCardValidator.validateCCNumber, Validators.required])],
+      expirationDate: ['', [<any>CreditCardValidator.validateExpDate]],
+      cvc: ['', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4)]],
+      name: ['', [Validators.required]],
       email: ['', [Validators.pattern(EMAIL_REGEXP)]]
     });
   }

@@ -294,6 +294,9 @@ export class SpeakerComponent implements OnInit {
       $('#item-content-1 .tile-box-speakers').css('top', ' 0')
       $('#item-content-1 .tile-box-speakers').css('background', 'rgb(255,255,255)')
 
+      //hide the element on the header 
+      $('.search-inner button').hide()
+      $('a.btn-menu').hide()
       //------------------------------------------------------------------------------ set the table height
       var father_height = $('#item-content-1 .tile-box-speakers').css('height').split("px")[0]
       this.height_primary = $('#item-content-1 .tile-box-body').css('height')
@@ -321,6 +324,10 @@ export class SpeakerComponent implements OnInit {
       $('#item-content-1 .tile-box-speakers').css('left', this.left)
       $('#item-content-1 .tile-box-speakers').css('top', this.top)
       $('#item-content-1 .tile-box-speakers').css('background', this.background)
+
+      //show the element on the header 
+      $('.search-inner button').show()
+      $('a.btn-menu').show()
       //------------------------------------------------------------------------------ reset the table height
       $('#item-content-1 .tile-box-body').each(function (index) {
         $(this).css('height', self.height_primary)

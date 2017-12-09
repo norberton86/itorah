@@ -278,32 +278,32 @@ export class SpeakerComponent implements OnInit {
 
     if (this.enter) {
 
-      this.zIndex = $('.tile-box-speakers').css('z-index');
-      this.width = $('.tile-box-speakers').css('width')
-      this.height = $('.tile-box-speakers').css('height')
-      this.position = $('.tile-box-speakers').css('position')
-      this.left = $('.tile-box-speakers').css('left')
-      this.top = $('.tile-box-speakers').css('top')
-      this.background = $('.tile-box-speakers').css('background')
+      this.zIndex = $('#item-content-1 .tile-box-speakers').css('z-index');
+      this.width = $('#item-content-1 .tile-box-speakers').css('width')
+      this.height = $('#item-content-1 .tile-box-speakers').css('height')
+      this.position = $('#item-content-1 .tile-box-speakers').css('position')
+      this.left = $('#item-content-1 .tile-box-speakers').css('left')
+      this.top = $('#item-content-1 .tile-box-speakers').css('top')
+      this.background = $('#item-content-1 .tile-box-speakers').css('background')
 
-      $('.tile-box-speakers').css('z-index', '9999')
-      $('.tile-box-speakers').css('width', ' 100%')
-      $('.tile-box-speakers').css('height', ' 100%')
-      $('.tile-box-speakers').css('position', ' fixed')
-      $('.tile-box-speakers').css('left', ' 0')
-      $('.tile-box-speakers').css('top', ' 0')
-      $('.tile-box-speakers').css('background', 'rgb(255,255,255)')
+      $('#item-content-1 .tile-box-speakers').css('z-index', '9999')
+      $('#item-content-1 .tile-box-speakers').css('width', ' 100%')
+      $('#item-content-1 .tile-box-speakers').css('height', ' 100%')
+      $('#item-content-1 .tile-box-speakers').css('position', ' fixed')
+      $('#item-content-1 .tile-box-speakers').css('left', ' 0')
+      $('#item-content-1 .tile-box-speakers').css('top', ' 0')
+      $('#item-content-1 .tile-box-speakers').css('background', 'rgb(255,255,255)')
 
       //------------------------------------------------------------------------------ set the table height
-      var father_height = $('.tile-box-speakers').css('height').split("px")[0]
-      this.height_primary = $('.tile-box-body').css('height')
+      var father_height = $('#item-content-1 .tile-box-speakers').css('height').split("px")[0]
+      this.height_primary = $('#item-content-1 .tile-box-body').css('height')
 
-      $('.tile-box-body').each(function (index) {
+      $('#item-content-1 .tile-box-body').each(function (index) {
         $(this).css('height', father_height * 90 / 100 + 'px')
       })
       //----------------------------------------------------------------------------- set how many element we have 
 
-      var current_height_primary = $('.tile-box-body').css('height').split("px")[0]
+      var current_height_primary = $('#item-content-1 .tile-box-body').css('height').split("px")[0]
       var track_height = $('.track').css('height').split("px")[0]
 
       this.elem = Math.floor(parseFloat(current_height_primary) / track_height) * 4
@@ -314,15 +314,15 @@ export class SpeakerComponent implements OnInit {
     }
     else {
 
-      $('.tile-box-speakers').css('z-index', this.zIndex)
-      $('.tile-box-speakers').css('width', this.width)
-      $('.tile-box-speakers').css('height', this.height)
-      $('.tile-box-speakers').css('position', this.position)
-      $('.tile-box-speakers').css('left', this.left)
-      $('.tile-box-speakers').css('top', this.top)
-      $('.tile-box-speakers').css('background', this.background)
+      $('#item-content-1 .tile-box-speakers').css('z-index', this.zIndex)
+      $('#item-content-1 .tile-box-speakers').css('width', this.width)
+      $('#item-content-1 .tile-box-speakers').css('height', this.height)
+      $('#item-content-1 .tile-box-speakers').css('position', this.position)
+      $('#item-content-1 .tile-box-speakers').css('left', this.left)
+      $('#item-content-1 .tile-box-speakers').css('top', this.top)
+      $('#item-content-1 .tile-box-speakers').css('background', this.background)
       //------------------------------------------------------------------------------ reset the table height
-      $('.tile-box-body').each(function (index) {
+      $('#item-content-1 .tile-box-body').each(function (index) {
         $(this).css('height', self.height_primary)
       })
       //----------------------------------------------------------------------------- reset how many element we have 

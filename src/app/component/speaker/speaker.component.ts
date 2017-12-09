@@ -817,6 +817,8 @@ export class SpeakerComponent implements OnInit {
 
     this.requesting = true
 
+    this.selectedCategory=this.rCategories.find(c=>c.ID==idCategory).Name
+
     this.shiurimService.relatedShiur(idShiur, idCategory).subscribe(result => {
       this.requesting = false
 
@@ -837,5 +839,6 @@ export class SpeakerComponent implements OnInit {
   shiurOriginalsBeforecategory: Array<Shiurim> = []  //copy to navigate back
   requesting: boolean = false
   navigatedToCategory: boolean = false
+  selectedCategory:string=''
 
 }

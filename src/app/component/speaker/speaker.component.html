@@ -74,6 +74,10 @@
 							<h5>{{speaker?.title}} {{speaker?.firstName}} {{speaker?.lastName}}</h5>
 							<p>{{speaker?.totalShiurim}} Shiurim</p>
 						</div>
+
+						<div class="lists-head-inner" *ngIf="navigatedToCategory">
+							<h5><b>Categoria:</b> {{selectedCategory}}</h5>
+						</div>
 						<!-- /.lists-head-inner -->
 
 						<div class="search-secondary">

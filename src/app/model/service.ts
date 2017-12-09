@@ -19,7 +19,7 @@ export class Service {
     Notify(message: string, error: boolean) {
         $.notify({                          //create the popup
             title: "",
-            message: "<p>"+message+"</p>"
+            message: '<div><p>'+message+'</p></div>'
         },
         {
                 delay: 3000,                       //never autoclose
@@ -33,6 +33,16 @@ export class Service {
                 },
                 type: error==false?"success":"error"
         });
+
+        if(screen.width>=992)  //large
+         $( "div[data-notify='container']").css('width','14%')
+        else
+        if(screen.width>=768&&screen.width<992)//medium
+         $( "div[data-notify='container']").css('width','20%')
+        else
+        if(screen.width>=576&&screen.width<768)//small
+         $( "div[data-notify='container']").css('width','50%')
+         
     }
 
     getToken(): string {

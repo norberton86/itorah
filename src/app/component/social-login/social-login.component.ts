@@ -40,7 +40,7 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, public _auth: AuthService, private ngZone: NgZone, private queueService: QueueService, private podcastService: PodcastService, private subscribeService: SubscribeService, private socialLoginServic: SocialLoginServic, private tehillimService: TehillimService,private accountService:AccountService,private myCreditsService:MyCreditsService,private alertService:AlertService) {
+  constructor(private fb: FormBuilder, public _auth: AuthService, private ngZone: NgZone, private queueService: QueueService, private podcastService: PodcastService, private subscribeService: SubscribeService, private socialLoginServic: SocialLoginServic, private tehillimService: TehillimService, private accountService: AccountService, private myCreditsService: MyCreditsService, private alertService: AlertService) {
     this.InitializeForm();
   }
 
@@ -62,10 +62,10 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
     let self = this;
     this.socialLoginServic.Forgot(this.form.value.email).subscribe(
       function (respond) {
-        if(respond=="Email sent")
-        self.socialLoginServic.Notify("Check your email", false)
+        if (respond == "Email sent")
+          self.socialLoginServic.Notify("Check your email", false)
         else
-        self.socialLoginServic.Notify("Recover password service is not available ", false)
+          self.socialLoginServic.Notify("Recover password service is not available ", false)
       },
       function (error) {
         self.socialLoginServic.Notify("Service not available", true)
@@ -88,7 +88,15 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
     this.title = "Sign In"
   }
 
+
+  requesting: boolean = false
+
   Register() {
+
+    if (this.requesting)
+      return
+
+    this.requesting = true
 
     this.socialLoginServic.Create({
       Email: this.form.value.email,
@@ -96,13 +104,16 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
       LastName: this.form.value.last,
       Password: this.form.value.password
     }).subscribe(
-      (data) => {
+      data => {
+        this.requesting=false
         if (data) {
           this.Reset()
           this.GoBackfromAccount();
           this.socialLoginServic.Notify("Account Created", false)
         }
-      })
+      },error=>{
+        this.requesting=false
+      },()=>{})
   }
 
   Privacy() {
@@ -125,15 +136,15 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
 
 
         var grant_type = data.provider == "google" ? "googleAuth" : "facebookAuth"
-        var token="";  
+        var token = "";
 
-        if(data.provider=="google")
-        token=data.idToken
+        if (data.provider == "google")
+          token = data.idToken
         else
-        token=data.token
+          token = data.token
 
         self.socialLoginServic.SignThirdParty(grant_type, token).subscribe(function (respond) {
-          self.Save({ name: data.name, email:data.email, token: respond.access_token, provider: data.provider })
+          self.Save({ name: data.name, email: data.email, token: respond.access_token, provider: data.provider })
           self.messageVisible = false;
         },
           function (error) {
@@ -163,15 +174,25 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
     this.RefreshView();
   }
 
+
+ 
   Submit() {
+   
+   if(this.requesting)
+   return
+
+   this.requesting=true
+
     let self = this;
 
     this.socialLoginServic.Sign(this.form.value.email, this.form.value.password).subscribe(
       function (respond) {
+        self.requesting=false
         self.Save({ name: "itorah itorah", email: self.form.value.email, token: respond.access_token, provider: "itorah" })
         self.messageVisible = false;
       },
       function (error) {
+        self.requesting=false
         self.messageVisible = true;
 
         setTimeout(function () {

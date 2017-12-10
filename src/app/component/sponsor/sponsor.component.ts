@@ -122,7 +122,7 @@ export class SponsorComponent implements OnInit {
       this.sponsorService.addDay(sponsor).subscribe(result => {
         this.requesting=false
         if (result == "Success")
-          this.sponsorService.Notify("Sponsor Completed", false);
+          this.sponsorService.Notify("Thank you for your sponsorship. Your credit card will show a payment Torah Learning Resources LTD, an approved 501c# charity. You will receive an email receipt conforming your sponsorship after our administrative team reviews ans posts your sponsorship. Normally this takes about one bussiness day.", false);
         else
           this.sponsorService.Notify("Transaction Declined", true);
       },
@@ -154,7 +154,7 @@ export class SponsorComponent implements OnInit {
         this.sponsorService.addShiur(sponsorShiur).subscribe(result => {
           this.requesting=false
           if (result == "Success")
-            this.sponsorService.Notify("Sponsor Completed", false);
+            this.sponsorService.Notify("Thank you for your sponsorship. Your credit card will show a payment Torah Learning Resources LTD, an approved 501c# charity. You will receive an email receipt conforming your sponsorship after our administrative team reviews ans posts your sponsorship. Normally this takes about one bussiness day.", false);
           else
             this.sponsorService.Notify("Transaction Declined", true);
         },
@@ -315,6 +315,7 @@ export class SponsorComponent implements OnInit {
 
   setShiur(s: Shiurim) {
     this.shiurID = parseInt(s.id)
+    this.value=180
     this.Back();
     this.nameShiurSelected = s.title
   }

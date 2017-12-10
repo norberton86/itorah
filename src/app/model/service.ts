@@ -34,6 +34,10 @@ export class Service {
                 type: error==false?"success":"error"
         });
 
+        if(message.indexOf("Thank you")>=0){
+         $( "div[data-notify='container']").css('width','90%')   
+        }
+        else
         if(screen.width>=992)  //large
          $( "div[data-notify='container']").css('width','14%')
         else

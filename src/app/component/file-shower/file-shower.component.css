@@ -1,0 +1,12 @@
+.imgGif{
+margin-top: 1em;
+height: 67.8em;
+}
+
+@media(max-height:800px) { /*mobile*/
+ 
+ .imgGif{
+    max-height: 58em;
+ }
+
+}

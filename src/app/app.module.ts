@@ -77,6 +77,7 @@ import { TodaySponsorComponent } from './component/today-sponsor/today-sponsor.c
 import { AccountComponent } from './component/account/account.component';
 
 import {PopoverModule} from "ngx-popover";
+import { FileShowerComponent } from './component/file-shower/file-shower.component';
 
 
 let providers = {
@@ -144,7 +145,8 @@ let providers = {
     AdvertiseComponent,
     AlertComponent,
     TodaySponsorComponent,
-    AccountComponent
+    AccountComponent,
+    FileShowerComponent
   ],
   imports: [
     BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,MyDatePickerModule ,NguiAutoCompleteModule,PopoverModule,

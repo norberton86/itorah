@@ -17,12 +17,18 @@ export class InspireService extends Service{
     }
 
 
-   public read(): Observable<Inspire> {
+   public read(): Observable<any> {
         
         return this.http.get(this.ruta).map(
             (response) => {
+                if((<any>response)._body!='')
+                {
                 let body = response.json();
                 return body;
+                }
+                else
+                return ''
+
             }
         )
    }

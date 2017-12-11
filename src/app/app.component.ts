@@ -251,4 +251,12 @@ export class AppComponent implements OnInit {
     }, error => { }, () => { })
   }
 
+  CloseSpeaker()
+  {
+    if($('#item-content-1').hasClass('vissible'))//is speakers is open
+    {
+      document.getElementById('speakers').click()  //execute a click over the button to produce a closing 
+    }
+  }
+
 }

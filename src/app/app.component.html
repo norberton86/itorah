@@ -49,7 +49,7 @@
 
 							</li>
 
-							<li>
+							<li (click)="CloseSpeaker()">
 								<a href="#" data-tooltip="As you browse the available Shiurim on iTorah.com, simply add them to a list of classes to listen (or watch).  This list is called the QUEUE.  The shiur will remain on the lsit until after you have completed it.">
 									<i class="ico-queue"></i> <span>Queue</span>
 								</a>
@@ -298,7 +298,7 @@
 										</div><!-- /.tile-content -->
 
 										<div class="tile-actions">
-											<a href="#item-content-1" class="btn btn-yellow btn-medium" data-size="full" (click)="AccionSpeaker()">Speakers</a>
+											<a href="#item-content-1" class="btn btn-yellow btn-medium" data-size="full" (click)="AccionSpeaker()" id="speakers">Speakers</a>
 
 											<a href="#" class="link-search" (click)="Browse()">
 										<i class="ico-magnifier-large"></i>
@@ -404,7 +404,7 @@
 										<div class="tile-actions">
 											<ul class="list-actions">
 												<li >
-													<img  src="/assets/build/css/images/play_button.png" (click)="playNow(7,'DailyHalacha.com')"/>
+													<img  src="/assets/build/css/images/play_button.png" (click)="playNow(7,'DailyHalacha.com')" style="cursor: pointer;"/>
 													<a href="#" data-size="half" title="Today's Reading" (click)="readNow(7)">
 														<img src="/assets/build/css/images/read_now.png" />
 													</a>
@@ -426,9 +426,9 @@
 												</li>
 											</ul><!-- /.list-actions -->
 
-											<a href="#" class="link-search">
-										<i class="ico-magnifier-large"></i>
-									</a>
+											<!--<a href="#" class="link-search">
+												<i class="ico-magnifier-large"></i>
+											</a>-->
 										</div><!-- /.tile-actions -->
 									</div><!-- /.tile-body -->
 								</div><!-- /.tile-inner -->
@@ -491,7 +491,7 @@
 
 											<span>Authored by Rabbi David Asher</span>
 											<br>
-											<span style="color:darkgoldenrod;">COMING SOON</span>
+											
 										</div><!-- /.tile-content -->
 
 										<div class="tile-actions">

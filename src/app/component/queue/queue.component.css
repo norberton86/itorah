@@ -7,3 +7,17 @@ li+li,li{
     padding-left: 0.6em !important;
 }
 
+.list-updates{
+    max-height: 38.5em;
+    overflow: auto;
+}
+
+
+@media(max-height:800px) { /*mobile*/
+ 
+ .list-updates{
+    max-height: 29.5em;
+ }
+
+}
+

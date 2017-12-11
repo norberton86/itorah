@@ -32,7 +32,7 @@ export class PopupRegularComponent implements OnInit {
 
  model: any = {
     beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
-    endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() }
+    endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()+14 }
   };
 
   constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) { }
@@ -147,20 +147,20 @@ export class PopupRegularComponent implements OnInit {
     )
   }
 
-  hebrewFirstName: string
-  hebrewMotherName: string
-  translitFirstName: string
+  hebrewFirstName: string=''
+  hebrewMotherName: string=''
+  translitFirstName: string=''
   translitMotherName: string
-  condition: string
+  condition: string=''
   isImmediateFamily: string = '2'
-  phone: string
-  relationshiptoPerson: string
+  phone: string=''
+  relationshiptoPerson: string=''
 
-  contactName: string
-  contactPhone: string
-  contactRelationshipToPerson: string
-  contactEmail: string
-  commentsToAdmin: string
+  contactName: string=''
+  contactPhone: string=''
+  contactRelationshipToPerson: string=''
+  contactEmail: string=''
+  commentsToAdmin: string=''
 
   Reset() {
     this.hebrewFirstName = ""
@@ -180,7 +180,7 @@ export class PopupRegularComponent implements OnInit {
 
     this.model = {
       beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
-      endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() }
+      endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()+14 }
     }
     
     $('#field-hebrew-fname').val('')

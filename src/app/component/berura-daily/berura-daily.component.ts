@@ -31,6 +31,7 @@ export class BeruraDailyComponent implements OnInit {
 
   ngOnInit() {
     this.Read();
+    this.getSimans()
   }
 
   keyDownEmunahFunction(event) {
@@ -145,6 +146,39 @@ export class BeruraDailyComponent implements OnInit {
   }
 
   Play(title: string, url: string) {
-    this.playerService.PlayAudio(title, url,"");
+    this.playerService.PlayAudio(title, url, "");
   }
+
+  //-------------------------------------------------------------------------------------------------------------------------------------------
+  simans: Array<string> = []
+  siman: string
+  getSimans() {
+    this.beruraDailyService.getSimans().subscribe(result => {
+
+      result.unshift("Select Siman")
+      this.simans = result
+      this.siman = this.simans[0]
+
+    }, error => { }, () => { })
+  }
+
+  readBySimans() {
+
+    if (this.siman == "Select Siman")
+      this.Read()
+    else {
+      this.beruraDailyService.readBySimans(this.siman).subscribe(respond => {
+
+        this.allDailys = respond;
+
+        localStorage.setItem("bdaily", JSON.stringify(respond));
+
+        this.Update();
+      }, error => { }, () => {
+
+      })
+    }
+
+  }
+
 }

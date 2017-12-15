@@ -11,8 +11,7 @@ declare var VirtualKeyboard: any;
 @Component({
   selector: 'app-popup-emergency',
   templateUrl: './popup-emergency.component.html',
-  styleUrls: ['./popup-emergency.component.css'],
-  providers: [RegisterTehellimService]
+  styleUrls: ['./popup-emergency.component.css']
 })
 export class PopupEmergencyComponent implements OnInit {
 
@@ -27,12 +26,17 @@ export class PopupEmergencyComponent implements OnInit {
     dateFormat: 'mm.dd.yyyy',
   };
 
-   model: any = {
+  model: any = {
     beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
-    endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()+14 }
+    endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() + 14 }
   };
 
-  constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) { }
+  constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) {
+    this.registerTehellimService.getData().subscribe(item => {
+      this.translitFirstName = item[0]
+      this.translitMotherName = item[1]
+    });
+  }
 
   ngOnInit() {
     this.ReadCountry()
@@ -121,21 +125,21 @@ export class PopupEmergencyComponent implements OnInit {
     )
   }
 
-  hebrewFirstName: string=''
-  hebrewMotherName: string=''
-  translitFirstName: string=''
-  translitMotherName: string=''
-  condition: string=''
+  hebrewFirstName: string = ''
+  hebrewMotherName: string = ''
+  translitFirstName: string = ''
+  translitMotherName: string = ''
+  condition: string = ''
   isImmediateFamily: string = '2'
-  phone: string=''
-  relationshiptoPerson: string=''
+  phone: string = ''
+  relationshiptoPerson: string = ''
 
-  contactName: string=''
-  contactPhone: string=''
-  contactRelationshipToPerson: string=''
-  contactEmail: string=''
-  commentsToAdmin: string=''
-  emailMessage: string=''
+  contactName: string = ''
+  contactPhone: string = ''
+  contactRelationshipToPerson: string = ''
+  contactEmail: string = ''
+  commentsToAdmin: string = ''
+  emailMessage: string = ''
 
   Reset() {
     this.hebrewFirstName = ""
@@ -156,7 +160,7 @@ export class PopupEmergencyComponent implements OnInit {
 
     this.model = {
       beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
-      endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()+14 }
+      endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() + 14 }
     }
 
     $('#field-hebrew-fname-eme').val('')

@@ -11,8 +11,7 @@ declare var VirtualKeyboard: any;
 @Component({
   selector: 'app-popup-regular',
   templateUrl: './popup-regular.component.html',
-  styleUrls: ['./popup-regular.component.css'],
-  providers: [RegisterTehellimService]
+  styleUrls: ['./popup-regular.component.css']
 })
 export class PopupRegularComponent implements OnInit {
 
@@ -30,12 +29,18 @@ export class PopupRegularComponent implements OnInit {
     dateFormat: 'mm.dd.yyyy',
   };
 
- model: any = {
+  model: any = {
     beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
-    endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()+14 }
+    endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() + 14 }
   };
 
-  constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) { }
+  constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) {
+
+    this.registerTehellimService.getData().subscribe(item => {
+      this.translitFirstName = item[0]
+      this.translitMotherName = item[1]
+    });
+  }
 
   ngOnInit() {
     this.ReadCountry()
@@ -147,20 +152,20 @@ export class PopupRegularComponent implements OnInit {
     )
   }
 
-  hebrewFirstName: string=''
-  hebrewMotherName: string=''
-  translitFirstName: string=''
+  hebrewFirstName: string = ''
+  hebrewMotherName: string = ''
+  translitFirstName: string = ''
   translitMotherName: string
-  condition: string=''
+  condition: string = ''
   isImmediateFamily: string = '2'
-  phone: string=''
-  relationshiptoPerson: string=''
+  phone: string = ''
+  relationshiptoPerson: string = ''
 
-  contactName: string=''
-  contactPhone: string=''
-  contactRelationshipToPerson: string=''
-  contactEmail: string=''
-  commentsToAdmin: string=''
+  contactName: string = ''
+  contactPhone: string = ''
+  contactRelationshipToPerson: string = ''
+  contactEmail: string = ''
+  commentsToAdmin: string = ''
 
   Reset() {
     this.hebrewFirstName = ""
@@ -180,9 +185,9 @@ export class PopupRegularComponent implements OnInit {
 
     this.model = {
       beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
-      endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()+14 }
+      endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() + 14 }
     }
-    
+
     $('#field-hebrew-fname').val('')
     $('#field-hebrew-lname').val('')
 

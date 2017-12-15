@@ -39,6 +39,7 @@ import {AlertService} from './service/alert.service'
 import {TehillimService} from './service/tehillim.service'
 import {AccountService} from './service/account.service'
 import {MyCreditsService} from './service/my-credits.service'
+import {RegisterTehellimService} from './service/register-tehellim.service'
 import {DndModule} from 'ng2-dnd';
 import {ShareButtonsModule} from 'ngx-sharebuttons';
 import { SubscribeComponent } from './component/subscribe/subscribe.component';
@@ -156,7 +157,7 @@ let providers = {
      DndModule.forRoot(),
      ShareButtonsModule.forRoot()
   ],
-  providers: [HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
+  providers: [RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

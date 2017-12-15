@@ -13,7 +13,7 @@ declare var VirtualKeyboard: any;
   selector: 'app-popup-register',
   templateUrl: './popup-register.component.html',
   styleUrls: ['./popup-register.component.css'],
-  providers: [RegisterTehellimService, PlayerService]
+  providers: [ PlayerService]
 })
 export class PopupRegisterComponent implements OnInit {
 
@@ -132,6 +132,7 @@ export class PopupRegisterComponent implements OnInit {
     this.Close()
     $('#form-register-tehillim-step-regular').toggleClass('shown');
     $('.mydrp').css('width', '224px')
+    this.registerTehellimService.setData([this.firstName,this.mother])
   }
 
   OpenEmergency() {
@@ -139,6 +140,7 @@ export class PopupRegisterComponent implements OnInit {
     this.Close()
     $('#form-register-tehillim-step-emergency').toggleClass('shown');
     $('.mydrp').css('width', '224px')
+    this.registerTehellimService.setData([this.firstName,this.mother])
   }
 
   OpenLevaya() {

@@ -61,6 +61,7 @@ export class Service {
 
 export class ServiceLogin extends Service {
     private subjectClean: Subject<string> = new Subject<string>();
+    private subjectData: Subject<any> = new Subject<any>();
 
     constructor(http: Http) {
         super(http);
@@ -72,6 +73,14 @@ export class ServiceLogin extends Service {
     }
 
     setLogin(action: string): void {
+        this.subjectClean.next(action);
+    }
+
+    getData(): Observable<any> {
+        return this.subjectClean.asObservable();
+    }
+
+    setData(action: any): void {
         this.subjectClean.next(action);
     }
 

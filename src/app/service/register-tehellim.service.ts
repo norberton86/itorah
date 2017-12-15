@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Service } from '../model/service';
+import { ServiceLogin } from '../model/service';
 import { RegisterTehellim, TehillimResult } from '../model/register-tehellim';
 import { RegisterLevaya } from '../model/register-levaya';
 import { Category } from '../model/Tehillim/tehillim';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class RegisterTehellimService extends Service {
+export class RegisterTehellimService extends ServiceLogin {
 
 
   constructor(http: Http) {

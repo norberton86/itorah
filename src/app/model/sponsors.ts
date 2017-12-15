@@ -1,5 +1,5 @@
 export class Sponsor {
-    SourceID: number
+    SourceID: Array<number>
     ForDate: Date
     DedicationTypeID: number
     SponsoredForName: string

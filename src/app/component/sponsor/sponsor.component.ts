@@ -19,7 +19,7 @@ declare var $: any;
 export class SponsorComponent implements OnInit {
   value: number = 0
 
-  sourceId: number = -1
+  sourceId: Array<number> = []
 
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -60,40 +60,40 @@ export class SponsorComponent implements OnInit {
 
     this.dT = this.dedicationType[0]
 
-    /* this.shiurimService.read(8).subscribe(response=>{  //remove this
-       this.all=response
-     }) */
-
-
-    
-
     this.getCats()
-
   }
 
-  unAvailable(source: number) {
-    let self = this
-    this.sponsorService.getUnAvailable(source).subscribe(function (response) {
-
-      var un = []
-
-      response.forEach(function (a) {
-        un.push({ year: new Date(a).getFullYear(), month: new Date(a).getMonth() + 1, day: new Date(a).getDate() })
-      })
-
-      self.myDatePickerOptions = {
-        // other options...
-        dateFormat: 'mm.dd.yyyy',
-        disableDays: un
-      };
-
-
-    }, function (error) {
-
-    }, function () { })
+  isSourceNotAvailable(source: number): boolean {
+    return this.availables.findIndex(s => s == source) < 0
   }
 
-  requesting:boolean=false
+
+  availables: Array<number> = []
+  alertMessage: string = ""
+  Availables(event: any) {
+
+    if (event.jsdate != null) {
+      let self = this
+      this.sponsorService.Availables(event.date.month + "/" + event.date.day + "/" + event.date.year).subscribe(function (response) {
+
+        if (response == "Please select a date that is not Shabbat or a Holiday.") {
+          self.alertMessage = response
+        }
+        else {
+          self.alertMessage = ""
+          self.itorah = false
+          self.halacha = false
+          self.tehillim = false
+          self.availables = response
+        }
+
+      }, function (error) {
+
+      }, function () { })
+    }
+  }
+
+  requesting: boolean = false
 
   Save(cc: CreditCard) {
 
@@ -120,14 +120,16 @@ export class SponsorComponent implements OnInit {
       }
 
       this.sponsorService.addDay(sponsor).subscribe(result => {
-        this.requesting=false
-        if (result == "Success")
+        this.requesting = false
+        if (result == "Success") {
           this.sponsorService.Notify("Thank you for your sponsorship. Your credit card will show a payment Torah Learning Resources LTD, an approved 501c# charity. You will receive an email receipt conforming your sponsorship after our administrative team reviews ans posts your sponsorship. Normally this takes about one bussiness day.", false);
+          this.Close();
+        }
         else
           this.sponsorService.Notify("Transaction Declined", true);
       },
         error => {
-          this.requesting=false
+          this.requesting = false
           this.sponsorService.Notify("Error trying to access", true);
         }, () => {
 
@@ -152,14 +154,17 @@ export class SponsorComponent implements OnInit {
 
 
         this.sponsorService.addShiur(sponsorShiur).subscribe(result => {
-          this.requesting=false
-          if (result == "Success")
+          this.requesting = false
+          if (result == "Success") {
             this.sponsorService.Notify("Thank you for your sponsorship. Your credit card will show a payment Torah Learning Resources LTD, an approved 501c# charity. You will receive an email receipt conforming your sponsorship after our administrative team reviews ans posts your sponsorship. Normally this takes about one bussiness day.", false);
+            this.Close();
+          }
+
           else
             this.sponsorService.Notify("Transaction Declined", true);
         },
           error => {
-            this.requesting=false
+            this.requesting = false
             this.sponsorService.Notify("Error trying to access", true);
           }, () => {
 
@@ -187,14 +192,14 @@ export class SponsorComponent implements OnInit {
         sponsorMedia.SponsoredByName = this.name
 
         this.sponsorService.addMedia(sponsorMedia).subscribe(result => {
-          this.requesting=false
+          this.requesting = false
           if (result == "Success")
             this.sponsorService.Notify("Sponsor Completed", false);
           else
             this.sponsorService.Notify("Transaction Declined", true);
         },
           error => {
-            this.requesting=false
+            this.requesting = false
             this.sponsorService.Notify("Error trying to access", true);
           }, () => {
 
@@ -203,21 +208,28 @@ export class SponsorComponent implements OnInit {
 
   }
 
-  Check(name: number) {
+  Check() {
 
-    this.itorah = name == 17 ? true : false
-    this.halacha = name == 6 ? true : false
-    this.tehillim = name == 7 ? true : false
+    this.sourceId = []
+    this.value = 0
 
-    switch (name) {
-      case 17: this.value = 180; break;
-      case 6: this.value = 52; break;
-      case 7: this.value = 52; break;
+    if (this.itorah) {
+      this.value += 180
+      this.sourceId.push(17)
     }
 
-    this.sourceId = name
+    if (this.halacha) {
+      this.value += 52
+      this.sourceId.push(6)
+    }
 
-    this.unAvailable(name)
+    if (this.tehillim) {
+      this.value += 52
+      this.sourceId.push(7)
+    }
+
+
+
   }
 
   itorah: boolean = false
@@ -240,7 +252,7 @@ export class SponsorComponent implements OnInit {
 
   ShowPayment() {
 
-    if (this.section == 'day' && ((!this.tehillim && !this.halacha && !this.itorah) || this.sponsorshipFor == '' || this.name == '')) {
+    if (this.section == 'day' && (this.sourceId.length == 0 || this.sponsorshipFor == '' || this.name == '')) {
       this.sponsorService.Notify("Please fill the form complety", true);
       return;
     }
@@ -284,16 +296,14 @@ export class SponsorComponent implements OnInit {
     }
   }
 
-  getBySubs()
-  {
+  getBySubs() {
     this.Load()
   }
 
-  getSelecteCategory():number
-  {
-    var categoryQuery=this.cat.id
-    if(this.sub.id!=-1)
-    categoryQuery=this.sub.id
+  getSelecteCategory(): number {
+    var categoryQuery = this.cat.id
+    if (this.sub.id != -1)
+      categoryQuery = this.sub.id
 
     return categoryQuery
   }
@@ -303,7 +313,7 @@ export class SponsorComponent implements OnInit {
 
 
 
-    self.shiurimService.search(this.query_main, 24, 1,this.getSelecteCategory())
+    self.shiurimService.search(this.query_main, 24, 1, this.getSelecteCategory())
       .subscribe(function (response) {
 
         self.Update(response.totalPageCount, response.shiurList)
@@ -315,7 +325,7 @@ export class SponsorComponent implements OnInit {
 
   setShiur(s: Shiurim) {
     this.shiurID = parseInt(s.id)
-    this.value=180
+    this.value = 180
     this.Back();
     this.nameShiurSelected = s.title
   }
@@ -354,7 +364,7 @@ export class SponsorComponent implements OnInit {
         p.current = true;
     })
 
-    this.shiurimService.search(this.query_main, 24, id,this.getSelecteCategory())
+    this.shiurimService.search(this.query_main, 24, id, this.getSelecteCategory())
       .subscribe(response => this.all = response.shiurList)
 
   }
@@ -395,22 +405,25 @@ export class SponsorComponent implements OnInit {
   getCats() {
     this.sponsorService.getCategory().subscribe(result => {
       this.cats = result
-      this.cat=this.cats[0]
+      this.cat = this.cats[0]
       this.getSubs()
     }, error => { }, () => { })
   }
 
   getSubs() {
-    this.subs=[]
+    this.subs = []
     this.sponsorService.getSubCategory().subscribe(result => {
-      this.subs.push({id:-1,name:"All",parentID:0})
-      var others=result.filter(r=>r.parentID==this.cat.id)
-      others.forEach(o=>{
+      this.subs.push({ id: -1, name: "All", parentID: 0 })
+      var others = result.filter(r => r.parentID == this.cat.id)
+      others.forEach(o => {
         this.subs.push(o)
       })
-      this.sub=this.subs[0]
+      this.sub = this.subs[0]
       this.Load()
     }, error => { }, () => { })
   }
 
+  Close() {
+    $('#sponsor').toggleClass('shown');
+  }
 }

@@ -18,9 +18,9 @@ export class SponsorService extends Service {
 
     }
 
-    public getUnAvailable(source: number): Observable<Array<Date>> {
+    public Availables(date: string): Observable<any> {
 
-        return this.http.get("http://itorahapi.3nom.com/api/Sponsor?SourceID="+source).map(
+        return this.http.get("http://itorahapi.3nom.com/api/Sponsor/day?Date="+date).map(
             (response) => {
                 let body = response.json();
                 return body;

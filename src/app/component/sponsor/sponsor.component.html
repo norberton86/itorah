@@ -110,11 +110,19 @@
 						<!-- /.form-head -->
 
 						<div class="form-body">
+
+							<div class="form-row">
+								<my-date-picker id="sponsorDate" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="date" (dateChanged)="Availables($event)"></my-date-picker>
+								<p *ngIf="alertMessage!=''" style="color:red"> {{alertMessage}} </p>
+							</div>
+							<!-- /.form-row -->
+
 							<div class="form-row">
 								<ul class="list-checkboxes list-checkboxes-blocks">
 									<li>
 										<div class="checkbox">
-											<input type="checkbox" name="field-sponsor-day-itorah" id="field-sponsor-day-itorah" [(ngModel)]="itorah" (click)="Check(17)">
+											<input type="checkbox" name="field-sponsor-day-itorah" id="field-sponsor-day-itorah" [(ngModel)]="itorah" 
+											(change)="Check()" [disabled]="isSourceNotAvailable(17)">
 
 											<label class="form__label" data-per-day="$180.00 per day" for="field-sponsor-day-itorah">Sponsor a day for iTorah.com</label>
 										</div>
@@ -124,7 +132,7 @@
 									<li>
 										<div class="checkbox">
 											<input type="checkbox" name="field-sponsor-day-daliy-halacha" id="field-sponsor-day-daliy-halacha" [(ngModel)]="halacha"
-											 (click)="Check(6)">
+											(change)="Check()" [disabled]="isSourceNotAvailable(6)">
 
 											<label class="form__label" data-per-day="$52.00 per day" for="field-sponsor-day-daliy-halacha">Sponsor a day for DaliyHalacha.com</label>
 										</div>
@@ -134,7 +142,7 @@
 									<li>
 										<div class="checkbox">
 											<input type="checkbox" name="field-sponsor-day-daliy-tehillin" id="field-sponsor-day-daliy-tehillin" [(ngModel)]="tehillim"
-											 (click)="Check(7)">
+											 (change)="Check()" [disabled]="isSourceNotAvailable(7)">
 
 											<label class="form__label" data-per-day="$52.00 per day" for="field-sponsor-day-daliy-tehillin">Sponsor a day for DaliyTehillin.com</label>
 										</div>
@@ -146,25 +154,6 @@
 							<!-- /.form-row -->
 
 							<div class="form-row">
-
-								<my-date-picker id="sponsorDate" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="date"></my-date-picker>
-
-								<div class="form-controls">
-									<!--<input type="text" class="field field-date" name="field-date" id="field-date" value="" placeholder="Date">
-
-										<i class="ico-calendar"></i>-->
-
-								</div>
-								<!-- /.form-controls -->
-
-								<!--<p>
-									<a href="#">Add another day</a>
-								</p>-->
-							</div>
-							<!-- /.form-row -->
-
-
-							<div class="form-row">
 								<div class="select select-tertiary">
 									<select name="field-sponsorship" id="field-sponsorship" [(ngModel)]="dT">
 											<option *ngFor="let s of dedicationType" [ngValue]="s">{{s.description}}</option>
@@ -173,8 +162,6 @@
 								<!-- /.select -->
 							</div>
 							<!-- /.form-row -->
-
-
 
 							<div class="form-row">
 								<div class="form-controls">

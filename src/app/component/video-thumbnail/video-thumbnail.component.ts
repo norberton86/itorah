@@ -92,6 +92,15 @@ export class VideoThumbnailComponent implements OnInit {
         this.videos.push(this.videosFull[i]);
 
     this.firstTime=true;
+
+    this.currentTitle=video.Title
+    this.currentSpeaker=video.Speaker
+    
    }
+
+   //----------------------------------------------------------------------
+
+   currentTitle:string=''
+   currentSpeaker:string=''
 
 }

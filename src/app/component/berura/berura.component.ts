@@ -10,7 +10,7 @@ declare var $: any;
   selector: 'app-berura',
   templateUrl: './berura.component.html',
   styleUrls: ['./berura.component.css'],
-  providers: [MIshnaService, PlayerService]
+  providers: [MIshnaService]
 })
 export class BeruraComponent implements OnInit {
 

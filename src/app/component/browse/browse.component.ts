@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'app-browse',
   templateUrl: './browse.component.html',
   styleUrls: ['./browse.component.css'],
-  providers: [PlayerService, BrowseService]
+  providers: [ BrowseService]
 })
 export class BrowseComponent implements OnInit, OnChanges {
 

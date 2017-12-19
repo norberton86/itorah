@@ -7,7 +7,7 @@ import { Inspire } from '../../model/inspire';
   selector: 'app-inspire',
   templateUrl: './inspire.component.html',
   styleUrls: ['./inspire.component.css'],
-  providers: [InspireService, PlayerService]
+  providers: [InspireService]
 })
 export class InspireComponent implements OnInit {
 

@@ -16,7 +16,7 @@ declare var $: any;
   selector: 'app-speaker',
   templateUrl: './speaker.component.html',
   styleUrls: ['./speaker.component.css'],
-  providers: [SpeakerService, PlayerService, DatabaseService]
+  providers: [SpeakerService, DatabaseService]
 })
 export class SpeakerComponent implements OnInit {
 

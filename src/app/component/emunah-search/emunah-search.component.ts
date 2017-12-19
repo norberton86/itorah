@@ -9,7 +9,7 @@ declare var $: any;
   selector: 'app-emunah-search',
   templateUrl: './emunah-search.component.html',
   styleUrls: ['./emunah-search.component.css'],
-  providers: [EmunahService, PlayerService]
+  providers: [EmunahService]
 })
 export class EmunahSearchComponent implements OnInit {
 

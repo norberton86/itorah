@@ -4,12 +4,28 @@ declare var WowzaPlayer: any;
 
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { AnonymousSubscription } from "rxjs/Subscription";
+import "rxjs/add/observable/interval";
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PlayerService {
 
+  private timerSubscription: AnonymousSubscription;
+
   constructor(private http: Http) {
+
+  }
+
+  CreatePusher() {
+    this.timerSubscription = Observable.interval(2000).subscribe(x => {
+      console.log("Pushing ...")
+    });
+  }
+
+  StopPusher() {
+    if (this.timerSubscription)
+      this.timerSubscription.unsubscribe()
   }
 
   getMediaSponsor(): Observable<string> {
@@ -49,9 +65,9 @@ export class PlayerService {
 
     }
     else
-    if(!this.requesting) {
-      this.Build(title, url, onlyAudio, speaker, sponsor)
-    }
+      if (!this.requesting) {
+        this.Build(title, url, onlyAudio, speaker, sponsor)
+      }
 
 
 
@@ -106,6 +122,7 @@ export class PlayerService {
     $('button[data-notify="dismiss"]').click(function () {  //stop when the close icon be closed
 
       try {
+        self.StopPusher()
         self.Closetream();
       }
       catch (e) {
@@ -125,6 +142,8 @@ export class PlayerService {
       }
     })
 
+    this.CreatePusher()
+
   }
 
 
@@ -134,9 +153,11 @@ export class PlayerService {
   }
 
 
-  PlayAudio(title: string, url: string,sponsor:string) {
+  PlayAudio(title: string, url: string, sponsor: string) {
 
-     
+    /*if(Array.isArray(url))
+    url=url[0].AudioUrl */
+
     if (sponsor == '' && !this.requesting) {
 
       this.requesting = true
@@ -157,20 +178,19 @@ export class PlayerService {
         sponsor = "Sponsor this shiur"
         this.BuildAudio(title, url, sponsor)
       }, () => { })
-  }
+    }
   }
 
-  BuildAudio(title: string, url: string,sponsor:string)
-  {
+  BuildAudio(title: string, url: string, sponsor: string) {
     let self = this;
 
-    var finalSponsor= '<p id="sponsorPlayAudio" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>'
+    var finalSponsor = '<p id="sponsorPlayAudio" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>'
 
     if ($('#mediaAudio').length == 0)     //if not exist
     {
       $.notify({                          //create the popup
         title: "",
-        message: finalSponsor+ '<video id="mediaAudio" controls="" autoplay="" name="media" style="background-image: url(./assets/build/css/images/images/audio.jpg);background-size: 100% 80%;"><source src="' + url + '" type="audio/mpeg"></video>'
+        message: finalSponsor + '<video id="mediaAudio" controls="" autoplay="" name="media" style="background-image: url(./assets/build/css/images/images/audio.jpg);background-size: 100% 80%;"><source src="' + url + '" type="audio/mpeg"></video>'
       },
         {
           delay: 0,                       //never autoclose
@@ -192,7 +212,7 @@ export class PlayerService {
       $('#mediaAudio').attr('src', url)
     }
 
-    
+
     $('#sponsorPlayAudio').click(function () {
       if (self.isAuthenticated()) {
         $('#sponsor').toggleClass('shown');
@@ -219,5 +239,7 @@ export class PlayerService {
     else
       return true;
   }
+
+
 
 }

@@ -10,7 +10,7 @@ declare var $: any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AnalitycService, PlayerService, PerashaService]
+  providers: [AnalitycService, PerashaService]
 })
 export class AppComponent implements OnInit {
 

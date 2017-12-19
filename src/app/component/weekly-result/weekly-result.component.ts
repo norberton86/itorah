@@ -11,8 +11,7 @@ declare var $: any;
 @Component({
   selector: 'app-weekly-result',
   templateUrl: './weekly-result.component.html',
-  styleUrls: ['./weekly-result.component.css'],
-  providers: [PlayerService]
+  styleUrls: ['./weekly-result.component.css']
 })
 export class WeeklyResultComponent implements OnInit {
 

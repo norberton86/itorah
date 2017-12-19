@@ -10,7 +10,7 @@ declare var $: any;
   selector: 'app-mishna-berura-yomi',
   templateUrl: './mishna-berura-yomi.component.html',
   styleUrls: ['./mishna-berura-yomi.component.css'],
-  providers:[YomiService,PlayerService]
+  providers:[YomiService]
 })
 export class MishnaBeruraYomiComponent implements OnInit {
 

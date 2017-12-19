@@ -8,8 +8,7 @@ declare var $: any;
 @Component({
   selector: 'app-read-now',
   templateUrl: './read-now.component.html',
-  styleUrls: ['./read-now.component.css'],
-  providers: [PlayerService]
+  styleUrls: ['./read-now.component.css']
 })
 export class ReadNowComponent implements OnInit, OnChanges {
 

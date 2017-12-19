@@ -10,8 +10,7 @@ declare var $: any;
 @Component({
   selector: 'app-queue',
   templateUrl: './queue.component.html',
-  styleUrls: ['./queue.component.css'],
-  providers: [PlayerService]
+  styleUrls: ['./queue.component.css']
 })
 export class QueueComponent implements OnInit, OnDestroy {
 

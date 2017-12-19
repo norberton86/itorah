@@ -9,7 +9,7 @@ import { Page } from '../../model/page';
   selector: 'app-global-search',
   templateUrl: './global-search.component.html',
   styleUrls: ['./global-search.component.css'],
-  providers: [GlobalSearchService, PlayerService]
+  providers: [GlobalSearchService]
 })
 export class GlobalSearchComponent implements OnInit, OnChanges {
 

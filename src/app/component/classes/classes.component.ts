@@ -8,7 +8,7 @@ import { Page } from '../../model/page';
   selector: 'app-classes',
   templateUrl: './classes.component.html',
   styleUrls: ['./classes.component.css'],
-  providers:[ClasseService,PlayerService]
+  providers:[ClasseService]
 })
 export class ClassesComponent implements OnInit {
 

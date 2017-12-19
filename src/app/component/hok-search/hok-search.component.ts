@@ -13,7 +13,7 @@ declare var $: any;
   selector: 'app-hok-search',
   templateUrl: './hok-search.component.html',
   styleUrls: ['./hok-search.component.css'],
-  providers: [HokService, PlayerService]
+  providers: [HokService]
 })
 export class HokSearchComponent implements OnInit {
 

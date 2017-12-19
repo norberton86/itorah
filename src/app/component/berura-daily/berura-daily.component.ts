@@ -8,7 +8,7 @@ import { Page } from '../../model/page';
   selector: 'app-berura-daily',
   templateUrl: './berura-daily.component.html',
   styleUrls: ['./berura-daily.component.css'],
-  providers: [BeruraDailyService, PlayerService]
+  providers: [BeruraDailyService]
 })
 export class BeruraDailyComponent implements OnInit {
 

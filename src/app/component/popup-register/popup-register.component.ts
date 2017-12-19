@@ -12,8 +12,7 @@ declare var VirtualKeyboard: any;
 @Component({
   selector: 'app-popup-register',
   templateUrl: './popup-register.component.html',
-  styleUrls: ['./popup-register.component.css'],
-  providers: [ PlayerService]
+  styleUrls: ['./popup-register.component.css']
 })
 export class PopupRegisterComponent implements OnInit {
 

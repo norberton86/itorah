@@ -11,7 +11,7 @@ declare var $: any;
   selector: 'app-pele-yoetz',
   templateUrl: './pele-yoetz.component.html',
   styleUrls: ['./pele-yoetz.component.css'],
-  providers: [PeleService, PlayerService]
+  providers: [PeleService]
 })
 export class PeleYoetzComponent implements OnInit {
 

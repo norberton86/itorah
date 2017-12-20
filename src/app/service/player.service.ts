@@ -310,48 +310,6 @@ export class PlayerService extends Service {
       return true;
   }
 
-  timeDifference(d: any, dd: any): string {
-    var second = 1000,
-      minute = second * 60,
-      hour = minute * 60,
-      day = hour * 24,
-      month = day * 30,
-      ms = Math.abs(d - dd);
-
-    var months = parseInt((ms / month).toString(), 10);
-
-    ms -= months * month;
-    var days = parseInt((ms / day).toString(), 10);
-
-    ms -= days * day;
-    var hours = parseInt((ms / hour).toString(), 10);
-
-    ms -= hours * hour;
-    var minutes = parseInt((ms / minute).toString(), 10);
-
-
-    ms -= minutes * minute;
-    var seconds = parseInt((ms / second).toString(), 10);
-
-    var finalTime = ""
-
-    if (hours.toString().length == 1)
-      finalTime += "0" + hours.toString() + ":"
-    else
-      finalTime += hours.toString() + ":"
-
-    if (minutes.toString().length == 1)
-      finalTime += "0" + minutes.toString() + ":"
-    else
-      finalTime += minutes.toString() + ":"
-
-    if (seconds.toString().length == 1)
-      finalTime += "0" + seconds.toString()
-    else
-      finalTime += seconds.toString()
-
-    return finalTime
-  }
 
 }
 

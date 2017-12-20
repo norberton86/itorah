@@ -6,24 +6,80 @@ import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AnonymousSubscription } from "rxjs/Subscription";
 import "rxjs/add/observable/interval";
+import "rxjs/add/observable/timer";
 import 'rxjs/add/operator/map';
+import { Service } from '../model/service';
 
 @Injectable()
-export class PlayerService {
+export class PlayerService extends Service {
 
   private timerSubscription: AnonymousSubscription;
 
-  constructor(private http: Http) {
-
+  constructor(http: Http) {
+    super(http);
   }
 
-  CreatePusher() {
-    this.timerSubscription = Observable.interval(2000).subscribe(x => {
-      console.log("Pushing ...")
+  StartPush(data: Netflix) {
+
+
+    this.timerSubscription = Observable.interval(10000).subscribe(x => {
+
+      data.position = Math.floor( WowzaPlayer.get('video-modal').getCurrentTime()/1000)
+
+      if (data.position != 0) { //only push if the time is bigger than 0
+        let h = new Headers();
+        h.append('Authorization', 'bearer ' + this.getToken());
+        h.append('Content-Type', 'application/json');
+
+        this.http.post("http://itorahapi.3nom.com/api/MediaPosition/save", data, { headers: h }).subscribe(response => {
+
+          console.log(data.position)
+
+        }, error => { }, () => { })
+      }
+
     });
   }
 
-  StopPusher() {
+  wow: any
+  setLastPosition(data: Netflix) {
+
+    let self = this
+    this.wow.play()
+    this.wow.onPlay(function (a) {
+
+     self.getLastPosition(data).subscribe(result => {
+ 
+         if (result == parseInt(result, 10)) //if is a integer number 
+         {
+ 
+           setTimeout(function () {
+             var ad: any = document.getElementById('video-modal-Video')
+             ad.currentTime = parseInt(result);
+           }, 10000)
+ 
+         }
+         self.StartPush(data)
+       }, error => {
+         self.StartPush(data)
+       }, () => { })
+
+    });
+
+  }
+
+  getLastPosition(data: Netflix): Observable<any> {
+    let h = new Headers();
+    h.append('Authorization', 'bearer ' + this.getToken());
+    h.append('Content-Type', 'application/json');
+
+    return this.http.post("http://itorahapi.3nom.com/api/MediaPosition/get", data, { headers: h }).map((response) => {
+      let body = response.json();
+      return body;
+    })
+  }
+
+  StopPush() {
     if (this.timerSubscription)
       this.timerSubscription.unsubscribe()
   }
@@ -39,7 +95,7 @@ export class PlayerService {
   }
 
   requesting: boolean = false;
-  Play(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string) {
+  Play(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string, sourceid: number, mediaId: string) {
 
 
     if (sponsor == '' && !this.requesting) {
@@ -55,25 +111,25 @@ export class PlayerService {
         else
           sponsor = result
 
-        this.Build(title, url, onlyAudio, speaker, sponsor)
+        this.Build(title, url, onlyAudio, speaker, sponsor, sourceid, mediaId)
 
       }, error => {
         this.requesting = false
         sponsor = "Sponsor this shiur"
-        this.Build(title, url, onlyAudio, speaker, sponsor)
+        this.Build(title, url, onlyAudio, speaker, sponsor, sourceid, mediaId)
       }, () => { })
 
     }
     else
       if (!this.requesting) {
-        this.Build(title, url, onlyAudio, speaker, sponsor)
+        this.Build(title, url, onlyAudio, speaker, sponsor, sourceid, mediaId)
       }
 
 
 
   }
 
-  Build(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string) {
+  Build(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string, sourceId: number, mediaId: string) {
     let self = this;
 
     if ($('#video-modal').length == 0)     //if not exist
@@ -81,7 +137,7 @@ export class PlayerService {
         title: "",
         message: '<div style="padding-top:0.5em">' +
         '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;">' + title + '</p>' +
-        '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;">' + speaker + '</p>' +
+        '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;" id="seek">' + speaker + '</p>' +
         '<p id="sponsorPlay" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>' +
         '<div  id="video-modal" class="" style="width: inherit;height: 20em;">' +
         '</div>' +
@@ -101,15 +157,15 @@ export class PlayerService {
 
     self.Closetream();
 
-    WowzaPlayer.create('video-modal',
+    self.wow = WowzaPlayer.create('video-modal',
       {
 
         "license": "PLAY1-dD8ur-NjfMh-andPW-beKnB-t4nYZ",
         "title": title,
         "description": "",
         "sourceURL": url, //"http://media.learntorah.com/LT-Video/mp4:RZE-350.mp4/playlist.m3u8"
-        "autoPlay": true,
-        "volume": "75",
+        "autoPlay": false,
+        "volume": "25",
         "mute": false,
         "loop": false,
         "audioOnly": onlyAudio,
@@ -122,7 +178,7 @@ export class PlayerService {
     $('button[data-notify="dismiss"]').click(function () {  //stop when the close icon be closed
 
       try {
-        self.StopPusher()
+        self.StopPush()
         self.Closetream();
       }
       catch (e) {
@@ -142,8 +198,22 @@ export class PlayerService {
       }
     })
 
-    this.CreatePusher()
+    if (this.getToken() != undefined && this.getToken() != "")  //only push if the user is login
+    {
+      this.setLastPosition(this.CreateNetFlix(sourceId, mediaId, "", onlyAudio))
+    }
 
+
+  }
+
+  CreateNetFlix(sourceid: number, mediaId: string, position: any, isAudio: boolean): Netflix {
+    var netflix = new Netflix()
+    netflix.id = null
+    netflix.sourceId = sourceid
+    netflix.mediaId = mediaId
+    netflix.position = position
+    netflix.isAudio = isAudio
+    return netflix
   }
 
 
@@ -240,6 +310,55 @@ export class PlayerService {
       return true;
   }
 
+  timeDifference(d: any, dd: any): string {
+    var second = 1000,
+      minute = second * 60,
+      hour = minute * 60,
+      day = hour * 24,
+      month = day * 30,
+      ms = Math.abs(d - dd);
+
+    var months = parseInt((ms / month).toString(), 10);
+
+    ms -= months * month;
+    var days = parseInt((ms / day).toString(), 10);
+
+    ms -= days * day;
+    var hours = parseInt((ms / hour).toString(), 10);
+
+    ms -= hours * hour;
+    var minutes = parseInt((ms / minute).toString(), 10);
 
 
+    ms -= minutes * minute;
+    var seconds = parseInt((ms / second).toString(), 10);
+
+    var finalTime = ""
+
+    if (hours.toString().length == 1)
+      finalTime += "0" + hours.toString() + ":"
+    else
+      finalTime += hours.toString() + ":"
+
+    if (minutes.toString().length == 1)
+      finalTime += "0" + minutes.toString() + ":"
+    else
+      finalTime += minutes.toString() + ":"
+
+    if (seconds.toString().length == 1)
+      finalTime += "0" + seconds.toString()
+    else
+      finalTime += seconds.toString()
+
+    return finalTime
+  }
+
+}
+
+export class Netflix {
+  id: number
+  sourceId: number
+  mediaId: string
+  position: any
+  isAudio: boolean
 }

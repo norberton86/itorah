@@ -105,12 +105,12 @@
 									<p class="icons-p">
 
 										<a href="#/" class="link-mic icons-wrap" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}"
-										 (click)="Play(s.video,s.title,s.sponsor)">
+										 (click)="Play(s.video,s.title,s.sponsor,s.id)">
 											<i class="ico-camera"></i>
 										</a>
 
 										<a href="#/" class="link-mic icons-wrap" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}"
-										 (click)="Play(s.audio,s.title,s.sponsor)">
+										 (click)="Play(s.audio,s.title,s.sponsor,s.id)">
 											<i class="ico-mic"></i>
 										</a>
 

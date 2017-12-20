@@ -176,9 +176,9 @@ export class QueueComponent implements OnInit, OnDestroy {
 
   }
 
-  Play(title: string, media: string,speaker:string,sponsor:string) {
+  Play(title: string, media: string,speaker:string,sponsor:string,mediaId:string) {
     if (media.indexOf(".mp3") < 0) //if not is *.mp3 extension
-      this.playerService.Play(title, media, title.includes('LT-Audio'),speaker,sponsor)
+      this.playerService.Play(title, media, title.includes('LT-Audio'),speaker,sponsor,1,mediaId)
     else
       this.playerService.PlayAudio(title, media,"")
   }

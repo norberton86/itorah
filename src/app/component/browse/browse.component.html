@@ -95,11 +95,11 @@
                             <div class="col col-1of2">
 
 
-                                <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title,a.speaker,a.sponsor)" style="margin-right: 0.4em;">
+                                <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title,a.speaker,a.sponsor,a.id)" style="margin-right: 0.4em;">
 								    <i class="ico-camera"></i>
 								</a>
 
-                                <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title,a.speaker,a.sponsor)">
+                                <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title,a.speaker,a.sponsor,a.id)">
 								    <i class="ico-mic"></i>
 								</a>
 
@@ -191,11 +191,11 @@
                     <li class="search-resultsult" *ngFor="let a of recently">
                         <div class="col col-medium">
                             <div class="col col-1of2">
-                                <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title,a.speaker,a.sponsor)" style="margin-right: 0.4em;">
+                                <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title,a.speaker,a.sponsor,a.id)" style="margin-right: 0.4em;">
 								    <i class="ico-camera"></i>
 								</a>
 
-                                <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title,a.speaker,a.sponsor)">
+                                <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title,a.speaker,a.sponsor,a.id)">
 								    <i class="ico-mic"></i>
 								</a>
                             </div>
@@ -286,11 +286,11 @@
                     <li class="search-resultsult" *ngFor="let a of popular">
                         <div class="col col-medium">
                             <div class="col col-1of2">
-                                <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title,a.speaker,a.sponsor)" style="margin-right: 0.4em;">
+                                <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title,a.speaker,a.sponsor,a.id)" style="margin-right: 0.4em;">
 								    <i class="ico-camera"></i>
 								</a>
 
-                                <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title,a.speaker,a.sponsor)">
+                                <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title,a.speaker,a.sponsor,a.id)">
 								    <i class="ico-mic"></i>
 								</a>
                             </div>
@@ -381,11 +381,11 @@
                     <li class="search-resultsult" *ngFor="let a of relevant">
                         <div class="col col-medium">
                             <div class="col col-1of2">
-                                <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title,a.speaker,a.sponsor)" style="margin-right: 0.4em;">
+                                <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title,a.speaker,a.sponsor,a.id)" style="margin-right: 0.4em;">
 								    <i class="ico-camera"></i>
 								</a>
 
-                                <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title,a.speaker,a.sponsor)">
+                                <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title,a.speaker,a.sponsor,a.id)">
 								    <i class="ico-mic"></i>
 								</a>
                             </div>
@@ -489,11 +489,11 @@
                         <li class="search-resultsult" *ngFor="let a of browse">
                             <div class="col col-medium">
                                 <div class="col col-1of2">
-                                    <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title,a.speaker,a.sponsor)" style="margin-right: 0.4em;">
+                                    <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title,a.speaker,a.sponsor,a.id)" style="margin-right: 0.4em;">
 								    <i class="ico-camera"></i>
 								</a>
 
-                                    <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title,a.speaker,a.sponsor)">
+                                    <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title,a.speaker,a.sponsor,a.id)">
 								    <i class="ico-mic"></i>
 								</a>
                                 </div>

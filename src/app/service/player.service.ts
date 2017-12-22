@@ -246,12 +246,10 @@ export class PlayerService extends Service {
     return netflix
   }
 
-
   Closetream() {
     if (WowzaPlayer.get('video-modal') != null)
       WowzaPlayer.get('video-modal').destroy()
   }
-
 
   PlayAudio(title: string, url: string, sponsor: string, sourceId: number, mediaId: string) {
 
@@ -330,6 +328,18 @@ export class PlayerService extends Service {
         $('#form-sponsor-shiur').addClass('hidden')
       }
     })
+
+    $('button[data-notify="dismiss"]').click(function () {  //stop when the close icon be closed
+
+      try 
+      {
+        self.StopPush()   
+      }
+      catch (e) {
+
+      }
+
+    });
 
   }
 

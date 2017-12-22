@@ -61,9 +61,9 @@ export class PeleYoetzComponent implements OnInit {
   }
 
 
-  Play(title:string,url:string)
+  Play(title:string,url:string,mediaId:string)
   {
-        this.playerService.PlayAudio(title, url,"")
+        this.playerService.PlayAudio(title, url,"",10,mediaId)
   }  
 
 

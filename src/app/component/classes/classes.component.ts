@@ -133,8 +133,8 @@ Page(id:number)
 }
 
   
-  Play(title: string, media: string) {
-      this.playerService.PlayAudio(title, media,"")
+  Play(title: string, media: string,sourceID:number,mediaId:string) {
+      this.playerService.PlayAudio(title, media,"",sourceID,mediaId)
   }
 
  Desc(a,b) {

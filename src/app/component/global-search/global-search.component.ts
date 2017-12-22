@@ -52,6 +52,9 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
   media:string=""
   content:string=""
   title:string=""
+  sourceID:number
+  mediaId:number
+
   Back()
   {
     this.content=''
@@ -194,19 +197,21 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
   }
 
-  Read(_title: string, _content: string,_media:string) {
+  Read(_title: string, _content: string,_media:string,sourceID:number,mediaId:number) {
     //this.weeklyResultService.setDataRead({ title: _title, content: _content, accion: 'read' })
     this.content=_content;
     this.title=_title;
     this.media=_media;
+    this.mediaId=mediaId
+    this.sourceID=sourceID
   }
 
-  Play(title: string, media: string) {
-    this.playerService.PlayAudio(title, media,"")
+  Play(title: string, media: string,sourceid:number,mediaId:string) {
+    this.playerService.PlayAudio(title, media,"",sourceid,mediaId)
   }
   PlayHeader()
   {
-     this.playerService.PlayAudio(this.title, this.media,"")
+     this.playerService.PlayAudio(this.title, this.media,"",this.sourceID,this.mediaId.toString())
   }
 
 

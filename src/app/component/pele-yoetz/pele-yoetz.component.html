@@ -42,7 +42,7 @@
 						<li class="subject" *ngFor="let p of peles" id="{{p.id}}">
 							<div class="subject-inner">
 								<div class="subject-play">
-									<a href="#" class="play-secondary" data-title="{{p?.title|peleTitle}}" attr.data-url="{{p?.audioUrl}}" (click)="Play(p.title,p.audioUrl)">
+									<a href="#" class="play-secondary" data-title="{{p?.title|peleTitle}}" attr.data-url="{{p?.audioUrl}}" (click)="Play(p.title,p.audioUrl,p.id)">
 										<i class="ico-play-2"></i>
 									</a>
 								</div><!-- /.subject-play -->

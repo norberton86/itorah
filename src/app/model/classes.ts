@@ -7,4 +7,6 @@ export class Classes {
     duration:string
     language:string
     status:string
+    id:string
+    sourceID:number
 }

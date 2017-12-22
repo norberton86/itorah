@@ -94,7 +94,7 @@
         <li class="search-resultsult" *ngFor="let a of all">
           <div class="col col-medium">
             <div class="col col-1of2">
-              <a href="#/" (click)="Play(a.title,a.audioUrl)">
+              <a href="#/" (click)="Play(a.title,a.audioUrl,a.sourceID,a.id)">
 												<i class="ico-mic"></i>
 											</a>
             </div>
@@ -123,7 +123,7 @@
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.title,a.text,a.audioUrl)">read</a>
+              <a href="#/" (click)="Read(a.title,a.text,a.audioUrl,a.sourceID,a.id)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 
@@ -204,7 +204,7 @@
         <li class="search-resultsult" *ngFor="let a of halachat">
           <div class="col col-medium">
             <div class="col col-1of2">
-              <a href="#/" (click)="Play(a.title,a.audioUrl)">
+              <a href="#/" (click)="Play(a.title,a.audioUrl,a.sourceID,a.id)">
 												<i class="ico-mic"></i>
 											</a>
             </div>
@@ -230,7 +230,7 @@
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.title,a.text,a.audioUrl)">read</a>
+              <a href="#/" (click)="Read(a.title,a.text,a.audioUrl,a.sourceID,a.id)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 
@@ -309,7 +309,7 @@
         <li class="search-resultsult" *ngFor="let a of weekly">
           <div class="col col-medium">
             <div class="col col-1of2">
-              <a href="#/" (click)="Play(a.title,a.audioUrl)">
+              <a href="#/" (click)="Play(a.title,a.audioUrl,a.sourceID,a.id)">
 												<i class="ico-mic"></i>
 											</a>
             </div>
@@ -335,7 +335,7 @@
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.title,a.text,a.audioUrl)">read</a>
+              <a href="#/" (click)="Read(a.title,a.text,a.audioUrl,a.sourceID,a.id)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 
@@ -440,7 +440,7 @@
 
           <div class="col col-small">
             <div class="col col-1of2">
-              <a href="#/" (click)="Read(a.title,a.text,a.audioUrl)">read</a>
+              <a href="#/" (click)="Read(a.title,a.text,a.audioUrl,a.sourceID,a.id)">read</a>
             </div>
             <!-- /.col col-1of2 -->
 

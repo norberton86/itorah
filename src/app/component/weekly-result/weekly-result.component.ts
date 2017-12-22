@@ -58,6 +58,9 @@ export class WeeklyResultComponent implements OnInit {
   content:string=""
   title:string=""
   media:string=""
+  sourceID:number
+  mediaId:string
+
   Back()
   {
     this.content=''
@@ -162,20 +165,22 @@ export class WeeklyResultComponent implements OnInit {
 
   }
 
-  Read(_title: string, _content: string,_media:string) {
+  Read(_title: string, _content: string,_media:string,sourceID:number,mediaId:string) {
     //this.weeklyResultService.setDataRead({ title: _title, content: _content, accion: 'read' })
     this.content=_content;
     this.title=_title;
     this.media=_media;
+    this.sourceID=sourceID
+    this.mediaId=mediaId
   }
 
-  Play(title: string, media: string) {
-    this.playerService.PlayAudio(title, media,"")
+  Play(title: string, media: string,sourceID:number,mediaId:string) {
+    this.playerService.PlayAudio(title, media,"",sourceID,mediaId)
   }
 
   PlayHeader()
   {
-     this.playerService.PlayAudio(this.title, this.media,"")
+     this.playerService.PlayAudio(this.title, this.media,"",this.sourceID,this.mediaId)
   }
 
   Desc(a, b) {

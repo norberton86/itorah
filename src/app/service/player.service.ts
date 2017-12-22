@@ -223,10 +223,7 @@ export class PlayerService extends Service {
   }
 
 
-  PlayAudio(title: string, url: string, sponsor: string) {
-
-    /*if(Array.isArray(url))
-    url=url[0].AudioUrl */
+  PlayAudio(title: string, url: string, sponsor: string,sourceId: number, mediaId: string) {
 
     if (sponsor == '' && !this.requesting) {
 

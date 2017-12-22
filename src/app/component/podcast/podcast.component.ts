@@ -36,13 +36,14 @@ export class PodcastComponent implements OnInit {
 
   }
 
-  Play(title: string, media: string) {
-      this.playerService.PlayAudio(title, media,"")
+  Play(title: string, media: string,mediaId:string) {
+      this.playerService.PlayAudio(title, media,"",8,mediaId)
   }
 
   Fill() {
     //mock
     var p1 = new Podcast();
+    p1.id="1"
     p1.date = new Date();
     p1.description = "Podcast Description 1";
     p1.episode = 86;
@@ -50,6 +51,7 @@ export class PodcastComponent implements OnInit {
     p1.url = "http://peleyoetz.com/PeleYoetz/2.mp3"
 
     var p2 = new Podcast();
+    p1.id="2"
     p2.date = new Date();
     p2.description = "Podcast Description 2";
     p2.episode = 68;

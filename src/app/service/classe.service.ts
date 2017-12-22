@@ -33,7 +33,9 @@ export class ClasseService extends Service {
           speaker: "Mansour, Robbi Eli",
           duration: "30",
           language: "EN",
-          status: "Not Started"
+          status: "Not Started",
+          id:"1",
+          sourceID:1
         })
 
         data.push(
@@ -44,7 +46,9 @@ export class ClasseService extends Service {
           speaker: "Mansour, Robbi Eli",
           duration: "30",
           language: "EN",
-          status: "Not Started"
+          status: "Not Started",
+          id:"2",
+          sourceID:1
         })
 
         data.push({
@@ -54,7 +58,9 @@ export class ClasseService extends Service {
           speaker: "Mansour, Robbi Eli",
           duration: "30",
           language: "EN",
-          status: "Not Started"
+          status: "Not Started",
+          id:"3",
+          sourceID:1
         })
       }
 

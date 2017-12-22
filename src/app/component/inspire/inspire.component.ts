@@ -22,7 +22,7 @@ export class InspireComponent implements OnInit {
   }
 
   Play() {
-    this.playerService.PlayAudio(this.inspire.title, this.inspire.audio, "");
+    this.playerService.PlayAudio(this.inspire.title, this.inspire.audio, "",15,this.inspire.id.toString());
   }
 
   Download() {

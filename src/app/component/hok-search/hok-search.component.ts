@@ -133,9 +133,9 @@ export class HokSearchComponent implements OnInit {
     )
   }
 
-  Play(id: string, title: string) {
+  Play(id: string, title: string,sourceId:number,mediaId:string) {
     // var onlyAudio = title.includes('LT-Audio');
-    this.playerService.PlayAudio(title, id,"");
+    this.playerService.PlayAudio(title, id,"",sourceId,mediaId);
   }
 
   Add(id: string) {

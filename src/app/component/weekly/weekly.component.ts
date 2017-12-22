@@ -196,7 +196,7 @@ export class WeeklyComponent implements OnInit,OnChanges {
 
   Play() {
 
-    this.playerService.PlayAudio("", this.selectedPerasha.audio,"")
+    this.playerService.PlayAudio("", this.selectedPerasha.audio,"",16,this.selectedPerasha.id.toString())
 
   }
 }

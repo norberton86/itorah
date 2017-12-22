@@ -1,5 +1,5 @@
 <li *ngFor="let p of podcast">
-	<a href="#/" class="link-play-secondary" (click)="Play(p.name,p.url)"></a>
+	<a href="#/" class="link-play-secondary" (click)="Play(p.name,p.url,p.id)"></a>
 
 	<h6>Episode {{p.episode}}: {{p.name}} {{p.date| date: 'MM/dd/yyyy'}}</h6>
 

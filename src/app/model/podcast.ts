@@ -4,4 +4,5 @@ export class Podcast {
     date:Date;
     description:string;
     url:string
+    id:string
 }

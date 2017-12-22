@@ -149,7 +149,7 @@ export class AppComponent implements OnInit {
       this.homeService.readNow(id).subscribe(result => {   //execute to get the dedication field
         this.homeService.playNow(id).subscribe(resultPlay => {
           this.requesting = false
-          this.playerService.PlayAudio(title, resultPlay, result.dedication) //use that dedication field
+          this.playerService.PlayAudio(title, resultPlay[0].AudioUrl, result.dedication,id,resultPlay[0].ID) //use that dedication field
         }, error => {
           this.requesting = false
         }, () => { })
@@ -162,7 +162,7 @@ export class AppComponent implements OnInit {
       let self = this;
       this.homeService.playNow(id).subscribe(
         function (response) {
-          self.playerService.PlayAudio(title, response, "")
+          self.playerService.PlayAudio(title, response[0].AudioUrl, "",id,response[0].ID)
         }, function (error) { }, function () { }
       )
     }
@@ -247,7 +247,7 @@ export class AppComponent implements OnInit {
 
   ReadPerashaInsigth() {
     this.perashaService.read().subscribe(result => {
-      this.playerService.PlayAudio("", result[0].audio, "")
+      this.playerService.PlayAudio("", result[0].audio, "",16,result[0].id.toString())
     }, error => { }, () => { })
   }
 

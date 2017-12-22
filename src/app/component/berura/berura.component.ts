@@ -212,7 +212,7 @@ export class BeruraComponent implements OnInit {
   }
 
   Play() {
-    this.playerService.PlayAudio("", this.content.audio,"")
+    this.playerService.PlayAudio("", this.content.audio,"",12,this.content.id.toString())
   }
 
   Print() {

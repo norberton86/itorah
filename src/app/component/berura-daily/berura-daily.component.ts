@@ -145,8 +145,8 @@ export class BeruraDailyComponent implements OnInit {
     window.open(url)
   }
 
-  Play(title: string, url: string) {
-    this.playerService.PlayAudio(title, url, "");
+  Play(title: string, url: string,mediaID:string) {
+    this.playerService.PlayAudio(title, url, "",14,mediaID);
   }
 
   //-------------------------------------------------------------------------------------------------------------------------------------------

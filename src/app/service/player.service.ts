@@ -19,12 +19,17 @@ export class PlayerService extends Service {
     super(http);
   }
 
-  StartPush(data: Netflix) {
+  StartPush(data: Netflix, isWow: boolean) {
 
 
     this.timerSubscription = Observable.interval(10000).subscribe(x => {
 
-      data.position = Math.floor( WowzaPlayer.get('video-modal').getCurrentTime()/1000)
+      if (isWow)
+        data.position = Math.floor(WowzaPlayer.get('video-modal').getCurrentTime() / 1000)
+      else {
+        var position: any = document.getElementById('mediaAudio')
+        data.position = Math.floor( position.currentTime)
+      }
 
       if (data.position != 0) { //only push if the time is bigger than 0
         let h = new Headers();
@@ -48,23 +53,48 @@ export class PlayerService extends Service {
     this.wow.play()
     this.wow.onPlay(function (a) {
 
-     self.getLastPosition(data).subscribe(result => {
- 
-         if (result == parseInt(result, 10)) //if is a integer number 
-         {
- 
-           setTimeout(function () {
-             var ad: any = document.getElementById('video-modal-Video')
-             ad.currentTime = parseInt(result);
-           }, 10000)
- 
-         }
-         self.StartPush(data)
-       }, error => {
-         self.StartPush(data)
-       }, () => { })
+      self.getLastPosition(data).subscribe(result => {
+
+        if (result == parseInt(result, 10)) //if is a integer number 
+        {
+
+          setTimeout(function () {
+            var ad: any = document.getElementById('video-modal-Video')
+            ad.currentTime = parseInt(result);
+          }, 10000)
+
+        }
+        self.StartPush(data, true)
+      }, error => {
+        self.StartPush(data, true)
+      }, () => { })
 
     });
+
+  }
+
+  setLastPositionAudio(title: string, url: string, sponsor: string, data: Netflix) {
+
+
+    /* var initialPosition = "#t=" + 120
+     this.CreatePlayer(title, url, sponsor, initialPosition) 
+     this.StartPush(data, false)*/
+
+    
+    this.getLastPosition(data).subscribe(result => {
+
+      if (result == parseInt(result, 10)) //if is a integer number 
+      {
+        var initialPosition = "#t=" + result
+        this.CreatePlayer(title, url, sponsor, initialPosition)
+
+      }
+      this.StartPush(data, false)
+    },
+    error => {
+        this.StartPush(data, false)
+    },
+    () => { })
 
   }
 
@@ -223,7 +253,7 @@ export class PlayerService extends Service {
   }
 
 
-  PlayAudio(title: string, url: string, sponsor: string,sourceId: number, mediaId: string) {
+  PlayAudio(title: string, url: string, sponsor: string, sourceId: number, mediaId: string) {
 
     if (sponsor == '' && !this.requesting) {
 
@@ -238,18 +268,29 @@ export class PlayerService extends Service {
         else
           sponsor = result
 
-        this.BuildAudio(title, url, sponsor)
+        this.BuildAudio(title, url, sponsor, sourceId, mediaId)
 
       }, error => {
         this.requesting = false
         sponsor = "Sponsor this shiur"
-        this.BuildAudio(title, url, sponsor)
+        this.BuildAudio(title, url, sponsor, sourceId, mediaId)
       }, () => { })
     }
   }
 
-  BuildAudio(title: string, url: string, sponsor: string) {
-    let self = this;
+  BuildAudio(title: string, url: string, sponsor: string, sourceId: number, mediaId: string) {
+
+    if (this.getToken() != undefined && this.getToken() != "")  //only push if the user is login
+    {
+      this.setLastPositionAudio(title, url, sponsor, this.CreateNetFlix(sourceId, mediaId, "", true)) //try to get first the last position 
+    }
+    else
+      this.CreatePlayer(title, url, sponsor)    //create directly
+
+  }
+
+  CreatePlayer(title: string, url: string, sponsor: string, initialPosition = "") {
+    let self = this
 
     var finalSponsor = '<p id="sponsorPlayAudio" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>'
 
@@ -257,7 +298,7 @@ export class PlayerService extends Service {
     {
       $.notify({                          //create the popup
         title: "",
-        message: finalSponsor + '<video id="mediaAudio" controls="" autoplay="" name="media" style="background-image: url(./assets/build/css/images/images/audio.jpg);background-size: 100% 80%;"><source src="' + url + '" type="audio/mpeg"></video>'
+        message: finalSponsor + '<video id="mediaAudio" controls="" autoplay="" name="media" style="background-image: url(./assets/build/css/images/images/audio.jpg);background-size: 100% 80%;"><source src="' + url + initialPosition + '" type="audio/mpeg"></video>'
       },
         {
           delay: 0,                       //never autoclose
@@ -291,6 +332,7 @@ export class PlayerService extends Service {
     })
 
   }
+
 
   isAuthenticated(): boolean {
     let self = this;

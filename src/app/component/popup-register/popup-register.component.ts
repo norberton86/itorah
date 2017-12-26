@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Comunity, Category } from '../../model/Tehillim/tehillim';
+import { Comunity, Category, Country } from '../../model/Tehillim/tehillim';
 import { RegisterLevaya } from '../../model/register-levaya';
 import { RegisterTehellim, TehillimResult } from '../../model/register-tehellim';
-import { RegisterTehellimService,Generate } from '../../service/register-tehellim.service';
+import { RegisterTehellimService, Generate } from '../../service/register-tehellim.service';
 import { PlayerService } from '../../service/player.service';
 import { EntireList, Perek, Need } from '../../model/entire-list';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TehillimService } from "app/service/tehillim.service";
 
 declare var $: any;
 declare var VirtualKeyboard: any;
@@ -17,20 +19,81 @@ declare var VirtualKeyboard: any;
 export class PopupRegisterComponent implements OnInit {
 
   //--------------------- Announcement --------------
-  mother: string
-  firstName: string
-  lastName: string
-  comunities: Array<Comunity> = []
-  comunity: Comunity
+  mother: string = ''
+  firstName: string = ''
+  lastName: string = ''
+  communities: Array<Comunity> = []
+  countries: Array<Country> = []
   results: Array<TehillimResult> = []
   existResults: number = 0
 
   ages: Array<number> = []
 
+  form: FormGroup;
+  formLevaya: FormGroup;
+  constructor(private registerTehellimService: RegisterTehellimService, private playerService: PlayerService, private _fb: FormBuilder, private tehillimService: TehillimService) {
+   
+    this.form = this._fb.group({
+      mother: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      ben: ['ben'],
+      country: [0],
+      community: [0]
+    });
 
-  constructor(private registerTehellimService: RegisterTehellimService, private playerService: PlayerService) { }
+    this.formLevaya = this._fb.group({
+      transFirstName: ['', [Validators.required]],
+      transMotherName: ['', [Validators.required]],
+      EnglishFirstName: ['', [Validators.required]],
+      EnglishLastName: ['', [Validators.required]],
+      ben: ['ben'],
+      Age: [0]
+    });
+  }
+
+
+  ReadCountry() {
+
+    this.tehillimService.readCountry().subscribe(
+      response => {
+
+        this.countries = response;
+        this.ReadComunity();
+
+      }, error => { }, () => { }
+    )
+  }
+
+  ReadComunity() {
+
+    this.tehillimService.readComunity(this.countries[0].id).subscribe(
+      response => {
+        this.communities = response;
+
+        var data = {
+          mother: '',
+          firstName: '',
+          ben: 'ben',
+          country: this.countries[0].id,
+          community: this.communities[0].id
+        }
+
+        this.form.patchValue(data);
+
+      }, error => { }, () => { }
+    )
+  }
+
+  Validate() {
+    return this.form.controls.mother.errors != null || this.form.controls.firstName.errors != null
+  }
+
+  ValidateLevaya() {
+    return this.formLevaya.controls.transFirstName.errors != null || this.formLevaya.controls.transMotherName.errors != null ||this.formLevaya.controls.EnglishFirstName.errors != null || this.formLevaya.controls.EnglishLastName.errors != null
+  }
 
   ngOnInit() {
+
     for (var i = 1; i <= 90; i++) {
       this.ages.push(i)
     }
@@ -38,13 +101,15 @@ export class PopupRegisterComponent implements OnInit {
     this.readCategories()
     this.readNeeds()
     this.readPerek()
+
+    this.ReadCountry()
   }
 
   searchDatabase(type: string) {
     let self = this
 
     if (type == "tehillim") {
-      this.registerTehellimService.checkTehillim(type, this.mother, this.firstName, 1).subscribe(
+      this.registerTehellimService.checkTehillim(this.form.value.mother, this.form.value.firstName, this.form.value.community).subscribe(
         function (respond) {
           //"No similar names"
           if (respond == "No similar names") {
@@ -63,7 +128,8 @@ export class PopupRegisterComponent implements OnInit {
       )
     }
     else {
-      this.registerTehellimService.checkLevaya(type, this.mother, this.firstName, this.lastName).subscribe(
+      
+      this.registerTehellimService.checkLevaya(this.formLevaya.value.transMotherName,this.formLevaya.value.transFirstName,this.formLevaya.value.EnglishFirstName,this.formLevaya.value.EnglishLastName,this.formLevaya.value.Age).subscribe(
         function (respond) {
           //"No similar names"
           if (respond == "No similar names") {
@@ -131,7 +197,7 @@ export class PopupRegisterComponent implements OnInit {
     this.Close()
     $('#form-register-tehillim-step-regular').toggleClass('shown');
     $('.mydrp').css('width', '224px')
-    this.registerTehellimService.setData([this.firstName,this.mother])
+    this.registerTehellimService.setData([this.firstName, this.mother])
   }
 
   OpenEmergency() {
@@ -139,7 +205,7 @@ export class PopupRegisterComponent implements OnInit {
     this.Close()
     $('#form-register-tehillim-step-emergency').toggleClass('shown');
     $('.mydrp').css('width', '224px')
-    this.registerTehellimService.setData([this.firstName,this.mother])
+    this.registerTehellimService.setData([this.firstName, this.mother])
   }
 
   OpenLevaya() {
@@ -326,7 +392,7 @@ export class PopupRegisterComponent implements OnInit {
   }
 
   Play() {
-    this.playerService.PlayAudio("", this.pereks.find(p => p.id == this.perek).audioUrl,"",7,this.pereks.find(p => p.id == this.perek).id.toString())
+    this.playerService.PlayAudio("", this.pereks.find(p => p.id == this.perek).audioUrl, "", 7, this.pereks.find(p => p.id == this.perek).id.toString())
   }
   //----------------------------------------------------------Pasuk----------------------------------------------------------
   SetKeyboard(id) {
@@ -339,26 +405,25 @@ export class PopupRegisterComponent implements OnInit {
   motherPasuk: string = ''
   firstNamePasuk: string = ''
   benPasuk: string = 'ben'
-  generate:Generate
+  generate: Generate
 
   Generate() {
     var isBat = 'true'
     if (this.benPasuk == 'ben')
       isBat = 'false'
 
-     var motherHebrew= $('#field-mothers-Pasuk-name').val()
-     var firstHebrew= $('#field-first-Pasuk-name').val() 
+    var motherHebrew = $('#field-mothers-Pasuk-name').val()
+    var firstHebrew = $('#field-first-Pasuk-name').val()
 
     this.registerTehellimService.Generate(motherHebrew, isBat, firstHebrew, this.option).subscribe(result => {
-      this.generate=result
-      this.perekPassuk="pasuk"
-    }, error => { 
-          this.registerTehellimService.Notify("No content for this selection",true);
+      this.generate = result
+      this.perekPassuk = "pasuk"
+    }, error => {
+      this.registerTehellimService.Notify("No content for this selection", true);
     }, () => { })
   }
 
-  PrintPasuk()
-  {
+  PrintPasuk() {
     $('#printPasuk').print();
   }
 

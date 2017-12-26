@@ -83,16 +83,18 @@ export class PlayerService extends Service {
     
     this.getLastPosition(data).subscribe(result => {
 
+      var initialPosition=''
       if (result == parseInt(result, 10)) //if is a integer number 
       {
-        var initialPosition = "#t=" + result
-        this.CreatePlayer(title, url, sponsor, initialPosition)
-
+       initialPosition = "#t=" + result
       }
+      
+      this.CreatePlayer(title, url, sponsor, initialPosition)
       this.StartPush(data, false)
     },
     error => {
-        this.StartPush(data, false)
+      this.CreatePlayer(title, url, sponsor)
+      this.StartPush(data, false)
     },
     () => { })
 

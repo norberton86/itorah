@@ -60,13 +60,13 @@ export class RegisterTehellimService extends ServiceLogin {
 
 
 
-  public checkTehillim(type: string, mother: string, firstName: string, communityID: number): Observable<any> {
+  public checkTehillim( mother: string, firstName: string, communityID: number): Observable<any> {
 
     let h = new Headers();
     h.append('Authorization', 'bearer ' + this.getToken());
     h.append('Content-Type', 'application/json');
 
-    return this.http.get(this.ruta + "check?type=" + type + "&mother=" + mother + "&firstName=" + firstName + "&communityID=" + communityID, { headers: h }).map(
+    return this.http.get(this.ruta+"/checktehillim?" + "mother=" + mother + "&firstName=" + firstName + "&communityID=" + communityID, { headers: h }).map(
       (response) => {
         let body = response.json()
         return body;
@@ -74,13 +74,13 @@ export class RegisterTehellimService extends ServiceLogin {
     )
   }
 
-  public checkLevaya(type: string, mother: string, firstName: string, lastName: string): Observable<any> {
+  public checkLevaya( transMotherName: string, transFirstName: string, EnglishFirstName: string,EnglishLastName:string,Age:string): Observable<any> {
 
     let h = new Headers();
     h.append('Authorization', 'bearer ' + this.getToken());
     h.append('Content-Type', 'application/json');
 
-    return this.http.get(this.ruta + "check?type=" + type + "&mother=" + mother + "&firstName=" + firstName + "&lastName=" + lastName, { headers: h }).map(
+    return this.http.get(this.ruta + "/checklevaya?" + "transMotherName=" + transMotherName + "&transFirstName=" + transFirstName + "&EnglishLastName=" + EnglishLastName+"&EnglishFirstName="+EnglishFirstName+"&Age="+Age, { headers: h }).map(
       (response) => {
         let body = response.json()
         return body;

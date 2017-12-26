@@ -1,3 +1,7 @@
+.mydisabled {
+   cursor: not-allowed !important; 
+}
+
 .btn_small_yellow{
 	background: #ffcc00;
     border: 1px solid #ffcc00;

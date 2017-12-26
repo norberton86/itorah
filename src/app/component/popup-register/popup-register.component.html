@@ -75,13 +75,13 @@
 
 			<div class="col-1of3">
 				<div class="form-sponsor form-database form--large hidden" id="form-register-tehillim">
-					<form action="?" method="post">
+					<form [formGroup]="form" (ngSubmit)="searchDatabase('tehillim')">
 						<div class="form__head">
 							<h4>Tehillim Announcement </h4>
 
 							<div class="form__head-inner">
 								<p>First, we have to check if the person is already in our database <br> Enter the transliteration name of the person
-									for whol to say Tehillim for:</p>
+									for whom to say Tehillim:</p>
 							</div>
 							<!-- /.form__head-inner -->
 						</div>
@@ -89,14 +89,17 @@
 
 						<div class="form-body">
 							<div class="form-row">
-								<label for="field-mothers-name" class="form-label">Transliteration Name of the deceased  :</label>
+								<label for="field-mothers-name" class="form-label">Transliteration Name:</label>
 
 								<div class="form-controls">
-									<input type="text" class="field" name="field-mothers-name" id="field-mothers-name" value="" placeholder="First Name" [(ngModel)]="firstName">
+									<input type="text" class="field" name="field-mothers-name" id="field-mothers-name" value="" placeholder="First Name" formControlName="firstName">
+									<div class="animated bounceIn" style="color:red;" *ngIf="form.get('firstName').hasError('required') && form.get('firstName').touched">
+          									First Name is required
+        							</div>
 								</div>
 								<!-- /.form-controls -->
 
-								<p class="form-hint">Please type the transliteration of the Hebrew name</p>
+								<!--<p class="form-hint">Please type the transliteration of the Hebrew name</p>-->
 								<!-- /.form-hint -->
 							</div>
 							<!-- /.form-row -->
@@ -105,7 +108,7 @@
 								<div class="form__controls">
 									<div class="form__col form__col-size-4">
 										<div class="select">
-											<select class="select" name="field-8" id="field-8">
+											<select class="select" name="field-8" id="field-8" formControlName="ben">
 												<option value="ben">Ben</option>
 												<option value="bat">Bat</option>
 											</select>
@@ -116,18 +119,31 @@
 
 									<div class="form__col">
 										<input type="text" class="field" name="field-mothers-name" id="field-mothers-name" value="" placeholder="Mother’s First Name"
-										 [(ngModel)]="mother">
+										 formControlName="mother">
+										
+										<div class="animated bounceIn" style="color:red;" *ngIf="form.get('mother').hasError('required') && form.get('mother').touched">
+          									Mother name is required
+        								</div>
 									</div>
 									<!-- /.form__col -->
 
-									<!--<div class="form__col">
+									<div class="form__col">
 										<div class="select">
-											<select class="select" name="field-community" id="field-community" [(ngModel)]="comunity">
-												<option *ngFor="let c of comunities" [ngValue]="c">{{c.name}}</option>
+											<select class="select" name="field-country" id="field-country" formControlName="country">
+												<option *ngFor="let c of countries" [ngValue]="c.id">{{c.name}}</option>
 											</select>
-										</div>-->
+										</div>
 										<!-- /.select -->
-									<!--</div>-->
+									</div>
+
+									<div class="form__col">
+										<div class="select">
+											<select class="select" name="field-community" id="field-community" formControlName="community">
+												<option *ngFor="let c of communities" [ngValue]="c.id">{{c.name}}</option>
+											</select>
+										</div>
+										<!-- /.select -->
+									</div>
 									<!-- /.form__col -->
 								</div>
 								<!-- /.form__controls -->
@@ -137,7 +153,7 @@
 						<!-- /.form-body -->
 
 						<div class="form-actions">
-							<input type="submit" value="Search Database" class="form-btn" (click)="searchDatabase('tehillim')">
+							<input type="submit" value="Search Database" class="form-btn" [disabled]="Validate()" [class.mydisabled]="Validate()">
 						</div>
 						<!-- /.form-actions -->
 					</form>
@@ -145,7 +161,7 @@
 				<!-- /.form-database -->
 
 				<div class="form-sponsor form-database hidden" id="form-register-levaya">
-					<form action="?" method="post">
+					<form [formGroup]="formLevaya" (ngSubmit)="searchDatabase('levaya')">
 						<div class="form__head">
 							<h4>Levaya Announcement </h4>
 
@@ -165,50 +181,25 @@
 								<label for="field-fname" class="form__label">Transliteration Name :</label>
 
 								<div class="form__controls">
-									<input type="text" class="field" name="field-fname" id="field-fname" value="" placeholder="First Name" [(ngModel)]="firstName">
+									<input type="text" class="field" name="field-fname" id="field-fname" value="" placeholder="Transliteration First Name" formControlName="transFirstName">
+									<div class="animated bounceIn" style="color:red;" *ngIf="formLevaya.get('transFirstName').hasError('required') && formLevaya.get('transFirstName').touched">
+          									Transliteration FirstName is required
+        							</div>
 								</div>
 								<!-- /.form__controls -->
-							</div>
-							<!-- /.form-row -->
-
-							<div class="form-row">
-								<label for="field-lname" class="form__label hidden">lname</label>
-
-								<div class="form__controls">
-									<input type="text" class="field" name="field-lname" id="field-lname" value="" placeholder="Last Name" [(ngModel)]="lastName">
-								</div>
-								<!-- /.form__controls -->
-
-								<p class="form-hint">Please type the transliteration of the Hebrew name</p>
 							</div>
 							<!-- /.form-row -->
 
 							<div class="form-row">
 								<div class="form-cols">
 									<div class="form-col col-1of2">
-										<label for="field-age" class="form__label hidden">age</label>
-
-										<div class="form__controls">
-											<div class="select">
-												<select name="field-age" id="field-age">
-													<option value="">Select age</option>
-													<option *ngFor="let a of ages" >{{a}}</option>
-												</select>
-											</div>
-											<!-- /.select -->
-										</div>
-										<!-- /.form__controls -->
-									</div>
-									<!-- /.form-col -->
-
-									<div class="form-col col-1of2">
 										<label for="field-ben" class="form__label hidden">ben</label>
 
 										<div class="form__controls">
 											<div class="select">
-												<select name="field-ben" id="field-ben">
-													<option value="">Ben</option>
-													<option value="">Bat</option>
+												<select name="field-ben" id="field-ben" formControlName="ben">
+													<option value="ben">Ben</option>
+													<option value="bat">Bat</option>
 												</select>
 											</div>
 											<!-- /.select -->
@@ -222,13 +213,67 @@
 							<!-- /.form-row -->
 
 							<div class="form-row">
-								<label for="field-mother-fname" class="form__label hidden">Mother’s First Name</label>
+								<label for="field-lname" class="form__label hidden">lname</label>
 
 								<div class="form__controls">
-									<input type="text" class="field" name="field-mother-fname" id="field-mother-fname" value="" placeholder="Mother’s First Name"
-									 [(ngModel)]="mother">
+									<input type="text" class="field" name="field-lname" id="field-lname" value="" placeholder="Transliteration Mother Name" formControlName="transMotherName">
+									<div class="animated bounceIn" style="color:red;" *ngIf="formLevaya.get('transMotherName').hasError('required') && formLevaya.get('transMotherName').touched">
+          									Transliteration Mother Name is required
+        							</div>
 								</div>
 								<!-- /.form__controls -->
+
+							<!--	<p class="form-hint">Please type the transliteration of the Hebrew name</p>-->
+							</div>
+							<!-- /.form-row -->
+
+							<div class="form-row">
+								<div class="form-cols">
+									<div class="form-col col-1of2">
+										<label for="field-age" class="form__label hidden">age</label>
+
+										<div class="form__controls">
+											<div class="select">
+												<select name="field-age" id="field-age" formControlName="Age">
+													<option value="0">Select age</option>
+													<option *ngFor="let a of ages" >{{a}}</option>
+												</select>
+											</div>
+											<!-- /.select -->
+										</div>
+										<!-- /.form__controls -->
+									</div>
+									<!-- /.form-col -->
+								</div>
+								<!-- /.form-cols -->
+							</div>
+							<!-- /.form-row -->
+
+							<div class="form-row">
+								<label for="field-lname" class="form__label hidden">English First Name</label>
+
+								<div class="form__controls">
+									<input type="text" class="field" name="field-lname" id="field-lname" value="" placeholder="English First Name" formControlName="EnglishFirstName">
+									<div class="animated bounceIn" style="color:red;" *ngIf="formLevaya.get('EnglishFirstName').hasError('required') && formLevaya.get('EnglishFirstName').touched">
+          									English First Name is required
+        							</div>
+								</div>
+								<!-- /.form__controls -->
+
+							</div>
+							<!-- /.form-row -->
+
+							<div class="form-row">
+								<label for="field-lname" class="form__label hidden">English Last Name</label>
+
+								<div class="form__controls">
+									<input type="text" class="field" name="field-lname" id="field-lname" value="" placeholder="English Last Name" formControlName="EnglishLastName">
+									<div class="animated bounceIn" style="color:red;" *ngIf="formLevaya.get('EnglishLastName').hasError('required') && formLevaya.get('EnglishLastName').touched">
+          									English Last Name is required
+        							</div>
+								</div>
+								<!-- /.form__controls -->
+
 							</div>
 							<!-- /.form-row -->
 
@@ -237,7 +282,7 @@
 						<!-- /.form-body -->
 
 						<div class="form-actions">
-							<input type="submit" value="Search Database" class="form-btn" (click)="searchDatabase('levaya')">
+							<input type="submit" value="Search Database" class="form-btn" [disabled]="ValidateLevaya()" [class.mydisabled]="ValidateLevaya()">
 						</div>
 						<!-- /.form-actions -->
 					</form>

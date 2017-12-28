@@ -197,7 +197,7 @@ export class PopupRegisterComponent implements OnInit {
     this.Close()
     $('#form-register-tehillim-step-regular').toggleClass('shown');
     $('.mydrp').css('width', '224px')
-    this.registerTehellimService.setData([this.firstName, this.mother])
+    this.registerTehellimService.setData([this.form.value.firstName, this.form.value.mother])
   }
 
   OpenEmergency() {
@@ -205,7 +205,7 @@ export class PopupRegisterComponent implements OnInit {
     this.Close()
     $('#form-register-tehillim-step-emergency').toggleClass('shown');
     $('.mydrp').css('width', '224px')
-    this.registerTehellimService.setData([this.firstName, this.mother])
+    this.registerTehellimService.setData([this.form.value.firstName, this.form.value.mother])
   }
 
   OpenLevaya() {

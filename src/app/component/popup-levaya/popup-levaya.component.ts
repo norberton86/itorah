@@ -3,7 +3,7 @@ import { TehillimService } from '../../service/tehillim.service';
 import { RegisterTehellimService } from '../../service/register-tehellim.service';
 import { Country, Comunity } from '../../model/Tehillim/tehillim';
 import { RegisterLevaya } from '../../model/register-levaya';
-import {IMyDpOptions} from 'mydatepicker';
+import { IMyDpOptions } from 'mydatepicker';
 
 declare var $: any;
 declare var VirtualKeyboard: any;
@@ -23,22 +23,33 @@ export class PopupLevayaComponent implements OnInit {
   comunities: Array<Comunity> = [];
 
 
-    public myDatePickerOptions: IMyDpOptions = {
-        // other options...
-        dateFormat: 'mm.dd.yyyy',
-    };
+  public myDatePickerOptions: IMyDpOptions = {
+    // other options...
+    dateFormat: 'mm.dd.yyyy',
+  };
 
-    // Initialized to specific date (09.10.2018).
-    public funeralDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} };
-    public arayatDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} };
-    public startDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} };
-    public endDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} };
+  // Initialized to specific date (09.10.2018).
+  public startDate: any 
+  public funeralDate: any
+  
+  public arayatDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
+  public endDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
 
-  constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) { }
+  constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) {
+      
+   }
 
   ngOnInit() {
+    this.startDate= { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
+      this.funeralDate = { date: { year: this.addDays(new Date(), 7).getFullYear(), month: this.addDays(new Date(), 7).getMonth() + 1, day: this.addDays(new Date(), 7).getDate() } };
     this.ReadCountry()
 
+  }
+
+  addDays(date, days) :Date{
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
   }
 
   SetKeyboard(id) {
@@ -53,7 +64,7 @@ export class PopupLevayaComponent implements OnInit {
   closeField() {
     $('#form__row-info-levaya').addClass('hidden');
   }
-    
+
   ChangeCountry() {
     this.ReadComunity()
   }
@@ -90,13 +101,13 @@ export class PopupLevayaComponent implements OnInit {
   survivingMembers: string
   prayerTimes: string
   funeralInfo: string
-  
+
   shivaAddress: string
- 
+
   arayatDetails: string
   additionalCommentsForEmail: string
- 
- 
+
+
   emailMessage: string
   phone: string
   isImmediateFamily: string = '2'
@@ -167,64 +178,31 @@ export class PopupLevayaComponent implements OnInit {
   }
 
   Reset() {
-    this.englishFirstName=""
-    this.englishLastName=""
-    this.translitFirstName=""
-    this.translitMotherName=""
-    this.survivingMembers=""
-    this.prayerTimes=""
-    this.funeralInfo=""
-    this.funeralDate= { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} }
-    this.shivaAddress=""
-    this.arayatDate= { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} }
-    this.arayatDetails=""
-    this.additionalCommentsForEmail=""
-    this.startDate= { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} }
-    this.endDate= { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()} }
-    this.emailMessage=""
-    this.phone =""
+    this.englishFirstName = ""
+    this.englishLastName = ""
+    this.translitFirstName = ""
+    this.translitMotherName = ""
+    this.survivingMembers = ""
+    this.prayerTimes = ""
+    this.funeralInfo = ""
+    this.funeralDate = { date: { year: this.addDays(new Date(), 7).getFullYear(), month: this.addDays(new Date(), 7).getMonth() + 1, day: this.addDays(new Date(), 7).getDate() } };
+    this.shivaAddress = ""
+    this.arayatDate = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } }
+    this.arayatDetails = ""
+    this.additionalCommentsForEmail = ""
+    this.startDate = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } }
+    this.endDate = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } }
+    this.emailMessage = ""
+    this.phone = ""
     this.isImmediateFamily = '2'
-    this.commentsToAdmin=""
-    this.relationshiptoPerson=""
-    this.contactName=""
-    this.contactRelationshipToPerson=""
-    this.contactPhone=""
-    this.contactEmail=""
+    this.commentsToAdmin = ""
+    this.relationshiptoPerson = ""
+    this.contactName = ""
+    this.contactRelationshipToPerson = ""
+    this.contactPhone = ""
+    this.contactEmail = ""
 
     $('#field-hebrew-fname-levaya').val('')
     $('#field-hebrew-lname-levaya').val('')
   }
 }
-
-
-  //englishFirstName: string
-  //englishLastName: string
-  //survivingMembers: string
-  //prayerTimes: string
-  //funeralInfo: string
-  //funeralDate: Date
-  //shivaAddress: string
-  //arayatDate: Date
-  //arayatDetails: string
-  //additionalCommentsForEmail: string
-  //isEmergency: true
-  //categoryID: number
-  //hebrewFirstName: string
-  //isBat: true
-  //hebrewMotherName: string
-  //translitFirstName: string
-  //translitMotherName: string
-  //countryID: number
-  //communityID: number
-  //condition: string
-  //startDate: Date
-  //endDate: string
-  //emailMessage: string
-  //phone: string
-  //isImmediateFamily: true
-  //relationshiptoPerson: string
-  //contactName: string
-  //contactRelationshipToPerson: string
-  //contactPhone: string
-  //contactEmail: string
-  //commentsToAdmin: string

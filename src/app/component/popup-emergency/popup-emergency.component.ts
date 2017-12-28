@@ -26,10 +26,7 @@ export class PopupEmergencyComponent implements OnInit {
     dateFormat: 'mm.dd.yyyy',
   };
 
-  model: any = {
-    beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
-    endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() + 14 }
-  };
+  model: any 
 
   constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) {
     this.registerTehellimService.getData().subscribe(item => {
@@ -39,8 +36,19 @@ export class PopupEmergencyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ReadCountry()
 
+    this.model = {
+      beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
+      endDate: { year: this.addDays(new Date(), 14).getFullYear(), month: this.addDays(new Date(), 14).getMonth()+1, day: this.addDays(new Date(), 14).getDate() }
+    };
+
+    this.ReadCountry()
+  }
+
+  addDays(date, days) :Date{
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
   }
 
   SetKeyboard(id) {
@@ -160,8 +168,8 @@ export class PopupEmergencyComponent implements OnInit {
 
     this.model = {
       beginDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
-      endDate: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() + 14 }
-    }
+      endDate: { year: this.addDays(new Date(), 14).getFullYear(), month: this.addDays(new Date(), 14).getMonth()+1, day: this.addDays(new Date(), 14).getDate() }
+    };
 
     $('#field-hebrew-fname-eme').val('')
     $('#field-hebrew-lname-eme').val('')

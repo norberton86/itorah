@@ -48,12 +48,12 @@
 
 								<div class="form__controls">
 									<div class="form__col col-1of2">
-										<input type="text" class="field" name="field-hebrew-fname" id="field-hebrew-fname-eme" value="" placeholder="hebrew-fname" (focus)="SetKeyboard('field-hebrew-fname-eme')">
+										<input type="text" class="field" name="field-hebrew-fname" id="field-hebrew-fname-eme" value="" placeholder="hebrew first name" (focus)="SetKeyboard('field-hebrew-fname-eme')">
 										<a href="#/" (click)="SetKeyboard('field-hebrew-fname-eme')" title="Click for Hebrew Keyboard"><i class="fa fa-keyboard-o" aria-hidden="true"></i> </a>
 									</div><!-- /.form__col col-1of2 -->
 
 									<div class="form__col col-1of2">
-										<input type="text" class="field" name="field-hebrew-lname" id="field-hebrew-lname-eme" value="" placeholder="hebrew-lname" (focus)="SetKeyboard('field-hebrew-lname-eme')">
+										<input type="text" class="field" name="field-hebrew-lname" id="field-hebrew-lname-eme" value="" placeholder="hebrew last name" (focus)="SetKeyboard('field-hebrew-lname-eme')">
 										<a href="#/" (click)="SetKeyboard('field-hebrew-lname-eme')" title="Click for Hebrew Keyboard"><i class="fa fa-keyboard-o" aria-hidden="true"></i> </a>
 									</div><!-- /.form__col col-1of2 -->
 								</div><!-- /.form__controls -->
@@ -174,16 +174,16 @@
 								<label for="field-relationship-to-person" class="form__label">What is your relationship to the person ?</label>
 
 								<div class="form__controls">
-									<div class="form__col">
+									<!--<div class="form__col">
 										<input type="text" class="field" name="field-relationship-to-person" id="field-relationship-to-person" value="" [(ngModel)]="relationshiptoPerson">
-									</div><!-- /.form__col -->
+									</div>--><!-- /.form__col -->
 
 									<div class="form__col col-1of2">
-										<input type="text" class="field" name="field-relationship-to-person-name" id="field-relationship-to-person-name" value="" placeholder="Name" [(ngModel)]="contactName">
+										<input type="text" class="field" name="field-relationship-to-person-name" id="field-relationship-to-person-name" value="" placeholder="Your Name" [(ngModel)]="contactName">
 									</div><!-- /.form__col col-1of2 -->
 
 									<div class="form__col col-1of2">
-										<input type="text" class="field" name="field-relationship-to-person-phone" id="field-relationship-to-person-phone" value="" placeholder="Their phone #	" [(ngModel)]="contactPhone">
+										<input type="text" class="field" name="field-relationship-to-person-phone" id="field-relationship-to-person-phone" value="" placeholder="Your phone #	" [(ngModel)]="contactPhone">
 									</div><!-- /.form__col col-1of2 -->
 
 									<!--<div class="form__col">
@@ -191,7 +191,7 @@
 									</div>--><!-- /.form__col -->
 
 									<div class="form__col">
-										<input type="text" class="field" name="field-relationship-to-person-email" id="field-relationship-to-person-email" value="" placeholder="Their email address:" [(ngModel)]="contactEmail">
+										<input type="text" class="field" name="field-relationship-to-person-email" id="field-relationship-to-person-email" value="" placeholder="Yoour email address:" [(ngModel)]="contactEmail">
 									</div><!-- /.form__col -->
 								</div><!-- /.form__controls -->
 							</div><!-- /.form__row -->

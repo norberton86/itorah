@@ -225,7 +225,7 @@
 							</div><!-- /.form__controls -->
 						</div><!-- /.form__row -->
 
-						<div class="form__row">
+						<!--<div class="form__row">
 							<label for="field-immediate-family-member" class="form__label form__label--inline">Are you an immediate family member?</label>
 
 							<div class="form__controls form__controls--inline">
@@ -235,7 +235,7 @@
 											<input type="radio" name="immediate-family-member" id="field-levaya-yes" (click)="openField()">
 
 											<label class="form__label" for="field-levaya-yes">Yes</label>
-										</div><!-- /.radio -->
+										</div>
 									</li>
 
 									<li>
@@ -243,13 +243,13 @@
 											<input type="radio" name="immediate-family-member" id="field-levaya-no" (click)="closeField()">
 
 											<label class="form__label" for="field-levaya-no">No</label>
-										</div><!-- /.radio -->
+										</div>
 									</li>
-								</ul><!-- /.list-radios -->
-							</div><!-- /.form__controls -->
-						</div><!-- /.form__row -->
+								</ul>
+							</div>
+						</div> -->
 
-						<div class="form__row hidden" id="form__row-info-levaya">
+						<div class="form__row" id="form__row-info-levaya">
 							<label for="field-relationship-to-person" class="form__label">What is your relationship to the person ?</label>
 
 							<div class="form__controls">
@@ -258,19 +258,19 @@
 								</div><!-- /.form__col -->
 
 								<div class="form__col col-1of2">
-									<input type="text" class="field" name="field-relationship-to-person-name" id="field-relationship-to-person-name" value="" placeholder="Name" [(ngModel)]="contactName">
+									<input type="text" class="field" name="field-relationship-to-person-name" id="field-relationship-to-person-name" value="" placeholder="Your Name" [(ngModel)]="contactName">
 								</div><!-- /.form__col col-1of2 -->
 
 								<div class="form__col col-1of2">
-									<input type="text" class="field" name="field-relationship-to-person-phone" id="field-relationship-to-person-phone" value="" placeholder="Their phone #	" [(ngModel)]="contactPhone">
+									<input type="text" class="field" name="field-relationship-to-person-phone" id="field-relationship-to-person-phone" value="" placeholder="Your phone #	" [(ngModel)]="contactPhone">
 								</div><!-- /.form__col col-1of2 -->
 
-								<div class="form__col">
+								<!--<div class="form__col">
 									<input type="text" class="field" name="field-relationship-to-person-above" id="field-relationship-to-person-above" value="" placeholder="Their relationship the person above" [(ngModel)]="contactRelationshipToPerson">
-								</div><!-- /.form__col -->
+								</div> -->
 
 								<div class="form__col">
-									<input type="text" class="field" name="field-relationship-to-person-email" id="field-relationship-to-person-email" value="" placeholder="Their email address:" [(ngModel)]="contactEmail">
+									<input type="text" class="field" name="field-relationship-to-person-email" id="field-relationship-to-person-email" value="" placeholder="Your email address:" [(ngModel)]="contactEmail">
 								</div><!-- /.form__col -->
 							</div><!-- /.form__controls -->
 						</div><!-- /.form__row -->

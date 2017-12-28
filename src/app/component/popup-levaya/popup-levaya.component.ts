@@ -57,6 +57,7 @@ export class PopupLevayaComponent implements OnInit {
     VirtualKeyboard.toggle(id, $keyboard.attr('id'));
   }
 
+  /*
   openField() {
     $('#form__row-info-levaya').removeClass('hidden');
   }
@@ -64,7 +65,7 @@ export class PopupLevayaComponent implements OnInit {
   closeField() {
     $('#form__row-info-levaya').addClass('hidden');
   }
-
+*/
   ChangeCountry() {
     this.ReadComunity()
   }
@@ -94,29 +95,29 @@ export class PopupLevayaComponent implements OnInit {
     )
   }
 
-  englishFirstName: string
-  englishLastName: string
-  translitFirstName: string
-  translitMotherName: string
-  survivingMembers: string
-  prayerTimes: string
-  funeralInfo: string
+  englishFirstName: string=""
+  englishLastName: string=""
+  translitFirstName: string=""
+  translitMotherName: string=""
+  survivingMembers: string=""
+  prayerTimes: string=""
+  funeralInfo: string=""
 
-  shivaAddress: string
+  shivaAddress: string=""
 
-  arayatDetails: string
-  additionalCommentsForEmail: string
+  arayatDetails: string=""
+  additionalCommentsForEmail: string=""
 
 
-  emailMessage: string
-  phone: string
+  emailMessage: string=""
+  phone: string=""
   isImmediateFamily: string = '2'
-  commentsToAdmin: string
-  relationshiptoPerson: string
-  contactName: string
-  contactRelationshipToPerson: string
-  contactPhone: string
-  contactEmail: string
+  commentsToAdmin: string=""
+  relationshiptoPerson: string=""
+  contactName: string=""
+  contactRelationshipToPerson: string=""
+  contactPhone: string=""
+  contactEmail: string=""
 
   Send() {
     var data = new RegisterLevaya()

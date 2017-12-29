@@ -23,6 +23,7 @@ export class RegisterTehellim {
 }
 
 export class TehillimResult {
+  HakdashaID:number
   TransliterationName: string
   HebrewName: string
   CategoryName: string 

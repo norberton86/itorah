@@ -542,6 +542,8 @@
 											<th>Hebrew Name </th>
 
 											<th>Category</th>
+
+											<th></th>
 										</tr>
 
 										<tr *ngFor="let r of results">
@@ -550,6 +552,8 @@
 											<td>{{r.HebrewName}}</td>
 
 											<td>{{r.CategoryName}}</td>
+
+											<td>  <input type="button" (click)="Update(r.HakdashaID)" value="CONTINUE" class="form-btn" *ngIf="r.CategoryName=='Tehillim'" style="padding: 5px 8px;"> </td>
 										</tr>
 									</table>
 								</div>

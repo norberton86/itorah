@@ -30,4 +30,5 @@ export class RegisterLevaya {
   contactPhone: string
   contactEmail: string
   commentsToAdmin: string
+  RemoveFromTehillim:number
 }

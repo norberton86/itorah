@@ -11,8 +11,7 @@ declare var VirtualKeyboard: any;
 @Component({
   selector: 'app-popup-levaya',
   templateUrl: './popup-levaya.component.html',
-  styleUrls: ['./popup-levaya.component.css'],
-  providers: [RegisterTehellimService]
+  styleUrls: ['./popup-levaya.component.css']
 })
 export class PopupLevayaComponent implements OnInit {
 
@@ -36,8 +35,17 @@ export class PopupLevayaComponent implements OnInit {
   public endDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
 
   constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) {
-      
+    this.registerTehellimService.getData().subscribe(item => {
+
+      this.translitFirstName = item[0]
+      this.translitMotherName = item[1]
+      this.englishFirstName = item[2]
+      this.englishLastName = item[3]
+      this.HakdashaID=item[4]
+    });
    }
+
+   HakdashaID:number=null
 
   ngOnInit() {
     this.startDate= { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
@@ -160,6 +168,7 @@ export class PopupLevayaComponent implements OnInit {
     data.startDate = new Date(this.startDate.date.year, this.startDate.date.month, this.startDate.date.day)
     data.endDate = new Date(this.endDate.date.year, this.endDate.date.month, this.endDate.date.day)
     data.isImmediateFamily = this.isImmediateFamily == '2' ? false : true
+    data.RemoveFromTehillim=this.HakdashaID
 
 
     let self = this;
@@ -205,5 +214,7 @@ export class PopupLevayaComponent implements OnInit {
 
     $('#field-hebrew-fname-levaya').val('')
     $('#field-hebrew-lname-levaya').val('')
+
+    this.HakdashaID=null
   }
 }

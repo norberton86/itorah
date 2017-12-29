@@ -111,6 +111,21 @@ export class PopupRegisterComponent implements OnInit {
     this.ReadCountry()
   }
 
+  Update(HakdashaID:number)
+  {
+    
+    this.OpenLevaya()
+    var values=new Array<any>()
+
+    values.push(this.formLevaya.value.transFirstName)
+    values.push(this.formLevaya.value.transMotherName)
+    values.push(this.formLevaya.value.EnglishFirstName)
+    values.push(this.formLevaya.value.EnglishLastName)
+    values.push(HakdashaID)
+
+    this.registerTehellimService.setData(values)
+  }
+
   searchDatabase(type: string) {
     let self = this
 

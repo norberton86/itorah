@@ -129,7 +129,7 @@
 
 									<div class="form__col">
 										<div class="select">
-											<select class="select" name="field-country" id="field-country" formControlName="country">
+											<select class="select" name="field-country" id="field-country" formControlName="country" (change)="ReadCommunitySelect()">
 												<option *ngFor="let c of countries" [ngValue]="c.id">{{c.name}}</option>
 											</select>
 										</div>
@@ -138,7 +138,7 @@
 
 									<div class="form__col">
 										<div class="select">
-											<select class="select" name="field-community" id="field-community" formControlName="community">
+											<select class="select" name="field-community" id="field-community" formControlName="community" >
 												<option *ngFor="let c of communities" [ngValue]="c.id">{{c.name}}</option>
 											</select>
 										</div>

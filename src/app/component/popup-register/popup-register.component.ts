@@ -32,7 +32,7 @@ export class PopupRegisterComponent implements OnInit {
   form: FormGroup;
   formLevaya: FormGroup;
   constructor(private registerTehellimService: RegisterTehellimService, private playerService: PlayerService, private _fb: FormBuilder, private tehillimService: TehillimService) {
-   
+
     this.form = this._fb.group({
       mother: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
@@ -58,15 +58,21 @@ export class PopupRegisterComponent implements OnInit {
       response => {
 
         this.countries = response;
-        this.ReadComunity();
+        this.ReadComunity(this.countries[0].id);
 
       }, error => { }, () => { }
     )
   }
 
-  ReadComunity() {
 
-    this.tehillimService.readComunity(this.countries[0].id).subscribe(
+  ReadCommunitySelect() {
+
+    this.ReadComunity(this.form.value.country)
+  }
+
+  ReadComunity(countryId: number) {
+
+    this.tehillimService.readComunity(countryId).subscribe(
       response => {
         this.communities = response;
 
@@ -74,7 +80,7 @@ export class PopupRegisterComponent implements OnInit {
           mother: '',
           firstName: '',
           ben: 'ben',
-          country: this.countries[0].id,
+          country: countryId,
           community: this.communities[0].id
         }
 
@@ -89,7 +95,7 @@ export class PopupRegisterComponent implements OnInit {
   }
 
   ValidateLevaya() {
-    return this.formLevaya.controls.transFirstName.errors != null || this.formLevaya.controls.transMotherName.errors != null ||this.formLevaya.controls.EnglishFirstName.errors != null || this.formLevaya.controls.EnglishLastName.errors != null
+    return this.formLevaya.controls.transFirstName.errors != null || this.formLevaya.controls.transMotherName.errors != null || this.formLevaya.controls.EnglishFirstName.errors != null || this.formLevaya.controls.EnglishLastName.errors != null
   }
 
   ngOnInit() {
@@ -128,8 +134,8 @@ export class PopupRegisterComponent implements OnInit {
       )
     }
     else {
-      
-      this.registerTehellimService.checkLevaya(this.formLevaya.value.transMotherName,this.formLevaya.value.transFirstName,this.formLevaya.value.EnglishFirstName,this.formLevaya.value.EnglishLastName,this.formLevaya.value.Age).subscribe(
+
+      this.registerTehellimService.checkLevaya(this.formLevaya.value.transMotherName, this.formLevaya.value.transFirstName, this.formLevaya.value.EnglishFirstName, this.formLevaya.value.EnglishLastName, this.formLevaya.value.Age).subscribe(
         function (respond) {
           //"No similar names"
           if (respond == "No similar names") {

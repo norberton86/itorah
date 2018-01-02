@@ -41,19 +41,20 @@
 									</a>
                 </li>
 
-                <li [class.current]="Current('Category')"  style="background-color:white" id="drops">
+                <li [class.current]="Current('Category')" style="background-color:white" id="drops">
 
-                  <div class="row" style="padding: 0.2em;"> 
-                    
-                        <select class="col-sm-12 col-md-7" (click)="setCurrent('Category')" name="Scategory" id="Scategory" [(ngModel)]="category" (change)="Category()">
+                    <div class="row" style="padding: 0.2em;">
+
+                        <select class="col-sm-12 col-md-7" (click)="setCurrent('Category')" name="Scategory" id="Scategory" [(ngModel)]="category"
+                            (change)="Category()">
 					        <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
 				        </select>
-                    
+
                         <select class="col-sm-12 col-md-5" (click)="setCurrent('Category')" name="Sspeaker" id="Sspeaker" [(ngModel)]="speaker" (change)="Category()">
 					        <option *ngFor="let c of speakers" [ngValue]="c">{{c.firstName}} {{c.lastName}}</option>
 				        </select>
-                    
-                  </div>
+
+                    </div>
                 </li>
 
 
@@ -447,111 +448,73 @@
 
             <div class="tile-box-tab" [class.current]="Current('Category')" id="search-tile-tab-5-b">
 
-                <div class="col-xs-12 col-sm-3" style="padding:15px;">
-                    <!--<div class="select select-yellow">
-                        <select name="Scategory" id="Scategory" [(ngModel)]="category" (change)="Category()">
-					        <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
-				        </select>
-                    </div>-->
-                    <p *ngIf="loadingCategory" style="color:red"> Loading...</p>
+
+                <div class="tile-box-primary tile-box-speakers">
+                    <div class="tile-box-tab current">
+                        <div class="tile-box-body">
+                            <div class="lists">
+                                <div class="lists-head">
+                                    <p *ngIf="loadingCategory" style="color:red"> Loading...</p>
+                                </div>
+                                <!-- /.lists-head -->
+
+                                <div class="lists-body">
+                                    <ul class="tracks">
+                                        <li class="track" *ngFor="let s of browse">
+                                            <!--<a href="#" class="link-play-secondary"></a>-->
+
+                                            <div class="track-content " style="padding-left: 0.5em">
+                                                <h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
+
+                                                <p class="icons-p">
+
+                                                    <a href="#/" class="link-mic icons-wrap" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}"
+                                                        (click)="Play(s.video,s.title,s.sponsor,s.id)">
+											            <i class="ico-camera"></i>
+										            </a>
+
+                                                    <a href="#/" class="link-mic icons-wrap" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}"
+                                                        (click)="Play(s.audio,s.title,s.sponsor,s.id)">
+											            <i class="ico-mic"></i>
+										            </a>
+
+                                                </p>
+                                            </div>
+                                            <!-- /.track-content -->
+
+                                            <div class="track-actions">
+
+                                                <span class="min">{{s.length|time}}min</span>
+
+                                                <span class="lang">{{s.language|language}}</span>
+
+                                                <p class="icons-p"><span class="date">{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span></p>
+                                            </div>
+                                            <!-- /.track-actions -->
+                                        </li>
+
+                                    </ul>
+                                    <!-- /.tracks -->
+                                </div>
+                                <!-- /.lists-body -->
+                            </div>
+                            <!-- /.lists -->
+                        </div>
+                        <!-- /.table-body -->
+
+                        <div class="tile-box-actions">
+                            <div class="paging">
+                                <ul>
+                                    <li data-type="back"><a href="#/" class="paging-prev-emula" (click)="PagingPrev()"><i class="ico-paging-prev"></i></a></li>
+                                    <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/" (click)="Page(p.id)">{{p.id}}</a></li>
+                                    <li data-type="go"><a href="#/" class="paging-next-emula" (click)="PagingNext()"><i class="ico-paging-next"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="col-xs-12" style="padding:0">
-
-
-                    <ul class="search-resultsults">
-                        <li class="search-resultsult search-resultsult-title">
-                            <div class="col col-medium">
-                                <div class="col col-1of2"></div>
-                                <!-- /.col col-1of2 -->
-
-                                <div class="col col-1of2">
-                                    <a href="#/" (click)="Sort(browse)" class="current">Data</a>
-                                </div>
-                                <!-- /.col col-1of2 -->
-                            </div>
-                            <!-- /.col col-medium -->
-
-                            <div class="col col-large">
-                                <a href="#">Title</a>
-                            </div>
-                            <!-- /.col col-large -->
-
-                            <div class="col col-small">
-                                <a href="#">Duration</a>
-                            </div>
-                            <!-- /.col col-small -->
-
-                            <div class="col col-small">Speaker</div>
-                            <!-- /.col col-small -->
-
-                            <div class="col">
-                                <div class="col col-1of2">
-                                    <a href="#">download</a>
-                                </div>
-                                <!-- /.col col-1of2 -->
-                            </div>
-                            <!-- /.col -->
-                        </li>
-                        <!-- /.search-resultsult -->
-
-                        <li class="search-resultsult" *ngFor="let a of browse">
-                            <div class="col col-medium">
-                                <div class="col col-1of2">
-                                    <a href="#/" *ngIf="a?.video!=''" (click)="Play(a.video,a.title,a.speaker,a.sponsor,a.id)" style="margin-right: 0.4em;">
-								    <i class="ico-camera"></i>
-								</a>
-
-                                    <a href="#/" *ngIf="a?.audio!=''" (click)="Play(a.audio,a.title,a.speaker,a.sponsor,a.id)">
-								    <i class="ico-mic"></i>
-								</a>
-                                </div>
-                                <!-- /.col col-1of2 -->
-
-                                <div class="col col-1of2">
-                                    {{a.dateRecorded|date: 'MM/dd/yyyy'}}
-                                </div>
-                                <!-- /.col col-1of2 -->
-                            </div>
-                            <!-- /.col col-medium -->
-
-                            <div class="col col-large">
-                                <p>{{a.title}}</p>
-                            </div>
-                            <!-- /.col col-large -->
-
-                            <div class="col col-small col-duration" *ngIf="a.length!=null && a.length!=''">
-                                {{a.length}} min
-                                <a href="#">{{a.language|language}}</a>
-                            </div>
-                            <div class="col col-small col-duration" *ngIf="a.length==null || a.length==''">
-                                <a href="#">Not Available</a>
-                            </div>
-                            <!-- /.col col-small -->
-
-                            <div class="col col-small">
-                                {{a.speaker}}
-                            </div>
-                            <!-- /.col col-small -->
-
-                            <div class="col">
-                                <!--<a href="#" class="btn btn-download">
-											<i class="ico-download"></i> wma
-										</a>-->
-                                <!-- /.btn btn-download -->
-
-                                <a href="#" class="btn btn-download" download>
-											<i class="ico-download"></i> mp3
-										</a>
-                                <!-- /.btn btn-download -->
-                            </div>
-                            <!-- /.col -->
-                        </li>
-                        <!-- /.search-resultsult -->
-
-                    </ul>
-                    <!-- /.search-resultsults -->
-                </div>
             </div>
         </div>
     </div>

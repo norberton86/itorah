@@ -21,6 +21,30 @@
  }
 }
 
-select{
-    margin-top: 0.5em
+select
+{
+    border-color: #ffc800;
+    border-radius: 0.2em;
+    height: 2em;
+        margin-top: 0.35em;
+}
+
+/******************************************************************************************************************************************************************************/
+.lists .lists-head {
+    padding: 0.5em 48px 10px 0.5em;
+}
+
+.tile-box-speakers { min-height: 426px;  }
+
+.tile-box-speakers .tile-box-body {
+
+    height: 420px;
+}
+
+.tracks .track {
+    cursor: pointer;
+}
+
+[hidden], .hidden {
+    display: none !important;
 }

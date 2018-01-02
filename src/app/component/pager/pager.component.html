@@ -1,0 +1,65 @@
+<div class="tile-box-primary tile-box-speakers">
+  <div class="tile-box-tab current">
+    <div class="tile-box-body">
+      <div class="lists">
+        <div class="lists-head">
+          <p *ngIf="allResults.length==0  && !firstTime" style="color:red"> Loading...</p>
+        </div>
+        <!-- /.lists-head -->
+
+        <div class="lists-body">
+          <ul class="tracks">
+            <li class="track" *ngFor="let s of results">
+              <!--<a href="#" class="link-play-secondary"></a>-->
+
+              <div class="track-content " style="padding-left: 0.5em">
+                <h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
+
+                <p class="icons-p">
+
+                  <a href="#/" class="link-mic icons-wrap" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}"
+                    (click)="Play(s.video,s.title,s.sponsor,s.id,s.speaker)">
+											            <i class="ico-camera"></i>
+										            </a>
+
+                  <a href="#/" class="link-mic icons-wrap" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}"
+                    (click)="Play(s.audio,s.title,s.sponsor,s.id,s.speaker)">
+											            <i class="ico-mic"></i>
+										            </a>
+
+                </p>
+              </div>
+              <!-- /.track-content -->
+
+              <div class="track-actions">
+
+                <span class="min">{{s.length|time}}min</span>
+
+                <span class="lang">{{s.language|language}}</span>
+
+                <p class="icons-p"><span class="date">{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span></p>
+              </div>
+              <!-- /.track-actions -->
+            </li>
+
+          </ul>
+          <!-- /.tracks -->
+        </div>
+        <!-- /.lists-body -->
+      </div>
+      <!-- /.lists -->
+    </div>
+    <!-- /.table-body -->
+
+    <div class="tile-box-actions" *ngIf="allResults.length!=0">
+      <div class="paging">
+        <ul>
+          <li data-type="back"><a href="#/" class="paging-prev-emula" (click)="PagingPrev()"><i class="ico-paging-prev"></i></a></li>
+          <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/" (click)="Page(p.id)">{{p.id}}</a></li>
+          <li data-type="go"><a href="#/" class="paging-next-emula" (click)="PagingNext()"><i class="ico-paging-next"></i></a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>

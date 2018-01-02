@@ -80,6 +80,7 @@ import { AccountComponent } from './component/account/account.component';
 
 import {PopoverModule} from "ngx-popover";
 import { FileShowerComponent } from './component/file-shower/file-shower.component';
+import { PagerComponent } from './component/pager/pager.component';
 
 
 let providers = {
@@ -148,7 +149,8 @@ let providers = {
     AlertComponent,
     TodaySponsorComponent,
     AccountComponent,
-    FileShowerComponent
+    FileShowerComponent,
+    PagerComponent
   ],
   imports: [
     BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,MyDatePickerModule ,NguiAutoCompleteModule,PopoverModule,

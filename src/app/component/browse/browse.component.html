@@ -44,17 +44,15 @@
                 <li [class.current]="Current('Category')"  style="background-color:white" id="drops">
 
                   <div class="row" style="padding: 0.2em;"> 
-                    <div class="select select-yellow col-sm-12 col-md-6" (click)="setCurrent('Category')">
-                        <select name="Scategory" id="Scategory" [(ngModel)]="category" (change)="Category()">
+                    
+                        <select class="col-sm-12 col-md-7" (click)="setCurrent('Category')" name="Scategory" id="Scategory" [(ngModel)]="category" (change)="Category()">
 					        <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
 				        </select>
-                    </div>
-
-                    <div class="select select-yellow col-sm-12 col-md-6" (click)="setCurrent('Category')">
-                        <select name="Sspeaker" id="Sspeaker" [(ngModel)]="speaker" (change)="Category()">
+                    
+                        <select class="col-sm-12 col-md-5" (click)="setCurrent('Category')" name="Sspeaker" id="Sspeaker" [(ngModel)]="speaker" (change)="Category()">
 					        <option *ngFor="let c of speakers" [ngValue]="c">{{c.firstName}} {{c.lastName}}</option>
 				        </select>
-                    </div>
+                    
                   </div>
                 </li>
 

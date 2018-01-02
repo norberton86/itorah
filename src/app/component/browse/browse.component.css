@@ -8,8 +8,8 @@
 
 @media (min-width: 992px){
 
-.col-md-6 {
-    width: 50% !important;
+.col-md-7 {
+    width: 58.33333333% !important;
 }
 
 }
@@ -19,4 +19,8 @@
  #drops{
   width: 100%
  }
+}
+
+select{
+    margin-top: 0.5em
 }

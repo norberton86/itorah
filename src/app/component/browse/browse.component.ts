@@ -57,7 +57,7 @@ export class BrowseComponent implements OnInit, OnChanges {
     if (this.category.id != 0) {
       this.allBrowse = []
       let self = this
-      
+      this.loading=true
       this.browseService.readCategory(this.category.id).subscribe(function (response) {
         
         if(self.speaker.id!=0)
@@ -67,9 +67,11 @@ export class BrowseComponent implements OnInit, OnChanges {
         }
         else
         self.allBrowse = response
+
+        self.loading=false
         
       }, function (error) { 
-        
+        self.loading=false
       }, function () { }
       );
     }
@@ -103,6 +105,7 @@ export class BrowseComponent implements OnInit, OnChanges {
 
   Read() {
     let self = this
+    self.loading=true
     Observable.forkJoin(
       this.browseService.readRecently(),
       this.browseService.readPopular(),
@@ -118,7 +121,13 @@ export class BrowseComponent implements OnInit, OnChanges {
         self.all = self.all.concat(self.popular)
         self.all = self.all.concat(self.relevant)
 
-      }, function (error) { }, function () { }
+        self.loading=false
+
+      },
+      function (error) {
+        self.loading=false
+      },
+      function () { }
       );
   }
 

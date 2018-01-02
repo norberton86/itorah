@@ -14,6 +14,8 @@ export class PagerComponent implements OnInit {
   @Input()
   allResults: Array<ItemQueue> = []
 
+
+
   results: Array<ItemQueue> = []
 
   constructor(private playerService: PlayerService) { }
@@ -22,18 +24,16 @@ export class PagerComponent implements OnInit {
   }
 
 
-  firstTime:boolean
+  ngOnChanges(changes: any): void { 
 
-  ngOnChanges(changes: any): void {
-
-   this.firstTime= changes.allResults.isFirstChange()
-    
+    if (changes.allResults != undefined) {
     this.allResults = changes.allResults.currentValue
-    
-    if (this.allResults.length > 0)
-      this.Update()
-    else
-    this.results=[]
+
+      if (this.allResults.length > 0)
+        this.Update()
+      else
+        this.results = []
+    }
   }
 
 
@@ -42,7 +42,7 @@ export class PagerComponent implements OnInit {
     this.playerService.Play(title, id, onlyAudio, speakerName, sponsor, 1, mediaId);
   }
 
-  pages: Array<Page>=[];
+  pages: Array<Page> = [];
   allPages: number;
   iteration: number;
   allIteration: number;

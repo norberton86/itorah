@@ -5,3 +5,18 @@
     background-color:inherit ;
     border-bottom: none;
 }
+
+@media (min-width: 992px){
+
+.col-md-6 {
+    width: 50% !important;
+}
+
+}
+
+@media (max-width: 767px)
+{
+ #drops{
+  width: 100%
+ }
+}

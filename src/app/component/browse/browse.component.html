@@ -11,7 +11,8 @@
         <!-- /.tile-box-head tile-box-head-block -->
 
         <div class="tabs-head">
-            <ul class="">  <!--<ul class="tabs-nav-->
+            <ul class="">
+                <!--<ul class="tabs-nav-->
                 <li [class.current]="Current('All')" (click)="setCurrent('All')">
                     <a href="#/">
 										All
@@ -40,11 +41,21 @@
 									</a>
                 </li>
 
-                <li [class.current]="Current('Category')" (click)="setCurrent('Category')">
-                    <a href="#/">
-										Browse by Category
-									<!--<span>{{browse.length}} </span> -->
-									</a>
+                <li [class.current]="Current('Category')"  style="background-color:white" id="drops">
+
+                  <div class="row" style="padding: 0.2em;"> 
+                    <div class="select select-yellow col-sm-12 col-md-6" (click)="setCurrent('Category')">
+                        <select name="Scategory" id="Scategory" [(ngModel)]="category" (change)="Category()">
+					        <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
+				        </select>
+                    </div>
+
+                    <div class="select select-yellow col-sm-12 col-md-6" (click)="setCurrent('Category')">
+                        <select name="Sspeaker" id="Sspeaker" [(ngModel)]="speaker" (change)="Category()">
+					        <option *ngFor="let c of speakers" [ngValue]="c">{{c.firstName}} {{c.lastName}}</option>
+				        </select>
+                    </div>
+                  </div>
                 </li>
 
 
@@ -439,11 +450,11 @@
             <div class="tile-box-tab" [class.current]="Current('Category')" id="search-tile-tab-5-b">
 
                 <div class="col-xs-12 col-sm-3" style="padding:15px;">
-                    <div class="select select-yellow">
+                    <!--<div class="select select-yellow">
                         <select name="Scategory" id="Scategory" [(ngModel)]="category" (change)="Category()">
 					        <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
 				        </select>
-                    </div>
+                    </div>-->
                     <p *ngIf="loadingCategory" style="color:red"> Loading...</p>
                 </div>
 

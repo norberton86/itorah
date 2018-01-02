@@ -3,14 +3,19 @@ import { PlayerService } from '../../service/player.service';
 import { BrowseService } from '../../service/browse.service';
 import { ItemQueue, Category } from '../../model/shiurim';
 import { Observable } from 'rxjs/Observable';
+import { Speaker } from '../../model/speaker';
+import { SpeakerService } from '../../service/speaker.service';
 
 @Component({
   selector: 'app-browse',
   templateUrl: './browse.component.html',
   styleUrls: ['./browse.component.css'],
-  providers: [ BrowseService]
+  providers: [ BrowseService,SpeakerService]
 })
 export class BrowseComponent implements OnInit, OnChanges {
+
+  speaker:Speaker
+  speakers:Array<Speaker>=[]
 
   asc: boolean = false;
 
@@ -32,7 +37,7 @@ export class BrowseComponent implements OnInit, OnChanges {
   @Input()
   browseClass: string
 
-  constructor(private playerService: PlayerService, private browseService: BrowseService) { }
+  constructor(private playerService: PlayerService, private browseService: BrowseService,private speakerService:SpeakerService) { }
 
   ReadCategory() {
     let self = this
@@ -51,7 +56,15 @@ export class BrowseComponent implements OnInit, OnChanges {
       let self = this
       this.loadingCategory=true
       this.browseService.readCategory(this.category.id).subscribe(function (response) {
+        
+        if(self.speaker.id!=0)
+        {
+          var complete=self.speaker.title+" "+self.speaker.firstName+" "+self.speaker.lastName
+          self.browse = response.filter(i=>i.speaker==complete)
+        }
+        else
         self.browse = response
+
         self.loadingCategory=false
       }, function (error) { 
         self.loadingCategory=false
@@ -60,8 +73,23 @@ export class BrowseComponent implements OnInit, OnChanges {
     }
   }
 
+  ReadSpeakers()
+  {
+    this.speakerService.read().subscribe(result=>{
+      
+      var speakerEmpty=new Speaker()
+      speakerEmpty.id=0
+      speakerEmpty.firstName="Select Speaker"
+
+      this.speakers.push(speakerEmpty)
+      this.speakers=this.speakers.concat(result)
+      this.speaker=this.speakers[0]
+    },error=>{},()=>{})
+  }
+
   ngOnInit() {
 
+    this.ReadSpeakers()
     this.ReadCategory();
     this.Read();
   }

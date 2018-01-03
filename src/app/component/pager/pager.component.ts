@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { PlayerService } from '../../service/player.service';
-import { ItemQueue } from '../../model/shiurim';
+import { Browse } from '../../model/shiurim';
 import { Page } from '../../model/page';
 
 @Component({
@@ -12,11 +12,11 @@ import { Page } from '../../model/page';
 export class PagerComponent implements OnInit {
 
   @Input()
-  allResults: Array<ItemQueue> = []
+  allResults: Array<Browse> = []
 
 
 
-  results: Array<ItemQueue> = []
+  results: Array<Browse> = []
 
   constructor(private playerService: PlayerService) { }
 

@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
 
   rNow: ReadNow
 
-  browseClasses: string = "All"
+  browseClasses: string = "Recently"
 
   constructor(private analitycService: AnalitycService, private homeService: HomeService, private playerService: PlayerService, private perashaService: PerashaService) { }
 

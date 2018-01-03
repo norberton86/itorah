@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Service } from '../model/service';
-import { ItemQueue, Category } from '../model/shiurim';
+import { Browse, Category,SubCategory } from '../model/shiurim';
 
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -17,7 +17,7 @@ export class BrowseService extends Service {
 
     }
 
-    public readRecently(): Observable<Array<ItemQueue>> {
+    public readRecently(): Observable<Array<Browse>> {
 
         return this.http.get(this.ruta+"recent").map(
             (response) => {
@@ -27,7 +27,7 @@ export class BrowseService extends Service {
         )
     }
 
-    public readPopular(): Observable<Array<ItemQueue>> {
+    public readPopular(): Observable<Array<Browse>> {
 
         return this.http.get(this.ruta+"popular").map(
             (response) => {
@@ -37,7 +37,7 @@ export class BrowseService extends Service {
         )
     }
 
-    public readRelevant(): Observable<Array<ItemQueue>> {
+    public readRelevant(): Observable<Array<Browse>> {
 
         return this.http.get(this.ruta+"relevant").map(
             (response) => {
@@ -56,7 +56,16 @@ export class BrowseService extends Service {
         )
     }
 
-    public readCategory(category:number): Observable<Array<ItemQueue>> {
+    getSubCategorys(): Observable<Array<SubCategory>> {
+        return this.http.get("http://itorahapi.3nom.com/api/Categories/sub").map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    }
+
+    public readCategory(category:number): Observable<Array<Browse>> {
 
         return this.http.get(this.ruta+"category?CategoryID="+category).map(
             (response) => {

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { PlayerService } from '../../service/player.service';
 import { BrowseService } from '../../service/browse.service';
-import { ItemQueue, Category } from '../../model/shiurim';
+import { Browse, Category,SubCategory } from '../../model/shiurim';
 import { Observable } from 'rxjs/Observable';
 import { Speaker } from '../../model/speaker';
 import { SpeakerService } from '../../service/speaker.service';
@@ -20,35 +20,51 @@ export class BrowseComponent implements OnInit, OnChanges {
 
   asc: boolean = false;
 
-  all: Array<ItemQueue> = []
-  recently: Array<ItemQueue> = []
-  popular: Array<ItemQueue> = []
-  relevant: Array<ItemQueue> = []
+  //all: Array<Browse> = []
+  recently: Array<Browse> = []
+  popular: Array<Browse> = []
+  relevant: Array<Browse> = []
+  allBrowse: Array<Browse> = []
   
-  allBrowse: Array<ItemQueue> = []
-  browse: Array<ItemQueue> = []
 
   loading: boolean = false
 
   category: Category
   categorys: Array<Category> = []
 
-  current: string = "All"
+  subCategory: SubCategory
+  subCategorys: Array<SubCategory> = []
 
- 
+  current: string = "Recently"
 
   @Input()
   browseClass: string
 
   constructor(private playerService: PlayerService, private browseService: BrowseService,private speakerService:SpeakerService) { }
 
+  SubCategory(){
+
+    this.subCategorys=[]
+    this.browseService.getSubCategorys().subscribe(result=>{
+       
+       this.subCategorys.push({ id: 0, name: "Sub Category",parentID:0 }) 
+
+       result=result.filter(i=>i.parentID==this.category.id)  //filter by category
+       this.subCategorys = this.subCategorys.concat(result)    
+       this.subCategory=this.subCategorys[0] 
+       
+
+    },error=>{},()=>{})
+  }
+
   ReadCategory() {
     let self = this
     this.browseService.getCategorys().subscribe(function (response) {
-      self.categorys.push({ id: 0, name: "Select Category" })
+      self.categorys.push({ id: 0, name: "Category" })
       self.categorys = self.categorys.concat(response)
       self.category = self.categorys[0]
 
+      self.SubCategory()
     }, function (error) { }, function () { })
   }
 
@@ -117,9 +133,9 @@ export class BrowseComponent implements OnInit, OnChanges {
         self.popular = response[1]
         self.relevant = response[2]
 
-        self.all = self.all.concat(self.recently)
+        /*self.all = self.all.concat(self.recently)
         self.all = self.all.concat(self.popular)
-        self.all = self.all.concat(self.relevant)
+        self.all = self.all.concat(self.relevant)*/
 
         self.loading=false
 

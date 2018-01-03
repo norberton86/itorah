@@ -1,7 +1,7 @@
 <div id="browseSearch" class="tile tile-search ballon tile-full">
     <div class="tile-box-primary">
         <div class="tile-box-head tile-box-head-block">
-            <h3 *ngIf="!loading">Browse results</h3>
+            <h3 *ngIf="!loading">Browse Lectures</h3>
             <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-2x"></i>
 
             <a class="link-close" href="#">
@@ -13,12 +13,12 @@
         <div class="tabs-head">
             <ul class="">
                 <!--<ul class="tabs-nav-->
-                <li [class.current]="Current('All')" (click)="setCurrent('All')">
+                <!--<li [class.current]="Current('All')" (click)="setCurrent('All')">
                     <a href="#/">
 										All
 										<span>{{all.length}} </span>
 									</a>
-                </li>
+                </li> -->
 
                 <li [class.current]="Current('Recently')" (click)="setCurrent('Recently')">
                     <a href="#/">
@@ -41,18 +41,31 @@
 									</a>
                 </li>
 
-                <li [class.current]="Current('Category')" style="background-color:white" id="drops">
+                <li [class.current]="Current('Category')"  id="drops">
 
                     <div class="row" style="padding: 0.2em;">
 
-                        <select class="col-sm-12 col-md-7" (click)="setCurrent('Category')" name="Scategory" id="Scategory" [(ngModel)]="category"
-                            (change)="Category()">
-					        <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
-				        </select>
+                        <div class="col-sm-12 col-md-1">
+                            <label>Search by</label>
+                        </div>
 
-                        <select class="col-sm-12 col-md-5" (click)="setCurrent('Category')" name="Sspeaker" id="Sspeaker" [(ngModel)]="speaker" (change)="Category()">
-					        <option *ngFor="let c of speakers" [ngValue]="c">{{c.firstName}} {{c.lastName}}</option>
-				        </select>
+                        <div class="col-sm-12 col-md-4">
+                            <select (click)="setCurrent('Category')"  [(ngModel)]="category" (change)="SubCategory()">
+					            <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
+				            </select>
+                        </div>
+
+                        <div class="col-sm-12 col-md-4">
+                            <select (click)="setCurrent('Category')"  [(ngModel)]="subCategory" (change)="Category()">
+					            <option *ngFor="let c of subCategorys" [ngValue]="c">{{c.name}}</option>
+				            </select>
+                        </div>
+
+                        <div class="col-sm-12 col-md-3">
+                            <select (click)="setCurrent('Category')"  [(ngModel)]="speaker" (change)="Category()">
+					            <option *ngFor="let c of speakers" [ngValue]="c">{{c.firstName}} {{c.lastName}}</option>
+				            </select>
+                        </div>
 
                     </div>
                 </li>
@@ -63,24 +76,24 @@
         <!-- /.tabs-head -->
         <div style="max-height: 500px;overflow: auto;">
 
-            <div class="tile-box-tab" [class.current]="Current('All')" id="search-tile-tab-1-b">
+            <!--<div class="tile-box-tab" [class.current]="Current('All')" id="search-tile-tab-1-b">
              <app-pager [allResults]="all" ></app-pager>
-            </div>
+            </div> -->
 
             <div class="tile-box-tab" [class.current]="Current('Recently')" id="search-tile-tab-2-b">
-              <app-pager [allResults]="recently" ></app-pager>
+                <app-pager [allResults]="recently"></app-pager>
             </div>
 
             <div class="tile-box-tab" [class.current]="Current('Popular')" id="search-tile-tab-3-b">
-              <app-pager [allResults]="popular" ></app-pager>
+                <app-pager [allResults]="popular"></app-pager>
             </div>
 
             <div class="tile-box-tab" [class.current]="Current('Relevant')" id="search-tile-tab-4-b">
-               <app-pager [allResults]="relevant" ></app-pager>
+                <app-pager [allResults]="relevant"></app-pager>
             </div>
 
             <div class="tile-box-tab" [class.current]="Current('Category')" id="search-tile-tab-5-b">
-                <app-pager [allResults]="allBrowse" ></app-pager>
+                <app-pager [allResults]="allBrowse"></app-pager>
             </div>
         </div>
     </div>

@@ -10,26 +10,26 @@
 				</h4>
 				
 				<div class="select">
-					<select name="field-1" id="field-1" [(ngModel)]="selectedCategory" [disabled]="action!='briefcase'">
+					<select  [(ngModel)]="selectedCategory" [disabled]="action!='briefcase'" (change)="CategoryChange()">
 						<option *ngFor="let c of categories" [ngValue]="c.id">{{c.name}}</option>
 					</select>
 				</div><!-- /.select -->
 			</div><!-- /.table-head-content -->		
 			
 			<div class="table-head-aside">
-				<label for="field-3">in</label>
+				<label for="field-country-tehillim">in</label>
 				
 				<div class="select">
-			        <select name="field-3" id="field-3" [(ngModel)]="selectedCountry" [disabled]="action!='briefcase'">
+			        <select  id="field-country-tehillim" [(ngModel)]="selectedCountry" [disabled]="action!='briefcase'" (change)="CountryChange()">
 						<option *ngFor="let c of countries" [ngValue]="c.id">{{c.name}}</option>
 					</select>
 				</div><!-- /.select -->
 
 
-				<label for="field-2">Currently showing</label>
+				<label for="field-communities-tehillim">Currently showing</label>
 				
 				<div class="select">
-					<select name="field-2" id="field-2" [(ngModel)]="selectedComunity" [disabled]="action!='briefcase'">
+					<select  id="field-communities-tehillim" [(ngModel)]="selectedComunity" [disabled]="action!='briefcase'" (change)="CommunityChange()">
 						<option *ngFor="let c of comunities" [ngValue]="c.id">{{c.name}}</option>
 					</select>
 				</div><!-- /.select -->

@@ -93,51 +93,27 @@ export class TehillimShowComponent implements OnInit {
   ngOnInit() {
     this.ReadCountry();
 
-    let self = this;
-
-    $('#field-3').change(function () {   //country
-
-      var id = parseInt($(this).val().split(":")[1]) //id
-      // self.countryRaw=$(this).val();
-
-
-      self.selectedCountry = id;
-      self.ReadComunity(id)
-
-
-    });
-
-    $('#field-2').change(function () {   //comunities
-
-      var id = parseInt($(this).val().split(":")[1]) //id
-      //self.comunityRaw=$(this).val();
-
-
-
-      self.selectedComunity = id;
-      self.ReadCategory(id)
-
-
-    });
-
-    $('#field-1').change(function () {   //categories
-
-      var id = parseInt($(this).val().split(":")[1]) //id
-      //self.comunityRaw=$(this).val();
-
-
-
-      self.selectedCategory = id;
-      self.ReadTehillim()
-
-
-    });
-
     if (localStorage.getItem('userItorah') != null && localStorage.getItem('userItorah') != "") //at the begining we check if we are signed to load the favorites
     {
       this.ReadMyTehillim();
     }
   }
+
+  CategoryChange()
+  {
+      this.ReadTehillim()
+  }
+
+  CountryChange()
+  { 
+    this.ReadComunity(this.selectedCountry)
+  }
+
+  CommunityChange()
+  {
+      this.ReadCategory(this.selectedComunity)
+  }
+
 
   ReadCountry() {
     let self = this;

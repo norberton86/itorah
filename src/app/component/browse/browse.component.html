@@ -43,26 +43,26 @@
 
                 <li [class.current]="Current('Category')"  id="drops">
 
-                    <div class="row" style="padding: 0.2em;">
+                    <div class="row" style="padding: 0.2em;" (click)="setCurrent('Category')">
 
                         <div class="col-sm-12 col-md-1">
                             <label>Search by</label>
                         </div>
 
                         <div class="col-sm-12 col-md-4">
-                            <select (click)="setCurrent('Category')"  [(ngModel)]="category" (change)="SubCategory()">
+                            <select   [(ngModel)]="category" (change)="SubCategory()">
 					            <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
 				            </select>
                         </div>
 
                         <div class="col-sm-12 col-md-4">
-                            <select (click)="setCurrent('Category')"  [(ngModel)]="subCategory" (change)="Category()">
+                            <select   [(ngModel)]="subCategory" (change)="Category()">
 					            <option *ngFor="let c of subCategorys" [ngValue]="c">{{c.name}}</option>
 				            </select>
                         </div>
 
                         <div class="col-sm-12 col-md-3">
-                            <select (click)="setCurrent('Category')"  [(ngModel)]="speaker" (change)="Category()">
+                            <select   [(ngModel)]="speaker" (change)="Category()">
 					            <option *ngFor="let c of speakers" [ngValue]="c">{{c.firstName}} {{c.lastName}}</option>
 				            </select>
                         </div>

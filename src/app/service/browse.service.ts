@@ -65,9 +65,9 @@ export class BrowseService extends Service {
         )
     }
 
-    public readCategory(category:number): Observable<Array<Browse>> {
+    public readCategory(PageIndex:number,PageSize:number,CategoryID:number,SpeakerID): Observable<any> {
 
-        return this.http.get(this.ruta+"category?CategoryID="+category).map(
+        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/all?PageIndex="+PageIndex+"&PageSize="+PageSize+"&CategoryID="+CategoryID+"&SpeakerID="+SpeakerID).map(
             (response) => {
                 let body = response.json();
                 return body;

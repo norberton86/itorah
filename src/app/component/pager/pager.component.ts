@@ -24,10 +24,10 @@ export class PagerComponent implements OnInit {
   }
 
 
-  ngOnChanges(changes: any): void { 
+  ngOnChanges(changes: any): void {
 
     if (changes.allResults != undefined) {
-    this.allResults = changes.allResults.currentValue
+      this.allResults = changes.allResults.currentValue
 
       if (this.allResults.length > 0)
         this.Update()
@@ -35,6 +35,8 @@ export class PagerComponent implements OnInit {
         this.results = []
     }
   }
+
+ 
 
 
   Play(id: string, title: string, sponsor: string, mediaId: string, speakerName: string) {

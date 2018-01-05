@@ -42,3 +42,8 @@ select
   width: 57%
  }
 }
+
+
+.mydisabled {
+   cursor: not-allowed !important; 
+}

@@ -1,0 +1,27 @@
+.lists .lists-head {
+    padding: 0.5em 48px 10px 0.5em;
+}
+
+.tile-box-speakers { min-height: 426px;  }
+
+.tile-box-speakers .tile-box-body {
+
+    height: 460px;
+}
+
+.tracks .track {
+    cursor: pointer;
+    height: 63px;
+}
+
+[hidden], .hidden {
+    display: none !important;
+}
+
+.tracks .track h4 {
+    font-size: 12px;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 0.3em;
+}

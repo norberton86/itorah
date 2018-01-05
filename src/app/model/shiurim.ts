@@ -32,13 +32,12 @@ export class Category
 {
     name:string
     id:number
+    shiurCount:number
 }
 
-export class SubCategory
+export class SubCategory extends Category
 {
-    name:string
-    id:number
-    parentID:number
+    parentID:number   
 }
 
 export class Browse extends ItemQueue

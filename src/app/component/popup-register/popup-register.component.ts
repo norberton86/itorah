@@ -130,7 +130,7 @@ export class PopupRegisterComponent implements OnInit {
     let self = this
 
     if (type == "tehillim") {
-      this.registerTehellimService.checkTehillim(this.form.value.mother, this.form.value.firstName, this.form.value.community).subscribe(
+      this.registerTehellimService.checkTehillim(this.form.value.mother.trim(), this.form.value.firstName.trim(), this.form.value.community).subscribe(
         function (respond) {
           //"No similar names"
           if (respond == "No similar names") {
@@ -150,7 +150,7 @@ export class PopupRegisterComponent implements OnInit {
     }
     else {
 
-      this.registerTehellimService.checkLevaya(this.formLevaya.value.transMotherName, this.formLevaya.value.transFirstName, this.formLevaya.value.EnglishFirstName, this.formLevaya.value.EnglishLastName, this.formLevaya.value.Age).subscribe(
+      this.registerTehellimService.checkLevaya(this.formLevaya.value.transMotherName.trim(), this.formLevaya.value.transFirstName.trim(), this.formLevaya.value.EnglishFirstName.trim(), this.formLevaya.value.EnglishLastName.trim(), this.formLevaya.value.Age).subscribe(
         function (respond) {
           //"No similar names"
           if (respond == "No similar names") {

@@ -815,8 +815,11 @@ export class SpeakerComponent implements OnInit {
     this.shiurimService.relatedCategories(id).subscribe(result => {
       this.requesting = false
       this.rCategories = result
+
     }, error => { this.requesting = false }, () => { })
   }
+
+ 
 
   RelatedShiurs(idShiur, idCategory) {
     if (this.requesting)

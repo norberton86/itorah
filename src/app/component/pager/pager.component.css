@@ -24,4 +24,9 @@
     text-transform: none;
     letter-spacing: 0;
     margin-top: 0.3em;
+    font-style: initial;
+}
+
+.tracks .track .link-mic{
+    text-decoration: none
 }

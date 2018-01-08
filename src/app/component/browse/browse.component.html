@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="col-sm-12 col-md-4">
-                            <select [(ngModel)]="category" >
+                            <select [(ngModel)]="category" (change)="SubCategory()">
 					            <option *ngFor="let c of categorys" [ngValue]="c">{{NameforSelect(c)}}</option>
 				            </select>
                         </div>

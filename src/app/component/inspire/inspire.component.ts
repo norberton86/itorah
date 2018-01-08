@@ -43,7 +43,7 @@ export class InspireComponent implements OnInit {
           inspire.audio = ""
           inspire.content = ""
           inspire.id = 0
-          inspire.title = "No Inspire for this week"
+          inspire.title = "No Weekly Inspire for this week"
 
           this.inspire = inspire
         }

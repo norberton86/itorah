@@ -8,11 +8,11 @@ import { Page } from '../../model/page';
   selector: 'app-pager-server',
   templateUrl: './pager-server.component.html',
   styleUrls: ['./pager-server.component.css'],
-  providers: [PlayerService,BrowseService]
+  providers: [PlayerService, BrowseService]
 })
 export class PagerServerComponent implements OnInit {
 
- 
+
 
   results: Array<Browse> = []
 
@@ -31,7 +31,7 @@ export class PagerServerComponent implements OnInit {
   @Input()
   speakerId: number = 0
 
-  finalCategory:number
+  finalCategory: number
 
   pages: Array<Page> = [];
   allPages: number;
@@ -49,37 +49,37 @@ export class PagerServerComponent implements OnInit {
 
   ngOnChanges(changes: any): void {
 
-     if(this.categoryId!=undefined && this.subCategoryId!=undefined && this.speakerId!=undefined)
-     this.Category()
+    if (this.categoryId != undefined && this.subCategoryId != undefined && this.speakerId != undefined)
+      this.Category()
   }
 
   Category() {
 
-      if (this.categoryId == 0 && this.subCategoryId == 0 && this.speakerId == 0) 
+    if (this.categoryId == 0 && this.subCategoryId == 0 && this.speakerId == 0)
       return
 
-      this.all = []
-      let self = this
-      //this.loading = true
+    this.all = []
+    let self = this
+    //this.loading = true
 
-      this.finalCategory=this.subCategoryId==0?this.categoryId:this.subCategoryId
+    this.finalCategory = this.subCategoryId == 0 ? this.categoryId : this.subCategoryId
 
 
-      this.browseService.readCategory(1,this.elem,this.finalCategory,this.speakerId).subscribe(function (response) {
+    this.browseService.readCategory(1, this.elem, this.finalCategory, this.speakerId).subscribe(function (response) {
 
-        self.Update(response.totalPageCount, response.shiurList)
-        self.alltotal = response.totalResultCount;
-        //self.loading = false
+      self.Update(response.totalPageCount, response.shiurList)
+      self.alltotal = response.totalResultCount;
+      //self.loading = false
 
-      }, function (error) {
-        //self.loading = false
-      }, function () { }
-      );
-    
+    }, function (error) {
+      //self.loading = false
+    }, function () { }
+    );
+
   }
 
 
-    Update(totalPageCount: number, searchItems: Array<any>) {
+  Update(totalPageCount: number, searchItems: Array<any>) {
 
     this.allPages = totalPageCount; //pagination
     this.iteration = 1; //pagination
@@ -112,8 +112,8 @@ export class PagerServerComponent implements OnInit {
       else
         p.current = true;
     })
-    
-    this.browseService.readCategory(id,this.elem,this.finalCategory,this.speakerId).subscribe(response => this.all = response.shiurList)
+
+    this.browseService.readCategory(id, this.elem, this.finalCategory, this.speakerId).subscribe(response => this.all = response.shiurList)
 
   }
 
@@ -177,10 +177,12 @@ export class PagerServerComponent implements OnInit {
       case "Date": this.all = this.all.sort(this.AscDate); break;
     }
 
-    this.Update(this.allPages,this.all)
+    this.Update(this.allPages, this.all)
 
   }
 
+  Search()
+  { }
 
 
   Play(id: string, title: string, sponsor: string, mediaId: string, speakerName: string) {

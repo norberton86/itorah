@@ -80,7 +80,7 @@ export class RegisterTehellimService extends ServiceLogin {
     h.append('Authorization', 'bearer ' + this.getToken());
     h.append('Content-Type', 'application/json');
 
-    return this.http.get(this.ruta + "/checklevaya?" + "transMotherName=" + transMotherName + "&transFirstName=" + transFirstName + "&EnglishLastName=" + EnglishLastName+"&EnglishFirstName="+EnglishFirstName+"&Age="+Age, { headers: h }).map(
+    return this.http.get(this.ruta + "checklevaya?" + "transMotherName=" + transMotherName + "&transFirstName=" + transFirstName + "&EnglishLastName=" + EnglishLastName+"&EnglishFirstName="+EnglishFirstName+"&Age="+Age, { headers: h }).map(
       (response) => {
         let body = response.json()
         return body;

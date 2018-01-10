@@ -53,10 +53,13 @@ export class ContactComponent implements OnInit {
       this.form.patchValue({ state: '----------------------------------' });
   }
 
+requesting:boolean=false
   Send() {
     let self = this
+    self.requesting=true
     this.contactService.Send(this.form.value).subscribe(
       function (respond) {
+        self.requesting=false
         self.contactService.Notify("Message sent", false)
         self.form.patchValue({
           issue: '2',
@@ -71,6 +74,7 @@ export class ContactComponent implements OnInit {
         })
       },
       function (error) {
+        self.requesting=false
         self.contactService.Notify("Service not available", true)
       },
       function () { }

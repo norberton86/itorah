@@ -103,6 +103,7 @@ export class SubscribeComponent implements OnInit {
     $('#subscribeBox').css('display', 'none')
   }
 
+  requesting:boolean=false
   Save() {
     var sub = new SubscribeRequest();
 
@@ -134,11 +135,14 @@ export class SubscribeComponent implements OnInit {
       sub.textSubscriptions.push(24)
 
 
-
+    this.requesting=true
     this.subscribeService.Save(sub).subscribe(
       result => {
+        this.requesting=false
         this.subscribeService.Notify("Subscription succesfull", false);
-      }
+      },error=>{
+        this.requesting=false
+      },()=>{}
     )
   }
 

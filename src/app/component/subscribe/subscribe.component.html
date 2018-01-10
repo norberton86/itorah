@@ -190,7 +190,8 @@
       </li>
 
       <li>
-        <a class="link-save" href="#/" (click)="Save()" [attr.disabled]="!form.valid">Save</a>
+        <a *ngIf="!requesting" class="link-save" href="#/" (click)="Save()" [attr.disabled]="!form.valid">Save</a>
+        <i *ngIf="requesting" class="fa fa-spinner fa-pulse"></i>
       </li>
     </ul>
     <!-- /.nav-list -->

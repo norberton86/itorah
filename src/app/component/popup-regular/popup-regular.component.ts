@@ -120,6 +120,7 @@ export class PopupRegularComponent implements OnInit {
     this.ReadCategory()
   }
 
+  requesting:boolean=false
   Send() {
     var data = new RegisterTehellim()
 
@@ -146,13 +147,16 @@ export class PopupRegularComponent implements OnInit {
     data.emailMessage = ""
 
     let self = this;
+    self.requesting=true
     this.registerTehellimService.addTehillim(data).subscribe(
       function (response) {
+        self.requesting=false
         self.registerTehellimService.Notify("Registered", false)
         self.Reset()
         $('#form-register-tehillim-step-regular').toggleClass('shown');
       },
       function (error) {
+        self.requesting=false
         self.registerTehellimService.Notify("Error trying to register", true)
       },
       function () {

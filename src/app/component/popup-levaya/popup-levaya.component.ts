@@ -127,6 +127,8 @@ export class PopupLevayaComponent implements OnInit {
   contactPhone: string=""
   contactEmail: string=""
 
+  requesting:boolean=false
+
   Send() {
     var data = new RegisterLevaya()
 
@@ -172,13 +174,16 @@ export class PopupLevayaComponent implements OnInit {
 
 
     let self = this;
+    self.requesting=true
     this.registerTehellimService.addLevaya(data).subscribe(
       function (response) {
+        self.requesting=false
         self.registerTehellimService.Notify("Registered", false)
         self.Reset()
         $('#form-register-levaya-step').toggleClass('shown');
       },
       function (error) {
+        self.requesting=false
         self.registerTehellimService.Notify("Error trying to register", true)
       },
       function () {

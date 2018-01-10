@@ -114,6 +114,8 @@ export class AccountComponent implements OnInit {
       this.ChangePassword()
   }
 
+  requesting:boolean=false
+
   SaveAccount() {
     var account = new Account()
     account.firstName = this.form.value.firstName
@@ -130,12 +132,14 @@ export class AccountComponent implements OnInit {
     account.communityID=this.form.value.communityID
 
     let self = this
-
+    this.requesting=true
     this.accountService.add(account).subscribe(function (respond) {
+      self.requesting=false
       self.accountService.Notify("Account Updated", false)
       self.Close()
     },
       function (error) {
+        self.requesting=false
         self.accountService.Notify("Service not available", true)
       },
       function () { })
@@ -150,12 +154,14 @@ export class AccountComponent implements OnInit {
     }
 
     let self = this
-
+    this.requesting=true
     this.accountService.changePassword(pass).subscribe(function (respond) {
+      self.requesting=false
       self.accountService.Notify("Password changed", false)
       self.ClosePassword();
     },
       function (error) {
+        self.requesting=false
         self.accountService.Notify(error, true)
       },
       function () { })

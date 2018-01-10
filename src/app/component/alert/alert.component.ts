@@ -113,12 +113,16 @@ export class AlertComponent implements OnInit {
 
   }
 
+  requesting:boolean=false
   Delete(a: AlerText) {
-
-    this.alertService.delete(parseInt(a.id)).subscribe(response => {
+    this.requesting=true
+    this.alertService.delete(parseInt(a.id)).subscribe(result => {
+      this.requesting=false
       this.alerts.splice(this.alerts.findIndex(i => i.id == a.id), 1)
       //this.alertService.Notify("Deleted", false)
-    })
+    },error=>{
+      this.requesting=false
+    },()=>{})
   }
 
   editing: boolean = false
@@ -168,15 +172,19 @@ export class AlertComponent implements OnInit {
       ale.alertData = parseInt(this.speaker.id)
 
     let self = this
-
+    this.requesting=true
     this.alertService.add(ale).subscribe(function (respond) {
-
+      self.requesting=false
       self.alertService.Notify("Alert Created", false)
       self.Back()
       self.Load()
     },
-      function (error) { self.alertService.Notify("Error trying to add", true); self.Back() },
-      function () { })
+    function (error) { 
+        self.requesting=false
+        self.alertService.Notify("Error trying to add", true);
+        self.Back()
+    },
+    function () { })
   }
 }
 

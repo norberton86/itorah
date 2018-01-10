@@ -24,7 +24,8 @@
       </div>
 
       <div class="col-lg-6 buttonContainer">
-        <button class="search-btn button-save" type="button" [hidden]="manage==false" (click)="Save()">SAVE</button>
+        <button *ngIf="!requesting" class="search-btn button-save" type="button" [hidden]="manage==false" (click)="Save()">SAVE</button>
+        <i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-2x" style="float: right;"></i>
       </div>
     </div>
 
@@ -68,7 +69,10 @@
           <tr *ngFor="let a of alerts" style="height: 2.5em;">
             <td>{{a.frecuency}}</td>
             <td>{{a.dataText}}</td>
-            <td style="color: #1e68e7"> <a href="#" (click)="Edit(a)">Edit</a>|<a href="#" (click)="Delete(a)">Delete</a> </td>
+            <td style="color: #1e68e7"> 
+              <a *ngIf="!requesting" href="#" (click)="Edit(a)">Edit</a>|<a href="#" (click)="Delete(a)">Delete</a> 
+              <i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-2x"></i>
+            </td>
           </tr>
         </tbody>
       </table>

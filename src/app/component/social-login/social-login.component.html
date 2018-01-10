@@ -70,7 +70,8 @@
 				<!-- /.form-body -->
 
 				<div class="form-actions">
-					<input type="submit" value="SIGN IN" class="form-btn" (click)="Submit()" [disabled]="form.get('email').hasError('required')||!form.get('email').valid||form.get('password').hasError('required')" [class.mydisabled]="form.get('email').hasError('required')||!form.get('email').valid||form.get('password').hasError('required')">
+					<input *ngIf="!requesting" type="submit" value="SIGN IN" class="form-btn" (click)="Submit()" [disabled]="form.get('email').hasError('required')||!form.get('email').valid||form.get('password').hasError('required')" [class.mydisabled]="form.get('email').hasError('required')||!form.get('email').valid||form.get('password').hasError('required')">
+					<i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-2x"></i>	
 
 					<p>or</p>
 
@@ -212,7 +213,8 @@
 
 				<div class="form-actions" style="border-top: none;">
 					<p style="margin-bottom: 0.5em">By signing up, I agree to iTorah <a href="#/">Terms of Service </a> and <a href="#/" (click)="Privacy()">Privacy Policy</a></p>
-					<input type="submit" value="Register" class="form-btn" (click)="Register()" [disabled]="form.invalid||form.get('confirm').value!=form.get('password').value" [class.mydisabled]="form.invalid||form.get('confirm').value!=form.get('password').value" >
+					<input *ngIf="!requesting" type="submit" value="Register" class="form-btn" (click)="Register()" [disabled]="form.invalid||form.get('confirm').value!=form.get('password').value" [class.mydisabled]="form.invalid||form.get('confirm').value!=form.get('password').value" >
+					<i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-2x"></i>
 					<p>Back to <a href="#/" (click)="GoBackfromAccount()">sign in</a></p>
 				</div>
 				<!-- /.form-actions -->

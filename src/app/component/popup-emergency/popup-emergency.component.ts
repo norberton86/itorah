@@ -92,6 +92,7 @@ export class PopupEmergencyComponent implements OnInit {
     $('#form__row-info-emergency').addClass('hidden');
   }
 
+  requesting:boolean=false
   Send() {
     var data = new RegisterTehellim()
 
@@ -118,13 +119,16 @@ export class PopupEmergencyComponent implements OnInit {
     data.emailMessage = this.emailMessage
 
     let self = this;
+    self.requesting=true
     this.registerTehellimService.addTehillim(data).subscribe(
       function (response) {
+        self.requesting=false
         self.registerTehellimService.Notify("Registered", false)
         self.Reset()
         $('#form-register-tehillim-step-emergency').toggleClass('shown');
       },
       function (error) {
+        self.requesting=false
         self.registerTehellimService.Notify("Error trying to register", true)
       },
       function () {

@@ -209,8 +209,8 @@
 
 				<div class="col col-1of3 col--padding col-center">
 					<div class="form__actions">
-						<input type="submit" value="Submit" class="form__btn" (click)="Send()">
-
+						<input *ngIf="!requesting" type="submit" value="Submit" class="form__btn" (click)="Send()">
+						<i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-2x"></i>
 						<p>Upon clicking submit, this form will be sent to one of the administrators of your community for approval. Approvals and updates are usually posted within 24 hours. An administrator will contact you by email or phone if further information is needed.</p>
 					</div><!-- /.form__actions -->
 				</div>

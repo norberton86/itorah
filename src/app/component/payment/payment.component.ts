@@ -13,7 +13,6 @@ import { DonateService } from '../../service/donate.service';
 })
 export class PaymentComponent implements OnInit, OnChanges {
 
-
   @Output()
   public myEvent = new EventEmitter<CreditCard>();
 
@@ -22,6 +21,9 @@ export class PaymentComponent implements OnInit, OnChanges {
 
   @Input()
   isDonate: boolean = false
+
+  @Input()
+  requesting:boolean=false
 
   value: number = 0;
 

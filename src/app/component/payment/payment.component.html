@@ -135,7 +135,8 @@
     <!-- /.form-body -->
 
     <div class="form-actions">
-      <input type="submit" value="Process order" class="form-btn" [disabled]="Validate()" [class.mydisabled]="Validate()">
+      <input *ngIf="!requesting" type="submit" value="Process order" class="form-btn" [disabled]="Validate()" [class.mydisabled]="Validate()">
+      <i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-2x"></i>
     </div>
     <!-- /.form-actions -->
   </form>

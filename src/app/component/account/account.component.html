@@ -16,7 +16,10 @@
         <div class="form-row">
           <div class="form-header-wrap">
             <div class="form-header-title"> <strong>My Information</strong> </div>
-            <div class="form-header-btn"> <a class="btn btn-yellow btn-make-dedication" href="" style="margin: 0" (click)="Save()" [class.mydisabled]="Validate()">Save</a></div>
+            <div class="form-header-btn"> 
+              <a *ngIf="!requesting" class="btn btn-yellow btn-make-dedication" href="" style="margin: 0" (click)="Save()" [class.mydisabled]="Validate()">Save</a>
+              <i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-2x"></i>
+            </div>
 
           </div>
         </div>
@@ -271,7 +274,10 @@
         <div class="form-row">
           <div class="form-header-wrap">
             <div class="form-header-title"> <strong>My Information</strong> </div>
-            <div class="form-header-btn"> <a class="btn btn-yellow btn-make-dedication" href="" style="margin: 0" (click)="Save()" [class.mydisabled]="Validate()">Save</a></div>
+            <div class="form-header-btn"> 
+              <a *ngIf="!requesting" class="btn btn-yellow btn-make-dedication" href="" style="margin: 0" (click)="Save()" [class.mydisabled]="Validate()">Save</a>
+              <i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-2x"></i>
+            </div>
 
           </div>
         </div>

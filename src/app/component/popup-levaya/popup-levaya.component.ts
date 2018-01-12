@@ -3,7 +3,7 @@ import { TehillimService } from '../../service/tehillim.service';
 import { RegisterTehellimService } from '../../service/register-tehellim.service';
 import { Country, Comunity } from '../../model/Tehillim/tehillim';
 import { RegisterLevaya } from '../../model/register-levaya';
-import { IMyDpOptions } from 'mydatepicker';
+import { IMyDpOptions ,IMyDateModel} from 'mydatepicker';
 
 declare var $: any;
 declare var VirtualKeyboard: any;
@@ -30,9 +30,9 @@ export class PopupLevayaComponent implements OnInit {
   // Initialized to specific date (09.10.2018).
   public startDate: any 
   public funeralDate: any
-  
-  public arayatDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
-  public endDate: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
+ 
+  public arayatDate: any = { date: { year:  this.addDays(new Date(), 6).getFullYear(), month: this.addDays(new Date(), 6).getMonth() + 1, day:  this.addDays(new Date(), 6).getDate() } };
+  public endDate: any =  { date: { year:  this.addDays(new Date(), 6).getFullYear(), month: this.addDays(new Date(), 6).getMonth() + 1, day:  this.addDays(new Date(), 6).getDate() } };
 
   constructor(private tehillimService: TehillimService, private registerTehellimService: RegisterTehellimService) {
     this.registerTehellimService.getData().subscribe(item => {
@@ -49,9 +49,20 @@ export class PopupLevayaComponent implements OnInit {
 
   ngOnInit() {
     this.startDate= { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
-      this.funeralDate = { date: { year: this.addDays(new Date(), 7).getFullYear(), month: this.addDays(new Date(), 7).getMonth() + 1, day: this.addDays(new Date(), 7).getDate() } };
+      this.funeralDate =  { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
     this.ReadCountry()
 
+  }
+
+  onDateChangedStart(event: IMyDateModel)
+  {
+     this.funeralDate =  { date: { year: event.date.year, month: event.date.month, day: event.date.day } };
+  }
+
+  onDateChangedFuneral(event: IMyDateModel)
+  {
+    var date=new Date(event.date.year,event.date.month,event.date.day)
+     this.arayatDate =  { date: { year:  this.addDays(date, 6).getFullYear(), month: this.addDays(date, 6).getMonth() , day:  this.addDays(date, 6).getDate() } };
   }
 
   addDays(date, days) :Date{

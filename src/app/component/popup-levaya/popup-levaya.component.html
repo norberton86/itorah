@@ -129,7 +129,7 @@
 								<!--<input type="date" class="field field-dates" name="field-deceaseddates" id="field-deceaseddates" value="" placeholder="Deceased date" [(ngModel)]="startDate">
 
 								<i class="ico-calendar"></i>-->
-								<my-date-picker name="myDateStart" [options]="myDatePickerOptions" [(ngModel)]="startDate" ></my-date-picker>
+								<my-date-picker name="myDateStart" [options]="myDatePickerOptions" [(ngModel)]="startDate" (dateChanged)="onDateChangedStart($event)"></my-date-picker>
 							</div><!-- /.form__col form__col-/-size4 -->
 
 							<div class="form__col form__col-1of2">
@@ -137,7 +137,7 @@
 							<!--	<input type="date" class="field field-dates" name="field-funeral" id="field-funeral" value="" placeholder="Funeral date" [(ngModel)]="funeralDate">
 
 								<i class="ico-calendar"></i>-->
-								 <my-date-picker name="myDateFuneral" [options]="myDatePickerOptions" [(ngModel)]="funeralDate" ></my-date-picker>
+								 <my-date-picker name="myDateFuneral" [options]="myDatePickerOptions" [(ngModel)]="funeralDate" (dateChanged)="onDateChangedFuneral($event)"></my-date-picker>
 							</div><!-- /.form__col form__col-/-size4 -->
 						</div><!-- /.form__controls -->
 					</div><!-- /.form__row -->

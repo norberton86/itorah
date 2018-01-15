@@ -13,7 +13,7 @@
                         <form action="?" method="get" id="form-main">
                             <label for="q" class="hidden">Search</label>
 
-                            <input type="search"  placeholder="Search through {{all.length}} lectures" class="search-field" [(ngModel)]="query_main" (keyup)="Search($event)" name="searchPageServer">
+                            <input type="search"  placeholder="Search through {{alltotal}} lectures" class="search-field" [(ngModel)]="query_main" (keyup)="Search($event)" name="searchPageServer">
 
                             <button  data-type="search-shirium" type="button" class="search-btn"><i class="ico-magnify"></i></button>
                         </form>

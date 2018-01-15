@@ -18,27 +18,23 @@
     <p><b>{{dedication}}</b></p>
 
     <div *ngIf="formatted" class="content" [innerHTML]="content">
+
     </div>
 
     <div *ngIf="!formatted" id="printRead">
       <h5>
-        <!-- {{title}}-->
-        <!-- <a href="#/"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a> 
-        <a href="#/"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a>-->
+
       </h5>
 
       <div style="white-space: pre-wrap;">
-
         {{content}}
       </div>
 
-      <!-- <p *ngFor="let p of parragraphs">
-					{{p}}
-		</p>-->
+
     </div>
 
     <div class="link-container">
-       <div class="link-halacha" *ngFor="let l of links" (click)="NavigateLink(l)" title="{{l.Title}}"> <span >{{l.Title|reduceStringLink}} </span> </div> 
+      <div class="link-halacha" *ngFor="let l of links" (click)="NavigateLink(l)" title="{{l.Title}}"> <span>{{l.Title|reduceStringLink}} </span> </div>
     </div>
   </div>
   <!-- /.donate-body -->

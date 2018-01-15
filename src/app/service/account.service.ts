@@ -26,6 +26,20 @@ export class AccountService extends ServiceLogin {
     )
   }
 
+  public Profile(token:string): Observable<any> {
+
+    let h = new Headers();
+    h.append('Authorization', 'bearer ' + token);
+     h.append('Content-Type', 'application/json');
+
+    return this.http.get("http://itorahapi.3nom.com/api/UserProfile", { headers: h }).map(
+      (response) => {
+        let body = response.json();
+        return body;
+      }
+    )
+  }
+
   public add(data: Account): Observable<any> {
 
     let h = new Headers();

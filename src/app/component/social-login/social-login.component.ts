@@ -105,15 +105,15 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
       Password: this.form.value.password
     }).subscribe(
       data => {
-        this.requesting=false
+        this.requesting = false
         if (data) {
           this.Reset()
           this.GoBackfromAccount();
           this.socialLoginServic.Notify("Account Created", false)
         }
-      },error=>{
-        this.requesting=false
-      },()=>{})
+      }, error => {
+        this.requesting = false
+      }, () => { })
   }
 
   Privacy() {
@@ -175,28 +175,37 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
   }
 
 
- 
+  Profile(token:string)
+  {
+    this.accountService.Profile(token).subscribe(result=>{
+
+        this.requesting = false
+        this.messageVisible = false;
+        this.Save({ name: result[0].FirstName+" "+result[0].LastName, email: this.form.value.email, token: token, provider: "itorah" })
+       
+    },error=>{
+        this.requesting = false
+        this.messageVisible = true;
+    },()=>{})
+  }
+
   Submit() {
-   
-   if(this.requesting)
-   return
 
-   this.requesting=true
+    if (this.requesting)
+      return
 
-    let self = this;
+    this.requesting = true
 
     this.socialLoginServic.Sign(this.form.value.email, this.form.value.password).subscribe(
-      function (respond) {
-        self.requesting=false
-        self.Save({ name: "itorah itorah", email: self.form.value.email, token: respond.access_token, provider: "itorah" })
-        self.messageVisible = false;
+      respond => {
+        this.Profile(respond.access_token)
       },
-      function (error) {
-        self.requesting=false
-        self.messageVisible = true;
+      error => {
+        this.requesting = false
+        this.messageVisible = true;
 
         setTimeout(function () {
-          self.messageVisible = false;
+          this.messageVisible = false;
         }, 3000)
       },
       function () { }

@@ -35,8 +35,14 @@ export class ReadNowComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: any): void {
+
+    if(changes.title!=undefined && changes.title!=null)
     this.title = changes.title.currentValue
+    
+    if(changes.content!=undefined && changes.content!=null)
     this.content = changes.content.currentValue
+
+    if(changes.dedication!=undefined && changes.dedication!=null)
     this.dedication = changes.dedication.currentValue
 
 
@@ -48,11 +54,7 @@ export class ReadNowComponent implements OnInit, OnChanges {
       else
         if (this.content.indexOf('\n') >= 0) //in this case has special characters format
         {
-          /*
-          this.parragraphs=this.content.split("\n").filter(function (s) {  //split by '\n' and get parragraphs
-            return s != "";
-          });*/
-
+         
           this.formatted = false
 
         }

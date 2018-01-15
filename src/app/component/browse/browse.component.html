@@ -93,7 +93,7 @@
             </div>
 
             <div class="tile-box-tab" [class.current]="Current('Category')" id="search-tile-tab-5-b">
-                <app-pager-server [categoryId]="category?.id" [subCategoryId]="subCategory?.id" [speakerId]="speaker?.id" ></app-pager-server>
+                <app-pager-server [categoryId]="category?.id" [subCategoryId]="subCategory?.id" [speakerId]="speaker?.id" (myEvent)="Status($event)"></app-pager-server>
             </div>
         </div>
     </div>

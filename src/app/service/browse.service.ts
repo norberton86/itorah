@@ -65,9 +65,11 @@ export class BrowseService extends Service {
         )
     }
 
-    public readCategory(PageIndex:number,PageSize:number,CategoryID:number,SpeakerID): Observable<any> {
+    public readCategory(PageIndex:number,PageSize:number,CategoryID:number,SpeakerID:any,SearchText:string=''): Observable<any> {
 
-        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/all?PageIndex="+PageIndex+"&PageSize="+PageSize+"&CategoryID="+CategoryID+"&SpeakerID="+SpeakerID).map(
+        var search=SearchText==''?'':'&SearchText='+SearchText
+
+        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/all?PageIndex="+PageIndex+"&PageSize="+PageSize+"&CategoryID="+CategoryID+"&SpeakerID="+SpeakerID+search).map(
             (response) => {
                 let body = response.json();
                 return body;

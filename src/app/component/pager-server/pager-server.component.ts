@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { PlayerService } from '../../service/player.service';
 import { BrowseService } from '../../service/browse.service';
 import { Browse } from '../../model/shiurim';
@@ -53,6 +53,15 @@ export class PagerServerComponent implements OnInit {
       this.Category()
   }
 
+  Search(event) {
+    if (event.keyCode == 13) {
+      this.Category()
+    }
+  }
+
+  @Output()
+  public myEvent = new EventEmitter<boolean>();
+
   Category() {
 
     if (this.categoryId == 0 && this.subCategoryId == 0 && this.speakerId == 0)
@@ -60,19 +69,19 @@ export class PagerServerComponent implements OnInit {
 
     this.all = []
     let self = this
-    //this.loading = true
+    this.myEvent.next(true)
 
     this.finalCategory = this.subCategoryId == 0 ? this.categoryId : this.subCategoryId
 
 
-    this.browseService.readCategory(1, this.elem, this.finalCategory, this.speakerId).subscribe(function (response) {
+    this.browseService.readCategory(1, this.elem, this.finalCategory, this.speakerId, this.query_main).subscribe(function (response) {
 
+      self.myEvent.next(false)
       self.Update(response.totalPageCount, response.shiurList)
       self.alltotal = response.totalResultCount;
-      //self.loading = false
 
     }, function (error) {
-      //self.loading = false
+      self.myEvent.next(false)
     }, function () { }
     );
 
@@ -113,7 +122,14 @@ export class PagerServerComponent implements OnInit {
         p.current = true;
     })
 
-    this.browseService.readCategory(id, this.elem, this.finalCategory, this.speakerId).subscribe(response => this.all = response.shiurList)
+    this.myEvent.next(true)
+    this.browseService.readCategory(id, this.elem, this.finalCategory, this.speakerId, this.query_main).subscribe(response => {
+      this.myEvent.next(false)
+      this.all = response.shiurList
+    }
+    , error => {
+        this.myEvent.next(false)
+    }, () => { })
 
   }
 
@@ -181,17 +197,10 @@ export class PagerServerComponent implements OnInit {
 
   }
 
-  Search()
-  { }
-
 
   Play(id: string, title: string, sponsor: string, mediaId: string, speakerName: string) {
     var onlyAudio = title.includes('LT-Audio');
     this.playerService.Play(title, id, onlyAudio, speakerName, sponsor, 1, mediaId);
   }
-
-
-
-
 
 }

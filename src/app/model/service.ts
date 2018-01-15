@@ -31,7 +31,7 @@ export class Service {
                     enter: 'animated bounceInRight',
                     exit: 'animated bounceOutRight'
                 },
-                type: error==false?"success":"error"
+                type: error==false?"success":"warning"
         });
 
         if(message.indexOf("Thank you")>=0){

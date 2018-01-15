@@ -147,4 +147,9 @@ export class BrowseComponent implements OnInit, OnChanges {
   Search() {
 
   }
+
+  Status(event)
+  {
+      this.loading=event
+  }
 }

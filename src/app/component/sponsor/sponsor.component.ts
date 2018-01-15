@@ -4,7 +4,7 @@ import { Page } from '../../model/Page';
 import { Shiurim } from '../../model/shiurim';
 import { SponsorService, Category } from '../../service/sponsor.service';
 import { HomeService } from '../../service/home.service';
-import { ShiurimService } from '../../service/shiurim.service';
+import { BrowseService } from '../../service/browse.service';
 import { IMyDpOptions } from 'mydatepicker';
 import { ComboItem } from '../../model/combo-item';
 import { CreditCard } from '../../model/credit-card';
@@ -14,7 +14,7 @@ declare var $: any;
   selector: 'app-sponsor',
   templateUrl: './sponsor.component.html',
   styleUrls: ['./sponsor.component.css'],
-  providers: [SponsorService]
+  providers: [SponsorService,BrowseService]
 })
 export class SponsorComponent implements OnInit {
   value: number = 0
@@ -47,7 +47,7 @@ export class SponsorComponent implements OnInit {
 
 
 
-  constructor(private sponsorService: SponsorService, private shiurimService: ShiurimService, private homeService: HomeService) {
+  constructor(private sponsorService: SponsorService, private browseService: BrowseService, private homeService: HomeService) {
 
   }
 
@@ -308,18 +308,22 @@ export class SponsorComponent implements OnInit {
     return categoryQuery
   }
 
+  finalCategory: number
+  loading:boolean=false
   Load() {
     let self = this;
 
-
-
-    self.shiurimService.search(this.query_main, 24, 1, this.getSelecteCategory())
+    this.finalCategory = this.sub.id == -1 ? this.cat.id : this.sub.id
+    this.loading=true
+   
+    self.browseService.readCategory(1, 24, this.finalCategory, 0, this.query_main)
       .subscribe(function (response) {
-
+        
+        self.loading=false
         self.Update(response.totalPageCount, response.shiurList)
         self.alltotal = response.totalResultCount;
 
-      }, function (error) { }, function () { }
+      }, function (error) {self.loading=false }, function () { }
       );
   }
 
@@ -364,8 +368,12 @@ export class SponsorComponent implements OnInit {
         p.current = true;
     })
 
-    this.shiurimService.search(this.query_main, 24, id, this.getSelecteCategory())
-      .subscribe(response => this.all = response.shiurList)
+    this.loading=true
+    this.browseService.readCategory(id, 24, this.finalCategory, 0, this.query_main)
+      .subscribe(response => {
+        this.loading=false
+        this.all = response.shiurList
+      },error=>{ this.loading=false},()=>{})
 
   }
 

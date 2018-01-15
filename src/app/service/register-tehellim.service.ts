@@ -20,7 +20,7 @@ export class RegisterTehellimService extends ServiceLogin {
 
   public readCategory(): Observable<Category[]> {
 
-    return this.http.get("http://itorahapi.3nom.com/api/Tehillim/categories?CommunityID=1").map(
+    return this.http.get("http://itorahapi.3nom.com/api/Tehillim/categories/all").map(
       (response) => {
         let body = response.json()
         return body;

@@ -48,7 +48,7 @@ export class SponsorComponent implements OnInit {
   sponsorshipFor: string = ''
   name: string = ''
 
-
+ elem:number=24
 
   constructor(private sponsorService: SponsorService, private browseService: BrowseService, private homeService: HomeService,private speakerService:SpeakerService) {
 
@@ -315,7 +315,7 @@ export class SponsorComponent implements OnInit {
     this.finalCategory = this.subCategory.id == -1 ? this.category.id : this.subCategory.id
     this.loading=true
    
-    self.browseService.readCategory(1, 24, this.finalCategory, this.speaker.id, this.query_main)
+    self.browseService.readCategory(1, this.elem, this.finalCategory, this.speaker.id, this.query_main)
       .subscribe(function (response) {
         
         self.loading=false
@@ -368,7 +368,7 @@ export class SponsorComponent implements OnInit {
     })
 
     this.loading=true
-    this.browseService.readCategory(id, 24, this.finalCategory, this.speaker.id, this.query_main)
+    this.browseService.readCategory(id, this.elem, this.finalCategory, this.speaker.id, this.query_main)
       .subscribe(response => {
         this.loading=false
         this.all = response.shiurList

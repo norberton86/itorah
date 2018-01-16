@@ -21,7 +21,7 @@ background: transparent;
 
 .tile-box-speakers .tile-box-body {
 
-    height: 420px;
+   height: 460px;
 }
 
 #buttonBackAll{
@@ -35,6 +35,22 @@ background: transparent;
 
 .tracks .track {
     cursor: pointer;
+    height: 63px;
+}
+
+.tracks .track h4 {
+    font-size: 12px;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 0.3em;
+    font-style: initial;
+    background: none;
+    color: #2c2929;
+    text-align: unset;
+    padding:0px;
+    margin-bottom: 0px; 
+    font-weight: 800;
 }
 
 [hidden], .hidden {

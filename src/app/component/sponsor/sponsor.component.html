@@ -1,7 +1,7 @@
 <div class="popup sponsor" id="sponsor">
 	<div class="popup-head">
 		<form action="?" method="get">
-			<label *ngIf="!loading" for="field-search-content">Donate: </label>
+			<label *ngIf="!loading" for="field-search-content">Sponsor: </label>
 			<i *ngIf="loading" class="fa fa-spinner fa-pulse"></i>
 
 			<a href="#" class="link-close">
@@ -380,7 +380,7 @@
 									<input type="search" name="q" id="q" placeholder="Search by name or speaker" class="search-field" [(ngModel)]="query_main"
 									 (keyup)="keyDown($event)">
 
-									<button data-type="search-shirium" type="button" class="search-btn"><i class="ico-magnify" id="prueba" (click)="keyDown($event)"></i></button>
+									<button (click)="Load()" data-type="search-shirium" type="button" class="search-btn"><i class="ico-magnify" id="prueba"></i></button>
 								</form>
 							</div>
 							<!-- /.search -->

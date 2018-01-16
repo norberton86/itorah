@@ -15,7 +15,7 @@
 
                             <input type="search"  placeholder="Search through {{alltotal}} lectures" class="search-field" [(ngModel)]="query_main" (keyup)="Search($event)" name="searchPageServer">
 
-                            <button  data-type="search-shirium" type="button" class="search-btn"><i class="ico-magnify"></i></button>
+                            <button  data-type="search-shirium" type="button" class="search-btn" (click)="Category()"><i class="ico-magnify"></i></button>
                         </form>
               </div>
                 
@@ -23,7 +23,10 @@
         <!-- /.lists-head -->
 
         <div class="lists-body">
-          <ul class="tracks">
+
+          <h4 *ngIf="all.length==0">No results for this selection</h4>
+          
+          <ul class="tracks" *ngIf="all.length!=0">
             <li class="track" *ngFor="let s of all">
               <!--<a href="#" class="link-play-secondary"></a>-->
 

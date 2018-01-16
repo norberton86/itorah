@@ -17,7 +17,7 @@ export class PagerServerComponent implements OnInit {
   results: Array<Browse> = []
 
 
-  filterClients: Array<String> = ["Filter", "Author", "Title", "Popularity", "Date"]
+  filterClients: Array<String> = ["Sort", "Author", "Title", "Popularity", "Date"]
   filterClient: String = this.filterClients[0]
 
   query_main: string = ''

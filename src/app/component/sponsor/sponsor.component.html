@@ -361,15 +361,21 @@
 							<!-- /.lists-head-inner -->
 							<div class="lists-head-inner">
 								<div class="select select-tertiary" style="margin-right: 0.5em;">
-									<select name="field-category" id="field-category" [(ngModel)]="cat" (change)="getSubs()">
-											<option *ngFor="let t of cats" [ngValue]="t">{{t.name}}</option>	
-								    </select>
+									<select [(ngModel)]="category" (change)="SubCategory()">
+					            		<option *ngFor="let c of categorys" [ngValue]="c">{{NameforSelect(c)}}</option>
+				            		</select>
+								</div>
+
+								<div class="select select-tertiary" style="margin-right: 0.5em;">
+									<select [(ngModel)]="subCategory" (change)="Load()"  [disabled]="category!=undefined&&category.id==0" [class.mydisabled]="category!=undefined&&category.id==0">
+					            		<option *ngFor="let c of subCategorys" [ngValue]="c">{{NameforSelect(c)}}</option>
+				            		</select>
 								</div>
 
 								<div class="select select-tertiary">
-									<select name="field-subcategory" id="field-subcategory" [(ngModel)]="sub" (change)="getBySubs()">
-											<option *ngFor="let t of subs" [ngValue]="t">{{t.name}}</option>	
-								    </select>
+									<select [(ngModel)]="speaker" (change)="Load()">
+					            		<option *ngFor="let c of speakers" [ngValue]="c">{{c.firstName}} {{c.lastName}}</option>
+				            		</select>
 								</div>
 							</div>
 
@@ -377,7 +383,7 @@
 								<form action="?" method="get" id="form-main">
 									<label for="q" class="hidden">Search</label>
 
-									<input type="search" name="q" id="q" placeholder="Search by name or speaker" class="search-field" [(ngModel)]="query_main"
+									<input type="search" name="q" id="q" placeholder="Search by name" class="search-field" [(ngModel)]="query_main"
 									 (keyup)="keyDown($event)">
 
 									<button (click)="Load()" data-type="search-shirium" type="button" class="search-btn"><i class="ico-magnify" id="prueba"></i></button>
@@ -388,7 +394,8 @@
 						<!-- /.lists-head -->
 
 						<div class="lists-body">
-							<ul class="tracks">
+							<h4 *ngIf="all.length==0" style="background: none;color: #2c2929;text-align: unset;">No results for this selection</h4>
+							<ul *ngIf="all.length!=0" class="tracks">
 								<li class="track" *ngFor="let s of all" (click)="setShiur(s)">
 									<!--<a href="#" class="link-play-secondary"></a>-->
 

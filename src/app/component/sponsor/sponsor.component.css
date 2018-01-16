@@ -128,3 +128,7 @@ display: block;
   color: #000;
 }
 
+
+.mydisabled {
+   cursor: not-allowed !important; 
+}

@@ -76,8 +76,6 @@ export class BrowseComponent implements OnInit, OnChanges {
     }, function (error) { }, function () { })
   }
 
-
-
   ReadSpeakers() {
     this.speakerService.read().subscribe(result => {
 
@@ -142,10 +140,6 @@ export class BrowseComponent implements OnInit, OnChanges {
 
   setCurrent(c: string) {
     this.current = c
-  }
-
-  Search() {
-
   }
 
   Status(event)

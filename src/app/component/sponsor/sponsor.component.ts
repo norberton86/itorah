@@ -2,19 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { Sponsor, SponsorShiur, SponsorMedia } from '../../model/sponsors';
 import { Page } from '../../model/Page';
 import { Shiurim } from '../../model/shiurim';
-import { SponsorService, Category } from '../../service/sponsor.service';
+import { SponsorService } from '../../service/sponsor.service';
 import { HomeService } from '../../service/home.service';
 import { BrowseService } from '../../service/browse.service';
 import { IMyDpOptions } from 'mydatepicker';
 import { ComboItem } from '../../model/combo-item';
 import { CreditCard } from '../../model/credit-card';
+import {  Category, SubCategory } from '../../model/shiurim';
+import { Speaker } from '../../model/speaker';
+import { SpeakerService } from '../../service/speaker.service';
 declare var $: any;
 
 @Component({
   selector: 'app-sponsor',
   templateUrl: './sponsor.component.html',
   styleUrls: ['./sponsor.component.css'],
-  providers: [SponsorService,BrowseService]
+  providers: [SponsorService,BrowseService,SpeakerService]
 })
 export class SponsorComponent implements OnInit {
   value: number = 0
@@ -47,7 +50,7 @@ export class SponsorComponent implements OnInit {
 
 
 
-  constructor(private sponsorService: SponsorService, private browseService: BrowseService, private homeService: HomeService) {
+  constructor(private sponsorService: SponsorService, private browseService: BrowseService, private homeService: HomeService,private speakerService:SpeakerService) {
 
   }
 
@@ -60,7 +63,8 @@ export class SponsorComponent implements OnInit {
 
     this.dT = this.dedicationType[0]
 
-    this.getCats()
+    this.ReadSpeakers()
+    this.ReadCategory();
   }
 
   isSourceNotAvailable(source: number): boolean {
@@ -296,27 +300,22 @@ export class SponsorComponent implements OnInit {
     }
   }
 
-  getBySubs() {
-    this.Load()
-  }
-
-  getSelecteCategory(): number {
-    var categoryQuery = this.cat.id
-    if (this.sub.id != -1)
-      categoryQuery = this.sub.id
-
-    return categoryQuery
-  }
-
   finalCategory: number
   loading:boolean=false
+
   Load() {
+    
+   this.all=[]
+
+    if (this.category.id == 0)
+      return
+    
     let self = this;
 
-    this.finalCategory = this.sub.id == -1 ? this.cat.id : this.sub.id
+    this.finalCategory = this.subCategory.id == -1 ? this.category.id : this.subCategory.id
     this.loading=true
    
-    self.browseService.readCategory(1, 24, this.finalCategory, 0, this.query_main)
+    self.browseService.readCategory(1, 24, this.finalCategory, this.speaker.id, this.query_main)
       .subscribe(function (response) {
         
         self.loading=false
@@ -369,7 +368,7 @@ export class SponsorComponent implements OnInit {
     })
 
     this.loading=true
-    this.browseService.readCategory(id, 24, this.finalCategory, 0, this.query_main)
+    this.browseService.readCategory(id, 24, this.finalCategory, this.speaker.id, this.query_main)
       .subscribe(response => {
         this.loading=false
         this.all = response.shiurList
@@ -404,34 +403,62 @@ export class SponsorComponent implements OnInit {
     this.value = value
   }
 
+  SubCategory() {
 
-  cats: Array<Category> = []
-  cat: Category
-  subs: Array<Category> = []
-  sub: Category
+    this.subCategorys = []
+    this.browseService.getSubCategorys().subscribe(result => {
 
-  getCats() {
-    this.sponsorService.getCategory().subscribe(result => {
-      this.cats = result
-      this.cat = this.cats[0]
-      this.getSubs()
-    }, error => { }, () => { })
-  }
+      this.subCategorys.push({ id: 0, name: "Select Sub Category", parentID: 0, shiurCount: 0 })
+      result = result.filter(i => i.parentID == this.category.id)  //filter by category
+      this.subCategorys = this.subCategorys.concat(result)
+      this.subCategory = this.subCategorys[0]
 
-  getSubs() {
-    this.subs = []
-    this.sponsorService.getSubCategory().subscribe(result => {
-      this.subs.push({ id: -1, name: "All", parentID: 0 })
-      var others = result.filter(r => r.parentID == this.cat.id)
-      others.forEach(o => {
-        this.subs.push(o)
-      })
-      this.sub = this.subs[0]
       this.Load()
+
     }, error => { }, () => { })
   }
+
+  ReadCategory() {
+    let self = this
+    this.browseService.getCategorys().subscribe(function (response) {
+      self.categorys.push({ id: 0, name: "Select Category", shiurCount: 0 })
+      self.categorys = self.categorys.concat(response)
+      self.category = self.categorys[0]
+
+      self.SubCategory()
+    }, function (error) { }, function () { })
+  }
+
+  ReadSpeakers() {
+    this.speakerService.read().subscribe(result => {
+
+      var speakerEmpty = new Speaker()
+      speakerEmpty.id = 0
+      speakerEmpty.firstName = "Select Speaker"
+
+      this.speakers.push(speakerEmpty)
+      this.speakers = this.speakers.concat(result)
+      this.speaker = this.speakers[0]
+    }, error => { }, () => { })
+  }
+
+  category: Category
+  categorys: Array<Category> = []
+
+  subCategory: SubCategory
+  subCategorys: Array<SubCategory> = []
+
+  speaker: Speaker
+  speakers: Array<Speaker> = []
 
   Close() {
     $('#sponsor').toggleClass('shown');
+  }
+
+  NameforSelect(c: Category) {
+    if (c.id != 0)
+      return c.name + " (" + c.shiurCount + ")"
+    else
+      return c.name
   }
 }

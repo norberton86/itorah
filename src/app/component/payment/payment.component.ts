@@ -27,10 +27,14 @@ export class PaymentComponent implements OnInit, OnChanges {
 
   value: number = 0;
 
+  @Input()
+  paymentError:boolean
+
   form: FormGroup;
   constructor(private _fb: FormBuilder,private donateService:DonateService) { }
 
   ngOnChanges(changes: any): void {
+    if(changes.valPar!=undefined && changes.valPar!=null)
     this.value = changes.valPar.currentValue
   }
 

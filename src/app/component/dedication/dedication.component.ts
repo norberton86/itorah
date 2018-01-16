@@ -35,7 +35,7 @@ export class DedicationComponent implements OnInit {
   dP: ComboItem
 
   value: number = 100
-
+  paymentError: boolean = false
 
   constructor(private dedicationService: DedicationService) { }
 
@@ -59,7 +59,7 @@ export class DedicationComponent implements OnInit {
       this.value = 1000
   }
 
-  requesting:boolean=false
+  requesting: boolean = false
 
   Save(cc: CreditCard) {
 
@@ -97,13 +97,19 @@ export class DedicationComponent implements OnInit {
     let self = this;
     this.dedicationService.add(ded).subscribe(
       function (response) {
-        self.requesting=false
-        self.dedicationService.Notify("Dedication successful", false)
-        $('#dedications').toggleClass('shown');
+        if (response == "Success") {
+          self.requesting = false
+          self.dedicationService.Notify("Dedication successful", false)
+          $('#dedications').toggleClass('shown');
+        }
+        else
+        self.paymentError=true
+
       },
       function (error) {
-        self.requesting=false
+        self.requesting = false
         self.dedicationService.Notify("Error trying to dedicate", true)
+        self.paymentError = true
       },
       function () {
 

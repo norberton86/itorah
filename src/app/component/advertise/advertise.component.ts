@@ -18,10 +18,11 @@ export class AdvertiseComponent implements OnInit {
   impression: Impression
   File: any
   form: FormGroup;
+  paymentError: boolean = false
 
   constructor(private uploadService: UploadService, private fb: FormBuilder) {
     this.InitializeMainForm();
-   }
+  }
 
 
   ngOnInit() {
@@ -79,15 +80,15 @@ export class AdvertiseComponent implements OnInit {
     return this.form.controls.FirstName.errors != null || this.form.controls.LastName.errors != null || this.form.controls.Email.errors != null
   }
 
-  requesting:boolean=false
+  requesting: boolean = false
   upload(cc: CreditCard) {
 
-    if(this.requesting)
-    return
+    if (this.requesting)
+      return
 
-    this.requesting=true
+    this.requesting = true
 
-    if (this.errorSize != '' || this.File == undefined||this.File == null) {
+    if (this.errorSize != '' || this.File == undefined || this.File == null) {
       this.uploadService.Notify("Upload a valid image", true);
       return;
     }
@@ -120,14 +121,20 @@ export class AdvertiseComponent implements OnInit {
     let self = this;
     this.uploadService.upload(formData).subscribe(
       function (respond) {
-        self.requesting=false
-        self.uploadService.Notify("Advertise Created", false)
-        self.Reset();
-        $('#popup-advertise').toggleClass('shown');
+        if (respond == "Success") {
+          self.requesting = false
+          self.uploadService.Notify("Advertise Created", false)
+          self.Reset();
+          $('#popup-advertise').toggleClass('shown');
+        }
+        else
+        self.paymentError=true
+
       },
       function (error) {
-        self.requesting=false
+        self.requesting = false
         self.uploadService.Notify("Error trying to upload the image", true)
+        self.paymentError = true
       },
       function () { }
     )
@@ -147,8 +154,8 @@ export class AdvertiseComponent implements OnInit {
       ZipCode: ''
     }
     this.form.patchValue(data);
-    this.errorSize=''
-    this.File=null
+    this.errorSize = ''
+    this.File = null
   }
 }
 

@@ -10,7 +10,7 @@
   </div>
   <!-- /.popup-head -->
 
-  <div class="popup-body">
+  <div class="popup-body" [hidden]="processed">
     <div class="cols cols-2">
       <div class="col-1of2">
         <div class="form-sponsor">
@@ -131,7 +131,7 @@
       <!-- /.col-1of2 -->
 
       <div class="col-1of2">
-        <app-payment [valPar]="value" [isDonate]="true" (myEvent) = "Save($event)" [requesting]="requesting"></app-payment>
+        <app-payment [valPar]="value" [isDonate]="true" (myEvent) = "Save($event)" [requesting]="requesting" [paymentError]="paymentError"></app-payment>
         <!-- /.form-order -->
       </div>
       <!-- /.col-1of2 -->
@@ -139,4 +139,6 @@
     <!-- /.cols -->
   </div>
   <!-- /.popup-body -->
+
+  <app-pay-confirmed  [hidden]="!processed" [currentComponent]='componentName'></app-pay-confirmed>
 </div>

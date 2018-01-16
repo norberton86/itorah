@@ -1,0 +1,12 @@
+.btn_small_yellow {
+    background: #ffcc00;
+    border: 1px solid #ffcc00;
+    color: #464646;
+    padding: 6px .5rem;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 1rem;
+    font-weight: 400;
+    width: 10%;
+    margin-top: 2em;
+}

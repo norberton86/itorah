@@ -13,9 +13,13 @@ import { DonateService } from '../../service/donate.service';
 export class DonateComponent implements OnInit {
 
   requesting:boolean=false
+  paymentError:boolean=false
+  processed:boolean=false
 
   formCheck: FormGroup;
 
+  componentName:string="donate"
+  
 
   value: number = 0;
 
@@ -59,13 +63,15 @@ export class DonateComponent implements OnInit {
         this.requesting=false
   
         if (result == "Success")
-          this.donateService.Notify("Donation Completed", false);
+          this.processed=true
         else
-          this.donateService.Notify("Transaction Declined", true);
+          this.paymentError=true
+        
       },
         error => {
           this.requesting=false
           this.donateService.Notify("Error trying to access", true);
+          this.paymentError=true
         }, () => {
 
         })
@@ -74,13 +80,15 @@ export class DonateComponent implements OnInit {
       this.donateService.addEmail(data).subscribe(result => {
         this.requesting=false
         if (result == "Success")
-          this.donateService.Notify("Donation Completed", false);
+          this.processed=true
         else
-          this.donateService.Notify("Transaction Declined", true);
+          this.paymentError=true
+        
       },
         error => {
           this.requesting=false
           this.donateService.Notify("Error trying to access", true);
+          this.paymentError=true
         }, () => {
 
         })

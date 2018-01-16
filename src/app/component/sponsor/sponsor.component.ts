@@ -8,7 +8,7 @@ import { BrowseService } from '../../service/browse.service';
 import { IMyDpOptions } from 'mydatepicker';
 import { ComboItem } from '../../model/combo-item';
 import { CreditCard } from '../../model/credit-card';
-import {  Category, SubCategory } from '../../model/shiurim';
+import { Category, SubCategory } from '../../model/shiurim';
 import { Speaker } from '../../model/speaker';
 import { SpeakerService } from '../../service/speaker.service';
 declare var $: any;
@@ -17,7 +17,7 @@ declare var $: any;
   selector: 'app-sponsor',
   templateUrl: './sponsor.component.html',
   styleUrls: ['./sponsor.component.css'],
-  providers: [SponsorService,BrowseService,SpeakerService]
+  providers: [SponsorService, BrowseService, SpeakerService]
 })
 export class SponsorComponent implements OnInit {
   value: number = 0
@@ -48,9 +48,9 @@ export class SponsorComponent implements OnInit {
   sponsorshipFor: string = ''
   name: string = ''
 
- elem:number=24
+  elem: number = 24
 
-  constructor(private sponsorService: SponsorService, private browseService: BrowseService, private homeService: HomeService,private speakerService:SpeakerService) {
+  constructor(private sponsorService: SponsorService, private browseService: BrowseService, private homeService: HomeService, private speakerService: SpeakerService) {
 
   }
 
@@ -98,6 +98,7 @@ export class SponsorComponent implements OnInit {
   }
 
   requesting: boolean = false
+  paymentError: boolean = false
 
   Save(cc: CreditCard) {
 
@@ -129,12 +130,13 @@ export class SponsorComponent implements OnInit {
           this.sponsorService.Notify("Thank you for your sponsorship. Your credit card will show a payment Torah Learning Resources LTD, an approved 501c# charity. You will receive an email receipt conforming your sponsorship after our administrative team reviews ans posts your sponsorship. Normally this takes about one bussiness day.", false);
           this.Close();
         }
-        else
-          this.sponsorService.Notify("Transaction Declined", true);
+        else 
+          this.paymentError = true
       },
         error => {
           this.requesting = false
           this.sponsorService.Notify("Error trying to access", true);
+          this.paymentError = true
         }, () => {
 
         })
@@ -163,13 +165,14 @@ export class SponsorComponent implements OnInit {
             this.sponsorService.Notify("Thank you for your sponsorship. Your credit card will show a payment Torah Learning Resources LTD, an approved 501c# charity. You will receive an email receipt conforming your sponsorship after our administrative team reviews ans posts your sponsorship. Normally this takes about one bussiness day.", false);
             this.Close();
           }
-
-          else
-            this.sponsorService.Notify("Transaction Declined", true);
+          else 
+            this.paymentError = true
+          
         },
           error => {
             this.requesting = false
             this.sponsorService.Notify("Error trying to access", true);
+            this.paymentError = true
           }, () => {
 
           })
@@ -200,11 +203,12 @@ export class SponsorComponent implements OnInit {
           if (result == "Success")
             this.sponsorService.Notify("Sponsor Completed", false);
           else
-            this.sponsorService.Notify("Transaction Declined", true);
+            this.paymentError = true
         },
           error => {
             this.requesting = false
             this.sponsorService.Notify("Error trying to access", true);
+            this.paymentError = true
           }, () => {
 
           })
@@ -301,28 +305,28 @@ export class SponsorComponent implements OnInit {
   }
 
   finalCategory: number
-  loading:boolean=false
+  loading: boolean = false
 
   Load() {
-    
-   this.all=[]
+
+    this.all = []
 
     if (this.category.id == 0)
       return
-    
+
     let self = this;
 
     this.finalCategory = this.subCategory.id == -1 ? this.category.id : this.subCategory.id
-    this.loading=true
-   
+    this.loading = true
+
     self.browseService.readCategory(1, this.elem, this.finalCategory, this.speaker.id, this.query_main)
       .subscribe(function (response) {
-        
-        self.loading=false
+
+        self.loading = false
         self.Update(response.totalPageCount, response.shiurList)
         self.alltotal = response.totalResultCount;
 
-      }, function (error) {self.loading=false }, function () { }
+      }, function (error) { self.loading = false }, function () { }
       );
   }
 
@@ -367,12 +371,12 @@ export class SponsorComponent implements OnInit {
         p.current = true;
     })
 
-    this.loading=true
+    this.loading = true
     this.browseService.readCategory(id, this.elem, this.finalCategory, this.speaker.id, this.query_main)
       .subscribe(response => {
-        this.loading=false
+        this.loading = false
         this.all = response.shiurList
-      },error=>{ this.loading=false},()=>{})
+      }, error => { this.loading = false }, () => { })
 
   }
 

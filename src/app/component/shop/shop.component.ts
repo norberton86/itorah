@@ -81,6 +81,7 @@ export class ShopComponent implements OnInit {
 
 
   requesting:boolean=false
+  paymentError:boolean=false
 
   Save(cc: CreditCard) {
 
@@ -96,11 +97,12 @@ export class ShopComponent implements OnInit {
       if (result == "Success")
         this.shopService.Notify("Transaction Completed", false);
       else
-        this.shopService.Notify("Transaction Declined", true);
+        this.paymentError=true
     },
       error => {
         this.requesting=false
         this.shopService.Notify("Error trying to access", true);
+        this.paymentError=true
       }, () => {
 
       })

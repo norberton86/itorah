@@ -245,7 +245,7 @@ export class PopupRegisterComponent implements OnInit {
   section: string
 
   //---------------------------------------------------------Perek-----------------------------------------------------------------//
-  categoriesPerek: Array<Category> = [{ id: 0, name: "Select Category" }]
+  categoriesPerek: Array<Category> = [{ id: 0, name: "Select Category" , MainCategory: false,ParentID:0}]
   categoryPerek: Category = this.categoriesPerek[0]
 
   perekSearch: string = ''

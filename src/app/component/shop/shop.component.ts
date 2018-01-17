@@ -4,6 +4,7 @@ import { CreditCardValidator } from 'angular-cc-library';
 import { ShiurimBuy, ShiurimBuyTable } from '../../model/shiurim-buy';
 import { CreditCard } from '../../model/credit-card';
 import { ShopService } from '../../service/shop.service';
+import { PaymentService } from '../../service/payment.service';
 
 declare var $: any;
 @Component({
@@ -26,7 +27,7 @@ export class ShopComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private _fb: FormBuilder, private shopService: ShopService) {
+  constructor(private _fb: FormBuilder, private shopService: ShopService,private paymentService:PaymentService) {
     var i = 0
     for (i = 1; i <= 10; i++) {
       this.numbers.push(i);
@@ -68,8 +69,6 @@ export class ShopComponent implements OnInit {
     return sum
   }
 
-
-
   Buy() {
     if (this.rows.length > 0) {
       $('#shop-2')
@@ -79,9 +78,8 @@ export class ShopComponent implements OnInit {
     }
   }
 
-
-  requesting:boolean=false
-  paymentError:boolean=false
+  requesting: boolean = false
+  paymentError: boolean = false
 
   Save(cc: CreditCard) {
 
@@ -93,19 +91,32 @@ export class ShopComponent implements OnInit {
     var data = { Amount: cc.Amount, CardExpDate: cc.CardExpDate, CardHolderName: cc.CardHolderName, CardNumber: cc.CardNumber, CVV: cc.CVV }
 
     this.shopService.add(data).subscribe(result => {
-      this.requesting=false
-      if (result == "Success")
-        this.shopService.Notify("Transaction Completed", false);
+      this.requesting = false
+      if (result == "Success") {
+          this.Reset()
+          this.paymentService.setItem('reset')  //order reset the nested payment component
+          $('#shop').toggleClass('shown');
+          $('#payConfirmed').toggleClass('shown');
+      }
       else
-        this.paymentError=true
+        this.paymentError = true
     },
       error => {
-        this.requesting=false
-        this.shopService.Notify("Error trying to access", true);
-        this.paymentError=true
+        this.requesting = false
+        this.paymentError = true
       }, () => {
 
       })
+  }
+
+  Reset()
+  {
+    this.rows=[]
+
+    $('#shop-2')                      //come back to original position
+        .addClass('hidden')
+        .siblings('.popup-body')
+        .removeClass('hidden')
   }
 
 

@@ -4,6 +4,7 @@ import { ComboItem } from '../../model/combo-item';
 import { DedicationService } from '../../service/dedication.service';
 declare var $: any;
 import { CreditCard } from '../../model/credit-card';
+import { PaymentService } from '../../service/payment.service';
 
 @Component({
   selector: 'app-dedication',
@@ -37,7 +38,7 @@ export class DedicationComponent implements OnInit {
   value: number = 100
   paymentError: boolean = false
 
-  constructor(private dedicationService: DedicationService) { }
+  constructor(private dedicationService: DedicationService,private paymentService:PaymentService) { }
 
   ngOnInit() {
 
@@ -97,10 +98,11 @@ export class DedicationComponent implements OnInit {
     let self = this;
     this.dedicationService.add(ded).subscribe(
       function (response) {
+        self.requesting = false
         if (response == "Success") {
-          self.requesting = false
-          self.dedicationService.Notify("Dedication successful", false)
+          self.paymentService.setItem('reset')  //order reset the nested payment component
           $('#dedications').toggleClass('shown');
+          $('#payConfirmed').toggleClass('shown');
         }
         else
         self.paymentError=true
@@ -108,7 +110,6 @@ export class DedicationComponent implements OnInit {
       },
       function (error) {
         self.requesting = false
-        self.dedicationService.Notify("Error trying to dedicate", true)
         self.paymentError = true
       },
       function () {

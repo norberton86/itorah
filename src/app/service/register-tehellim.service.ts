@@ -8,10 +8,20 @@ import { EntireList, Perek } from '../model/entire-list';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class RegisterTehellimService extends ServiceLogin {
 
+  private subject: Subject<string> = new Subject<string>();
+
+  setItem(item: string): void {
+    this.subject.next(item);
+  }
+
+  getItem(): Observable<string> {
+    return this.subject.asObservable();
+  }
 
   constructor(http: Http) {
     super(http);
@@ -57,8 +67,6 @@ export class RegisterTehellimService extends ServiceLogin {
       }
     )
   }
-
-
 
   public checkTehillim( mother: string, firstName: string, communityID: number): Observable<any> {
 

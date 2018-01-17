@@ -23,38 +23,34 @@
 						<div class="form__body">
 							<div class="form-row">
 								<ul class="list-checkboxes list-checkboxes-blocks">
-									<li>
+									<li [hidden]="tile=='read'">
 										<div class="checkbox checkbox-secondary checkbox-block">
 											<input type="checkbox" name="form-register-tehillim" id="field-register-tehillim" (click)="CloseResults('tehillim')">
 
 											<label class="form__label" for="field-register-tehillim">Register a name for TEHILLIM</label>
 										</div>
-										<!-- /.checkbox -->
 									</li>
 
-									<li>
+									<li [hidden]="tile=='read'">
 										<div class="checkbox checkbox-secondary checkbox-block">
 											<input type="checkbox" name="form-register-levaya" id="field-register-levaya" (click)="CloseResults('levaya')">
 
 											<label class="form__label" for="field-register-levaya">Register a name for LEVAYA</label>
 										</div>
-										<!-- /.checkbox -->
 									</li>
-									<li>
+									<li [hidden]="tile=='register'">
 										<div class="checkbox checkbox-secondary checkbox-block">
 											<input type="checkbox" name="form-register-119" id="field-register-119" (click)="CloseResults('cientoNueve')">
 
 											<label class="form__label" for="field-register-119">Chapter 119 Pasuk</label>
 										</div>
-										<!-- /.checkbox -->
 									</li>
-									<li>
+									<li [hidden]="tile=='register'">
 										<div class="checkbox checkbox-secondary checkbox-block">
 											<input type="checkbox" name="form-register-perek" id="field-register-perek" (click)="CloseResults('perek')">
 
 											<label class="form__label" for="field-register-perek">Choose Tehillim By Perek</label>
 										</div>
-										<!-- /.checkbox -->
 									</li>
 								</ul>
 								<!-- /.list-checkboxes -->

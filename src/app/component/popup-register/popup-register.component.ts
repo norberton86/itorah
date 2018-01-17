@@ -18,6 +18,9 @@ declare var VirtualKeyboard: any;
 })
 export class PopupRegisterComponent implements OnInit {
 
+
+  tile:string
+
   //--------------------- Announcement --------------
   mother: string = ''
   firstName: string = ''
@@ -48,6 +51,10 @@ export class PopupRegisterComponent implements OnInit {
       EnglishLastName: ['', [Validators.required]],
       ben: ['ben'],
       Age: [0]
+    });
+
+    this.registerTehellimService.getItem().subscribe(item => {
+      this.tile=item
     });
   }
 

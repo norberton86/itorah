@@ -4,6 +4,7 @@ import { HomeService } from './service/home.service';
 import { PlayerService } from './service/player.service';
 import { PerashaService } from './service/perasha.service';
 import { ReadNow } from './model/home';
+import { RegisterTehellimService} from './service/register-tehellim.service';
 declare var $: any;
 
 @Component({
@@ -33,7 +34,7 @@ export class AppComponent implements OnInit {
 
   browseClasses: string = "Recently"
 
-  constructor(private analitycService: AnalitycService, private homeService: HomeService, private playerService: PlayerService, private perashaService: PerashaService) { }
+  constructor(private analitycService: AnalitycService, private homeService: HomeService, private playerService: PlayerService, private perashaService: PerashaService,private registerTehellimService:RegisterTehellimService) { }
 
 
   keyDownFunction(event) {
@@ -227,8 +228,9 @@ export class AppComponent implements OnInit {
       return true;
   }
 
-  OpenRegister() {
+  OpenRegister(tile:string) {
     if (this.isAuthenticated()) {
+      this.registerTehellimService.setItem(tile)
       $('#popup-register').toggleClass('shown');
     }
   }

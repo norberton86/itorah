@@ -1,7 +1,7 @@
 <div class="popup register" id="popup-register">
 	<div class="popup-head">
 		<form action="?" method="get">
-			<label for="field-search-content">Reading and Announcement</label>
+			<label for="field-search-content">{{tile}}</label>
 
 			<a href="#" class="link-close">
 				<i class="ico-close"></i>
@@ -23,7 +23,7 @@
 						<div class="form__body">
 							<div class="form-row">
 								<ul class="list-checkboxes list-checkboxes-blocks">
-									<li [hidden]="tile=='read'">
+									<li [hidden]="tile=='Read'">
 										<div class="checkbox checkbox-secondary checkbox-block">
 											<input type="checkbox" name="form-register-tehillim" id="field-register-tehillim" (click)="CloseResults('tehillim')">
 
@@ -31,27 +31,36 @@
 										</div>
 									</li>
 
-									<li [hidden]="tile=='read'">
+									<li [hidden]="tile=='Read'">
 										<div class="checkbox checkbox-secondary checkbox-block">
 											<input type="checkbox" name="form-register-levaya" id="field-register-levaya" (click)="CloseResults('levaya')">
 
 											<label class="form__label" for="field-register-levaya">Register a name for LEVAYA</label>
 										</div>
 									</li>
-									<li [hidden]="tile=='register'">
+									<li [hidden]="tile=='Register'">
 										<div class="checkbox checkbox-secondary checkbox-block">
 											<input type="checkbox" name="form-register-119" id="field-register-119" (click)="CloseResults('cientoNueve')">
 
-											<label class="form__label" for="field-register-119">Chapter 119 Pasuk</label>
+											<label class="form__label" for="field-register-119">Generate 119 Pasuk</label>
 										</div>
 									</li>
-									<li [hidden]="tile=='register'">
+									<li [hidden]="tile=='Register'">
 										<div class="checkbox checkbox-secondary checkbox-block">
 											<input type="checkbox" name="form-register-perek" id="field-register-perek" (click)="CloseResults('perek')">
 
-											<label class="form__label" for="field-register-perek">Choose Tehillim By Perek</label>
+											<label class="form__label" for="field-register-perek">Choose Tehillim</label>
 										</div>
 									</li>
+
+									<li [hidden]="tile=='Register'">
+										<div class="checkbox checkbox-secondary checkbox-block">
+											<input type="checkbox" name="field-today-reading" id="field-today-reading" (click)="CloseResults('today')">
+
+											<label class="form__label" for="field-today-reading">Today's Reading</label>
+										</div>
+									</li>
+
 								</ul>
 								<!-- /.list-checkboxes -->
 							</div>
@@ -70,7 +79,7 @@
 			<!-- /.col-1of3 -->
 
 			<div class="col-1of3">
-				<div class="form-sponsor form-database form--large hidden" id="form-register-tehillim">
+				<div [hidden]="tile=='Read'" class="form-sponsor form-database form--large hidden" id="form-register-tehillim">
 					<form [formGroup]="form" (ngSubmit)="searchDatabase('tehillim')">
 						<div class="form__head">
 							<h4>Tehillim Announcement </h4>
@@ -90,8 +99,8 @@
 								<div class="form-controls">
 									<input type="text" class="field" name="field-mothers-name" id="field-mothers-name" value="" placeholder="First Name" formControlName="firstName">
 									<div class="animated bounceIn" style="color:red;" *ngIf="form.get('firstName').hasError('required') && form.get('firstName').touched">
-          									First Name is required
-        							</div>
+										First Name is required
+									</div>
 								</div>
 								<!-- /.form-controls -->
 
@@ -116,10 +125,10 @@
 									<div class="form__col">
 										<input type="text" class="field" name="field-mothers-name" id="field-mothers-name" value="" placeholder="Mother’s First Name"
 										 formControlName="mother">
-										
+
 										<div class="animated bounceIn" style="color:red;" *ngIf="form.get('mother').hasError('required') && form.get('mother').touched">
-          									Mother name is required
-        								</div>
+											Mother name is required
+										</div>
 									</div>
 									<!-- /.form__col -->
 
@@ -134,7 +143,7 @@
 
 									<div class="form__col">
 										<div class="select">
-											<select class="select" name="field-community" id="field-community" formControlName="community" >
+											<select class="select" name="field-community" id="field-community" formControlName="community">
 												<option *ngFor="let c of communities" [ngValue]="c.id">{{c.name}}</option>
 											</select>
 										</div>
@@ -156,7 +165,7 @@
 				</div>
 				<!-- /.form-database -->
 
-				<div class="form-sponsor form-database hidden" id="form-register-levaya">
+				<div [hidden]="tile=='Read'" class="form-sponsor form-database hidden" id="form-register-levaya">
 					<form [formGroup]="formLevaya" (ngSubmit)="searchDatabase('levaya')">
 						<div class="form__head">
 							<h4>Levaya Announcement </h4>
@@ -179,8 +188,8 @@
 								<div class="form__controls">
 									<input type="text" class="field" name="field-fname" id="field-fname" value="" placeholder="Transliteration First Name" formControlName="transFirstName">
 									<div class="animated bounceIn" style="color:red;" *ngIf="formLevaya.get('transFirstName').hasError('required') && formLevaya.get('transFirstName').touched">
-          									Transliteration FirstName is required
-        							</div>
+										Transliteration FirstName is required
+									</div>
 								</div>
 								<!-- /.form__controls -->
 							</div>
@@ -214,12 +223,12 @@
 								<div class="form__controls">
 									<input type="text" class="field" name="field-lname" id="field-lname" value="" placeholder="Transliteration Mother Name" formControlName="transMotherName">
 									<div class="animated bounceIn" style="color:red;" *ngIf="formLevaya.get('transMotherName').hasError('required') && formLevaya.get('transMotherName').touched">
-          									Transliteration Mother Name is required
-        							</div>
+										Transliteration Mother Name is required
+									</div>
 								</div>
 								<!-- /.form__controls -->
 
-							<!--	<p class="form-hint">Please type the transliteration of the Hebrew name</p>-->
+								<!--	<p class="form-hint">Please type the transliteration of the Hebrew name</p>-->
 							</div>
 							<!-- /.form-row -->
 
@@ -251,8 +260,8 @@
 								<div class="form__controls">
 									<input type="text" class="field" name="field-lname" id="field-lname" value="" placeholder="English First Name" formControlName="EnglishFirstName">
 									<div class="animated bounceIn" style="color:red;" *ngIf="formLevaya.get('EnglishFirstName').hasError('required') && formLevaya.get('EnglishFirstName').touched">
-          									English First Name is required
-        							</div>
+										English First Name is required
+									</div>
 								</div>
 								<!-- /.form__controls -->
 
@@ -265,8 +274,8 @@
 								<div class="form__controls">
 									<input type="text" class="field" name="field-lname" id="field-lname" value="" placeholder="English Last Name" formControlName="EnglishLastName">
 									<div class="animated bounceIn" style="color:red;" *ngIf="formLevaya.get('EnglishLastName').hasError('required') && formLevaya.get('EnglishLastName').touched">
-          									English Last Name is required
-        							</div>
+										English Last Name is required
+									</div>
 								</div>
 								<!-- /.form__controls -->
 
@@ -285,7 +294,7 @@
 				</div>
 				<!-- /.form-database -->
 
-				<div class="form-sponsor form-database form--large hidden" id="form-register-perek">
+				<div [hidden]="tile=='Register'" class="form-sponsor form-database form--large hidden" id="form-register-perek">
 					<form action="?" method="post">
 						<div class="form__head">
 							<h4>Choose Tehillim by Perek </h4>
@@ -361,7 +370,7 @@
 					</form>
 				</div>
 
-				<div class="form-sponsor form-database form--large hidden" id="form-register-119" style="margin-right: 0;margin-left: 0;max-width: 100%;">
+				<div [hidden]="tile=='Register'" class="form-sponsor form-database form--large hidden" id="form-register-119" style="margin-right: 0;margin-left: 0;max-width: 100%;">
 					<form action="?" method="post" style="margin: 0 auto;max-width: 340px;">
 						<div class="form__head">
 							<h4>Chapter 119 Pasuk</h4>
@@ -444,7 +453,7 @@
 			<!-- /.col-1of3 -->
 
 			<div class="col-1of3 col-center">
-				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==1">
+				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==1 && tile=='Register'">
 					<!-- hidden data-related="#form-register-tehillim"-->
 					<form action="?" method="post">
 						<div class="form__body">
@@ -496,7 +505,7 @@
 				</div>
 				<!-- /.form-sponsor sponsor-toggle -->
 
-				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==2">
+				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==2 && tile=='Register'">
 					<!-- hidden data-related="#form-register-levaya"-->
 					<form action="?" method="post">
 						<div class="form__body">
@@ -525,7 +534,7 @@
 				</div>
 				<!-- /.form-sponsor sponsor-toggle -->
 
-				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==3">
+				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==3 && tile=='Register'">
 					<!-- hidden data-related="#form-register-tehillim-step-next"-->
 					<form action="?" method="post">
 						<div class="form__head">
@@ -549,7 +558,8 @@
 
 											<td>{{r.CategoryName}}</td>
 
-											<td>  <input type="button" (click)="Update(r.HakdashaID)" value="CONTINUE" class="form-btn" *ngIf="r.CategoryName=='Tehillim'" style="padding: 5px 8px;"> </td>
+											<td> <input type="button" (click)="Update(r.HakdashaID)" value="CONTINUE" class="form-btn" *ngIf="r.CategoryName=='Tehillim'"
+												 style="padding: 5px 8px;"> </td>
 										</tr>
 									</table>
 								</div>
@@ -602,7 +612,7 @@
 
 
 				<!-- START By Perek Number -->
-				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==21">
+				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==21 && tile=='Read'">
 					<form action="?" method="post">
 						<div class="form__body">
 							<div class="form-row">
@@ -618,7 +628,7 @@
 				</div>
 				<!-- END -->
 				<!-- START By Category -->
-				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==22">
+				<div class="form-sponsor sponsor-toggle" *ngIf="existResults==22 && tile=='Read'">
 					<form action="?" method="post">
 						<div class="form__body">
 							<div class="form-row">
@@ -634,7 +644,7 @@
 				<!-- END -->
 
 				<!-- START Entire List -->
-				<div class="form-sponsor sponsor-toggle entire-list" *ngIf="existResults==23">
+				<div class="form-sponsor sponsor-toggle entire-list" *ngIf="existResults==23 && tile=='Read'">
 					<form action="?" method="post">
 						<div class="form__body form_body_no_margin">
 							<div class="form-row">
@@ -652,7 +662,7 @@
 				</div>
 				<!-- END -->
 
-				<div class="form-sponsor sponsor-toggle tool-wrap" *ngIf="existResults==119">
+				<div class="form-sponsor sponsor-toggle tool-wrap" *ngIf="existResults==119 && tile=='Read'">
 					<form action="?" method="post">
 						<div class="form__body" style="height:100%">
 							<div class="form-row" style="min-height: 200px;">
@@ -822,6 +832,25 @@
 
 			</div>
 
+
+		</div>
+		<!-- /.cols -->
+	</div>
+
+	<div class="popup-body" id="form-today" [hidden]="perekPassuk!='today'">
+		<div class="cols cols-3" style="min-height: 350px;">
+
+			<div class="form-row" style="padding:.5rem 1rem;width: 100%;">
+
+				<button class="search-btn btn_small_yellow" id="buttonBackSearch" type="button" (click)="Back()">
+					<i  class="fa fa-long-arrow-left" style="font-size: 2rem;padding-right: .5rem;padding-left: .5rem;"></i> 
+				</button>
+			</div>
+
+			<!-- body -->
+			<h3>{{pdfTitle}}</h3>
+			<h3 *ngIf="pdfDedication!=''"> Dedicated by: {{pdfDedication}}</h3>
+			
 
 		</div>
 		<!-- /.cols -->

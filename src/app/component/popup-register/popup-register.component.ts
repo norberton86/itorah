@@ -7,6 +7,7 @@ import { PlayerService } from '../../service/player.service';
 import { EntireList, Perek, Need } from '../../model/entire-list';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TehillimService } from "app/service/tehillim.service";
+import { HomeService } from '../../service/home.service';
 
 declare var $: any;
 declare var VirtualKeyboard: any;
@@ -34,7 +35,7 @@ export class PopupRegisterComponent implements OnInit {
 
   form: FormGroup;
   formLevaya: FormGroup;
-  constructor(private registerTehellimService: RegisterTehellimService, private playerService: PlayerService, private _fb: FormBuilder, private tehillimService: TehillimService) {
+  constructor(private homeService:HomeService,private registerTehellimService: RegisterTehellimService, private playerService: PlayerService, private _fb: FormBuilder, private tehillimService: TehillimService) {
 
     this.form = this._fb.group({
       mother: ['', [Validators.required]],
@@ -106,6 +107,8 @@ export class PopupRegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+
+   this.getPdf()
 
     for (var i = 1; i <= 90; i++) {
       this.ages.push(i)
@@ -247,6 +250,14 @@ export class PopupRegisterComponent implements OnInit {
 
     if (this.section == 'cientoNueve')
       this.existResults = 119
+
+    if (this.section == 'today')
+      {
+        this.existResults = 44
+        this.perekPassuk='today'
+      }
+
+
   }
 
   section: string
@@ -454,6 +465,18 @@ export class PopupRegisterComponent implements OnInit {
   PrintPasuk() {
     $('#printPasuk').print();
   }
+ //--------------------------------------------------------Read Now----------------------------------------------------------
 
+ pdfTitle:string=''
+ pdfDedication:string=''
+ pdfContent:string=''
+ getPdf()
+ {
+   this.homeService.readNow(7).subscribe(result=>{
+     this.pdfTitle=result.title
+     this.pdfDedication=result.dedication
+     this.pdfContent=result.content
+   },error=>{},()=>{})
+ }
 }
 

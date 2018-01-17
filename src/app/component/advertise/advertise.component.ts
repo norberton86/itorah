@@ -135,7 +135,6 @@ export class AdvertiseComponent implements OnInit {
       },
       function (error) {
         self.requesting = false
-        self.uploadService.Notify("Error trying to upload the image", true)
         self.paymentError = true
       },
       function () { }

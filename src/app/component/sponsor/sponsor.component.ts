@@ -138,7 +138,6 @@ export class SponsorComponent implements OnInit {
       },
         error => {
           this.requesting = false
-          this.sponsorService.Notify("Error trying to access", true);
           this.paymentError = true
         }, () => {
 
@@ -175,7 +174,6 @@ export class SponsorComponent implements OnInit {
         },
           error => {
             this.requesting = false
-            this.sponsorService.Notify("Error trying to access", true);
             this.paymentError = true
           }, () => {
 
@@ -214,7 +212,6 @@ export class SponsorComponent implements OnInit {
         },
           error => {
             this.requesting = false
-            this.sponsorService.Notify("Error trying to access", true);
             this.paymentError = true
           }, () => {
 

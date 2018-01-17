@@ -77,7 +77,6 @@ export class DonateComponent implements OnInit {
       },
         error => {
           this.requesting = false
-          this.donateService.Notify("Error trying to access", true);
           this.paymentError = true
         }, () => {
 
@@ -98,7 +97,6 @@ export class DonateComponent implements OnInit {
       },
         error => {
           this.requesting = false
-          this.donateService.Notify("Error trying to access", true);
           this.paymentError = true
         }, () => {
 

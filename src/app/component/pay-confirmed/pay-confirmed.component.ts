@@ -9,22 +9,13 @@ declare var $: any
 })
 export class PayConfirmedComponent implements OnInit {
 
-  @Input()
-  currentComponent: string
-
   constructor() { }
 
   ngOnInit() {
   }
 
-  ngOnChanges(changes: any): void {
-    this.currentComponent = changes.currentComponent.currentValue
-  }
-
-
-
   Close() {
-    $('#' + this.currentComponent).toggleClass('shown');
+    $('#payConfirmed').toggleClass('shown');
   }
 
 }

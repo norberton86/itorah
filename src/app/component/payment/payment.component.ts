@@ -3,13 +3,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreditCardValidator } from 'angular-cc-library';
 import { CreditCard } from '../../model/credit-card';
 import { DonateService } from '../../service/donate.service';
-
+import { PaymentService } from '../../service/payment.service';
 
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css'],
-  providers:[DonateService]
+  providers: [DonateService]
 })
 export class PaymentComponent implements OnInit, OnChanges {
 
@@ -23,19 +23,26 @@ export class PaymentComponent implements OnInit, OnChanges {
   isDonate: boolean = false
 
   @Input()
-  requesting:boolean=false
+  requesting: boolean = false
 
   value: number = 0;
 
   @Input()
-  paymentError:boolean
+  paymentError: boolean
 
   form: FormGroup;
-  constructor(private _fb: FormBuilder,private donateService:DonateService) { }
+  constructor(private _fb: FormBuilder, private donateService: DonateService,private paymentService:PaymentService) { 
+    
+    this.paymentService.getItem().subscribe(item => {
+      if (item == "reset")
+         this.Reset();
+     
+    });
+  }
 
   ngOnChanges(changes: any): void {
-    if(changes.valPar!=undefined && changes.valPar!=null)
-    this.value = changes.valPar.currentValue
+    if (changes.valPar != undefined && changes.valPar != null)
+      this.value = changes.valPar.currentValue
   }
 
   ngOnInit() {
@@ -50,17 +57,28 @@ export class PaymentComponent implements OnInit, OnChanges {
     });
   }
 
+
+  Reset() {
+    var data = {
+      creditCard: '',
+      expirationDate: '',
+      cvc: '',
+      name: '',
+      email: ''
+    }
+    this.form.reset(data);
+     this.value=0
+  }
+
   onSubmit() {
 
-    if(this.value<=0)
-    {
-      this.donateService.Notify("Amount needs to be bigger than $0.00",true);
+    if (this.value <= 0) {
+      this.donateService.Notify("Amount needs to be bigger than $0.00", true);
       return;
     }
-    
-    if(!this.isAuthenticated() && this.form.value.email=="")
-    {
-      this.donateService.Notify("Email can't be empty",true);
+
+    if (!this.isAuthenticated() && this.form.value.email == "") {
+      this.donateService.Notify("Email can't be empty", true);
       return;
     }
 

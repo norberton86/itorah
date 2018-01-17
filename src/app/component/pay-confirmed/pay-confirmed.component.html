@@ -1,11 +1,25 @@
-  <div class="popup-body" style="text-align: center;padding-bottom: 2em;padding-top: 2em;">
+<div class="popup donate" id="payConfirmed">
   
-      <img src="/assets/build/css/images/payConfirmed.png" style="height: 12em;width: 12em;" />
-      
-      <h2 style="margin-top: 1em;">Your sponsor has been processed</h2>
+  <div class="popup-head">
+    <form action="?" method="get">
+      <label for="field-search-content">Your Payment has been processed </label>
 
-      <h5 style="margin-top: 0.5em;">You will get an email process order information</h5>
-      
-      <input (click)="Close()" type="button" value="Close" class="form-btn btn_small_yellow">
-  
+      <a href="#" class="link-close">
+					<i class="ico-close"></i>
+				</a>
+    </form>
   </div>
+
+  <div class="popup-body" style="text-align: center;padding-bottom: 2em;padding-top: 2em;">
+
+    <img src="/assets/build/css/images/payConfirmed.png" style="height: 12em;width: 12em;" />
+
+    <h2 style="margin-top: 1em;">Your sponsor has been processed</h2>
+
+    <h5 style="margin-top: 0.5em;">You will get an email process order information</h5>
+
+    <input (click)="Close()" type="button" value="Close" class="form-btn btn_small_yellow">
+
+  </div>
+
+</div>

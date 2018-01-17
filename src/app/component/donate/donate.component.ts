@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreditCardValidator } from 'angular-cc-library';
 import { CreditCard } from '../../model/credit-card';
 import { DonateService } from '../../service/donate.service';
+import { PaymentService } from '../../service/payment.service';
+
+declare var $: any
 
 @Component({
   selector: 'app-donate',
@@ -12,18 +15,18 @@ import { DonateService } from '../../service/donate.service';
 })
 export class DonateComponent implements OnInit {
 
-  requesting:boolean=false
-  paymentError:boolean=false
-  processed:boolean=false
+  requesting: boolean = false
+  paymentError: boolean = false
+
 
   formCheck: FormGroup;
 
-  componentName:string="donate"
-  
+  componentName: string = "donate"
+
 
   value: number = 0;
 
-  constructor(private _fb: FormBuilder, private donateService: DonateService) { }
+  constructor(private _fb: FormBuilder, private donateService: DonateService,private paymentService:PaymentService) { }
 
   ngOnInit() {
     this.formCheck = this._fb.group({
@@ -48,10 +51,10 @@ export class DonateComponent implements OnInit {
 
   Save(cc: CreditCard) {
 
-    if(this.requesting)
-    return
-        
-    this.requesting=true    
+    if (this.requesting)
+      return
+
+    this.requesting = true
 
     var data = { Amount: cc.Amount, CardExpDate: cc.CardExpDate, CardHolderName: cc.CardHolderName, CardNumber: cc.CardNumber, CVV: cc.CVV }
     if (cc.Email != '')
@@ -60,35 +63,43 @@ export class DonateComponent implements OnInit {
     if (cc.Email == '') {
       this.donateService.add(data).subscribe(result => {
 
-        this.requesting=false
-  
-        if (result == "Success")
-          this.processed=true
+        this.requesting = false
+
+        if (result == "Success") {
+          this.Reset()
+          this.paymentService.setItem('reset')  //order reset the nested payment component
+          $('#donate').toggleClass('shown');
+          $('#payConfirmed').toggleClass('shown');
+        }
         else
-          this.paymentError=true
-        
+          this.paymentError = true
+
       },
         error => {
-          this.requesting=false
+          this.requesting = false
           this.donateService.Notify("Error trying to access", true);
-          this.paymentError=true
+          this.paymentError = true
         }, () => {
 
         })
     }
     else {
       this.donateService.addEmail(data).subscribe(result => {
-        this.requesting=false
-        if (result == "Success")
-          this.processed=true
+        this.requesting = false
+        if (result == "Success") {
+          this.Reset()
+          this.paymentService.setItem('reset') //order reset the nested payment component
+          $('#donate').toggleClass('shown');
+          $('#payConfirmed').toggleClass('shown');
+        }
         else
-          this.paymentError=true
-        
+          this.paymentError = true
+
       },
         error => {
-          this.requesting=false
+          this.requesting = false
           this.donateService.Notify("Error trying to access", true);
-          this.paymentError=true
+          this.paymentError = true
         }, () => {
 
         })
@@ -130,6 +141,26 @@ export class DonateComponent implements OnInit {
 
       case "other": this.value = this.formCheck.value.other; break;
     }
+  }
+
+  Reset() {
+
+    var data = {
+      five: false,
+      ten: false,
+      fifteen: false,
+
+      twentyFive: false,
+      fifty: false,
+      oneHundred: false,
+
+      twoHundred: false,
+      threeHundred: false,
+      oneThousand: false,
+
+      other: ''
+    }
+    this.formCheck.patchValue(data);
   }
 
 }

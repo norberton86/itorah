@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UploadService } from '../../service/upload.service';
 import { CreditCard } from '../../model/credit-card';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { PaymentService } from '../../service/payment.service';
 
 declare var $: any;
 
@@ -20,7 +20,7 @@ export class AdvertiseComponent implements OnInit {
   form: FormGroup;
   paymentError: boolean = false
 
-  constructor(private uploadService: UploadService, private fb: FormBuilder) {
+  constructor(private uploadService: UploadService, private fb: FormBuilder,private paymentService:PaymentService) {
     this.InitializeMainForm();
   }
 
@@ -121,14 +121,16 @@ export class AdvertiseComponent implements OnInit {
     let self = this;
     this.uploadService.upload(formData).subscribe(
       function (respond) {
+        self.requesting = false
+
         if (respond == "Success") {
-          self.requesting = false
-          self.uploadService.Notify("Advertise Created", false)
-          self.Reset();
+          self.Reset()
+          self.paymentService.setItem('reset')  //order reset the nested payment component
           $('#popup-advertise').toggleClass('shown');
+          $('#payConfirmed').toggleClass('shown');
         }
         else
-        self.paymentError=true
+          self.paymentError = true
 
       },
       function (error) {
@@ -153,7 +155,7 @@ export class AdvertiseComponent implements OnInit {
       State: '',
       ZipCode: ''
     }
-    this.form.patchValue(data);
+    this.form.reset(data);
     this.errorSize = ''
     this.File = null
   }

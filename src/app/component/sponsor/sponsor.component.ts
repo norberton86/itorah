@@ -11,6 +11,7 @@ import { CreditCard } from '../../model/credit-card';
 import { Category, SubCategory } from '../../model/shiurim';
 import { Speaker } from '../../model/speaker';
 import { SpeakerService } from '../../service/speaker.service';
+import { PaymentService } from '../../service/payment.service';
 declare var $: any;
 
 @Component({
@@ -50,7 +51,7 @@ export class SponsorComponent implements OnInit {
 
   elem: number = 24
 
-  constructor(private sponsorService: SponsorService, private browseService: BrowseService, private homeService: HomeService, private speakerService: SpeakerService) {
+  constructor(private sponsorService: SponsorService, private browseService: BrowseService, private homeService: HomeService, private speakerService: SpeakerService, private paymentService: PaymentService) {
 
   }
 
@@ -127,10 +128,12 @@ export class SponsorComponent implements OnInit {
       this.sponsorService.addDay(sponsor).subscribe(result => {
         this.requesting = false
         if (result == "Success") {
-          this.sponsorService.Notify("Thank you for your sponsorship. Your credit card will show a payment Torah Learning Resources LTD, an approved 501c# charity. You will receive an email receipt conforming your sponsorship after our administrative team reviews ans posts your sponsorship. Normally this takes about one bussiness day.", false);
+          this.paymentService.setItem('reset')  //order reset the nested payment component
+          $('#payConfirmed').toggleClass('shown');
           this.Close();
+          //this.sponsorService.Notify("Thank you for your sponsorship. Your credit card will show a payment Torah Learning Resources LTD, an approved 501c# charity. You will receive an email receipt conforming your sponsorship after our administrative team reviews ans posts your sponsorship. Normally this takes about one bussiness day.", false);
         }
-        else 
+        else
           this.paymentError = true
       },
         error => {
@@ -162,12 +165,13 @@ export class SponsorComponent implements OnInit {
         this.sponsorService.addShiur(sponsorShiur).subscribe(result => {
           this.requesting = false
           if (result == "Success") {
-            this.sponsorService.Notify("Thank you for your sponsorship. Your credit card will show a payment Torah Learning Resources LTD, an approved 501c# charity. You will receive an email receipt conforming your sponsorship after our administrative team reviews ans posts your sponsorship. Normally this takes about one bussiness day.", false);
+            this.paymentService.setItem('reset')  //order reset the nested payment component
+            $('#payConfirmed').toggleClass('shown');
             this.Close();
           }
-          else 
+          else
             this.paymentError = true
-          
+
         },
           error => {
             this.requesting = false
@@ -200,8 +204,11 @@ export class SponsorComponent implements OnInit {
 
         this.sponsorService.addMedia(sponsorMedia).subscribe(result => {
           this.requesting = false
-          if (result == "Success")
-            this.sponsorService.Notify("Sponsor Completed", false);
+          if (result == "Success") {
+            this.paymentService.setItem('reset')  //order reset the nested payment component
+            $('#payConfirmed').toggleClass('shown');
+            this.Close();
+          }
           else
             this.paymentError = true
         },

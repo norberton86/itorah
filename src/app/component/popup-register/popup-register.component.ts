@@ -20,7 +20,7 @@ declare var VirtualKeyboard: any;
 export class PopupRegisterComponent implements OnInit {
 
 
-  tile:string
+  tile: string
 
   //--------------------- Announcement --------------
   mother: string = ''
@@ -35,7 +35,7 @@ export class PopupRegisterComponent implements OnInit {
 
   form: FormGroup;
   formLevaya: FormGroup;
-  constructor(private homeService:HomeService,private registerTehellimService: RegisterTehellimService, private playerService: PlayerService, private _fb: FormBuilder, private tehillimService: TehillimService) {
+  constructor(private homeService: HomeService, private registerTehellimService: RegisterTehellimService, private playerService: PlayerService, private _fb: FormBuilder, private tehillimService: TehillimService) {
 
     this.form = this._fb.group({
       mother: ['', [Validators.required]],
@@ -55,7 +55,7 @@ export class PopupRegisterComponent implements OnInit {
     });
 
     this.registerTehellimService.getItem().subscribe(item => {
-      this.tile=item
+      this.tile = item
     });
   }
 
@@ -108,7 +108,7 @@ export class PopupRegisterComponent implements OnInit {
 
   ngOnInit() {
 
-   this.getPdf()
+    this.getPdf()
 
     for (var i = 1; i <= 90; i++) {
       this.ages.push(i)
@@ -121,11 +121,10 @@ export class PopupRegisterComponent implements OnInit {
     this.ReadCountry()
   }
 
-  Update(HakdashaID:number)
-  {
-    
+  Update(HakdashaID: number) {
+
     this.OpenLevaya()
-    var values=new Array<any>()
+    var values = new Array<any>()
 
     values.push(this.formLevaya.value.transFirstName)
     values.push(this.formLevaya.value.transMotherName)
@@ -251,11 +250,10 @@ export class PopupRegisterComponent implements OnInit {
     if (this.section == 'cientoNueve')
       this.existResults = 119
 
-    if (this.section == 'today')
-      {
-        this.existResults = 44
-        this.perekPassuk='today'
-      }
+    if (this.section == 'today') {
+      this.existResults = 44
+      this.perekPassuk = 'today'
+    }
 
 
   }
@@ -263,7 +261,7 @@ export class PopupRegisterComponent implements OnInit {
   section: string
 
   //---------------------------------------------------------Perek-----------------------------------------------------------------//
-  categoriesPerek: Array<Category> = [{ id: 0, name: "Select Category" , MainCategory: false,ParentID:0}]
+  categoriesPerek: Array<Category> = [{ id: 0, name: "Select Category", MainCategory: false, ParentID: 0 }]
   categoryPerek: Category = this.categoriesPerek[0]
 
   perekSearch: string = ''
@@ -465,18 +463,24 @@ export class PopupRegisterComponent implements OnInit {
   PrintPasuk() {
     $('#printPasuk').print();
   }
- //--------------------------------------------------------Read Now----------------------------------------------------------
+  //--------------------------------------------------------Read Now----------------------------------------------------------
 
- pdfTitle:string=''
- pdfDedication:string=''
- pdfContent:string=''
- getPdf()
- {
-   this.homeService.readNow(7).subscribe(result=>{
-     this.pdfTitle=result.title
-     this.pdfDedication=result.dedication
-     this.pdfContent=result.content
-   },error=>{},()=>{})
- }
+  pdfTitle: string = ''
+  pdfDedication: string = ''
+
+  getPdf() {
+    this.homeService.readNow(7).subscribe(result => {
+      this.pdfTitle = result.title
+      this.pdfDedication = result.dedication
+      //this.pdfContent=result.content
+
+      var content = '<object data="' + result.content + '" width="100%" height="100%" type="application/pdf">'
+      content += ' <p>Sorry, the PDF could not be displayed :(</p>'
+      content += '</object>'
+
+      $('#pdf').html(content)
+
+    }, error => { }, () => { })
+  }
 }
 

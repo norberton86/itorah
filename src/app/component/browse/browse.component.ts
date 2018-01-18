@@ -153,4 +153,9 @@ export class BrowseComponent implements OnInit, OnChanges {
   {
       this.loading=event
   }
+
+  Close()
+  {
+    this.setCurrent('Recently')
+  }
 }

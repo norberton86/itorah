@@ -13,6 +13,7 @@
 
 
 		<div class="tile-box-body">
+      <h2 *ngIf="shibas.length==0">No Shivas for Today</h2>
       <div *ngFor="let s of shibas" class="col-xs-12 col-md-6 col-lg-3">
 
         <div>
@@ -55,7 +56,7 @@
     </div>
     <!-- /.donate-body -->
 
-    <div class="tile-box-actions">
+    <div class="tile-box-actions" *ngIf="shibas.length>0">
 			<div class="paging">
 			    <ul>
 			          <li data-type="back"><a href="#/" class="paging-prev-shiba" (click)="PagingPrev()"><i class="ico-paging-prev"></i></a></li>

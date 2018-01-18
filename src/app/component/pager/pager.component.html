@@ -34,12 +34,11 @@
 									  <i class="ico-mic"></i>
 								  </a>
 
-                  	<a [popover]="myPopover" href="#/" class="link-download icons-wrap tooltip boom" title="Click below for more Shiurim in this category from this speaker"
-										 (click)="OpenPopover(s.id)">
+                  <a [popover]="myPopover" href="#/"  title="Click below for more Shiurim in this category from this speaker" (click)="OpenPopover(s.id)" style="margin-left: 0.2em;">
 												<i class="fa fa-info" aria-hidden="true"></i>
-										</a>
+									</a>
 
-										<popover-content #myPopover title="{{s.title}}" placement="right" [animation]="true" [closeOnClickOutside]="true">
+									<popover-content #myPopover title="{{s.title}}" placement="right" [animation]="true" [closeOnClickOutside]="true">
 
 											<!--<ul style="list-style-type: none;background-color:#11233e;padding: 0px 14px;border-bottom: 1px solid #000;font-weight: bold;">
 												<li>
@@ -63,7 +62,7 @@
 													</ul>-->
 												</li>
 											</ul>
-										</popover-content>
+									</popover-content>
 
                 </p>
               </div>

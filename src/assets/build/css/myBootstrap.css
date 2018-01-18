@@ -983,11 +983,11 @@ table th[class*="col-"] {
 .popover-title {
   padding: 3px 14px;  /*was changed*/
   margin: 0;
-  font-size: 14px;
+  font-size: 14px !important;
   background-color: #11233e;
   border-bottom: 0px; /*was changed*/
   border-radius: 5px 5px 0 0;
-  color: #fff;
+  color: #fff !important;
 }
 .popover-content {
   padding: 0px; /*was changed*/

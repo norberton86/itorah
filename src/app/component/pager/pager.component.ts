@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { PlayerService } from '../../service/player.service';
 import { Browse } from '../../model/shiurim';
 import { Page } from '../../model/page';
+import { ShiurimService, Category } from '../../service/shiurim.service';
 
 @Component({
   selector: 'app-pager',
@@ -13,12 +14,65 @@ export class PagerComponent implements OnInit {
 
   @Input()
   allResults: Array<Browse> = []
-
-
-
   results: Array<Browse> = []
 
-  constructor(private playerService: PlayerService) { }
+
+//---------------------------------------------------------------------------------------------------------------------------------------
+ OpenPopover(id) {
+    if (this.requesting)
+      return;
+
+    this.requesting = true
+
+    this.shiurimService.relatedCategories(id).subscribe(result => {
+      this.requesting = false
+      this.rCategories = result
+
+    }, error => { this.requesting = false }, () => { })
+  }
+
+ 
+
+  RelatedShiurs(idShiur, idCategory) {
+    if (this.requesting)
+      return;
+
+    this.requesting = true
+
+    this.selectedCategory=this.rCategories.find(c=>c.ID==idCategory).Name
+
+    this.shiurimService.relatedShiur(idShiur, idCategory).subscribe(result => {
+      this.requesting = false
+
+      if(!this.navigatedToCategory)  //only the first time when the user navigaet for categories
+      this.shiurOriginalsBeforecategory = this.allResults //create the copy  
+      
+     // this.FillShirium(result)
+      this.navigatedToCategory = true
+    }, error => { this.requesting = false }, () => { })
+  }
+
+  BackFromCategories() {
+    this.FillShirium(this.shiurOriginalsBeforecategory)
+    this.navigatedToCategory = false
+  }
+
+  FillShirium(data:Array<Browse>)
+  {
+     this.allResults=data
+     this.Update()
+  }
+
+  rCategories: Array<Category> = []
+  shiurOriginalsBeforecategory: Array<Browse> = []  //copy to navigate back
+  requesting: boolean = false
+  navigatedToCategory: boolean = false
+  selectedCategory:string=''
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+  constructor(private playerService: PlayerService, private shiurimService: ShiurimService) { }
 
   ngOnInit() {
   }

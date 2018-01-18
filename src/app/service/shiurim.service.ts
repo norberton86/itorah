@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Shiurim } from '../model/shiurim';
+import { Shiurim,Browse} from '../model/shiurim';
 import { ComboItem } from '../model/combo-item';
 import { Service } from '../model/service';
 
@@ -44,6 +44,16 @@ export class ShiurimService extends Service {
     public relatedShiur(shiur: number,CategoryID:number): Observable<Shiurim[]> {
 
         return this.http.get("http://itorahapi.3nom.com/api/Shiurim/relatedshiurim?ShiurID="+shiur+"&CategoryID="+CategoryID).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    }
+
+    public relatedBrowse(shiur: number,CategoryID:number): Observable<Browse[]> {
+
+        return this.http.get("http://itorahapi.3nom.com/api/Browse/relatedshiurim?ShiurID="+shiur+"&CategoryID="+CategoryID).map(
             (response) => {
                 let body = response.json();
                 return body;

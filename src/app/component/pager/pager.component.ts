@@ -17,8 +17,8 @@ export class PagerComponent implements OnInit {
   results: Array<Browse> = []
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------
- OpenPopover(id) {
+  //---------------------------------------------------------------------------------------------------------------------------------------
+  OpenPopover(id) {
     if (this.requesting)
       return;
 
@@ -31,23 +31,21 @@ export class PagerComponent implements OnInit {
     }, error => { this.requesting = false }, () => { })
   }
 
- 
-
   RelatedShiurs(idShiur, idCategory) {
     if (this.requesting)
       return;
 
     this.requesting = true
 
-    this.selectedCategory=this.rCategories.find(c=>c.ID==idCategory).Name
+    this.selectedCategory = this.rCategories.find(c => c.ID == idCategory).Name
 
-    this.shiurimService.relatedShiur(idShiur, idCategory).subscribe(result => {
+    this.shiurimService.relatedBrowse(idShiur, idCategory).subscribe(result => {
       this.requesting = false
 
-      if(!this.navigatedToCategory)  //only the first time when the user navigaet for categories
-      this.shiurOriginalsBeforecategory = this.allResults //create the copy  
-      
-     // this.FillShirium(result)
+      if (!this.navigatedToCategory)  //only the first time when the user navigaet for categories
+        this.shiurOriginalsBeforecategory = this.allResults //create the copy  
+
+       this.FillShirium(result)
       this.navigatedToCategory = true
     }, error => { this.requesting = false }, () => { })
   }
@@ -57,18 +55,17 @@ export class PagerComponent implements OnInit {
     this.navigatedToCategory = false
   }
 
-  FillShirium(data:Array<Browse>)
-  {
-     this.allResults=data
-     this.Update()
+  FillShirium(data: Array<Browse>) {
+    this.allResults = data
+    this.Update()
   }
 
   rCategories: Array<Category> = []
   shiurOriginalsBeforecategory: Array<Browse> = []  //copy to navigate back
   requesting: boolean = false
   navigatedToCategory: boolean = false
-  selectedCategory:string=''
-//--------------------------------------------------------------------------------------------------------------------------------------------
+  selectedCategory: string = ''
+  //--------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -90,7 +87,7 @@ export class PagerComponent implements OnInit {
     }
   }
 
- 
+
 
 
   Play(id: string, title: string, sponsor: string, mediaId: string, speakerName: string) {
@@ -102,7 +99,7 @@ export class PagerComponent implements OnInit {
   allPages: number;
   iteration: number;
   allIteration: number;
-  elem: number = 28
+  elem: number = 24
 
   PagingPrev() {
     this.iteration--;

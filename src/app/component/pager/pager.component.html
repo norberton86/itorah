@@ -3,6 +3,18 @@
     <div class="tile-box-body">
       <div class="lists">
 
+        <div class="lists-head">
+
+						<button type="button" class="search-btn" id="buttonBackAllPager" (click)="BackFromCategories()" *ngIf="navigatedToCategory">
+						  <i class="fa fa-long-arrow-left"></i> Back
+				    </button>
+
+						<div class="lists-head-inner" *ngIf="navigatedToCategory">
+							<h5><b>Category:</b> {{selectedCategory}}</h5>
+						</div>
+						<!-- /.lists-head-inner -->
+				</div>
+					<!-- /.lists-head -->
 
         <div class="lists-body">
           <ul class="tracks">

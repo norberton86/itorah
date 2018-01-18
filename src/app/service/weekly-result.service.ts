@@ -38,14 +38,14 @@ export class WeeklyResultService extends Service {
 
   constructor(http: Http) {
     super(http);
-    this.ruta = "http://itorahapi.3nom.com/api/Search/";
+    this.ruta = "http://itorahapi.3nom.com/api/Search?";
 
   }
 
   
    public read(SearchText:string,Sources:string,PageSize:number,PageIndex:number): Observable<any> {
        
-       return this.http.get(this.ruta+"?SearchText="+SearchText+"&Sources="+Sources+"&PageSize="+PageSize+"&PageIndex="+PageIndex).map(
+       return this.http.get(this.ruta+"SearchText="+SearchText+"&Sources="+Sources+"&PageSize="+PageSize+"&PageIndex="+PageIndex).map(
            (response) => {
                let body = response.json()
                return body;

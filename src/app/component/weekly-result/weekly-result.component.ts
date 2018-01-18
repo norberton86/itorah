@@ -5,6 +5,7 @@ import { GlobalSearch } from '../../model/global-search';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import { Page } from '../../model/page';
+import { HomeService,Source } from '../../service/home.service';
 
 declare var $: any;
 
@@ -61,12 +62,14 @@ export class WeeklyResultComponent implements OnInit {
   sourceID: number
   mediaId: string
 
+  sources:Array<Source>=[]
+
   Back() {
     this.content = ''
   }
 
 
-  constructor(private weeklyResultService: WeeklyResultService, private playerService: PlayerService) {
+  constructor(private weeklyResultService: WeeklyResultService, private playerService: PlayerService,private homeService:HomeService) {
     this.weeklyResultService.getData().subscribe(item => {
       if (item.pattern != "" && this.pattern != item.pattern) {
         this.pattern = item.pattern;
@@ -85,6 +88,19 @@ export class WeeklyResultComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.Sources()
+  }
+
+   GetSourceName(id:number)
+  {
+      return this.sources.find(i=>i.ID==id).Name
+  }
+
+  Sources()
+  {
+    this.homeService.Sources().subscribe(result=>{
+      this.sources=result
+    })
   }
 
   ReadData() {

@@ -25,6 +25,15 @@ export class HomeService extends ServiceLogin{
         )
     }
 
+    public Sources(): Observable<Array<Source>> {
+        
+        return this.http.get("http://itorahapi.3nom.com/api/Sources").map(
+            (response) => {
+                return response.json();
+            }
+        )
+    }
+
     public playNow(id:number): Observable<any> {
         
         return this.http.get("http://itorahapi.3nom.com/api/PlayNow?SourceID="+id).map(
@@ -60,5 +69,10 @@ export class HomeService extends ServiceLogin{
             }
         )
     }
+}
+
+export class Source{
+     ID:number
+     Name: string
 }
 

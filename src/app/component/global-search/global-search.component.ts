@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { GlobalSearchService } from '../../service/global-search.service';
 import { WeeklyResultService } from '../../service/weekly-result.service';
+import { HomeService,Source } from '../../service/home.service';
 import { PlayerService } from '../../service/player.service';
 import { GlobalSearch } from '../../model/global-search';
 import { Page } from '../../model/page';
@@ -8,8 +8,7 @@ import { Page } from '../../model/page';
 @Component({
   selector: 'app-global-search',
   templateUrl: './global-search.component.html',
-  styleUrls: ['./global-search.component.css'],
-  providers: [GlobalSearchService]
+  styleUrls: ['./global-search.component.css']
 })
 export class GlobalSearchComponent implements OnInit, OnChanges {
 
@@ -22,6 +21,8 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
   halachat: Array<GlobalSearch> = []
   weekly: Array<GlobalSearch> = []
   berura: Array<GlobalSearch> = []
+  emunah: Array<GlobalSearch> = []
+  inspire: Array<GlobalSearch> = []
 
   loading: boolean = false
 
@@ -38,7 +39,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
   pagesWeekly: Array<Page> = [];
   allPagesWeekly: number;
   iterationWeekly: number;
-    weeklytotal:number
+  weeklytotal:number
 
   pagesMishna: Array<Page> = [];
   allPagesMishna: number;
@@ -61,11 +62,25 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
   }
 
 
-  constructor(private globalSearchService: GlobalSearchService, private playerService: PlayerService, private weeklyResultService: WeeklyResultService) { }
+  sources:Array<Source>=[]
+
+  constructor(private playerService: PlayerService, private weeklyResultService: WeeklyResultService,private homeService:HomeService) { }
 
   ngOnInit() {
+    this.Sources()
   }
 
+  GetSourceName(id:number)
+  {
+      return this.sources.find(i=>i.ID==id).Name
+  }
+
+  Sources()
+  {
+    this.homeService.Sources().subscribe(result=>{
+      this.sources=result
+    })
+  }
 
   Update(totalPageCount: number, searchItems: Array<any>) {
 
@@ -101,7 +116,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
         p.current = true;
     })
 
-    this.globalSearchService.read(this.pattern, "6,16,12", 9, id)
+    this.weeklyResultService.read(this.pattern, "6,16,12", 9, id)
       .subscribe(response => this.all = response.searchItems)
 
   }
@@ -139,9 +154,10 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
 
       let self = this;
-      self.globalSearchService.read(this.pattern, "6,16,12", 9, 1)
+      self.weeklyResultService.read(this.pattern, "6,16,12,3,15", 9, 1)
         .subscribe(function (response) {
 
+          
 
           self.Update(response.totalPageCount, response.searchItems)
           self.alltotal=response.totalResultCount;
@@ -150,7 +166,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
         }, function (error) { }, function () { }
         );
 
-       self.globalSearchService.read(this.pattern, "6", 9, 1)
+       self.weeklyResultService.read(this.pattern, "6", 9, 1)
         .subscribe(function (response) {
 
 
@@ -161,7 +177,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
         }, function (error) { }, function () { }
         );
 
-        self.globalSearchService.read(this.pattern, "16", 9, 1)
+        self.weeklyResultService.read(this.pattern, "16", 9, 1)
         .subscribe(function (response) {
 
 
@@ -172,12 +188,34 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
         }, function (error) { }, function () { }
         );
 
-         self.globalSearchService.read(this.pattern, "12", 9, 1)
+         self.weeklyResultService.read(this.pattern, "12", 9, 1)
         .subscribe(function (response) {
 
 
           self.UpdateMishna(response.totalPageCount, response.searchItems)
           self.mishnatotal=response.totalResultCount;
+          //self.loading = false
+
+        }, function (error) { }, function () { }
+        );
+
+        self.weeklyResultService.read(this.pattern, "3", 9, 1)
+        .subscribe(function (response) {
+
+
+          self.UpdateEmunah(response.totalPageCount, response.searchItems)
+          self.emunahtotal=response.totalResultCount;
+          //self.loading = false
+
+        }, function (error) { }, function () { }
+        );
+
+        self.weeklyResultService.read(this.pattern, "15", 9, 1)
+        .subscribe(function (response) {
+
+
+          self.UpdateInspire(response.totalPageCount, response.searchItems)
+          self.inspiretotal=response.totalResultCount;
           //self.loading = false
 
         }, function (error) { }, function () { }
@@ -274,7 +312,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
         p.current = true;
     })
 
-    this.globalSearchService.read(this.pattern, "6", 9, id)
+    this.weeklyResultService.read(this.pattern, "6", 9, id)
       .subscribe(response => this.halachat = response.searchItems)
 
   }
@@ -335,7 +373,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
         p.current = true;
     })
 
-    this.globalSearchService.read(this.pattern, "16", 9, id)
+    this.weeklyResultService.read(this.pattern, "16", 9, id)
       .subscribe(response => this.weekly = response.searchItems)
 
   }
@@ -396,7 +434,7 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
         p.current = true;
     })
 
-    this.globalSearchService.read(this.pattern, "12", 9, id)
+    this.weeklyResultService.read(this.pattern, "12", 9, id)
       .subscribe(response => this.berura = response.searchItems)
 
   }
@@ -422,4 +460,140 @@ export class GlobalSearchComponent implements OnInit, OnChanges {
 
     this.PageMishna(this.iterationMishna)
   }
+  //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  pagesEmunah: Array<Page> = [];
+  allPagesEmunah: number;
+  iterationEmunah: number;
+  emunahtotal:number
+
+  UpdateEmunah(totalPageCount: number, searchItems: Array<any>) {
+
+    this.allPagesEmunah = totalPageCount; //pagination
+    this.iterationEmunah = 1; //pagination
+
+    this.CreatePagesEmunah();
+    this.emunah = searchItems
+  }
+
+  CreatePagesEmunah() {
+    this.pagesEmunah = [];
+
+    for (var i = this.iterationEmunah * 6 - 6; i < this.iterationEmunah * 6 && i < this.allPagesEmunah; i++) //populate the pages array
+    {
+      if (i == (this.iterationEmunah - 1) * 6) {
+        this.pagesEmunah.push({ id: i + 1, current: true });
+      }
+      else
+        this.pagesEmunah.push({ id: i + 1, current: false });
+    }
+
+  }
+
+
+  PageEmunah(id: number) {
+
+    this.pagesEmunah.forEach(function (p) {
+
+      if (p.id != id)
+        p.current = false;
+      else
+        p.current = true;
+    })
+
+    this.weeklyResultService.read(this.pattern, "3", 9, id)
+      .subscribe(response => this.emunah = response.searchItems)
+
+  }
+
+  PagingPrevEmunah() {
+    this.iterationEmunah--;
+    if (this.iterationEmunah <= 0) {
+      this.iterationEmunah = 1;
+    }
+    else
+      this.CreatePagesEmunah();
+
+    this.PageEmunah(this.iterationEmunah)
+  }
+
+  PagingNextEmunah() {
+    this.iterationEmunah++;
+    if (this.iterationEmunah > Math.ceil(this.allPagesEmunah / 6)) {
+      this.iterationEmunah = Math.ceil(this.allPagesEmunah / 6);
+    }
+    else
+      this.CreatePagesEmunah();
+
+    this.PageEmunah(this.iterationEmunah)
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  pagesInspire: Array<Page> = [];
+  allPagesInspire: number;
+  iterationInspire: number;
+  inspiretotal:number
+
+  UpdateInspire(totalPageCount: number, searchItems: Array<any>) {
+
+    this.allPagesInspire = totalPageCount; //pagination
+    this.iterationInspire = 1; //pagination
+
+    this.CreatePagesInspire();
+    this.inspire = searchItems
+  }
+
+  CreatePagesInspire() {
+    this.pagesInspire = [];
+
+    for (var i = this.iterationInspire * 6 - 6; i < this.iterationInspire * 6 && i < this.allPagesInspire; i++) //populate the pages array
+    {
+      if (i == (this.iterationInspire - 1) * 6) {
+        this.pagesInspire.push({ id: i + 1, current: true });
+      }
+      else
+        this.pagesInspire.push({ id: i + 1, current: false });
+    }
+
+  }
+
+
+  PageInspire(id: number) {
+
+    this.pagesInspire.forEach(function (p) {
+
+      if (p.id != id)
+        p.current = false;
+      else
+        p.current = true;
+    })
+
+    this.weeklyResultService.read(this.pattern, "15", 9, id)
+      .subscribe(response => this.inspire = response.searchItems)
+
+  }
+
+  PagingPrevInspire() {
+    this.iterationInspire--;
+    if (this.iterationInspire <= 0) {
+      this.iterationInspire = 1;
+    }
+    else
+      this.CreatePagesInspire();
+
+    this.PageInspire(this.iterationInspire)
+  }
+
+  PagingNextInspire() {
+    this.iterationInspire++;
+    if (this.iterationInspire > Math.ceil(this.allPagesInspire / 6)) {
+      this.iterationInspire = Math.ceil(this.allPagesInspire / 6);
+    }
+    else
+      this.CreatePagesInspire();
+
+    this.PageInspire(this.iterationInspire)
+  }
+
 }

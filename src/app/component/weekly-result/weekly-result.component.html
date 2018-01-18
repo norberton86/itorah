@@ -88,13 +88,16 @@
           <div class="col col-small"></div>
           <!-- /.col col-small -->
 
-          <div class="col">
+          <div class="col col-small">
             <div class="col col-1of2">
               <a href="#">download</a>
             </div>
             <!-- /.col col-1of2 -->
           </div>
           <!-- /.col -->
+          <div class="col col-small">
+            Found in     
+          </div>
         </li>
         <!-- /.search-resultsult -->
 
@@ -141,7 +144,7 @@
           </div>
           <!-- /.col col-small -->
 
-          <div class="col">
+          <div class="col col-small">
             <!--<a href="#" class="btn btn-download">
 											<i class="ico-download"></i> wma
 										</a>-->
@@ -149,10 +152,13 @@
 
             <a href="{{a.audioUrl}}" class="btn btn-download" download>
 											<i class="ico-download"></i> mp3
-										</a>
+						</a>
             <!-- /.btn btn-download -->
           </div>
           <!-- /.col -->
+          <div class="col col-small">
+              {{GetSourceName(a.sourceID)}}
+          </div>
         </li>
         <!-- /.search-resultsult -->
 

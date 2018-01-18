@@ -79,6 +79,10 @@ export class WeeklySearchComponent implements OnInit, OnChanges {
     }, 300)
   }
 
+  Close()
+  {
 
+    this.wSearch=''
+  }
 
 }

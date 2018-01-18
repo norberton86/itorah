@@ -32,38 +32,37 @@ export class WeeklyResultComponent implements OnInit {
   pages: Array<Page> = [];
   allPages: number;
   iteration: number;
-  alltotal:number
+  alltotal: number
 
   pagesHalachat: Array<Page> = [];
   allPagesHalachat: number;
   iterationHalachat: number;
-  halachatotal:number
+  halachatotal: number
 
   pagesWeekly: Array<Page> = [];
   allPagesWeekly: number;
   iterationWeekly: number;
-  weeklytotal:number
+  weeklytotal: number
 
   pagesMishna: Array<Page> = [];
   allPagesMishna: number;
   iterationMishna: number;
-  mishnatotal:number
+  mishnatotal: number
 
- /* pagesTehillim: Array<Page> = [];
-  allPagesTehillim: number;
-  iterationTehillim: number;
-  tehellimtotal:number*/
+  /* pagesTehillim: Array<Page> = [];
+   allPagesTehillim: number;
+   iterationTehillim: number;
+   tehellimtotal:number*/
 
 
-  content:string=""
-  title:string=""
-  media:string=""
-  sourceID:number
-  mediaId:string
+  content: string = ""
+  title: string = ""
+  media: string = ""
+  sourceID: number
+  mediaId: string
 
-  Back()
-  {
-    this.content=''
+  Back() {
+    this.content = ''
   }
 
 
@@ -76,6 +75,8 @@ export class WeeklyResultComponent implements OnInit {
         this.ReadData();
       }
     });
+
+
   }
 
 
@@ -101,7 +102,7 @@ export class WeeklyResultComponent implements OnInit {
 
 
           self.Update(response.totalPageCount, response.searchItems)
-          self.alltotal=response.totalResultCount;
+          self.alltotal = response.totalResultCount;
           self.loading = false
 
         }, function (error) { }, function () { }
@@ -112,7 +113,7 @@ export class WeeklyResultComponent implements OnInit {
 
 
           self.UpdateHalachat(response.totalPageCount, response.searchItems)
-          self.halachatotal=response.totalResultCount;
+          self.halachatotal = response.totalResultCount;
           //self.loading = false
 
         }, function (error) { }, function () { }
@@ -123,7 +124,7 @@ export class WeeklyResultComponent implements OnInit {
 
 
           self.UpdateWeekly(response.totalPageCount, response.searchItems)
-          self.weeklytotal=response.totalResultCount;
+          self.weeklytotal = response.totalResultCount;
           //self.loading = false
 
         }, function (error) { }, function () { }
@@ -134,7 +135,7 @@ export class WeeklyResultComponent implements OnInit {
 
 
           self.UpdateMishna(response.totalPageCount, response.searchItems)
-          self.mishnatotal=response.totalResultCount;
+          self.mishnatotal = response.totalResultCount;
           //self.loading = false
 
         }, function (error) { }, function () { }
@@ -165,22 +166,21 @@ export class WeeklyResultComponent implements OnInit {
 
   }
 
-  Read(_title: string, _content: string,_media:string,sourceID:number,mediaId:string) {
+  Read(_title: string, _content: string, _media: string, sourceID: number, mediaId: string) {
     //this.weeklyResultService.setDataRead({ title: _title, content: _content, accion: 'read' })
-    this.content=_content;
-    this.title=_title;
-    this.media=_media;
-    this.sourceID=sourceID
-    this.mediaId=mediaId
+    this.content = _content;
+    this.title = _title;
+    this.media = _media;
+    this.sourceID = sourceID
+    this.mediaId = mediaId
   }
 
-  Play(title: string, media: string,sourceID:number,mediaId:string) {
-    this.playerService.PlayAudio(title, media,"",sourceID,mediaId)
+  Play(title: string, media: string, sourceID: number, mediaId: string) {
+    this.playerService.PlayAudio(title, media, "", sourceID, mediaId)
   }
 
-  PlayHeader()
-  {
-     this.playerService.PlayAudio(this.title, this.media,"",this.sourceID,this.mediaId)
+  PlayHeader() {
+    this.playerService.PlayAudio(this.title, this.media, "", this.sourceID, this.mediaId)
   }
 
   Desc(a, b) {
@@ -216,7 +216,7 @@ export class WeeklyResultComponent implements OnInit {
 
     this.CreatePages();
     this.all = searchItems
-  
+
   }
 
   CreatePages() {
@@ -455,67 +455,67 @@ export class WeeklyResultComponent implements OnInit {
     this.PageMishna(this.iterationMishna)
   }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
- /* UpdateTehillim(totalPageCount: number, searchItems: Array<any>) {
-
-    this.allPagesTehillim = totalPageCount; //pagination
-    this.iterationTehillim = 1; //pagination
-
-    this.CreatePagesTehillim();
-    this.tehillim = searchItems
-  }
-
-  CreatePagesTehillim() {
-    this.pagesTehillim = [];
-
-    for (var i = this.iterationTehillim * 6 - 6; i < this.iterationTehillim * 6 && i < this.allPagesTehillim; i++) //populate the pages array
-    {
-      if (i == (this.iterationTehillim - 1) * 6) {
-        this.pagesTehillim.push({ id: i + 1, current: true });
-      }
-      else
-        this.pagesTehillim.push({ id: i + 1, current: false });
-    }
-
-  }
-
-
-  PageTehillim(id: number) {
-
-    this.pagesTehillim.forEach(function (p) {
-
-      if (p.id != id)
-        p.current = false;
-      else
-        p.current = true;
-    })
-
-    this.weeklyResultService.read(this.pattern, "7", 9, id)
-      .subscribe(response => this.tehillim = response.searchItems)
-
-  }
-
-  PagingPrevTehillim() {
-    this.iterationTehillim--;
-    if (this.iterationTehillim <= 0) {
-      this.iterationTehillim = 1;
-    }
-    else
-      this.CreatePagesTehillim();
-
-    this.PageTehillim(this.iterationTehillim)
-  }
-
-  PagingNextTehillim() {
-    this.iterationTehillim++;
-    if (this.iterationTehillim > Math.ceil(this.allPagesTehillim / 6)) {
-      this.iterationTehillim = Math.ceil(this.allPagesTehillim / 6);
-    }
-    else
-      this.CreatePagesTehillim();
-
-    this.PageTehillim(this.iterationTehillim)
-  }*/
+  //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  /* UpdateTehillim(totalPageCount: number, searchItems: Array<any>) {
+ 
+     this.allPagesTehillim = totalPageCount; //pagination
+     this.iterationTehillim = 1; //pagination
+ 
+     this.CreatePagesTehillim();
+     this.tehillim = searchItems
+   }
+ 
+   CreatePagesTehillim() {
+     this.pagesTehillim = [];
+ 
+     for (var i = this.iterationTehillim * 6 - 6; i < this.iterationTehillim * 6 && i < this.allPagesTehillim; i++) //populate the pages array
+     {
+       if (i == (this.iterationTehillim - 1) * 6) {
+         this.pagesTehillim.push({ id: i + 1, current: true });
+       }
+       else
+         this.pagesTehillim.push({ id: i + 1, current: false });
+     }
+ 
+   }
+ 
+ 
+   PageTehillim(id: number) {
+ 
+     this.pagesTehillim.forEach(function (p) {
+ 
+       if (p.id != id)
+         p.current = false;
+       else
+         p.current = true;
+     })
+ 
+     this.weeklyResultService.read(this.pattern, "7", 9, id)
+       .subscribe(response => this.tehillim = response.searchItems)
+ 
+   }
+ 
+   PagingPrevTehillim() {
+     this.iterationTehillim--;
+     if (this.iterationTehillim <= 0) {
+       this.iterationTehillim = 1;
+     }
+     else
+       this.CreatePagesTehillim();
+ 
+     this.PageTehillim(this.iterationTehillim)
+   }
+ 
+   PagingNextTehillim() {
+     this.iterationTehillim++;
+     if (this.iterationTehillim > Math.ceil(this.allPagesTehillim / 6)) {
+       this.iterationTehillim = Math.ceil(this.allPagesTehillim / 6);
+     }
+     else
+       this.CreatePagesTehillim();
+ 
+     this.PageTehillim(this.iterationTehillim)
+   }*/
 
 
 }

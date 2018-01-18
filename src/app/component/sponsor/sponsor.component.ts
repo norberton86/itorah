@@ -460,6 +460,7 @@ export class SponsorComponent implements OnInit {
   speakers: Array<Speaker> = []
 
   Close() {
+    this.paymentService.setItem('reset')
     $('#sponsor').toggleClass('shown');
   }
 

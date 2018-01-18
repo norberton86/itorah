@@ -119,6 +119,10 @@ export class ShopComponent implements OnInit {
         .removeClass('hidden')
   }
 
+  Close()
+  {
+    this.paymentService.setItem('reset')
+  }
 
 }
 

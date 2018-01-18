@@ -161,4 +161,9 @@ export class DonateComponent implements OnInit {
     this.formCheck.patchValue(data);
   }
 
+  Close()
+  {
+    this.paymentService.setItem('reset') 
+  }
+
 }

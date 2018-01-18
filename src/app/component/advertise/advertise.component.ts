@@ -158,6 +158,11 @@ export class AdvertiseComponent implements OnInit {
     this.errorSize = ''
     this.File = null
   }
+
+  Close()
+  {
+    this.paymentService.setItem('reset')
+  }
 }
 
 class Impression {

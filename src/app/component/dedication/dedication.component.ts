@@ -120,4 +120,9 @@ export class DedicationComponent implements OnInit {
 
   }
 
+  Close()
+  {
+    this.paymentService.setItem('reset') 
+  }
+
 }

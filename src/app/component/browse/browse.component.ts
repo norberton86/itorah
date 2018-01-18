@@ -140,6 +140,13 @@ export class BrowseComponent implements OnInit, OnChanges {
 
   setCurrent(c: string) {
     this.current = c
+
+    if(c!='Category')
+    {
+      this.category=this.categorys[0]
+      this.subCategory=this.subCategorys[0]
+      this.speaker=this.speakers[0]
+    }
   }
 
   Status(event)

@@ -360,6 +360,10 @@ export class PopupRegisterComponent implements OnInit {
   }
 
   SelectPerek() {
+
+   if(this.perek<1||this.perek>150)
+   return
+
     this.existResults = 21
   }
 
@@ -431,6 +435,13 @@ export class PopupRegisterComponent implements OnInit {
   Play() {
     this.playerService.PlayAudio("", this.pereks.find(p => p.id == this.perek).audioUrl, "", 7, this.pereks.find(p => p.id == this.perek).id.toString())
   }
+
+
+ ValidatePerek()
+ {
+   if(isNaN(this.perek))
+    this.perek=0
+ }
   //----------------------------------------------------------Pasuk----------------------------------------------------------
   SetKeyboard(id) {
     var $keyboard = $('#VirtualKeyboardHolderPasuk');

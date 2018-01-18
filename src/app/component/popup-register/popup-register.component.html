@@ -42,7 +42,7 @@
 										<div class="checkbox checkbox-secondary checkbox-block">
 											<input type="checkbox" name="form-register-119" id="field-register-119" (click)="CloseResults('cientoNueve')">
 
-											<label class="form__label" for="field-register-119">Generate 119 Pasuk</label>
+											<label class="form__label" for="field-register-119">Chapter 119 Pasuk Generator</label>
 										</div>
 									</li>
 									<li [hidden]="tile=='Register'">
@@ -327,7 +327,7 @@
 									<label for="field-specific-need" class="form-label">Search By Specific Need:</label>
 									<div class="form-controls">
 										<input [(ngModel)]="perekSearch" auto-complete [source]="needsToShow" (ngModelChange)="Go($event)" type="text" class="field"
-										 name="field-specific-need" id="field-specific-need" value="" placeholder="" style="width:100%">
+										 name="field-specific-need" id="field-specific-need" value="" placeholder="Enter Search Text" style="width:100%">
 
 										<!--<input type="button" value="go" class="form-btn btn_small_yellow" style="width:20%;margin-top: 0.5em;" (click)="Go()">-->
 
@@ -354,10 +354,9 @@
 								<p>Number Between 1-150</p>
 							</div>
 							<div class="text-wrap-right">
-								<input type="submit" value="+" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:21%" (click)="Increment()">
-								<input [(ngModel)]="perek" type="text" class="field" name="perek-number" id="field-specific-need" value="" placeholder=""
-								 style="width:52%">
-								<input type="submit" value="-" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:21%" (click)="Decrement()">
+								<input type="submit" value="<" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:21%;font-weight: 300;" (click)="Increment()">
+								<input  (change)="ValidatePerek()" [(ngModel)]="perek" type="number" min='1' max='150' class="field" name="perek-number" id="field-specific-need" value="" placeholder="" style="width:52%">
+								<input type="submit" value=">" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:21%;font-weight: 300;" (click)="Decrement()">
 							</div>
 
 						</div>

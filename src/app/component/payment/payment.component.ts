@@ -13,6 +13,10 @@ import { PaymentService } from '../../service/payment.service';
 })
 export class PaymentComponent implements OnInit, OnChanges {
 
+
+   @Input()
+   origin:string=''
+  //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   @Output()
   public myEvent = new EventEmitter<CreditCard>();
 

@@ -150,7 +150,7 @@ export class AppComponent implements OnInit {
       this.homeService.readNow(id).subscribe(result => {   //execute to get the dedication field
         this.homeService.playNow(id).subscribe(resultPlay => {
           this.requesting = false
-          this.playerService.PlayAudio(title, resultPlay[0].AudioUrl, result.dedication,id,resultPlay[0].ID) //use that dedication field
+          this.playerService.PlayAudio(result.title+"<>", resultPlay[0].AudioUrl, result.dedication,id,resultPlay[0].ID) //use that dedication field
         }, error => {
           this.requesting = false
         }, () => { })

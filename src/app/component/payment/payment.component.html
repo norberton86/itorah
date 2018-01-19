@@ -1,7 +1,13 @@
 <div class="form-order form-sponsor">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-head">
-      <h4>Credit card detail</h4>
+      <h4 class="step-title">
+        	<span *ngIf="origin=='sponsor'">
+						step
+						<span>3</span>
+					</span>
+        Credit card detail
+      </h4>
     </div>
     <!-- /.form-head -->
 

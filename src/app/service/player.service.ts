@@ -276,6 +276,8 @@ export class PlayerService extends Service {
         this.BuildAudio(title, url, sponsor, sourceId, mediaId)
       }, () => { })
     }
+    else
+    this.BuildAudio(title, url, sponsor, sourceId, mediaId)
   }
 
   BuildAudio(title: string, url: string, sponsor: string, sourceId: number, mediaId: string) {
@@ -292,7 +294,16 @@ export class PlayerService extends Service {
   CreatePlayer(title: string, url: string, sponsor: string, initialPosition = "") {
     let self = this
 
-    var finalSponsor = '<p id="sponsorPlayAudio" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>'
+   var finalSponsor=''
+
+   if(title.indexOf('<>')>0) //to check if is being calling from halacha or tehellim
+   {
+    title= title.replace("<>", "");  //remove the unnecesarry characters
+    finalSponsor+="<p>"+title+"</p>"
+   }
+   
+
+    finalSponsor += '<p id="sponsorPlayAudio" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>'
 
     if ($('#mediaAudio').length == 0)     //if not exist
     {

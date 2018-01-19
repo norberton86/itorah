@@ -10,4 +10,5 @@ export class Speaker {
     isMainSpeaker: boolean
     isMySpeaker:boolean
     totalShiurim: number
+    relatedShiurim:any
 }

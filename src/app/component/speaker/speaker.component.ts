@@ -648,7 +648,9 @@ export class SpeakerComponent implements OnInit {
 
     this.speaker = data[0];
 
-    this.checkLocalExistence(data[0].id);
+    this.FillShirium(data[0].relatedShiurim)
+
+   // this.checkLocalExistence(data[0].id);
   }
 
   checkLocalExistence(id: number) {

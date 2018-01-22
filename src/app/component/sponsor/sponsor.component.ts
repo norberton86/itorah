@@ -261,7 +261,7 @@ export class SponsorComponent implements OnInit {
 
     this.step1=true
   }
-  section: string
+  section: string=""
   payment: boolean = false
 
   ShowPayment() {
@@ -464,7 +464,7 @@ export class SponsorComponent implements OnInit {
   Close() {
 
     this.payment=false
-    this.step1=false
+ 
 
     this.paymentService.setItem('reset')
     $('#sponsor').toggleClass('shown');

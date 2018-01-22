@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone, EventEmitter, Output } from '@angular/core';
 import { Speaker } from '../../model/speaker';
-import { Shiurim } from '../../model/shiurim';
+import { Shiurim,ItemQueue } from '../../model/shiurim';
 import { Page } from '../../model/page';
 import { Letter } from '../../model/letter';
 import { SpeakerService } from '../../service/speaker.service';
@@ -97,12 +97,28 @@ export class SpeakerComponent implements OnInit {
     this.shiriums = [];
 
     this.pages = [];
-    //####################################################################################################################
 
     this.speakers = [];
     this.pagesAll = [];
 
+    //-----------------------------------------------------------------------------------------------------------------------------------------
+    this.queueService.getQueue().subscribe(queue=>{
+      this.queue=queue
+    })
+
+    this.queueService.getLogin().subscribe(result=>{
+      if(result=='LogOut')
+      this.queue=[]
+    })
+
   }
+
+  Linked(id:string):boolean
+  {
+    return this.queue.findIndex(i=>i.id==id)>=0
+  }
+
+  queue:Array<ItemQueue>=[]
 
   isAuthenticated(): boolean {
     let self = this;
@@ -649,6 +665,7 @@ export class SpeakerComponent implements OnInit {
     this.speaker = data[0];
 
     this.FillShirium(data[0].relatedShiurim)
+    this.databaseService.Manage(data[0].id.toString(), data[0].relatedShiurim);
 
    // this.checkLocalExistence(data[0].id);
   }

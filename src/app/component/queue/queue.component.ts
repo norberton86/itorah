@@ -112,10 +112,16 @@ export class QueueComponent implements OnInit, OnDestroy {
   Read() {
 
     this.queueService.read(this.queueService.getToken()).subscribe(
-      result => this.queues = result
+      result =>{ 
+                this.queues = result
+                this.queueService.setQueue(this.queues) //emit the event with the queue
+
+      },error=>{},()=>{}
     )
 
   }
+
+
 
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
@@ -142,14 +148,15 @@ export class QueueComponent implements OnInit, OnDestroy {
     })
 
     this.queueService.add(this.queueService.getToken(),req).subscribe(
-        function(respond){
-              self.queueService.Notify("Item added to queue",false);
+        respond=>{
+              this.queueService.Notify("Item added to queue",false);
+              this.queueService.setQueue(this.queues) //emit the event with the queue
            },
-           function(error){
+           error=>{
                 
-               self.queueService.Notify("Error trying to add",true) 
+               this.queueService.Notify("Error trying to add",true) 
            },
-           function(){}
+           ()=>{}
       )
   }
 
@@ -164,14 +171,14 @@ export class QueueComponent implements OnInit, OnDestroy {
      
      let self=this
      this.queueService.remove(this.queueService.getToken(),[{ItemID:item.id,SourceID:item.sourceID}]).subscribe(
-        function(respond){
-              
+        respond=>{
+              this.queueService.setQueue(this.queues) //emit the event with the queue
            },
-           function(error){
+           error=>{
                 
-               self.queueService.Notify("Error trying to remove",true) 
+               this.queueService.Notify("Error trying to remove",true) 
            },
-           function(){}
+           ()=>{}
       )
 
   }

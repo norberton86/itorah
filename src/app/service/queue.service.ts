@@ -16,6 +16,9 @@ export class QueueService extends ServiceLogin {
   private subject: Subject<ItemQueue> = new Subject<ItemQueue>();
 
 
+  private subjectLecures: Subject<Array<ItemQueue>> = new Subject<Array<ItemQueue>>(); //used for send the queue to Speakers component
+
+
   constructor(http: Http) {
     super(http);
     this.ruta="http://itorahapi.3nom.com/api/Queue";
@@ -80,6 +83,17 @@ export class QueueService extends ServiceLogin {
 
   getItem(): Observable<ItemQueue> {
     return this.subject.asObservable();
+  }
+
+  //-----------------------------------------------------------------------------------------------------------------------------------------------
+
+  setQueue(queue:Array<ItemQueue>)
+  {
+      this.subjectLecures.next(queue)
+  }
+
+  getQueue(): Observable<Array<ItemQueue>> {
+    return this.subjectLecures.asObservable();
   }
 
 }

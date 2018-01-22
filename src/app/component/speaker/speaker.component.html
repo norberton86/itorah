@@ -115,8 +115,13 @@
 										</a>
 
 
-										<a href="#/" class="link-add icons-wrap" title="Add to My Queue List" id="{{s.id}}" (click)="addToQueue(s.id)">
+										<a href="#/" class="link-add icons-wrap" title="Add to My Queue List" id="{{s.id}}" (click)="addToQueue(s.id)" *ngIf="Linked(s.id)==false">
 											<i class="ico-plus-thick"></i>
+										</a>
+
+										
+										<a href="#/" class="link-add icons-wrap" title="Added" *ngIf="Linked(s.id)" style="color: green;">
+											<i class="fa fa-check" aria-hidden="true"></i>
 										</a>
 
 										<a href="#/" class="link-download icons-wrap" title="Download" *ngIf="s.audio!=''" (click)="Download(s)">

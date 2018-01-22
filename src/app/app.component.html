@@ -13,7 +13,19 @@
 								</a>
 
 								<div class="dropdown item" [class.blur]="VerifyUser()" id="podcastBox">
-									<div class="dropdown-head">
+									<div class="dropdown-head" style="padding: 8px 13px 2px 0px;">
+										<h4></h4>
+
+										<ul class="nav-list">
+											
+											<li>
+												<a href="#" class="link-close" (click)="CloseHeader('podcastBox')">
+													<i class="ico-close"></i>
+												</a>
+											</li>
+										</ul><!-- /.nav-list -->
+									</div><!-- /.dropdown-head -->
+									<div class="dropdown-head" style="padding-top: 0px;">
 										<h4><i class="ico-podcast-2"></i> Podcast</h4>
 
 										<ul class="nav-list">
@@ -55,10 +67,24 @@
 								</a>
 
 								<div class="dropdown item" [class.blur]="VerifyUser()" id="queueBox">
-									<div class="dropdown-head">
+									<div class="dropdown-head" style="padding: 8px 13px 2px 0px;">
+										<h4></h4>
+
+										<ul class="nav-list">
+											
+											<li>
+												<a href="#" class="link-close" (click)="CloseHeader('queueBox')">
+													<i class="ico-close"></i>
+												</a>
+											</li>
+										</ul><!-- /.nav-list -->
+									</div><!-- /.dropdown-head -->
+
+									<div class="dropdown-head" style="padding-top: 0px;">
 										<h4><i class="ico-play-3"></i> Queue list</h4>
 
 										<ul class="nav-list">
+											
 											<li>
 												<!--<a href="#">Edit</a>--><span>Drag and Drop</span>
 											</li>

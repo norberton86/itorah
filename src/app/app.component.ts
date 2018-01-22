@@ -269,4 +269,10 @@ export class AppComponent implements OnInit {
     }
   }
 
+  CloseHeader(id:string)
+  {
+    $('#'+id).toggleClass('shown')
+    $('#'+id).css('display', 'none')
+  }
+
 }

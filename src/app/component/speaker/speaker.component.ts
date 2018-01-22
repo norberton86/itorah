@@ -650,13 +650,19 @@ export class SpeakerComponent implements OnInit {
   ReadMainSpeaker() {
     this.myEvent.next(true)
     this.speakerService.readMain().subscribe(
-      result => this.InitializeMainSpeakers(result)
+      result => {
+        this.myEvent.next(false)
+        this.InitializeMainSpeakers(result)
+      }
+      ,error=>{
+        this.myEvent.next(false)
+      },()=>{}
     )
 
   }
 
   InitializeMainSpeakers(data: Array<Speaker>) {
-    this.myEvent.next(false)
+    
     this.currentSpeakers = data;
     this.RefreshSlide(this.currentSpeakers)
 
@@ -664,10 +670,10 @@ export class SpeakerComponent implements OnInit {
 
     this.speaker = data[0];
 
-    this.FillShirium(data[0].relatedShiurim)
-    this.databaseService.Manage(data[0].id.toString(), data[0].relatedShiurim);
+    //this.FillShirium(data[0].relatedShiurim)
+    //this.databaseService.Manage(data[0].id.toString(), data[0].relatedShiurim);
 
-   // this.checkLocalExistence(data[0].id);
+    this.checkLocalExistence(data[0].id);
   }
 
   checkLocalExistence(id: number) {

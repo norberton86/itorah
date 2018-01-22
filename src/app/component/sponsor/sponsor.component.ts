@@ -258,6 +258,8 @@ export class SponsorComponent implements OnInit {
   SetSection(section: string) {
     this.section = section
     this.payment = false
+
+    this.step1=true
   }
   section: string
   payment: boolean = false
@@ -460,6 +462,10 @@ export class SponsorComponent implements OnInit {
   speakers: Array<Speaker> = []
 
   Close() {
+
+    this.payment=false
+    this.step1=false
+
     this.paymentService.setItem('reset')
     $('#sponsor').toggleClass('shown');
   }
@@ -470,4 +476,10 @@ export class SponsorComponent implements OnInit {
     else
       return c.name
   }
+  
+  //-------------------------------------------------------------check icons on headers--------------------------------------------------
+
+  step1:boolean=false
+
+
 }

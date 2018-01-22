@@ -195,6 +195,10 @@
 								<a href="#" (click)="OpenPopup('#credits')">My Order History</a>
 							</li>
 
+							<li *ngIf="credit!=null">
+								<a href="#"> Current Credits: <span style="font-size: 0.8em;">{{credit.shiurimBalance}} (${{credit.dollarBalance}})</span> </a>
+							</li>
+
 							<li class="link-popup">
 								<a style="color:#786c6c" href="#" title="Coming Soon">Completed Classes</a>
 							</li>

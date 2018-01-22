@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ShiurimBuy, ShiurimBuyTable, creditsTable } from '../../model/shiurim-buy';
 import { MyCreditsService } from '../../service/my-credits.service';
+import { Subject } from "rxjs/Subject";
+import { Observable } from "rxjs/Observable";
 
 declare var $: any;
 
@@ -21,7 +23,7 @@ export class MyCreditsComponent implements OnInit {
         this.Load()
       }
       else {
-
+        this.myCreditsService.setCredits(null)  //emit credit null to clean the item on the menu
       }
     });
   }
@@ -34,6 +36,7 @@ export class MyCreditsComponent implements OnInit {
   Load() {
     this.myCreditsService.read().subscribe(response => {
       this.table = response
+      this.myCreditsService.setCredits(response)  //emit the current credit
     })
   }
 
@@ -41,6 +44,7 @@ export class MyCreditsComponent implements OnInit {
     $('#credits').toggleClass('shown');
     $("#shop").toggleClass('shown')
   }
+
 
 
 

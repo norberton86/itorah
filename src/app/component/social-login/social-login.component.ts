@@ -259,6 +259,7 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
     this.podcastService.setLogin("LogOut");
     this.subscribeService.setLogin("LogOut");
     this.tehillimService.setLogin("LogOut");
+    this.myCreditsService.setLogin("LogOut");
     this.RefreshView();
   }
 

@@ -5,9 +5,12 @@ import { creditsTable } from '../model/shiurim-buy';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class MyCreditsService extends ServiceLogin {
+
+    private subject: Subject<creditsTable> = new Subject<creditsTable>();
 
   constructor(http: Http) {
     super(http);
@@ -26,5 +29,14 @@ export class MyCreditsService extends ServiceLogin {
         return body;
       }
     )
+  }
+
+   setCredits(credit:creditsTable)
+  {
+      this.subject.next(credit)
+  }
+
+  getCredits(): Observable<creditsTable> {
+    return this.subject.asObservable();
   }
 }

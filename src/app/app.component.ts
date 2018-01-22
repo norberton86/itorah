@@ -4,7 +4,9 @@ import { HomeService } from './service/home.service';
 import { PlayerService } from './service/player.service';
 import { PerashaService } from './service/perasha.service';
 import { ReadNow } from './model/home';
+import { creditsTable } from './model/shiurim-buy';
 import { RegisterTehellimService} from './service/register-tehellim.service';
+import { MyCreditsService} from './service/my-credits.service';
 declare var $: any;
 
 @Component({
@@ -34,7 +36,13 @@ export class AppComponent implements OnInit {
 
   browseClasses: string = "Recently"
 
-  constructor(private analitycService: AnalitycService, private homeService: HomeService, private playerService: PlayerService, private perashaService: PerashaService,private registerTehellimService:RegisterTehellimService) { }
+  credit:creditsTable=null
+
+  constructor(private analitycService: AnalitycService, private homeService: HomeService, private playerService: PlayerService, private perashaService: PerashaService,private registerTehellimService:RegisterTehellimService,private myCreditsService:MyCreditsService) { 
+    this.myCreditsService.getCredits().subscribe(credit=>{
+           this.credit=credit
+    })
+  }
 
 
   keyDownFunction(event) {

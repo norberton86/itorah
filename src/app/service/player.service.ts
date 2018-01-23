@@ -10,10 +10,14 @@ import "rxjs/add/observable/timer";
 import 'rxjs/add/operator/map';
 import { Service } from '../model/service';
 
+import { Subject } from 'rxjs/Subject';
+
 @Injectable()
 export class PlayerService extends Service {
 
   private timerSubscription: AnonymousSubscription;
+  private subject: Subject<any> = new Subject<any>();
+  private subjectDay: Subject<string> = new Subject<string>();
 
   constructor(http: Http) {
     super(http);
@@ -126,6 +130,8 @@ export class PlayerService extends Service {
     )
   }
 
+
+
   requesting: boolean = false;
   Play(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string, sourceid: number, mediaId: string) {
 
@@ -139,7 +145,7 @@ export class PlayerService extends Service {
         this.requesting = false
 
         if (result == '')
-          sponsor = "Sponsor this shiur"
+          sponsor = "Sponsor this Shiur"
         else
           sponsor = result
 
@@ -147,7 +153,7 @@ export class PlayerService extends Service {
 
       }, error => {
         this.requesting = false
-        sponsor = "Sponsor this shiur"
+        sponsor = "Sponsor this Shiur"
         this.Build(title, url, onlyAudio, speaker, sponsor, sourceid, mediaId)
       }, () => { })
 
@@ -198,7 +204,7 @@ export class PlayerService extends Service {
         "sourceURL": url, //"http://media.learntorah.com/LT-Video/mp4:RZE-350.mp4/playlist.m3u8"
         "autoPlay": false,
         "volume": "25",
-        "mute": false,
+        "mute": true,
         "loop": false,
         "audioOnly": onlyAudio,
         "uiShowQuickRewind": true,
@@ -222,6 +228,9 @@ export class PlayerService extends Service {
 
     $('#sponsorPlay').click(function () {
       if (self.isAuthenticated()) {
+
+         self.subject.next({title:title,id:mediaId})
+
         $('#sponsor').toggleClass('shown');
         $('#sponsorPlaceHolder').addClass('hidden')
         $('#form-sponsor-shiur').removeClass('hidden')
@@ -237,6 +246,21 @@ export class PlayerService extends Service {
 
 
   }
+
+  getShiurFromPlayer(): Observable<any> {
+    return this.subject.asObservable();
+  }
+  
+  setDay(day:string)
+  {
+    this.subjectDay.next(day)
+  }
+
+  getDayFromPlayer():Observable<string>
+  {
+    return this.subjectDay.asObservable()
+  }
+  
 
   CreateNetFlix(sourceid: number, mediaId: string, position: any, isAudio: boolean): Netflix {
     var netflix = new Netflix()
@@ -264,7 +288,7 @@ export class PlayerService extends Service {
         this.requesting = false
 
         if (result == '')
-          sponsor = "Sponsor this shiur"
+          sponsor = "Sponsor this Media"
         else
           sponsor = result
 
@@ -272,7 +296,7 @@ export class PlayerService extends Service {
 
       }, error => {
         this.requesting = false
-        sponsor = "Sponsor this shiur"
+        sponsor = "Sponsor this Media"
         this.BuildAudio(title, url, sponsor, sourceId, mediaId)
       }, () => { })
     }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../service/home.service';
+import { PlayerService } from '../../service/player.service';
 declare var $: any;
 
 @Component({
@@ -16,7 +17,7 @@ export class TodaySponsorComponent implements OnInit {
   hebrewDate:string =''
   superhebrewDate:string=''
 
-  constructor(private homeService: HomeService) { }
+  constructor(private homeService: HomeService,private playerService:PlayerService) { }
 
   ngOnInit() {
     this.homeService.read().subscribe(response => {
@@ -30,6 +31,7 @@ export class TodaySponsorComponent implements OnInit {
 
   OpenSponsor() {
     if (this.isAuthenticated()) {
+      this.playerService.setDay('day')
       $('#sponsor').toggleClass('shown');
       $('#sponsorPlaceHolder').addClass('hidden')
       $('#form-sponsor-day').removeClass('hidden')

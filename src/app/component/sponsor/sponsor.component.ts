@@ -12,6 +12,7 @@ import { Category, SubCategory } from '../../model/shiurim';
 import { Speaker } from '../../model/speaker';
 import { SpeakerService } from '../../service/speaker.service';
 import { PaymentService } from '../../service/payment.service';
+import { PlayerService } from '../../service/player.service';
 declare var $: any;
 
 @Component({
@@ -42,6 +43,8 @@ export class SponsorComponent implements OnInit {
   other: string = ''
 
   shiurID: number = -1
+  
+  step1:boolean=false
 
 
   public date: any = { date: { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() } };
@@ -51,8 +54,22 @@ export class SponsorComponent implements OnInit {
 
   elem: number = 24
 
-  constructor(private sponsorService: SponsorService, private browseService: BrowseService, private homeService: HomeService, private speakerService: SpeakerService, private paymentService: PaymentService) {
+  constructor(private playerService:PlayerService , private sponsorService: SponsorService, private browseService: BrowseService, private homeService: HomeService, private speakerService: SpeakerService, private paymentService: PaymentService) {
 
+     this.playerService.getShiurFromPlayer().subscribe(result=>{
+           
+           var s=new Shiurim()
+           s.id=result.id
+           s.title=result.title
+           this.setShiur(s)
+           this.step1=true
+           this.section='shiur'
+     })
+
+     this.playerService.getDayFromPlayer().subscribe(result=>{
+           this.step1=true
+           this.section='day'
+     })
   }
 
   ngOnInit() {
@@ -463,8 +480,16 @@ export class SponsorComponent implements OnInit {
 
   Close() {
 
+  this.sponsorshipFor= ''
+  this.name= ''
+  this.other = ''
+  this.nameShiurSelected=''
+  this.shiurID = -1
+
+    //------------------------------------
+
     this.payment=false
- 
+   
 
     this.paymentService.setItem('reset')
     $('#sponsor').toggleClass('shown');
@@ -476,10 +501,6 @@ export class SponsorComponent implements OnInit {
     else
       return c.name
   }
-  
-  //-------------------------------------------------------------check icons on headers--------------------------------------------------
-
-  step1:boolean=false
 
 
 }

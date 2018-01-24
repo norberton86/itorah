@@ -1,12 +1,29 @@
 <div class="popup sponsor" id="fileShower">
-  <div class="popup-head" style="padding:1rem">
-    <form>
-      <label for="field-search-content">Gemara</label>
+  <div class="popup-head" style="padding:0.5rem">
 
-      <a href="#" class="link-close">
+    <label for="field-search-content">Gemara</label>
+
+
+    <div class="row">
+
+      <div class="col-md-2">
+        <select [(ngModel)]="masachet" (change)="Pages()" name="masachet" class="form-control">
+				  <option *ngFor="let c of masachets" [ngValue]="c">{{c.name}}</option>
+				</select>
+      </div>
+
+      <div class="col-md-2">
+          <select [(ngModel)]="page" (change)="Content()" name="pages" class="form-control">
+				  <option *ngFor="let c of pages" [ngValue]="c">{{c.name}}</option>
+				</select>
+      </div>
+
+    </div>
+
+    <a href="#" class="link-close">
 					<i class="ico-close"></i>
-				</a>
-    </form>
+		</a>
+
   </div>
   <!-- /.popup-head -->
   <!-- This is sponsor Componenet -->
@@ -14,7 +31,7 @@
 
     <img src="{{right}}" class="col-sm-12 col-lg-6" class="imgGif">
     <img src="{{left}}" class="col-sm-12 col-lg-6" class="imgGif">
-   
+
   </div>
 
 

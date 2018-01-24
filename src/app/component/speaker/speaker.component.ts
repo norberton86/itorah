@@ -648,18 +648,20 @@ export class SpeakerComponent implements OnInit {
   //---------------------------------------------------------------------------------------------------------------------- 
 
   ReadMainSpeaker() {
-    this.myEvent.next(true)
+    
     this.speakerService.readMain().subscribe(
       result => {
-        this.myEvent.next(false)
+        
         this.InitializeMainSpeakers(result)
       }
       ,error=>{
-        this.myEvent.next(false)
+        
       },()=>{}
     )
 
   }
+
+  firstTime:boolean=true
 
   InitializeMainSpeakers(data: Array<Speaker>) {
     
@@ -670,10 +672,9 @@ export class SpeakerComponent implements OnInit {
 
     this.speaker = data[0];
 
-    //this.FillShirium(data[0].relatedShiurim)
-    //this.databaseService.Manage(data[0].id.toString(), data[0].relatedShiurim);
+    this.FillShirium(data[0].relatedShiurim) //fill with the first 28 shiur from fr first speaker
 
-    this.checkLocalExistence(data[0].id);
+     this.checkLocalExistence(data[0].id);  //get the full content for the first speaker
   }
 
   checkLocalExistence(id: number) {
@@ -713,11 +714,17 @@ export class SpeakerComponent implements OnInit {
 
   ReadLectures(idSpeaker: number) {
     let self = this;
+
+    if(!this.firstTime)
     self.myEvent.next(true)
 
     this.shiurimService.read(idSpeaker).subscribe(
       function (respond) {
+
+        if(!self.firstTime)
         self.myEvent.next(false)
+
+        self.firstTime=false
 
 
         self.FillShirium(respond);
@@ -726,7 +733,13 @@ export class SpeakerComponent implements OnInit {
 
         self.databaseService.Manage(idSpeaker.toString(), respond);//create the local backup              
       },
-      function (error) { },
+      function (error) {
+
+        if(!self.firstTime)
+        self.myEvent.next(false)
+
+        self.firstTime=false
+       },
       function () { }
     )
 

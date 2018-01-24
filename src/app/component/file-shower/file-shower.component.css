@@ -10,3 +10,18 @@ height: 67.8em;
  }
 
 }
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+.headerGemara
+{
+     border-left: 1px solid #dadada;
+
+}
+
+.select.select-yellow{
+    width:inherit
+}
+
+.col-md-2{
+    padding-left: 0px
+}

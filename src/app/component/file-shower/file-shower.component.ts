@@ -50,6 +50,7 @@ export class FileShowerComponent implements OnInit {
     this.gemaraService.Masechet().subscribe(result=>{
        this.masachets=result
        this.masachet=this.masachets[0]
+       this.Pages()
     },error=>{},()=>{})
   }
 

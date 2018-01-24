@@ -199,7 +199,7 @@ export class PagerServerComponent implements OnInit {
 
 
   Play(id: string, title: string, sponsor: string, mediaId: string, speakerName: string) {
-    var onlyAudio = title.includes('LT-Audio');
+    var onlyAudio = id.includes('LT-Audio');
     this.playerService.Play(title, id, onlyAudio, speakerName, sponsor, 1, mediaId);
   }
 

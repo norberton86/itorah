@@ -7,8 +7,8 @@ import { ShiurimService, Category } from '../../service/shiurim.service';
 @Component({
   selector: 'app-pager',
   templateUrl: './pager.component.html',
-  styleUrls: ['./pager.component.css'],
-  providers: [PlayerService]
+  styleUrls: ['./pager.component.css']
+
 })
 export class PagerComponent implements OnInit {
 
@@ -69,7 +69,9 @@ export class PagerComponent implements OnInit {
 
 
 
-  constructor(private playerService: PlayerService, private shiurimService: ShiurimService) { }
+  constructor(private playerService: PlayerService, private shiurimService: ShiurimService) { 
+
+  }
 
   ngOnInit() {
   }
@@ -91,7 +93,7 @@ export class PagerComponent implements OnInit {
 
 
   Play(id: string, title: string, sponsor: string, mediaId: string, speakerName: string) {
-    var onlyAudio = title.includes('LT-Audio');
+    var onlyAudio = id.includes('LT-Audio');
     this.playerService.Play(title, id, onlyAudio, speakerName, sponsor, 1, mediaId);
   }
 

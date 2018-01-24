@@ -170,13 +170,17 @@ export class PlayerService extends Service {
   Build(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string, sourceId: number, mediaId: string) {
     let self = this;
 
+    var sponsorHtml=''
+    if(onlyAudio)
+        sponsorHtml+='<p id="sponsorPlay" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>'
+
     if ($('#video-modal').length == 0)     //if not exist
       $.notify({                          //create the popup
         title: "",
         message: '<div style="padding-top:0.5em">' +
         '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;">' + title + '</p>' +
-        '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;" id="seek">' + speaker + '</p>' +
-        '<p id="sponsorPlay" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>' +
+        '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;" id="seek">' + speaker + '</p>'
+         + sponsorHtml+
         '<div  id="video-modal" class="" style="width: inherit;height: 20em;">' +
         '</div>' +
         '</div>'
@@ -229,7 +233,7 @@ export class PlayerService extends Service {
     $('#sponsorPlay').click(function () {
       if (self.isAuthenticated()) {
 
-         self.subject.next({title:title,id:mediaId})
+         self.setShiurFromPlayer({title:title,id:mediaId})
 
         $('#sponsor').toggleClass('shown');
         $('#sponsorPlaceHolder').addClass('hidden')
@@ -245,6 +249,11 @@ export class PlayerService extends Service {
     }
 
 
+  }
+
+  setShiurFromPlayer(data:any)
+  {
+     this.subject.next(data)
   }
 
   getShiurFromPlayer(): Observable<any> {

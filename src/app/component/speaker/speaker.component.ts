@@ -264,7 +264,7 @@ export class SpeakerComponent implements OnInit {
   }
 
   Play(id: string, title: string, sponsor: string,mediaId:string) {
-    var onlyAudio = title.includes('LT-Audio');
+    var onlyAudio = id.includes('LT-Audio');
     this.playerService.Play(title, id, onlyAudio, this.speaker.firstName + " " + this.speaker.lastName, sponsor,1,mediaId);
   }
 

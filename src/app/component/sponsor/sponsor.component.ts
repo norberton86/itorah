@@ -281,20 +281,32 @@ export class SponsorComponent implements OnInit {
   section: string=""
   payment: boolean = false
 
+  blankField:boolean=false
+
+
+  ShowErrorBlank()
+  {
+    this.blankField=true      //show error
+    let self=this
+    setTimeout(function(){
+      self.blankField=false  //hide error in 2 seconds
+    },4000)
+  }
+
   ShowPayment() {
 
     if (this.section == 'day' && (this.sourceId.length == 0 || this.sponsorshipFor == '' || this.name == '')) {
-      this.sponsorService.Notify("Please fill the form complety", true);
+      this.ShowErrorBlank()
       return;
     }
 
     if (this.section == 'shiur' && (this.sponsorshipFor == '' || this.name == '' || this.shiurID == -1)) {
-      this.sponsorService.Notify("Please fill the form complety", true);
+      this.ShowErrorBlank()
       return;
     }
 
     if (this.section == 'play' && (this.sponsorshipFor == '' || this.name == '' || this.option == 0)) {
-      this.sponsorService.Notify("Please fill the form complety", true);
+      this.ShowErrorBlank()
       return;
     }
 

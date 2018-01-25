@@ -7,20 +7,40 @@
     <div class="row">
 
       <div class="col-md-2">
+        <label style="font-size: 13px;visibility: hidden">Masachets</label>    
         <select [(ngModel)]="masachet" (change)="Pages()" name="masachet" class="form-control">
 				  <option *ngFor="let c of masachets" [ngValue]="c">{{c.name}}</option>
 				</select>
       </div>
 
       <div class="col-md-2">
-          <select [(ngModel)]="page" (change)="Content()" name="pages" class="form-control">
+        <label style="font-size: 13px;visibility: hidden">Pages</label>    
+        <select [(ngModel)]="page" (change)="Content()" name="pages" class="form-control">
 				  <option *ngFor="let c of pages" [ngValue]="c">{{c.name}}</option>
 				</select>
       </div>
 
+
+      <div class="col-md-2"  *ngFor="let a of audios">
+        <label style="font-size: 13px;">{{a.clipTypeName}}</label>
+        <audio controls>
+          <source src="{{a.url}}" type="	audio/mpeg">
+        </audio>
+      </div>
+
+      <div class="col-md-2 navigationContainer">
+        <button type="button" class="search-btn"  (click)="Previous()" style="margin-right: 0.2em">
+						 <i class="fa fa-play fa-rotate-180" aria-hidden="true" style="margin-right: 0.2em"></i><span>Previous</span>
+				</button>
+
+        <button type="button" class="search-btn"  (click)="Next()">
+						 <span>Next</span><i class="fa fa-play" aria-hidden="true" style="padding-left: 0.2em"></i>
+				</button>
+      </div>
+
     </div>
 
-    <a href="#" class="link-close">
+    <a href="#" class="link-close" style="top: 3px;">
 					<i class="ico-close"></i>
 		</a>
 

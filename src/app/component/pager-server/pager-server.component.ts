@@ -74,7 +74,7 @@ export class PagerServerComponent implements OnInit {
     this.finalCategory = this.subCategoryId == 0 ? this.categoryId : this.subCategoryId
 
 
-    this.browseService.readCategory(1, this.elem, this.finalCategory, this.speakerId, this.query_main).subscribe(function (response) {
+    this.browseService.readCategory(1, this.elem, this.finalCategory, this.speakerId,false,this.query_main).subscribe(function (response) {
 
       self.myEvent.next(false)
       self.Update(response.totalPageCount, response.shiurList)
@@ -123,7 +123,7 @@ export class PagerServerComponent implements OnInit {
     })
 
     this.myEvent.next(true)
-    this.browseService.readCategory(id, this.elem, this.finalCategory, this.speakerId, this.query_main).subscribe(response => {
+    this.browseService.readCategory(id, this.elem, this.finalCategory, this.speakerId, false,this.query_main).subscribe(response => {
       this.myEvent.next(false)
       this.all = response.shiurList
     }

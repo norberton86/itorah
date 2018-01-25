@@ -21,21 +21,17 @@
     float: right;
 }
 
-.form-head{
-    padding-right: 33%;
-    padding-left: 33%;
+.form-total-credits .total-credits{
+    padding: 0 3px 0 6px;
 }
-.form-total-credits{
-    padding-left: 33%;
-    padding-right: 33%;
-}
+
 
 h3{
    margin-left: 4em;
 }
 
 .form-body{
-    margin: 3em;
+    margin: 0em;
 }
 
 @media (max-width: 767px){

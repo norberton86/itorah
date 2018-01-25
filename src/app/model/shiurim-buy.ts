@@ -32,8 +32,9 @@ export class creditsTable {
 
 export class History {
 
+  id:number
   date: Date
-  shiurim: number
   price: number
+  description:string
 
 }

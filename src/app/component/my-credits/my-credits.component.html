@@ -15,25 +15,26 @@
       <div class="col">
         <div class="form-credits">
           <form action="?" method="post">
-            <div class="form-head">
-              <h4>Order History</h4>
-            </div>
-            <!-- /.form-head -->
+
+
 
             <div class="form-body">
-              <div class="form-row" style="border-bottom: 2px solid #f4f4f4;">
+              <div class="form-row" style="border-bottom: 2px solid #f4f4f4;padding-bottom: 0.5em;">
 
-                <div class="form-total-credits">
-                  <h3 class="total-credits-label">Current Shiurim balance</h3>
+                <div class="row">
+                  <h4 class="col-md-4">Order History</h4>
 
-                  <h1 class="total-credits">
-                    <span>{{table?.shiurimBalance}}</span> Shiurim
-                    <small class="average-price">(${{table?.dollarBalance}})</small>
-                  </h1>
+                  <div class="form-total-credits col-md-4">
+                    <h3 class="total-credits-label">Current Shiurim balance</h3>
+
+                    <h1 class="total-credits">
+                      <span>{{table?.shiurimBalance}}</span> Shiurim
+                      <small class="average-price">(${{table?.dollarBalance}})</small>
+                    </h1>
+                  </div>
+
+                  <input type="button" value="BUY CREDITS" class="form-btn" id="buyCredits" (click)="Navigate()">
                 </div>
-
-
-
               </div>
               <!-- /.form-row -->
 
@@ -55,19 +56,17 @@
                       <tr *ngIf="table?.orderHistory.length>0" style="border-bottom: 2px solid #b8b8b8;">
                         <th>Order Date</th>
 
-                        <th>Product</th>
+                        <th>Order</th>
 
-                        
-
-                        <th>Price</th>
+                        <th align="right" style="text-align: right">Total Price</th>
                       </tr>
 
-                      <tr *ngFor="let r of table?.orderHistory">
+                      <tr *ngFor="let r of histories">
                         <td>{{r.date|date: 'MM/dd/yyyy'}}</td>
-                        
-                        <td>{{r.shiurim}} Shiurim</td>
 
-                        <td>
+                        <td>{{r.description}} </td>
+
+                        <td align="right">
                           {{r.price| currency:'USD':true:'2.2-2'}}
                         </td>
 
@@ -79,13 +78,20 @@
 
               </div>
               <!-- /.form-row -->
+              <div class="tile-box-actions" *ngIf="histories.length>0" style="margin-top: 1em;">
+                <div class="paging">
+                  <ul>
+                    <li data-type="back"><a href="#/" class="paging-prev-shiba" (click)="PagingPrev()"><i class="ico-paging-prev"></i></a></li>
+                    <li *ngFor="let p of pages"><a [ngClass]="{'current': p.current}" href="#/" data-type="page-shiba" id="{{p.id}}" (click)="Page(p.id)">{{p.id}}</a></li>
+                    <li data-type="go"><a href="#/" class="paging-next-shiba" (click)="PagingNext()"><i class="ico-paging-next"></i></a></li>
+                  </ul>
+                </div>
+                <!-- /.paging -->
+              </div>
+              <!-- /.table-actions -->
             </div>
             <!-- /.form-body -->
 
-            <div class="form-actions">
-              <input type="button" value="BUY CREDITS" class="form-btn" id="buyCredits" (click)="Navigate()">
-            </div>
-            <!-- /.form-actions -->
           </form>
         </div>
         <!-- /.form-credits -->

@@ -65,7 +65,7 @@ export class BrowseService extends Service {
         )
     }
 
-    public readCategory(PageIndex:number,PageSize:number,CategoryID:number,SpeakerID:any,isForSponsor:boolean,SearchText:string=''): Observable<any> {
+    public readCategory(PageIndex:number,PageSize:number,CategoryID:number,SpeakerID:any,isForSponsor:string,SearchText:string=''): Observable<any> {
 
         var search=SearchText==''?'':'&SearchText='+SearchText
 

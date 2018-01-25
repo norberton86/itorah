@@ -79,6 +79,8 @@ export class BrowseComponent implements OnInit, OnChanges {
   ReadSpeakers() {
     this.speakerService.read().subscribe(result => {
 
+      result=this.Sort(result)
+
       var speakerEmpty = new Speaker()
       speakerEmpty.id = 0
       speakerEmpty.firstName = "Select Speaker"
@@ -141,21 +143,32 @@ export class BrowseComponent implements OnInit, OnChanges {
   setCurrent(c: string) {
     this.current = c
 
-    if(c!='Category')
-    {
-      this.category=this.categorys[0]
-      this.subCategory=this.subCategorys[0]
-      this.speaker=this.speakers[0]
+    if (c != 'Category') {
+      this.category = this.categorys[0]
+      this.subCategory = this.subCategorys[0]
+      this.speaker = this.speakers[0]
     }
   }
 
-  Status(event)
-  {
-      this.loading=event
+  Status(event) {
+    this.loading = event
   }
 
-  Close()
-  {
+  Close() {
     this.setCurrent('Recently')
+  }
+
+  //---------------------------------------------
+
+  Desc(a, b) {
+    if (!a.isMainSpeaker && b.isMainSpeaker)
+      return 1;
+    if (a.isMainSpeaker && !b.isMainSpeaker)
+      return -1;
+    return 0;
+  }
+
+  Sort(r) {
+    return r.sort(this.Desc)
   }
 }

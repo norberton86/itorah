@@ -471,6 +471,8 @@ export class SponsorComponent implements OnInit {
   ReadSpeakers() {
     this.speakerService.read().subscribe(result => {
 
+      result=this.Sort(result)
+
       var speakerEmpty = new Speaker()
       speakerEmpty.id = 0
       speakerEmpty.firstName = "Select Speaker"
@@ -514,5 +516,16 @@ export class SponsorComponent implements OnInit {
       return c.name
   }
 
+//--------------------------------------------------
+  Desc(a, b) {
+    if (!a.isMainSpeaker && b.isMainSpeaker)
+      return 1;
+    if (a.isMainSpeaker && !b.isMainSpeaker)
+      return -1;
+    return 0;
+  }
 
+  Sort(r) {
+    return r.sort(this.Desc)
+  }
 }

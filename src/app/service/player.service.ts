@@ -215,6 +215,11 @@ export class PlayerService extends Service {
         "uiQuickRewindSeconds": "30"
       });
 
+    if(onlyAudio){
+    $('#video-modal-Title').remove()
+    $('#video-modal-Info').css('background-image','url(./assets/build/css/images/images/speakers/'+speaker.replace(' ','')+'.png)')  
+    $('#video-modal-Info').css('background-size','100% 100%')
+    }
 
     $('.alert-info').css('background-color', 'white'); //change background-color to white 
     $('button[data-notify="dismiss"]').click(function () {  //stop when the close icon be closed

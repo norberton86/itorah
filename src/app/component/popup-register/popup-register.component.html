@@ -354,9 +354,9 @@
 								<p>Number Between 1-150</p>
 							</div>
 							<div class="text-wrap-right">
-								<input type="submit" value="<" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:21%;font-weight: 300;" (click)="Increment()">
+								<input type="submit" value="<" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:21%;font-weight: 300;" (click)="Decrement()">
 								<input  (change)="ValidatePerek()" [(ngModel)]="perek" type="number" min='1' max='150' class="field" name="perek-number" id="field-specific-need" value="" placeholder="" style="width:52%">
-								<input type="submit" value=">" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:21%;font-weight: 300;" (click)="Decrement()">
+								<input type="submit" value=">" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:21%;font-weight: 300;" (click)="Increment()">
 							</div>
 
 						</div>
@@ -744,9 +744,9 @@
 								<p style="text-align: center;">Number Between 1-150</p>
 							</div>
 							<div class="text-wrap-right" style="width:100%;text-align: center;">
-								<input type="submit" value="+" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:10%" (click)="IncrementSpecial()">
+								<input type="submit" value="<" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:10%;font-weight: 300;" (click)="DecrementSpecial()">
 								<input type="text" class="field" name="perek-number" id="field-specific-need" value="{{perek}}" placeholder="" style="width:36%">
-								<input type="submit" value="-" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:10%" (click)="DecrementSpecial()">
+								<input type="submit" value=">" class="form-btn btn_small_yellow btn_small_yellow_circle" style="width:10%;font-weight: 300;" (click)="IncrementSpecial()">
 							</div>
 
 						</div>

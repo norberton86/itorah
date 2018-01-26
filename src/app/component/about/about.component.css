@@ -7,8 +7,8 @@
 
 #aboutUs .popup-body .content
 {
-max-height: 500px;    
-overflow: auto;
+ max-height: 500px;    
+/*overflow: auto;*/
 }
 
 #aboutUs .popup-body .content p,#aboutUs .popup-body .content div,#aboutUs .popup-body .content ul{

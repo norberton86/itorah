@@ -56,6 +56,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.CheckResetPassword();
     this.getTehillimDedication();
+    this.getHalachaDedication();
   }
 
   getTehillimDedication() {
@@ -64,7 +65,14 @@ export class AppComponent implements OnInit {
     })
   }
 
+  getHalachaDedication() {
+    this.homeService.readNow(6).subscribe(response => {
+      this.halachaDedication = response.dedication
+    })
+  }
+
   tehillimDedication: string = ""
+  halachaDedication: string = ""
 
   OpenLogin(id: string) {
     $("#" + id).hide().removeClass('shown')  //close it!!!!

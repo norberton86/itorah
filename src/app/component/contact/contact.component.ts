@@ -21,13 +21,12 @@ export class ContactComponent implements OnInit {
 
     var data = {
       issue: '2',
-      name: '',
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(EMAIL_REGEXP)]],
-      phone: '',
+      phone: ['', Validators.required],
       city: '',
-      state: '----------------------------------',
       country: 'USA',
-      subject: '',
+      subject: ['', Validators.required],
       body: ['', Validators.required]
     }
 
@@ -48,36 +47,32 @@ export class ContactComponent implements OnInit {
       this.description = " "
   }
 
-  countryChanged(value: string) {
-    if (value != "USA")
-      this.form.patchValue({ state: '----------------------------------' });
-  }
+
 
 requesting:boolean=false
   Send() {
-    let self = this
-    self.requesting=true
+    
+    this.requesting=true
     this.contactService.Send(this.form.value).subscribe(
-      function (respond) {
-        self.requesting=false
-        self.contactService.Notify("Message sent", false)
-        self.form.patchValue({
+      respond=> {
+        this.requesting=false
+        this.contactService.Notify("Message sent", false)
+        this.form.reset({
           issue: '2',
           name: '',
           email: '',
           phone: '',
           city: '',
-          state: '----------------------------------',
           country: 'USA',
           subject: '',
           body: ''
         })
       },
-      function (error) {
-        self.requesting=false
-        self.contactService.Notify("Service not available", true)
+      error=> {
+        this.requesting=false
+        this.contactService.Notify("Service not available", true)
       },
-      function () { }
+      ()=> { }
     )
 
   }

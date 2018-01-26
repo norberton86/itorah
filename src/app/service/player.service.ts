@@ -208,7 +208,7 @@ export class PlayerService extends Service {
         "sourceURL": url, //"http://media.learntorah.com/LT-Video/mp4:RZE-350.mp4/playlist.m3u8"
         "autoPlay": false,
         "volume": "25",
-        "mute": true,
+        "mute": false,
         "loop": false,
         "audioOnly": onlyAudio,
         "uiShowQuickRewind": true,
@@ -345,9 +345,14 @@ export class PlayerService extends Service {
 
     if ($('#mediaAudio').length == 0)     //if not exist
     {
+
+      var picture="audio.jpg"
+      if(url.indexOf("www.dailytehillim.com")>=0)
+      picture="hacham.png"
+
       $.notify({                          //create the popup
         title: "",
-        message: finalSponsor + '<video id="mediaAudio" controls="" autoplay="" name="media" style="background-image: url(./assets/build/css/images/images/audio.jpg);background-size: 100% 80%;"><source src="' + url + initialPosition + '" type="audio/mpeg"></video>'
+        message: finalSponsor + '<video id="mediaAudio" controls="" autoplay="" name="media" style="background-image: url(./assets/build/css/images/images/'+picture+');background-size: 100% 80%;"><source src="' + url + initialPosition + '" type="audio/mpeg"></video>'
       },
         {
           delay: 0,                       //never autoclose

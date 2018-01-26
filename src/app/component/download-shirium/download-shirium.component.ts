@@ -30,23 +30,47 @@ export class DownloadShiriumComponent implements OnInit {
   }
 
   Close() {
+    this.Reset()
     $('#downloadShirium').toggleClass('shown');
   }
 
   Download() {
 
    this.shiurimService.ConfirmDownload(this.id).subscribe(item=>{
-       this.Close()
-       $('#downloadShiur').attr("href",item)
-       document.getElementById('downloadShiur').click()
+       
+       this.item=item
+       this.StartDowload()
+
+       this.headerTitle="Downloading ..."
+       this.started=true
+       this.message="Download should start automatically… to try download again click "
        
    })
 
+  }
+
+  
+  StartDowload()
+  {
+    $('#downloadShiur').attr("href",this.item)
+    document.getElementById('downloadShiur').click()
   }
 
   goShop() {
     this.Close();
     $("#shop").toggleClass('shown')
   }
+
+
+  Reset()
+  {
+    this.started=false
+    this.headerTitle="Purchase Shirium"
+    this.item=''
+  }
+
+  started:boolean=false
+  headerTitle:string="Purchase Shirium"
+  item:string=''
 
 }

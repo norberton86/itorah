@@ -56,6 +56,12 @@ export class PopupRegisterComponent implements OnInit {
 
     this.registerTehellimService.getItem().subscribe(item => {
       this.tile = item
+      if(this.tile=='Read') //if comming from glass icon
+      {
+         this.existResults=0  //hide the third column
+         $('#form-register-119').addClass('hidden')
+         $('#form-register-perek').removeClass('hidden')
+      }
     });
   }
 

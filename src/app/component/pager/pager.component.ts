@@ -45,7 +45,7 @@ export class PagerComponent implements OnInit {
       if (!this.navigatedToCategory)  //only the first time when the user navigaet for categories
         this.shiurOriginalsBeforecategory = this.allResults //create the copy  
 
-       this.FillShirium(result)
+      this.FillShirium(result)
       this.navigatedToCategory = true
     }, error => { this.requesting = false }, () => { })
   }
@@ -69,7 +69,7 @@ export class PagerComponent implements OnInit {
 
 
 
-  constructor(private playerService: PlayerService, private shiurimService: ShiurimService) { 
+  constructor(private playerService: PlayerService, private shiurimService: ShiurimService) {
 
   }
 
@@ -81,6 +81,7 @@ export class PagerComponent implements OnInit {
 
     if (changes.allResults != undefined) {
       this.allResults = changes.allResults.currentValue
+      this.temporalAllresults = this.allResults                                        //create the backup
 
       if (this.allResults.length > 0)
         this.Update()
@@ -166,4 +167,26 @@ export class PagerComponent implements OnInit {
     this.CreatePages();
 
   }
+
+
+  query_main: string = ''
+  temporalAllresults: Array<Browse> = []
+
+  Search() {
+    
+    if (this.query_main == '') {                                                      
+      this.allResults = this.temporalAllresults                                      //reset
+    }
+    else {
+      let self = this
+      
+      this.allResults = this.temporalAllresults.filter(function (s) {                //filter here
+        return s.title.toLowerCase().includes(self.query_main.toLowerCase());
+      });
+    }
+
+    this.Update()                                                                    //Update data
+}
+
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 }

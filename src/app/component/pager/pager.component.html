@@ -13,6 +13,17 @@
 							<h5><b>Category:</b> {{selectedCategory}}</h5>
 						</div>
 						<!-- /.lists-head-inner -->
+
+            <div class="search-secondary">
+                        <form action="?" method="get" id="form-main">
+                            <label for="q" class="hidden">Search</label>
+
+                            <input type="search"  placeholder="Search through {{allResults.length}} lectures" class="search-field" [(ngModel)]="query_main" (keyup)="Search()" name="searchPageServer">
+
+                            <button  data-type="search-shirium" type="button" class="search-btn" (click)="Search()"><i class="ico-magnify"></i></button>
+                        </form>
+            </div>
+
 				</div>
 					<!-- /.lists-head -->
 

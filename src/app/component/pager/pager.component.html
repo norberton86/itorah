@@ -9,6 +9,10 @@
 						  <i class="fa fa-long-arrow-left"></i> Back
 				    </button>
 
+            <select [(ngModel)]="filterClient" style="width: 8em;" (change)="Sort()" name="filterClient">
+				        <option *ngFor="let c of filterClients" [ngValue]="c">{{c}}</option>
+				    </select>
+
 						<div class="lists-head-inner" *ngIf="navigatedToCategory">
 							<h5><b>Category:</b> {{selectedCategory}}</h5>
 						</div>

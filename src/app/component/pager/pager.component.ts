@@ -186,7 +186,47 @@ export class PagerComponent implements OnInit {
     }
 
     this.Update()                                                                    //Update data
-}
+  }
 
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  filterClients: Array<String> = ["Sort By", "Author", "Title", "Popularity", "Date"]
+  filterClient: String = this.filterClients[0]
+
+  Sort() {
+
+    switch (this.filterClient) {
+      case "Author": this.allResults = this.allResults.sort(this.AscAuthor); break;
+      case "Title": this.allResults = this.allResults.sort(this.AscTitle); break;
+      case "Popularity": this.allResults = this.allResults.sort(this.AscPopularity); break;
+      case "Date": this.allResults = this.allResults.sort(this.AscDate); break;
+    }
+
+    this.Update()
+  }
+
+  AscDate(a, b) {
+    if (a.dateRecorded < b.dateRecorded)
+      return -1;
+    if (a.dateRecorded > b.dateRecorded)
+      return 1;
+    return 0;
+  }
+
+  AscTitle(a, b) {
+    return a.title.localeCompare(b.title)
+  }
+
+  AscAuthor(a, b) {
+    return a.speaker.localeCompare(b.speaker)
+  }
+
+  AscPopularity(a, b) {
+    if (a.downloadCount < b.downloadCount)
+      return -1;
+    if (a.downloadCount > b.downloadCount)
+      return 1;
+    return 0;
+  }
+
+
 }

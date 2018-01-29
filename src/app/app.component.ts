@@ -227,6 +227,7 @@ export class AppComponent implements OnInit {
   ChangeBrowse(value: string) {
     this.browseClasses = value
     this.Browse()
+    this.CloseMenu()
   }
 
   isAuthenticated(): boolean {
@@ -261,6 +262,14 @@ export class AppComponent implements OnInit {
     if (this.isAuthenticated()) {
       $(id).toggleClass('shown');
     }
+    this.CloseMenu()
+  }
+
+  CloseMenu()
+  {
+        //close menu
+    $('.btn-menu').removeClass('open')
+    $('.nav').removeClass('visible')
   }
 
   ReadPerashaInsigth() {

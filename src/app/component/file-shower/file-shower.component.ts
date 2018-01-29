@@ -6,8 +6,7 @@ import { Gemara, DropGemara, AudioGemara } from '../../model/gemara';
 @Component({
   selector: 'app-file-shower',
   templateUrl: './file-shower.component.html',
-  styleUrls: ['./file-shower.component.css'],
-  providers: [GemaraService]
+  styleUrls: ['./file-shower.component.css']
 })
 export class FileShowerComponent implements OnInit {
 
@@ -23,7 +22,15 @@ export class FileShowerComponent implements OnInit {
   audios: Array<AudioGemara> = []
 
   constructor(private homeService: HomeService, private gemaraService: GemaraService) {
+    this.gemaraService.getEmpty().subscribe(result=>{
+            
+            this.masachet=this.masachets[0]
+            this.page=this.pages[0]
+            this.audios=[]
 
+            this.left=''
+            this.right=''
+    })
   }
 
   ngOnInit() {
@@ -107,6 +114,11 @@ export class FileShowerComponent implements OnInit {
     if (this.page.id < 2711) {
       this.read(this.page.id + 1)
     }
+  }
+
+  Close()
+  {
+    this.read()
   }
 
 }

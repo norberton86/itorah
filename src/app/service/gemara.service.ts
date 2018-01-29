@@ -6,10 +6,12 @@ import { Service } from '../model/service';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class GemaraService extends Service {
 
+    private subjectEmpty: Subject<string> = new Subject<string>();
 
     constructor(http: Http) {
         super(http);
@@ -37,7 +39,6 @@ export class GemaraService extends Service {
         )
     }
 
-
     public Content(CycleDay: number = -1): Observable<Gemara> {
 
         var parameter = "content"
@@ -50,6 +51,14 @@ export class GemaraService extends Service {
                 return body;
             }
         )
+    }
+
+    getEmpty(): Observable<string> {
+        return this.subjectEmpty.asObservable();
+    }
+
+    setData(action: string): void {
+        this.subjectEmpty.next(action);
     }
 
 }

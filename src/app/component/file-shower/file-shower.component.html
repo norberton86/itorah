@@ -28,7 +28,7 @@
         </audio>
       </div>
 
-      <div class="col-md-2 navigationContainer">
+      <div class="col-md-2 navigationContainer" [hidden]="left=='' && right==''">
         <button type="button" class="search-btn"  (click)="Previous()" style="margin-right: 0.2em">
 						 <i class="fa fa-play fa-rotate-180" aria-hidden="true" style="margin-right: 0.2em"></i><span>Previous</span>
 				</button>
@@ -40,7 +40,7 @@
 
     </div>
 
-    <a href="#" class="link-close" style="top: 3px;">
+    <a href="#" class="link-close" style="top: 3px;" (click)="Close()">
 					<i class="ico-close"></i>
 		</a>
 

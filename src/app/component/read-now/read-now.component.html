@@ -33,7 +33,7 @@
 
     </div>
 
-    <div class="link-container">
+    <div class="link-container" [hidden]="source!=6">
       <div class="link-halacha" *ngFor="let l of links" (click)="NavigateLink(l)" title="{{l.Title}}"> <span>{{l.Title|reduceStringLink}} </span> </div>
     </div>
   </div>

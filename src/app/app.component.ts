@@ -7,6 +7,7 @@ import { ReadNow } from './model/home';
 import { creditsTable } from './model/shiurim-buy';
 import { RegisterTehellimService} from './service/register-tehellim.service';
 import { MyCreditsService} from './service/my-credits.service';
+import { GemaraService} from './service/gemara.service';
 declare var $: any;
 
 @Component({
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit {
 
   credit:creditsTable=null
 
-  constructor(private analitycService: AnalitycService, private homeService: HomeService, private playerService: PlayerService, private perashaService: PerashaService,private registerTehellimService:RegisterTehellimService,private myCreditsService:MyCreditsService) { 
+  constructor(private gemaraService:GemaraService, private analitycService: AnalitycService, private homeService: HomeService, private playerService: PlayerService, private perashaService: PerashaService,private registerTehellimService:RegisterTehellimService,private myCreditsService:MyCreditsService) { 
     this.myCreditsService.getCredits().subscribe(credit=>{
            this.credit=credit
     })
@@ -187,7 +188,9 @@ export class AppComponent implements OnInit {
 
   }
 
+  sourceRead:number
   readNow(id: number) {
+    this.sourceRead=id
     let self = this;
     this.homeService.readNow(id).subscribe(
       function (response) {
@@ -261,6 +264,13 @@ export class AppComponent implements OnInit {
   OpenPopup(id: string) {
     if (this.isAuthenticated()) {
       $(id).toggleClass('shown');
+      
+      if(id=='#fileShowerEmpty')
+      {
+        $('#fileShower').toggleClass('shown');
+        this.gemaraService.setData('empty');
+      }
+      
     }
     this.CloseMenu()
   }

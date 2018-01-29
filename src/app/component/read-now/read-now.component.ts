@@ -21,6 +21,8 @@ export class ReadNowComponent implements OnInit, OnChanges {
   @Input()
   dedication: string
 
+  @Input()
+  source: number
 
   links: Array<Link> = []
 
@@ -44,6 +46,9 @@ export class ReadNowComponent implements OnInit, OnChanges {
 
     if(changes.dedication!=undefined && changes.dedication!=null)
     this.dedication = changes.dedication.currentValue
+
+    if(changes.source!=undefined && changes.source!=null)
+    this.source = changes.source.currentValue
 
 
     if (this.content != null && this.content != '') {

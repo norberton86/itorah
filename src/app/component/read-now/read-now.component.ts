@@ -107,4 +107,9 @@ export class ReadNowComponent implements OnInit, OnChanges {
     this.dedication = link.Dedication
   }
   link: Link
+
+  LinksToShow():Array<Link>
+  {
+    return this.links.filter(i=>i.Title!=this.title)
+  }
 }

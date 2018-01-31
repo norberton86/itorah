@@ -24,7 +24,7 @@ import { MishnaBeruraYomiComponent } from './component/mishna-berura-yomi/mishna
 import { LearnTorahComponent } from './component/learn-torah/learn-torah.component';
 import { DailyHalachaComponent } from './component/daily-halacha/daily-halacha.component';
 import { VideoThumbnailComponent } from './component/video-thumbnail/video-thumbnail.component';
-import { ReduceStringPipe,ReduceStringLinkPipe } from './pipe/reduce-string.pipe';
+import { ReduceStringPipe,ReduceStringLinkPipe,ReduceStringThumbailPipe } from './pipe/reduce-string.pipe';
 import { PlaceHolderComponent } from './component/place-holder/place-holder.component';
 import { Angular2SocialLoginModule } from "angular2-social-login";
 import { SocialLoginComponent } from './component/social-login/social-login.component';
@@ -115,7 +115,7 @@ let providers = {
     LearnTorahComponent,
     DailyHalachaComponent,
     VideoThumbnailComponent,
-    ReduceStringPipe,ReduceStringLinkPipe,
+    ReduceStringPipe,ReduceStringLinkPipe,ReduceStringThumbailPipe,
     PlaceHolderComponent,
     SocialLoginComponent,
     PeleTitlePipe,

@@ -7,10 +7,10 @@
 		</header><!-- /.section-head -->
 
 		<div class="section-body">
-			<div class="shell">
-				<div class="section-inner">
-					<aside class="section-aside">
-						<div class="">
+			<div class="shell row">
+				<div class="">
+					<aside class="col-md-12 col-lg-3">
+						<div class="myVideoContainer">
 							<!--<div class="video-head">
 								<h4>{{CurrentPlaying?.Title}}</h4>
 							</div>--><!-- /.video-head -->
@@ -32,10 +32,10 @@
 						</div><!-- /.video -->
 					</aside><!-- /.section-aside -->
 
-					<div class="section-content">
-						<ul class="video-thumbnails">
+					<div class="col-md-12 col-lg-9">
+						
 							
-              			  <li *ngFor="let v of videos;" class="video-thumbnail" (click)="Play(v)">
+              			  <div *ngFor="let v of videos;" class="elementThumbail" (click)="Play(v)">
 								<div class="video-thumbnail-image" >
 									
 										<img src="{{v.PicUrl}}" alt="">
@@ -50,10 +50,10 @@
 									</span>
 
 									<p (click)="Play(v)">
-										<a href="#/" title="{{v.Title}}">{{v.Title|reduceString}}</a>
+										<a href="#/" title="{{v.Title}}" style="color:#375ce3;text-decoration: none">{{v.Title|reduceStringThumbail}}</a>
 									</p>
 
-									<p  title="{{v.Speaker}}">{{v.Speaker|reduceString}}</p>
+									<p  title="{{v.Speaker}}">{{v.Speaker|reduceStringThumbail}}</p>
 								</div><!-- /.video-thumbnail-content -->
 
 								<div class="video-thumbnail-actions">
@@ -62,10 +62,10 @@
                     					<i class="ico-microphone"  *ngIf="v.MediaType=='Audio'"></i>
 									</a>
 								</div><!-- /.video-thumbnail-actions -->
-           				 </li><!-- /.video-thumbnail -->
+           				 </div><!-- /.video-thumbnail -->
 
 
-						</ul><!-- /.video-thumbnails -->
+						
 					</div><!-- /.section-content -->
 				</div><!-- /.section-inner -->
 			</div><!-- /.shell -->

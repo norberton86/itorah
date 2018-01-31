@@ -295,12 +295,12 @@ export class SponsorComponent implements OnInit {
 
   ShowPayment() {
 
-    if (this.section == 'day' && (this.sourceId.length == 0 || this.sponsorshipFor == '' || this.name == '')) {
+    if (this.section == 'day' && (this.sourceId.length == 0 || this.sponsorshipFor == '')) {
       this.ShowErrorBlank()
       return;
     }
 
-    if (this.section == 'shiur' && (this.sponsorshipFor == '' || this.name == '' || this.shiurID == -1)) {
+    if (this.section == 'shiur' && (this.sponsorshipFor == '' || this.shiurID == -1)) {
       this.ShowErrorBlank()
       return;
     }
@@ -437,7 +437,7 @@ export class SponsorComponent implements OnInit {
     this.Page(this.iteration)
   }
   //-----------------------------------------------------------Media PLayer---------------------------------------------------------------
-  option: number = 0
+  option: number = 1
   setOptionValue(value) {
     this.value = value
   }
@@ -499,6 +499,8 @@ export class SponsorComponent implements OnInit {
   this.other = ''
   this.nameShiurSelected=''
   this.shiurID = -1
+
+  this.option=1
 
     //------------------------------------
 

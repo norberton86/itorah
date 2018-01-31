@@ -28,3 +28,17 @@ export class ReduceStringLinkPipe implements PipeTransform {
   }
 
 }
+
+@Pipe({
+  name: 'reduceStringThumbail'
+})
+export class ReduceStringThumbailPipe implements PipeTransform {
+
+  transform(value: string): string {
+    if(value.length>24)
+       value=value.substring(0,24)+"...";
+
+      return value;
+  }
+
+}

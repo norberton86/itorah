@@ -36,6 +36,7 @@ export class TodaySponsorComponent implements OnInit {
       $('#sponsorPlaceHolder').addClass('hidden')
       $('#form-sponsor-day').removeClass('hidden')
       $('#form-sponsor-shiur').addClass('hidden')
+      $('#form-sponsor-play').addClass('hidden')
     }
   }
 

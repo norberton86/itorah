@@ -767,7 +767,7 @@
 				</div>
 				<div class="body-wrap">
 					<div class="body-wrap-header">
-						<strong>Perek {{perekNumberSelected}}</strong> Categories: {{perekTitleSelected}}
+						<strong>Perek {{perekNumberSelected}}</strong> <span *ngIf="perekTitleSelected!=''">Categories: {{perekTitleSelected}}</span>
 					</div>
 				</div>
 				<div class="body-content-wrap" *ngIf="summary==''" id="printPerek">

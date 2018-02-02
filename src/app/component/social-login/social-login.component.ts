@@ -16,6 +16,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 declare var $: any;
+declare var FS: any;
 
 
 @Component({
@@ -161,8 +162,18 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
   }
 
 
+  FullStory(data: any) {
+    var fullstoryUser = {
+      id: data.email,
+      username: data.name
+    }
+    FS.identify(fullstoryUser.id, {
+      displayName: fullstoryUser.username
+    });
+  }
 
   Save(data: any) {
+
     localStorage.setItem('userItorah', JSON.stringify({ name: data.name, email: data.email, token: data.token, provider: data.provider }))
     this.queueService.setLogin("Signed");
     this.podcastService.setLogin("Signed");
@@ -172,21 +183,27 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
     this.myCreditsService.setLogin("Signed");
     this.alertService.setLogin("Signed");
     this.RefreshView();
+
+  /* try {
+      this.FullStory(data)
+    }
+    catch (e) {
+      console.log("Error trying the full story: "+e.message)
+    }*/
   }
 
 
-  Profile(token:string)
-  {
-    this.accountService.Profile(token).subscribe(result=>{
+  Profile(token: string) {
+    this.accountService.Profile(token).subscribe(result => {
 
-        this.requesting = false
-        this.messageVisible = false;
-        this.Save({ name: result[0].FirstName+" "+result[0].LastName, email: this.form.value.email, token: token, provider: "itorah" })
-       
-    },error=>{
-        this.requesting = false
-        this.messageVisible = true;
-    },()=>{})
+      this.requesting = false
+      this.messageVisible = false;
+      this.Save({ name: result[0].FirstName + " " + result[0].LastName, email: this.form.value.email, token: token, provider: "itorah" })
+
+    }, error => {
+      this.requesting = false
+      this.messageVisible = true;
+    }, () => { })
   }
 
   Submit() {

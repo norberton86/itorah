@@ -58,9 +58,12 @@ export class PopupRegisterComponent implements OnInit {
       this.tile = item
       if(this.tile=='Read') //if comming from glass icon
       {
-         this.existResults=0  //hide the third column
+        /* this.existResults=0  //hide the third column
          $('#form-register-119').addClass('hidden')
-         $('#form-register-perek').removeClass('hidden')
+         $('#form-register-perek').removeClass('hidden')*/
+
+         if($('input[name="form-register-perek"]:checked').length == 0)   //check if the checkbox is checked
+         $('#field-register-perek').get(0).click();
       }
     });
   }
@@ -259,6 +262,13 @@ export class PopupRegisterComponent implements OnInit {
     if (this.section == 'today') {
       this.existResults = 44
       this.perekPassuk = 'today'
+
+      //uncheck  the other checkbox
+      if($('input[name="form-register-119"]:checked').length > 0)   //check if the checkbox is checked
+         $('#field-register-119').get(0).click();
+
+      if($('input[name="form-register-perek"]:checked').length > 0)   //check if the checkbox is checked
+         $('#field-register-perek').get(0).click();
     }
 
 

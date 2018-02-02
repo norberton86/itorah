@@ -45,6 +45,23 @@ export class AppComponent implements OnInit {
     })
   }
 
+  setCount()
+  {
+     this.homeService.read().subscribe(
+           result=>{
+                    for(var i=0;i<result.Table.length;i++)
+                      switch(result.Table[i].Site)
+                      {
+                        case "Daily Emunah":this.emunahCounter=result.Table[i].Count; break;
+                        case "Weekly Parasha": this.parashaCounter=result.Table[i].Count; break;
+                      }                     
+           },
+           error=>{},()=>{}
+       )
+  }
+  
+  emunahCounter:number=0
+  parashaCounter:number=0
 
   keyDownFunction(event) {
     if (event.keyCode == 13) {
@@ -58,6 +75,7 @@ export class AppComponent implements OnInit {
     this.CheckResetPassword();
     this.getTehillimDedication();
     this.getHalachaDedication();
+    this.setCount()
   }
 
   getTehillimDedication() {

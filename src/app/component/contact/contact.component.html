@@ -376,8 +376,8 @@
 
 					<div class="form-actions">
 
-						<input *ngIf="!requesting" type="submit" value="Send" class="form-btn" (click)="Send()" [disabled]="!form.valid" [class.mydisabled]="!form.valid"
-						 style="margin-bottom: 1em;">
+                        <!--[disabled]="!form.valid" [class.mydisabled]="!form.valid"-->
+						<input *ngIf="!requesting" type="submit" value="Send" class="form-btn" (click)="Send()" style="margin-bottom: 1em;">
 						<i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-2x"></i>
 
 					</div>

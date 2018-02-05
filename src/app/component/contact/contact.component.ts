@@ -51,6 +51,18 @@ export class ContactComponent implements OnInit {
 
 requesting:boolean=false
   Send() {
+
+
+    if(!this.form.valid)
+    {
+      this.form.get('name').markAsTouched()
+      this.form.get('email').markAsTouched()
+      this.form.get('phone').markAsTouched()
+      this.form.get('subject').markAsTouched()
+      this.form.get('body').markAsTouched()
+
+      return
+    }
     
     this.requesting=true
     this.contactService.Send(this.form.value).subscribe(

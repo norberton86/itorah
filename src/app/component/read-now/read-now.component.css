@@ -30,3 +30,11 @@ margin-bottom: 1em;
     cursor: pointer;
     font-size: 14px;
 }
+
+@media(max-width:768px) 
+{
+    .link-halacha
+    {
+        width: 100%;
+    }
+}

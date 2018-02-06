@@ -47,6 +47,7 @@ import {SubscribeService} from './service/subscribe.service';
 import {PlayerService} from './service/player.service';
 import {WeeklyResultService} from './service/weekly-result.service';
 import {GemaraService} from './service/gemara.service';
+import {PopupService} from './service/popup.service';
 import {PaymentService} from './service/payment.service';
 import { InspireComponent } from './component/inspire/inspire.component';
 import { PrivacyPolicyComponent } from './component/privacy-policy/privacy-policy.component';
@@ -166,7 +167,7 @@ let providers = {
      DndModule.forRoot(),
      ShareButtonsModule.forRoot()
   ],
-  providers: [GemaraService,PaymentService,PlayerService,RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
+  providers: [PopupService,GemaraService,PaymentService,PlayerService,RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

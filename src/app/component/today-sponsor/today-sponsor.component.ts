@@ -38,6 +38,9 @@ export class TodaySponsorComponent implements OnInit {
       $('#form-sponsor-shiur').addClass('hidden')
       $('#form-sponsor-play').addClass('hidden')
     }
+
+    // close the other popup
+    this.CloseOtherPopu("#sponsor")
   }
 
   isAuthenticated(): boolean {
@@ -62,5 +65,13 @@ export class TodaySponsorComponent implements OnInit {
       this.hebrewDate=result[1]
       this.superhebrewDate=result[2]
     },error=>{},()=>{})
+  }
+
+  CloseOtherPopu(id:string)
+  {
+    $('.popup').each(function(){  
+       if($(this).attr('id')!=id.split("#")[1])
+         $(this).removeClass("shown")
+    })
   }
 }

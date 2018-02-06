@@ -164,13 +164,22 @@ export class AppComponent implements OnInit {
 
   AboutUs() {
     $("#aboutUs").toggleClass('shown');
+
+    //close the others popup
+    this.CloseOtherPopu("#aboutUs")
   }
   Privacy() {
     $("#privacy").toggleClass('shown');
+
+    //close the others popup
+    this.CloseOtherPopu("#privacy")
   }
 
   Contact() {
     $("#contact").toggleClass('shown');
+
+    //close the others popup
+    this.CloseOtherPopu("#contact")
   }
 
   requesting: boolean = false
@@ -230,6 +239,9 @@ export class AppComponent implements OnInit {
 
       }, function (error) { }, function () { }
     )
+
+    //close the others popup
+    this.CloseOtherPopu("#readNow")
   }
 
   Browse() {
@@ -288,9 +300,19 @@ export class AppComponent implements OnInit {
         $('#fileShower').toggleClass('shown');
         this.gemaraService.setData('empty');
       }
-      
+
+      //to close the other popups
+      this.CloseOtherPopu(id)
     }
     this.CloseMenu()
+  }
+
+  CloseOtherPopu(id:string)
+  {
+    $('.popup').each(function(){  
+       if($(this).attr('id')!=id.split("#")[1])
+         $(this).removeClass("shown")
+    })
   }
 
   CloseMenu()

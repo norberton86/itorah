@@ -246,6 +246,9 @@ export class PlayerService extends Service {
         $('#form-sponsor-day').addClass('hidden')
         $('#form-sponsor-play').addClass('hidden')
       }
+
+      //close the other popup
+      self.CloseOtherPopu("#sponsor")
     })
 
     if (this.getToken() != undefined && this.getToken() != "")  //only push if the user is login
@@ -383,6 +386,9 @@ export class PlayerService extends Service {
         $('#form-sponsor-day').addClass('hidden')
         $('#form-sponsor-shiur').addClass('hidden')
       }
+
+      //close the other popup
+      self.CloseOtherPopu("#sponsor")
     })
 
     $('button[data-notify="dismiss"]').click(function () {  //stop when the close icon be closed
@@ -413,6 +419,14 @@ export class PlayerService extends Service {
     }
     else
       return true;
+  }
+
+  CloseOtherPopu(id:string)
+  {
+    $('.popup').each(function(){  
+       if($(this).attr('id')!=id.split("#")[1])
+         $(this).removeClass("shown")
+    })
   }
 
 

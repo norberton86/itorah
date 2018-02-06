@@ -230,6 +230,18 @@ export class PopupRegisterComponent implements OnInit {
 
   Close() {
     $('#popup-register').toggleClass('shown');
+    this.ResetForms()
+  }
+
+  ResetForms()
+  {
+    this.categoryPerek=this.categoriesPerek[0]
+    this.perekSearch=''
+    this.perek=1
+
+    this.firstNamePasuk=''
+    this.benPasuk="ben"
+    this.motherPasuk=''
   }
 
   OpenRegular() {

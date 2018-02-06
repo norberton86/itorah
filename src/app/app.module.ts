@@ -86,6 +86,7 @@ import { FileShowerComponent } from './component/file-shower/file-shower.compone
 import { PagerComponent } from './component/pager/pager.component';
 import { PagerServerComponent } from './component/pager-server/pager-server.component';
 import { PayConfirmedComponent } from './component/pay-confirmed/pay-confirmed.component';
+import { AccountConfirmedComponent } from './component/account-confirmed/account-confirmed.component';
 
 
 let providers = {
@@ -157,7 +158,8 @@ let providers = {
     FileShowerComponent,
     PagerComponent,
     PagerServerComponent,
-    PayConfirmedComponent
+    PayConfirmedComponent,
+    AccountConfirmedComponent
   ],
   imports: [
     BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,MyDatePickerModule ,NguiAutoCompleteModule,PopoverModule,

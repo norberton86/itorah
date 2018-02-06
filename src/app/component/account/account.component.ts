@@ -145,7 +145,7 @@ export class AccountComponent implements OnInit {
     this.requesting=true
     this.accountService.add(account).subscribe(function (respond) {
       self.requesting=false
-      self.accountService.Notify("Account Updated", false)
+     // self.accountService.Notify("Account Updated", false)
       self.Close()
     },
       function (error) {
@@ -176,7 +176,7 @@ export class AccountComponent implements OnInit {
     this.requesting=true
     this.accountService.changePassword(pass).subscribe(function (respond) {
       self.requesting=false
-      self.accountService.Notify("Password changed", false)
+      //self.accountService.Notify("Password changed", false)
       self.ClosePassword();
     },
       function (error) {
@@ -187,7 +187,8 @@ export class AccountComponent implements OnInit {
   }
 
   Close() {
-    $('#myAccount').toggleClass('shown');
+    $('#myAccount').toggleClass('shown'); //close this
+    $('#accountConfirmed').toggleClass('shown'); //open the confirm popup
   }
 
   goPassword() {
@@ -202,6 +203,8 @@ export class AccountComponent implements OnInit {
     }
     this.formPasword.patchValue(data);
     this.main = true
+
+    this.Close()
   }
 
   Validate() {

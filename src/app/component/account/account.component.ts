@@ -117,6 +117,16 @@ export class AccountComponent implements OnInit {
   requesting:boolean=false
 
   SaveAccount() {
+
+    if(!this.form.valid)
+    {
+      this.form.get('firstName').markAsTouched()
+      this.form.get('lastName').markAsTouched()
+      this.form.get('email').markAsTouched()
+
+      return
+    }
+
     var account = new Account()
     account.firstName = this.form.value.firstName
     account.lastName = this.form.value.lastName
@@ -146,6 +156,15 @@ export class AccountComponent implements OnInit {
   }
 
   ChangePassword() {
+
+    if(!this.formPasword.valid)
+    {
+      this.formPasword.get('oldp').markAsTouched()
+      this.formPasword.get('newp').markAsTouched()
+      this.formPasword.get('confirmp').markAsTouched()
+
+      return
+    }
 
     var pass = {
       oldp: this.formPasword.value.oldp,

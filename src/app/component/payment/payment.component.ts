@@ -76,6 +76,17 @@ export class PaymentComponent implements OnInit, OnChanges {
 
   onSubmit() {
 
+    if(!this.form.valid)
+    {
+      this.form.get('name').markAsTouched()
+      this.form.get('email').markAsTouched()
+      this.form.get('cvc').markAsTouched()
+      this.form.get('creditCard').markAsTouched()
+      this.form.get('expirationDate').markAsTouched()
+
+      return
+    }
+
     if (this.value <= 0) {
       this.donateService.Notify("Amount needs to be bigger than $0.00", true);
       return;

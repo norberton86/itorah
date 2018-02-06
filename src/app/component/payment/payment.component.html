@@ -141,7 +141,7 @@
     <!-- /.form-body -->
 
     <div class="form-actions">
-      <input *ngIf="!requesting" type="submit" value="Process order" class="form-btn" [disabled]="Validate()" [class.mydisabled]="Validate()">
+      <input *ngIf="!requesting" type="submit" value="Process order" class="form-btn"> <!-- [disabled]="Validate()" [class.mydisabled]="Validate()" -->
       <i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-2x"></i>
       <span style="margin-top: 0.5em;" *ngIf="paymentError">
         <i class="fa fa-exclamation-circle" aria-hidden="true" style="display:table; color:red"></i>

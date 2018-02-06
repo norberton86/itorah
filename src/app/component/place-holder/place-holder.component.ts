@@ -27,6 +27,12 @@ export class PlaceHolderComponent implements OnInit {
 
   OpenAdvertise() {
      $('#popup-advertise').toggleClass('shown');
+     this.MoveToTop()
+  }
+
+  MoveToTop()
+  {
+    window.scrollTo(0, 0);
   }
 
 }

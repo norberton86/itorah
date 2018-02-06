@@ -167,12 +167,14 @@ export class AppComponent implements OnInit {
 
     //close the others popup
     this.CloseOtherPopu("#aboutUs")
+    this.MoveToTop()
   }
   Privacy() {
     $("#privacy").toggleClass('shown');
 
     //close the others popup
     this.CloseOtherPopu("#privacy")
+    this.MoveToTop()
   }
 
   Contact() {
@@ -180,6 +182,7 @@ export class AppComponent implements OnInit {
 
     //close the others popup
     this.CloseOtherPopu("#contact")
+    this.MoveToTop()
   }
 
   requesting: boolean = false
@@ -342,4 +345,8 @@ export class AppComponent implements OnInit {
     $('#'+id).css('display', 'none')
   }
 
+  MoveToTop()
+  {
+    window.scrollTo(0, 0);
+  }
 }

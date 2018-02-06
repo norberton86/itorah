@@ -1,5 +1,9 @@
 .ads{
     padding-right:0px;
     padding-left:0px;
-    cursor: pointer;
+}
+
+.advertise-link{
+    color:#878585;
+    text-decoration: none;
 }

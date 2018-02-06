@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UploadService } from '../../service/upload.service';
 
+declare var $:any
+
 @Component({
   selector: 'app-place-holder',
   templateUrl: './place-holder.component.html',
@@ -9,8 +11,8 @@ import { UploadService } from '../../service/upload.service';
 })
 export class PlaceHolderComponent implements OnInit {
 
-  left:string="/assets/build/css/images/temp/left.png"
-  right:string="/assets/build/css/images/temp/right.png"
+  left: string = "/assets/build/css/images/temp/left.png"
+  right: string = "/assets/build/css/images/temp/right.png"
   constructor(private uploadService: UploadService) { }
 
   ngOnInit() {
@@ -23,6 +25,8 @@ export class PlaceHolderComponent implements OnInit {
     )*/
   }
 
-
+  OpenAdvertise() {
+     $('#popup-advertise').toggleClass('shown');
+  }
 
 }

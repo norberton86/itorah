@@ -248,6 +248,7 @@
 				<app-weekly-result></app-weekly-result>
 				<app-browse [browseClass]="browseClasses"></app-browse>
 				<app-read-now [title]="rNow?.title" [content]="rNow?.content" [dedication]="rNow?.dedication" [source]="sourceRead"></app-read-now>
+				<app-read-now-emunah></app-read-now-emunah>
 				<app-read-search></app-read-search>
 				<app-download-shirium></app-download-shirium>
 			</div><!-- /.shell -->
@@ -536,7 +537,7 @@
 										
 
 										<img  src="/assets/build/css/images/play_button.png" (click)="playNow(3,'DailyEmunah.com')"/>
-										<img src="/assets/build/css/images/read_now.png" (click)="readNow(3)"/>
+										<img src="/assets/build/css/images/read_now.png" (click)="readNowEmunah()"/>
 									</a>
 
 											<ul class="list-actions">

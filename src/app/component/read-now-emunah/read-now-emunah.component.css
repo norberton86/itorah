@@ -1,0 +1,15 @@
+#readNowEmunah .popup-body{
+  padding: 1em;
+}
+
+
+#readNowEmunah .popup-body .content
+{
+max-height: 500px;    
+overflow: auto;
+}
+
+#readNowEmunah .popup-body .content p
+{
+margin-bottom: 1em;
+}

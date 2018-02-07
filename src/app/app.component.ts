@@ -280,6 +280,12 @@ export class AppComponent implements OnInit {
     this.CloseOtherPopu("#readNow")
   }
 
+  readNowEmunah()
+  {
+    $("#readNowEmunah").toggleClass('shown');
+    this.CloseOtherPopu("#readNowEmunah")
+  }
+
   Browse() {
     try {
       //close any open ballon

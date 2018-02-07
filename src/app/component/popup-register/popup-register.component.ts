@@ -235,13 +235,16 @@ export class PopupRegisterComponent implements OnInit {
 
   ResetForms()
   {
+    //perek
     this.categoryPerek=this.categoriesPerek[0]
     this.perekSearch=''
     this.perek=1
 
-    this.firstNamePasuk=''
+   //pasuk
+   $('#field-first-Pasuk-name').val('')
     this.benPasuk="ben"
-    this.motherPasuk=''
+    $('#field-mothers-Pasuk-name').val('')
+    this.existResults=0
   }
 
   OpenRegular() {
@@ -473,7 +476,7 @@ export class PopupRegisterComponent implements OnInit {
   //----------------------------------------------------------Pasuk----------------------------------------------------------
   SetKeyboard(id) {
     var $keyboard = $('#VirtualKeyboardHolderPasuk');
-    VirtualKeyboard.toggle(id, $keyboard.attr('id'));
+    VirtualKeyboard.show(id, $keyboard.attr('id'));
 
   }
 

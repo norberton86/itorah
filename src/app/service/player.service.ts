@@ -305,7 +305,7 @@ export class PlayerService extends Service {
         this.requesting = false
 
         if (result == '')
-          sponsor = "Sponsor this Media"
+          sponsor = "Sponsor iTorah Media Player"
         else
           sponsor = result
 
@@ -313,7 +313,7 @@ export class PlayerService extends Service {
 
       }, error => {
         this.requesting = false
-        sponsor = "Sponsor this Media"
+        sponsor = "Sponsor iTorah Media Player"
         this.BuildAudio(title, url, sponsor, sourceId, mediaId)
       }, () => { })
     }

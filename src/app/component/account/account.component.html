@@ -310,6 +310,9 @@
                 <div class="animated bounceIn" style="color:red;" *ngIf="formPasword.get('oldp').hasError('required') && formPasword.get('oldp').touched">
                   Old Password is required
                 </div>
+                <div class="animated bounceIn" style="color:red;" *ngIf="errorRequest!=''">
+                   {{errorRequest}}
+                </div>
                 <!-- /.form-controls -->
               </div>
               <!-- /.form-row -->

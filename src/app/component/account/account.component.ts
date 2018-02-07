@@ -181,14 +181,20 @@ export class AccountComponent implements OnInit {
     },
       function (error) {
         self.requesting=false
-        self.accountService.Notify(error, true)
+        if(error._body=='"Old password does not match"')
+        {
+            self.errorRequest="Old password does not match"
+        }
       },
       function () { })
   }
 
+  errorRequest:string=''
+
   Close() {
     $('#myAccount').toggleClass('shown'); //close this
     $('#accountConfirmed').toggleClass('shown'); //open the confirm popup
+    this.errorRequest=''
   }
 
   goPassword() {

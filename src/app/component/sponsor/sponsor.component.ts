@@ -81,7 +81,7 @@ export class SponsorComponent implements OnInit {
 
     this.dT = this.dedicationType[0]
 
-    this.ReadSpeakers()
+    this.ReadMain()
     this.ReadCategory();
   }
 
@@ -468,10 +468,17 @@ export class SponsorComponent implements OnInit {
     }, function (error) { }, function () { })
   }
 
-  ReadSpeakers() {
+  ReadSpeakers(mains:Array<Speaker>) {
     this.speakerService.read().subscribe(result => {
 
-      result=this.Sort(result)
+      mains.forEach(function(a){                      //remove the mains
+          var index=  result.findIndex(i=>i.id==a.id)
+          result.splice(index,1)
+       })
+      
+      mains.reverse().forEach(function(a){  //inserted at the begining
+        result.unshift(a)
+      })
 
       var speakerEmpty = new Speaker()
       speakerEmpty.id = 0
@@ -519,15 +526,10 @@ export class SponsorComponent implements OnInit {
   }
 
 //--------------------------------------------------
-  Desc(a, b) {
-    if (!a.isMainSpeaker && b.isMainSpeaker)
-      return 1;
-    if (a.isMainSpeaker && !b.isMainSpeaker)
-      return -1;
-    return 0;
-  }
-
-  Sort(r) {
-    return r.sort(this.Desc)
+  ReadMain()
+  {
+    this.speakerService.readMain().subscribe(result=>{
+       this.ReadSpeakers(result)
+    },error=>{},()=>{})
   }
 }

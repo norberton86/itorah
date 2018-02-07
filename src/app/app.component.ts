@@ -76,7 +76,40 @@ export class AppComponent implements OnInit {
     this.getTehillimDedication();
     this.getHalachaDedication();
     this.setCount()
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   let self=this
+    $("a[data-size='full']").click(function(){  //ballon close popup
+       
+       if(self.cerrar)
+       self.CloseOtherPopu("#everBody")
+
+       self.cerrar=true
+    })
   }
+
+  CloseOtherPopu(id:string)
+  {
+    $('.popup').each(function(){                 //close the rest of popups
+       if($(this).attr('id')!=id.split("#")[1])
+         $(this).removeClass("shown")
+    })
+
+   this.CloseBalloon()   //close ballon
+  }
+  
+  CloseBalloon()
+  {
+    var href =$('.vissible').attr('id')
+    if(href!=undefined)
+    {
+      this.cerrar=false                    //this is to avoid close the same popup that is opening
+      $('a[href="#'+href+'"]')[0].click() //close the balloon
+    }
+   
+  }
+  
+  cerrar:boolean =true
 
   getTehillimDedication() {
     this.homeService.readNow(7).subscribe(response => {
@@ -310,14 +343,6 @@ export class AppComponent implements OnInit {
     this.CloseMenu()
   }
 
-  CloseOtherPopu(id:string)
-  {
-    $('.popup').each(function(){  
-       if($(this).attr('id')!=id.split("#")[1])
-         $(this).removeClass("shown")
-    })
-  }
-
   CloseMenu()
   {
         //close menu
@@ -349,4 +374,5 @@ export class AppComponent implements OnInit {
   {
     window.scrollTo(0, 0);
   }
+
 }

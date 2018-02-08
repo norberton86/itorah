@@ -286,6 +286,15 @@ export class PopupRegisterComponent implements OnInit {
          $('#field-register-perek').get(0).click();
     }
 
+    if (this.section == 'whats') {
+      this.existResults = 44
+      this.perekPassuk = 'whats'
+
+      //uncheck  the other checkbox
+      if($('input[name="form-register-perek"]:checked').length > 0)   //check if the checkbox is checked
+         $('#field-register-perek').get(0).click();
+    }
+
 
   }
 
@@ -431,8 +440,15 @@ export class PopupRegisterComponent implements OnInit {
   perekTitleSelected: string = ""
   downloadUrl: string = ''
 
-  Back() {
+  BackToday() {
     this.perekPassuk = ''
+    this.existResults=44
+  }
+
+  BackWhat()
+  {
+    this.perekPassuk = ''
+    this.existResults=119
   }
 
   setTabPerek(tab: string) {

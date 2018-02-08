@@ -136,3 +136,15 @@ display: block;
   color: #000;
 }
 
+
+.whats p{
+   margin-top: 0.5em
+}
+
+
+.whatsTitle{
+    display: inline;
+    color: #272727;
+    background: none;
+    margin-left: 0.5em;
+}

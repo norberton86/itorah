@@ -49,6 +49,22 @@ export class DownloadShiriumComponent implements OnInit {
 
   }
 
+  goHistory()
+  {
+    this.CloseBalloon()
+    $("#credits").toggleClass('shown')
+  }
+
+    CloseBalloon()
+  {
+    var href =$('.vissible').attr('id')
+    if(href!=undefined)
+    {
+      
+      $('a[href="#'+href+'"]')[0].click() //close the balloon
+    }
+   
+  }
   
   StartDowload()
   {

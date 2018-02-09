@@ -1,5 +1,9 @@
-.share{
-    
+.share
+{
+    border-radius: .2em;
+    padding: .5em .9em;
+    font-size: 1em;
+    color: #fff;
 }
 
 .video-thumbnails {

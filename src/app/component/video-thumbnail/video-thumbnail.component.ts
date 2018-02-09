@@ -25,9 +25,6 @@ export class VideoThumbnailComponent implements OnInit {
 
   ngOnInit() {
     this.Read();
-
-
-
   }
 
   Read() {
@@ -178,33 +175,10 @@ export class VideoThumbnailComponent implements OnInit {
       return true;
   }
 
-  //------------------------------------------------------------------
- /* videoHeigth: number
-
-  SaveHeight() {
-    let self = this
-
-    setTimeout(function () {
-      $('.video-body-FullScreen').click(function () {
-        self.videoHeigth = $('.video-body').height()
-
-        self.RestoreHeight()
-      })
-    }, 5000)
-
+  getImageName(l:Lectures):string
+  {
+     var arr= l.Speaker.split(" ")
+     return arr[1]+arr[2]+".png"  
   }
-
-  RestoreHeight() {
-    let self = this
-
-    setTimeout(function () {
-      $('.video-body-ReturnFromFullScreen').click(function () {
-        $('.video-body').height(self.videoHeigth + "px")
-        self.SaveHeight()
-      })
-    }, 5000)
-
-  }*/
-
 
 }

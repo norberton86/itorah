@@ -39,24 +39,26 @@
 						
 							
               			  <div *ngFor="let v of videos;" class="elementThumbail" (click)="Play(v)">
-								<div class="video-thumbnail-image" style="cursor: pointer;" >
+								<div class="video-thumbnail-image" style="cursor: pointer;padding: 1.1em;" >
 									
-										<img src="{{v.PicUrl}}" alt="">
+										<img src="./assets/build/css/images/images/speakers/{{getImageName(v)}}" alt="">
 									
 								</div><!-- /.video-thumbnail-image -->
 
 								<div class="video-thumbnail-content">
-									<span>
-										<i class="ico-clock"></i>
 
-										<strong>{{v.RunTime}}</strong>
-									</span>
 
 									<p (click)="Play(v)">
 										<a href="#/" title="{{v.Title}}" style="color:#375ce3;text-decoration: none">{{v.Title|reduceStringThumbail}}</a>
 									</p>
 
 									<p  title="{{v.Speaker}}" style="cursor:pointer">{{v.Speaker|reduceStringThumbail}}</p>
+
+									<span>
+										<i class="ico-clock"></i>
+
+										<strong>{{v.RunTime}}</strong>
+									</span>
 								</div><!-- /.video-thumbnail-content -->
 
 								<div class="video-thumbnail-actions">

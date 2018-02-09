@@ -27,6 +27,8 @@
 								</a>-->
 
 							</div><!-- /.video-body -->
+							
+
 
 							<!--<div class="video-bar">
 								<img src="/assets/build/css/images/temp/video-player.jpg" alt="">
@@ -38,8 +40,8 @@
 					<div class="col-md-12 col-lg-9">
 						
 							
-              			  <div *ngFor="let v of videos;" class="elementThumbail" (click)="Play(v)">
-								<div class="video-thumbnail-image" style="cursor: pointer;padding: 1.1em;" >
+              			  <div *ngFor="let v of videos;" class="elementThumbail" >
+								<div class="video-thumbnail-image" style="cursor: pointer;padding: 1.1em;" (click)="Play(v)">
 									
 										<img src="./assets/build/css/images/images/speakers/{{getImageName(v)}}" alt="">
 									
@@ -52,7 +54,7 @@
 										<a href="#/" title="{{v.Title}}" style="color:#375ce3;text-decoration: none">{{v.Title|reduceStringThumbail}}</a>
 									</p>
 
-									<p  title="{{v.Speaker}}" style="cursor:pointer">{{v.Speaker|reduceStringThumbail}}</p>
+									<p (click)="Play(v)"  title="{{v.Speaker}}" style="cursor:pointer">{{v.Speaker|reduceStringThumbail}}</p>
 
 									<span>
 										<i class="ico-clock"></i>
@@ -62,7 +64,7 @@
 								</div><!-- /.video-thumbnail-content -->
 
 								<div class="video-thumbnail-actions">
-									<a href="#/" class="link">
+									<a href="#/" class="link" (click)="Play(v)">
 										<i class="ico-camera"  *ngIf="v.MediaType=='Video'"></i>
                     					<i class="ico-microphone"  *ngIf="v.MediaType=='Audio'"></i>
 									</a>

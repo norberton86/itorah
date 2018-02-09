@@ -143,8 +143,21 @@ padding: 0.5em;
 
 }
 
+/*Iphone Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) { 
+  .appleIcon{
+    margin-right: 0.0em;
+    width: initial;
+  }
+}
 
-/* Portrait and Landscape */
+
+
+/*Ipad Portrait and Landscape */
 @media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 

@@ -73,5 +73,8 @@ export class TodaySponsorComponent implements OnInit {
        if($(this).attr('id')!=id.split("#")[1])
          $(this).removeClass("shown")
     })
+
+        //close Broswse component
+    document.getElementById('CloseDedicationButton').click()
   }
 }

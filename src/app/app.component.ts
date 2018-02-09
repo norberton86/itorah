@@ -88,12 +88,31 @@ export class AppComponent implements OnInit {
     })
   }
 
+  OpenPopup(id: string) {
+    if (this.isAuthenticated()) {
+      $(id).toggleClass('shown');
+      
+      if(id=='#fileShowerEmpty')
+      {
+        $('#fileShower').toggleClass('shown');
+        this.gemaraService.setData('empty');
+      }
+
+      //to close the other popups
+      this.CloseOtherPopu(id)
+    }
+    this.CloseMenu()
+  }
+
   CloseOtherPopu(id:string)
   {
     $('.popup').each(function(){                 //close the rest of popups
        if($(this).attr('id')!=id.split("#")[1])
          $(this).removeClass("shown")
     })
+
+    //close Broswse component
+    document.getElementById('CloseDedicationButton').click()
 
    this.CloseBalloon()   //close ballon
   }
@@ -331,22 +350,6 @@ export class AppComponent implements OnInit {
     if (this.isAuthenticated()) {
       $('#sponsor').toggleClass('shown');
     }
-  }
-
-  OpenPopup(id: string) {
-    if (this.isAuthenticated()) {
-      $(id).toggleClass('shown');
-      
-      if(id=='#fileShowerEmpty')
-      {
-        $('#fileShower').toggleClass('shown');
-        this.gemaraService.setData('empty');
-      }
-
-      //to close the other popups
-      this.CloseOtherPopu(id)
-    }
-    this.CloseMenu()
   }
 
   CloseMenu()

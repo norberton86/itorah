@@ -13,6 +13,8 @@ declare var WowzaPlayer: any;
 })
 export class VideoThumbnailComponent implements OnInit {
 
+
+
   videos: Array<Lectures>;
   videosFull: Array<Lectures>;
   CurrentPlaying: Lectures;
@@ -56,7 +58,7 @@ export class VideoThumbnailComponent implements OnInit {
       WowzaPlayer.get('video-body').destroy()
 
 
-    WowzaPlayer.create('video-body',
+   var myPlayer = WowzaPlayer.create('video-body',
       {
 
         "license": "PLAY1-dD8ur-NjfMh-andPW-beKnB-t4nYZ",
@@ -98,9 +100,13 @@ export class VideoThumbnailComponent implements OnInit {
 
     this.GetSponsor()
 
-    //this.SaveHeight()
 
+   let self=this
+    myPlayer.onLoad(function(){
+       self.SetImageOnPlayer(video)
+    });
   }
+
 
   //----------------------------------------------------------------------
 
@@ -133,6 +139,14 @@ export class VideoThumbnailComponent implements OnInit {
     }
   }
 
+  SetImageOnPlayer(v: Lectures) {
+
+    if (v.MediaType == "Audio") //show the picture of the speaker
+    {
+      $('.myVideoContainer #video-body-Container').css('background-image', 'url(./assets/build/css/images/images/speakers/' + this.getImageName(v) + ')')
+    }
+
+  }
 
   OpenSponsor() {
 
@@ -175,10 +189,9 @@ export class VideoThumbnailComponent implements OnInit {
       return true;
   }
 
-  getImageName(l:Lectures):string
-  {
-     var arr= l.Speaker.split(" ")
-     return arr[1]+arr[2]+".png"  
+  getImageName(l: Lectures): string {
+    var arr = l.Speaker.split(" ")
+    return arr[1] + arr[2] + ".png"
   }
 
 }

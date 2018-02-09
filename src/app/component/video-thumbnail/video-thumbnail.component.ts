@@ -3,6 +3,7 @@ import { Home, Lectures } from '../../model/Home';
 import { HomeService } from '../../service/home.service';
 import { PlayerService } from '../../service/player.service';
 
+
 declare var $: any;
 declare var WowzaPlayer: any;
 
@@ -12,8 +13,6 @@ declare var WowzaPlayer: any;
   styleUrls: ['./video-thumbnail.component.css']
 })
 export class VideoThumbnailComponent implements OnInit {
-
-
 
   videos: Array<Lectures>;
   videosFull: Array<Lectures>;

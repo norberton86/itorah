@@ -440,6 +440,11 @@ export class PopupRegisterComponent implements OnInit {
   perekTitleSelected: string = ""
   downloadUrl: string = ''
 
+  Back()
+  {
+    this.perekPassuk = ''
+  }
+
   BackToday() {
     this.perekPassuk = ''
     this.existResults=44

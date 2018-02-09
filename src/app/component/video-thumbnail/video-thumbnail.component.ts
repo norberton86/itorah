@@ -25,7 +25,9 @@ export class VideoThumbnailComponent implements OnInit {
 
   ngOnInit() {
     this.Read();
-    
+
+
+
   }
 
   Read() {
@@ -99,6 +101,8 @@ export class VideoThumbnailComponent implements OnInit {
 
     this.GetSponsor()
 
+    //this.SaveHeight()
+
   }
 
   //----------------------------------------------------------------------
@@ -106,12 +110,11 @@ export class VideoThumbnailComponent implements OnInit {
   currentTitle: string = ''
   currentSpeaker: string = ''
   currentMediaId: string = ''
-  sponsor:string="Click Here To Sponsor"
-  requesting:boolean=false
+  sponsor: string = "Click Here To Sponsor"
+  requesting: boolean = false
 
-  
- GetSponsor()
- {
+
+  GetSponsor() {
     if (this.sponsor == "Click Here To Sponsor" && !this.requesting) {
 
       this.requesting = true
@@ -131,7 +134,7 @@ export class VideoThumbnailComponent implements OnInit {
       }, () => { })
 
     }
- } 
+  }
 
 
   OpenSponsor() {
@@ -146,7 +149,7 @@ export class VideoThumbnailComponent implements OnInit {
       $('#form-sponsor-day').addClass('hidden')
       $('#form-sponsor-play').addClass('hidden')
 
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0)
     }
 
     //close the other popup
@@ -174,5 +177,34 @@ export class VideoThumbnailComponent implements OnInit {
     else
       return true;
   }
-  
+
+  //------------------------------------------------------------------
+ /* videoHeigth: number
+
+  SaveHeight() {
+    let self = this
+
+    setTimeout(function () {
+      $('.video-body-FullScreen').click(function () {
+        self.videoHeigth = $('.video-body').height()
+
+        self.RestoreHeight()
+      })
+    }, 5000)
+
+  }
+
+  RestoreHeight() {
+    let self = this
+
+    setTimeout(function () {
+      $('.video-body-ReturnFromFullScreen').click(function () {
+        $('.video-body').height(self.videoHeigth + "px")
+        self.SaveHeight()
+      })
+    }, 5000)
+
+  }*/
+
+
 }

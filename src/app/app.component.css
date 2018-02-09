@@ -135,6 +135,12 @@ padding: 0.5em;
   #authorInspire{
       display: block
   }
+
+  .appleIcon{
+    margin-right: 0.0em;
+    width:50%
+  }
+
 }
 
 
@@ -149,4 +155,12 @@ padding: 0.5em;
     }
 }
 
+
+.appleIcon{
+  margin-right: 0.5em;
+}
+
+.footerLink{
+    padding-top: 0.5em;
+}
 

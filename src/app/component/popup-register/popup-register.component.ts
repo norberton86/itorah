@@ -62,6 +62,9 @@ export class PopupRegisterComponent implements OnInit {
          $('#form-register-119').addClass('hidden')
          $('#form-register-perek').removeClass('hidden')*/
 
+         //in case that the component is in the second panel(panel that use the back button) , then clear
+         this.perekPassuk=''
+
          if($('input[name="form-register-perek"]:checked').length == 0)   //check if the checkbox is checked
          $('#field-register-perek').get(0).click();
       }

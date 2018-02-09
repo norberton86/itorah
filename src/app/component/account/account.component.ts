@@ -178,6 +178,7 @@ export class AccountComponent implements OnInit {
       self.requesting=false
       //self.accountService.Notify("Password changed", false)
       self.ClosePassword();
+      self.Close()
     },
       function (error) {
         self.requesting=false
@@ -197,6 +198,14 @@ export class AccountComponent implements OnInit {
     this.errorRequest=''
   }
 
+  CloseClick()
+  {
+    $('#myAccount').toggleClass('shown'); //close this
+    this.errorRequest=''
+
+    this.ClosePassword()
+  }
+
   goPassword() {
     this.main = false
   }
@@ -209,8 +218,6 @@ export class AccountComponent implements OnInit {
     }
     this.formPasword.patchValue(data);
     this.main = true
-
-    this.Close()
   }
 
   Validate() {

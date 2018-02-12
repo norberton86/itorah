@@ -43,7 +43,7 @@ export class DownloadShiriumComponent implements OnInit {
 
        this.headerTitle="Downloading ..."
        this.started=true
-       this.message="Download should start automatically… to try download again click "
+       //"Download should start automatically. Click here if download does not start after 5 seconds "
        
    })
 
@@ -51,6 +51,7 @@ export class DownloadShiriumComponent implements OnInit {
 
   goHistory()
   {
+    this.Reset()
     this.CloseBalloon()
     $("#credits").toggleClass('shown')
   }

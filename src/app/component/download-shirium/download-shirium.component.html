@@ -14,8 +14,11 @@
   <div class="popup-body">
 
     <a href="" download id="downloadShiur" hidden></a>
-    <p> {{message}} <a href="#/" (click)="StartDowload()" *ngIf="started" style="color: #416de5;">here</a>  </p>
-    <p *ngIf="started"> Go to your Order History <a href="#/" (click)="goHistory()" style="color: #416de5;">here</a>  </p>
+    
+    <p *ngIf="!started"> {{message}} <a href="#/" (click)="StartDowload()" *ngIf="started" style="color: #416de5;">here</a>  </p>
+
+    <p *ngIf="started"> Download should start automatically. Click  <a href="#/" (click)="StartDowload()" style="color: #416de5;">here</a> if download does not start after 5 seconds   </p>
+    <p *ngIf="started"> View Order History <a href="#/" (click)="goHistory()" style="color: #416de5;">here</a>  </p>
 
     <div style="float: right;margin-bottom: 1em;" *ngIf="!started">
 

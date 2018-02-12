@@ -39,6 +39,7 @@ export class VideoThumbnailComponent implements OnInit {
       a.Title = a.Title.toLowerCase()
     })
     this.videosFull = home.Table2.sort(this.Compare);
+    this.videos=this.videosFull
     this.Play(this.videosFull[0]);
 
   }
@@ -86,10 +87,17 @@ export class VideoThumbnailComponent implements OnInit {
 
     this.CurrentPlaying = video;
 
-    this.videos = [];
+    
+  /*  while(this.videos.length>0)
+    {
+      this.videos.length = this.videos.length - 1;
+    }
+
     for (var i = 0; i < this.videosFull.length; i++)
       if (this.videosFull[i].ShiurID !== this.CurrentPlaying.ShiurID)
-        this.videos.push(this.videosFull[i]);
+        {
+          this.videos.push(this.videosFull[i]);
+        }*/
 
     this.firstTime = true;
 
@@ -195,7 +203,9 @@ export class VideoThumbnailComponent implements OnInit {
 
   //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  slides = [
+  slideConfig = {"slidesToShow": 5, "slidesToScroll": 1};
+
+  /*slides = [
     {img: "http://placehold.it/350x150/000000"},
     {img: "http://placehold.it/350x150/111111"},
     {img: "http://placehold.it/350x150/333333"},
@@ -205,7 +215,7 @@ export class VideoThumbnailComponent implements OnInit {
     {img: "http://placehold.it/350x150/333333"},
     {img: "http://placehold.it/350x150/666666"}
   ];
-  slideConfig = {"slidesToShow": 4, "slidesToScroll": 1};
+
 
   addSlide() {
     this.slides.push({img: "http://placehold.it/350x150/777777"})
@@ -214,6 +224,8 @@ export class VideoThumbnailComponent implements OnInit {
   removeSlide() {
     this.slides.length = this.slides.length - 1;
   }
+  */
+
   afterChange(e) {
     console.log('afterChange');
   }

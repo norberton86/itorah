@@ -26,6 +26,7 @@ export class VideoThumbnailComponent implements OnInit {
 
   ngOnInit() {
     this.Read();
+ 
   }
 
   Read() {
@@ -203,7 +204,10 @@ export class VideoThumbnailComponent implements OnInit {
 
   //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  slideConfig = {"slidesToShow": 5, "slidesToScroll": 1};
+  slideConfig = {"slidesToShow": 5
+                ,"slidesToScroll": 1
+                ,prevArrow: '<i class="fa fa-2x fa-arrow-circle-left" style="cursor:pointer;color: #ffc800;"></i>'
+                ,nextArrow: '<i class="fa fa-2x fa-arrow-circle-right" style="cursor:pointer;color: #ffc800;"></i>'};
 
   /*slides = [
     {img: "http://placehold.it/350x150/000000"},
@@ -227,6 +231,6 @@ export class VideoThumbnailComponent implements OnInit {
   */
 
   afterChange(e) {
-    console.log('afterChange');
+    console.log(e);
   }
 }

@@ -44,8 +44,7 @@
 
 				<div class="col-md-12 col-lg-9">
 
-					<ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig" (afterChange)="afterChange($event)">
-
+					<ngx-slick class="carousel mySlick" #slickModal="slick-modal" [config]="slideConfig" (afterChange)="afterChange($event)">
 
 						<div *ngFor="let v of videos;" class="elementThumbail" ngxSlickItem>
 							<div class="video-thumbnail-image" style="cursor: pointer;padding: 1.1em;" (click)="Play(v)">
@@ -82,6 +81,41 @@
 						</div>
 						<!-- /.video-thumbnail -->
 					</ngx-slick>
+
+
+					<div *ngFor="let v of videos;" class="elementThumbail videitos" >
+						<div class="video-thumbnail-image" style="cursor: pointer;padding: 1.1em;" (click)="Play(v)">
+
+							<img src="./assets/build/css/images/images/speakers/{{getImageName(v)}}" alt="">
+
+						</div>
+						<!-- /.video-thumbnail-image -->
+
+						<div class="video-thumbnail-content">
+
+
+							<p (click)="Play(v)">
+								<a href="#/" title="{{v.Title}}" style="color:#375ce3;text-decoration: none">{{v.Title|reduceStringThumbail}}</a>
+							</p>
+
+							<p (click)="Play(v)" title="{{v.Speaker}}" style="cursor:pointer">{{v.Speaker|reduceStringThumbail}}</p>
+
+							<span>
+										<i class="ico-clock"></i>
+
+										<strong>{{v.RunTime}}</strong>
+									</span>
+						</div>
+						<!-- /.video-thumbnail-content -->
+
+						<div class="video-thumbnail-actions">
+							<a href="#/" class="link" (click)="Play(v)">
+										<i class="ico-camera"  *ngIf="v.MediaType=='Video'"></i>
+                    					<i class="ico-microphone"  *ngIf="v.MediaType=='Audio'"></i>
+									</a>
+						</div>
+						<!-- /.video-thumbnail-actions -->
+					</div>
 
 				</div>
 				<!-- /.section-content -->

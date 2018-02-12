@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../../service/player.service';
 import { HomeService } from '../../service/home.service';
+import { PrintService } from '../../service/print.service';
 import { ReadNow } from '../../model/home';
 
-declare var $: any
+
 
 @Component({
   selector: 'app-read-now-emunah',
   templateUrl: './read-now-emunah.component.html',
-  styleUrls: ['./read-now-emunah.component.css']
+  styleUrls: ['./read-now-emunah.component.css'],
+  providers:[PrintService]
 })
 export class ReadNowEmunahComponent implements OnInit {
 
   rNow: ReadNow
   htmlFormatted:boolean
 
-  constructor(private playerService: PlayerService, private homeService: HomeService) { }
+  constructor(private playerService: PlayerService, private homeService: HomeService,private printService:PrintService) { }
 
   ngOnInit() {
 
@@ -34,7 +36,7 @@ export class ReadNowEmunahComponent implements OnInit {
   }
 
   Print() {
-    $('#printReadEmunah').print();
+    this.printService.Print('printReadEmunah');
   }
 
   Play() {

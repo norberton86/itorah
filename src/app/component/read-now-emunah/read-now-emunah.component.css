@@ -13,3 +13,12 @@ overflow: auto;
 {
 margin-bottom: 1em;
 }
+
+
+.titlePrint{ display: none; }
+
+@media print
+{
+ .titlePrint{ display: initial; }
+
+}

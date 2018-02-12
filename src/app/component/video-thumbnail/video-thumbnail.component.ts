@@ -209,27 +209,6 @@ export class VideoThumbnailComponent implements OnInit {
                 ,prevArrow: '<i class="fa fa-2x fa-arrow-circle-left" style="cursor:pointer;color: #ffc800;"></i>'
                 ,nextArrow: '<i class="fa fa-2x fa-arrow-circle-right" style="cursor:pointer;color: #ffc800;"></i>'};
 
-  /*slides = [
-    {img: "http://placehold.it/350x150/000000"},
-    {img: "http://placehold.it/350x150/111111"},
-    {img: "http://placehold.it/350x150/333333"},
-    {img: "http://placehold.it/350x150/666666"},
-    {img: "http://placehold.it/350x150/000000"},
-    {img: "http://placehold.it/350x150/111111"},
-    {img: "http://placehold.it/350x150/333333"},
-    {img: "http://placehold.it/350x150/666666"}
-  ];
-
-
-  addSlide() {
-    this.slides.push({img: "http://placehold.it/350x150/777777"})
-  }
-
-  removeSlide() {
-    this.slides.length = this.slides.length - 1;
-  }
-  */
-
   afterChange(e) {
     console.log(e);
   }

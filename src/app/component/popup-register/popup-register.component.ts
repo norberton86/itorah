@@ -8,6 +8,7 @@ import { EntireList, Perek, Need } from '../../model/entire-list';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TehillimService } from "app/service/tehillim.service";
 import { HomeService } from '../../service/home.service';
+import { PrintService } from '../../service/print.service';
 
 declare var $: any;
 declare var VirtualKeyboard: any;
@@ -15,7 +16,8 @@ declare var VirtualKeyboard: any;
 @Component({
   selector: 'app-popup-register',
   templateUrl: './popup-register.component.html',
-  styleUrls: ['./popup-register.component.css']
+  styleUrls: ['./popup-register.component.css'],
+  providers:[PrintService]
 })
 export class PopupRegisterComponent implements OnInit {
 
@@ -35,7 +37,7 @@ export class PopupRegisterComponent implements OnInit {
 
   form: FormGroup;
   formLevaya: FormGroup;
-  constructor(private homeService: HomeService, private registerTehellimService: RegisterTehellimService, private playerService: PlayerService, private _fb: FormBuilder, private tehillimService: TehillimService) {
+  constructor(private printService:PrintService,private homeService: HomeService, private registerTehellimService: RegisterTehellimService, private playerService: PlayerService, private _fb: FormBuilder, private tehillimService: TehillimService) {
 
     this.form = this._fb.group({
       mother: ['', [Validators.required]],
@@ -484,7 +486,7 @@ export class PopupRegisterComponent implements OnInit {
   }
 
   Print() {
-    $('#printPerek').print();
+    this.printService.Print('printPerek')
   }
 
   Play() {
@@ -527,7 +529,7 @@ export class PopupRegisterComponent implements OnInit {
   }
 
   PrintPasuk() {
-    $('#printPasuk').print();
+    this.printService.Print('printPasuk')
   }
   //--------------------------------------------------------Read Now----------------------------------------------------------
 

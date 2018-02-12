@@ -2,13 +2,15 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ReadNow, Link } from '../../model/home';
 import { PlayerService } from '../../service/player.service';
 import { HomeService } from '../../service/home.service';
+import { PrintService } from '../../service/print.service';
 
 declare var $: any;
 
 @Component({
   selector: 'app-read-now',
   templateUrl: './read-now.component.html',
-  styleUrls: ['./read-now.component.css']
+  styleUrls: ['./read-now.component.css'],
+  providers:[PrintService]
 })
 export class ReadNowComponent implements OnInit, OnChanges {
 
@@ -30,7 +32,7 @@ export class ReadNowComponent implements OnInit, OnChanges {
 
   formatted: boolean;
 
-  constructor(private playerService: PlayerService, private homeService: HomeService) { }
+  constructor(private playerService: PlayerService, private homeService: HomeService,private printService:PrintService) { }
 
   ngOnInit() {
     this.readLink();
@@ -70,7 +72,7 @@ export class ReadNowComponent implements OnInit, OnChanges {
   }
 
   Print() {
-    $('#printRead').print();
+      this.printService.Print('printRead')
   }
 
   Play() {

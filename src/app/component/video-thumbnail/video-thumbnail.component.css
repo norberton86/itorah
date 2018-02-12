@@ -17,18 +17,37 @@
     padding: 0.3em;
 }
 
+.mySlick{
+    display: flex;
+    align-items: center;
+}
 
-@media only screen       /*Phone*/
+.videitos{
+    display: none;
+}
+
+
+@media only screen       /*Phone portrait*/
   and (min-device-width: 320px) 
   and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) {
 
-.elementThumbail{
+ .elementThumbail{
     width:100%;
-}
+ }
+
+ .mySlick{
+    display: none
+ }
+
+ .videitos{
+    display: inherit
+ }
 
 }
+
+
 
 @media only screen   /*tablet*/
   and (min-device-width: 768px) 
@@ -52,3 +71,5 @@
         margin: 0 auto;
     }
 }
+
+

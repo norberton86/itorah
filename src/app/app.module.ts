@@ -89,6 +89,7 @@ import { PayConfirmedComponent } from './component/pay-confirmed/pay-confirmed.c
 import { AccountConfirmedComponent } from './component/account-confirmed/account-confirmed.component';
 import { ReadNowEmunahComponent } from './component/read-now-emunah/read-now-emunah.component';
 
+import { SlickModule } from 'ngx-slick';
 
 let providers = {
     "google": {
@@ -169,7 +170,8 @@ let providers = {
      FormsModule,ReactiveFormsModule,
      Angular2SocialLoginModule,
      DndModule.forRoot(),
-     ShareButtonsModule.forRoot()
+     ShareButtonsModule.forRoot(),
+     SlickModule.forRoot()
   ],
   providers: [PopupService,GemaraService,PaymentService,PlayerService,RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
   bootstrap: [AppComponent]

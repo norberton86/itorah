@@ -54,6 +54,7 @@ export class AppComponent implements OnInit {
                       {
                         case "Daily Emunah":this.emunahCounter=result.Table[i].Count; break;
                         case "Weekly Parasha": this.parashaCounter=result.Table[i].Count; break;
+                        case "Weekly Inspire": this.inspireCounter=result.Table[i].Count; break;
                       }                     
            },
            error=>{},()=>{}
@@ -62,6 +63,7 @@ export class AppComponent implements OnInit {
   
   emunahCounter:number=0
   parashaCounter:number=0
+  inspireCounter:number=0
 
   keyDownFunction(event) {
     if (event.keyCode == 13) {

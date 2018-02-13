@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Topic, SubTopic, chelek, seif, SubSeif, ContentSeifMishna, Question, SearchResult } from '../../model/topic';
 import { MIshnaService } from '../../service/mishna.service';
 import { PlayerService } from '../../service/player.service';
+import { PrintService } from '../../service/print.service';
 import { Observable } from 'rxjs/Observable';
 
 declare var $: any;
@@ -10,7 +11,7 @@ declare var $: any;
   selector: 'app-berura',
   templateUrl: './berura.component.html',
   styleUrls: ['./berura.component.css'],
-  providers: [MIshnaService]
+  providers: [MIshnaService,PrintService]
 })
 export class BeruraComponent implements OnInit {
 
@@ -38,7 +39,7 @@ export class BeruraComponent implements OnInit {
   search: Array<SearchResult> = []
   action: string = 'combo'
 
-  constructor(private playerService: PlayerService, private mishnaService: MIshnaService) { }
+  constructor(private playerService: PlayerService, private mishnaService: MIshnaService,private printService:PrintService) { }
 
   ngOnInit() {
     this.ReadCheleck()
@@ -217,12 +218,32 @@ export class BeruraComponent implements OnInit {
 
   Print() {
 
+   /*
     this.content.imageUrl.split(',').forEach(function (a) {
       $("body").append("<img src='"+a+"' id='im'/>")
       $('#im').print();
       $('#im').remove();
     })
 
+    */
+    this.printService.Print('im')
+
+  }
+
+
+  getUrlImages():String[]
+  {
+    if(this.content==null)
+     return []
+    else
+    try{
+       return this.content.imageUrl.split(',')
+    }
+    catch(e)
+    {
+      return []
+    }
+     
   }
 
 

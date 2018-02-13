@@ -111,12 +111,20 @@
    color:#dadada
 }
 
-/*------------------*/
-
 
 h3{
     font-size: initial;
     font-weight: initial;
     color: inherit;
 }
+
+/***********************************/
+
+#im{ display: none; }
+
+@media print
+{
+ #im{ display: initial; }
+}
+
 

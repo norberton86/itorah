@@ -290,6 +290,7 @@ export class AppComponent implements OnInit {
           else {
             self.rNow = response
             $("#readNow").toggleClass('shown');
+            window.scrollTo(0,0)
           }
 
       }, function (error) { }, function () { }

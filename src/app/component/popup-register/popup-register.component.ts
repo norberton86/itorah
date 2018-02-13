@@ -523,6 +523,27 @@ export class PopupRegisterComponent implements OnInit {
     if (this.benPasuk == 'ben')
       isBat = 'false'
 
+
+    if(this.isInvalidPasuk('#field-first-Pasuk-name'))
+    {
+      this.firstNameRequired=true
+      let self=this
+      setTimeout(function(){
+        self.firstNameRequired=false
+      },3000)
+      return
+    }
+
+    if(this.isInvalidPasuk('#field-mothers-Pasuk-name'))
+    {
+      this.motherNameRequired=true
+      let self=this
+      setTimeout(function(){
+        self.motherNameRequired=false
+      },3000)
+      return
+    }
+
     var motherHebrew = $('#field-mothers-Pasuk-name').val()
     var firstHebrew = $('#field-first-Pasuk-name').val()
 
@@ -533,6 +554,15 @@ export class PopupRegisterComponent implements OnInit {
       this.registerTehellimService.Notify("No content for this selection", true);
     }, () => { })
   }
+
+  firstNameRequired:boolean=false
+  motherNameRequired:boolean=false
+
+  isInvalidPasuk(id:string):boolean
+  {
+     return $(id).val()==''?true:false
+  }
+
 
   PrintPasuk() {
     this.printService.Print('printPasuk')

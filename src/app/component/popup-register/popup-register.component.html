@@ -394,7 +394,9 @@
 									 [(ngModel)]="firstNamePasuk" (focus)="SetKeyboard('field-first-Pasuk-name')">
 								</div>
 								<!-- /.form-controls -->
-
+								<div   class="animated bounceIn" style="color:red;" *ngIf="firstNameRequired"> <!-- *ngIf="" -->
+        						  First Name is required
+      							</div>
 
 
 							</div>
@@ -416,12 +418,18 @@
 									<div class="form__col">
 										<input type="text" class="field" name="field-mothers-Pasuk-name" id="field-mothers-Pasuk-name" value="" placeholder="Mother’s First Name"
 										 [(ngModel)]="motherPasuk" (focus)="SetKeyboard('field-mothers-Pasuk-name')">
+
+										<div class="animated bounceIn" style="color:red;" *ngIf="motherNameRequired"> <!-- *ngIf="" -->
+        						 			Mother Name is required
+		      							</div>
+
 									</div>
 									<!-- /.form__col -->
-
-
+									
 								</div>
 								<!-- /.form__controls -->
+
+								
 
 
 								<!--<div class="form__controls">

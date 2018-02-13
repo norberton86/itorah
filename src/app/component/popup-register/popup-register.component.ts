@@ -277,7 +277,13 @@ export class PopupRegisterComponent implements OnInit {
     this.section = section
 
     if (this.section == 'cientoNueve')
-      this.existResults = 119
+      {
+        this.existResults = 119
+        if($('input[name="form-register-119"]:checked').length == 0)   //check if the checkbox is unChecked
+        {
+          this.existResults=0  //then hide the third column
+        } 
+      }
 
     if (this.section == 'today') {
       this.existResults = 44

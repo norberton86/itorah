@@ -174,11 +174,11 @@ export class WeeklyResultComponent implements OnInit {
 
 
   Print(_title: string, _content: string) {
-    this.weeklyResultService.setDataRead({ title: _title, content: "<h4 style='margin-bottom: 2em;'>" + _title + "</h4>" + _content, accion: 'print' })
+    this.weeklyResultService.setDataRead({ title: _title, content: "<h4 style='margin-bottom: 2em;text-align: center;'>" + _title + "</h4>" + _content, accion: 'print' })
 
   }
   PrintHeader() {
-    this.weeklyResultService.setDataRead({ title: this.title, content: "<h4 style='margin-bottom: 2em;'>" + this.title + "</h4>" + this.content, accion: 'print' })
+    this.weeklyResultService.setDataRead({ title: this.title, content: "<h4 style='margin-bottom: 2em;text-align: center;'>" + this.title + "</h4>" + this.content, accion: 'print' })
 
   }
 

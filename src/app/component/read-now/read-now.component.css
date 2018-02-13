@@ -38,3 +38,12 @@ margin-bottom: 1em;
         width: 100%;
     }
 }
+
+/**********************************************************************************************************************/
+.titlePrintReadNow{ display: none; }
+
+@media print
+{
+ .titlePrintReadNow{ display: initial; }
+
+}

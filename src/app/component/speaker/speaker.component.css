@@ -77,7 +77,7 @@
 
 
 
-/** this two next lines are for bring style to the dropdown in  phone device  **/
+/** this block is for bring style to the dropdown in  phone device  **/
 
 @media (max-width: 600px){
 .tile-box-speakers .tile-box-head .select.select-tertiary {

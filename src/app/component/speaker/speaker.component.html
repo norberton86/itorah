@@ -718,7 +718,7 @@
 								<!-- /.track-content -->
 
 								<div class="track-actions">
-									<a href="#/" class="link-star" [class.link-star-active]="s.isMySpeaker" id="{{s.id}}" attr.is="{{s.isMySpeaker}}" (click)="ManageFavorites(s.id,s.isMySpeaker);">
+									<a href="#/" class="link-star" [class.link-star-active]="IsMain(s)" id="{{s.id}}" attr.is="{{IsMain(s)}}" (click)="ManageFavorites(s.id,IsMain(s));">
 										<i class="ico-star-empty"></i>
 										
 										<i class="ico-star-full"></i>

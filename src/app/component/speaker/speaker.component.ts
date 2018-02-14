@@ -109,9 +109,37 @@ export class SpeakerComponent implements OnInit {
     this.queueService.getLogin().subscribe(result=>{
       if(result=='LogOut')
       this.queue=[]
+      
+      //for all-my relationship
+      if(result=='LogOut')
+      {
+        this.mys=[]
+      }
+      else{
+
+        this.FillMySpeakers()
+
+      }
     })
 
   }
+
+  FillMySpeakers()
+  {
+    this.speakerService.readMy().subscribe(result=>{
+      if(result!="No speakers saved for this user")
+      this.mys=result
+      else
+      this.mys=[]
+    },error=>{ this.mys=[]},()=>{})
+  }
+
+  IsMain(s:Speaker):boolean
+  {
+     return this.mys.findIndex(i=>i.id==s.id)>=0?true:false
+  }
+
+  mys:Array<Speaker>=[]
 
   Linked(id:string):boolean
   {
@@ -273,6 +301,9 @@ export class SpeakerComponent implements OnInit {
   ngOnInit() {
     this.ReadMainSpeaker();
     this.ReadAllSpeaker();
+
+    if(this.isAuthenticated())
+    this.FillMySpeakers()
   }
 
 
@@ -416,7 +447,12 @@ export class SpeakerComponent implements OnInit {
         function (response) {
           self.speakers.forEach(function (s) {
             if (s.id == id)
+            {  
               s.isMySpeaker = false;
+              
+              if(self.mys.findIndex(a=>a.id==id)>=0)
+              self.mys.splice(self.mys.findIndex(a=>a.id==id), 1) //remove from the my list
+            }
           })
         }, function (error) { }, function () { }
       )
@@ -426,7 +462,12 @@ export class SpeakerComponent implements OnInit {
         function (response) {
           self.speakers.forEach(function (s) {
             if (s.id == id)
-              s.isMySpeaker = true;
+            {
+             s.isMySpeaker = true;
+
+             self.mys.push(self.allSpeakers.find(a=>a.id==id))//remove from the my list
+            }
+              
           })
         }, function (error) { }, function () { }
       )

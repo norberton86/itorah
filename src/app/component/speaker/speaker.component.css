@@ -74,3 +74,18 @@
 
     /*popup*/
 /* tooltip */
+
+
+
+/** this two next lines are for bring style to the dropdown in  phone device  **/
+
+@media (max-width: 600px){
+.tile-box-speakers .tile-box-head .select.select-tertiary {
+    padding-left: 0.5em;
+    border-bottom: 1px solid #dadada;
+}
+
+.tile-box-primary .tile-box-head .select:first-child{
+        margin-right: 0px;
+}
+}

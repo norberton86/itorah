@@ -43,6 +43,11 @@ export class AppComponent implements OnInit {
     this.myCreditsService.getCredits().subscribe(credit=>{
            this.credit=credit
     })
+
+    this.homeService.getBrowse().subscribe(result=>{
+          if(result=='close')
+            $('#browseDrop').val('')
+    })
   }
 
   setCount()
@@ -322,9 +327,13 @@ export class AppComponent implements OnInit {
   }
 
   ChangeBrowse(value: string) {
+    if(value!='')
+    {
     this.browseClasses = value
     this.Browse()
     this.CloseMenu()
+    }
+
   }
 
   isAuthenticated(): boolean {

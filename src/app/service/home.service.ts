@@ -6,8 +6,12 @@ import {Http, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { Subject } from 'rxjs/Subject';
+
 @Injectable()
 export class HomeService extends ServiceLogin{
+
+   private subjectBrowse: Subject<string> = new Subject<string>();
 
    
     constructor(http: Http) {
@@ -68,6 +72,14 @@ export class HomeService extends ServiceLogin{
                 return response.json();
             }
         )
+    }
+
+    getBrowse(): Observable<string> {
+        return this.subjectBrowse.asObservable();
+    }
+
+    setBrowse(action: string): void {
+        this.subjectBrowse.next(action);
     }
 }
 

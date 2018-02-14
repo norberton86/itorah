@@ -472,12 +472,14 @@ export class SpeakerComponent implements OnInit {
 
   RefreshSlide(data: Array<Speaker>) {
 
+    let self = this;
+
     var content = '<div class="slider-clip">' +
       '<ul class="slides">';
 
     data.forEach(function (a) {
 
-      var image = a.picUrl != '' ? '<img  src="' + a.picUrl + '" alt="">' : ''
+      var image = a.picUrl != '' ? '<img  src="' + self.getImageName(a)  + '" alt="">' : ''
 
       content += '<li  class="slider-slide"   data-type="lecture" id="' + a.id + '"  >' +
         '<div class="slider-inner" >' +
@@ -536,7 +538,7 @@ export class SpeakerComponent implements OnInit {
         }]
     });
 
-    let self = this;
+    
     $('li[data-type="lecture"]').click(function () {
 
       if (self.navigatedToCategory)
@@ -549,6 +551,11 @@ export class SpeakerComponent implements OnInit {
       })
 
     })
+  }
+
+    getImageName(s:Speaker): string {
+
+    return "./assets/build/css/images/images/speakersMainVersion/" +s.firstName + s.lastName + ".png"
   }
 
 

@@ -1,11 +1,14 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { PlayerService } from '../../service/player.service';
 import { BrowseService } from '../../service/browse.service';
+import { HomeService } from '../../service/home.service';
 import { Browse, Category, SubCategory } from '../../model/shiurim';
 import { Observable } from 'rxjs/Observable';
 import { Speaker } from '../../model/speaker';
 import { SpeakerService } from '../../service/speaker.service';
 import { Page } from '../../model/page';
+
+declare var $:any
 
 @Component({
   selector: 'app-browse',
@@ -42,7 +45,7 @@ export class BrowseComponent implements OnInit, OnChanges {
   @Input()
   browseClass: string
 
-  constructor(private playerService: PlayerService, private browseService: BrowseService, private speakerService: SpeakerService) { }
+  constructor(private playerService: PlayerService, private browseService: BrowseService, private speakerService: SpeakerService,private homeService:HomeService) { }
 
   NameforSelect(c: Category) {
     if (c.id != 0)
@@ -104,6 +107,7 @@ export class BrowseComponent implements OnInit, OnChanges {
     this.ReadMain()
     this.ReadCategory();
     this.Read();
+    this.Resize()
   }
 
   ReadMain()
@@ -171,7 +175,17 @@ export class BrowseComponent implements OnInit, OnChanges {
 
   Close() {
     this.setCurrent('Recently')
+    this.homeService.setBrowse('close')
   }
 
+  Resize()
+  {
+    /*
+    $( window ).resize(function() {
+       $('#browseSearch').css('max-height','calc(100vh - 110%)')
+    });
+    */
+  }
+  
 
 }

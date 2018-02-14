@@ -41,9 +41,14 @@
 									</a>
                 </li>
 
-                <li [class.current]="Current('Category')" id="drops">
+                <li [class.current]="Current('Category')" id="drops" (click)="setCurrent('Category')">
 
-                    <div class="row" style="padding: 0.2em;font-size: 13px;" (click)="setCurrent('Category')">
+                    <a href="#/" id="searchByLabel">
+										Search by
+										
+                    </a>
+
+                    <div class="row" style="padding: 0.2em;font-size: 13px;">
 
                         <div class="col-sm-12 col-md-1">
                             <label>Search by</label>
@@ -74,7 +79,25 @@
             </ul>
         </div>
         <!-- /.tabs-head -->
-        <div style="max-height: 500px;overflow: auto;">
+        <div >
+
+            <div  *ngIf="current=='Category'">
+
+                <div id="auxDrops">
+
+                            <select [(ngModel)]="category" (change)="SubCategory()" style="width:33%">
+					            <option *ngFor="let c of categorys" [ngValue]="c">{{NameforSelect(c)}}</option>
+				            </select>
+                        
+                            <select [(ngModel)]="subCategory"  [disabled]="category!=undefined&&category.id==0" [class.mydisabled]="category!=undefined&&category.id==0" style="width:33%">
+					            <option *ngFor="let c of subCategorys" [ngValue]="c">{{NameforSelect(c)}}</option>
+				            </select>
+                        
+                            <select [(ngModel)]="speaker" style="width:33%">
+					            <option *ngFor="let c of speakers" [ngValue]="c">{{c.firstName}} {{c.lastName}}</option>
+				            </select>
+                </div>
+            </div>
 
             <!--<div class="tile-box-tab" [class.current]="Current('All')" id="search-tile-tab-1-b">
              <app-pager [allResults]="all" ></app-pager>

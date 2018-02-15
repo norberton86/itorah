@@ -11,6 +11,7 @@ export class Shiurim {
     wowzaVideoUrl:string
     cost:number
     sponsor:string
+    categoryCount:number
 }
 
 

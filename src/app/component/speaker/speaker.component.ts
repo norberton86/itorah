@@ -867,10 +867,6 @@ export class SpeakerComponent implements OnInit {
 
   }
 
-
-
-  //---------------------------------------------------------------------------------------------------------------------- 
-
   Back() {
     this.current = "tile-tab-3"
     this.detailed = false
@@ -917,7 +913,7 @@ export class SpeakerComponent implements OnInit {
     }
 
   }
-  //-----------------------------------------------------------------------------------------------------------------------
+ 
   OpenPopover(id) {
     if (this.requesting)
       return;
@@ -938,8 +934,8 @@ export class SpeakerComponent implements OnInit {
       return;
 
     this.requesting = true
-
-    this.selectedCategory = this.rCategories.find(c => c.ID == idCategory).Name
+    
+    this.selectedCategory = this.rCategories.find(c => c.ID == idCategory).Name 
 
     this.shiurimService.relatedShiur(idShiur, idCategory).subscribe(result => {
       this.requesting = false
@@ -962,6 +958,23 @@ export class SpeakerComponent implements OnInit {
   requesting: boolean = false
   navigatedToCategory: boolean = false
   selectedCategory: string = ''
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ShiursForOneCategories(id) {
+    if (this.requesting)
+      return;
+
+    this.requesting = true
+
+    this.shiurimService.relatedCategories(id).subscribe(result => {   //get th only one category for this shiur
+      this.requesting = false
+
+      this.rCategories = result
+
+      this.RelatedShiurs(id,result[0].ID)    //get the shiurs for this categories
+
+    }, error => { this.requesting = false }, () => { })
+  }
 
 }
 

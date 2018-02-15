@@ -135,9 +135,14 @@
 											<i class="ico-download"></i>
 										</a>
 
-										<a [popover]="myPopover" href="#/" class="link-download icons-wrap tooltip boom" title="Click below for more Shiurim in this category from this speaker"
+										<a *ngIf="s.categoryCount==1" href="#/" class="link-download icons-wrap tooltip boom" title="Click below for more Shiurim in this category from this speaker"
+										 (click)="ShiursForOneCategories(s.id)">
+												More...
+										</a>
+
+										<a *ngIf="s.categoryCount>1" [popover]="myPopover" href="#/" class="link-download icons-wrap tooltip boom" title="Click below for more Shiurim in this category from this speaker"
 										 (click)="OpenPopover(s.id)">
-												<i class="fa fa-info" aria-hidden="true"></i>
+												More...
 										</a>
 
 										<popover-content #myPopover title="{{s.title}}" placement="right" [animation]="true" [closeOnClickOutside]="true">

@@ -184,12 +184,12 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
     this.alertService.setLogin("Signed");
     this.RefreshView();
 
-  /*try {
+   try {
       this.FullStory(data)
     }
     catch (e) {
       console.log("Error trying the full story: "+e.message)
-    }*/
+    }
   }
 
 

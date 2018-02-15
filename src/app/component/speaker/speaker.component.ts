@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone, EventEmitter, Output } from '@angular/core';
 import { Speaker } from '../../model/speaker';
-import { Shiurim,ItemQueue } from '../../model/shiurim';
+import { Shiurim, ItemQueue } from '../../model/shiurim';
 import { Page } from '../../model/page';
 import { Letter } from '../../model/letter';
 import { SpeakerService } from '../../service/speaker.service';
@@ -102,20 +102,19 @@ export class SpeakerComponent implements OnInit {
     this.pagesAll = [];
 
     //-----------------------------------------------------------------------------------------------------------------------------------------
-    this.queueService.getQueue().subscribe(queue=>{
-      this.queue=queue
+    this.queueService.getQueue().subscribe(queue => {
+      this.queue = queue
     })
 
-    this.queueService.getLogin().subscribe(result=>{
-      if(result=='LogOut')
-      this.queue=[]
-      
+    this.queueService.getLogin().subscribe(result => {
+      if (result == 'LogOut')
+        this.queue = []
+
       //for all-my relationship
-      if(result=='LogOut')
-      {
-        this.mys=[]
+      if (result == 'LogOut') {
+        this.mys = []
       }
-      else{
+      else {
 
         this.FillMySpeakers()
 
@@ -124,29 +123,26 @@ export class SpeakerComponent implements OnInit {
 
   }
 
-  FillMySpeakers()
-  {
-    this.speakerService.readMy().subscribe(result=>{
-      if(result!="No speakers saved for this user")
-      this.mys=result
+  FillMySpeakers() {
+    this.speakerService.readMy().subscribe(result => {
+      if (result != "No speakers saved for this user")
+        this.mys = result
       else
-      this.mys=[]
-    },error=>{ this.mys=[]},()=>{})
+        this.mys = []
+    }, error => { this.mys = [] }, () => { })
   }
 
-  IsMain(s:Speaker):boolean
-  {
-     return this.mys.findIndex(i=>i.id==s.id)>=0?true:false
+  IsMain(s: Speaker): boolean {
+    return this.mys.findIndex(i => i.id == s.id) >= 0 ? true : false
   }
 
-  mys:Array<Speaker>=[]
+  mys: Array<Speaker> = []
 
-  Linked(id:string):boolean
-  {
-    return this.queue.findIndex(i=>i.id==id)>=0
+  Linked(id: string): boolean {
+    return this.queue.findIndex(i => i.id == id) >= 0
   }
 
-  queue:Array<ItemQueue>=[]
+  queue: Array<ItemQueue> = []
 
   isAuthenticated(): boolean {
     let self = this;
@@ -291,9 +287,9 @@ export class SpeakerComponent implements OnInit {
     }
   }
 
-  Play(id: string, title: string, sponsor: string,mediaId:string) {
+  Play(id: string, title: string, sponsor: string, mediaId: string) {
     var onlyAudio = id.includes('LT-Audio');
-    this.playerService.Play(title, id, onlyAudio, this.speaker.firstName + " " + this.speaker.lastName, sponsor,1,mediaId);
+    this.playerService.Play(title, id, onlyAudio, this.speaker.firstName + " " + this.speaker.lastName, sponsor, 1, mediaId);
   }
 
 
@@ -302,8 +298,8 @@ export class SpeakerComponent implements OnInit {
     this.ReadMainSpeaker();
     this.ReadAllSpeaker();
 
-    if(this.isAuthenticated())
-    this.FillMySpeakers()
+    if (localStorage.getItem('userItorah') != null && localStorage.getItem('userItorah') != "")
+      this.FillMySpeakers()
   }
 
 
@@ -441,37 +437,40 @@ export class SpeakerComponent implements OnInit {
 
 
   ManageFavorites(id: number, isMy: boolean) {
-    let self = this;
-    if (isMy) {
-      this.speakerService.deactivateSpeaker(id).subscribe(
-        function (response) {
-          self.speakers.forEach(function (s) {
-            if (s.id == id)
-            {  
-              s.isMySpeaker = false;
-              
-              if(self.mys.findIndex(a=>a.id==id)>=0)
-              self.mys.splice(self.mys.findIndex(a=>a.id==id), 1) //remove from the my list
-            }
-          })
-        }, function (error) { }, function () { }
-      )
-    }
-    else {
-      this.speakerService.activateSpeaker(id).subscribe(
-        function (response) {
-          self.speakers.forEach(function (s) {
-            if (s.id == id)
-            {
-             s.isMySpeaker = true;
 
-             self.mys.push(self.allSpeakers.find(a=>a.id==id))//remove from the my list
-            }
-              
-          })
-        }, function (error) { }, function () { }
-      )
+    if (this.isAuthenticated()) {
+      let self = this;
+      if (isMy) {
+        this.speakerService.deactivateSpeaker(id).subscribe(
+          function (response) {
+            self.speakers.forEach(function (s) {
+              if (s.id == id) {
+               // s.isMySpeaker = false;
+
+                if (self.mys.findIndex(a => a.id == id) >= 0)
+                  self.mys.splice(self.mys.findIndex(a => a.id == id), 1) //remove from the my list
+              }
+            })
+          }, function (error) { }, function () { }
+        )
+      }
+      else {
+        this.speakerService.activateSpeaker(id).subscribe(
+          function (response) {
+            self.speakers.forEach(function (s) {
+             
+              if (s.id == id) {
+               // s.isMySpeaker = true;
+
+                self.mys.push(self.allSpeakers.find(a => a.id == id))//remove from the my list
+              }
+
+            })
+          }, function (error) { }, function () { }
+        )
+      }
     }
+
   }
 
   Current(section: string) {
@@ -520,7 +519,7 @@ export class SpeakerComponent implements OnInit {
 
     data.forEach(function (a) {
 
-      var image = a.picUrl != '' ? '<img  src="' + self.getImageName(a)  + '" alt="">' : ''
+      var image = a.picUrl != '' ? '<img  src="' + self.getImageName(a) + '" alt="">' : ''
 
       content += '<li  class="slider-slide"   data-type="lecture" id="' + a.id + '"  >' +
         '<div class="slider-inner" >' +
@@ -579,7 +578,7 @@ export class SpeakerComponent implements OnInit {
         }]
     });
 
-    
+
     $('li[data-type="lecture"]').click(function () {
 
       if (self.navigatedToCategory)
@@ -594,9 +593,9 @@ export class SpeakerComponent implements OnInit {
     })
   }
 
-    getImageName(s:Speaker): string {
+  getImageName(s: Speaker): string {
 
-    return "./assets/build/css/images/images/speakersMainVersion/" +s.firstName + s.lastName + ".png"
+    return "./assets/build/css/images/images/speakersMainVersion/" + s.firstName + s.lastName + ".png"
   }
 
 
@@ -696,23 +695,23 @@ export class SpeakerComponent implements OnInit {
   //---------------------------------------------------------------------------------------------------------------------- 
 
   ReadMainSpeaker() {
-    
+
     this.speakerService.readMain().subscribe(
       result => {
-        
+
         this.InitializeMainSpeakers(result)
       }
-      ,error=>{
-        
-      },()=>{}
+      , error => {
+
+      }, () => { }
     )
 
   }
 
-  firstTime:boolean=true
+  firstTime: boolean = true
 
   InitializeMainSpeakers(data: Array<Speaker>) {
-    
+
     this.currentSpeakers = data;
     this.RefreshSlide(this.currentSpeakers)
 
@@ -722,7 +721,7 @@ export class SpeakerComponent implements OnInit {
 
     this.FillShirium(data[0].relatedShiurim) //fill with the first 28 shiur from fr first speaker
 
-     this.checkLocalExistence(data[0].id);  //get the full content for the first speaker
+    this.checkLocalExistence(data[0].id);  //get the full content for the first speaker
   }
 
   checkLocalExistence(id: number) {
@@ -763,16 +762,16 @@ export class SpeakerComponent implements OnInit {
   ReadLectures(idSpeaker: number) {
     let self = this;
 
-    if(!this.firstTime)
-    self.myEvent.next(true)
+    if (!this.firstTime)
+      self.myEvent.next(true)
 
     this.shiurimService.read(idSpeaker).subscribe(
       function (respond) {
 
-        if(!self.firstTime)
-        self.myEvent.next(false)
+        if (!self.firstTime)
+          self.myEvent.next(false)
 
-        self.firstTime=false
+        self.firstTime = false
 
 
         self.FillShirium(respond);
@@ -783,11 +782,11 @@ export class SpeakerComponent implements OnInit {
       },
       function (error) {
 
-        if(!self.firstTime)
-        self.myEvent.next(false)
+        if (!self.firstTime)
+          self.myEvent.next(false)
 
-        self.firstTime=false
-       },
+        self.firstTime = false
+      },
       function () { }
     )
 
@@ -905,7 +904,7 @@ export class SpeakerComponent implements OnInit {
     }, error => { this.requesting = false }, () => { })
   }
 
- 
+
 
   RelatedShiurs(idShiur, idCategory) {
     if (this.requesting)
@@ -913,14 +912,14 @@ export class SpeakerComponent implements OnInit {
 
     this.requesting = true
 
-    this.selectedCategory=this.rCategories.find(c=>c.ID==idCategory).Name
+    this.selectedCategory = this.rCategories.find(c => c.ID == idCategory).Name
 
     this.shiurimService.relatedShiur(idShiur, idCategory).subscribe(result => {
       this.requesting = false
 
-      if(!this.navigatedToCategory)  //only the first time when the user navigaet for categories
-      this.shiurOriginalsBeforecategory = this.allShiriums //create the copy  
-      
+      if (!this.navigatedToCategory)  //only the first time when the user navigaet for categories
+        this.shiurOriginalsBeforecategory = this.allShiriums //create the copy  
+
       this.FillShirium(result)
       this.navigatedToCategory = true
     }, error => { this.requesting = false }, () => { })
@@ -935,6 +934,6 @@ export class SpeakerComponent implements OnInit {
   shiurOriginalsBeforecategory: Array<Shiurim> = []  //copy to navigate back
   requesting: boolean = false
   navigatedToCategory: boolean = false
-  selectedCategory:string=''
+  selectedCategory: string = ''
 
 }

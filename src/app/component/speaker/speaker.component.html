@@ -2,10 +2,11 @@
 	<div class="tile-box-primary tile-box-speakers">
 		<div class="tile-box-head tile-box-head-block">
 			<div class="select select-tertiary select-speakers">
-				<select name="field-8" id="field-8" (change)="filterChanged($event.target.value)">
-					<option id="main" value="#tile-tab-1">Main Speakers</option>
+				<select name="fieldSelectSpeakers" id="fieldSelectSpeakers" [(ngModel)]="selectedSelect" (change)="filterChanged()">
+				<!--	<option id="main" value="#tile-tab-1">Main Speakers</option>
 					<option id="my" value="#tile-tab-2">My Favorites</option>
-					<option id="all" value="#tile-tab-3">All Speakers</option>
+					<option id="all" value="#tile-tab-3">All Speakers</option>-->
+					<option *ngFor="let c of selects" [ngValue]="c">{{c.name}}</option>
 				</select>
 			</div>
 			<!-- /.select -->
@@ -71,6 +72,10 @@
 				        </button>
 
 						<div class="lists-head-inner" *ngIf="!navigatedToCategory">
+							<button type="button" class="search-btn buttonRemove" *ngIf="isMy" (click)="RemoveMySpeaker()">
+						  		<i class="fa fa-trash"></i> 
+				        	</button>
+							
 							<h5>{{speaker?.title}} {{speaker?.firstName}} {{speaker?.lastName}}</h5>
 							<p>{{speaker?.totalShiurim}} Shiurim</p>
 						</div>
@@ -78,6 +83,8 @@
 						<div class="lists-head-inner" *ngIf="navigatedToCategory">
 							<h5><b>Category:</b> {{selectedCategory}}</h5>
 						</div>
+
+
 						<!-- /.lists-head-inner -->
 
 						<div class="search-secondary">

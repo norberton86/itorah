@@ -150,7 +150,7 @@ export class SpeakerComponent implements OnInit {
     {
       setTimeout(function () {
 
-        $("#field-8").val("#" + self.current) //restore value in select
+        self.selectedSelect= self.selects.find(i=>i.id=="#" + self.current) //restore select to previous position 
         //------------------------------------------------------------------------------------------
         $('.nav-access > li > .dropdown-signin').addClass('shown').show() //open the Sign in session
 
@@ -384,10 +384,14 @@ export class SpeakerComponent implements OnInit {
 
   }
 
+  
+  selects:Array<Selects>=[{id:"#tile-tab-1",name:"Main Speakers"},{id:"#tile-tab-2",name:"My Favorites"},{id:"#tile-tab-3",name:"All Speakers"}]
+  selectedSelect:Selects=this.selects[0]
   isMy: boolean = false
-  filterChanged(value: string) {
+
+  filterChanged() {
     let self = this
-    if (value == '#tile-tab-2') //if is 'my'
+    if (this.selectedSelect.id == '#tile-tab-2') //if is 'my'
     {
       if (self.isAuthenticated())//needs credentials to access
         self.speakerService.readMy().subscribe(
@@ -419,7 +423,7 @@ export class SpeakerComponent implements OnInit {
         self.InitializeMySlide(JSON.parse(localStorage.getItem("mainSpeakers")));  //set the slide with "main"
       }
 
-      if (value == '#tile-tab-1')  //if is "main"
+      if (this.selectedSelect.id == '#tile-tab-1')  //if is "main"
       {
         self.isMy = false;
         self.current = "tile-tab-1"
@@ -437,8 +441,13 @@ export class SpeakerComponent implements OnInit {
     }
   }
 
+  RemoveMySpeaker()
+  {
+    this.ManageFavorites(this.speaker.id,true,true)  //remove from myspeaker
 
-  ManageFavorites(id: number, isMy: boolean) {
+  }
+
+  ManageFavorites(id: number, isMy: boolean,removingInUI:boolean=false) {
 
     if (this.isAuthenticated()) {
       let self = this;
@@ -450,7 +459,15 @@ export class SpeakerComponent implements OnInit {
                 // s.isMySpeaker = false;
 
                 if (self.mys.findIndex(a => a.id == id) >= 0)
+                {
                   self.mys.splice(self.mys.findIndex(a => a.id == id), 1) //remove from the my list
+                
+                  if(removingInUI)
+                  {
+                    self.selectedSelect= self.selects.find(i=>i.id=='#tile-tab-2')
+                    self.filterChanged() 
+                  }
+                }
               }
             })
           }, function (error) { }, function () { }
@@ -938,4 +955,10 @@ export class SpeakerComponent implements OnInit {
   navigatedToCategory: boolean = false
   selectedCategory: string = ''
 
+}
+
+
+class Selects{
+  id:string
+  name:string
 }

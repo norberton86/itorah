@@ -89,3 +89,14 @@
         margin-right: 0px;
 }
 }
+
+/*********************************************************************/
+
+.buttonRemove{
+    width: 33px;
+    height: 33px;
+    border: 1px solid #d3d3d3;
+    background: #ffcc00;
+    border-radius: 4px;
+    margin-right: 0.5em;
+}

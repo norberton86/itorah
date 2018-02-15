@@ -395,16 +395,18 @@ export class SpeakerComponent implements OnInit {
 
 
             if (response == "No speakers saved for this user") {
-              self.speakerService.Notify(response, true);
-              return;
+              self.current = "tile-tab-2"
+              self.InitializeMySlide([]);
+       
             }
+            else {
+              self.isMy = true
+              self.current = "tile-tab-1"
+              self.InitializeMySlide(response);
 
-            self.isMy = true
-            self.current = "tile-tab-1"
-            self.InitializeMySlide(response);
-
-            self.speaker = response[0];
-            self.ReadLectures(response[0].id);
+              self.speaker = response[0];
+              self.ReadLectures(response[0].id);
+            }
           },
           function (error) {
 
@@ -445,7 +447,7 @@ export class SpeakerComponent implements OnInit {
           function (response) {
             self.speakers.forEach(function (s) {
               if (s.id == id) {
-               // s.isMySpeaker = false;
+                // s.isMySpeaker = false;
 
                 if (self.mys.findIndex(a => a.id == id) >= 0)
                   self.mys.splice(self.mys.findIndex(a => a.id == id), 1) //remove from the my list
@@ -458,9 +460,9 @@ export class SpeakerComponent implements OnInit {
         this.speakerService.activateSpeaker(id).subscribe(
           function (response) {
             self.speakers.forEach(function (s) {
-             
+
               if (s.id == id) {
-               // s.isMySpeaker = true;
+                // s.isMySpeaker = true;
 
                 self.mys.push(self.allSpeakers.find(a => a.id == id))//remove from the my list
               }

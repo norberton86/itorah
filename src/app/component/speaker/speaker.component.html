@@ -47,7 +47,7 @@
 			</a>
 
 
-			<a href="#/" class="link-expand" title="Expand" (click)="FullScreen()" id="expand" *ngIf="!enter">
+			<a href="#/" class="link-expand" title="Expand" (click)="FullScreen()" id="expand" *ngIf="!enter&&current!='tile-tab-2'">
 				<i class="fa fa-expand" aria-hidden="true"></i>
 			</a>
 
@@ -204,11 +204,11 @@
 				<div class="lists">
 					<div class="lists-head">
 						<div class="lists-head-inner">
-							<a href="#">Manage My Speakers</a>
+							<p style="color: red;font-size: 2em;">No speakers saved for this user</p>
 						</div>
 						<!-- /.lists-head-inner -->
 
-						<div class="search-secondary">
+						<div class="search-secondary" style="display: none">
 							<ul class="list-alphabet">
 								<li>
 									<a href="#">A</a>
@@ -328,7 +328,7 @@
 					</div>
 					<!-- /.lists-head -->
 
-					<div class="lists-body">
+					<div class="lists-body" style="display: none">
 						<ul class="tracks tracks-secondary">
 							<li class="track">
 								<div class="track-content">
@@ -653,7 +653,7 @@
 			</div>
 			<!-- /.table-body -->
 
-			<div class="tile-box-actions">
+			<div class="tile-box-actions" style="display: none">
 				<div class="paging">
 					<ul>
 						<li><a href="#" class="paging-prev"><i class="ico-paging-prev"></i></a></li>

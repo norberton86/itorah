@@ -449,11 +449,17 @@ export class SpeakerComponent implements OnInit {
 
   ManageFavorites(id: number, isMy: boolean,removingInUI:boolean=false) {
 
+    if(this.requesting)
+    return
+
     if (this.isAuthenticated()) {
+      this.requesting=true
       let self = this;
       if (isMy) {
         this.speakerService.deactivateSpeaker(id).subscribe(
           function (response) {
+            self.requesting=false
+
             self.speakers.forEach(function (s) {
               if (s.id == id) {
                 // s.isMySpeaker = false;
@@ -470,12 +476,14 @@ export class SpeakerComponent implements OnInit {
                 }
               }
             })
-          }, function (error) { }, function () { }
+          }, function (error) { self.requesting=false}, function () { }
         )
       }
       else {
         this.speakerService.activateSpeaker(id).subscribe(
           function (response) {
+            self.requesting=false
+
             self.speakers.forEach(function (s) {
 
               if (s.id == id) {
@@ -485,7 +493,7 @@ export class SpeakerComponent implements OnInit {
               }
 
             })
-          }, function (error) { }, function () { }
+          }, function (error) {self.requesting=false }, function () { }
         )
       }
     }

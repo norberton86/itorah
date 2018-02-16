@@ -40,7 +40,7 @@ export class WeeklyComponent implements OnInit,OnChanges {
     this.last.id = 999
     this.last.parashaName = "More..."
 
-    this.selectedPerasha = this.last
+   // this.selectedPerasha = this.last
 
   }
 
@@ -54,45 +54,44 @@ export class WeeklyComponent implements OnInit,OnChanges {
     if(!changes.valCombo.isFirstChange())
     {
          if(changes.valCombo.currentValue=="more")
-         this.filterChanged('More...')
+          this.selectedPerasha=this.perashas[this.perashas.length-1]  //more always in the last position
          else
-          this.filterChanged(this.perashas[0].parashaName)
+          this.selectedPerasha=this.perashas[0]
+
+          this.filterChanged()
     }
 
   }
 
   Back() {
     this.more = true
+
   }
   ReadParasha() {
-    let self = this;
+    
     this.perashaService.read().subscribe(
-      function (response) {
-        self.perashas = response;
+      response=> {
+        this.perashas = response;
 
         //add the last element
-        self.perashas.push(self.last);
+        this.perashas.push(this.last);
 
-        self.selectedPerasha = response[0];
-        self.parragraphs = response[0].emailText.split("\n").filter(function (s) {
-          return s != "";
-        });
+        this.selectedPerasha = this.perashas[0];
+        this.parragraphs = this.selectedPerasha.emailText.split("\n").filter(s=>s != "");
 
-      }, function (error) { }, function () { }
+      }, error=> { }, ()=> { }
     )
 
   }
 
-
-
   AllParashas() {
-    let self = this;
+    
     this.perashaService.readAll().subscribe(
-      function (response) {
-        self.allParasha = response;
-        self.CreateTable();
+      response=> {
+        this.allParasha = response;
+        this.CreateTable();
 
-      }, function (error) { }, function () { }
+      }, error=> { }, ()=> { }
     )
   }
 
@@ -159,34 +158,32 @@ export class WeeklyComponent implements OnInit,OnChanges {
   }
 
   ShowParashaTotal(id: any) {
-    this.selectedPerasha = this.data.filter(function (s) {
+    var p = this.data.filter(function (s) {
       return s.id == id
     })[0]
 
-    this.parragraphs = this.selectedPerasha.emailText.split("\n").filter(function (s) {
+    this.parragraphs = p.emailText.split("\n").filter(function (s) {
       return s != "";
     });
+
+   this.titleInOptional=p.clipTitle
 
     this.more = false;
     this.optional = true
   }
 
+  titleInOptional:string=''
 
-  filterChanged(value) {
-    if (value == "More...") {
+
+  filterChanged() {
+    if (this.selectedPerasha.parashaName == "More...") {
       this.more = true;
     }
     else {
       this.more = false;
       this.optional = false
 
-      this.selectedPerasha = this.perashas.filter(function (s) { //select by name
-        return s.parashaName == value
-      })[0]
-
-      this.parragraphs = this.selectedPerasha.emailText.split("\n").filter(function (s) {
-        return s != "";
-      });
+      this.parragraphs = this.selectedPerasha.emailText.split("\n").filter(s=>s != "");
     }
   }
 

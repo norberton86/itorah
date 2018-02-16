@@ -3,8 +3,8 @@
 		<div class="tile-box-head">
 			<div class="tile-box-head-content">
 				<div class="select select-secondary">
-					<select name="field-7" id="field-7"  (change)="filterChanged($event.target.value)">
-						<option *ngFor="let c of perashas" [ngValue]="c.id">{{c.parashaName}}</option>
+					<select name="field-7" id="field-7"  (change)="filterChanged()" [(ngModel)]="selectedPerasha">
+						<option *ngFor="let c of perashas" [ngValue]="c">{{c.parashaName}}</option>
 					</select>
 				</div>
 				<!-- /.select -->
@@ -31,7 +31,8 @@
 						 <i class="fa fa-long-arrow-left"></i> Back
 				</button>
 				
-				<h5>{{selectedPerasha?.clipTitle}} <a href="#/"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a> <a href="#/"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a></h5>
+				<h5 *ngIf="optional">{{titleInOptional}} <a href="#/"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a> <a href="#/"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a></h5>
+				<h5 *ngIf="!optional">{{selectedPerasha?.clipTitle}} <a href="#/"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a> <a href="#/"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a></h5>
 
 				<p *ngFor="let p of parragraphs">
 					{{p}}

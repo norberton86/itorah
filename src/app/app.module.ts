@@ -40,6 +40,7 @@ import {TehillimService} from './service/tehillim.service'
 import {AccountService} from './service/account.service'
 import {MyCreditsService} from './service/my-credits.service'
 import {RegisterTehellimService} from './service/register-tehellim.service'
+import {CkEditorService} from './service/ck-editor.service'
 import {DndModule} from 'ng2-dnd';
 import {ShareButtonsModule} from 'ngx-sharebuttons';
 import { SubscribeComponent } from './component/subscribe/subscribe.component';
@@ -90,6 +91,7 @@ import { AccountConfirmedComponent } from './component/account-confirmed/account
 import { ReadNowEmunahComponent } from './component/read-now-emunah/read-now-emunah.component';
 
 import { SlickModule } from 'ngx-slick';
+import { CkEditorComponent } from './component/ck-editor/ck-editor.component';
 
 let providers = {
     "google": {
@@ -162,7 +164,8 @@ let providers = {
     PagerServerComponent,
     PayConfirmedComponent,
     AccountConfirmedComponent,
-    ReadNowEmunahComponent
+    ReadNowEmunahComponent,
+    CkEditorComponent
   ],
   imports: [
     BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,MyDatePickerModule ,NguiAutoCompleteModule,PopoverModule,
@@ -173,7 +176,7 @@ let providers = {
      ShareButtonsModule.forRoot(),
      SlickModule.forRoot()
   ],
-  providers: [PopupService,GemaraService,PaymentService,PlayerService,RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
+  providers: [CkEditorService,PopupService,GemaraService,PaymentService,PlayerService,RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

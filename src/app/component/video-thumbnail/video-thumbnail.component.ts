@@ -36,9 +36,9 @@ export class VideoThumbnailComponent implements OnInit {
   }
 
   setCount(home: Home) {
-    home.Table2.forEach(function (a) {
+    /*home.Table2.forEach(function (a) {
       a.Title = a.Title.toLowerCase()
-    })
+    })*/
     this.videosFull = home.Table2.sort(this.Compare);
     this.videos=this.videosFull
     this.Play(this.videosFull[0]);

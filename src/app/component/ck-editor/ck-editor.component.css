@@ -1,0 +1,33 @@
+.ckContainer{
+padding-left: 0.4em;
+padding-right: 0.4em;
+}
+
+.itemCk{
+    display: inline-block;
+    padding: 0.2em;
+}
+
+.third{
+width: 25%
+}
+
+.third:nth-child(2) {
+   width: 50%
+}
+
+.half{
+width: 50%
+}
+
+.full{
+width: 100%
+}
+
+@media (max-width: 667px)
+{
+    .third,.third:nth-child(2),.half{
+        width: 100%
+    }
+}
+

@@ -1,0 +1,5 @@
+<div class="ckContainer">
+  <div *ngFor="let item of items; let i = index"  [innerHTML]="item.HtmlContent" class="itemCk" [ngClass]="{'third': items.length==3, 'half': items.length==2, 'full': items.length==1}" >
+     
+  </div>
+</div>

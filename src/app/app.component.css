@@ -179,10 +179,22 @@ padding: 0.5em;
 
 
 /*****************************************************/
+.browseInPhone{
+  visibility: collapse
+}
+
 
 @media (max-width: 600px){
 .select-box{
     visibility: hidden;
+}
+
+}
+
+@media (max-width: 375px){
+
+.browseInPhone{
+  visibility: visible
 }
 }
 

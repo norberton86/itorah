@@ -27,8 +27,8 @@ export class WeeklySearchComponent implements OnInit, OnChanges {
 
     var borde = 8 + size;
     var altura = $('#item-content-8')[0].offsetTop
-    var tamano = parseInt($('.tile-box#item-content-8').css('height').split("px")[0]) * 1.4
-    $('#wResult').css('margin-top', altura + tamano + borde + "px")
+    var tamano = parseInt($('.tile-box#item-content-8').css('height').split("px")[0]) * 1.3
+    $('#wResult').css('margin-top', altura + tamano + borde + 250 + "px")  //250 is the heigth of the ckeditor component
 
     this.RefreshData()
   }

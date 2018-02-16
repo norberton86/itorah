@@ -6,8 +6,23 @@ padding-right: 0.4em;
 .itemCk{
     display: inline-block;
     padding: 0.2em;
+    width: 25%
 }
 
+.itemCk:nth-child(2){
+     width: 50%
+}
+
+
+@media (max-width: 667px)
+{
+    .itemCk,.itemCk:nth-child(2){
+        width: 100%
+    }
+}
+
+
+/***********  for the first vesion
 .third{
 width: 25%
 }
@@ -29,5 +44,7 @@ width: 100%
     .third,.third:nth-child(2),.half{
         width: 100%
     }
-}
+}    
+
+*/
 

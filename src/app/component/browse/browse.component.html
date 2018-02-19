@@ -66,9 +66,9 @@
 				            </select>
                         </div>
 
-                        <div class="col-sm-12 col-md-3">
+                        <div class="col-sm-12 col-md-3" id="speakerSelectBrowse">
                             <select [(ngModel)]="speaker" >
-					            <option *ngFor="let c of speakers" [ngValue]="c">{{c.firstName}} {{c.lastName}}</option>
+					            <option *ngFor="let c of speakers" [ngValue]="c" [disabled]="c.firstName=='Featured Speakers'||c.firstName==' '">{{c.firstName}} {{c.lastName}}</option>
 				            </select>
                         </div>
 

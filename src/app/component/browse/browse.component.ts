@@ -87,6 +87,12 @@ export class BrowseComponent implements OnInit, OnChanges {
           result.splice(index,1)
        })
       
+      var speakerDivisor = new Speaker()
+      speakerDivisor.id = 0
+      speakerDivisor.firstName = " "
+
+      result.unshift(speakerDivisor)
+
       mains.reverse().forEach(function(a){  //inserted at the begining
         result.unshift(a)
       })
@@ -97,6 +103,13 @@ export class BrowseComponent implements OnInit, OnChanges {
       speakerEmpty.firstName = "Select Speaker"
 
       this.speakers.push(speakerEmpty)
+      
+      var featuredTitle=new Speaker()
+      featuredTitle.firstName="Featured Speakers"
+      featuredTitle.id=0
+
+      this.speakers.push(featuredTitle)
+
       this.speakers = this.speakers.concat(result)
       this.speaker = this.speakers[0]
     }, error => { }, () => { })

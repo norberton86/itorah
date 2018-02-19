@@ -206,7 +206,7 @@ export class PlayerService extends Service {
         "title": title,
         "description": "",
         "sourceURL": url, //"http://media.learntorah.com/LT-Video/mp4:RZE-350.mp4/playlist.m3u8"
-        "autoPlay": false,
+        "autoPlay": true,
         "volume": "25",
         "mute": false,
         "loop": false,

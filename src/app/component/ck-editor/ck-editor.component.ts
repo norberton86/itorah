@@ -20,7 +20,7 @@ export class CkEditorComponent implements OnInit {
   Read()
   {
     this.ckEditorService.read().subscribe(result=>{
-      this.items=result.filter(i=>i.isActive)
+      this.items=result
 
       this.items.forEach(item=>{
           item.HtmlContent= item.HtmlContent.replace('./customcontent/','https://halacha.learntorah.com/mLog/customcontent/')
@@ -29,4 +29,8 @@ export class CkEditorComponent implements OnInit {
     },error=>{},()=>{})
   }
 
+  IsVisible():boolean
+  {
+  return   this.items.filter(i=>i.isActive&&i.HtmlContent!='').length>0
+  }
 }

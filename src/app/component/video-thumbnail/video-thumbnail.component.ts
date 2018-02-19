@@ -17,7 +17,7 @@ export class VideoThumbnailComponent implements OnInit {
   videos: Array<Lectures>;
   videosFull: Array<Lectures>;
   CurrentPlaying: Lectures;
-  firstTime: boolean = false;
+  firstTime: boolean = true;
 
 
   constructor(private homeService: HomeService, private playerService: PlayerService) {
@@ -26,7 +26,7 @@ export class VideoThumbnailComponent implements OnInit {
 
   ngOnInit() {
     this.Read();
- 
+
   }
 
   Read() {
@@ -40,7 +40,7 @@ export class VideoThumbnailComponent implements OnInit {
       a.Title = a.Title.toLowerCase()
     })*/
     this.videosFull = home.Table2.sort(this.Compare);
-    this.videos=this.videosFull
+    this.videos = this.videosFull
     this.Play(this.videosFull[0]);
 
   }
@@ -59,7 +59,7 @@ export class VideoThumbnailComponent implements OnInit {
       WowzaPlayer.get('video-body').destroy()
 
 
-   var myPlayer = WowzaPlayer.create('video-body',
+    var myPlayer = WowzaPlayer.create('video-body',
       {
 
         "license": "PLAY1-dD8ur-NjfMh-andPW-beKnB-t4nYZ",
@@ -70,7 +70,7 @@ export class VideoThumbnailComponent implements OnInit {
 
         "sourceURL": video.url,
 
-        "autoPlay": this.firstTime,
+        "autoPlay": !this.firstTime,
 
         "volume": "75",
 
@@ -88,19 +88,19 @@ export class VideoThumbnailComponent implements OnInit {
 
     this.CurrentPlaying = video;
 
-    
-  /*  while(this.videos.length>0)
-    {
-      this.videos.length = this.videos.length - 1;
-    }
 
-    for (var i = 0; i < this.videosFull.length; i++)
-      if (this.videosFull[i].ShiurID !== this.CurrentPlaying.ShiurID)
-        {
-          this.videos.push(this.videosFull[i]);
-        }*/
+    /*  while(this.videos.length>0)
+      {
+        this.videos.length = this.videos.length - 1;
+      }
+  
+      for (var i = 0; i < this.videosFull.length; i++)
+        if (this.videosFull[i].ShiurID !== this.CurrentPlaying.ShiurID)
+          {
+            this.videos.push(this.videosFull[i]);
+          }*/
 
-    this.firstTime = true;
+   
 
     this.currentTitle = video.Title
     this.currentSpeaker = video.Speaker
@@ -109,10 +109,17 @@ export class VideoThumbnailComponent implements OnInit {
     this.GetSponsor()
 
 
-   let self=this
-    myPlayer.onLoad(function(){
-       self.SetImageOnPlayer(video)
+    let self = this
+    myPlayer.onLoad(function () {
+      self.SetImageOnPlayer(video)
+      
+      if(!self.firstTime)
+        myPlayer.play()
+      else
+        self.firstTime = false;
     });
+
+     
   }
 
 
@@ -204,10 +211,12 @@ export class VideoThumbnailComponent implements OnInit {
 
   //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  slideConfig = {"slidesToShow": 5
-                ,"slidesToScroll": 1
-                ,prevArrow: '<i class="fa fa-2x fa-arrow-circle-left" style="cursor:pointer;color: #ffc800;"></i>'
-                ,nextArrow: '<i class="fa fa-2x fa-arrow-circle-right" style="cursor:pointer;color: #ffc800;"></i>'};
+  slideConfig = {
+    "slidesToShow": 5
+    , "slidesToScroll": 1
+    , prevArrow: '<i class="fa fa-2x fa-arrow-circle-left" style="cursor:pointer;color: #ffc800;"></i>'
+    , nextArrow: '<i class="fa fa-2x fa-arrow-circle-right" style="cursor:pointer;color: #ffc800;"></i>'
+  };
 
   afterChange(e) {
     console.log(e);

@@ -47,4 +47,22 @@ export class PerashaService extends Service{
             }
         )
     }
+
+    public readByParasha(id:number): Observable<InspireSearch[]> {
+        
+        return this.http.get("http://itorahapi.3nom.com/api/WeeklyInspire/byParasha?ID="+id).map(
+            (response) => {
+                let body = response.json();
+                return body;
+            }
+        )
+    }
+}
+
+export class InspireSearch
+{
+    id: number
+    title: string
+    content:string
+    audio:string
 }

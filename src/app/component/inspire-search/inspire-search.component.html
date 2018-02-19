@@ -1,0 +1,63 @@
+<div class="tile-box" id="item-content-123">
+	<div class="tile-box-primary" id="weeklyPrimary">
+		<div class="tile-box-head">
+			<div class="tile-box-head-content">
+				<!--<div class="select select-secondary">
+					<select name="field-7" id="field-7"  (change)="filterChanged()" [(ngModel)]="selectedPerasha">
+						<option *ngFor="let c of perashas" [ngValue]="c">{{c.parashaName}}</option>
+					</select>
+				</div> -->
+				<!-- /.select -->
+
+				<h4>Rabbi Jacob S. Kassin Daily Halacha Series authored by Rabbi Eli J. Mansour</h4>
+			</div>
+			<!-- /.table-head-content -->
+
+			<div class="tile-box-head-aside">
+
+			</div>
+			<!-- /.table-head-aside -->
+
+			<a href="#" class="link-close">
+				<i class="ico-close"></i>
+			</a>
+		</div>
+		<!-- /.table-head -->
+
+		<div class="tile-box-body" >
+			<div *ngIf="!more">
+
+				<button type="button" class="search-btn" id="buttonBack" (click)="Back()" *ngIf="optional">
+						 <i class="fa fa-long-arrow-left"></i> Back
+				</button>
+				
+				<h5 *ngIf="optional">{{titleInOptional}} <a href="#/"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a> <a href="#/"><i class="ico-print-yellow" (click)="Print()"></i></a></h5>
+				<h5 *ngIf="!optional">{{selectedPerasha?.clipTitle}} <a href="#/"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a> <a href="#/"><i class="ico-print-yellow" (click)="Print()"></i></a></h5>
+
+        <div [innerHTML]="content" style="white-space: pre-wrap;" id="printInspireSearch">
+
+        </div>
+			</div>
+			<div *ngIf="more">
+
+				<table id="tableweekly">
+					<thead>
+
+					</thead>
+
+					<tbody>
+						<tr *ngFor="let p of matrix">
+							<td *ngFor="let par of p">
+								 <a href="#/" (click)="readByParasha(allParasha[par].ID)" id="wpInspireSearch{{allParasha[par].ID}}"> <b>{{allParasha[par]?.Name}}</b>, {{allParasha[par]?.HebrewName}}</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+		<!-- /.table-body -->
+	</div>
+	<!-- /.tile-box-primary -->
+</div>

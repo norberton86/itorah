@@ -1,0 +1,39 @@
+#tableweekly a{
+text-decoration:none;
+}
+
+
+#tableweekly td{
+    padding-bottom: 0.5em;
+}
+
+ a:hover {
+    color: #3352e8;
+}
+
+
+#buttonBack{
+    width: 80px;
+    height: 33px;
+    border: 1px solid #d3d3d3;
+    background: #ffcc00;
+    border-radius: 2px;
+    border-radius: 4px;
+}
+
+#weeklyPrimary
+{
+ min-height: 408px
+}
+
+.tile-box-primary .tile-box-body {
+    height: 340px;
+}
+
+@media(max-width:768px) {
+ 
+ select{
+     padding-left: 1em !important;
+ }
+
+}

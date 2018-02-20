@@ -1,0 +1,99 @@
+.headerDedication{
+    border-bottom: 2px solid #e9e9e9;
+    margin-right: 25px;
+    margin-left: 25px;
+    padding-bottom: 0.5em;
+}
+
+.leftSide{
+    margin-top: 0.5em;
+    border-radius: 3px;
+    border:1px solid #a1a6b1;
+    background-color: #11233e;
+    height: 6.1em;
+}
+
+.leftSide:nth-child(2){
+    margin-left: 1em;
+}
+
+.centerContainer{
+display: table
+}
+
+.kidCentered{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/*.flexing {
+    display: flex;
+}*/
+
+img{
+    height: 100%;
+}
+
+
+@media(max-width:375px) 
+{
+  .imgContainer{
+      text-align: center;
+      padding-top: 0.3em;
+  }
+
+  img{
+    border-radius: 3px;
+  }
+
+ .leftSide {
+     height: 13em;
+ }
+
+ .leftSide:nth-child(2){
+   height: 6.1em;
+   margin-left: 0em; 
+ }
+
+ .headerDedication{
+    margin-right: 0px;
+    margin-left: 0px;
+ }
+
+}
+
+@media(min-width:667px) 
+{
+ .leftSide {
+    height: 10em;
+ }
+
+ .leftSide:nth-child(2){
+   height: 6.1em;
+   margin-left: 0em; 
+ }
+}
+
+@media(min-width:768px) 
+{
+  .leftSide:nth-child(2) {
+     margin-left: 0em; 
+ }
+  .leftSide {
+    height: 6.1em;
+ }
+
+ .leftSide:nth-child(2){
+   height: 6.1em;
+ }
+}
+
+@media(min-width:1024px) 
+{
+    .threeParra{
+        padding-top: 2%;
+    }
+
+}
+
+

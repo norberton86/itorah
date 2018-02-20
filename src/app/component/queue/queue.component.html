@@ -1,38 +1,40 @@
 <ul class="list-updates" dnd-sortable-container [sortableData]="queues">
-<li *ngFor="let s of queues;let i = index" dnd-sortable [sortableIndex]="i" dnd-droppable (onDropSuccess)="Moved()" [style.cursor]="cursor">
-	<!--<a href="#" class="link-play-secondary"></a>--> 
+	<li *ngFor="let s of queues;let i = index" dnd-sortable [sortableIndex]="i" dnd-droppable (onDropSuccess)="Moved()" [style.cursor]="cursor">
+		<!--<a href="#" class="link-play-secondary"></a>-->
 
-	<h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
+		<h6 data-title="{{s.title}}">{{s.title|reduceString}}</h6>
 
-	<p>{{s.speaker}} <span>{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span></p>
+		<p>{{s.speaker}} <span>{{s.dateRecorded| date: 'MM/dd/yyyy'}}</span></p>
 
-	<p>
-		<strong *ngIf="s.sourceID==1">{{s.length|time}}min</strong>  <strong *ngIf="s.sourceID==2">{{s.length}}</strong> <strong *ngIf="s.sourceID==1">{{s.language|language}}</strong> <strong *ngIf="s.sourceID==2">En</strong>
-	</p>
+		<p>
+			<strong *ngIf="s.sourceID==1">{{s.length|time}}min</strong> <strong *ngIf="s.sourceID==2">{{s.length}}</strong>
+			<strong
+			 *ngIf="s.sourceID==1">{{s.language|language}}</strong> <strong *ngIf="s.sourceID==2">En</strong>
+		</p>
 
-	<div class="list-updates-actions">
+		<div class="list-updates-actions">
 
-		<a href="#/"  *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}" (click)="Play(s.title,s.video,s.speaker,s.sponsor,s.id)">
+			<a href="#/" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}" (click)="Play(s.title,s.video,s.speaker,s.sponsor,s.id)">
 			<i class="ico-camera"></i>
         </a>
 
-		<a href="#/" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}" (click)="Play(s.title,s.audio,s.speaker,s.sponsor,s.id)">
+			<a href="#/" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}" (click)="Play(s.title,s.audio,s.speaker,s.sponsor,s.id)">
 			<i class="ico-mic"></i>
 		</a>
 
-		<a href="#/" title="Download">
+			<a href="#/" title="Download">
 			<i class="ico-download"></i>
 		</a>
 
-		<a href="#/" title="Remove" (click)="Remove(s.id)">
+			<a href="#/" title="Remove" (click)="Remove(s.id)">
 			<i class="fa fa-trash fa-lg" aria-hidden="true"></i>
 		</a>
-	</div>
-	<!-- /.list-actions -->
-	<div class="progress">
-  		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <!--progress-bar-striped active-->
-    		40%
-  		</div>
-	</div>
-</li>
+		</div>
+		<!-- /.list-actions -->
+		<div class="progress">
+			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+
+			</div>
+		</div>
+	</li>
 </ul>

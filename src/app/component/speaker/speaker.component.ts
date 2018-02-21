@@ -443,6 +443,7 @@ export class SpeakerComponent implements OnInit {
 
   Close()
   {
+    this.navigatedToCategory = false
     this.selectedSelect=this.selects[0]
     this.filterChanged()
   }

@@ -30,12 +30,18 @@ display: table
     display: flex;
 }*/
 
+.linkBiography{
+    color: #1d92ff;
+    text-decoration: none;
+    font-size: 13px;
+}
+
 img{
     height: 100%;
 }
 
 
-@media(max-width:375px) 
+@media(max-width:375px) /*phone portrait*/ 
 {
   .imgContainer{
       text-align: center;
@@ -47,7 +53,7 @@ img{
   }
 
  .leftSide {
-     height: 13em;
+     height: 15em;
  }
 
  .leftSide:nth-child(2){
@@ -62,37 +68,58 @@ img{
 
 }
 
-@media(min-width:667px) 
-{
- .leftSide {
-    height: 10em;
- }
+@media   (min-width: 376px)  /*phone landscape*/
+  and (max-width: 667px) 
+  { 
 
- .leftSide:nth-child(2){
-   height: 6.1em;
-   margin-left: 0em; 
- }
+    .imgContainer
+    {
+        width: 25%;
+        float: left;
+    }
+
+    .threeParra{
+                
+        width: 75%;
+        float:left;
+    }
+
+  
+
+    .leftSide:nth-child(2){
+        height: 6.1em;
+        margin-left: 0em; 
+    }
+
 }
 
+/*
 @media(min-width:768px) 
 {
+
+}*/
+
+
+@media only screen 
+  and (min-width: 768px) 
+  and (max-width: 1024px)  {
   .leftSide:nth-child(2) {
      margin-left: 0em; 
  }
   .leftSide {
-    height: 6.1em;
+    height: 6.7em;
  }
 
  .leftSide:nth-child(2){
-   height: 6.1em;
+   height: 6.7em;
  }
 }
 
 @media(min-width:1024px) 
 {
-    .threeParra{
+    /*.threeParra{
         padding-top: 2%;
-    }
+    }*/
 
 }
 

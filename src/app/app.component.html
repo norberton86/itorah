@@ -132,7 +132,7 @@
 							</li>
 
 							<li class="">
-								<a href="#mobile" data-tooltip="The iTorah mobile settings with your portable devices such as smartphones and tablets. After loading and installing the iTorah mobile app, you can configure your device to automatically download your preferred audio content each and every day. This audio content will then be loaded on your device and you will be able to listen to it anytime during that day even without internet connection." >
+								<a (click)="OpenPopup('#mobile')"  href="#mobile" data-tooltip="The iTorah mobile settings with your portable devices such as smartphones and tablets. After loading and installing the iTorah mobile app, you can configure your device to automatically download your preferred audio content each and every day. This audio content will then be loaded on your device and you will be able to listen to it anytime during that day even without internet connection." >
 									<i class="fa fa-mobile" style="font-size: 28px;"></i> <span>Itorah&nbsp;Mobile</span>
 								</a>
 							</li>
@@ -307,6 +307,8 @@
     <app-advertise></app-advertise>
 
 			<app-dedication></app-dedication>
+
+			<app-mobile></app-mobile>
 
 			<app-pay-confirmed></app-pay-confirmed>
 

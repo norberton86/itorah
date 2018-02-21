@@ -93,6 +93,7 @@ import { ReadNowEmunahComponent } from './component/read-now-emunah/read-now-emu
 import { SlickModule } from 'ngx-slick';
 import { CkEditorComponent } from './component/ck-editor/ck-editor.component';
 import { InspireSearchComponent } from './component/inspire-search/inspire-search.component';
+import { MobileComponent } from './component/mobile/mobile.component';
 
 let providers = {
     "google": {
@@ -167,7 +168,8 @@ let providers = {
     AccountConfirmedComponent,
     ReadNowEmunahComponent,
     CkEditorComponent,
-    InspireSearchComponent
+    InspireSearchComponent,
+    MobileComponent
   ],
   imports: [
     BrowserModule,CreditCardDirectivesModule, MyDateRangePickerModule,MyDatePickerModule ,NguiAutoCompleteModule,PopoverModule,

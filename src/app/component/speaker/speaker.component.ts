@@ -441,6 +441,12 @@ export class SpeakerComponent implements OnInit {
     }
   }
 
+  Close()
+  {
+    this.selectedSelect=this.selects[0]
+    this.filterChanged()
+  }
+
   RemoveMySpeaker()
   {
     this.ManageFavorites(this.speaker.id,true,true)  //remove from myspeaker

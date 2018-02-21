@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Perasha, AllParasha } from '../../model/perasha';
-import { PerashaService,InspireSearch } from '../../service/perasha.service';
+import { AllParasha} from '../../model/perasha';
+import { PerashaService,InspireSearch,ParashaInspire } from '../../service/perasha.service';
 import { PlayerService } from '../../service/player.service';
 import { PrintService } from '../../service/print.service';
 
@@ -16,15 +16,15 @@ declare var $: any;
 export class InspireSearchComponent implements OnInit {
 
 
-  perashas: Array<Perasha>;
-  selectedPerasha: Perasha = null;
+  perashas: Array<ParashaInspire>;
+  selectedPerasha: ParashaInspire = null;
   clipTitle: string;
   parragraphs: Array<string>;
   allParasha: Array<AllParasha> = []
 
   content:string=''
 
- // last: Perasha
+  last: ParashaInspire
   more: boolean = true;
 
   matrix: any = [];
@@ -33,18 +33,15 @@ export class InspireSearchComponent implements OnInit {
 
   optional: boolean = false
 
- /* @Input()
-  valCombo: string;*/
+
 
   constructor( private perashaService: PerashaService, private playerService: PlayerService, private printService: PrintService) {
     this.perashas = [];
     this.parragraphs = [];
 
-   /* this.last = new Perasha()
-    this.last.id = 999
-    this.last.parashaName = "More..." 
-
-    this.selectedPerasha = this.last*/
+    this.last = new ParashaInspire()
+    this.last.ID = 999
+    this.last.ParashaName = "More..." 
 
   }
 
@@ -73,15 +70,15 @@ export class InspireSearchComponent implements OnInit {
   }
   ReadParasha() {
     
-    this.perashaService.read().subscribe(
+    this.perashaService.readByParashaInspire().subscribe(
       response=> {
         this.perashas = response;
 
         //add the last element
-        //this.perashas.push(this.last);
+        this.perashas.push(this.last);
 
-        this.selectedPerasha = this.perashas[0];
-        this.parragraphs = this.selectedPerasha.emailText.split("\n").filter(s=>s != "");
+        this.selectedPerasha = this.perashas[this.perashas.length-1];
+        this.content = this.selectedPerasha.Content
 
       }, error=> { }, ()=> { }
     )
@@ -198,17 +195,17 @@ export class InspireSearchComponent implements OnInit {
   titleInOptional:string=''
 
 
- /* filterChanged() {
-    if (this.selectedPerasha.parashaName == "More...") {
+ filterChanged() {
+    if (this.selectedPerasha.ParashaName == "More...") {
       this.more = true;
     }
     else {
       this.more = false;
       this.optional = false
 
-      this.parragraphs = this.selectedPerasha.emailText.split("\n").filter(s=>s != "");
+      this.content = this.selectedPerasha.Content;
     }
-  } */
+  } 
   
   Print() {
      this.printService.Print('printInspireSearch') 
@@ -216,7 +213,9 @@ export class InspireSearchComponent implements OnInit {
 
   Play() {
 
-    this.playerService.PlayAudio("", this.selectedPerasha.audio,"",15,this.selectedPerasha.id.toString())
+    this.playerService.PlayAudio("", this.selectedPerasha.Audio,"",15,this.selectedPerasha.ID.toString())
 
   }
 }
+
+

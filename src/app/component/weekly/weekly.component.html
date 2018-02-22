@@ -2,6 +2,7 @@
 	<div class="tile-box-primary" id="weeklyPrimary">
 		<div class="tile-box-head">
 			<div class="tile-box-head-content">
+				<span class="waterMark">ParashaInsight.com</span>
 				<div class="select select-secondary">
 					<select name="field-7" id="field-7"  (change)="filterChanged()" [(ngModel)]="selectedPerasha">
 						<option *ngFor="let c of perashas" [ngValue]="c">{{c.parashaName}}</option>

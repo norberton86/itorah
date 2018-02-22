@@ -148,3 +148,9 @@ display: block;
     background: none;
     margin-left: 0.5em;
 }
+
+.waterMark{
+    color: #4792d9;
+    border-right: 1px solid #171616;
+    padding-right: 0.5em;
+}

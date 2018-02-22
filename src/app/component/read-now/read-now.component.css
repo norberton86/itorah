@@ -47,3 +47,10 @@ margin-bottom: 1em;
  .titlePrintReadNow{ display: initial; }
 
 }
+
+
+.waterMark{
+    color: #4792d9;
+    border-right: 1px solid #151515;
+    padding-right: 0.5em;
+}

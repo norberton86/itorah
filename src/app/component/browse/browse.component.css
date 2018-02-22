@@ -70,3 +70,10 @@ select
 #speakerSelectBrowse option:nth-child(2){
     font-size: 10px;
 }
+
+
+.waterMark{
+    color: #4792d9;
+    border-right: 1px solid #d3d3d3;
+    padding-right: 0.5em;
+}

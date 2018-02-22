@@ -32,7 +32,7 @@ export class PlayerService extends Service {
         data.position = Math.floor(WowzaPlayer.get('video-modal').getCurrentTime() / 1000)
       else {
         var position: any = document.getElementById('mediaAudio')
-        data.position = Math.floor( position.currentTime)
+        data.position = Math.floor(position.currentTime)
       }
 
       if (data.position != 0) { //only push if the time is bigger than 0
@@ -50,6 +50,7 @@ export class PlayerService extends Service {
     });
   }
 
+  notify:any
   wow: any
   setLastPosition(data: Netflix) {
 
@@ -84,23 +85,23 @@ export class PlayerService extends Service {
      this.CreatePlayer(title, url, sponsor, initialPosition) 
      this.StartPush(data, false)*/
 
-    
+
     this.getLastPosition(data).subscribe(result => {
 
-      var initialPosition=''
+      var initialPosition = ''
       if (result == parseInt(result, 10)) //if is a integer number 
       {
-       initialPosition = "#t=" + result
+        initialPosition = "#t=" + result
       }
-      
+
       this.CreatePlayer(title, url, sponsor, initialPosition)
       this.StartPush(data, false)
     },
-    error => {
-      this.CreatePlayer(title, url, sponsor)
-      this.StartPush(data, false)
-    },
-    () => { })
+      error => {
+        this.CreatePlayer(title, url, sponsor)
+        this.StartPush(data, false)
+      },
+      () => { })
 
   }
 
@@ -170,17 +171,17 @@ export class PlayerService extends Service {
   Build(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string, sourceId: number, mediaId: string) {
     let self = this;
 
-    var sponsorHtml=''
-    if(onlyAudio)
-        sponsorHtml+='<p id="sponsorPlay" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>'
+    var sponsorHtml = ''
+    if (onlyAudio)
+      sponsorHtml += '<p id="sponsorPlay" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>'
 
     if ($('#video-modal').length == 0)     //if not exist
-      $.notify({                          //create the popup
+    this.notify = $.notify({                          //create the popup
         title: "",
         message: '<div style="padding-top:0.5em">' +
         '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;">' + title + '</p>' +
         '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;" id="seek">' + speaker + '</p>'
-         + sponsorHtml+
+        + sponsorHtml +
         '<div  id="video-modal" class="" style="width: inherit;height: 20em;">' +
         '</div>' +
         '</div>'
@@ -215,10 +216,10 @@ export class PlayerService extends Service {
         "uiQuickRewindSeconds": "30"
       });
 
-    if(onlyAudio){
-    $('#video-modal-Title').remove()
-    $('#video-modal-Info').css('background-image','url(./assets/build/css/images/images/speakers/'+speaker.replace(' ','')+'.png)')  
-    $('#video-modal-Info').css('background-size','100% 100%')
+    if (onlyAudio) {
+      $('#video-modal-Title').remove()
+      $('#video-modal-Info').css('background-image', 'url(./assets/build/css/images/images/speakers/' + speaker.replace(' ', '') + '.png)')
+      $('#video-modal-Info').css('background-size', '100% 100%')
     }
 
     $('.alert-info').css('background-color', 'white'); //change background-color to white 
@@ -238,7 +239,7 @@ export class PlayerService extends Service {
     $('#sponsorPlay').click(function () {
       if (self.isAuthenticated()) {
 
-         self.setShiurFromPlayer({title:title,id:mediaId})
+        self.setShiurFromPlayer({ title: title, id: mediaId })
 
         $('#sponsor').toggleClass('shown');
         $('#sponsorPlaceHolder').addClass('hidden')
@@ -259,25 +260,22 @@ export class PlayerService extends Service {
 
   }
 
-  setShiurFromPlayer(data:any)
-  {
-     this.subject.next(data)
+  setShiurFromPlayer(data: any) {
+    this.subject.next(data)
   }
 
   getShiurFromPlayer(): Observable<any> {
     return this.subject.asObservable();
   }
-  
-  setDay(day:string)
-  {
+
+  setDay(day: string) {
     this.subjectDay.next(day)
   }
 
-  getDayFromPlayer():Observable<string>
-  {
+  getDayFromPlayer(): Observable<string> {
     return this.subjectDay.asObservable()
   }
-  
+
 
   CreateNetFlix(sourceid: number, mediaId: string, position: any, isAudio: boolean): Netflix {
     var netflix = new Netflix()
@@ -318,7 +316,7 @@ export class PlayerService extends Service {
       }, () => { })
     }
     else
-    this.BuildAudio(title, url, sponsor, sourceId, mediaId)
+      this.BuildAudio(title, url, sponsor, sourceId, mediaId)
   }
 
   BuildAudio(title: string, url: string, sponsor: string, sourceId: number, mediaId: string) {
@@ -335,27 +333,27 @@ export class PlayerService extends Service {
   CreatePlayer(title: string, url: string, sponsor: string, initialPosition = "") {
     let self = this
 
-   var finalSponsor=''
+    var finalSponsor = ''
 
-   if(title.indexOf('<>')>0) //to check if is being calling from halacha or tehellim
-   {
-    title= title.replace("<>", "");  //remove the unnecesarry characters
-    finalSponsor+="<p>"+title+"</p>"
-   }
-   
+    if (title.indexOf('<>') > 0) //to check if is being calling from halacha or tehellim
+    {
+      title = title.replace("<>", "");  //remove the unnecesarry characters
+      finalSponsor += "<p>" + title + "</p>"
+    }
+
 
     finalSponsor += '<p id="sponsorPlayAudio" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>'
 
     if ($('#mediaAudio').length == 0)     //if not exist
     {
 
-      var picture="audio.jpg"
-      if(url.indexOf("www.dailytehillim.com")>=0)
-      picture="hacham.png"
+      var picture = "audio.jpg"
+      if (url.indexOf("www.dailytehillim.com") >= 0)
+        picture = "hacham.png"
 
       $.notify({                          //create the popup
         title: "",
-        message: finalSponsor + '<video id="mediaAudio" controls="" autoplay="" name="media" style="background-image: url(./assets/build/css/images/images/'+picture+');background-size: 100% 80%;"><source src="' + url + initialPosition + '" type="audio/mpeg"></video>'
+        message: finalSponsor + '<video id="mediaAudio" controls="" autoplay="" name="media" style="background-image: url(./assets/build/css/images/images/' + picture + ');background-size: 100% 80%;"><source src="' + url + initialPosition + '" type="audio/mpeg"></video>'
       },
         {
           delay: 0,                       //never autoclose
@@ -393,9 +391,8 @@ export class PlayerService extends Service {
 
     $('button[data-notify="dismiss"]').click(function () {  //stop when the close icon be closed
 
-      try 
-      {
-        self.StopPush()   
+      try {
+        self.StopPush()
       }
       catch (e) {
 
@@ -421,13 +418,12 @@ export class PlayerService extends Service {
       return true;
   }
 
-  CloseOtherPopu(id:string)
-  {
-    $('.popup').each(function(){  
-       if($(this).attr('id')!=id.split("#")[1])
-         $(this).removeClass("shown")
+  CloseOtherPopu(id: string) {
+    $('.popup').each(function () {
+      if ($(this).attr('id') != id.split("#")[1])
+        $(this).removeClass("shown")
     })
-        //close Broswse component
+    //close Broswse component
     document.getElementById('CloseDedicationButton').click()
   }
 
@@ -440,4 +436,37 @@ export class Netflix {
   mediaId: string
   position: any
   isAudio: boolean
+}
+
+@Injectable()
+export class PLayerQueueService extends PlayerService {
+
+  private subjectCompleted: Subject<string> = new Subject<string>();
+
+  constructor(http: Http) {
+    super(http);
+  }
+
+  Build(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string, sourceId: number, mediaId: string) {
+    super.Build(title, url, onlyAudio, speaker, sponsor, sourceId, mediaId)
+
+    let self = this
+
+    if (this.wow != null && this.wow != undefined)
+      this.wow.onCompleted(function (completedEvent) {
+
+        self.seCompleted(mediaId) //notify that this element finished
+      });
+  }
+
+
+  seCompleted(data: string) {
+    this.subjectCompleted.next(data)
+  }
+
+  getCompleted(): Observable<string> {
+    return this.subjectCompleted.asObservable();
+  }
+
+
 }

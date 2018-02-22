@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ItemQueue } from '../../model/shiurim';
 import { QueueService } from '../../service/queue.service';
-import { PlayerService } from '../../service/player.service';
+import { PLayerQueueService } from '../../service/player.service';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -17,7 +17,7 @@ export class QueueComponent implements OnInit, OnDestroy {
   queues: Array<ItemQueue>;
   cursor: string = "-webkit-grab"
 
-  constructor(private queueService: QueueService, private playerService: PlayerService) {
+  constructor(private queueService: QueueService, private playerQueueService: PLayerQueueService) {
 
     this.queueService.getItem().subscribe(item => {
       this.Add(item)
@@ -29,6 +29,28 @@ export class QueueComponent implements OnInit, OnDestroy {
       else
         this.Fill()
     });
+
+    this.playerQueueService.getCompleted().subscribe(mediaId=>{
+     
+     var position;
+     for (var index = 0; index < this.queues.length; index++) {
+       if(mediaId == this.queues[index].id)
+         position=index;
+     }
+
+     if(position<this.queues.length-1)
+     {
+
+     }
+     else  //if it is the last one
+     {
+        
+     }
+
+
+    })
+
+
   }
 
   Fill() {
@@ -188,10 +210,13 @@ export class QueueComponent implements OnInit, OnDestroy {
   }
 
   Play(title: string, media: string,speaker:string,sponsor:string,mediaId:string) {
-    if (media.indexOf(".mp3") < 0) //if not is *.mp3 extension
-      this.playerService.Play(title, media, title.includes('LT-Audio'),speaker,sponsor,1,mediaId)
-    else
-      this.playerService.PlayAudio(title, media,"",1,mediaId)
+    
+    var onlyAudio=title.includes('LT-Audio')
+    
+   // if (media.indexOf(".mp3") < 0) //if not is *.mp3 extension
+      this.playerQueueService.Play(title, media,onlyAudio ,speaker,sponsor,1,mediaId)
+   /* else
+      this.playerService.PlayAudio(title, media,"",1,mediaId)*/
   }
 
   Moved() {

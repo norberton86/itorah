@@ -45,7 +45,7 @@ import {DndModule} from 'ng2-dnd';
 import {ShareButtonsModule} from 'ngx-sharebuttons';
 import { SubscribeComponent } from './component/subscribe/subscribe.component';
 import {SubscribeService} from './service/subscribe.service';
-import {PlayerService} from './service/player.service';
+import {PlayerService,PLayerQueueService} from './service/player.service';
 import {PerashaService} from './service/perasha.service';
 import {WeeklyResultService} from './service/weekly-result.service';
 import {GemaraService} from './service/gemara.service';
@@ -181,7 +181,7 @@ let providers = {
      ShareButtonsModule.forRoot(),
      SlickModule.forRoot()
   ],
-  providers: [PerashaService,CkEditorService,PopupService,GemaraService,PaymentService,PlayerService,RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
+  providers: [PLayerQueueService,PerashaService,CkEditorService,PopupService,GemaraService,PaymentService,PlayerService,RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

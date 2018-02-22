@@ -14,11 +14,13 @@
 }
 
 .leftSide:nth-child(2){
-    margin-left: 1em;
+    /* margin-left: 1em; */
 }
 
 .centerContainer{
-display: table
+    display: table;
+    width: 380px;
+    height: 98px;
 }
 
 .kidCentered{
@@ -38,6 +40,10 @@ display: table
 
 img{
     height: 100%;
+}
+
+.threeParra{
+    font-size: 15px;
 }
 
 
@@ -105,6 +111,7 @@ img{
   and (max-width: 1024px)  {
   .leftSide:nth-child(2) {
      margin-left: 0em; 
+     
  }
   .leftSide {
     height: 6.7em;
@@ -113,14 +120,17 @@ img{
  .leftSide:nth-child(2){
    height: 6.7em;
  }
+ 
 }
 
 @media(min-width:1024px) 
 {
-    /*.threeParra{
+    .threeParra{
         padding-top: 2%;
-    }*/
+    }
 
 }
+
+
 
 

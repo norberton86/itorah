@@ -615,8 +615,15 @@ export class SpeakerComponent implements OnInit {
 
     $('li[data-type="lecture"]').click(function () {
 
-      if (self.navigatedToCategory)
-        return
+      //Begining this block is used for change to mainSpeaker option
+      if(self.selectedSelect.id != "#tile-tab-2")  //if the view is "main" or "all"
+      {
+        self.navigatedToCategory=false
+        self.isMy = false;
+        self.current = "tile-tab-1"
+        self.selectedSelect=self.selects[0]
+      }
+      //End
 
       var id = $(this).attr('id')
 

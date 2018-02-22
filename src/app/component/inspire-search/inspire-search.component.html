@@ -2,6 +2,7 @@
 	<div class="tile-box-primary" id="weeklyPrimary">
 		<div class="tile-box-head">
 			<div class="tile-box-head-content">
+				<span class="waterMark"> Weekly Inspire </span>
 				<div class="select select-secondary">
 					<select name="field-7" id="field-7"  (change)="filterChanged()" [(ngModel)]="selectedPerasha">
 						<option *ngFor="let c of perashas" [ngValue]="c">{{c.ParashaName}}</option>
@@ -9,7 +10,8 @@
 				</div> 
 				<!-- /.select -->
 
-				<h4>Rabbi Jacob S. Kassin Daily Halacha Series authored by Rabbi Eli J. Mansour</h4>
+				<h4>Authored by Rabbi Joey Haber</h4>
+				<a href="{{downloadUrl}}" download id="download" hidden id="inspireSearchDownload"></a>
 			</div>
 			<!-- /.table-head-content -->
 
@@ -31,9 +33,16 @@
 						 <i class="fa fa-long-arrow-left"></i> Back
 				</button>
 
-				<h5 *ngIf="optional">{{titleInOptional}} <a href="#/"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a> <a href="#/"><i class="ico-print-yellow" (click)="Print()"></i></a></h5>
-				<h5 *ngIf="!optional">{{selectedPerasha?.Title}} <a href="#/"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a>
-					<a href="#/"><i class="ico-print-yellow" (click)="Print()"></i></a>
+				<h5 *ngIf="optional">{{titleInOptional}} 
+					<a href="#/" style="margin-left: 1em;"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a>
+					<a href="#/" style="margin-left: 1em;"><i class="ico-print-yellow" (click)="Print()"></i></a>
+					<a href="#/" style="margin-left: 1em;"(click)="Download()" class="downloadInspire"><i class="ico-download"></i> MP3</a>
+				</h5>
+
+				<h5 *ngIf="!optional">{{selectedPerasha?.Title}} 
+					<a href="#/" style="margin-left: 1em;"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a>
+					<a href="#/" style="margin-left: 1em;"><i class="ico-print-yellow" (click)="Print()"></i></a>
+					<a href="#/" style="margin-left: 1em;" (click)="Download()" class="downloadInspire"><i class="ico-download"></i> MP3</a>
 				</h5>
 
 				<div [innerHTML]="content" style="white-space: pre-wrap;" id="printInspireSearch">

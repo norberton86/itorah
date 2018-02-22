@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AllParasha} from '../../model/perasha';
-import { PerashaService,InspireSearch,ParashaInspire } from '../../service/perasha.service';
+import { AllParasha } from '../../model/perasha';
+import { PerashaService, InspireSearch, ParashaInspire } from '../../service/perasha.service';
 import { PlayerService } from '../../service/player.service';
 import { PrintService } from '../../service/print.service';
 
@@ -11,7 +11,7 @@ declare var $: any;
   selector: 'app-inspire-search',
   templateUrl: './inspire-search.component.html',
   styleUrls: ['./inspire-search.component.css'],
-  providers: [PerashaService, PlayerService,PrintService]
+  providers: [PrintService]
 })
 export class InspireSearchComponent implements OnInit {
 
@@ -22,7 +22,7 @@ export class InspireSearchComponent implements OnInit {
   parragraphs: Array<string>;
   allParasha: Array<AllParasha> = []
 
-  content:string=''
+  content: string = ''
 
   last: ParashaInspire
   more: boolean = true;
@@ -33,15 +33,33 @@ export class InspireSearchComponent implements OnInit {
 
   optional: boolean = false
 
+  downloadUrl:string
 
 
-  constructor( private perashaService: PerashaService, private playerService: PlayerService, private printService: PrintService) {
+
+  constructor(private perashaService: PerashaService, private playerService: PlayerService, private printService: PrintService) {
     this.perashas = [];
     this.parragraphs = [];
 
     this.last = new ParashaInspire()
     this.last.ID = 999
-    this.last.ParashaName = "More..." 
+    this.last.ParashaName = "More..."
+
+
+    this.perashaService.getOption().subscribe(option => {
+
+      if (option == "more"){
+       this.selectedPerasha = this.perashas[this.perashas.length - 1]  //more always in the last position
+      }
+      else
+      {
+        this.selectedPerasha = this.perashas[0]
+        this.downloadUrl=this.selectedPerasha.Audio
+      }
+        
+
+      this.filterChanged()
+    })
 
   }
 
@@ -50,49 +68,37 @@ export class InspireSearchComponent implements OnInit {
     this.AllParashas();
   }
 
-  
-  /*ngOnChanges(changes: any) {
-    if(!changes.valCombo.isFirstChange())
-    {
-         if(changes.valCombo.currentValue=="more")
-          this.selectedPerasha=this.perashas[this.perashas.length-1]  //more always in the last position
-         else
-          this.selectedPerasha=this.perashas[0]
-
-          this.filterChanged()
-    }
-
-  }*/
-
   Back() {
     this.more = true
 
   }
+
   ReadParasha() {
-    
+
     this.perashaService.readByParashaInspire().subscribe(
-      response=> {
+      response => {
         this.perashas = response;
 
         //add the last element
         this.perashas.push(this.last);
 
-        this.selectedPerasha = this.perashas[this.perashas.length-1];
+        this.selectedPerasha = this.perashas[this.perashas.length - 1];
         this.content = this.selectedPerasha.Content
+        this.downloadUrl=this.selectedPerasha.Audio
 
-      }, error=> { }, ()=> { }
+      }, error => { }, () => { }
     )
 
   }
 
   AllParashas() {
-    
+
     this.perashaService.readAll().subscribe(
-      response=> {
+      response => {
         this.allParasha = response;
         this.CreateTable();
 
-      }, error=> { }, ()=> { }
+      }, error => { }, () => { }
     )
   }
 
@@ -127,12 +133,11 @@ export class InspireSearchComponent implements OnInit {
     this.perashaService.readByParasha(id).subscribe(
       function (response) {
 
-        if(!Array.isArray(response))
-        {
+        if (!Array.isArray(response)) {
           self.CreateErrorMessage(id)
           return
         }
-        
+
 
         self.SaveData(response);
 
@@ -160,15 +165,14 @@ export class InspireSearchComponent implements OnInit {
     )
   }
 
-  CreateErrorMessage(id:number)
-  {
-    
+  CreateErrorMessage(id: number) {
+
     $.contextMenu({
-          selector: '#wpInspireSearch' + id,
-          trigger: 'left',
-          items: {
-                    "quit": {name: "There are no Weekly Inspire lessons for this parasha", icon: "fa-ban"}
-                 }
+      selector: '#wpInspireSearch' + id,
+      trigger: 'left',
+      items: {
+        "quit": { name: "There are no Weekly Inspire lessons for this parasha", icon: "fa-ban" }
+      }
     });
 
     $('#wpInspireSearch' + id).contextMenu();
@@ -186,16 +190,18 @@ export class InspireSearchComponent implements OnInit {
 
     this.content = p.content
 
-   this.titleInOptional=p.title
+    this.titleInOptional = p.title
+
+    this.downloadUrl=p.audio
 
     this.more = false;
     this.optional = true
   }
 
-  titleInOptional:string=''
+  titleInOptional: string = ''
 
 
- filterChanged() {
+  filterChanged() {
     if (this.selectedPerasha.ParashaName == "More...") {
       this.more = true;
     }
@@ -204,17 +210,21 @@ export class InspireSearchComponent implements OnInit {
       this.optional = false
 
       this.content = this.selectedPerasha.Content;
+      this.downloadUrl=this.selectedPerasha.Audio
     }
-  } 
-  
+  }
+
   Print() {
-     this.printService.Print('printInspireSearch') 
+    this.printService.Print('printInspireSearch')
   }
 
   Play() {
+    this.playerService.PlayAudio("", this.selectedPerasha.Audio, "", 15, this.selectedPerasha.ID.toString())
+  }
 
-    this.playerService.PlayAudio("", this.selectedPerasha.Audio,"",15,this.selectedPerasha.ID.toString())
-
+  Download()
+  {
+    document.getElementById('inspireSearchDownload').click()
   }
 }
 

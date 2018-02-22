@@ -10,7 +10,7 @@ declare var $: any;
   selector: 'app-weekly',
   templateUrl: './weekly.component.html',
   styleUrls: ['./weekly.component.css'],
-  providers: [PerashaService, PlayerService]
+  providers: [PlayerService]
 })
 export class WeeklyComponent implements OnInit,OnChanges {
 

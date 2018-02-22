@@ -14,7 +14,7 @@ declare var $: any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AnalitycService, PerashaService]
+  providers: [AnalitycService]
 })
 export class AppComponent implements OnInit {
 
@@ -395,5 +395,10 @@ export class AppComponent implements OnInit {
   {
     window.scrollTo(0, 0);
   }
+
+ setInspireOption(option:string)
+ {
+   this.perashaService.setOption(option)
+ }
 
 }

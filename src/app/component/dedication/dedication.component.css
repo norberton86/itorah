@@ -41,6 +41,9 @@ img{
     height: 100%;
 }
 
+.threeParra{
+    padding-top: 0.5em;
+}
 
 
 @media(max-width:375px) /*phone portrait*/ 

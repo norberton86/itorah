@@ -37,3 +37,11 @@ text-decoration:none;
  }
 
 }
+
+/** fix the close out button on firefox **/
+
+@-moz-document url-prefix() { 
+    .tile-box-body{
+        margin-top: 31px;
+    }
+  }

@@ -49,4 +49,28 @@ export class ReadNowEmunahComponent implements OnInit {
 
   }
 
+  //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ /* readLink() {
+    this.homeService.readLinks().subscribe(
+      result => {
+        this.links = result
+      }, error => { }, () => { }
+    )
+  }
+
+  NavigateLink(link: Link) {
+    this.link = link
+
+    this.title = link.Title
+    this.content = link.Content
+    this.dedication = link.Dedication
+  }
+  link: Link
+
+  LinksToShow():Array<Link>
+  {
+    return this.links.filter(i=>i.Title!=this.title)
+  }*/
+
 }

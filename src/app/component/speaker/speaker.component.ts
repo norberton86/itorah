@@ -397,6 +397,7 @@ export class SpeakerComponent implements OnInit {
         self.speakerService.readMy().subscribe(
           function (response) {
 
+              self.navigatedToCategory=false
 
             if (response == "No speakers saved for this user") {
               self.current = "tile-tab-2"

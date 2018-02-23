@@ -29,3 +29,28 @@ margin-bottom: 1em;
     border-right: 1px solid #151515;
     padding-right: 0.5em;
 }
+
+.link-container{
+    border-top: 1px solid #dadada;
+    padding-top: 0.6em;
+}
+
+.link-halacha{
+    background: #D8D8D8;
+    padding: 0.4em;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0.3em;
+    text-align: center;
+    width: 19%;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+@media(max-width:768px) 
+{
+    .link-halacha
+    {
+        width: 100%;
+    }
+}

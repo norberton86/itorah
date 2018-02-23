@@ -25,28 +25,26 @@ export class QueueComponent implements OnInit, OnDestroy {
 
     this.queueService.getLogin().subscribe(item => {
       if (item == "Signed")
-         this.Read();
+        this.Read();
       else
         this.Fill()
     });
 
-    this.playerQueueService.getCompleted().subscribe(mediaId=>{
-     
-     var position;
-     for (var index = 0; index < this.queues.length; index++) {
-       if(mediaId == this.queues[index].id)
-         position=index;
-     }
+    this.playerQueueService.getCompleted().subscribe(mediaId => {
 
-     if(position<this.queues.length-1)
-     {
+      var position;
+      for (var index = 0; index < this.queues.length; index++) {
+        if (mediaId == this.queues[index].id)
+          position = index;
+      }
 
-     }
-     else  //if it is the last one
-     {
-        
-     }
-
+      var s = new ItemQueue()
+      if (position == this.queues.length - 1) //if is the last one
+        s = this.queues[0]                  //start since the begining
+      else
+        s = this.queues[position + 1]      //play the next item
+ 
+        this.playerQueueService.setQueue(s)
 
     })
 
@@ -65,12 +63,12 @@ export class QueueComponent implements OnInit, OnDestroy {
       "wowzaVideoUrl": "",
       "speaker": "Rabbi Eli J Mansour",
       "sourceID": 1,
-      "dayWeek":"",
-      "type":"",
-      "pdfUrl":"",
-       "cost":6,
-       "sponsor":"Rabbi Mansour",
-       "categoryCount":1
+      "dayWeek": "",
+      "type": "",
+      "pdfUrl": "",
+      "cost": 6,
+      "sponsor": "Rabbi Mansour",
+      "categoryCount": 1
     },
     {
       "title": "Word Power",
@@ -83,12 +81,12 @@ export class QueueComponent implements OnInit, OnDestroy {
       "wowzaVideoUrl": "",
       "speaker": "Rabbi Eli J Mansour",
       "sourceID": 1,
-      "dayWeek":"",
-      "type":"",
-      "pdfUrl":"",
-       "cost":6,
-       "sponsor":"Rabbi Mansour",
-       "categoryCount":1
+      "dayWeek": "",
+      "type": "",
+      "pdfUrl": "",
+      "cost": 6,
+      "sponsor": "Rabbi Mansour",
+      "categoryCount": 1
     },
     {
       "title": "Perush Rashi on Parashat Hukat",
@@ -101,12 +99,12 @@ export class QueueComponent implements OnInit, OnDestroy {
       "wowzaVideoUrl": "",
       "speaker": "Rabbi Eli J Mansour",
       "sourceID": 1,
-      "dayWeek":"",
-      "type":"",
-      "pdfUrl":"",
-       "cost":6,
-       "sponsor":"Rabbi Mansour",
-       "categoryCount":1
+      "dayWeek": "",
+      "type": "",
+      "pdfUrl": "",
+      "cost": 6,
+      "sponsor": "Rabbi Mansour",
+      "categoryCount": 1
     },
     {
       "title": "The Aderet / Jewish Home",
@@ -119,12 +117,12 @@ export class QueueComponent implements OnInit, OnDestroy {
       "speaker": "Rabbi Eli J Mansour",
       "wowzaVideoUrl": "",
       "sourceID": 1,
-      "dayWeek":"",
-      "type":"",
-      "pdfUrl":"",
-       "cost":6,
-       "sponsor":"Rabbi Mansour",
-       "categoryCount":1
+      "dayWeek": "",
+      "type": "",
+      "pdfUrl": "",
+      "cost": 6,
+      "sponsor": "Rabbi Mansour",
+      "categoryCount": 1
     }];
   }
 
@@ -138,11 +136,11 @@ export class QueueComponent implements OnInit, OnDestroy {
   Read() {
 
     this.queueService.read(this.queueService.getToken()).subscribe(
-      result =>{ 
-                this.queues = result
-                this.queueService.setQueue(this.queues) //emit the event with the queue
+      result => {
+        this.queues = result
+        this.queueService.setQueue(this.queues) //emit the event with the queue
 
-      },error=>{},()=>{}
+      }, error => { }, () => { }
     )
 
   }
@@ -155,72 +153,65 @@ export class QueueComponent implements OnInit, OnDestroy {
   }
 
   Add(item: ItemQueue) {
-    if (this.queues.filter(function (s) {return s.id == item.id;}).length == 0)
-    {
-      
+    if (this.queues.filter(function (s) { return s.id == item.id; }).length == 0) {
+
       this.queues.push(item);
       this.CallAdd()
     }
-      
+
   }
 
-  CallAdd()
-  {
-    let self=this
+  CallAdd() {
+    let self = this
 
-    var req=[]
-    this.queues.forEach(function(a){
-           req.push({ItemID:a.id,SourceId:a.sourceID})
+    var req = []
+    this.queues.forEach(function (a) {
+      req.push({ ItemID: a.id, SourceId: a.sourceID })
     })
 
-    this.queueService.add(this.queueService.getToken(),req).subscribe(
-        respond=>{
-              this.queueService.Notify("Item added to queue",false);
-              this.queueService.setQueue(this.queues) //emit the event with the queue
-           },
-           error=>{
-                
-               this.queueService.Notify("Error trying to add",true) 
-           },
-           ()=>{}
-      )
+    this.queueService.add(this.queueService.getToken(), req).subscribe(
+      respond => {
+        this.queueService.Notify("Item added to queue", false);
+        this.queueService.setQueue(this.queues) //emit the event with the queue
+      },
+      error => {
+
+        this.queueService.Notify("Error trying to add", true)
+      },
+      () => { }
+    )
   }
 
   Remove(id: string) {
 
-    var  item= this.queues.filter(function (s) {return s.id == id;})[0]
+    var item = this.queues.filter(function (s) { return s.id == id; })[0]
 
     for (var index = 0; index < this.queues.length; index++) {
       if (this.queues[index].id == id)
         this.queues.splice(index, 1)
     }
-     
-     let self=this
-     this.queueService.remove(this.queueService.getToken(),[{ItemID:item.id,SourceID:item.sourceID}]).subscribe(
-        respond=>{
-              this.queueService.setQueue(this.queues) //emit the event with the queue
-           },
-           error=>{
-                
-               this.queueService.Notify("Error trying to remove",true) 
-           },
-           ()=>{}
-      )
+
+    let self = this
+    this.queueService.remove(this.queueService.getToken(), [{ ItemID: item.id, SourceID: item.sourceID }]).subscribe(
+      respond => {
+        this.queueService.setQueue(this.queues) //emit the event with the queue
+      },
+      error => {
+
+        this.queueService.Notify("Error trying to remove", true)
+      },
+      () => { }
+    )
 
   }
 
-  Play(title: string, media: string,speaker:string,sponsor:string,mediaId:string) {
-    
-    var onlyAudio=title.includes('LT-Audio')
-    
-   // if (media.indexOf(".mp3") < 0) //if not is *.mp3 extension
-      this.playerQueueService.Play(title, media,onlyAudio ,speaker,sponsor,1,mediaId)
-   /* else
-      this.playerService.PlayAudio(title, media,"",1,mediaId)*/
+  Play(item:ItemQueue) {
+
+    this.playerQueueService.setQueue(item)
   }
 
   Moved() {
-        this.CallAdd() 
+    this.CallAdd()
   }
 
 }

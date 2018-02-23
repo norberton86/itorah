@@ -9,6 +9,7 @@ import "rxjs/add/observable/interval";
 import "rxjs/add/observable/timer";
 import 'rxjs/add/operator/map';
 import { Service } from '../model/service';
+import { ItemQueue } from '../model/shiurim';
 
 import { Subject } from 'rxjs/Subject';
 
@@ -50,7 +51,7 @@ export class PlayerService extends Service {
     });
   }
 
-  notify:any
+  notify: any
   wow: any
   setLastPosition(data: Netflix) {
 
@@ -168,19 +169,21 @@ export class PlayerService extends Service {
 
   }
 
+  mediaId: string
   Build(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string, sourceId: number, mediaId: string) {
     let self = this;
 
     var sponsorHtml = ''
     if (onlyAudio)
-      sponsorHtml += '<p id="sponsorPlay" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b>' + sponsor + '</b></a></p>'
+      sponsorHtml += '<p id="sponsorPlay" style="width: 100%;text-align: center;padding-bottom: 0.2em;cursor: pointer;"><a href="#/"><b id="sponsorPlayer">' + sponsor + '</b></a></p>'
 
-    if ($('#video-modal').length == 0)     //if not exist
-    this.notify = $.notify({                          //create the popup
+    if ($('#video-modal').length == 0) //if not exist 
+    {    
+      this.notify = $.notify({                          //create the popup
         title: "",
         message: '<div style="padding-top:0.5em">' +
-        '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;">' + title + '</p>' +
-        '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;" id="seek">' + speaker + '</p>'
+        '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;" id="titlePlayer">' + title + '</p>' +
+        '<p  style="width: 100%;text-align: center;padding-bottom: 0.2em;" id="speakerPlayer">' + speaker + '</p>'
         + sponsorHtml +
         '<div  id="video-modal" class="" style="width: inherit;height: 20em;">' +
         '</div>' +
@@ -197,6 +200,13 @@ export class PlayerService extends Service {
             exit: 'animated bounceOutRight'
           }
         });
+    }
+    else  //update the fields 
+    {
+       $('#titlePlayer').text(title)
+       $('#sponsorPlayer').text(sponsor)
+       $('#speakerPlayer').text(speaker)   
+    }
 
     self.Closetream();
 
@@ -257,7 +267,7 @@ export class PlayerService extends Service {
       this.setLastPosition(this.CreateNetFlix(sourceId, mediaId, "", onlyAudio))
     }
 
-
+    this.mediaId = mediaId
   }
 
   setShiurFromPlayer(data: any) {
@@ -442,9 +452,18 @@ export class Netflix {
 export class PLayerQueueService extends PlayerService {
 
   private subjectCompleted: Subject<string> = new Subject<string>();
+  private subjectQueue: Subject<ItemQueue> = new Subject<ItemQueue>();
 
   constructor(http: Http) {
     super(http);
+
+    this.getQueue().subscribe(s => {
+
+      var media = s.video == "" ? s.audio : s.video
+      var onlyAudio = media.includes('LT-Audio')
+
+      this.Play(s.title, media, onlyAudio, s.speaker, s.sponsor, 1, s.id)
+    })
   }
 
   Build(title: string, url: string, onlyAudio: boolean, speaker: string, sponsor: string, sourceId: number, mediaId: string) {
@@ -453,9 +472,8 @@ export class PLayerQueueService extends PlayerService {
     let self = this
 
     if (this.wow != null && this.wow != undefined)
-      this.wow.onCompleted(function (completedEvent) {
-
-        self.seCompleted(mediaId) //notify that this element finished
+      this.wow.onCompleted(function () {
+        self.seCompleted(self.mediaId.toString())//notify that this element finished
       });
   }
 
@@ -468,5 +486,13 @@ export class PLayerQueueService extends PlayerService {
     return this.subjectCompleted.asObservable();
   }
 
+
+  setQueue(item: ItemQueue) {
+    this.subjectQueue.next(item)
+  }
+
+  getQueue(): Observable<ItemQueue> {
+    return this.subjectQueue.asObservable();
+  }
 
 }

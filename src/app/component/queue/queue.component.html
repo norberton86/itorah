@@ -14,11 +14,11 @@
 
 		<div class="list-updates-actions">
 
-			<a href="#/" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}" (click)="Play(s.title,s.video,s.speaker,s.sponsor,s.id)">
+			<a href="#/" *ngIf="s?.video!=''" data-type="media" id="{{s?.video}}" data-title="{{s.title}}" (click)="Play(s)">
 			<i class="ico-camera"></i>
         </a>
 
-			<a href="#/" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}" (click)="Play(s.title,s.audio,s.speaker,s.sponsor,s.id)">
+			<a href="#/" *ngIf="s?.audio!=''" data-type="media" id="{{s?.audio}}" data-title="{{s.title}}" (click)="Play(s)">
 			<i class="ico-mic"></i>
 		</a>
 

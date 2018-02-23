@@ -100,3 +100,11 @@
     border-radius: 4px;
     margin-right: 0.5em;
 }
+
+/** fix the close out button on firefox **/
+
+@-moz-document url-prefix() { 
+    .tile-box-tab.current{
+        margin-top: 40px;
+    }
+  }

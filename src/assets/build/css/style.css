@@ -1261,7 +1261,7 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 .form-order .form__label { position: absolute; right: 100%; bottom: 0; height: 40px; white-space: nowrap; padding: 15px 10px 15px 0; font-weight: 400; font-size: 13px; }
 .form-order.form-sponsor .select select { padding: 8px 30px 8px 6px}
 .form-order .form-row-medium { width: 49%; display: inline-block; }
-.form-order .form-row-small { padding-left: calc(100% - 85px); }
+.form-order .form-row-small { padding-left: calc(100% - 100px); } /*Matt- fixed dedication total to fit amount, was at 85px*/
 .form-order .form-row-small.form-row-medium { width: 49%; display: inline-block; padding-left: 0; text-align: right; }
 .form-order .form-row-small.form-row-medium input { max-width: calc(100% - 50px); }
 .form-order .form-row-small label { left: 0; right: auto; }

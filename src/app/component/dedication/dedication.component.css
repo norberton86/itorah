@@ -30,6 +30,7 @@ display: table
     display: flex;
 }*/
 
+
 .linkBiography{
     color: #1d92ff;
     text-decoration: none;
@@ -38,6 +39,10 @@ display: table
 
 img{
     height: 100%;
+}
+
+.threeParra{
+    padding-top: 0.5em;
 }
 
 
@@ -96,7 +101,6 @@ img{
 /*
 @media(min-width:768px) 
 {
-
 }*/
 
 
@@ -113,6 +117,22 @@ img{
  .leftSide:nth-child(2){
    height: 6.7em;
  }
+ 
+ img {
+    height: 105px;
+ }
+
+ .col-sm-9 > p:nth-child(4){
+     font-size: 13px;
+ }
+
+ .threeParra{
+     font-size: 15px;
+ }
+ .linkBiography{
+     font-size: 12px;
+ }
+
 }
 
 @media(min-width:1024px) 

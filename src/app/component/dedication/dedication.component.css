@@ -30,6 +30,7 @@ display: table
     display: flex;
 }*/
 
+
 .linkBiography{
     color: #1d92ff;
     text-decoration: none;
@@ -112,6 +113,11 @@ img{
  .leftSide:nth-child(2){
    height: 6.7em;
  }
+ 
+ img {
+    height: 105px;
+ }
+ 
 }
 
 @media(min-width:1024px) 

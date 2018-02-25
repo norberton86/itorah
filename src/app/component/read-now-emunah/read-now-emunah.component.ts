@@ -69,7 +69,10 @@ export class ReadNowEmunahComponent implements OnInit {
 
   LinksToShow():Array<LinkEmunah>
   {
+    if(this.links!=null && this.links!=undefined && this.link!=null && this.link!=undefined)
     return this.links.filter(i=>i.title!=this.link.title)
+    else
+    return []
   }
 
 }

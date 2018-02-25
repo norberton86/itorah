@@ -125,10 +125,12 @@ export class DedicationComponent implements OnInit {
     this.paymentService.setItem('reset') 
   }
 
-  
+  //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Biography()
   {
-    
+    this.biography=!this.biography
   }
+
+  biography:boolean=false
 
 }

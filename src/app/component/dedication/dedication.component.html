@@ -10,41 +10,41 @@
 	</div>
 	<!-- /.popup-head -->
 
-	<div class="popup-body" id="list-dedications">
+	<div class="popup-body" id="list-dedications" *ngIf="!biography">
 
 		<div class="row headerDedication">
 			<div class="col-lg-3">
-			   
+
 				<a href="#make-dedication" class="btn btn-yellow btn-make-dedication">Make a dedication</a>
-			   
+
 			</div>
 			<div class="col-lg-9">
 				<div class="row">
 					<div class="col-xs-12 col-sm-8 col-md-7 col-lg-7 leftSide" style="padding-left: 0px;padding-right: 0px;">
 						<div class="row flexing">
 							<div class="col-sm-3 col-md-3 col-lg-3 imgContainer" style="padding-left: 0px;padding-right: 0px;">
-								<img src="./assets/build/css/images/images/RabbiJacob117.png" (click)="Biography()"/>
+								<img src="./assets/build/css/images/images/RabbiJacob117.png" (click)="Biography()" />
 							</div>
 
 							<div class="col-sm-9 col-md-9 col-lg-9 threeParra">
-								<p style="color:white"> DailyHalacha.com continuing in the tradition of</p> 
+								<p style="color:white"> DailyHalacha.com continuing in the tradition of</p>
 								<p style="color:white">The Chief Rabbi of The Syriam Sepharic Community of New York</p>
 								<p style="color:#ffc800">Rabbi Jacob S Kassin A`H(1900-1994)</p>
-								<p style="text-align: left;"> <a href="#/" class="linkBiography"><i class="fa fa-info-circle" title="info" style="margin-right: 2px;"></i> Click Here for more information about Rabbi Jacob S. Kassin</a>   </p>							
+								<p style="text-align: left;"> <a href="#/" class="linkBiography" (click)="Biography()"><i class="fa fa-info-circle" title="info" style="margin-right: 2px;"></i> Click Here for more information about Rabbi Jacob S. Kassin</a>									</p>
 							</div>
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 leftSide centerContainer">
 						<div class="kidCentered">
-							<p style="color:white"> LearnTorah.com</p> 
+							<p style="color:white"> LearnTorah.com</p>
 							<p style="color:#ffc800">The Eddie B Sitt Judaica Learning Center</p>
 						</div>
 					</div>
 				</div>
 
 			</div>
-			
+
 		</div>
 
 		<ul class="list-dedications">
@@ -155,5 +155,43 @@
 		<!-- /.cols -->
 	</div>
 	<!-- /.popup-body -->
+
+	<div class="popup-body" id="biography" *ngIf="biography">
+		<a href="#/" class="btn btn-yellow btn-make-dedication btn-back" (click)="Biography()"></a>
+
+        <div class="row">
+			<div class="col-sm-12 col-md-5">
+				<img src="./assets/build/css/images/images/RabbiJacob.png"/>
+			</div>
+			<div class="col-sm-12 col-md-7 parragraphs">
+				<p>Rabbi Jacob S. Kassin was born in 1900 in the old city of Jerusalem. He attended Yeshiva Ohel Mo’ed, a prestigious Torah academy in Jerusalem that was founded by the great Gaon Rabbi Refael Shelomo Laniado.</p>
+				<p>Rabbi Shaul Kassin, Jacob’s father, instilled in Jacob a love of Torah and the importance of learning. This perpetuated the family’s rabbinical heritage. Rabbi Shaul miscalculated Jacob’s age and Jacob was called to the Torah as a bar mitzvah at age 12, a year earlier than is mandated by Jewish law. Soon after, the members of the synagogue realized the mistake, but saw the true brilliance of Jacob.</p>
+				<p>The mistake was compounded when Jacob’s father apprenticed him to an expert scribe so that Jacob would be able to earn a living.  Jacob’s handwriting had a smooth and graceful scroll. Within months, Jacob acquired the skills to become an expert.  Jacob, at the age of 12, was a noted scribe and wrote a complete Sefer Torah at Bet El, the yeshiva of kabbalists in Jerusalem. A scribe must be able to write the Sefer Torah with no mistakes, for a mistake would make the document pasul and not fit for use.  Jacob’s Torah was perfect.</p>
+				<p>But a child of 12 cannot be permitted to be a scribe as he is not yet a man according to Jewish law. When the mistake was realized, Jacob was sent back to school at Yeshiva Ohel Mo’ed. His rabbis, who saw the capabilities of this gifted student, gave Jacob special attention. He excelled in his studies and continued his education at the Yeshiva Porat Yosef, a Sepharadic yeshiva in Jerusalem, where he earned a reputation as a scholar and later became a teacher.</p>
+				<p>By the age of 16, Jacob was known in Jerusalem for his knowledge of Talmud, which he credited to his father. In the midst of World War I, Jacob’s father and sister died of typhoid fever. His mother Altoon died soon after. Jacob was an orphan at 16. Although he continued to study at the yeshiva, Jacob was poverty-stricken. He had little food and money. His clothing became threadbare. It was so difficult to obtain food in Jerusalem that many people ate seeds and became sick. Jacob worked selling groceries to earn money for food. But the constant hunger left a toll on Jacob: He developed a debilitating stomach condition that remained with him for years to come.</p>
+				<p>At age 18, Jacob Kassin was invited to the Jerusalem home of Rabbi Shalom Hedaya, a noted kabbalist and Talmudic scholar. Rabbi Hedaya was very impressed by Jacob’s voice, his learning and most of all his demeanor and extreme modesty. Rabbi Hedaya wanted a match between Jacob and his daughter Mazal. Mazal Hedaya and her mother, Sarah Labaton Hedaya, a descendant of the Labaton rabbinic dynasty, were not impressed with Jacob. They were put off by his threadbare clothing and the fact that he had nothing to offer her. But Rabbi Hedaya convinced his wife and daughter that Jacob was destined to be a great man, and Jacob and Mazal wed.</p>
+				<p>In his early 20’s Jacob was appointed Rosh Yeshiva in the then-newly-erected Yeshiva Porat Yosef building. He studied Kabbalah under Rabbi Shaul Dweck HaKohen (Sadeh).  Rabbi Jacob taught classes at Yeshiva Porat Yosef, often studying Kabbalah late into the night. Word soon spread that Jacob was a student of Kabbalah, which brought him to the attention of Rabbi Shaul Hayyim Dweck, a respected rabbi noted for his knowledge of Kabbalah. Rabbi Dweck invited Jacob to become one of a select group of scholars who regularly studied with him</p>
+				<p>In early 1922, the leading kabbalist in Jerusalem was losing his sight. The rabbi refused to leave Jerusalem to undergo an operation to cure his eyesight. He needed someone to read to him. Rabbi Dweck recommended Jacob as a good reader. For the next three years, Jacob read Kabbalah and, in turn, the rabbi explained the text to Jacob, making him an expert in Kabbalah.</p>
+				<p>During the course of his life, Hacham Yaacob, as he endearingly grew to be known, wrote several books on Kabbalah. In 1925, he published Or HaLebanah (The Light of the Moon), which consisted of three parts – Or HaLebanah, Or Hadash and Or HaHayyim – a commentary with novella from the teachings of the Rashash. These books are kabbalist works studied by Kabbalah students today. Hacham Yaacob also wrote Yesod HaEmuna (Foundation of Belief). The latter book included arguments that dispelled doubts about the authenticity of Kabbalah, as well as responsa.</p>
+				<p>In 1928, kabbalist Rabbi Rahamim David Shrem zt’l, was completing a major work on Kabbalah entitled Sha’are Rahamim. The book is a collection of questions posed to his teachers - Rabbi Hayyim Shmuel Dweck and Rabbi Avraham Ades - on topics in the writings of the Ari and Rashash. Concerned that there might be errors in the book, Rabbi Shrem needed a scholar to review the work. Rabbi Shrem sought out Hacham Yaacob Kassin, whose knowledge of the subject and whose gift for eloquent writing made him a perfect choice for the assignment.</p>
+				<p>In 1930, Hacham Yaacob added his signature to a joint approbation about the work, Yad Eliyahu, by the Gaon Rabbi Eliyahu Yishak Hazzan zt’l.</p>
+				<p>From 1928 to the end of 1932, Hacham Yaacob served as a Dayan in the Supreme Bet Din of the Sepharadic Community of Jerusalem. In 1931, Hacham Yaacob received his rabbinical ordination from the Great Rabbis of Israel, where he was established as a Talmudic and kabbalistic scholar. In the same year, Hacham Yaacob published Pri Ets Haggan Fruit of the Tree of the Garden, a book on Kabbalah that included biographies of prominent Saddikim, including the Rashash, and discussions of their ethical teachings, solutions to problems posed by the Gaon Rabbi Yosef Hayyim of Baghdad and the order of prayers for Rosh Hashanah, along with explanations.</p>
+				<p>In 1932 Hacham Yaacob was selected by the Rishon LeSion Rabbi Yaacob Meir and Rabbi Ezra Raful to travel to the United States on a fundraising mission on behalf of the Sepharadic orphanages of Jerusalem.  When he arrived, he was greeted by the Rabbis and lay leaders of the Brooklyn Syrian community. With the urging of the community his planned two month trip was extended to six months. Before he left he was beseeched to remain and become their Chief Rabbi.  Hacham Yaacob did not accept the offer for he believed his future was in Jerusalem.  However, he agreed to sign a letter stating that should he ever leave Israel to serve as Rabbi elsewhere, he would first come and be a Rabbi to the Brooklyn Syrian Community for a year.  Over the next year he received similar offers from the Syrian communities in Mexico, Argentina and Egypt.  But Hacham Yaacob did not accept any position elsewhere because he felt his destiny was in Jerusalem, and he also told them of his agreement with the Syrian community in Brooklyn if he left Jerusalem.</p>
+				<p>During the following year, the Brooklyn Syrian community sent several letters to Hacham Yaacob urging him to return to them and become their Chief Rabbi.  After much consultation with the Rabbis of Jerusalem, and with the advice of his father-in-law, the Gaon and Kabbalist Rabbi Shalom Hedaya, Hacham Yaacob accepted the position.</p>
+				<p>In 1933, Hacham Yaacob accepted an offer from Magen David Congregation of Brooklyn, New York as Chief Rabbi and Chief Dayan. On August 10, 1933, Hacham Yaacob, Mazal and their first four children - Shaul, Shulamit (Charlotte), Abraham, and Yishak – arrived in New York.  Hacham Yaacob and Mazal eventually had nine children who reached adulthood. Shaul, Leon and David became rabbis. Albert, Yishak and Meyer became business men.  Moshe became an attorney. Shulamit (Charlotte) became the wife of Hacham Baruch, and Esther became a wife and mother.</p>
+				<p>From the very beginning, Hacham Yaacob’s love and dedication to his community was evident and felt by everyone.  He devoted his life to teaching, guiding and uplifting each and every member of his community, spiritually and morally.  His self sacrifice, exemplary character, his humility, his pleasant and gentle disposition, and genuine understanding of the needs of his community gained him the love, respect, and confidence of each and every community member.  This enabled Hacham Yaacob to lead the community for its own benefit during exceptionally difficult times.</p>
+				<p>As a reflection of his love and dedication to his community, he attended and presided over thousands of events and occasions for all the families in his community.   He personally interviewed and counciled over 2,000 engaged couples in preparation of their marriage and performed their weddings as well.  He attended every berit milah, wedding, Pidyon Haben, bar mitzvah and funeral with the same sincerity and attention, whether the family was rich or poor, and regardless of their standing in the community or their level of religious observance.  In fact, no occasion was complete without the presence of Chief Rabbi Hacham  Yaacob S. Kassin.</p>
+				<p>Hacham Yaacob headed the Bet Din and formed the community’s Rabbinical Council. Brooklyn’s Syrian community was growing by leaps and bounds and Hacham Yaacob was their spiritual leader. Over the years, Hacham Yaacob brought the community together. He reorganized the Kahal (congregation) and established the numerous Sepharadic religious and social services and institutions on a firm and stable foundation.  Under Hacham Yaacob’s leadership, over 40 institutions including yeshivas, synagogues, Mikvehs, youth centers and agencies that provided for the poor and sick were established. These same institutions continue to service the community until today and serve as a foundation for the establishment of other needed institutions in the future.</p>
+				<p>During the 62 years that Hacham Yaacob led Brooklyn’s Syrian community, he revived and strengthened religious understanding and observance.  He strengthened Sepharadic heritage, culture, tradition and customs, as well as an awareness of Sepharadic identity, which remains unique and authentic. He also strengthened the community’s connection to, and love and support of Eretz Yisrael and its religious institutions.</p>
+				<p>One of Hacham Yaacob’s most significant accomplishments was to create and maintain unity between the various segments of the community.  He always pursued and personified peace and solidarity among all the people of his community.  Hacham Yaacob served by accentuating the importance of serving and attending to the needs of everyone in the community.  Hacham Yaacob was guided by the principle of respect for fellow men and acceptance of every member of the community, regardless of their level of observance.  By accepting the less observant, Hacham Yaacob sought to bring them into the fold.  Indeed, over the course of his lifetime, Hacham Yaacob brought many who had strayed from Torah observance back to the path of Judaism.  Hacham Yaacob’s inspiring sermons in Arabic and Hebrew, his personal example and private counseling facilitated the return to the practices of Judaism in the Sephardic tradition.</p>
+				<p>During Hacham Yaacob’s tenure as Chief Rabbi, Hacham Yaacob made many decisions to guide and protect his community.  The number of these decisions and the positive effects for his community cannot be quantified.  Many of these decisions still have a lasting impact and guide the community until today. The most notable decision was his enactment of the Marriage Edict of 1935. Hacham Yaacob’s community continues to embrace this edict along with many of his lessons and guidance. Because of this, his community stands strong and united on a solid foundation, and continues to grow and be blessed both spiritually and materially because of the solid religious, moral, and social foundations Hacham Yaacob established during his lifetime.</p>
+				<p>The Brooklyn Syrian community has become internationally known for being the largest group of Syrian Jews in the world. And Chief Rabbi Hacham Yaacob S. Kassin was the undisputed leader not only in Brooklyn but of Syrian Jewish communities worldwide. During his tenure as Chief Rabbi, Hacham Yaacob gained international repute as an expert on Jewish Law. Learned men and Rabbis alike sent queries of law to him from all over the world for his decision. He settled issues involving family problems, business transactions, weddings, and provided valuable religious guidance. His decisions on halachic matters received international recognition. Realizing his influence, Hacham Yaacob sought to keep a firm, but loving hand on the religious affairs of other Syrian communities in Israel and around the world by encouraging them toward higher spiritual standards, and religious observance.</p>
+				<p>After a long, brilliant, and productive life dedicated to serving the Almighty and his people, Hacham Yaacob passed away at the age of 94 on Tuesday, the third of Tevet 5755. (December 6, 1994). It was a devastating day for his family, for the entire Syrian Sepharadic commuity, and for the entire Jewish world. Many dignitaries and rabbinical leaders, along with thousands of people in America and in Eretz Yisrael attended his funeral. Many eulogies were delivered in his honor. His coffin was flown to Eretz Yisrael where he was buried on Har HaMenuhot.  </p>
+			</div>
+		</div>
+		
+	</div>
+	<!-- /.popup-body -->
+
 </div>
 <!-- /#dedications.popup dedications -->

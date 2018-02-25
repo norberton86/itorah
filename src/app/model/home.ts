@@ -55,3 +55,11 @@ export class Link
   AudioUrl:string
   Dedication:string
 }
+
+export class LinkEmunah{
+    id: number
+    title: string
+    date: Date
+    audioUrl: string
+    content:string
+}

@@ -37,14 +37,8 @@ export class QueueComponent implements OnInit, OnDestroy {
         if (mediaId == this.queues[index].id)
           position = index;
       }
-
-      var s = new ItemQueue()
-      if (position == this.queues.length - 1) //if is the last one
-        s = this.queues[0]                  //start since the begining
-      else
-        s = this.queues[position + 1]      //play the next item
  
-        this.playerQueueService.setQueue(s)
+      this.playerQueueService.setQueue(this.queues[position + 1]) //play the next item
 
     })
 

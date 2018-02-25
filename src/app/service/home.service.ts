@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Home, ReadNow,Link } from '../model/Home';
+import { Home, ReadNow,Link,LinkEmunah } from '../model/Home';
 import { Service,ServiceLogin } from '../model/service';
 
 import {Http, Headers} from '@angular/http';
@@ -59,6 +59,15 @@ export class HomeService extends ServiceLogin{
     public readLinks(): Observable<Array<Link>> {
         
         return this.http.get("http://itorahapi.3nom.com/api/Halacha").map(
+            (response) => {
+                return response.json();
+            }
+        )
+    }
+
+    public readLinksEmunah(): Observable<Array<LinkEmunah>> {
+        
+        return this.http.get("http://itorahapi.3nom.com/api/DailyEmunah/recent").map(
             (response) => {
                 return response.json();
             }

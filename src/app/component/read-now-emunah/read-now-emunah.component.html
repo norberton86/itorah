@@ -1,7 +1,7 @@
 <div class="popup" id="readNowEmunah">
   <div class="popup-head">
     <span class="waterMark">DailyEmunah.org</span>
-    <span> <b> {{rNow?.title}}</b> </span>
+    <span> <b> {{link?.title}}</b> </span>
 
     <a  href="#/" style="margin-left: 2em;"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a>
     <a  href="#/"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a>
@@ -16,22 +16,22 @@
 
   <div class="popup-body" id="printReadEmunah" >
 
-    <p style="text-align: center" class="titlePrint">{{rNow?.title}}</p>
+    <p style="text-align: center" class="titlePrint">{{link?.title}}</p>
 
-    <div *ngIf="htmlFormatted" class="content" [innerHTML]="rNow?.content">
+    <div *ngIf="htmlFormatted" class="content" [innerHTML]="link?.content">
 
     </div>
 
     <div *ngIf="!htmlFormatted" style="white-space: pre-wrap;">
 
-        {{rNow?.content}}
+        {{link?.content}}
 
     </div>
 
 
-    <!--<div class="link-container">
-      <div class="link-halacha" *ngFor="let l of LinksToShow()" (click)="NavigateLink(l)" title="{{l.Title}}"> <span>{{l.title|reduceStringLink}} </span> </div>
-    </div>-->
+    <div class="link-container">
+      <div class="link-halacha" *ngFor="let l of LinksToShow()" (click)="NavigateLink(l)" title="{{l.title}}"> <span>{{l.title|reduceStringLink}} </span> </div>
+    </div>
 
   </div>
   <!-- /.donate-body -->

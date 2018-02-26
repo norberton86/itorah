@@ -48,3 +48,21 @@ margin-top: 1em
 .tracks .track:before{
   background:none
 }
+
+/* trying to fix the search button header, temp fix */
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+  h4 > b{
+    font-size: 19px;
+    margin-left: 158px;
+    margin-right: 26px;
+  }
+
+  h4 > span{
+    padding-left: 4px;
+    font-size: 16px;
+  }
+}
+

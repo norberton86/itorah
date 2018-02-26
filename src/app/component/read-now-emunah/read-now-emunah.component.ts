@@ -32,8 +32,10 @@ export class ReadNowEmunahComponent implements OnInit {
   }
 
  Close(){
-    this.link=this.links.find(i=>i.title!="<p>No Content Available</p>")  //reset to the element with content available
+    this.link=this.links.find(i=>i.title!=this.noContent)  //reset to the element with content available
  }
+
+ noContent:string="<p style='padding-bottom: 1em;'>No Content Available</p>"
 
   Read()
   {
@@ -45,7 +47,7 @@ export class ReadNowEmunahComponent implements OnInit {
 
         this.links.forEach(l=>{
            if(l.title!=response.title)
-           l.content="<p style='padding-bottom: 1em;'>No Content Available</p>"
+           l.content=this.noContent
         })
 
         if (response.content.indexOf('</p>') >= 0)//determinate the format type(in this case has hmtl tags)

@@ -4,7 +4,7 @@
     <span> <b> {{link?.title}}</b> </span>
 
     <a  href="#/" style="margin-left: 2em;"><i id="weekly-play" class="ico-play-yellow" (click)="Play()"></i></a>
-    <a  href="#/" *ngIf="link.title!='<p>No Content Available</p>'"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a>
+    <a  href="#/" *ngIf="link.content!=noContent"><i id="weekly-print" class="ico-print-yellow" (click)="Print()"></i></a>
 
     <a href="#" class="link-close" (click)="Close()">
 						<i class="ico-close"></i>

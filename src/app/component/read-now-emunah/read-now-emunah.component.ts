@@ -25,16 +25,15 @@ export class ReadNowEmunahComponent implements OnInit {
   ReadLink() {
     this.homeService.readLinksEmunah().subscribe(
       result => {
-
-        for (var index = 0; index < result.length; index++) {
-          result[index].content="<p>Content "+index+"</p>"
-        }
-
         this.links = result
         this.Read()
       }, error => { }, () => { }
     )
   }
+
+ Close(){
+    this.link=this.links.find(i=>i.title!="<p>No Content Available</p>")  //reset to the element with content available
+ }
 
   Read()
   {
@@ -42,6 +41,12 @@ export class ReadNowEmunahComponent implements OnInit {
       response => {
 
         this.link=this.links.find(i=>i.title==response.title)
+        this.link.content=response.content
+
+        this.links.forEach(l=>{
+           if(l.title!=response.title)
+           l.content="<p style='padding-bottom: 1em;'>No Content Available</p>"
+        })
 
         if (response.content.indexOf('</p>') >= 0)//determinate the format type(in this case has hmtl tags)
           this.htmlFormatted = true

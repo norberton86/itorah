@@ -1,7 +1,9 @@
 <div class="popup dedications" id="dedications">
 	<div class="popup-head">
 		<form action="?" method="get">
-			<label for="field-search-content" style="color: #4792d9;">Dedications</label>
+			<label for="field-search-content" style="color: #4792d9;">Dedications
+				<span class="rabbi" *ngIf="biography">Rabbi Jacob S Kassin A`H</span>
+			</label>
 
 			<a href="#" class="link-close" (click)="Close()">
 					<i class="ico-close"></i>

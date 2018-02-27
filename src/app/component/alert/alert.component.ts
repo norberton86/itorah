@@ -146,6 +146,11 @@ export class AlertComponent implements OnInit {
     this.manage = true
   }
 
+  Close()
+  {
+    this.Back()
+  }
+
   Save() {
     if (this.editing) {
       this.Delete(this.edited)

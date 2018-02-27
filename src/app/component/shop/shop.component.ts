@@ -122,6 +122,11 @@ export class ShopComponent implements OnInit {
   Close()
   {
     this.paymentService.setItem('reset')
+
+    if(!$('#shop-2').hasClass('hidden'))
+    {
+      document.getElementById('backToHistory').click()
+    }
   }
 
 }

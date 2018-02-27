@@ -107,6 +107,8 @@ export class AppComponent implements OnInit {
 
       //to close the other popups
       this.CloseOtherPopu(id)
+
+      window.scrollTo(0,0)
     }
     this.CloseMenu()
   }
@@ -318,6 +320,8 @@ export class AppComponent implements OnInit {
   {
     $("#readNowEmunah").toggleClass('shown');
     this.CloseOtherPopu("#readNowEmunah")
+
+    window.scrollTo(0,0)
   }
 
   Browse() {

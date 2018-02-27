@@ -126,7 +126,8 @@ export class DedicationComponent implements OnInit {
     this.biography=false
     if(!$('#make-dedication').hasClass('hidden'))
     {
-     document.getElementById('backFromMoney').click()
+      $('#make-dedication').addClass('hidden')
+      $('#list-dedications').removeClass('hidden')
     }
   }
 

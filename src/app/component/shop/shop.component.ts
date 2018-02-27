@@ -125,7 +125,8 @@ export class ShopComponent implements OnInit {
 
     if(!$('#shop-2').hasClass('hidden'))
     {
-      document.getElementById('backToHistory').click()
+      $('#shop-2').addClass('hidden')
+      $('#shop-1').removeClass('hidden')
     }
   }
 

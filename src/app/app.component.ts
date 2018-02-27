@@ -163,8 +163,15 @@ export class AppComponent implements OnInit {
       this.emailRecover = location.href;
       $("#recover").toggleClass('shown');
     }
+
+    
+    if (location.href.indexOf('#app') >= 0) 
+    {
+      this.fromApp=true   
+    }
   }
 
+   fromApp:boolean=false
 
   Accion() {
     this.val = this.Generate();

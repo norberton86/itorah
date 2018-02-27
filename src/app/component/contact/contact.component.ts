@@ -69,6 +69,19 @@ requesting:boolean=false
       respond=> {
         this.requesting=false
         this.contactService.Notify("Message sent", false)
+        this.Reset()
+      },
+      error=> {
+        this.requesting=false
+        this.contactService.Notify("Service not available", true)
+      },
+      ()=> { }
+    )
+
+  }
+
+  Reset()
+  {
         this.form.reset({
           issue: '2',
           name: '',
@@ -79,13 +92,10 @@ requesting:boolean=false
           subject: '',
           body: ''
         })
-      },
-      error=> {
-        this.requesting=false
-        this.contactService.Notify("Service not available", true)
-      },
-      ()=> { }
-    )
+  }
 
+  Close()
+  {
+    this.Reset()
   }
 }

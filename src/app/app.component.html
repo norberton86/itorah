@@ -3,7 +3,7 @@
 		<header class="header">
 			<div class="shell">
 				<div class="header-inner">
-					<a href="#" class="logo">iTorah.com</a>
+					<a href="#" class="logo" [class.notInMobile]="fromApp">iTorah.com</a>
 
 					<div class="header-content">
 						<ul class="nav-utilities">
@@ -188,7 +188,7 @@
 						</div><!-- /.search -->
 					</div><!-- /.header-content -->
 
-					<aside class="header-aside">
+					<aside class="header-aside" [class.notInMobile]="fromApp">
 						<ul class="nav-access">
 							<li>
 								<a href="#" class="link" id="login-title">Sign In</a>

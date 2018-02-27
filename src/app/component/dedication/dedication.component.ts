@@ -123,6 +123,11 @@ export class DedicationComponent implements OnInit {
   Close()
   {
     this.paymentService.setItem('reset') 
+    this.biography=false
+    if(!$('#make-dedication').hasClass('hidden'))
+    {
+     document.getElementById('backFromMoney').click()
+    }
   }
 
   //--------------------------------------------------------------------------------------------------------------------------------------------------------------------

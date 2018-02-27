@@ -1,0 +1,7 @@
+@media(max-width:375px) /*phone portrait*/ 
+{
+    #item-content-8 > div > a{
+        margin-left: 94.5%;
+    }
+}
+

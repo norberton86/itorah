@@ -460,7 +460,7 @@ blockquote:last-child { margin-bottom: 0; }
 	.header .search { margin-left: 30px; }	
 	
 	.header .nav-utilities li + li { padding-left: 0; margin-left: 9px;  }
-	.header .nav-utilities a { font-size: 11px;  }
+	.header .nav-utilities a { font-size: 17px; padding-right: 10px;  }
 	
 	.header .header-inner { padding-left: 0;  }
 	.header .nav-utilities { padding-right: 20px;  }

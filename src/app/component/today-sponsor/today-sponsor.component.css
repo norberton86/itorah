@@ -25,8 +25,11 @@
 @media(max-width:375px) /*phone portrait*/ 
 {
   .daty{
-    padding-right: 33px;
+    padding:0;
+  }
 
+  .withMargin{
+    width: 125px;
   }
   
   .banner{

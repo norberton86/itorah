@@ -1,3 +1,9 @@
+
+.search-field{   /*on hover pointer on main search*/
+  cursor: pointer;
+}
+
+
  .loader{
   position: fixed;
   left: 0px;
@@ -141,6 +147,10 @@ padding: 0.5em;
     width:50%
   }
 
+  .header .nav-utilities > li { /*spreading out nav-utilities, click arrow doesnt align though revise*/
+    width: 45px;
+  }
+  
 }
 
 /*Iphone Landscape */
@@ -153,6 +163,11 @@ padding: 0.5em;
     margin-right: 0.0em;
     width: initial;
   }
+
+  .header .nav-utilities a { 
+    font-size: 17px;
+    padding-right: 10px;
+ }
 }
 
 

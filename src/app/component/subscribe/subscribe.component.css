@@ -3,3 +3,7 @@
     color: #1e68e7;
     cursor: pointer;
 }
+.header .nav-utilities a { 
+    font-size: 17px;
+    padding-right: 10px;
+ }

@@ -38,7 +38,7 @@ export class QueueComponent implements OnInit, OnDestroy {
           position = index;
       }
 
-      if(this.queues.length>1)  //only if you have more than one element
+      if(this.queues.length>1 && position!=this.queues.length-1)  //only if you have more than one element and the current element is not the last one
       this.playerQueueService.setQueue(this.queues[position + 1]) //play the next item
       
       this.Remove(this.queues[position].id) //remove from server and local

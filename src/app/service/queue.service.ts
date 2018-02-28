@@ -51,6 +51,8 @@ export class QueueService extends ServiceLogin {
   }
 
   public remove(token: string,data:any): Observable<any> {
+    
+    console.log('Removing from queue')
 
     let h = new Headers();
              h.append('Authorization','bearer '+token);

@@ -38,8 +38,11 @@ export class QueueComponent implements OnInit, OnDestroy {
           position = index;
       }
 
+      if(this.queues.length>1)  //only if you have more than one element
       this.playerQueueService.setQueue(this.queues[position + 1]) //play the next item
-      this.queues.splice(position, 1)
+      
+      this.Remove(this.queues[position].id) //remove from server and local
+      
     })
 
     this.playerQueueService.getPosition().subscribe(data => {
@@ -217,9 +220,10 @@ export class QueueComponent implements OnInit, OnDestroy {
 
     var item = this.queues.filter(function (s) { return s.id == id; })[0]
 
-    for (var index = 0; index < this.queues.length; index++) {
-      if (this.queues[index].id == id)
-        this.queues.splice(index, 1)
+    for (var index = 0; index < this.queues.length; index++) {  //remove from local
+      if (this.queues[index].id == id){
+          this.queues.splice(index, 1)
+      }
     }
 
     let self = this

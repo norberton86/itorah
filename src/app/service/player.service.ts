@@ -71,6 +71,9 @@ export class PlayerService extends Service {
 
           setTimeout(function () {
             var ad: any = document.getElementById('video-modal-Video')
+            if(ad==null)
+            ad = document.getElementById('video-modal-Audio')
+
             ad.currentTime = parseInt(result);
           }, 10000)
 

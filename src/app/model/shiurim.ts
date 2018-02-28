@@ -25,7 +25,8 @@ export class Hok extends Shiurim
 
 export class ItemQueue extends Hok
 {
-     speaker:string;
+     speaker:string
+     position:string
 } 
  
 

@@ -43,7 +43,12 @@ export class PlayerService extends Service {
 
         this.http.post("http://itorahapi.3nom.com/api/MediaPosition/save", data, { headers: h }).subscribe(response => {
 
-          console.log(data.position)
+          
+          if(this instanceof PLayerQueueService)
+          {
+            data.mediaId
+            this.setPosition({mediaId:data.mediaId,position:data.position})
+          }    
 
         }, error => { }, () => { })
       }
@@ -453,6 +458,8 @@ export class PLayerQueueService extends PlayerService {
 
   private subjectCompleted: Subject<string> = new Subject<string>();
   private subjectQueue: Subject<ItemQueue> = new Subject<ItemQueue>();
+  private subjectPosition: Subject<any> = new Subject<any>();
+
 
   constructor(http: Http) {
     super(http);
@@ -493,6 +500,14 @@ export class PLayerQueueService extends PlayerService {
 
   getQueue(): Observable<ItemQueue> {
     return this.subjectQueue.asObservable();
+  }
+
+  setPosition(position: any) {
+    this.subjectPosition.next(position)
+  }
+
+  getPosition(): Observable<any> {
+    return this.subjectPosition.asObservable();
   }
 
 }

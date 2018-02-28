@@ -37,11 +37,22 @@ export class QueueComponent implements OnInit, OnDestroy {
         if (mediaId == this.queues[index].id)
           position = index;
       }
- 
-      this.playerQueueService.setQueue(this.queues[position + 1]) //play the next item
 
+      this.playerQueueService.setQueue(this.queues[position + 1]) //play the next item
+      this.queues.splice(position, 1)
     })
 
+    this.playerQueueService.getPosition().subscribe(data => {
+      var pos=-1;
+      for (var index = 0; index < this.queues.length; index++) {
+        if (data.mediaId == this.queues[index].id)
+          pos = index;
+      }
+      
+      if(pos!=-1)
+      this.queues[pos].position = data.position
+
+    })
 
   }
 
@@ -62,7 +73,8 @@ export class QueueComponent implements OnInit, OnDestroy {
       "pdfUrl": "",
       "cost": 6,
       "sponsor": "Rabbi Mansour",
-      "categoryCount": 1
+      "categoryCount": 1,
+      "position": "40"
     },
     {
       "title": "Word Power",
@@ -80,7 +92,8 @@ export class QueueComponent implements OnInit, OnDestroy {
       "pdfUrl": "",
       "cost": 6,
       "sponsor": "Rabbi Mansour",
-      "categoryCount": 1
+      "categoryCount": 1,
+      "position": "40"
     },
     {
       "title": "Perush Rashi on Parashat Hukat",
@@ -98,7 +111,8 @@ export class QueueComponent implements OnInit, OnDestroy {
       "pdfUrl": "",
       "cost": 6,
       "sponsor": "Rabbi Mansour",
-      "categoryCount": 1
+      "categoryCount": 1,
+      "position": "40"
     },
     {
       "title": "The Aderet / Jewish Home",
@@ -116,7 +130,8 @@ export class QueueComponent implements OnInit, OnDestroy {
       "pdfUrl": "",
       "cost": 6,
       "sponsor": "Rabbi Mansour",
-      "categoryCount": 1
+      "categoryCount": 1,
+      "position": "40"
     }];
   }
 
@@ -125,6 +140,28 @@ export class QueueComponent implements OnInit, OnDestroy {
       this.Read();
     else
       this.Fill();
+  }
+
+  getStyle(item: ItemQueue) {
+
+    var time = item.length.trim().split(':')
+    var totalSeconds;
+
+    switch (time.length) {
+      case 3:
+        var hourSeconds = parseInt(time[0]) * 60 * 60  //get the seconds of the hour
+        var minuteSeconds = parseInt(time[1]) * 60     //get the seconds of the minute
+        totalSeconds = hourSeconds + minuteSeconds + parseInt(time[2])
+
+        break;      //hour:minute:second
+      case 2:
+        var minuteSeconds = parseInt(time[0]) * 60     //get the seconds of the minute
+        totalSeconds = minuteSeconds + parseInt(time[1])
+
+        break;     //minute:second
+    }
+
+    return Math.trunc(parseInt(item.position) * 100 / totalSeconds).toString() + '%'
   }
 
   Read() {
@@ -199,7 +236,7 @@ export class QueueComponent implements OnInit, OnDestroy {
 
   }
 
-  Play(item:ItemQueue) {
+  Play(item: ItemQueue) {
 
     this.playerQueueService.setQueue(item)
   }

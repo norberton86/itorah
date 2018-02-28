@@ -48,6 +48,10 @@ img{
 
 @media(max-width:375px) /*phone portrait*/ 
 {
+  .btn-make-dedication{
+      margin-left: 41px;
+  }
+
   .imgContainer{
       text-align: center;
       padding-top: 0.3em;
@@ -71,6 +75,26 @@ img{
     margin-left: 0px;
  }
 
+ .threeParra{
+    text-align: left;  
+}
+
+ .linkBiography{
+    text-align: center;
+    font-size: 11px;
+}
+
+#biography > a {
+    margin-left: 14px;
+}
+
+#biography > div > div.col-sm-12.col-md-5 > img{
+    width: 311px;
+    padding: 20px;
+}
+
+
+
 }
 
 @media   (min-width: 376px)  /*phone landscape*/
@@ -82,15 +106,7 @@ img{
         width: 25%;
         float: left;
     }
-
-    .threeParra{
-                
-        width: 75%;
-        float:left;
-    }
-
   
-
     .leftSide:nth-child(2){
         height: 6.1em;
         margin-left: 0em; 
@@ -130,7 +146,7 @@ img{
      font-size: 15px;
  }
  .linkBiography{
-     font-size: 12px;
+     font-size: 11px;
  }
 
 }

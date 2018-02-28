@@ -1508,7 +1508,7 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 	
 	.nav-utilities { position: relative;  }
 	.nav-utilities > li { position: static;  }
-	.nav-utilities > li .dropdown { width: 100%; left:0; } 
+	.nav-utilities > li .dropdown { width: 355px; left:0; } /* changed width from 100% to fit mobile -- dropdown queue Nav*/
 	.nav-utilities > li > a:after { left: 100%; margin-left: 10px; }
 	.nav-utilities > li > a:before { left: 100%; margin-left: 2px;  }
 }

@@ -21,6 +21,11 @@ li+li,li{
 
 }
 
+@media(max-width:375px) /*phone portrait*/ 
+{
+  /* #queueBox{ width: 360px; left:0; }  */
+}
+
 
 
 

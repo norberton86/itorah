@@ -1,6 +1,6 @@
-@media(max-width: 767px){
+/* @media(max-width: 767px){
   .daty{ display: none;}
-}
+} */
 
 .withMargin{
 
@@ -16,4 +16,31 @@
 
 .col-sm-5{
   padding-right: 0px
+}
+
+@media(max-width:375px) /*phone portrait*/ 
+{
+  .daty{
+    padding-right: 33px;
+
+  }
+  
+  .banner{
+    font-size: 13px;
+    padding-right: 17px;
+  }
+}
+
+@media only screen /*Ipad Portrait*/
+  and (min-width: 768px) 
+  and (max-width: 1024px)  {
+  
+    .daty{
+      font-size: 15px;
+      float: right;
+    }
+    
+    .withMargin {
+      height: 32px;
+    }
 }

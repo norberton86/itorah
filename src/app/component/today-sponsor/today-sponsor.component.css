@@ -2,6 +2,10 @@
   .daty{ display: none;}
 } */
 
+.daty{
+  float: right;
+}
+
 .withMargin{
 
   padding-right: 0.5em;

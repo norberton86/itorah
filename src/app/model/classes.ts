@@ -1,12 +1,8 @@
 export class Classes {
-
-    url:string
-    date:Date
-    title:string
-    speaker:string
-    duration:string
-    language:string
-    status:string
-    id:string
-    sourceID:number
+    ID: number
+    Title: string
+    Speaker: string
+    AudioUrl: string
+    CompletedOn: Date
+    SourceID: number
 }

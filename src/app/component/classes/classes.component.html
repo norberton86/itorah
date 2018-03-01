@@ -1,4 +1,4 @@
-<div class="popup classes" id="classes">
+<div class="popup" id="myClass">
   <div class="popup-head">
     <form action="?" method="get">
       <label for="field-search-content">Classes</label>
@@ -24,78 +24,62 @@
         </div>
         <!-- /.col col-medium -->
 
-        <div class="col col-medium col-title">
+        <div class="col col-large col-title">
           <a href="#">Title</a>
         </div>
         <!-- /.col col-medium -->
 
-        <div class="col col-large col-speaker">
+        <div class="col col-medium col-speaker">
           <a href="#">Speaker</a>
         </div>
         <!-- /.col col-large -->
 
-        <div class="col col-small">
-          <a href="#">Duration</a>
-        </div>
-        <!-- /.col col-small -->
 
-        <div class="col col-small">
+
+        <!--<div class="col col-small">
           <div class="col col-1of2"></div>
-          <!-- /.col col-1of2 -->
-        </div>
-        <!-- /.col col-small -->
+          
+        </div> -->
 
-        <div class="col col-large" style="text-align: center; ">
-          <a href="#">Status</a>
-        </div>
-        <!-- /.col col-large -->
+
       </li>
       <!-- /.search-resultsult -->
 
       <li class="search-resultsult" *ngFor="let a of classesS">
         <div class="col col-medium">
           <div class="col col-1of2">
-            <a href="#/" (click)="Play(a.title,a.url,a.sourceID,a.id)">
+            <a href="#/" (click)="Play(a)">
 								<i class="ico-mic"></i>
 							</a>
           </div>
           <!-- /.col col-1of2 -->
 
           <div class="col col-1of2">
-            {{a.date|date: 'MM/dd/yyyy'}}
+            {{a.CompletedOn|date: 'MM/dd/yyyy'}}
           </div>
           <!-- /.col col-1of2 -->
         </div>
         <!-- /.col col-medium -->
 
-        <div class="col col-medium col-title">
-          <p>{{a.title}}</p>
+        <div class="col col-large col-title">
+          <p>{{a.Title}}</p>
         </div>
         <!-- /.col col-medium col-title -->
 
-        <div class="col col-large col-speaker">
-          <p>{{a.speaker}}</p>
+        <div class="col col-medium col-speaker">
+          <p>{{a.Speaker}}</p>
         </div>
         <!-- /.col col-large col-speaker -->
 
-        <div class="col col-small col-duration">
-          {{a.duration}} MIN
-          <a href="#">{{a.language}}</a>
-        </div>
-        <!-- /.col col-small -->
 
-        <div class="col col-small">
-          <a href="{{a.url}}" class="btn btn-download" download>
+        <!--<div class="col col-small">
+          <a href="{{a.AudioUrl}}" class="btn btn-download" download>
 							<i class="ico-download"></i> mp3
 						</a>
-          <!-- /.btn btn-download -->
-        </div>
-        <!-- /.col col-small -->
 
-        <div class="col col-large col-status">
-          <a href="#" class="btn btn-status btn-completed">{{a.status}}</a>
-        </div>
-        <!-- /.col col-large col-status -->
+        </div> -->
+
+
       </li>
       <!-- /.search-resultsult -->
 

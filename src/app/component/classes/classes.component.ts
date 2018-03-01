@@ -8,160 +8,141 @@ import { Page } from '../../model/page';
   selector: 'app-classes',
   templateUrl: './classes.component.html',
   styleUrls: ['./classes.component.css'],
-  providers:[ClasseService]
+  providers: [ClasseService]
 })
 export class ClassesComponent implements OnInit {
 
-  allClasses:Array<Classes>;
-  classesS:Array<Classes>;
-  
+  allClasses: Array<Classes>;
+  classesS: Array<Classes>;
 
-  amount:number;
 
-  pages:Array<Page>;
-  allPages:number;
-  iteration:number;
+  amount: number;
 
-  asc:boolean=false;
+  pages: Array<Page>;
+  allPages: number;
+  iteration: number;
 
-  constructor(private classeService:ClasseService,private playerService:PlayerService) {
-      this.allClasses=[];
-      this.classesS=[];
-      this.pages=[];
-   }
+  asc: boolean = false;
+
+  constructor(private classeService: ClasseService, private playerService: PlayerService) {
+    this.allClasses = [];
+    this.classesS = [];
+    this.pages = [];
+  }
 
   ngOnInit() {
     this.Read();
   }
 
-  Read()
-  {
-    let self=this;
-      this.classeService.read().subscribe(
-           function(respond){
-
-             
-              self.allClasses=respond;
-
-             
-
-              self.Update();  
-           },
-           function(error){},
-           function(){}
-       )
-   
-  }
-
-  Update()
-  {
-
-        this.amount=this.allClasses.length; 
-
-        this.allPages=this.allClasses.length/9; //pagination
-        this.iteration=1; //pagination
-
-       this.CreatePages();
+  Read() {
+    let self = this;
+    this.classeService.read().subscribe(
+      function (respond) {
+        self.allClasses = respond;
+        self.Update();
+      },
+      function (error) { },
+      function () { }
+    )
 
   }
 
+  Update() {
 
+    this.amount = this.allClasses.length;
 
+    this.allPages = this.allClasses.length / 9; //pagination
+    this.iteration = 1; //pagination
 
-  CreatePages()
-  {
-       this.pages=[];
-
-        for(var i=this.iteration*6-6;i<this.iteration*6 && i<this.allPages;i++) //populate the pages array
-        {
-          if(i==(this.iteration-1)*6)
-          {
-              this.pages.push({id:i+1,current:true});
-              this.PopulatedShirium(i+1);  //the page            
-          } 
-          else
-          this.pages.push({id:i+1,current:false});
-        }    
+    this.CreatePages();
 
   }
 
-  PopulatedShirium(id:number)
-  {
-       this.classesS=[];
-       for(var i=id*9-9;i<id*9 && i<this.allClasses.length;i++)
-       {
-           this.classesS.push(this.allClasses[i]);  //populate the grid
-       }
-       
+  CreatePages() {
+    this.pages = [];
+
+    for (var i = this.iteration * 6 - 6; i < this.iteration * 6 && i < this.allPages; i++) //populate the pages array
+    {
+      if (i == (this.iteration - 1) * 6) {
+        this.pages.push({ id: i + 1, current: true });
+        this.PopulatedShirium(i + 1);  //the page            
+      }
+      else
+        this.pages.push({ id: i + 1, current: false });
+    }
+
   }
 
-  PagingPrev()
-{
-  this.iteration--;
-              if(this.iteration<=0)
-              {
-                   this.iteration=1;
-              }
-              else
-              this.CreatePages();
-}
+  PopulatedShirium(id: number) {
+    this.classesS = [];
+    for (var i = id * 9 - 9; i < id * 9 && i < this.allClasses.length; i++) {
+      this.classesS.push(this.allClasses[i]);  //populate the grid
+    }
 
-PagingNext()
-{
-   this.iteration++;
-              if(this.iteration>Math.ceil(this.allPages/6) )
-              {
-                this.iteration=Math.ceil(this.allPages/6);
-              }
-              else
-              this.CreatePages();
-}
-
-Page(id:number)
-{
-
-              this.pages.forEach(function(p){
-
-                 if(p.id!=id)
-                 p.current=false;
-                 else
-                 p.current=true;
-              })
-
-              this.PopulatedShirium(id);
-             
-}
-
-  
-  Play(title: string, media: string,sourceID:number,mediaId:string) {
-      this.playerService.PlayAudio(title, media,"",sourceID,mediaId)
   }
 
- Desc(a,b) {
-    if (a.date < b.date)
+  PagingPrev() {
+    this.iteration--;
+    if (this.iteration <= 0) {
+      this.iteration = 1;
+    }
+    else
+      this.CreatePages();
+  }
+
+  PagingNext() {
+    this.iteration++;
+    if (this.iteration > Math.ceil(this.allPages / 6)) {
+      this.iteration = Math.ceil(this.allPages / 6);
+    }
+    else
+      this.CreatePages();
+  }
+
+  Page(id: number) {
+
+    this.pages.forEach(function (p) {
+
+      if (p.id != id)
+        p.current = false;
+      else
+        p.current = true;
+    })
+
+    this.PopulatedShirium(id);
+
+  }
+
+  Play(a:Classes) {
+    var onlyAudio = a.AudioUrl.includes('LT-Audio');
+
+    this.playerService.Play(a.Title,a.AudioUrl,onlyAudio,a.Speaker,"",a.SourceID,a.ID.toString())
+  }
+
+  Desc(a, b) {
+    if (a.AudioUrl < b.AudioUrl)
       return -1;
-    if (a.date > b.date)
+    if (a.AudioUrl > b.AudioUrl)
       return 1;
     return 0;
   }
 
-  Asc(a,b) {
-    if (a.date > b.date)
+  Asc(a, b) {
+    if (a.AudioUrl > b.AudioUrl)
       return -1;
-    if (a.date < b.date)
+    if (a.AudioUrl < b.AudioUrl)
       return 1;
     return 0;
   }
 
- Sort(col)
- {   
-     this.asc=!this.asc;  
-     if(this.asc)
-     col=col.sort(this.Asc)
-     else
-     col=col.sort(this.Desc)
+  Sort(col) {
+    this.asc = !this.asc;
+    if (this.asc)
+      col = col.sort(this.Asc)
+    else
+      col = col.sort(this.Desc)
 
-     this.Update()
- }
+    this.Update()
+  }
 
 }

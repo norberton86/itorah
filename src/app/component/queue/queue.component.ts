@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ItemQueue } from '../../model/shiurim';
 import { QueueService } from '../../service/queue.service';
 import { PLayerQueueService } from '../../service/player.service';
+import { ClasseService } from '../../service/classe.service';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -17,7 +18,7 @@ export class QueueComponent implements OnInit, OnDestroy {
   queues: Array<ItemQueue>;
   cursor: string = "-webkit-grab"
 
-  constructor(private queueService: QueueService, private playerQueueService: PLayerQueueService) {
+  constructor(private queueService: QueueService, private playerQueueService: PLayerQueueService,private classeService:ClasseService) {
 
     this.queueService.getItem().subscribe(item => {
       this.Add(item)
@@ -41,6 +42,8 @@ export class QueueComponent implements OnInit, OnDestroy {
       if(this.queues.length>1 && position!=this.queues.length-1)  //only if you have more than one element and the current element is not the last one
       this.playerQueueService.setQueue(this.queues[position + 1]) //play the next item
       
+      this.classeService.add({"sourceID": this.queues[position].sourceID,"mediaID": this.queues[position].id}).subscribe(result=>{})  //
+
       this.Remove(this.queues[position].id) //remove from server and local
       
     })

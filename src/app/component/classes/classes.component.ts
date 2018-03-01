@@ -7,8 +7,7 @@ import { Page } from '../../model/page';
 @Component({
   selector: 'app-classes',
   templateUrl: './classes.component.html',
-  styleUrls: ['./classes.component.css'],
-  providers: [ClasseService]
+  styleUrls: ['./classes.component.css']
 })
 export class ClassesComponent implements OnInit {
 

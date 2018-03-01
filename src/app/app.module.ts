@@ -48,6 +48,7 @@ import {SubscribeService} from './service/subscribe.service';
 import {PlayerService,PLayerQueueService} from './service/player.service';
 import {PerashaService} from './service/perasha.service';
 import {WeeklyResultService} from './service/weekly-result.service';
+import {ClasseService} from './service/classe.service';
 import {GemaraService} from './service/gemara.service';
 import {PopupService} from './service/popup.service';
 import {PaymentService} from './service/payment.service';
@@ -181,7 +182,7 @@ let providers = {
      ShareButtonsModule.forRoot(),
      SlickModule.forRoot()
   ],
-  providers: [PLayerQueueService,PerashaService,CkEditorService,PopupService,GemaraService,PaymentService,PlayerService,RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
+  providers: [ClasseService,PLayerQueueService,PerashaService,CkEditorService,PopupService,GemaraService,PaymentService,PlayerService,RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,3 +2,29 @@
     background-color:inherit ;
     border-bottom: none;
 }
+
+.popup-head{
+    color: #4792d9;
+}
+
+
+@media(max-width: 1024px){
+   
+    /* Data - Title - Speaker styles */
+    .popup .search-resultsults .search-resultsult.search-resultsult-title .col{
+     width: 33% !important; padding: 0; 
+     padding-right: 55px;
+    }
+    .popup .search-resultsults .search-resultsult.search-resultsult-title .col a { 
+        display: block; width: 100%; text-align: left; padding-right: 66px;
+    }
+
+    .col-title{
+        justify-content: center;
+    }
+
+    body > div.col-xs-11.col-sm-4.alert.alert-info{
+        z-index: 5000;
+    }
+}
+

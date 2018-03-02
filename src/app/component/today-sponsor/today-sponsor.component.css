@@ -22,7 +22,7 @@
   padding-right: 0px
 }
 
-@media(max-width:375px) /*phone portrait*/ 
+@media(max-width:375px)/* iphone 6 portrait  */
 {
   .daty{
     padding:0;
@@ -36,7 +36,31 @@
     font-size: 13px;
     padding-right: 17px;
   }
-}
+} 
+
+
+@media(min-width:414px)/* iphone 6+ portrait  */
+{
+  .daty{
+    padding:0;
+  }
+
+  .withMargin{
+    width: 138px;
+  }
+  /* 136 */
+} 
+
+@media(max-width:360px)/* galaxy 7 portrait  */
+{
+  .daty{
+    padding:0;
+  }
+
+  .withMargin{
+    width: 120px;
+  }
+} 
 
 @media only screen /*Ipad Portrait*/
   and (min-width: 768px) 
@@ -45,9 +69,35 @@
     .daty{
       font-size: 15px;
       float: right;
+      padding: 0;
     }
     
     .withMargin {
       height: 32px;
-    }
+      width: 133px;
+       
+   }
 }
+
+/* @media(max-width:1024px){
+  daty{
+    font-size: 15px;
+    float: right;
+    padding: 0;
+  }
+  
+  .withMargin {
+    height: 32px;
+    width: 133px;
+    
+  }
+} */
+
+/* @media(max-width:768px){
+  .withMargin {
+    height: 32px;
+    width: 104px;
+    padding:0;
+    padding-left: 4px;
+  }
+} */

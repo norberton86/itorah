@@ -737,7 +737,7 @@ blockquote:last-child { margin-bottom: 0; }
 	Donate
 \* ------------------------------------------------------------ */
 
-.popup { border:6px solid #a1a6b1; position: absolute; top: 10px; left: 10px; right:10px; z-index: 5000; background: #fff; display: none; }
+.popup { border:6px solid #a1a6b1; position: absolute; top: 10px; left: 10px; right:10px; z-index: 1030; background: #fff; display: none; }
 .popup.shown { display: block; }
 .popup .popup-head { background: #D8D8D8; padding: 17px 0 17px 48px; position: relative; font-size: 18px; }
 .popup .popup-head .link-close { position: absolute; top: 15px; right: 16px; }

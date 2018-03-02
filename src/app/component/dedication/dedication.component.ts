@@ -124,11 +124,7 @@ export class DedicationComponent implements OnInit {
   {
     this.paymentService.setItem('reset') 
     this.biography=false
-    if(!$('#make-dedication').hasClass('hidden'))
-    {
-      $('#make-dedication').addClass('hidden')
-      $('#list-dedications').removeClass('hidden')
-    }
+    this.pay=false
   }
 
   //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -138,5 +134,12 @@ export class DedicationComponent implements OnInit {
   }
 
   biography:boolean=false
+
+  pay:boolean=false
+
+  Pay()
+  {
+    this.pay=!this.pay
+  }
 
 }

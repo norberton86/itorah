@@ -276,7 +276,32 @@ export class PlayerService extends Service {
     }
 
     this.mediaId = mediaId
+
+    
+
+    if (this.wow != null && this.wow != undefined)  //set up like completed classes
+      this.wow.onCompleted(function () {
+        
+       self.addCompletedClasses({ "sourceID": sourceId,"mediaID": mediaId}).subscribe(result=>{})
+        
+    });
   }
+
+
+  public addCompletedClasses(data: any): Observable<any> {
+
+    let h = new Headers();
+    h.append('Authorization', 'bearer ' + this.getToken());
+    h.append('Content-Type', 'application/json');
+
+    return this.http.post('http://itorahapi.3nom.com/api/CompletedClasses', data, { headers: h }).map(
+      (response) => {
+        let body = response.json();
+        return body;
+      }
+    )
+  }
+  
 
   setShiurFromPlayer(data: any) {
     this.subject.next(data)
@@ -339,14 +364,20 @@ export class PlayerService extends Service {
 
   BuildAudio(title: string, url: string, sponsor: string, sourceId: number, mediaId: string) {
 
+     this.mediaIdAudio=mediaId
+     this.sourceIdAudio=sourceId
+
     if (this.getToken() != undefined && this.getToken() != "")  //only push if the user is login
     {
       this.setLastPositionAudio(title, url, sponsor, this.CreateNetFlix(sourceId, mediaId, "", true)) //try to get first the last position 
     }
     else
       this.CreatePlayer(title, url, sponsor)    //create directly
-
+   
   }
+
+  sourceIdAudio: number
+   mediaIdAudio: string
 
   CreatePlayer(title: string, url: string, sponsor: string, initialPosition = "") {
     let self = this
@@ -418,6 +449,12 @@ export class PlayerService extends Service {
 
     });
 
+    
+
+    $("#mediaAudio").bind("ended", function(){
+       self.addCompletedClasses( {"sourceID": self.sourceIdAudio,"mediaID": self.mediaIdAudio}).subscribe(result=>{})
+    });
+
   }
 
 
@@ -484,6 +521,7 @@ export class PLayerQueueService extends PlayerService {
     if (this.wow != null && this.wow != undefined)
       this.wow.onCompleted(function () {
         self.seCompleted(self.mediaId.toString())//notify that this element finished
+        
       });
   }
 

@@ -20,6 +20,8 @@ export class PlayerService extends Service {
   private subject: Subject<any> = new Subject<any>();
   private subjectDay: Subject<string> = new Subject<string>();
 
+  private subjectClasses: Subject<string> = new Subject<string>();
+
   constructor(http: Http) {
     super(http);
   }
@@ -282,13 +284,15 @@ export class PlayerService extends Service {
     if (this.wow != null && this.wow != undefined)  //set up like completed classes
       this.wow.onCompleted(function () {
         
-       self.addCompletedClasses({ "sourceID": sourceId,"mediaID": mediaId}).subscribe(result=>{})
+       self.addCompletedClasses({ "sourceID": sourceId,"mediaID": mediaId}).subscribe(result=>{
+         self.setClasses()
+       })
         
     });
   }
 
 
-  public addCompletedClasses(data: any): Observable<any> {
+  addCompletedClasses(data: any): Observable<any> {
 
     let h = new Headers();
     h.append('Authorization', 'bearer ' + this.getToken());
@@ -300,6 +304,14 @@ export class PlayerService extends Service {
         return body;
       }
     )
+  }
+
+  setClasses() {
+    this.subjectClasses.next("refresh")
+  }
+
+  getClasses(): Observable<string> {
+    return this.subjectClasses.asObservable();
   }
   
 
@@ -452,7 +464,9 @@ export class PlayerService extends Service {
     
 
     $("#mediaAudio").bind("ended", function(){
-       self.addCompletedClasses( {"sourceID": self.sourceIdAudio,"mediaID": self.mediaIdAudio}).subscribe(result=>{})
+       self.addCompletedClasses( {"sourceID": self.sourceIdAudio,"mediaID": self.mediaIdAudio}).subscribe(result=>{
+         self.setClasses()
+       })
     });
 
   }
@@ -497,7 +511,7 @@ export class Netflix {
 export class PLayerQueueService extends PlayerService {
 
   private subjectCompleted: Subject<string> = new Subject<string>();
-  private subjectQueue: Subject<ItemQueue> = new Subject<ItemQueue>();
+  private subjectQueue: Subject<IdQueue> = new Subject<IdQueue>();
   private subjectPosition: Subject<any> = new Subject<any>();
 
 
@@ -505,11 +519,7 @@ export class PLayerQueueService extends PlayerService {
     super(http);
 
     this.getQueue().subscribe(s => {
-
-      var media = s.video == "" ? s.audio : s.video
-      var onlyAudio = media.includes('LT-Audio')
-
-      this.Play(s.title, media, onlyAudio, s.speaker, s.sponsor, 1, s.id)
+      this.Play(s.item.title, s.media, s.onlyAudio, s.item.speaker, s.item.sponsor, 1, s.item.id)
     })
   }
 
@@ -535,11 +545,11 @@ export class PLayerQueueService extends PlayerService {
   }
 
 
-  setQueue(item: ItemQueue) {
+  setQueue(item: IdQueue) {
     this.subjectQueue.next(item)
   }
 
-  getQueue(): Observable<ItemQueue> {
+  getQueue(): Observable<IdQueue> {
     return this.subjectQueue.asObservable();
   }
 
@@ -550,5 +560,13 @@ export class PLayerQueueService extends PlayerService {
   getPosition(): Observable<any> {
     return this.subjectPosition.asObservable();
   }
+
+}
+
+export class IdQueue{
+
+  item:ItemQueue
+  onlyAudio:boolean
+  media:string
 
 }

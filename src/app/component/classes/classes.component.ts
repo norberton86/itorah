@@ -27,6 +27,11 @@ export class ClassesComponent implements OnInit {
     this.allClasses = [];
     this.classesS = [];
     this.pages = [];
+
+    this.playerService.getClasses().subscribe(res=>{
+        this.Read() 
+        
+    })
   }
 
   ngOnInit() {

@@ -40,10 +40,17 @@ export class QueueComponent implements OnInit, OnDestroy {
       }
 
       if(this.queues.length>1 && position!=this.queues.length-1)  //only if you have more than one element and the current element is not the last one
-      this.playerQueueService.setQueue(this.queues[position + 1]) //play the next item
+      {
+        
+        var i={  item:this.queues[position + 1],onlyAudio:true,media:this.queues[position + 1].audio}
+        this.playerQueueService.setQueue(i) //play the next item
+      }
+  
       
 
       this.Remove(this.queues[position].id) //remove from server and local
+
+      this.playerQueueService.setClasses()
       
     })
 
@@ -242,9 +249,14 @@ export class QueueComponent implements OnInit, OnDestroy {
 
   }
 
-  Play(item: ItemQueue) {
+  Play(item: ItemQueue,onlyAudio:boolean) {
 
-    this.playerQueueService.setQueue(item)
+
+    var media=onlyAudio?item.audio:item.video
+
+    var i={  item:item,onlyAudio:onlyAudio,media:media}
+
+    this.playerQueueService.setQueue(i)
   }
 
   Moved() {

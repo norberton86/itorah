@@ -195,7 +195,7 @@ padding: 0.5em;
 
 /*****************************************************/
 .browseInPhone{
-  visibility: collapse
+  visibility: collapse;
 }
 
 
@@ -217,3 +217,42 @@ padding: 0.5em;
   display: none
 }
 
+@media(max-width:375px){ /*iphone 6 portrait*/
+  .nav-utilities > li > a:after {
+   content: attr(data-tooltip); position: absolute; top: 0%; left: -50%; -webkit-transform:translateY(27%); -ms-transform:translateY(27%); transform:translateY(27%); background: #fff; font-size: 13px; white-space:nowrap; padding:5px 10px;  border-radius:3px;  z-index: 50; color: #000; opacity: 0; visibility: hidden; text-transform: none; letter-spacing: 0; z-index: 850; max-width: 300px; margin-left: 5px; white-space:normal; width: 200px; font-style: normal; margin-left: 15px; box-shadow:0 0 13px #000; 
+
+  }
+}
+
+@media(max-width:414px)/* iphone 6+ portrait  */
+{
+  .nav-utilities > li > a:after {
+    content: attr(data-tooltip); position: absolute; top: 0%; left: -50%; -webkit-transform:translateY(27%); -ms-transform:translateY(27%); transform:translateY(27%); background: #fff; font-size: 13px; white-space:nowrap; padding:5px 10px;  border-radius:3px;  z-index: 50; color: #000; opacity: 0; visibility: hidden; text-transform: none; letter-spacing: 0; z-index: 850; max-width: 300px; margin-left: 5px; white-space:normal; width: 200px; font-style: normal; margin-left: 15px; box-shadow:0 0 13px #000; 
+ 
+   }
+
+   .header .nav-utilities a {
+     margin-right: 0;
+   }
+} 
+
+@media(max-width:360px)/* galaxy 7 portrait  */
+{
+  .nav-utilities > li > a:after {
+    content: attr(data-tooltip); position: absolute; top: 0%; left: -50%; -webkit-transform:translateY(27%); -ms-transform:translateY(27%); transform:translateY(27%); background: #fff; font-size: 13px; white-space:nowrap; padding:5px 10px;  border-radius:3px;  z-index: 50; color: #000; opacity: 0; visibility: hidden; text-transform: none; letter-spacing: 0; z-index: 850; max-width: 300px; margin-left: 5px; white-space:normal; width: 200px; font-style: normal; margin-left: 15px; box-shadow:0 0 13px #000; 
+ 
+   }
+} 
+
+
+
+  @media only screen /*Ipad Portrait*/
+  and (min-width: 768px){
+    .nav-utilities a i {
+      margin-right: 9px;
+    }
+
+    .header .nav-utilities a {
+     margin-right: 29px;
+  }
+}

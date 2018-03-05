@@ -13,6 +13,12 @@
   padding-bottom: 0.5em;
   float: right;
 }
+
+#todaySponsor > div.col-sm-5.daty > span:nth-child(1){
+  font-size:12px;
+  height: 32px;
+}
+
 .col-sm-5{
   padding-right: 0px
 }
@@ -61,9 +67,13 @@
     
     .withMargin {
       height: 32px;
-      width: 133px;
+      width: 104px; /*106*/
        
    }
+
+   /* span.withMargin:nth-child(3){
+     width:106px;
+   } */
 }
 /* @media(max-width:1024px){
   daty{

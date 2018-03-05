@@ -30,7 +30,40 @@ input[type="radio"]:disabled + .label-text:before{content: "\f111"; color: #ccc;
 
 
 
+@media(max-width:375px)/* iphone 6 portrait  */
+{
+  .app_wrap{width:100%;padding:1em;    display: inline-block;float:left; }
+  .app_wrap_content{width:100%;padding:1em;background: white;     display: inline-block;}
+  .app_wrap_content_last{width:99%;padding:1em;background: white;     display: inline-block;}
+} 
 
+
+@media(max-width:414px)/* iphone 6+ portrait  */
+{
+  .app_wrap{width:100%;padding:1em;    display: inline-block;float:left; }
+  .app_wrap_content{width:100%;padding:1em;background: white;     display: inline-block;}
+  .app_wrap_content_last{width:99%;padding:1em;background: white;     display: inline-block;}
+} 
+
+
+@media(max-width:360px)/* s7 portrait  */
+{
+  .app_wrap{width:100%;padding:1em;    display: inline-block;float:left; }
+  .app_wrap_content{width:100%;padding:1em;background: white;     display: inline-block;}
+  .app_wrap_content_last{width:99%;padding:1em;background: white;     display: inline-block;}
+} 
+
+
+@media only screen /*Ipad Portrait*/
+  and (max-width: 768px){
+  
+  .app_wrap{width:50%;padding:1em;    display: inline-block;float:left; }
+  .app_wrap_content{width:50%;padding:1em;background: white;     display: inline-block;}
+  .app_wrap_content_last{width:49%;padding:1em;background: white;     display: inline-block;}
+       
+   }
+
+  
 
 
 

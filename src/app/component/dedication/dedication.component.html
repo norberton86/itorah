@@ -12,12 +12,12 @@
 	</div>
 	<!-- /.popup-head -->
 
-	<div class="popup-body" id="list-dedications" *ngIf="!biography">
+	<div class="popup-body"  *ngIf="!biography && !pay">
 
 		<div class="row headerDedication">
 			<div class="col-lg-3">
 
-				<a href="#make-dedication" class="btn btn-yellow btn-make-dedication">Make a dedication</a>
+				<a href="#/" class="btn btn-yellow btn-make-dedication" (click)="Pay()">Make a dedication</a>
 
 			</div>
 			<div class="col-lg-9">
@@ -62,8 +62,8 @@
 	</div>
 	<!-- /.popup-body -->
 
-	<div class="popup-body hidden" id="make-dedication">
-		<a href="#list-dedications" class="btn btn-yellow btn-make-dedication btn-back"></a>
+	<div class="popup-body" *ngIf="pay">
+		<a href="#/" class="btn btn-yellow btn-make-dedication btn-back" (click)="Pay()"></a>
 
 		<div class="cols cols-2">
 			<div class="col-1of2">

@@ -20,6 +20,8 @@ export class PlayerService extends Service {
   private subject: Subject<any> = new Subject<any>();
   private subjectDay: Subject<string> = new Subject<string>();
 
+  private subjectClasses: Subject<string> = new Subject<string>();
+
   constructor(http: Http) {
     super(http);
   }
@@ -276,7 +278,42 @@ export class PlayerService extends Service {
     }
 
     this.mediaId = mediaId
+
+    
+
+    if (this.wow != null && this.wow != undefined)  //set up like completed classes
+      this.wow.onCompleted(function () {
+        
+       self.addCompletedClasses({ "sourceID": sourceId,"mediaID": mediaId}).subscribe(result=>{
+         self.setClasses()
+       })
+        
+    });
   }
+
+
+  addCompletedClasses(data: any): Observable<any> {
+
+    let h = new Headers();
+    h.append('Authorization', 'bearer ' + this.getToken());
+    h.append('Content-Type', 'application/json');
+
+    return this.http.post('http://itorahapi.3nom.com/api/CompletedClasses', data, { headers: h }).map(
+      (response) => {
+        let body = response.json();
+        return body;
+      }
+    )
+  }
+
+  setClasses() {
+    this.subjectClasses.next("refresh")
+  }
+
+  getClasses(): Observable<string> {
+    return this.subjectClasses.asObservable();
+  }
+  
 
   setShiurFromPlayer(data: any) {
     this.subject.next(data)
@@ -339,14 +376,20 @@ export class PlayerService extends Service {
 
   BuildAudio(title: string, url: string, sponsor: string, sourceId: number, mediaId: string) {
 
+     this.mediaIdAudio=mediaId
+     this.sourceIdAudio=sourceId
+
     if (this.getToken() != undefined && this.getToken() != "")  //only push if the user is login
     {
       this.setLastPositionAudio(title, url, sponsor, this.CreateNetFlix(sourceId, mediaId, "", true)) //try to get first the last position 
     }
     else
       this.CreatePlayer(title, url, sponsor)    //create directly
-
+   
   }
+
+  sourceIdAudio: number
+   mediaIdAudio: string
 
   CreatePlayer(title: string, url: string, sponsor: string, initialPosition = "") {
     let self = this
@@ -418,6 +461,14 @@ export class PlayerService extends Service {
 
     });
 
+    
+
+    $("#mediaAudio").bind("ended", function(){
+       self.addCompletedClasses( {"sourceID": self.sourceIdAudio,"mediaID": self.mediaIdAudio}).subscribe(result=>{
+         self.setClasses()
+       })
+    });
+
   }
 
 
@@ -460,7 +511,7 @@ export class Netflix {
 export class PLayerQueueService extends PlayerService {
 
   private subjectCompleted: Subject<string> = new Subject<string>();
-  private subjectQueue: Subject<ItemQueue> = new Subject<ItemQueue>();
+  private subjectQueue: Subject<IdQueue> = new Subject<IdQueue>();
   private subjectPosition: Subject<any> = new Subject<any>();
 
 
@@ -468,11 +519,7 @@ export class PLayerQueueService extends PlayerService {
     super(http);
 
     this.getQueue().subscribe(s => {
-
-      var media = s.video == "" ? s.audio : s.video
-      var onlyAudio = media.includes('LT-Audio')
-
-      this.Play(s.title, media, onlyAudio, s.speaker, s.sponsor, 1, s.id)
+      this.Play(s.item.title, s.media, s.onlyAudio, s.item.speaker, s.item.sponsor, 1, s.item.id)
     })
   }
 
@@ -484,6 +531,7 @@ export class PLayerQueueService extends PlayerService {
     if (this.wow != null && this.wow != undefined)
       this.wow.onCompleted(function () {
         self.seCompleted(self.mediaId.toString())//notify that this element finished
+        
       });
   }
 
@@ -497,11 +545,11 @@ export class PLayerQueueService extends PlayerService {
   }
 
 
-  setQueue(item: ItemQueue) {
+  setQueue(item: IdQueue) {
     this.subjectQueue.next(item)
   }
 
-  getQueue(): Observable<ItemQueue> {
+  getQueue(): Observable<IdQueue> {
     return this.subjectQueue.asObservable();
   }
 
@@ -512,5 +560,13 @@ export class PLayerQueueService extends PlayerService {
   getPosition(): Observable<any> {
     return this.subjectPosition.asObservable();
   }
+
+}
+
+export class IdQueue{
+
+  item:ItemQueue
+  onlyAudio:boolean
+  media:string
 
 }

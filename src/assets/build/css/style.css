@@ -1453,7 +1453,7 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 .nav-utilities { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-align-items:center; -ms-flex-align:center; align-items:center; list-style: none; padding-left: 56px; padding-right: 10px;/* adding left padding for larger screens*/}
 .nav-utilities:hover { z-index: 8000;  }
 .nav-utilities li { position: relative; width: 100%;  }
-.nav-utilities li + li { margin-left: 30px; }
+.nav-utilities li + li { margin-left: 11px; }
 .nav-utilities a { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-align-items:center; -ms-flex-align:center; align-items:center; color: #fff; text-transform: uppercase; text-decoration: none; font-size: 14px; font-weight: 400; transition: color .5s;   }
 .nav-utilities a:hover { color: #fc0;  }
 .nav-utilities a i { margin-right: 7px; }

@@ -247,7 +247,8 @@ padding: 0.5em;
 
 
   @media only screen /*Ipad Portrait*/
-  and (min-width: 768px){
+  and (min-width: 768px)
+  and (max-width: 1024){
     .nav-utilities a i {
       margin-right: 9px;
     }
@@ -256,3 +257,65 @@ padding: 0.5em;
      margin-right: 29px;
   }
 }
+
+/* Trying to fix scaling issue for laptops */
+
+/* (1280x1024) SXGA Display */
+@media  screen and (max-width: 1280px) {
+  .header .nav-utilities a{
+    margin-right: -4px;
+  }
+
+  #tile-3 > div > div > div.tile-actions{
+    padding: 4px;
+    height: 67px;
+    font-size: 2px;
+  }
+
+  #tile-10 > div > div > div > div.tile-actions{
+    height:163px;
+    font-size:13px;
+  }
+
+  .nav-access li {
+    margin-top: 7px;
+   }
+
+   .btn-menu{
+     margin-top: 4px;
+   }
+}
+
+
+@media  screen and (min-width: 1480px){
+  .nav-utilities li{
+    margin-right:0px;
+  }
+}
+
+
+@media only screen /*Ipad Portrait*/
+  and (min-width: 768px) 
+  and (max-width: 1024px) { 
+  
+    .daty{
+      font-size: 15px;
+      float: right;
+      padding: 0;
+    }
+    
+    .withMargin {
+      height: 32px;
+      width: 104px; /*106*/
+       
+   }
+
+   .nav-access li {
+    margin-top: 7px;
+   }
+
+   .btn-menu{
+     margin-top: 4px;
+   }
+}
+

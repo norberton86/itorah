@@ -14,6 +14,10 @@
   background: url('../assets/build/css/images/images/spinner.gif') 50% 50% no-repeat rgba(255, 255, 255, 0.8);
 }
 
+/* .nav-utilities a  {   spreads at the nav on desktop but needs work 
+  margin-right: 31px;
+} */
+
 
 /**********************************************************************************************************************/
 
@@ -46,10 +50,10 @@ by default, overlay is visible…
   font-size: xx-large;
   font-weight: 600;
   opacity: 0.9;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   z-index: 9999
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999
 }
 /*
 …but this hide it
@@ -147,7 +151,7 @@ padding: 0.5em;
     width:50%
   }
 
-  .header .nav-utilities > li { /*spreading out nav-utilities, click arrow doesnt align though revise*/
+  .header .nav-utilities > li { 
     width: 45px;
   }
   
@@ -206,7 +210,7 @@ padding: 0.5em;
 
 }
 
-@media (max-width: 375px){
+@media (max-width: 414px){
 
 .browseInPhone{
   visibility: visible
@@ -221,6 +225,14 @@ padding: 0.5em;
   .nav-utilities > li > a:after {
    content: attr(data-tooltip); position: absolute; top: 0%; left: -50%; -webkit-transform:translateY(27%); -ms-transform:translateY(27%); transform:translateY(27%); background: #fff; font-size: 13px; white-space:nowrap; padding:5px 10px;  border-radius:3px;  z-index: 50; color: #000; opacity: 0; visibility: hidden; text-transform: none; letter-spacing: 0; z-index: 850; max-width: 300px; margin-left: 5px; white-space:normal; width: 200px; font-style: normal; margin-left: 15px; box-shadow:0 0 13px #000; 
 
+  }
+
+  .nav-access{
+    margin-top:2px;
+  }
+
+  body > app-root > div > div > header > div > div > aside > ul > li{
+    margin-top:2px;
   }
 }
 

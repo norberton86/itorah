@@ -134,10 +134,16 @@ img{
    height: 6.7em;
  }
  
- img {
-    height: 105px;
+ #dedications > div.popup-body > div > div.col-lg-9 > div > div.col-xs-12.col-sm-8.col-md-7.col-lg-7.leftSide > div > div.col-sm-3.col-md-3.col-lg-3.imgContainer {
+    height: 105px; /* dedication page sponsor image*/
  }
 
+#biography > div > div.col-sm-12.col-md-5{
+    height: 300px;  /*dedication info image*/
+    width: 400px;
+    margin-left: 179px;
+    margin-bottom: 20px;
+}
  .col-sm-9 > p:nth-child(4){
      font-size: 13px;
  }

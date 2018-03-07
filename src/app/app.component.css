@@ -226,14 +226,6 @@ padding: 0.5em;
    content: attr(data-tooltip); position: absolute; top: 0%; left: -50%; -webkit-transform:translateY(27%); -ms-transform:translateY(27%); transform:translateY(27%); background: #fff; font-size: 13px; white-space:nowrap; padding:5px 10px;  border-radius:3px;  z-index: 50; color: #000; opacity: 0; visibility: hidden; text-transform: none; letter-spacing: 0; z-index: 850; max-width: 300px; margin-left: 5px; white-space:normal; width: 200px; font-style: normal; margin-left: 15px; box-shadow:0 0 13px #000; 
 
   }
-
-  .nav-access{
-    margin-top:2px;
-  }
-
-  body > app-root > div > div > header > div > div > aside > ul > li{
-    margin-top:2px;
-  }
 }
 
 @media(max-width:414px)/* iphone 6+ portrait  */
@@ -290,11 +282,11 @@ padding: 0.5em;
   }
 
   .nav-access li {
-    margin-top: 7px;
+    margin-top: 2px;
    }
 
    .btn-menu{
-     margin-top: 4px;
+     margin-top: 2px;
    }
 }
 
@@ -330,4 +322,22 @@ padding: 0.5em;
      margin-top: 4px;
    }
 }
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+    .btn-menu{
+      margin-top:2px;
+    }
+}
+
+
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) {
+  .btn-menu{
+    margin-top:2px;
+  }
+}
+
 

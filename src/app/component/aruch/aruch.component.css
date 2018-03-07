@@ -92,3 +92,22 @@ margin-top: 1em
 .tracks .track:before{
   background:none
 }
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+
+    .tile-box-primary .link-close{
+        margin-bottom: 38px;
+    }
+}
+
+
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) {
+
+    .tile-box-primary .link-close{
+        margin-bottom: 38px;
+    }
+}

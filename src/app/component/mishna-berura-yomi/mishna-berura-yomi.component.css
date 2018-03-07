@@ -92,3 +92,25 @@
    cursor: not-allowed; 
    color:#dadada
 }
+
+@media only screen 
+    and (min-device-width : 375px) 
+    and (max-device-width : 667px) {
+    
+        .tile-box-primary .link-close{
+            margin-bottom: 60px;
+            margin-right:11px;
+        }
+    }
+    
+    
+    @media only screen 
+    and (min-device-width : 414px) 
+    and (max-device-width : 736px) {
+    
+        .tile-box-primary .link-close{
+            margin-bottom: 60px;
+            margin-right:11px;
+        }
+    }
+    

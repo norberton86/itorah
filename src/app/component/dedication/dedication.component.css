@@ -182,3 +182,11 @@ img{
     border-left: 1px solid #171616;
     padding-left: 0.5em;
 }
+
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) {
+    #dedications > div.popup-body > div > div.col-lg-3 > a{
+        margin-left:34px;
+    }
+}

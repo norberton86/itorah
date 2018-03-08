@@ -16,7 +16,7 @@ export class PerashaService extends Service {
 
     constructor(http: Http) {
         super(http);
-        this.ruta = "http://itorahapi.3nom.com/api/";
+        this.ruta = "https://itorahapi.3nom.com/api/";
 
     }
 
@@ -61,7 +61,7 @@ export class PerashaService extends Service {
 
     public readByParasha(id: number): Observable<InspireSearch[]> {
 
-        return this.http.get("http://itorahapi.3nom.com/api/WeeklyInspire/byParasha?ID=" + id).map(
+        return this.http.get("https://itorahapi.3nom.com/api/WeeklyInspire/byParasha?ID=" + id).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -71,7 +71,7 @@ export class PerashaService extends Service {
 
     public readByParashaInspire(): Observable<ParashaInspire[]> {
 
-        return this.http.get("http://itorahapi.3nom.com/api/WeeklyInspire/recent").map(
+        return this.http.get("https://itorahapi.3nom.com/api/WeeklyInspire/recent").map(
             (response) => {
                 let body = response.json();
                 return body;

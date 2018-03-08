@@ -13,7 +13,7 @@ export class TehillimService extends ServiceLogin {
 
     constructor(http: Http) {
         super(http);
-        this.ruta = "http://itorahapi.3nom.com/api/Tehillim/";
+        this.ruta = "https://itorahapi.3nom.com/api/Tehillim/";
 
     }
 
@@ -24,7 +24,7 @@ export class TehillimService extends ServiceLogin {
         h.append('Authorization', 'bearer ' + this.getToken());
         h.append('Content-Type', 'application/json');
 
-        return this.http.post("http://itorahapi.3nom.com/api/MyTehillimList/add?ID="+id, {}, { headers: h }).map(
+        return this.http.post("https://itorahapi.3nom.com/api/MyTehillimList/add?ID="+id, {}, { headers: h }).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -38,7 +38,7 @@ export class TehillimService extends ServiceLogin {
         h.append('Authorization', 'bearer ' + this.getToken());
         h.append('Content-Type', 'application/json');
 
-        return this.http.post("http://itorahapi.3nom.com/api/MyTehillimList/remove?ID="+id, {}, { headers: h }).map(
+        return this.http.post("https://itorahapi.3nom.com/api/MyTehillimList/remove?ID="+id, {}, { headers: h }).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -53,7 +53,7 @@ export class TehillimService extends ServiceLogin {
         h.append('Authorization', 'bearer ' + this.getToken());
         h.append('Content-Type', 'application/json');
 
-        return this.http.get("http://itorahapi.3nom.com/api/MyTehillimList/get", { headers: h }).map(
+        return this.http.get("https://itorahapi.3nom.com/api/MyTehillimList/get", { headers: h }).map(
             (response) => {
                 let body = response.json();
                 return body;

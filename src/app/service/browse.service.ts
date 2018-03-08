@@ -13,7 +13,7 @@ export class BrowseService extends Service {
 
     constructor(http: Http) {
         super(http);
-        this.ruta = "http://itorahapi.3nom.com/api/Browse/";
+        this.ruta = "https://itorahapi.3nom.com/api/Browse/";
 
     }
 
@@ -48,7 +48,7 @@ export class BrowseService extends Service {
     }
 
     getCategorys(): Observable<Array<Category>> {
-        return this.http.get("http://itorahapi.3nom.com/api/Categories").map(
+        return this.http.get("https://itorahapi.3nom.com/api/Categories").map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -57,7 +57,7 @@ export class BrowseService extends Service {
     }
 
     getSubCategorys(): Observable<Array<SubCategory>> {
-        return this.http.get("http://itorahapi.3nom.com/api/Categories/sub").map(
+        return this.http.get("https://itorahapi.3nom.com/api/Categories/sub").map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -69,7 +69,7 @@ export class BrowseService extends Service {
 
         var search=SearchText==''?'':'&SearchText='+SearchText
 
-        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/all?PageIndex="+PageIndex+"&PageSize="+PageSize+"&CategoryID="+CategoryID+"&SpeakerID="+SpeakerID+search+"&isForSponsor="+isForSponsor).map(
+        return this.http.get("https://itorahapi.3nom.com/api/Shiurim/all?PageIndex="+PageIndex+"&PageSize="+PageSize+"&CategoryID="+CategoryID+"&SpeakerID="+SpeakerID+search+"&isForSponsor="+isForSponsor).map(
             (response) => {
                 let body = response.json();
                 return body;

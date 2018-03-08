@@ -12,7 +12,7 @@ export class DonateService extends ServiceLogin {
 
   constructor(http: Http) {
     super(http);
-    this.ruta = "http://itorahapi.3nom.com/api/Donate";
+    this.ruta = "https://itorahapi.3nom.com/api/Donate";
   }
 
 

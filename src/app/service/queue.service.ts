@@ -21,7 +21,7 @@ export class QueueService extends ServiceLogin {
 
   constructor(http: Http) {
     super(http);
-    this.ruta="http://itorahapi.3nom.com/api/Queue";
+    this.ruta="https://itorahapi.3nom.com/api/Queue";
   }
 
   public read(token: string): Observable<ItemQueue[]> {

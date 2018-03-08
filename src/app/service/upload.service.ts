@@ -12,7 +12,7 @@ export class UploadService extends ServiceLogin {
 
   constructor(http: Http) {
     super(http);
-    this.ruta = "http://itorahapi.3nom.com/api/Advertise";
+    this.ruta = "https://itorahapi.3nom.com/api/Advertise";
   }
 
   public upload(data: any): Observable<any> {
@@ -30,7 +30,7 @@ export class UploadService extends ServiceLogin {
 
   public get(): Observable<string[]> {
     
-    return this.http.get("http://itorahapi.3nom.com/api/Advertise").map(
+    return this.http.get("https://itorahapi.3nom.com/api/Advertise").map(
       (response) => {
         let body = response.json();
         return body;

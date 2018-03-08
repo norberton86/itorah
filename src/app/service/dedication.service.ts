@@ -15,7 +15,7 @@ export class DedicationService extends ServiceLogin {
     value: boolean;
     constructor(http: Http) {
         super(http);
-        this.ruta = "http://itorahapi.3nom.com/api/Dedication";
+        this.ruta = "https://itorahapi.3nom.com/api/Dedication";
 
     }
 

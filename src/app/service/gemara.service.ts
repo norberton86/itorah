@@ -15,7 +15,7 @@ export class GemaraService extends Service {
 
     constructor(http: Http) {
         super(http);
-        this.ruta = "http://itorahapi.3nom.com/api/DailyGemarah/";
+        this.ruta = "https://itorahapi.3nom.com/api/DailyGemarah/";
 
     }
 

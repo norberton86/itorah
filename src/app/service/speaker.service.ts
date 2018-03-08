@@ -13,7 +13,7 @@ export class SpeakerService extends ServiceLogin {
 
     constructor(http: Http) {
         super(http);
-        this.ruta = "http://itorahapi.3nom.com/api/Speakers";
+        this.ruta = "https://itorahapi.3nom.com/api/Speakers";
 
     }
 

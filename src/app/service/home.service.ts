@@ -31,7 +31,7 @@ export class HomeService extends ServiceLogin{
 
     public Sources(): Observable<Array<Source>> {
         
-        return this.http.get("http://itorahapi.3nom.com/api/Sources").map(
+        return this.http.get("https://itorahapi.3nom.com/api/Sources").map(
             (response) => {
                 return response.json();
             }
@@ -40,7 +40,7 @@ export class HomeService extends ServiceLogin{
 
     public playNow(id:number): Observable<any> {
         
-        return this.http.get("http://itorahapi.3nom.com/api/PlayNow?SourceID="+id).map(
+        return this.http.get("https://itorahapi.3nom.com/api/PlayNow?SourceID="+id).map(
             (response) => {
                 return response.json();
             }
@@ -49,7 +49,7 @@ export class HomeService extends ServiceLogin{
 
     public readNow(id:number): Observable<ReadNow> {
         
-        return this.http.get("http://itorahapi.3nom.com/api/ReadNow?SourceID="+id).map(
+        return this.http.get("https://itorahapi.3nom.com/api/ReadNow?SourceID="+id).map(
             (response) => {
                 return response.json();
             }
@@ -58,7 +58,7 @@ export class HomeService extends ServiceLogin{
 
     public readLinks(): Observable<Array<Link>> {
         
-        return this.http.get("http://itorahapi.3nom.com/api/Halacha").map(
+        return this.http.get("https://itorahapi.3nom.com/api/Halacha").map(
             (response) => {
                 return response.json();
             }
@@ -67,7 +67,7 @@ export class HomeService extends ServiceLogin{
 
     public readLinksEmunah(): Observable<Array<LinkEmunah>> {
         
-        return this.http.get("http://itorahapi.3nom.com/api/DailyEmunah/recent").map(
+        return this.http.get("https://itorahapi.3nom.com/api/DailyEmunah/recent").map(
             (response) => {
                 return response.json();
             }
@@ -76,7 +76,7 @@ export class HomeService extends ServiceLogin{
 
     public readCalendar(): Observable<Array<string>> {
         
-        return this.http.get("http://itorahapi.3nom.com/api/Calendar").map(
+        return this.http.get("https://itorahapi.3nom.com/api/Calendar").map(
             (response) => {
                 return response.json();
             }

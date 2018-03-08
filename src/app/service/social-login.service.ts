@@ -45,7 +45,7 @@ export class SocialLoginServic extends Service{
 
     public Forgot(email:string): Observable<any> {
 
-        return this.http.post("http://itorahapi.3nom.com/api/Password/forgot?email="+email,{}).map(
+        return this.http.post("https://itorahapi.3nom.com/api/Password/forgot?email="+email,{}).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -58,7 +58,7 @@ export class SocialLoginServic extends Service{
             let h = new Headers();
             h.append('Content-Type','application/json');
 
-           return this.http.post("http://itorahapi.3nom.com/api/Users",data,{headers: h}).map(
+           return this.http.post("https://itorahapi.3nom.com/api/Users",data,{headers: h}).map(
             (response) => {
                 return response.toString();
             }
@@ -67,7 +67,7 @@ export class SocialLoginServic extends Service{
 
      public Recover(token:string, pass:string):Observable<string>
     {
-           return this.http.post("http://itorahapi.3nom.com/api/Password/replace?token="+token+"&pass="+pass,{}).map(
+           return this.http.post("https://itorahapi.3nom.com/api/Password/replace?token="+token+"&pass="+pass,{}).map(
             (response) => {
                 return response.toString();
             }

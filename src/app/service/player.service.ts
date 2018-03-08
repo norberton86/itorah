@@ -43,7 +43,7 @@ export class PlayerService extends Service {
         h.append('Authorization', 'bearer ' + this.getToken());
         h.append('Content-Type', 'application/json');
 
-        this.http.post("http://itorahapi.3nom.com/api/MediaPosition/save", data, { headers: h }).subscribe(response => {
+        this.http.post("https://itorahapi.3nom.com/api/MediaPosition/save", data, { headers: h }).subscribe(response => {
 
           
           if(this instanceof PLayerQueueService)
@@ -121,7 +121,7 @@ export class PlayerService extends Service {
     h.append('Authorization', 'bearer ' + this.getToken());
     h.append('Content-Type', 'application/json');
 
-    return this.http.post("http://itorahapi.3nom.com/api/MediaPosition/get", data, { headers: h }).map((response) => {
+    return this.http.post("https://itorahapi.3nom.com/api/MediaPosition/get", data, { headers: h }).map((response) => {
       let body = response.json();
       return body;
     })
@@ -134,7 +134,7 @@ export class PlayerService extends Service {
 
   getMediaSponsor(): Observable<string> {
 
-    return this.http.get("http://itorahapi.3nom.com/api/Sponsor/mediaplayer").map(
+    return this.http.get("https://itorahapi.3nom.com/api/Sponsor/mediaplayer").map(
       (response) => {
         let body = response.json();
         return body;
@@ -226,7 +226,7 @@ export class PlayerService extends Service {
         "license": "PLAY1-dD8ur-NjfMh-andPW-beKnB-t4nYZ",
         "title": title,
         "description": "",
-        "sourceURL": url, //"http://media.learntorah.com/LT-Video/mp4:RZE-350.mp4/playlist.m3u8"
+        "sourceURL": url, //"https://media.learntorah.com/LT-Video/mp4:RZE-350.mp4/playlist.m3u8"
         "autoPlay": true,
         "volume": "25",
         "mute": false,
@@ -298,7 +298,7 @@ export class PlayerService extends Service {
     h.append('Authorization', 'bearer ' + this.getToken());
     h.append('Content-Type', 'application/json');
 
-    return this.http.post('http://itorahapi.3nom.com/api/CompletedClasses', data, { headers: h }).map(
+    return this.http.post('https://itorahapi.3nom.com/api/CompletedClasses', data, { headers: h }).map(
       (response) => {
         let body = response.json();
         return body;

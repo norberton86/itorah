@@ -8,7 +8,7 @@ declare var $: any;
 
 export class Service {
 
-    protected ruta: string = "http://tlrwebapi.3nom.com/api/";
+    protected ruta: string = "https://tlrwebapi.3nom.com/api/";
     protected header = new Headers({ "Content-Type": "application/json" });
     protected http: Http;
 

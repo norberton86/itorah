@@ -17,7 +17,7 @@ export class ShiurimService extends Service {
 
     constructor(http: Http) {
         super(http);
-        this.ruta = "http://itorahapi.3nom.com/api/";
+        this.ruta = "https://itorahapi.3nom.com/api/";
 
     }
 
@@ -33,7 +33,7 @@ export class ShiurimService extends Service {
 
     public relatedCategories(shiur: number): Observable<Category[]> {
 
-        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/relatedcategories?ShiurID=" + shiur).map(
+        return this.http.get("https://itorahapi.3nom.com/api/Shiurim/relatedcategories?ShiurID=" + shiur).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -43,7 +43,7 @@ export class ShiurimService extends Service {
 
     public relatedShiur(shiur: number,CategoryID:number): Observable<Shiurim[]> {
 
-        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/relatedshiurim?ShiurID="+shiur+"&CategoryID="+CategoryID).map(
+        return this.http.get("https://itorahapi.3nom.com/api/Shiurim/relatedshiurim?ShiurID="+shiur+"&CategoryID="+CategoryID).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -53,7 +53,7 @@ export class ShiurimService extends Service {
 
     public relatedBrowse(shiur: number,CategoryID:number): Observable<Browse[]> {
 
-        return this.http.get("http://itorahapi.3nom.com/api/Browse/relatedshiurim?ShiurID="+shiur+"&CategoryID="+CategoryID).map(
+        return this.http.get("https://itorahapi.3nom.com/api/Browse/relatedshiurim?ShiurID="+shiur+"&CategoryID="+CategoryID).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -104,7 +104,7 @@ export class ShiurimService extends Service {
         if (SearchText != '')
             query = "&SearchText=" + SearchText
 
-        return this.http.get("http://itorahapi.3nom.com/api/Shiurim/all?PageIndex=" + PageIndex + "&PageSize=" + PageSize + query + "&CategoryID=" + categoryId).map(
+        return this.http.get("https://itorahapi.3nom.com/api/Shiurim/all?PageIndex=" + PageIndex + "&PageSize=" + PageSize + query + "&CategoryID=" + categoryId).map(
             (response) => {
                 let body = response.json()
                 return body;

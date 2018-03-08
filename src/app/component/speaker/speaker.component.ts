@@ -911,7 +911,7 @@ export class SpeakerComponent implements OnInit {
 
       this.shiurimService.Status(s.id).subscribe(function (response) {
 
-        if (response.indexOf("http://") >= 0) {
+        if (response.indexOf("http") >= 0) {
 
           $('#downloadShiur').attr("href", response)
           document.getElementById('downloadShiur').click()

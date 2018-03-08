@@ -25,12 +25,12 @@ export class RegisterTehellimService extends ServiceLogin {
 
   constructor(http: Http) {
     super(http);
-    this.ruta = "http://itorahapi.3nom.com/api/RegisterName/";
+    this.ruta = "https://itorahapi.3nom.com/api/RegisterName/";
   }
 
   public readCategory(): Observable<Category[]> {
 
-    return this.http.get("http://itorahapi.3nom.com/api/Tehillim/categories/all").map(
+    return this.http.get("https://itorahapi.3nom.com/api/Tehillim/categories/all").map(
       (response) => {
         let body = response.json()
         return body;
@@ -40,7 +40,7 @@ export class RegisterTehellimService extends ServiceLogin {
 
   public readEntireList(): Observable<EntireList[]> {
 
-    return this.http.get("http://itorahapi.3nom.com/api/Tehillim/entirelist").map(
+    return this.http.get("https://itorahapi.3nom.com/api/Tehillim/entirelist").map(
       (response) => {
         let body = response.json()
         return body;
@@ -50,7 +50,7 @@ export class RegisterTehellimService extends ServiceLogin {
 
   public readPerek(): Observable<Perek[]> {
 
-    return this.http.get("http://itorahapi.3nom.com/api/Tehillim/content").map(
+    return this.http.get("https://itorahapi.3nom.com/api/Tehillim/content").map(
       (response) => {
         let body = response.json()
         return body;
@@ -60,7 +60,7 @@ export class RegisterTehellimService extends ServiceLogin {
 
   public Generate(FirstName:string,isBat:string,MotherName:string,OptionID:number): Observable<any> {
 
-    return this.http.get("http://itorahapi.3nom.com/api/Generator?FirstName="+FirstName+"&isBat="+isBat+"&MotherName="+MotherName+"&OptionID="+OptionID).map(
+    return this.http.get("https://itorahapi.3nom.com/api/Generator?FirstName="+FirstName+"&isBat="+isBat+"&MotherName="+MotherName+"&OptionID="+OptionID).map(
       (response) => {
         let body = response.json()
         return body;

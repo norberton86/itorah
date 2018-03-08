@@ -20,7 +20,7 @@ export class SponsorService extends Service {
 
     public Availables(date: string): Observable<any> {
 
-        return this.http.get("http://itorahapi.3nom.com/api/Sponsor/day?Date="+date).map(
+        return this.http.get("https://itorahapi.3nom.com/api/Sponsor/day?Date="+date).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -34,7 +34,7 @@ export class SponsorService extends Service {
         h.append('Content-Type', 'application/json');
         h.append('Authorization', 'bearer ' + this.getToken());
 
-        return this.http.post("http://itorahapi.3nom.com/api/Sponsor/day", sponsor, { headers: h }).map(
+        return this.http.post("https://itorahapi.3nom.com/api/Sponsor/day", sponsor, { headers: h }).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -48,7 +48,7 @@ export class SponsorService extends Service {
         h.append('Content-Type', 'application/json');
         h.append('Authorization', 'bearer ' + this.getToken());
 
-        return this.http.post("http://itorahapi.3nom.com/api/Sponsor/shiur", sponsor, { headers: h }).map(
+        return this.http.post("https://itorahapi.3nom.com/api/Sponsor/shiur", sponsor, { headers: h }).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -62,7 +62,7 @@ export class SponsorService extends Service {
         h.append('Content-Type', 'application/json');
         h.append('Authorization', 'bearer ' + this.getToken());
 
-        return this.http.post("http://itorahapi.3nom.com/api/Sponsor/mediaplayer", sponsor, { headers: h }).map(
+        return this.http.post("https://itorahapi.3nom.com/api/Sponsor/mediaplayer", sponsor, { headers: h }).map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -73,7 +73,7 @@ export class SponsorService extends Service {
     
     public getCategory(): Observable<Array<Category>> {
 
-        return this.http.get("http://itorahapi.3nom.com/api/Categories").map(
+        return this.http.get("https://itorahapi.3nom.com/api/Categories").map(
             (response) => {
                 let body = response.json();
                 return body;
@@ -83,7 +83,7 @@ export class SponsorService extends Service {
 
     public getSubCategory(): Observable<Array<Category>> {
 
-        return this.http.get("http://itorahapi.3nom.com/api/Categories/sub").map(
+        return this.http.get("https://itorahapi.3nom.com/api/Categories/sub").map(
             (response) => {
                 let body = response.json();
                 return body;

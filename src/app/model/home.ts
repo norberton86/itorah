@@ -1,6 +1,3 @@
-
-//http://tlrwebapi.3nom.com/api/iTorahHome
-
 export class Home {
 
     Table:Array<Block>

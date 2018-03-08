@@ -54,6 +54,8 @@ export class AppComponent implements OnInit {
   {
      this.homeService.read().subscribe(
            result=>{
+                    this.homeService.setDataHome(result)
+
                     for(var i=0;i<result.Table.length;i++)
                       switch(result.Table[i].Site)
                       {

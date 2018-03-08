@@ -17,14 +17,19 @@ export class TodaySponsorComponent implements OnInit {
   hebrewDate:string =''
   superhebrewDate:string=''
 
-  constructor(private homeService: HomeService,private playerService:PlayerService) { }
+  constructor(private homeService: HomeService,private playerService:PlayerService) { 
+    this.homeService.getDataHome().subscribe(response=>{
+        if (response.Table3.length > 0)
+        this.dedicated = response.Table3[0].Sponsor
+    })
+  }
 
   ngOnInit() {
-    this.homeService.read().subscribe(response => {
+    /*this.homeService.read().subscribe(response => {
 
       if (response.Table3.length > 0)
         this.dedicated = response.Table3[0].Sponsor
-    })
+    })*/
 
     this.getDates()
   }

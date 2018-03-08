@@ -12,6 +12,7 @@ import { Subject } from 'rxjs/Subject';
 export class HomeService extends ServiceLogin{
 
    private subjectBrowse: Subject<string> = new Subject<string>();
+   private subjectDataHome: Subject<any> = new Subject<any>();
 
    
     constructor(http: Http) {
@@ -89,6 +90,14 @@ export class HomeService extends ServiceLogin{
 
     setBrowse(action: string): void {
         this.subjectBrowse.next(action);
+    }
+
+    getDataHome(): Observable<any> {
+        return this.subjectDataHome.asObservable();
+    }
+
+    setDataHome(action: any): void {
+        this.subjectDataHome.next(action);
     }
 }
 

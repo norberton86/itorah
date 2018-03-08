@@ -22,12 +22,16 @@ export class VideoThumbnailComponent implements OnInit {
 
   constructor(private homeService: HomeService, private playerService: PlayerService) {
     this.videos = [];
+
+    this.homeService.getDataHome().subscribe(result=>{
+      this.setCount(result)
+    })
   }
 
   ngOnInit() {
-    this.Read();
-
+   //this.Read();
   }
+  
 
   Read() {
     this.homeService.read().subscribe(

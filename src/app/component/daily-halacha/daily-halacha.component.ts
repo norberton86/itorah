@@ -5,17 +5,22 @@ import { HomeService } from '../../service/home.service';
 @Component({
   selector: 'app-daily-halacha',
   templateUrl: './daily-halacha.component.html',
-  styleUrls: ['./daily-halacha.component.css'],
-  providers:[HomeService]
+  styleUrls: ['./daily-halacha.component.css']
 })
 export class DailyHalachaComponent implements OnInit {
 
   Count:number;
 
-  constructor(private homeService:HomeService) { }
+  constructor(private homeService:HomeService) { 
+
+    this.homeService.getDataHome().subscribe(result=>{
+          this.setCount(result)
+    })
+
+  }
 
   ngOnInit() {
-    this.Read();
+    //this.Read();
   }
 
    Read() {

@@ -58,22 +58,22 @@
   }
 } 
 
-@media only screen /*Ipad Portrait*/
-  and (min-width: 768px) 
-  and (max-width: 1024px)  {
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
   
-    .daty{
-      font-size: 15px;
-      float: right;
-      padding: 0;
-    }
-    
-    .withMargin {
-      height: 32px;
-      width: 104px; /*106*/
-       
-   }
+  .daty{
+    font-size: 15px;
+    float: right;
+    padding: 0;
+  }
+  
+  .withMargin {
+    height: 32px;
+    width: 104px; /*106*/
+     
+ }
 
-   
 }
-

@@ -252,6 +252,7 @@ padding: 0.5em;
 
 
 
+
   @media only screen /*Ipad Portrait*/
   and (min-width: 768px)
   and (max-width: 1024){
@@ -348,3 +349,13 @@ and (max-device-width : 736px) {
 }
 
 
+  
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+    
+    #tile-10 > div > div > div > div.tile-actions{
+        height:179px;
+    }
+}

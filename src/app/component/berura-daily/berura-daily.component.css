@@ -85,3 +85,36 @@ and (max-device-width : 736px) {
         margin-right:6px;
     }
 }
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+  .col-sm-2 {
+    width: 52.666667%;
+    padding-left: 44px;
+    margin-right: -20px;
+  }
+
+  #item-content-9 > div > div.donate-body > form > div.search-tertiary.col-xs-12.col-sm-3 > button{
+    margin-left:-32px;
+    height:35px;
+  }
+
+  .search-tertiary input{
+    min-width:130px;
+  }
+  
+  .select.select-yellow{
+    width:138px;
+  }
+
+  .col-sm-4{
+    width: 36.333333%;
+    margin-left: -117px;
+  }
+
+  #item-content-9 > div > div.tile-box-head > h4{
+    width:22em;
+  }
+}

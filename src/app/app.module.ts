@@ -107,6 +107,19 @@ let providers = {
     }
   };
 
+  
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+export const firebaseConfig={
+    apiKey: "AIzaSyBWtlYyUyajedqp6MT5JlWWP4pLN5Xc7kc",
+    authDomain: "itorah-59de6.firebaseapp.com",
+    databaseURL: "https://itorah-59de6.firebaseio.com",
+    projectId: "itorah-59de6",
+    storageBucket: "",
+    messagingSenderId: "441220923975"
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -180,7 +193,9 @@ let providers = {
      Angular2SocialLoginModule,
      DndModule.forRoot(),
      ShareButtonsModule.forRoot(),
-     SlickModule.forRoot()
+     SlickModule.forRoot(),
+     AngularFireModule.initializeApp(firebaseConfig),
+     AngularFirestoreModule.enablePersistence()
   ],
   providers: [ClasseService,PLayerQueueService,PerashaService,CkEditorService,PopupService,GemaraService,PaymentService,PlayerService,RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
   bootstrap: [AppComponent]

@@ -21,40 +21,53 @@
 				<div class="app_header">Current Settings</div>
 				<div class="app_sub_header"><i class="fa fa-info-circle"></i>Configure below when and how your portable device will download each preferred audio
 					files each day.</div>
-				<div class="app_wifi app_borders">
-					<p>Wi-Fi Download</p>
+				<form novalidate [formGroup]="form">
+					<div class="app_wifi app_borders">
+						<p>Wi-Fi Download</p>
 
-					<div class="form-check">
-						<label>
-						<input type="radio" name="radio" checked> <span class="label-text">Update app at any time data charge may apply</span>
-					</label>
+						<div class="form-check">
+							<label>
+								<input type="radio" name="wifiOnly" [value]="false" formControlName="wifiOnly"> <span class="label-text">Update app at any time data charge may apply</span>
+							</label>
+						</div>
+						<div class="form-check">
+							<label>
+								<input type="radio" name="wifiOnly" [value]="true" formControlName="wifiOnly"> <span class="label-text">Update app over wifi only</span>
+							</label>
+						</div>
 					</div>
-					<div class="form-check">
-						<label>
-						<input type="radio" name="radio"> <span class="label-text">Update app over wifi only</span>
-					</label>
+
+					<div class="app_time app_borders">
+						<p class="app_label">Set Time</p>
+
+						<input id="time" type="time" formControlName="downloadTime">
+
+						<!--*<select>
+							<option>12:00 PM</option>
+							<option>12:30 PM</option>
+					    </select>-->
 					</div>
-				</div>
-				<div class="app_time app_borders">
-					<p class="app_label">Set Time</p>
-					<select>
-						<option>12:00 PM</option>
-						<option>12:30 PM</option>
 
-					</select>
-				</div>
+					<div class="app_time app_borders">
+						<p class="app_label">Set When To Download </p>
+						<select multiple="true" formControlName="downloadDays">
+              				<option value="1">Sunday</option>
+              				<option value="2">Monday</option>
+              				<option value="3">Tuesday</option>
+              				<option value="4">Wednesday</option>
+              				<option value="5">Thursday</option>
+              				<option value="6">Friday</option>
+              				<option value="7">Saturday</option>
+						</select>
+					</div>
+				</form>
 
-				<div class="app_time app_borders">
-					<p class="app_label">Set When To Download </p>
-					<select>
-						<option>Monday</option>
-						<option>Tuesday</option>
-
-					</select>
-				</div>
 				<div class="app_time app_borders" style="color:#c34242;font-size: 13px;">
-					iTorah will attemp 3 times, once per hour, starting with your assigned time above. 
-					If unsuccessful all 3 times, the iTorah will not ttry again until the next scheduled download
+					iTorah will attemp 3 times, once per hour, starting with your assigned time above. If unsuccessful all 3 times, the iTorah
+					will not ttry again until the next scheduled download
+
+					<input type="button" value="Apply" class="apply" (click)="Apply()">
+
 				</div>
 			</div>
 			<!-- your current playlist -->
@@ -62,52 +75,10 @@
 				<div class="app_header">Your Current Playlist</div>
 				<div style="background: #e4e5e9;min-height:500px;padding: 1em;max-height: 501px; overflow-y: auto; padding: 1em;" id="style-2">
 
-					<div class="app_box">
+					<div class="app_box" *ngFor="let item of Favorites()" (click)="Remove(item)">
 						<div style="width:90%;float:left;display: inline-block;">
-							<p>Daily Halacha by Rabbi Eli Mansour</p>
-							<p style=" font-size: .7em; color: blue;">Updated 1/20/2018</p>
-						</div>
-						<div style="width:10%;text-align: center;display: inline-block; line-height:2em;">
-							<i class="fa fa-minus"></i>
-						</div>
-
-					</div>
-
-					<div class="app_box">
-						<div style="width:90%;float:left;display: inline-block;">
-							<p>Daf Yomi by Rabbi Eli Mansour</p>
-							<p style=" font-size: .7em; color: blue;">Updated 1/20/2018</p>
-						</div>
-						<div style="width:10%;text-align: center;display: inline-block; line-height:2em;">
-							<i class="fa fa-minus"></i>
-						</div>
-
-					</div>
-
-					<div class="app_box">
-						<div style="width:90%;float:left;display: inline-block;">
-							<p>Daily Tehillim -Chapter of the day-</p>
-							<p style=" font-size: .7em; color: blue;">Updated 1/20/2018</p>
-						</div>
-						<div style="width:10%;text-align: center;display: inline-block; line-height:2em;">
-							<i class="fa fa-minus"></i>
-						</div>
-					</div>
-
-					<div class="app_box">
-						<div style="width:90%;float:left;display: inline-block;">
-							<p>Parasha of the Week by Rabbi David Sutton</p>
-							<p style=" font-size: .7em; color: blue;">Updated 1/20/2018</p>
-						</div>
-						<div style="width:10%;text-align: center;display: inline-block; line-height:2em;">
-							<i class="fa fa-minus"></i>
-						</div>
-					</div>
-
-					<div class="app_box">
-						<div style="width:90%;float:left;display: inline-block;">
-							<p>Parasha of the Week by Rabbi Eli Mansour</p>
-							<p style=" font-size: .7em; color: blue;">Updated 1/20/2018</p>
+							<p>{{item.title}}</p>
+							<p style=" font-size: .7em; color: blue;">{{item.descripcion}}</p>
 						</div>
 						<div style="width:10%;text-align: center;display: inline-block; line-height:2em;">
 							<i class="fa fa-minus"></i>
@@ -126,27 +97,16 @@
 
 				<div style="background: #f9f9f9;min-height:445px;padding: 1em;max-height: 446px; overflow-y: auto; padding: 1em;" id="style-2">
 
-					<div class="app_box">
+					<div class="app_box" *ngFor="let item of browseList" (click)="ChangeStatus(item)">
 						<div style="width:90%;float:left;display: inline-block;">
-							<p>Daily Emunah by Rabbi David Asher</p>
-							<p style=" font-size: .7em; color: blue;">Updated 1/20/2018</p>
+							<p>{{item.title}}</p>
+							<p style=" font-size: .7em; color: blue;">{{item.descripcion}}</p>
 						</div>
 						<div style="width:10%;text-align: center;display: inline-block; line-height:2em;">
-							<i class="fa fa-plus"></i>
-						</div>
-
-					</div>
-
-					<div class="app_box">
-						<div style="width:90%;float:left;display: inline-block;">
-							<p>Weekly Inspire by Rabbi Joey Haber</p>
-							<p style=" font-size: .7em; color: blue;">Updated 1/20/2018</p>
-						</div>
-						<div style="width:10%;text-align: center;display: inline-block; line-height:2em;">
-							<i class="fa fa-plus"></i>
+							<i class="fa fa-plus" *ngIf="!IsFavorite(item)"></i>
+							<i class="fa fa-check" *ngIf="IsFavorite(item)" style="color: #37c47c;"></i>
 						</div>
 					</div>
-
 
 				</div>
 
@@ -159,47 +119,16 @@
 
 				<div style="background: #f9f9f9;min-height:445px;padding: 1em;max-height: 446px; overflow-y: auto; padding: 1em;" id="style-2">
 
-					<div class="app_box">
+					<div class="app_box" *ngFor="let item of subBrowseList" (click)="ChangeStatus(item)">
 						<div style="width:90%;float:left;display: inline-block;">
-							<p>Rabbi Meyer Yedid</p>
-							<p style=" font-size: .7em; color: blue;">Updated 1/20/2018</p>
+							<p>{{item.title}}</p>
+							<p style=" font-size: .7em; color: blue;">{{item.descripcion}}</p>
 						</div>
 						<div style="width:10%;text-align: center;display: inline-block; line-height:2em;">
-							<i class="fa fa-plus"></i>
-						</div>
-
-					</div>
-
-					<div class="app_box">
-						<div style="width:90%;float:left;display: inline-block;">
-							<p>Rabbi Duvi BenSoussan</p>
-							<p style=" font-size: .7em; color: blue;">Updated 1/20/2018</p>
-						</div>
-						<div style="width:10%;text-align: center;display: inline-block; line-height:2em;">
-							<i class="fa fa-plus"></i>
+							<i class="fa fa-plus" *ngIf="!IsFavorite(item)"></i>
+							<i class="fa fa-check" *ngIf="IsFavorite(item)" style="color: #37c47c;"></i>
 						</div>
 					</div>
-
-					<div class="app_box">
-						<div style="width:90%;float:left;display: inline-block;">
-							<p>Rabbi Shlomo Diamond</p>
-							<p style=" font-size: .7em; color: blue;">Updated 1/20/2018</p>
-						</div>
-						<div style="width:10%;text-align: center;display: inline-block; line-height:2em;">
-							<i class="fa fa-plus"></i>
-						</div>
-					</div>
-
-					<div class="app_box">
-						<div style="width:90%;float:left;display: inline-block;">
-							<p>Rabbi Eliezer Zeytouneh</p>
-							<p style=" font-size: .7em; color: blue;">Updated 1/20/2018</p>
-						</div>
-						<div style="width:10%;text-align: center;display: inline-block; line-height:2em;">
-							<i class="fa fa-plus"></i>
-						</div>
-					</div>
-
 
 				</div>
 

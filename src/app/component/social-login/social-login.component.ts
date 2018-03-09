@@ -10,10 +10,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { MyCreditsService } from '../../service/my-credits.service';
 import { AccountService } from '../../service/account.service';
+import { FireStoreService,Setting } from '../../service/fire-store.service';
 
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 declare var $: any;
 declare var FS: any;
@@ -41,7 +44,7 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, public _auth: AuthService, private ngZone: NgZone, private queueService: QueueService, private podcastService: PodcastService, private subscribeService: SubscribeService, private socialLoginServic: SocialLoginServic, private tehillimService: TehillimService, private accountService: AccountService, private myCreditsService: MyCreditsService, private alertService: AlertService) {
+  constructor(private fireStoreService: FireStoreService,private afs: AngularFirestore,private fb: FormBuilder, public _auth: AuthService, private ngZone: NgZone, private queueService: QueueService, private podcastService: PodcastService, private subscribeService: SubscribeService, private socialLoginServic: SocialLoginServic, private tehillimService: TehillimService, private accountService: AccountService, private myCreditsService: MyCreditsService, private alertService: AlertService) {
     this.InitializeForm();
   }
 

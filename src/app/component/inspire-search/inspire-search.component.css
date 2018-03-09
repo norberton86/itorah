@@ -52,6 +52,14 @@ text-decoration:none;
 
 }
 
+.tile-box-head{
+    height: 61px;
+}
+
+.tile-box-primary .link-close{
+    margin-bottom: 47px;
+    margin-right: 14px;
+  }
 /** fix the close out button on firefox **/
 
 @-moz-document url-prefix() { 
@@ -77,6 +85,10 @@ text-decoration:none;
             margin-bottom:10px;
         }
     }
+
+    
+
+    
     
     
     @media only screen 

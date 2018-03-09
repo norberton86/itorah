@@ -14,6 +14,8 @@
   background: url('../assets/build/css/images/images/spinner.gif') 50% 50% no-repeat rgba(255, 255, 255, 0.8);
 }
 
+
+
 /* .nav-utilities a  {   spreads at the nav on desktop but needs work 
   margin-right: 31px;
 } */
@@ -260,6 +262,11 @@ padding: 0.5em;
     .header .nav-utilities a {
      margin-right: 29px;
   }
+
+  .nav-utilities > li > a:after {
+    content: attr(data-tooltip); position: absolute; top: 0%; left: -50%; -webkit-transform:translateY(27%); -ms-transform:translateY(27%); transform:translateY(27%); background: #fff; font-size: 13px; white-space:nowrap; padding:5px 10px;  border-radius:3px;  z-index: 50; color: #000; opacity: 0; visibility: hidden; text-transform: none; letter-spacing: 0; z-index: 850; max-width: 300px; margin-left: 5px; white-space:normal; width: 200px; font-style: normal; margin-left: 15px; box-shadow:0 0 13px #000; 
+ 
+   }
 }
 
 /* Trying to fix scaling issue for laptops */

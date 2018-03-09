@@ -32,6 +32,12 @@
 
 }
 
+.tile-box-primary .link-close{
+    margin-bottom: 57px;
+    margin-right: 14px;
+}
+
+
 @media only screen 
     and (min-device-width : 375px) 
     and (max-device-width : 667px) {

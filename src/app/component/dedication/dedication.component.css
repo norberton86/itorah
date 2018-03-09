@@ -190,3 +190,18 @@ and (max-device-width : 736px) {
         margin-left:34px;
     }
 }
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+
+    .form-order{
+      padding-left:15px;
+    }
+
+    .popup .btn-make-dedication{
+        margin-left: 197px;
+    }
+
+}

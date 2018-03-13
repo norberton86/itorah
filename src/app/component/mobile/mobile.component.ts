@@ -13,6 +13,8 @@ export class MobileComponent implements OnInit {
   form: FormGroup;
   requesting: boolean = false
 
+  parashaColum:boolean=false
+
   setting: Setting = { downloadDays: '0', downloadTime: "01:01:00", savedPlaylist: '0', wifiOnly: false }
 
   browseList: Array<Item> = [{
@@ -134,7 +136,7 @@ export class MobileComponent implements OnInit {
     this.fireStoreService.UpdateFireBase(this.setting)
   }
 
-  ChangeStatus(item: Item) {
+  ChangeStatus(item: Item,hide:boolean=false) {
     
     var arr = this.setting.savedPlaylist.split(',')
     var index = arr.indexOf(item.id.toString())
@@ -150,6 +152,13 @@ export class MobileComponent implements OnInit {
     this.setting.savedPlaylist = arr.join(',')
 
     this.fireStoreService.UpdateFireBase(this.setting)
+
+    if(hide)
+    this.parashaColum=false
+  }
+
+  ShowColum(){
+    this.parashaColum=true
   }
 
 }

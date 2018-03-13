@@ -97,7 +97,7 @@
 
 				<div style="background: #f9f9f9;min-height:445px;padding: 1em;max-height: 446px; overflow-y: auto; padding: 1em;" id="style-2">
 
-					<div class="app_box" *ngFor="let item of browseList" (click)="ChangeStatus(item)">
+					<div class="app_box" *ngFor="let item of browseList" (click)="ChangeStatus(item,true)">
 						<div style="width:90%;float:left;display: inline-block;">
 							<p>{{item.title}}</p>
 							<p style=" font-size: .7em; color: blue;">{{item.descripcion}}</p>
@@ -108,12 +108,22 @@
 						</div>
 					</div>
 
+					<div class="app_box"  (click)="ShowColum(true)">
+						<div style="width:90%;float:left;display: inline-block;">
+							<p>Parasha of the Week by</p>
+							<!--<p style=" font-size: .7em; color: blue;">{{item.descripcion}}</p>-->
+						</div>
+						<div style="width:10%;text-align: center;display: inline-block; line-height:2em;">
+							<i class="fa fa-arrow-right"></i>
+						</div>
+					</div>
+
 				</div>
 
 			</div>
 
 			<!-- Parasha of the week by -->
-			<div class="app_wrap_content_last" style="min-height:500px;">
+			<div class="app_wrap_content_last" style="min-height:500px;" *ngIf="parashaColum"> 
 				<div class="app_header">Parasha of The Week By</div>
 				<div class="app_sub_header"><i class="fa fa-info-circle"></i>The most recent Parasha shiur for your selected speaker will be downloaded.</div>
 

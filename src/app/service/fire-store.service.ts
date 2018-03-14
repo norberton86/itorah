@@ -7,16 +7,16 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 @Injectable()
 export class FireStoreService {
 
-  private subjectSetting: Subject<Setting> = new Subject<Setting>();
+  private subjectLogin: Subject<string> = new Subject<string>();
 
   constructor(private afs: AngularFirestore) { }
 
-  getDataHome(): Observable<Setting> {
-    return this.subjectSetting.asObservable();
+  getLogin(): Observable<string> {
+    return this.subjectLogin.asObservable();
   }
 
-  setDataHome(action: Setting): void {
-    this.subjectSetting.next(action);
+  setLogin(action: string): void {
+    this.subjectLogin.next(action);
   }
 
   getToken(): string {

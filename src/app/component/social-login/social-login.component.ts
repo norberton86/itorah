@@ -185,6 +185,7 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
     this.accountService.setLogin("Signed");
     this.myCreditsService.setLogin("Signed");
     this.alertService.setLogin("Signed");
+    this.fireStoreService.setLogin("Signed");
     this.RefreshView();
 
    try {
@@ -280,6 +281,7 @@ export class SocialLoginComponent implements OnInit, OnDestroy {
     this.subscribeService.setLogin("LogOut");
     this.tehillimService.setLogin("LogOut");
     this.myCreditsService.setLogin("LogOut");
+    this.fireStoreService.setLogin("LogOut");
     this.RefreshView();
   }
 

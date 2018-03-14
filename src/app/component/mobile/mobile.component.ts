@@ -13,7 +13,7 @@ export class MobileComponent implements OnInit {
   form: FormGroup;
   requesting: boolean = false
 
-  parashaColum:boolean=false
+  parashaColum: boolean = false
 
   setting: Setting = { downloadDays: '0', downloadTime: "01:01:00", savedPlaylist: '0', wifiOnly: false }
 
@@ -61,21 +61,39 @@ export class MobileComponent implements OnInit {
     this.InitializeForm()
 
     if (this.fireStoreService.getToken() != "")              //only if login
-      this.afs.collection('usuario').doc(this.fireStoreService.getEmail()).ref.onSnapshot(doc => {   //listen for any changes on the server
+    this.ListenFirebase()
+    else
+    this.fireStoreService.getLogin().subscribe(data => {
+      if (data == "Signed") {
+        this.ListenFirebase()
+      }
+      /*else{
+       var unSubscribe = this.afs.collection('usuario').ref.onSnapshot(function () {})
+       unSubscribe()    
+      }*/
+    })
 
-        if (!doc.metadata.hasPendingWrites) //if we have a change on the server(means is not local changes)
-        {
-          var setting = new Setting()
-          setting.downloadDays = doc.data().downloadDays
-          setting.downloadTime = doc.data().downloadTime
-          setting.savedPlaylist = doc.data().savedPlaylist
-          setting.wifiOnly = doc.data().wifiOnly
+  }
 
-          this.setting = setting
-          this.LoadForm()
-        }
-      }, error => { });
+  ListenFirebase() {
+    this.afs.collection('usuario').doc(this.fireStoreService.getEmail()).ref.onSnapshot(doc => {   //listen for any changes on the server
 
+      if (!doc.metadata.hasPendingWrites) //if we have a change on the server(means is not local changes)
+      {
+        var setting = new Setting()
+        setting.downloadDays = doc.data().downloadDays
+        setting.downloadTime = doc.data().downloadTime
+        setting.savedPlaylist = doc.data().savedPlaylist
+        setting.wifiOnly = doc.data().wifiOnly
+
+        this.setting = setting
+        this.LoadForm()
+      }
+    }, error => {
+
+      console.log(error)
+
+    });
   }
 
   ngOnInit() {
@@ -136,13 +154,13 @@ export class MobileComponent implements OnInit {
     this.fireStoreService.UpdateFireBase(this.setting)
   }
 
-  ChangeStatus(item: Item,hide:boolean=false) {
-    
+  ChangeStatus(item: Item, hide: boolean = false) {
+
     var arr = this.setting.savedPlaylist.split(',')
     var index = arr.indexOf(item.id.toString())
-    
+
     if (index >= 0) //if it is favorite,then remove from favorites
-    { 
+    {
       arr.splice(index, 1)
     }
     else {  //added
@@ -153,12 +171,12 @@ export class MobileComponent implements OnInit {
 
     this.fireStoreService.UpdateFireBase(this.setting)
 
-    if(hide)
-    this.parashaColum=false
+    if (hide)
+      this.parashaColum = false
   }
 
-  ShowColum(){
-    this.parashaColum=true
+  ShowColum() {
+    this.parashaColum = true
   }
 
 }

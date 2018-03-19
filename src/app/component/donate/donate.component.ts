@@ -56,7 +56,7 @@ export class DonateComponent implements OnInit {
 
     this.requesting = true
 
-    var data = { Amount: cc.Amount, CardExpDate: cc.CardExpDate, CardHolderName: cc.CardHolderName, CardNumber: cc.CardNumber, CVV: cc.CVV }
+    var data = { Amount: cc.Amount, CardExpDate: cc.CardExpDate.replace(" / ", ""), CardHolderName: cc.CardHolderName, CardNumber: cc.CardNumber, CVV: cc.CVV }
     if (cc.Email != '')
       data['Email'] = cc.Email
 

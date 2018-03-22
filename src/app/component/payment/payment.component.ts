@@ -4,6 +4,7 @@ import { CreditCardValidator } from 'angular-cc-library';
 import { CreditCard } from '../../model/credit-card';
 import { DonateService } from '../../service/donate.service';
 import { PaymentService } from '../../service/payment.service';
+import { SavedPaymentService, SavedCard } from '../../service/saved-payment.service';
 
 @Component({
   selector: 'app-payment',
@@ -14,8 +15,8 @@ import { PaymentService } from '../../service/payment.service';
 export class PaymentComponent implements OnInit, OnChanges {
 
 
-   @Input()
-   origin:string=''
+  @Input()
+  origin: string = ''
   //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   @Output()
   public myEvent = new EventEmitter<CreditCard>();
@@ -35,12 +36,12 @@ export class PaymentComponent implements OnInit, OnChanges {
   paymentError: boolean
 
   form: FormGroup;
-  constructor(private _fb: FormBuilder, private donateService: DonateService,private paymentService:PaymentService) { 
-    
+  constructor(private _fb: FormBuilder, private donateService: DonateService, private paymentService: PaymentService, private savedPaymentService: SavedPaymentService) {
+
     this.paymentService.getItem().subscribe(item => {
       if (item == "reset")
-         this.Reset();
-     
+        this.Reset();
+
     });
   }
 
@@ -57,8 +58,12 @@ export class PaymentComponent implements OnInit, OnChanges {
       expirationDate: ['', [<any>CreditCardValidator.validateExpDate]],
       cvc: ['', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4)]],
       name: ['', [Validators.required]],
-      email: ['', [Validators.pattern(EMAIL_REGEXP)]]
+      email: ['', [Validators.pattern(EMAIL_REGEXP)]],
+      saveds: []
     });
+
+    if (this.isAuthenticated())
+      this.Saveds()
   }
 
 
@@ -68,16 +73,16 @@ export class PaymentComponent implements OnInit, OnChanges {
       expirationDate: '',
       cvc: '',
       name: '',
-      email: ''
+      email: '',
+      saveds:'default'
     }
     this.form.reset(data);
-     this.value=0
+    this.value = 0
   }
 
   onSubmit() {
 
-    if(!this.form.valid)
-    {
+    if (!this.form.valid) {
       this.form.get('name').markAsTouched()
       this.form.get('email').markAsTouched()
       this.form.get('cvc').markAsTouched()
@@ -120,5 +125,36 @@ export class PaymentComponent implements OnInit, OnChanges {
       return true;
   }
 
+
+  Saveds() {
+
+    this.savedPaymentService.read().subscribe(result => {
+
+      this.savedArr = result
+      this.form.controls['saveds'].setValue('default')
+
+      this.form.controls['saveds'].valueChanges.subscribe(value => {
+        if (value == 'default') {
+          var data = {
+            creditCard: '',
+            expirationDate: '',
+            cvc: '',
+            name: '',
+            email: '',
+            saveds:'default'
+          }
+          this.form.reset(data);
+        }
+        else {
+
+        }
+      });
+
+
+    })
+
+  }
+
+  savedArr: Array<SavedCard> = []
 
 }

@@ -12,20 +12,26 @@
     <!-- /.form-head -->
 
     <div class="form-body">
-      <!--<div class="form-row">
+     
+      <div class="form-row" [hidden]="savedArr.length==0">
         <label for="field-select-card-on-file" class="form__label">Select card on file</label>
 
         <div class="form-controls">
+
           <div class="select">
-            <select name="field-select-card-on-file" id="field-select-card-on-file">
-												<option value="1234 4567 7890">1234 4567 7890</option>
-												<option value="1234 1234 1234">1234 1234 1234</option>
-											</select>
+            <select  name="field-select-card-on-file" id="field-select-card-on-file" formControlName="saveds">
+							
+              <option value="default">Select a Card</option>
+              <option *ngFor="let c of savedArr" [ngValue]="c"> 
+                <i class="fa fa-credit-card"></i>
+                 <b>{{c.cardType}}</b> ending in {{c.last4Digits}}
+              </option>
+						</select>
           </div>
           
         </div>
         
-      </div>-->
+      </div>
       <!-- /.form-row -->
 
       <div class="form-row">
@@ -59,7 +65,7 @@
       <!-- /.form-row -->
 
 
-      <div class="form-row">
+      <div class="form-row" [hidden]="form.controls.saveds.value!='default'">
         <!--<span>or</span>-->
 
         <label for="field-card-number" class="form__label">Card number</label>

@@ -51,6 +51,7 @@ import {WeeklyResultService} from './service/weekly-result.service';
 import {ClasseService} from './service/classe.service';
 import {GemaraService} from './service/gemara.service';
 import {PopupService} from './service/popup.service';
+import {SavedPaymentService} from './service/saved-payment.service';
 import {FireStoreService} from './service/fire-store.service';
 import {PaymentService} from './service/payment.service';
 import { InspireComponent } from './component/inspire/inspire.component';
@@ -198,7 +199,7 @@ export const firebaseConfig={
      AngularFireModule.initializeApp(firebaseConfig),
      AngularFirestoreModule.enablePersistence()
   ],
-  providers: [FireStoreService,ClasseService,PLayerQueueService,PerashaService,CkEditorService,PopupService,GemaraService,PaymentService,PlayerService,RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
+  providers: [SavedPaymentService,FireStoreService,ClasseService,PLayerQueueService,PerashaService,CkEditorService,PopupService,GemaraService,PaymentService,PlayerService,RegisterTehellimService,HomeService,QueueService,PodcastService,SubscribeService,WeeklyResultService,TehillimService,ShiurimService,AccountService,MyCreditsService,AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

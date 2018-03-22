@@ -19,7 +19,7 @@
         <div class="form-controls">
 
           <div class="select">
-            <select  name="field-select-card-on-file" id="field-select-card-on-file" formControlName="saveds">
+            <select  name="field-select-card-on-file" id="field-select-card-on-file" formControlName="saveds" (change)="CheckSSaveds()">
 							
               <option value="default">Select a Card</option>
               <option *ngFor="let c of savedArr" [ngValue]="c"> 
@@ -34,7 +34,7 @@
       </div>
       <!-- /.form-row -->
 
-      <div class="form-row">
+      <div class="form-row" [hidden]="savedArr.length>0 && form.controls.saveds.value!='default'">
         <label for="field-name" class="form__label">Name</label>
 
         <div class="form-controls">
@@ -65,7 +65,7 @@
       <!-- /.form-row -->
 
 
-      <div class="form-row" [hidden]="form.controls.saveds.value!='default'">
+      <div class="form-row" [hidden]="savedArr.length>0 && form.controls.saveds.value!='default'">
         <!--<span>or</span>-->
 
         <label for="field-card-number" class="form__label">Card number</label>

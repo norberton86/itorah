@@ -104,7 +104,7 @@ export class PaymentComponent implements OnInit, OnChanges {
 
     var cc = new CreditCard();
     cc.Amount = this.value
-    cc.CardExpDate = this.form.value.expirationDate
+    cc.CardExpDate = this.form.value.expirationDate.replace(" / ", "")
     cc.CardHolderName = this.form.value.name
     cc.CardNumber = this.form.value.creditCard
     cc.CVV = this.form.value.cvc.replace(" / ", "")
@@ -133,8 +133,15 @@ export class PaymentComponent implements OnInit, OnChanges {
       this.savedArr = result
       this.form.controls['saveds'].setValue('default')
 
-      this.form.controls['saveds'].valueChanges.subscribe(value => {
-        if (value == 'default') {
+    })
+
+  }
+
+  savedArr: Array<SavedCard> = []
+
+  CheckSSaveds(){
+    var value = this.form.value.saveds
+    if (value == 'default') {
           var data = {
             creditCard: '',
             expirationDate: '',
@@ -143,18 +150,14 @@ export class PaymentComponent implements OnInit, OnChanges {
             email: '',
             saveds:'default'
           }
-          this.form.reset(data);
+          this.form.patchValue(data);
         }
         else {
-
+          
+          var date = value.expDate[0]+value.expDate[1]+" / "+value.expDate[2]+value.expDate[3]
+          this.form.controls['expirationDate'].setValue(date)
+          this.form.controls['cvc'].setValue(parseInt(value.last4Digits))
         }
-      });
-
-
-    })
-
   }
-
-  savedArr: Array<SavedCard> = []
 
 }

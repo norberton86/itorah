@@ -2,24 +2,24 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-head">
       <h4 class="step-title">
-        	<span *ngIf="origin=='sponsor'">
+        <span *ngIf="origin=='sponsor'">
 						step
 						<span>3</span>
-					</span>
+        </span>
         Credit card detail
       </h4>
     </div>
     <!-- /.form-head -->
 
     <div class="form-body">
-     
+
       <div class="form-row" [hidden]="savedArr.length==0">
         <label for="field-select-card-on-file" class="form__label">Select card on file</label>
 
         <div class="form-controls">
 
           <div class="select">
-            <select  name="field-select-card-on-file" id="field-select-card-on-file" formControlName="saveds" (change)="CheckSSaveds()">
+            <select name="field-select-card-on-file" id="field-select-card-on-file" formControlName="saveds" (change)="CheckSSaveds()">
 							
               <option value="default">Select a Card</option>
               <option *ngFor="let c of savedArr" [ngValue]="c"> 
@@ -28,9 +28,9 @@
               </option>
 						</select>
           </div>
-          
+
         </div>
-        
+
       </div>
       <!-- /.form-row -->
 
@@ -131,28 +131,39 @@
             disabled>
         </div>
 
-
+        
 
         <!-- /.form__controls -->
       </div>
       <!-- /.form-row form-row-small -->
 
+      <div class="form-row" [hidden]="savedArr.length>0 && form.controls.saveds.value!='default'">
+        <div class="checkbox">
+          <input type="checkbox" id="checkboxPayment" formControlName="store">
+
+          <label for="checkboxPayment">
+						<strong>Save this Credit Card</strong>										
+					</label>
+        </div>
+      </div>
+
       <div class="form-row">
         <p>You will get an email receipt confirming your order</p>
 
-     <!--   <div class="g-recaptcha" data-sitekey="6LfMsi4UAAAAACwKrKCRPHYpmqVFCuCZYNM7mFH9"></div> -->
+        <!--   <div class="g-recaptcha" data-sitekey="6LfMsi4UAAAAACwKrKCRPHYpmqVFCuCZYNM7mFH9"></div> -->
       </div>
       <!-- /.form-row -->
     </div>
     <!-- /.form-body -->
 
     <div class="form-actions">
-      <input *ngIf="!requesting" type="submit" value="Process order" class="form-btn"> <!-- [disabled]="Validate()" [class.mydisabled]="Validate()" -->
+      <input *ngIf="!requesting" type="submit" value="Process order" class="form-btn">
+      <!-- [disabled]="Validate()" [class.mydisabled]="Validate()" -->
       <i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-2x"></i>
       <span style="margin-top: 0.5em;" *ngIf="paymentError">
         <i class="fa fa-exclamation-circle" aria-hidden="true" style="display:table; color:red"></i>
         <span style="color:red"> Your order was not approved. Please try again </span>
-      </span>  
+      </span>
     </div>
     <!-- /.form-actions -->
   </form>

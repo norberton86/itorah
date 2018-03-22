@@ -59,7 +59,8 @@ export class PaymentComponent implements OnInit, OnChanges {
       cvc: ['', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4)]],
       name: ['', [Validators.required]],
       email: ['', [Validators.pattern(EMAIL_REGEXP)]],
-      saveds: []
+      saveds: [],
+      store:[false]
     });
 
     if (this.isAuthenticated())
@@ -74,7 +75,8 @@ export class PaymentComponent implements OnInit, OnChanges {
       cvc: '',
       name: '',
       email: '',
-      saveds:'default'
+      saveds:'default',
+      store:false
     }
     this.form.reset(data);
     this.value = 0
@@ -109,6 +111,7 @@ export class PaymentComponent implements OnInit, OnChanges {
     cc.CardNumber = this.form.value.creditCard
     cc.CVV = this.form.value.cvc.replace(" / ", "")
     cc.Email = this.form.value.email
+    cc.SaveInfo = this.form.value.store
 
     this.myEvent.next(cc)
   }
@@ -148,7 +151,8 @@ export class PaymentComponent implements OnInit, OnChanges {
             cvc: '',
             name: '',
             email: '',
-            saveds:'default'
+            saveds:'default',
+            store:this.form.value.store
           }
           this.form.patchValue(data);
         }

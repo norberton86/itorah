@@ -5,4 +5,5 @@ export class CreditCard {
    CardNumber:string
    CVV:string
    Email:string
+   SaveInfo:boolean
 }

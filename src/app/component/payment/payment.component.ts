@@ -24,6 +24,9 @@ export class PaymentComponent implements OnInit, OnChanges {
   @Output()
   public myEventDonate = new EventEmitter<SavedCard>();
 
+  @Output()
+  public myEventShop = new EventEmitter<SavedCard>();
+
   @Input()
   valPar: number
 
@@ -92,8 +95,13 @@ export class PaymentComponent implements OnInit, OnChanges {
       var reUse =this.form.value.saveds
       reUse.amount = this.value
       
-      if(this.origin=='donate')
-      this.myEventDonate.next(reUse)
+      switch(this.origin)
+      {
+        case 'donate': this.myEventDonate.next(reUse); break;
+        case 'shop': this.myEventShop.next(reUse); break;
+      }
+      
+      
     }
     else {
       if (!this.form.valid) {

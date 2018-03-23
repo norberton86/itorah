@@ -5,6 +5,7 @@ import { ShiurimBuy, ShiurimBuyTable } from '../../model/shiurim-buy';
 import { CreditCard } from '../../model/credit-card';
 import { ShopService } from '../../service/shop.service';
 import { PaymentService } from '../../service/payment.service';
+import { SavedPaymentService, SavedCard } from '../../service/saved-payment.service';
 
 declare var $: any;
 @Component({
@@ -27,7 +28,7 @@ export class ShopComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private _fb: FormBuilder, private shopService: ShopService,private paymentService:PaymentService) {
+  constructor(private _fb: FormBuilder, private shopService: ShopService, private paymentService: PaymentService, private savedPaymentService: SavedPaymentService) {
     var i = 0
     for (i = 1; i <= 10; i++) {
       this.numbers.push(i);
@@ -88,15 +89,18 @@ export class ShopComponent implements OnInit {
 
     this.requesting = true
 
-    var data = { Amount: cc.Amount, CardExpDate: cc.CardExpDate.replace(" / ", ""), CardHolderName: cc.CardHolderName, CardNumber: cc.CardNumber, CVV: cc.CVV }
+    var data = {
+      Amount: cc.Amount, CardExpDate: cc.CardExpDate.replace(" / ", ""), CardHolderName: cc.CardHolderName, CardNumber: cc.CardNumber, CVV: cc.CVV,
+      SaveInfo: cc.SaveInfo
+    }
 
     this.shopService.add(data).subscribe(result => {
       this.requesting = false
       if (result == "Success") {
-          this.Reset()
-          this.paymentService.setItem('reset')  //order reset the nested payment component
-          $('#shop').toggleClass('shown');
-          $('#payConfirmed').toggleClass('shown');
+        this.Reset()
+        this.paymentService.setItem('reset')  //order reset the nested payment component
+        $('#shop').toggleClass('shown');
+        $('#payConfirmed').toggleClass('shown');
       }
       else
         this.paymentError = true
@@ -109,25 +113,50 @@ export class ShopComponent implements OnInit {
       })
   }
 
-  Reset()
-  {
-    this.rows=[]
+  Reset() {
+    this.rows = []
 
     $('#shop-2')                      //come back to original position
-        .addClass('hidden')
-        .siblings('.popup-body')
-        .removeClass('hidden')
+      .addClass('hidden')
+      .siblings('.popup-body')
+      .removeClass('hidden')
   }
 
-  Close()
-  {
+  Close() {
     this.paymentService.setItem('reset')
 
-    if(!$('#shop-2').hasClass('hidden'))
-    {
+    if (!$('#shop-2').hasClass('hidden')) {
       $('#shop-2').addClass('hidden')
       $('#shop-1').removeClass('hidden')
     }
+  }
+
+  ReUse(saved: SavedCard) {
+
+    if (this.requesting)
+      return
+
+
+    this.requesting = true
+
+    this.savedPaymentService.ShopQuick(saved).subscribe(result => {
+      this.requesting = false
+
+      if (result == "Success") {
+        this.Reset()
+        this.paymentService.setItem('reset')  //order reset the nested payment component
+        $('#shop').toggleClass('shown');
+        $('#payConfirmed').toggleClass('shown');
+      }
+      else
+        this.paymentError = true
+    },
+      error => {
+        this.requesting = false
+        this.paymentError = true
+      },
+      () => { })
+
   }
 
 }

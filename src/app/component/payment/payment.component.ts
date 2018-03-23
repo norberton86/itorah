@@ -21,6 +21,9 @@ export class PaymentComponent implements OnInit, OnChanges {
   @Output()
   public myEvent = new EventEmitter<CreditCard>();
 
+  @Output()
+  public myEventDonate = new EventEmitter<SavedCard>();
+
   @Input()
   valPar: number
 
@@ -60,7 +63,7 @@ export class PaymentComponent implements OnInit, OnChanges {
       name: ['', [Validators.required]],
       email: ['', [Validators.pattern(EMAIL_REGEXP)]],
       saveds: [],
-      store:[false]
+      store: [false]
     });
 
     if (this.isAuthenticated())
@@ -75,8 +78,8 @@ export class PaymentComponent implements OnInit, OnChanges {
       cvc: '',
       name: '',
       email: '',
-      saveds:'default',
-      store:false
+      saveds: 'default',
+      store: false
     }
     this.form.reset(data);
     this.value = 0
@@ -84,36 +87,48 @@ export class PaymentComponent implements OnInit, OnChanges {
 
   onSubmit() {
 
-    if (!this.form.valid) {
-      this.form.get('name').markAsTouched()
-      this.form.get('email').markAsTouched()
-      this.form.get('cvc').markAsTouched()
-      this.form.get('creditCard').markAsTouched()
-      this.form.get('expirationDate').markAsTouched()
+    if (this.form.value.saveds != 'default') {  //if it is a previous credit card
 
-      return
+      var reUse =this.form.value.saveds
+      reUse.amount = this.value
+      
+      if(this.origin=='donate')
+      this.myEventDonate.next(reUse)
+    }
+    else {
+      if (!this.form.valid) {
+        this.form.get('name').markAsTouched()
+        this.form.get('email').markAsTouched()
+        this.form.get('cvc').markAsTouched()
+        this.form.get('creditCard').markAsTouched()
+        this.form.get('expirationDate').markAsTouched()
+
+        return
+      }
+
+      if (this.value <= 0) {
+        this.donateService.Notify("Amount needs to be bigger than $0.00", true);
+        return;
+      }
+
+      if (!this.isAuthenticated() && this.form.value.email == "") {
+        this.donateService.Notify("Email can't be empty", true);
+        return;
+      }
+
+      var cc = new CreditCard();
+      cc.Amount = this.value
+      cc.CardExpDate = this.form.value.expirationDate.replace(" / ", "")
+      cc.CardHolderName = this.form.value.name
+      cc.CardNumber = this.form.value.creditCard
+      cc.CVV = this.form.value.cvc.replace(" / ", "")
+      cc.Email = this.form.value.email
+      cc.SaveInfo = this.form.value.store
+
+      this.myEvent.next(cc)
     }
 
-    if (this.value <= 0) {
-      this.donateService.Notify("Amount needs to be bigger than $0.00", true);
-      return;
-    }
 
-    if (!this.isAuthenticated() && this.form.value.email == "") {
-      this.donateService.Notify("Email can't be empty", true);
-      return;
-    }
-
-    var cc = new CreditCard();
-    cc.Amount = this.value
-    cc.CardExpDate = this.form.value.expirationDate.replace(" / ", "")
-    cc.CardHolderName = this.form.value.name
-    cc.CardNumber = this.form.value.creditCard
-    cc.CVV = this.form.value.cvc.replace(" / ", "")
-    cc.Email = this.form.value.email
-    cc.SaveInfo = this.form.value.store
-
-    this.myEvent.next(cc)
   }
 
   Validate() {
@@ -142,26 +157,26 @@ export class PaymentComponent implements OnInit, OnChanges {
 
   savedArr: Array<SavedCard> = []
 
-  CheckSSaveds(){
+  CheckSSaveds() {
     var value = this.form.value.saveds
     if (value == 'default') {
-          var data = {
-            creditCard: '',
-            expirationDate: '',
-            cvc: '',
-            name: '',
-            email: '',
-            saveds:'default',
-            store:this.form.value.store
-          }
-          this.form.patchValue(data);
-        }
-        else {
-          
-          var date = value.expDate[0]+value.expDate[1]+" / "+value.expDate[2]+value.expDate[3]
-          this.form.controls['expirationDate'].setValue(date)
-          this.form.controls['cvc'].setValue(parseInt(value.last4Digits))
-        }
+      var data = {
+        creditCard: '',
+        expirationDate: '',
+        cvc: '',
+        name: '',
+        email: '',
+        saveds: 'default',
+        store: this.form.value.store
+      }
+      this.form.patchValue(data);
+    }
+    else {
+
+      var date = value.expDate[0] + value.expDate[1] + " / " + value.expDate[2] + value.expDate[3]
+      this.form.controls['expirationDate'].setValue(date)
+      this.form.controls['cvc'].setValue(parseInt(value.last4Digits))
+    }
   }
 
 }

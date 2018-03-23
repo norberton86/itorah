@@ -4,6 +4,7 @@ import { CreditCardValidator } from 'angular-cc-library';
 import { CreditCard } from '../../model/credit-card';
 import { DonateService } from '../../service/donate.service';
 import { PaymentService } from '../../service/payment.service';
+import { SavedPaymentService, SavedCard } from '../../service/saved-payment.service';
 
 declare var $: any
 
@@ -26,7 +27,7 @@ export class DonateComponent implements OnInit {
 
   value: number = 0;
 
-  constructor(private _fb: FormBuilder, private donateService: DonateService,private paymentService:PaymentService) { }
+  constructor(private _fb: FormBuilder, private donateService: DonateService,private paymentService:PaymentService,private savedPaymentService:SavedPaymentService) { }
 
   ngOnInit() {
     this.formCheck = this._fb.group({
@@ -172,5 +173,36 @@ export class DonateComponent implements OnInit {
   {
     this.paymentService.setItem('reset') 
   }
+
+  //-------------------------------------------------------------------------------------------------------------------------------------------
+
+   ReUse(saved: SavedCard) {
+
+    if (this.requesting)
+      return
+
+    
+    this.requesting = true
+    
+    this.savedPaymentService.DonateQuick(saved).subscribe(result=>{
+      this.requesting = false
+
+      if (result == "Success") {
+        this.Reset()
+        this.paymentService.setItem('reset')  //order reset the nested payment component
+        $('#donate').toggleClass('shown');
+        $('#payConfirmed').toggleClass('shown');
+      }
+      else
+        this.paymentError = true
+    },
+    error=>{  
+      this.requesting = false
+      this.paymentError = true
+    },
+    ()=>{})
+
+  }
+
 
 }

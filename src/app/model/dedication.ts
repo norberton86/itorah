@@ -17,6 +17,13 @@ export class DedicationPost {
         CardExpDate: string,
         CardHolderName: string,
         CardNumber: string,
-        CVV: string
+        CVV: string,
+        saveInfo: boolean
+    }
+    savedPaymentInfo: {
+        amount: number
+        cardType: string
+        last4Digits: string
+        expDate: string
     }
 }

@@ -1,3 +1,5 @@
+
+
 export class CreditCard {
    Amount:number
    CardExpDate:string
@@ -7,3 +9,4 @@ export class CreditCard {
    Email:string
    SaveInfo:boolean
 }
+

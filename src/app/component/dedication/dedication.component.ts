@@ -5,6 +5,7 @@ import { DedicationService } from '../../service/dedication.service';
 declare var $: any;
 import { CreditCard } from '../../model/credit-card';
 import { PaymentService } from '../../service/payment.service';
+import { SavedPaymentService, SavedCard } from '../../service/saved-payment.service';
 
 @Component({
   selector: 'app-dedication',
@@ -38,7 +39,7 @@ export class DedicationComponent implements OnInit {
   value: number = 100
   paymentError: boolean = false
 
-  constructor(private dedicationService: DedicationService,private paymentService:PaymentService) { }
+  constructor(private dedicationService: DedicationService,private paymentService:PaymentService,private savedPaymentService:SavedPaymentService) { }
 
   ngOnInit() {
 
@@ -67,7 +68,7 @@ export class DedicationComponent implements OnInit {
     if (this.requesting)
       return
 
-    this.requesting = true
+    
 
     if (this.dedicationName == '') {
       this.dedicationService.Notify("Please fill Dedication Name", true);
@@ -92,8 +93,12 @@ export class DedicationComponent implements OnInit {
       CardExpDate: cc.CardExpDate.replace(" / ", ""),
       CardHolderName: cc.CardHolderName,
       CardNumber: cc.CardNumber,
-      CVV: cc.CVV
+      CVV: cc.CVV,
+      saveInfo: cc.SaveInfo
     }
+    ded.savedPaymentInfo = null
+
+    this.requesting = true
 
     let self = this;
     this.dedicationService.add(ded).subscribe(
@@ -140,6 +145,61 @@ export class DedicationComponent implements OnInit {
   Pay()
   {
     this.pay=!this.pay
+  }
+
+  ReUse(saved: SavedCard){
+    
+    if (this.requesting)
+      return
+
+    
+
+    if (this.dedicationName == '') {
+      this.dedicationService.Notify("Please fill Dedication Name", true);
+      return;
+    }
+
+    if (this.dedicationBy == '') {
+      this.dedicationService.Notify("Please fill Dedication By", true);
+      return;
+    }
+
+    var ded = new DedicationPost()
+
+    ded.TimeLimit = this.dP.id
+    ded.ID = null
+    ded.Details = this.other
+    ded.DedicationForName = this.dedicationName
+    ded.DedicationByName = this.dedicationBy
+    ded.DedicationTypeID = parseInt(this.dT.id)
+    ded.PaymentInfo = null
+    ded.savedPaymentInfo = saved
+
+    this.requesting = true
+
+    let self = this;
+    this.dedicationService.add(ded).subscribe(
+      function (response) {
+        self.requesting = false
+        if (response == "Success") {
+          self.paymentService.setItem('reset')  //order reset the nested payment component
+          $('#dedications').toggleClass('shown');
+          $('#payConfirmed').toggleClass('shown');
+        }
+        else
+        self.paymentError=true
+
+      },
+      function (error) {
+        self.requesting = false
+        self.paymentError = true
+      },
+      function () {
+
+      }
+    )
+
+
   }
 
 }

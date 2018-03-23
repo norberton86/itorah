@@ -27,6 +27,10 @@ export class PaymentComponent implements OnInit, OnChanges {
   @Output()
   public myEventShop = new EventEmitter<SavedCard>();
 
+  
+  @Output()
+  public myEventDedication = new EventEmitter<SavedCard>();
+
   @Input()
   valPar: number
 
@@ -99,6 +103,7 @@ export class PaymentComponent implements OnInit, OnChanges {
       {
         case 'donate': this.myEventDonate.next(reUse); break;
         case 'shop': this.myEventShop.next(reUse); break;
+        case 'dedication': this.myEventDedication.next(reUse); break;
       }
       
       

@@ -149,7 +149,7 @@
 			<!-- /.col-1of2 -->
 
 			<div class="col-1of2">
-				<app-payment [valPar]="value" (myEvent)="Save($event)" [isDonate]="false" [requesting]="requesting" [paymentError]="paymentError"></app-payment>
+				<app-payment [valPar]="value" (myEvent)="Save($event)" [isDonate]="false" [requesting]="requesting" [paymentError]="paymentError" origin="dedication" (myEventDedication) = "ReUse($event)"></app-payment>
 				<!-- /.form-order -->
 			</div>
 			<!-- /.col-1of2 -->

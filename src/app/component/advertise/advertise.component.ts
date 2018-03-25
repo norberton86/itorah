@@ -3,6 +3,7 @@ import { UploadService } from '../../service/upload.service';
 import { CreditCard } from '../../model/credit-card';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PaymentService } from '../../service/payment.service';
+import { SavedCard } from "app/service/saved-payment.service";
 
 declare var $: any;
 
@@ -20,7 +21,7 @@ export class AdvertiseComponent implements OnInit {
   form: FormGroup;
   paymentError: boolean = false
 
-  constructor(private uploadService: UploadService, private fb: FormBuilder,private paymentService:PaymentService) {
+  constructor(private uploadService: UploadService, private fb: FormBuilder, private paymentService: PaymentService) {
     this.InitializeMainForm();
   }
 
@@ -43,8 +44,8 @@ export class AdvertiseComponent implements OnInit {
         setTimeout(function () {
           var img = new Image();
           img.src = event.target.result;
-          if (img.width != 704 || img.height != 104) {
-            self.errorSize = "Error: Image needs to be 704x104"
+          if (img.width != 704 || img.height != 91) {
+            self.errorSize = "Error: Image needs to be 704x91"
             self.url = ''
           }
 
@@ -110,11 +111,12 @@ export class AdvertiseComponent implements OnInit {
     formData.append('ZipCode', this.form.value.ZipCode);
     formData.append('File', this.File, this.File.name);
 
-    formData.append('Amount', cc.Amount.toString());
+    formData.append('Amount', "1"); //cc.Amount.toString()
     formData.append('CardExpDate', cc.CardExpDate.replace(" / ", ""));
     formData.append('CardHolderName', cc.CardHolderName);
     formData.append('CardNumber', cc.CardNumber);
     formData.append('CVV', cc.CVV);
+    formData.append('SaveInfo', cc.SaveInfo ? "true" : "false");
 
 
 
@@ -159,9 +161,65 @@ export class AdvertiseComponent implements OnInit {
     this.File = null
   }
 
-  Close()
-  {
+  Close() {
     this.paymentService.setItem('reset')
+  }
+
+  ReUse(saved: SavedCard) {
+    if (this.requesting)
+      return
+
+    this.requesting = true
+
+    if (this.errorSize != '' || this.File == undefined || this.File == null) {
+      this.uploadService.Notify("Upload a valid image", true);
+      return;
+    }
+
+    if (this.Invalid())
+      return;
+
+
+    const formData = new FormData();
+
+    formData.append('TotalImpressionCount', this.impression.amount.toString());
+    formData.append('LastName', this.form.value.LastName);
+    formData.append('FirstName', this.form.value.FirstName);
+    formData.append('Address', this.form.value.Address + " " + this.form.value.addressTwo);
+    formData.append('PhoneNumber', this.form.value.PhoneNumber);
+    formData.append('Email', this.form.value.Email);
+    formData.append('City', this.form.value.City);
+    formData.append('State', this.form.value.State);
+    formData.append('ZipCode', this.form.value.ZipCode);
+    formData.append('File', this.File, this.File.name);
+
+    formData.append('Amount', "1"); //saved.amount.toString() 
+    formData.append('ExpDate', saved.expDate);
+    formData.append('Last4Digits', saved.last4Digits);
+    formData.append('CardType', saved.cardType); 
+
+
+    let self = this;
+    this.uploadService.upload(formData).subscribe(
+      function (respond) {
+        self.requesting = false
+
+        if (respond == "Success") {
+          self.Reset()
+          self.paymentService.setItem('reset')  //order reset the nested payment component
+          $('#popup-advertise').toggleClass('shown');
+          $('#payConfirmed').toggleClass('shown');
+        }
+        else
+          self.paymentError = true
+
+      },
+      function (error) {
+        self.requesting = false
+        self.paymentError = true
+      },
+      function () { }
+    )
   }
 }
 

@@ -66,7 +66,8 @@
 					iTorah will attemp 3 times, once per hour, starting with your assigned time above. If unsuccessful all 3 times, the iTorah
 					will not ttry again until the next scheduled download
 
-					<input type="button" value="Apply" class="apply" (click)="Apply()">
+					<input *ngIf="!requesting" type="button" value="Apply" class="apply" (click)="Apply()">
+					<i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-2x"></i>
 
 				</div>
 			</div>

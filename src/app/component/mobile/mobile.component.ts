@@ -61,17 +61,17 @@ export class MobileComponent implements OnInit {
     this.InitializeForm()
 
     if (this.fireStoreService.getToken() != "")              //only if login
-    this.ListenFirebase()
+      this.ListenFirebase()
     else
-    this.fireStoreService.getLogin().subscribe(data => {
-      if (data == "Signed") {
-        this.ListenFirebase()
-      }
-      /*else{
-       var unSubscribe = this.afs.collection('usuario').ref.onSnapshot(function () {})
-       unSubscribe()    
-      }*/
-    })
+      this.fireStoreService.getLogin().subscribe(data => {
+        if (data == "Signed") {
+          this.ListenFirebase()
+        }
+        /*else{
+         var unSubscribe = this.afs.collection('usuario').ref.onSnapshot(function () {})
+         unSubscribe()    
+        }*/
+      })
 
   }
 
@@ -124,7 +124,10 @@ export class MobileComponent implements OnInit {
     this.setting.downloadTime = this.form.value.downloadTime + ":00"
     this.setting.downloadDays = this.form.value.downloadDays.join(',')
 
-    this.fireStoreService.UpdateFireBase(this.setting).then(result => { }).catch(error => { })
+    this.requesting = true
+    this.fireStoreService.UpdateFireBase(this.setting).then(result => {
+      this.requesting = false
+    }).catch(error => { this.requesting = false })
   }
 
   LoadUI() {
@@ -151,7 +154,7 @@ export class MobileComponent implements OnInit {
 
     this.setting.savedPlaylist = arr.join(',')
 
-    this.fireStoreService.UpdateFireBase(this.setting)
+    //this.fireStoreService.UpdateFireBase(this.setting)
   }
 
   ChangeStatus(item: Item, hide: boolean = false) {
@@ -169,7 +172,7 @@ export class MobileComponent implements OnInit {
 
     this.setting.savedPlaylist = arr.join(',')
 
-    this.fireStoreService.UpdateFireBase(this.setting)
+    // this.fireStoreService.UpdateFireBase(this.setting)
 
     if (hide)
       this.parashaColum = false
